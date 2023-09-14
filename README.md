@@ -7,7 +7,7 @@ Welcome to Fireblocks-iOS-NCW-Demo App.
 - git clone git@github.com:fireblocks/ncw-ios-demo.git
 - Open the Fireblocks.xcodeproj project with Xcode.
 - File -> Add files to Fireblocks -> Add GoogleService-Info.plist with your app's Google API Keys, for connecting to Firebase and Google Drive
-- Add the following key to Info.plist, with the reversed Google Client-ID from GoogleService-Info.plist file -
+- Add the following key to Fireblocks/Info.plist file inside this project, with the reversed Google Client-ID from GoogleService-Info.plist file -
 - 
 ```
 	<key>CFBundleURLTypes</key>
