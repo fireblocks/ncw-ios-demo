@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Bold.ttf">
+            <string>Roboto-Bold</string>
+        </array>
+        <array key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ManuallyInputViewController" customModule="Fireblocks___Dev__ngrok_" customModuleProvider="target">
+            <connections>
+                <outlet property="copyButton" destination="OOt-pa-745" id="Iv2-kh-e94"/>
+                <outlet property="hideKeyButton" destination="EXz-lw-vuF" id="IWg-dw-BzD"/>
+                <outlet property="inputContainerStackView" destination="6kF-U3-7Ok" id="T5N-GB-hzT"/>
+                <outlet property="inputTextView" destination="pJo-qw-nhL" id="15z-lm-hwz"/>
+                <outlet property="recoverErrorLabel" destination="t3x-13-dhi" id="t69-uh-J4t"/>
+                <outlet property="recoverWalletButton" destination="LLc-BU-qzP" id="6b3-pP-tA2"/>
+                <outlet property="removeKeyButton" destination="bet-SK-gz8" id="bc1-iM-GQ5"/>
+                <outlet property="titleLabel" destination="SS2-QS-8Ka" id="xza-wr-86z"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Save your recovery key in a secure location." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SS2-QS-8Ka">
+                    <rect key="frame" x="24" y="88" width="345" height="19"/>
+                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
+                    <color key="textColor" name="white"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OOt-pa-745" userLabel="Copy recovery key" customClass="AppActionBotton" customModule="Fireblocks___Dev__ngrok_" customModuleProvider="target">
+                    <rect key="frame" x="16" y="247.33333333333337" width="361" height="50"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="gbd-ky-9PX"/>
+                    </constraints>
+                    <connections>
+                        <action selector="copeKeyTapped:" destination="-1" eventType="touchUpInside" id="HAG-hR-ER5"/>
+                    </connections>
+                </view>
+                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6kF-U3-7Ok">
+                    <rect key="frame" x="16" y="123" width="361" height="108.33333333333331"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wVZ-R7-reu">
+                            <rect key="frame" x="0.0" y="0.0" width="277" height="108.33333333333333"/>
+                            <subviews>
+                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" semanticContentAttribute="forceLeftToRight" scrollEnabled="NO" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="pJo-qw-nhL">
+                                    <rect key="frame" x="16" y="16" width="261" height="76.333333333333329"/>
+                                    <color key="backgroundColor" name="gray_1"/>
+                                    <color key="textColor" name="white"/>
+                                    <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="17"/>
+                                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" enablesReturnKeyAutomatically="YES" secureTextEntry="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="password"/>
+                                </textView>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="pJo-qw-nhL" secondAttribute="bottom" constant="16" id="2kj-t1-1J3"/>
+                                <constraint firstItem="pJo-qw-nhL" firstAttribute="top" secondItem="wVZ-R7-reu" secondAttribute="top" constant="16" id="4Wn-nk-v1r"/>
+                                <constraint firstAttribute="trailing" secondItem="pJo-qw-nhL" secondAttribute="trailing" id="bNq-N8-P8e"/>
+                                <constraint firstItem="pJo-qw-nhL" firstAttribute="leading" secondItem="wVZ-R7-reu" secondAttribute="leading" constant="16" id="s4M-G1-gc1"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ofR-5g-o3V">
+                            <rect key="frame" x="277" y="0.0" width="84" height="108.33333333333333"/>
+                            <subviews>
+                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="Lml-Hy-k4t">
+                                    <rect key="frame" x="14" y="0.0" width="54" height="108.33333333333333"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bet-SK-gz8" userLabel="deleteContentButton">
+                                            <rect key="frame" x="0.0" y="0.0" width="20" height="108.33333333333333"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="20" id="bcX-0Q-aDA"/>
+                                            </constraints>
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                            <state key="normal" image="close">
+                                                <color key="titleColor" name="white"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="removeContentTapped:" destination="-1" eventType="touchUpInside" id="3oO-V5-bqO"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EXz-lw-vuF" userLabel="hideContentButton">
+                                            <rect key="frame" x="34" y="0.0" width="20" height="108.33333333333333"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="20" id="lL3-u4-zCQ"/>
+                                            </constraints>
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                            <state key="normal" image="eye">
+                                                <color key="titleColor" name="white"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="hideKeyTapped:" destination="-1" eventType="touchUpInside" id="7Wu-ga-tOL"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                </stackView>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="Lml-Hy-k4t" firstAttribute="top" secondItem="ofR-5g-o3V" secondAttribute="top" id="677-8X-qYi"/>
+                                <constraint firstAttribute="trailing" secondItem="Lml-Hy-k4t" secondAttribute="trailing" constant="16" id="lcs-Qv-ocA"/>
+                                <constraint firstItem="Lml-Hy-k4t" firstAttribute="leading" secondItem="ofR-5g-o3V" secondAttribute="leading" constant="14" id="w5m-fB-Iig"/>
+                                <constraint firstAttribute="bottom" secondItem="Lml-Hy-k4t" secondAttribute="bottom" id="xWV-Tj-e8P"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" name="gray_1"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="16"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                </stackView>
+                <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="That recovery key is incorrect." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t3x-13-dhi">
+                    <rect key="frame" x="16" y="239.33333333333334" width="361" height="20.333333333333343"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" name="alert"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LLc-BU-qzP" userLabel="Recover wallet" customClass="AppActionBotton" customModule="Fireblocks___Dev__ngrok_" customModuleProvider="target">
+                    <rect key="frame" x="16" y="760" width="361" height="50"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="pL2-L2-9mI"/>
+                    </constraints>
+                    <connections>
+                        <action selector="recoverWalletTapped:" destination="-1" eventType="touchUpInside" id="i7Q-cA-o6Y"/>
+                    </connections>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" name="black"/>
+            <constraints>
+                <constraint firstItem="t3x-13-dhi" firstAttribute="top" secondItem="6kF-U3-7Ok" secondAttribute="bottom" constant="8" id="3pR-kI-mzb"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="LLc-BU-qzP" secondAttribute="bottom" constant="8" id="D5b-ob-fUm"/>
+                <constraint firstItem="LLc-BU-qzP" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="J0c-D3-kwe"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="6kF-U3-7Ok" secondAttribute="trailing" constant="16" id="L3c-2p-y5O"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="OOt-pa-745" secondAttribute="trailing" constant="16" id="NL3-vQ-9Fg"/>
+                <constraint firstItem="t3x-13-dhi" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="NeE-lR-rku"/>
+                <constraint firstItem="OOt-pa-745" firstAttribute="top" secondItem="6kF-U3-7Ok" secondAttribute="bottom" constant="16" id="Nge-pp-SLa"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="LLc-BU-qzP" secondAttribute="trailing" constant="16" id="STj-dA-kRi"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="SS2-QS-8Ka" secondAttribute="trailing" constant="24" id="TJ3-3Q-Jez"/>
+                <constraint firstItem="6kF-U3-7Ok" firstAttribute="top" secondItem="SS2-QS-8Ka" secondAttribute="bottom" constant="16" id="W2F-lV-bjT"/>
+                <constraint firstItem="OOt-pa-745" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="iGl-ea-abD"/>
+                <constraint firstItem="6kF-U3-7Ok" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="m9r-5d-Muk"/>
+                <constraint firstItem="SS2-QS-8Ka" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="29" id="syr-oD-Go8"/>
+                <constraint firstItem="SS2-QS-8Ka" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="24" id="xbn-8g-Rm5"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="t3x-13-dhi" secondAttribute="trailing" constant="16" id="zrQ-y4-Y9N"/>
+            </constraints>
+            <point key="canvasLocation" x="139.69465648854961" y="20.422535211267608"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="close" width="20" height="20"/>
+        <image name="eye" width="20" height="20"/>
+        <namedColor name="alert">
+            <color red="0.94099998474121094" green="0.32199999690055847" blue="0.32199999690055847" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="black">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="gray_1">
+            <color red="0.097999997437000275" green="0.10599999874830246" blue="0.12200000137090683" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="white">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

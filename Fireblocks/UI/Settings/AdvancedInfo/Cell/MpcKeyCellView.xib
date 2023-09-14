@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Inter-Medium.ttf">
+            <string>Inter-Medium</string>
+        </array>
+        <array key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MpcKeyCellView" id="u7I-Dg-btN" customClass="MpcKeyCellView" customModule="Fireblocks___Dev__ec2_" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="571" height="189"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="AlgorithmCellView" insetsLayoutMarginsFromSafeArea="NO" id="dOS-0G-ynd">
+                <rect key="frame" x="0.0" y="0.0" width="571" height="189"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0bs-wb-wW9">
+                        <rect key="frame" x="0.0" y="4" width="571" height="1"/>
+                        <color key="backgroundColor" name="gray_2"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="nfi-rc-3qd"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Key ID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lvq-Bv-3a2">
+                        <rect key="frame" x="0.0" y="31" width="44.666666666666664" height="19"/>
+                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
+                        <color key="textColor" name="gray_4"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9472099409" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ruF-xA-xrt">
+                        <rect key="frame" x="0.0" y="66" width="90" height="19"/>
+                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
+                        <color key="textColor" name="white"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Algorithm" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yfv-ai-e7n">
+                        <rect key="frame" x="0.0" y="101" width="70" height="19"/>
+                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
+                        <color key="textColor" name="gray_3"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MPC_EDDSA_ED25519" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TAx-RY-gQb">
+                        <rect key="frame" x="0.0" y="128" width="163.66666666666666" height="19"/>
+                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
+                        <color key="textColor" name="white"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K5H-WN-l8M">
+                        <rect key="frame" x="52.666666666666657" y="27.333333333333329" width="60" height="26.666666666666671"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ready" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WN0-PQ-XKA">
+                                <rect key="frame" x="12.000000000000007" y="6.0000000000000027" width="36" height="14.666666666666664"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="Inter-Medium" family="Inter" pointSize="12"/>
+                                <color key="textColor" name="success"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" name="success_alpha_10"/>
+                        <constraints>
+                            <constraint firstItem="WN0-PQ-XKA" firstAttribute="top" secondItem="K5H-WN-l8M" secondAttribute="top" constant="6" id="9q9-5y-JJQ"/>
+                            <constraint firstAttribute="trailing" secondItem="WN0-PQ-XKA" secondAttribute="trailing" constant="12" id="O1N-MY-MUc"/>
+                            <constraint firstAttribute="bottom" secondItem="WN0-PQ-XKA" secondAttribute="bottom" constant="6" id="cvj-fm-3sc"/>
+                            <constraint firstItem="WN0-PQ-XKA" firstAttribute="leading" secondItem="K5H-WN-l8M" secondAttribute="leading" constant="12" id="tOn-Xd-EN2"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="K5H-WN-l8M" firstAttribute="leading" secondItem="Lvq-Bv-3a2" secondAttribute="trailing" constant="8" id="0Th-Xh-1mo"/>
+                    <constraint firstItem="ruF-xA-xrt" firstAttribute="top" secondItem="Lvq-Bv-3a2" secondAttribute="bottom" constant="16" id="2fc-nf-NTm"/>
+                    <constraint firstAttribute="trailing" secondItem="0bs-wb-wW9" secondAttribute="trailing" id="2gk-Fr-F6W"/>
+                    <constraint firstItem="Lvq-Bv-3a2" firstAttribute="top" secondItem="0bs-wb-wW9" secondAttribute="bottom" constant="26" id="9mp-cv-dNA"/>
+                    <constraint firstItem="ruF-xA-xrt" firstAttribute="left" secondItem="Lvq-Bv-3a2" secondAttribute="left" id="IBk-bF-1xm"/>
+                    <constraint firstItem="Lvq-Bv-3a2" firstAttribute="leading" secondItem="dOS-0G-ynd" secondAttribute="leading" id="Nvf-Df-bW4"/>
+                    <constraint firstItem="TAx-RY-gQb" firstAttribute="leading" secondItem="Lvq-Bv-3a2" secondAttribute="leading" id="U2o-6j-pbc"/>
+                    <constraint firstItem="TAx-RY-gQb" firstAttribute="top" secondItem="yfv-ai-e7n" secondAttribute="bottom" constant="8" id="b3F-9k-Oxy"/>
+                    <constraint firstItem="K5H-WN-l8M" firstAttribute="centerY" secondItem="Lvq-Bv-3a2" secondAttribute="centerY" id="bMg-wE-I2z"/>
+                    <constraint firstItem="0bs-wb-wW9" firstAttribute="leading" secondItem="dOS-0G-ynd" secondAttribute="leading" id="g5i-Ii-cyc"/>
+                    <constraint firstItem="yfv-ai-e7n" firstAttribute="leading" secondItem="Lvq-Bv-3a2" secondAttribute="leading" id="iba-RP-qjW"/>
+                    <constraint firstItem="yfv-ai-e7n" firstAttribute="top" secondItem="ruF-xA-xrt" secondAttribute="bottom" constant="16" id="nyx-hI-jvo"/>
+                    <constraint firstItem="0bs-wb-wW9" firstAttribute="top" secondItem="dOS-0G-ynd" secondAttribute="top" constant="4" id="tk3-1J-cQy"/>
+                </constraints>
+            </collectionViewCellContentView>
+            <size key="customSize" width="571" height="189"/>
+            <connections>
+                <outlet property="algorithmLabel" destination="TAx-RY-gQb" id="yne-qw-KD2"/>
+                <outlet property="keyIdLabel" destination="ruF-xA-xrt" id="CGZ-hY-6IQ"/>
+                <outlet property="statusBackgroundView" destination="K5H-WN-l8M" id="Ajc-Xd-o3e"/>
+                <outlet property="statusLabel" destination="WN0-PQ-XKA" id="1Ep-eH-vPm"/>
+            </connections>
+            <point key="canvasLocation" x="-559.5419847328244" y="-114.43661971830987"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <namedColor name="gray_2">
+            <color red="0.18799999356269836" green="0.19599999487400055" blue="0.21199999749660492" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="gray_3">
+            <color red="0.41999998688697815" green="0.44699999690055847" blue="0.50199997425079346" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="gray_4">
+            <color red="0.62699997425079346" green="0.62699997425079346" blue="0.62699997425079346" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="success">
+            <color red="0.19200000166893005" green="0.76899999380111694" blue="0.55299997329711914" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="success_alpha_10">
+            <color red="0.19200000166893005" green="0.76899999380111694" blue="0.55299997329711914" alpha="0.10000000149011612" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="white">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

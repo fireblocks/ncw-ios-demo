@@ -1,0 +1,66 @@
+//
+//  MpcKeysViewModel.swift
+//  Fireblocks
+//
+//  Created by Fireblocks Ltd. on 12/07/2023.
+//
+
+import Foundation
+
+protocol MpcKeysViewModelDelegate: AnyObject {
+    func navigateNextScreen()
+    func showAlertMessage(message: String)
+}
+
+final class MpcKeysViewModel {
+    
+    private let mpcKeysRepository = MpcKeysRepository()
+    private var incomingMessageTask: Task<Void, Never>?
+    private var mpcKeyTask: Task<Void, Never>?
+    weak var delegate: MpcKeysViewModelDelegate?
+    
+    deinit {
+        cancelTasks()
+    }
+    
+    func generateMpcKeys() {
+        generateMpcFromSdk(self)
+    }
+    
+    private func generateMpcFromSdk(_ delegate: FireblocksKeyCreationDelegate) {
+        mpcKeyTask = Task {
+            await FireblocksManager.shared.generateMpcKeys(delegate)
+        }
+    }
+    
+    private func cancelTasks() {
+        incomingMessageTask?.cancel()
+        incomingMessageTask = nil
+        
+        mpcKeyTask?.cancel()
+        mpcKeyTask = nil
+    }
+    
+    func createAssets(){
+        Task {
+            let isSucceed = await mpcKeysRepository.createAssets()
+            if isSucceed {
+                self.delegate?.navigateNextScreen()
+            } else {
+                self.delegate?.showAlertMessage(message: LocalizableStrings.accountCreationFailed)
+            }
+        }
+    }
+
+}
+
+//MARK: - FireblocksKeyCreationDelegate
+extension MpcKeysViewModel: FireblocksKeyCreationDelegate {
+    func isKeysGenerated(isGenerated: Bool) {
+        if isGenerated {
+            self.createAssets()
+        } else {
+            self.delegate?.showAlertMessage(message: LocalizableStrings.mpcKeysGenerationFailed)
+        }
+    }
+}

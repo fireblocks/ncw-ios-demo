@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Medium.ttf">
+            <string>Roboto-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AreYouSureBottomSheet" customModule="Fireblocks___Dev__ec2_" customModuleProvider="target">
+            <connections>
+                <outlet property="backgroundView" destination="iN0-l3-epB" id="Pfh-db-WyI"/>
+                <outlet property="bottomSheetHeight" destination="djj-3m-NJc" id="Dld-eI-ZVh"/>
+                <outlet property="cancelButton" destination="3Mb-Jk-HAx" id="NM8-qv-kIM"/>
+                <outlet property="confirmButton" destination="S4b-Mq-gZN" id="8Nf-em-Y6Z"/>
+                <outlet property="contentImageView" destination="j9A-VG-iWz" id="A53-OJ-FmN"/>
+                <outlet property="contentView" destination="iN0-l3-epB" id="QYI-bF-q3S"/>
+                <outlet property="drawerLine" destination="Fgr-gS-ZPt" id="kk4-Av-1r2"/>
+                <outlet property="messageLabel" destination="GgD-FW-Tfw" id="On8-x1-SVs"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lMW-Vc-Z0A">
+                    <rect key="frame" x="0.0" y="488" width="393" height="364"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fgr-gS-ZPt" userLabel="DrawerLine">
+                            <rect key="frame" x="177.66666666666666" y="12" width="38" height="4"/>
+                            <color key="backgroundColor" name="gray_3"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="38" id="kd6-w7-ig6"/>
+                                <constraint firstAttribute="height" constant="4" id="lWr-bX-oog"/>
+                            </constraints>
+                        </view>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="search_image" translatesAutoresizingMaskIntoConstraints="NO" id="j9A-VG-iWz">
+                            <rect key="frame" x="156.66666666666666" y="40" width="80" height="80"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="80" id="Amw-7p-mPa"/>
+                                <constraint firstAttribute="width" constant="80" id="yMq-30-1Xt"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Are you sure you want to sign out?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GgD-FW-Tfw">
+                            <rect key="frame" x="24" y="136" width="345" height="23.666666666666657"/>
+                            <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="20"/>
+                            <color key="textColor" name="white"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S4b-Mq-gZN" userLabel="Confirm" customClass="AppActionBotton" customModule="Fireblocks___Dev__ec2_" customModuleProvider="target">
+                            <rect key="frame" x="24" y="199.66666666666663" width="345" height="50"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="uoU-1h-RC7"/>
+                            </constraints>
+                            <connections>
+                                <action selector="confirmButtonClicked:" destination="-1" eventType="touchUpInside" id="Tj7-TF-JcM"/>
+                            </connections>
+                        </view>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Mb-Jk-HAx">
+                            <rect key="frame" x="24" y="265.66666666666663" width="345" height="50"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="AvM-3c-gzk"/>
+                            </constraints>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain" title="Never mind"/>
+                            <connections>
+                                <action selector="cancelButtonTapped:" destination="-1" eventType="touchUpInside" id="klL-kz-bWv"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" name="gray_2"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="S4b-Mq-gZN" secondAttribute="trailing" constant="24" id="1Qm-J6-VqD"/>
+                        <constraint firstItem="j9A-VG-iWz" firstAttribute="top" secondItem="Fgr-gS-ZPt" secondAttribute="bottom" constant="24" id="68g-t6-QsO"/>
+                        <constraint firstItem="S4b-Mq-gZN" firstAttribute="top" secondItem="GgD-FW-Tfw" secondAttribute="bottom" constant="40" id="Aug-fH-N1k"/>
+                        <constraint firstItem="Fgr-gS-ZPt" firstAttribute="centerX" secondItem="lMW-Vc-Z0A" secondAttribute="centerX" id="Dw2-cG-QHP"/>
+                        <constraint firstItem="j9A-VG-iWz" firstAttribute="centerX" secondItem="lMW-Vc-Z0A" secondAttribute="centerX" id="H00-G5-Co2"/>
+                        <constraint firstAttribute="trailing" secondItem="GgD-FW-Tfw" secondAttribute="trailing" constant="24" id="LgB-WH-Huo"/>
+                        <constraint firstAttribute="trailing" secondItem="3Mb-Jk-HAx" secondAttribute="trailing" constant="24" id="O2l-uk-wSH"/>
+                        <constraint firstItem="3Mb-Jk-HAx" firstAttribute="leading" secondItem="lMW-Vc-Z0A" secondAttribute="leading" constant="24" id="QFy-3O-J5j"/>
+                        <constraint firstItem="GgD-FW-Tfw" firstAttribute="top" secondItem="j9A-VG-iWz" secondAttribute="bottom" constant="16" id="RtT-Ff-9G1"/>
+                        <constraint firstItem="GgD-FW-Tfw" firstAttribute="leading" secondItem="lMW-Vc-Z0A" secondAttribute="leading" constant="24" id="bSB-ds-a6J"/>
+                        <constraint firstAttribute="height" constant="364" id="djj-3m-NJc"/>
+                        <constraint firstItem="Fgr-gS-ZPt" firstAttribute="top" secondItem="lMW-Vc-Z0A" secondAttribute="top" constant="12" id="hiG-d3-OdS"/>
+                        <constraint firstItem="3Mb-Jk-HAx" firstAttribute="top" secondItem="S4b-Mq-gZN" secondAttribute="bottom" constant="16" id="keQ-SM-lSs"/>
+                        <constraint firstItem="S4b-Mq-gZN" firstAttribute="leading" secondItem="lMW-Vc-Z0A" secondAttribute="leading" constant="24" id="oJd-MX-pxP"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="16"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="lMW-Vc-Z0A" secondAttribute="bottom" id="Cff-tH-9Jn"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="lMW-Vc-Z0A" secondAttribute="trailing" id="TPk-Td-pZD"/>
+                <constraint firstItem="lMW-Vc-Z0A" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="gCG-ls-uRd"/>
+            </constraints>
+            <point key="canvasLocation" x="6.8702290076335872" y="19.718309859154932"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="search_image" width="80" height="80"/>
+        <namedColor name="gray_2">
+            <color red="0.18799999356269836" green="0.19599999487400055" blue="0.21199999749660492" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="gray_3">
+            <color red="0.41999998688697815" green="0.44699999690055847" blue="0.50199997425079346" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="white">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
