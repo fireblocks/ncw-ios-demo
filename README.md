@@ -8,7 +8,8 @@ Welcome to Fireblocks-iOS-NCW-Demo App.
 - Open the Fireblocks.xcodeproj project with Xcode.
 - File -> Add files to Fireblocks -> Add GoogleService-Info.plist with your app's Google API Keys, for connecting to Firebase and Google Drive
 - Add the following key to Info.plist, with the reversed Google Client-ID from GoogleService-Info.plist file -
-
+- 
+```
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -20,7 +21,7 @@ Welcome to Fireblocks-iOS-NCW-Demo App.
 			</array>
 		</dict>
 	</array>
- 
+ ```
 
 ## License
 MIT License
