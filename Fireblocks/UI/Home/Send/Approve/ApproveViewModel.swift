@@ -47,11 +47,11 @@ final class ApproveViewModel {
     }
     
     func getTotalAmountPrice() -> String {
-        if let fee = transaction.getFee(), let price = transaction.asset.price {
+        if let fee = transaction.getFee(), let rate = transaction.asset.rate {
             let totalAmount = transaction.amountToSend + fee
-            let totalPrice = totalAmount * price
+            let totalPrice = totalAmount * rate
             
-            return "$\(totalPrice)"
+            return "$\(totalPrice.formatFractions(fractionDigits: 2))"
         }
         
         return ""

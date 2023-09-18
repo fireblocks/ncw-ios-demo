@@ -68,13 +68,13 @@ final class TransfersViewModel: ObservableObject {
     
     func handleTransactions(transactions: [TransactionResponse]) {
         for transaction in transactions {
-            let transfrInfo = transaction.toTransferInfo()
-            if let index = transfers.firstIndex(where: {$0.transactionID == transfrInfo.transactionID}) {
-                transfers[index] = transfrInfo
+            let transferInfo = transaction.toTransferInfo()
+            if let index = transfers.firstIndex(where: {$0.transactionID == transferInfo.transactionID}) {
+                transfers[index] = transferInfo
             } else {
-                transfers.append(transfrInfo)
+                transfers.append(transferInfo)
             }
-            print("TRANSFER_ADDED: \(transfrInfo)")
+            print("TRANSFER_ADDED: \(transferInfo)")
         }
         if transactions.count > 0 {
             updateUI()

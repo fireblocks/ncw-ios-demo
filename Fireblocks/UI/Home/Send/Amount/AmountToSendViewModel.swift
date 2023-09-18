@@ -82,8 +82,8 @@ class AmountToSendViewModel {
     }
     
     private func calculatePrice(){
-        if let price = asset.price {
-            calculatedPrice = assetAmount * price
+        if let rate = asset.rate {
+            calculatedPrice = (assetAmount * rate).formatFractions(fractionDigits: 2)
             updateUI()
         }
     }

@@ -27,7 +27,7 @@ struct TransferInfo {
     let image: UIImage
     
     func getPriceString() -> String {
-        return "$\(price)"
+        return "$\(price.formatFractions(fractionDigits: 6))"
     }
     
     func getReceiverTitle(walletId: String) -> String {

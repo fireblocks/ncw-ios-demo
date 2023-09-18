@@ -69,7 +69,7 @@ class TransferDetailsViewController: UIViewController {
             creationDate.text = transfer.creationDate
             receiverAddressTitle.text = transfer.getReceiverTitle(walletId: FireblocksManager.shared.getWalletId())
             receiverAddress.text = transfer.getReceiverAddress(walletId: FireblocksManager.shared.getWalletId())
-            fee.text = "\(transfer.fee)"
+            fee.text = "\(transfer.fee.formatFractions(fractionDigits: 6))"
             transactionHash.text = transfer.getTxHash()
             fireblocksId.text = transfer.transactionID
         }

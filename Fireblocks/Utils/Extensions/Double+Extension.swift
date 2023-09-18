@@ -8,15 +8,16 @@
 import Foundation
 
 extension Double {
-    func formatWithTwoDecimalPlaces() -> String {
+    func formatFractions(fractionDigits: Int) -> Double {
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .decimal
-        numberFormatter.maximumFractionDigits = 2
+        numberFormatter.maximumFractionDigits = fractionDigits
         
         if let formattedString = numberFormatter.string(from: NSNumber(value: self)) {
-            return formattedString
+            return Double(formattedString) ?? self
         }
         
-        return String(self)
+        return self
     }
+
 }

@@ -25,7 +25,7 @@ class FeeRateCell: UITableViewCell {
     
     func configCell(with fee: Fee, assetName: String){
         speedTitle.text = fee.getFeeName()
-        feeTitle.text = fee.fee + " " + assetName
+        feeTitle.text = "~" + fee.fee + " " + assetName
         setSelected(isSelected: isFeeSelected)
     }
     

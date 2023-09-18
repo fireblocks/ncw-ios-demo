@@ -29,6 +29,7 @@ struct FeeResponse: Codable {
 }
 
 struct FeeData: Codable {
+    var networkFee: String? = "0"
     var feePerByte: String? = "0"
     var priorityFee: String? = "0"
     var baseFee: String? = "0"
