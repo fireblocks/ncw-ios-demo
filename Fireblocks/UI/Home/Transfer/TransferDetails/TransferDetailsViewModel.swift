@@ -17,7 +17,8 @@ protocol TransferDetailsViewModelDelegate: AnyObject {
 class TransferDetailsViewModel {
     var transferInfo: TransferInfo?
     let repository = ApproveRepository()
-
+    var hideBackBarButton: Bool
+    
     weak var delegate: TransferDetailsViewModelDelegate?
     private var cancellable = Set<AnyCancellable>()
 
@@ -25,8 +26,9 @@ class TransferDetailsViewModel {
         return transferInfo?.status == .PendingSignature
     }
 
-    init(transferInfo: TransferInfo? = nil) {
+    init(transferInfo: TransferInfo? = nil, hideBackBarButton: Bool) {
         self.transferInfo = transferInfo
+        self.hideBackBarButton = hideBackBarButton
     }
     
     func setDelegate(delegate: TransferDetailsViewModelDelegate?) {

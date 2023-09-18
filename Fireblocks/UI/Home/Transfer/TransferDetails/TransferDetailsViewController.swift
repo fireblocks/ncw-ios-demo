@@ -35,8 +35,8 @@ class TransferDetailsViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    init(withTransfer transferInfo: TransferInfo?) {
-        self.viewModel = TransferDetailsViewModel(transferInfo: transferInfo )
+    init(withTransfer transferInfo: TransferInfo?, hideBackBarButton: Bool) {
+        self.viewModel = TransferDetailsViewModel(transferInfo: transferInfo, hideBackBarButton: hideBackBarButton)
         super.init (nibName: "TransferDetailsViewController", bundle: nil)
     }
 
@@ -75,20 +75,23 @@ class TransferDetailsViewController: UIViewController {
         }
     }
     
-    private func configButtons(){
+    private func configButtons() {
 //        let testCancel = true
 //        if testCancel {
-//            navigationItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "close"), style: .plain, target: self, action: #selector(handleCancelTap))]
+        navigationItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "close"), style: .plain, target: self, action: #selector(handleCancelTap))]
 //        }
         approveButton.isHidden = !viewModel.isPending
         let buttonImage = AssetsIcons.checkMark.getIcon()
         approveButton.config(title: "Approve", image: buttonImage, style: .Primary)
-        
+        self.navigationItem.hidesBackButton = viewModel.hideBackBarButton
     }
     
     @objc func handleCancelTap() {
-        showActivityIndicator()
-        viewModel.cancelTransaction()
+        if let status = viewModel.transferInfo?.status, status == .PendingSignature {
+            showBottomSheet()
+        } else {
+            self.navigationController?.popToRootViewController(animated: true)
+        }
     }
     
     @IBAction func approveTapped(_ sender: AppActionBotton) {
@@ -96,6 +99,15 @@ class TransferDetailsViewController: UIViewController {
         viewModel.approveTransaction()
     }
     
+    private func showBottomSheet(){
+        let vc = AreYouSureBottomSheet.Builder()
+            .setIcon(AssetsIcons.cancelTransaction)
+            .setConfirmButtonTitle("Discard transaction")
+            .setUserActionDelegate(self)
+            .build()
+        navigationController?.present(vc, animated: true)
+    }
+
     private func showAlertView(message: String){
         showAlert(description: message, bottomAnchor: approveButton.topAnchor)
     }
@@ -190,3 +202,12 @@ extension TransferDetailsViewController: TransferDetailsViewModelDelegate {
 
 
 }
+
+//MARK: - UserActionDelegate
+extension TransferDetailsViewController: UserActionDelegate {
+    func confirmButtonClicked() {
+        viewModel.cancelTransaction()
+        showActivityIndicator()
+    }
+}
+

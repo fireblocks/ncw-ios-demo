@@ -79,10 +79,16 @@ extension TransfersViewController: UITableViewDataSource {
 extension TransfersViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let cell = tableView.cellForRow(at: indexPath) as? TransferCell {
-            cell.setSelected(isSelected: true)
+            UIView.animate(withDuration: 0.3, animations: {
+                cell.setSelected(isSelected: true)
+            },completion: { finished in
+                UIView.animate(withDuration: 0.3) {
+                    cell.setSelected(isSelected: false)
+                }
+            })
         }
         
-        let vc = TransferDetailsViewController(withTransfer: viewModel.getTransferFor(index: indexPath.row))
+        let vc = TransferDetailsViewController(withTransfer: viewModel.getTransferFor(index: indexPath.row), hideBackBarButton: false)
         vc.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(vc, animated: true)
     }

@@ -43,7 +43,7 @@ class ApproveViewController: UIViewController {
     private func configButtons(){
         navigationItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "close"), style: .plain, target: self, action: #selector(handleCloseTap))]
         self.navigationItem.title = "Preview"
-
+        self.navigationItem.hidesBackButton = true
         let buttonImage = AssetsIcons.checkMark.getIcon()
         approveButton.config(title: "Approve", image: buttonImage, style: .Primary)
         
