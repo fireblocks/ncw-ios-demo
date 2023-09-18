@@ -128,8 +128,8 @@ final class FeeRateViewModel {
                     if let transactionID = self.transactionID, let transaction = transfers.first(where: {$0.transactionID == transactionID}) {
                         print("TRANSFER_ADDED - new transfer status: \(transaction.status.rawValue)")
                         let status = transaction.status
-                        if status == .PendingSignature, !didPresented {
-                            didPresented = true
+                        if status == .PendingSignature, !self.didPresented {
+                            self.didPresented = true
                             self.delegate?.isTransactionCreated(isCreated: true)
                         } else if failedStatus.contains(status) {
                             self.delegate?.isTransactionCreated(isCreated: false)
