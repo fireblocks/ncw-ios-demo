@@ -39,14 +39,14 @@ enum AssetType: String, CaseIterable {
     private func calcFeeFromData(feeData: FeeData) -> Double? {
         switch self {
         case .BTC_TEST:
-            break
+            return Double(feeData.networkFee ?? "0")?.formatFractions(fractionDigits: 6) ?? 0
         case .ETH_TEST3:
-            if let baseFee = feeData.baseFee, let priorityFee = feeData.priorityFee {
-                let decimalValue = NSDecimalNumber(string: baseFee)
-                return Double(truncating:decimalValue)
-            }
+            return Double(feeData.networkFee ?? "0")?.formatFractions(fractionDigits: 6) ?? 0
+//            if let baseFee = feeData.baseFee, let priorityFee = feeData.priorityFee {
+//                let decimalValue = NSDecimalNumber(string: baseFee)
+//                return Double(truncating:decimalValue)
+//            }
         }
-        return nil
     }
 }
 

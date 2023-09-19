@@ -54,7 +54,7 @@ class AssetViewCell: UITableViewCell {
         assetBlockchainBadge.isHidden = isBlockchainHidden
         assetBlockchainBadgeBackground.isHidden = isBlockchainHidden
         if let price = asset.price {
-            assetValue.text = "$\(price.formatWithTwoDecimalPlaces())"
+            assetValue.text = "$\(price.formatFractions(fractionDigits: 2))"
         }
         if let balance = asset.balance {
             assetTokenAmount.text = "\(balance)"

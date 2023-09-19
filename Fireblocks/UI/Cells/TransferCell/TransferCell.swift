@@ -42,7 +42,7 @@ class TransferCell: UITableViewCell {
         transferTitle.text = transfer.getTransferTitle(walletId: FireblocksManager.shared.getWalletId())
         assetBlockchainName.text = transfer.blockChainName
         statusLabel.text = transfer.status.rawValue
-        amount.text = "\(transfer.amount)"
+        amount.text = "\(transfer.amount.formatFractions(fractionDigits: 6))"
         price.text = transfer.getPriceString()
         
         updateStatusLabel(with: transfer.status.color)

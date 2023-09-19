@@ -44,6 +44,7 @@ class TransactionSentViewController: UIViewController {
     private func configButtons(){
         showTransactionButton.config(title: "Show transaction", style: .Primary)
         navigationItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "close"), style: .plain, target: self, action: #selector(handleCloseTap))]
+        self.navigationItem.hidesBackButton = true
     }
     
     @objc private func handleCloseTap() {
@@ -67,7 +68,8 @@ extension TransactionSentViewController: TransactionSentViewModelDelegate {
             guard let self = self else { return }
             
             self.hideActivityIndicator()
-            let vc = TransferDetailsViewController(withTransfer: transferInfo)
+            let vc = TransferDetailsViewController(withTransfer: transferInfo, hideBackBarButton: true)
+            
             vc.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(vc, animated: true)
         }

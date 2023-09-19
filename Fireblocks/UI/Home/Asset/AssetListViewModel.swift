@@ -48,9 +48,9 @@ class AssetListViewModel {
             do {
                 for i in 0..<assets.count {
                     let balance = try await repository.getBalance(assetId: assets[i].id)
-                    assets[i].balance = Double(balance.total)
+                    assets[i].balance = Double(balance.total)?.formatFractions(fractionDigits: 6)
                     if let balance = assets[i].balance, let rate = assets[i].rate {
-                        assets[i].price = balance * rate
+                        assets[i].price = (balance * rate).formatFractions(fractionDigits: 2)
                     }
 
                     let address = try await repository.getAddress(assetId: assets[i].id)
@@ -76,12 +76,12 @@ class AssetListViewModel {
     func getBalance() -> String {
         var balanceSum: Double = 0.0
         assets.forEach { asset in
-            if let price = asset.price, let balance = asset.balance {
+            if let price = asset.price {
                 balanceSum += price 
             }
         }
         
-        return "$\(balanceSum.formatWithTwoDecimalPlaces())"
+        return "$\(balanceSum)"
     }
     
     func getIsButtonsEnabled() -> Bool {

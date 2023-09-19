@@ -23,7 +23,7 @@ class SendToViewModel {
     
     func getPriceAsString() -> String {
         guard let transaction = transaction else { return "" }
-        return String(transaction.price.formatWithTwoDecimalPlaces())
+        return String(transaction.price.formatFractions(fractionDigits: 6))
     }
     
     func setAddress(address: String?){
