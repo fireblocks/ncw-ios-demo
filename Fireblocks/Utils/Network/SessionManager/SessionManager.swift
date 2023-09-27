@@ -114,7 +114,7 @@ struct TransactionResponse: Codable, Identifiable, Hashable, Equatable {
                             status: statusType,
                             transactionHash: details.txHash ?? " ",
                             price: Double(details.amountInfo?.amountUSD ?? "0")?.formatFractions(fractionDigits: 6) ?? 0,
-                            blockChainName: details.assetType ?? "",
+                            blockChainName: details.feeCurrency ?? "",
                             senderWalletId: details.source?.walletId ?? "",
                             receiverWalletID: details.destination?.walletId ?? "",
                             image: image)

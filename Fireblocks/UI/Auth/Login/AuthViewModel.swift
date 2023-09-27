@@ -63,6 +63,6 @@ final class AuthViewModel {
     }
     
     func isUserHaveKeys() -> Bool {
-        return  FireblocksManager.shared.isKeyInitialized()
+        return  FireblocksManager.shared.isKeyInitialized(algorithm: .MPC_ECDSA_SECP256K1)
     }
 }

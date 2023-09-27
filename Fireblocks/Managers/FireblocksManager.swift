@@ -8,7 +8,9 @@
 import FireblocksSDK
 import FirebaseAuth
 import Foundation
+import OSLog
 
+private let logger = Logger(subsystem: "Fireblocks", category: "FireblocksManager")
 protocol FireblocksKeyCreationDelegate {
     func isKeysGenerated(isGenerated: Bool) async
 }
@@ -31,15 +33,15 @@ class FireblocksManager {
         return walletId
     }
     
-    func isKeyInitialized() -> Bool {
-        return getMpcKeys().first?.keyStatus == .READY
+    func isKeyInitialized(algorithm: Algorithm) -> Bool {
+        return getMpcKeys().filter({$0.algorithm == algorithm}).first?.keyStatus == .READY
     }
 
     func isInstanceInitialized(authUser: AuthUser?) -> Bool {
         guard let deviceId = authUser?.deviceId,
               let walletId = authUser?.walletId
         else {
-            print("FireblocksManager, initInstance() failed: user credentials is nil")
+            logger.log("FireblocksManager, initInstance() failed: user credentials is nil")
             return false
         }
         
@@ -50,7 +52,7 @@ class FireblocksManager {
             try initializeFireblocksSDK()
             return true
         } catch {
-            print("FireblocksManager, initInstance() throws exc: \(error).")
+            logger.log("FireblocksManager, initInstance() throws exc: \(error).")
             return false
         }
     }
@@ -59,7 +61,7 @@ class FireblocksManager {
         do {
             return try Fireblocks.getInstance(deviceId: deviceId)
         } catch {
-            print("FireblocksManager, getFireblocksInstance() can't get instance: \(error).")
+            logger.log("FireblocksManager, getFireblocksInstance() can't get instance: \(error).")
             return nil
         }
     }
@@ -72,10 +74,10 @@ class FireblocksManager {
         do {
             let algorithms: Set<Algorithm> = Set([.MPC_ECDSA_SECP256K1])
             let result = try await getSdkInstance()?.generateMPCKeys(algorithms: algorithms)
-            let isGenerated = result?.first?.description().contains("READY") ?? false
+            let isGenerated = result?.first?.keyStatus == .READY
             await delegate.isKeysGenerated(isGenerated: isGenerated)
         } catch {
-            print("FireblocksManager, generateMpcKeys() failed: \(error).")
+            logger.log("FireblocksManager, generateMpcKeys() failed: \(error).")
         }
     }
     
@@ -84,7 +86,7 @@ class FireblocksManager {
             let result = try await getSdkInstance()?.signTransaction(txId: transactionId)
             return result?.transactionSignatureStatus == .COMPLETED
         } catch {
-            print("FireblocksManager, signTransaction() failed: \(error).")
+            logger.log("FireblocksManager, signTransaction() failed: \(error).")
             return false
         }
     }
@@ -94,12 +96,13 @@ class FireblocksManager {
     }
     
     func getFullKey() async -> [String: Data]? {
-        guard let instance = getSdkInstance() else {
+        guard getSdkInstance() != nil else {
             return nil
         }
         
         var keysSet: Set<String> = []
-        for mpcKey in getMpcKeys() {
+        let allKeys = getMpcKeys()
+        for mpcKey in allKeys {
             keysSet.insert(mpcKey.keyId)
         }
             
@@ -114,7 +117,7 @@ class FireblocksManager {
         do {
             return try await instance.takeover()
         } catch {
-            print("FireblocksManager, Takeover() can't takeover keys: \(error).")
+            logger.log("FireblocksManager, Takeover() can't takeover keys: \(error).")
             return nil
         }
     }
@@ -130,7 +133,7 @@ class FireblocksManager {
             if keySet.first(where: {$0.keyRecoveryStatus == .ERROR}) != nil  { return false }
             return true
         } catch {
-            print("FireblocksManager, recoverWallet() can't recover wallet: \(error).")
+            logger.log("FireblocksManager, recoverWallet() can't recover wallet: \(error).")
             return false
         }
     }
@@ -147,7 +150,7 @@ class FireblocksManager {
         do {
             return try await instance.backupKeys(passphrase: passphrase)
         } catch {
-            print("FireblocksManager, backupKeys(): \(error).")
+            logger.log("FireblocksManager, backupKeys(): \(error).")
             return nil
         }
     }
@@ -162,6 +165,8 @@ class FireblocksManager {
             )
         }
         
+        //We simulate a simple way to implement a Polling mechanism.
+        //During the integration it is ineeded to generate a mechanism for fetching and listening to incoming messages and transactions, which could be any implementation (e.g. polling, web-socket, push etc.)
         PollingManager.shared.createListener(deviceId: deviceId, instance: self, sessionManager: SessionManager.shared)
         
     }
@@ -173,7 +178,7 @@ class FireblocksManager {
     
     private func isAllKeysBackedUp(_ keyBackupSet: Set<FireblocksSDK.KeyBackup>) -> Bool {
         for status in keyBackupSet {
-            if !status.description().contains("SUCCESS") {
+            if status.keyBackupStatus != .SUCCESS {
                 return false
             }
         }
@@ -203,7 +208,7 @@ extension FireblocksManager: PollingListenerDelegate {
     }
     
     func handleError(error: String?) {
-        print(error ?? "")
+        logger.log("\(error ?? "")")
     }
     
     
@@ -230,11 +235,11 @@ extension FireblocksManager: MessageHandlerDelegate {
                 let instance = try Fireblocks.getInstance(deviceId: deviceId)
                 if let payload = castByteArrayToString(element) {
                     instance.handleIncomingMessage(payload: payload) { messageHandled in
-                        print("FireblocksManager, incoming message handled: \(messageHandled).")
+                        logger.log("FireblocksManager, incoming message handled: \(messageHandled).")
                     }
                 }
             } catch {
-                print("FireblocksManager, handleIncomingMessage() throws exception: \(error).")
+                logger.log("FireblocksManager, handleIncomingMessage() throws exception: \(error).")
             }
         }
     }
@@ -256,19 +261,19 @@ extension FireblocksManager: EventHandlerDelegate {
     func onEvent(event: FireblocksSDK.FireblocksEvent) {
         switch event {
         case let .KeyCreation(status, error):
-            print("FireblocksManager, status(.KeyCreation): \(status.description()). Error: \(String(describing: error)).")
+            logger.log("FireblocksManager, status(.KeyCreation): \(status.description()). Error: \(String(describing: error)).")
             break
         case let .Backup(status, error):
-            print("FireblocksManager, status(.Backup): \(status.description()). Error: \(String(describing: error)).")
+            logger.log("FireblocksManager, status(.Backup): \(status.description()). Error: \(String(describing: error)).")
             break
         case let .Recover(status, error):
-            print("FireblocksManager, status(.Recover): \(String(describing: status?.description())). Error: \(String(describing: error)).")
+            logger.log("FireblocksManager, status(.Recover): \(String(describing: status?.description())). Error: \(String(describing: error)).")
             break
         case let .Transaction(status, error):
-            print("FireblocksManager, status(.Transaction): \(status.description()). Error: \(String(describing: error)).")
+            logger.log("FireblocksManager, status(.Transaction): \(status.description()). Error: \(String(describing: error)).")
             break
         @unknown default:
-            print("FireblocksManager, @unknown case")
+            logger.log("FireblocksManager, @unknown case")
             break
         }
     }
