@@ -14,11 +14,14 @@
         </array>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AdvancedInfoViewController" customModule="Fireblocks___Dev__ec2_" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AdvancedInfoViewController" customModule="NCW_sandbox" customModuleProvider="target">
             <connections>
                 <outlet property="algorithmsCollectionView" destination="htW-GN-6vD" id="dgn-1O-SBT"/>
+                <outlet property="copyDeviceIdButton" destination="tIW-Mb-caG" id="EHS-3t-oC7"/>
+                <outlet property="copyWalletIdButton" destination="ROe-at-BDa" id="lyr-QZ-NI9"/>
                 <outlet property="deviceIdLabel" destination="Vr7-Rj-Xr7" id="qpX-LP-ecB"/>
                 <outlet property="view" destination="iN0-l3-epB" id="gyH-lw-Avd"/>
+                <outlet property="walletIdLabel" destination="q7F-wn-zMq" id="ZuX-nD-lEn"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -26,20 +29,56 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Device ID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ltp-DG-Gb0">
-                    <rect key="frame" x="24" y="107" width="68" height="19"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wallet ID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D6y-2H-4eT">
+                    <rect key="frame" x="24" y="107" width="64" height="19"/>
                     <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="16"/>
                     <color key="textColor" name="gray_4"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ROe-at-BDa">
+                    <rect key="frame" x="341" y="95" width="36" height="36"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="36" id="u9I-pq-eQn"/>
+                    </constraints>
+                    <color key="tintColor" name="white"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" image="copy"/>
+                    <connections>
+                        <action selector="copyWalletIdTapped:" destination="-1" eventType="touchUpInside" id="Zbg-iQ-XB9"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0000-0000-0000-0000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q7F-wn-zMq">
+                    <rect key="frame" x="24" y="147" width="345" height="20"/>
+                    <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="17"/>
+                    <color key="textColor" name="white"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Device ID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ltp-DG-Gb0">
+                    <rect key="frame" x="24" y="191" width="68" height="19"/>
+                    <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="16"/>
+                    <color key="textColor" name="gray_4"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tIW-Mb-caG">
+                    <rect key="frame" x="341" y="179" width="36" height="36"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="36" id="xoZ-pw-tdG"/>
+                    </constraints>
+                    <color key="tintColor" name="white"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" image="copy"/>
+                    <connections>
+                        <action selector="copyDeviceIdTapped:" destination="-1" eventType="touchUpInside" id="zhA-vN-Ng8"/>
+                    </connections>
+                </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0000-0000-0000-0000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vr7-Rj-Xr7">
-                    <rect key="frame" x="24" y="142" width="345" height="20"/>
+                    <rect key="frame" x="24" y="226" width="345" height="20"/>
                     <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="17"/>
                     <color key="textColor" name="white"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="htW-GN-6vD">
-                    <rect key="frame" x="24" y="186" width="345" height="632"/>
+                    <rect key="frame" x="24" y="270" width="345" height="548"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="F0o-Dh-I3Y">
                         <size key="itemSize" width="128" height="128"/>
@@ -52,20 +91,32 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" name="black"/>
             <constraints>
+                <constraint firstItem="q7F-wn-zMq" firstAttribute="top" secondItem="ROe-at-BDa" secondAttribute="bottom" constant="16" id="4uX-kJ-blc"/>
+                <constraint firstItem="D6y-2H-4eT" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="48" id="8Wf-XU-2Ja"/>
+                <constraint firstItem="Vr7-Rj-Xr7" firstAttribute="leading" secondItem="q7F-wn-zMq" secondAttribute="leading" id="AhH-Kq-yjs"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="htW-GN-6vD" secondAttribute="trailing" constant="24" id="Auc-e2-62f"/>
+                <constraint firstItem="ltp-DG-Gb0" firstAttribute="top" secondItem="q7F-wn-zMq" secondAttribute="bottom" constant="24" id="DhN-xR-UrP"/>
+                <constraint firstItem="ROe-at-BDa" firstAttribute="top" secondItem="D6y-2H-4eT" secondAttribute="top" constant="-12" id="F39-cf-opB"/>
+                <constraint firstItem="tIW-Mb-caG" firstAttribute="trailing" secondItem="ROe-at-BDa" secondAttribute="trailing" id="HFA-fm-oyJ"/>
+                <constraint firstItem="tIW-Mb-caG" firstAttribute="top" secondItem="ltp-DG-Gb0" secondAttribute="top" constant="-12" id="Hzy-I0-YIx"/>
                 <constraint firstItem="htW-GN-6vD" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="24" id="OKZ-XA-yvX"/>
                 <constraint firstItem="htW-GN-6vD" firstAttribute="top" secondItem="Vr7-Rj-Xr7" secondAttribute="bottom" constant="24" id="Oof-YT-Zk2"/>
-                <constraint firstItem="ltp-DG-Gb0" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="48" id="S97-sv-FHI"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="tIW-Mb-caG" secondAttribute="trailing" constant="16" id="S0p-0y-UXU"/>
+                <constraint firstItem="D6y-2H-4eT" firstAttribute="leading" secondItem="ltp-DG-Gb0" secondAttribute="leading" id="ZLI-UZ-yHL"/>
+                <constraint firstItem="ROe-at-BDa" firstAttribute="width" secondItem="ROe-at-BDa" secondAttribute="height" multiplier="1:1" id="byY-6T-c3V"/>
                 <constraint firstItem="ltp-DG-Gb0" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="24" id="gbY-tq-DYX"/>
+                <constraint firstItem="Vr7-Rj-Xr7" firstAttribute="trailing" secondItem="q7F-wn-zMq" secondAttribute="trailing" id="jcG-uu-elX"/>
                 <constraint firstItem="Vr7-Rj-Xr7" firstAttribute="top" secondItem="ltp-DG-Gb0" secondAttribute="bottom" constant="16" id="krg-up-1Ys"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Vr7-Rj-Xr7" secondAttribute="trailing" constant="24" id="mQm-L3-tyf"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="htW-GN-6vD" secondAttribute="bottom" id="rKQ-4I-xcK"/>
                 <constraint firstItem="Vr7-Rj-Xr7" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="24" id="w8u-Rh-VTT"/>
+                <constraint firstItem="tIW-Mb-caG" firstAttribute="width" secondItem="tIW-Mb-caG" secondAttribute="height" multiplier="1:1" id="wsd-9l-XmK"/>
             </constraints>
             <point key="canvasLocation" x="137" y="25"/>
         </view>
     </objects>
     <resources>
+        <image name="copy" width="20" height="20"/>
         <namedColor name="black">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

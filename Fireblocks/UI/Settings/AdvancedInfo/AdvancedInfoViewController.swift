@@ -11,7 +11,10 @@ class AdvancedInfoViewController: UIViewController {
     
     static let identifier = "AdvancedInfoViewController"
     
+    @IBOutlet weak var walletIdLabel: UILabel!
+    @IBOutlet weak var copyWalletIdButton: UIButton!
     @IBOutlet weak var deviceIdLabel: UILabel!
+    @IBOutlet weak var copyDeviceIdButton: UIButton!
     @IBOutlet weak var algorithmsCollectionView: UICollectionView!
     
     private let viewModel = AdvancedInfoViewModel()
@@ -19,6 +22,8 @@ class AdvancedInfoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Advanced Info"
+        copyWalletIdButton.setTitle("", for: .normal)
+        copyDeviceIdButton.setTitle("", for: .normal)
         setAccountData()
         initCollectionView()
     }
@@ -32,6 +37,7 @@ class AdvancedInfoViewController: UIViewController {
     }
     
     private func setAccountData() {
+        walletIdLabel.text = viewModel.getWalletId()
         deviceIdLabel.text = viewModel.getDeviceId()
     }
     
@@ -65,4 +71,25 @@ extension AdvancedInfoViewController:
         return CGSize(width: cellWidth, height: cellHeight)
     }
     
+    @IBAction func copyWalletIdTapped(_ sender: UIButton) {
+        guard let copiedString = walletIdLabel.text else {
+            showToast("Copy failed")
+            return
+        }
+        
+        UIPasteboard.general.string = copiedString
+        showToast()
+    }
+
+    @IBAction func copyDeviceIdTapped(_ sender: UIButton) {
+        guard let copiedString = deviceIdLabel.text else {
+            showToast("Copy failed")
+            return
+        }
+        
+        UIPasteboard.general.string = copiedString
+        showToast()
+    }
+
 }
+

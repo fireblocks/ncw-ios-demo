@@ -16,6 +16,10 @@ final class AdvancedInfoViewModel {
         return mpcKeys
     }
     
+    func getWalletId() -> String {
+        return FireblocksManager.shared.getWalletId()
+    }
+
     func getDeviceId() -> String {
         return FireblocksManager.shared.getDeviceId()
     }
