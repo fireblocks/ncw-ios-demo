@@ -43,6 +43,20 @@ enum AssetsIcons: String {
     case EthereumIcon = "ethereum_icon"
     case PlaceholderIcon = "placeholder_icon"
     case SolanaIcon = "solana_icon"
+    case AdaIcon = "ada"
+    case AvaxIcon = "avax"
+    case MaticIcon = "matic"
+    case USDTIcon = "usdt"
+    case USDCIcon = "usdc"
+    case DaiIcon = "dai"
+    case ShibIcon = "shib"
+    case UniIcon = "uni"
+    case XrpIcon = "xrp"
+    case DotIcon = "dot"
+    case CeloAlfIcon = "celo"
+
+
+
 
     case errorImage = "error_image"
     case generateKeyImage = "generate_key_image"

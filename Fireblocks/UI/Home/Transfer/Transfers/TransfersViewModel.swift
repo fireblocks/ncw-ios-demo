@@ -99,7 +99,7 @@ final class TransfersViewModel: ObservableObject {
             delegate?.showNotification(type: .notification)
         } else {
             delegate?.transfersUpdated()
-            AssetListViewModel.shared.fetchBalance()
+            AssetListViewModel.shared.fetchAssets()
         }
 
     }

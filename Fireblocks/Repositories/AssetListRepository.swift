@@ -65,7 +65,7 @@ class AssetListRepository {
         }
     }
 
-    func getAssets() async throws -> [Asset] {
+    func getAssets() async throws -> [String: AssetSummary] {
         let deviceId = FireblocksManager.shared.getDeviceId()
         let assets = try await SessionManager.shared.getAssets(deviceId: deviceId)
         return assets

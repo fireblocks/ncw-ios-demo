@@ -8,6 +8,12 @@
 import Foundation
 import UIKit.UIImage
 
+struct AssetSummary: Codable {
+    var asset: Asset?
+    var address: AssetAddress?
+    var balance: AssetBalance?
+}
+
 struct Asset: Codable {
     var id: String = ""
     var symbol: String = ""
@@ -16,11 +22,9 @@ struct Asset: Codable {
     var testnet = false
     var hasFee = false
     let type: String
-    var issuerAddress: String?
-    var blockchainSymbol: String?
+    var deprecated = false
     var coinType: Int?
     var blockchain = ""
-    var ethContractAddress: String?
     var ethNetwork: String?
     var networkProtocol = ""
     var baseAsset = ""
@@ -31,16 +35,9 @@ struct Asset: Codable {
     var address: String?
 
     var image: UIImage {
-        let assetImage = AssetsImageMapper().getIconForAsset(symbol)
+        let assetImage = AssetsImageMapper().getIconForAsset(id)
         return assetImage
-    }
-    
-//    let image: UIImage
-//    let abbreviation: String
-//    let blockchainName: String
-//    let quantity: Double
-//    let price: Double
-//    var address: String?
+    }    
 }
 
 struct AssetBalance: Codable {
@@ -55,5 +52,7 @@ struct AssetBalance: Codable {
 
 struct AssetAddress: Codable {
     var address: String
+    var accountId: String?
+    var accountName: String?
+    var addressType: String?
 }
-
