@@ -204,7 +204,7 @@ class SessionManager: ObservableObject {
             case .createAsset(let deviceId, let assetId):
                 return EnvironmentConstants.baseURL + "/api/devices/\(deviceId)/accounts/0/assets/\(assetId)"
             case .getAssets(let deviceId):
-                return EnvironmentConstants.baseURL + "/api/devices/\(deviceId)/accounts/0/assets"
+                return EnvironmentConstants.baseURL + "/api/devices/\(deviceId)/accounts/0/assets/summary"
             case .getAssetBalance(let deviceId, let assetId):
                 return EnvironmentConstants.baseURL + "/api/devices/\(deviceId)/accounts/0/assets/\(assetId)/balance"
             case .getAssetAddress(let deviceId, let assetId):
@@ -422,10 +422,10 @@ extension SessionManager {
         }
     }
 
-    func getAssets(deviceId: String) async throws -> [Asset] {
+    func getAssets(deviceId: String) async throws -> [String: AssetSummary] {
         if let url = URL(string: FBURL.getAssets(deviceId).url) {
             let data = try await sendRequest(url: url, httpMethod: "GET", timeout: FBURL.getAssets(deviceId).timeout, numberOfRetries: 0)
-            let assets: [Asset] = try JSONDecoder().decode([Asset].self, from: data)
+            let assets: [String: AssetSummary] = try JSONDecoder().decode([String: AssetSummary].self, from: data)
             return assets
         } else {
             throw SessionManager.error

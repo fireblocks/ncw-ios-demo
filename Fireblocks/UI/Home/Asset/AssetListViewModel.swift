@@ -14,6 +14,7 @@ protocol AssetListViewModelDelegate: AnyObject {
 
 class AssetListViewModel {
     weak var delegate: AssetListViewModelDelegate?
+    private var assetsSummary: [AssetSummary] = []
     private var assets: [Asset] = []
     private let repository = AssetListRepository()
     private var task: Task<Void, Never>?
@@ -30,11 +31,20 @@ class AssetListViewModel {
         task?.cancel()
     }
     
+    func createAssets() {
+        Task {
+            await repository.createAssets()
+            fetchAssets()
+        }
+
+    }
+    
     func fetchAssets() {
         task = Task {
             do {
-                await repository.createAssets()
-                assets = try await repository.getAssets()
+                let assetResponse = try await repository.getAssets()
+                assetsSummary = assetResponse.map({$0.value})
+                assets = assetsSummary.filter({$0.asset != nil}).map({$0.asset!})
                 fetchBalance()
             } catch let error {
                 print(error.localizedDescription)
@@ -43,26 +53,19 @@ class AssetListViewModel {
         }
     }
     
-    func fetchBalance() {
-        task = Task {
-            do {
-                for i in 0..<assets.count {
-                    let balance = try await repository.getBalance(assetId: assets[i].id)
-                    assets[i].balance = Double(balance.total)?.formatFractions(fractionDigits: 6)
-                    if let balance = assets[i].balance, let rate = assets[i].rate {
-                        assets[i].price = (balance * rate).formatFractions(fractionDigits: 2)
-                    }
-
-                    let address = try await repository.getAddress(assetId: assets[i].id)
-                    assets[i].address = address.address
+    private func fetchBalance() {
+        for i in 0..<assets.count {
+            if let assetSummary = assetsSummary.first(where: {$0.asset?.id == assets[i].id}), let balance = assetSummary.balance, let address = assetSummary.address {
+                assets[i].balance = Double(balance.total)?.formatFractions(fractionDigits: 6)
+                if let balance = assets[i].balance, let rate = assets[i].rate {
+                    assets[i].price = (balance * rate).formatFractions(fractionDigits: 2)
                 }
-
-                delegate?.refreshData()
-            } catch let error {
-                print(error.localizedDescription)
-                delegate?.gotError()
+                
+                assets[i].address = address.address
             }
         }
+
+        delegate?.refreshData()
     }
     
     func getAssets() -> [Asset] {

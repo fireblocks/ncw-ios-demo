@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "multi-collateral-dai-dai-logo.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
