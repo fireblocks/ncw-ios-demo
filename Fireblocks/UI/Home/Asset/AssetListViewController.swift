@@ -14,6 +14,7 @@ class AssetListViewController: UIViewController {
     
     //MARK: - PROPERTIES
     @IBOutlet weak var activityIndicator: NVActivityIndicatorView!
+    @IBOutlet weak var refreshIndicator: NVActivityIndicatorView!
     @IBOutlet weak var errorTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var settingButton: UIButton!
     @IBOutlet weak var errorMessage: UILabel!
@@ -23,6 +24,7 @@ class AssetListViewController: UIViewController {
             tableView.register(AssetViewCell.nib, forCellReuseIdentifier: AssetViewCell.nibName)
             tableView.delegate = self
             tableView.dataSource = self
+            configureRefreshControl()
         }
     }
     
@@ -38,7 +40,32 @@ class AssetListViewController: UIViewController {
         activityIndicator.startAnimating()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        if tableView.refreshControl?.frame != nil {
+            var frame = tableView.refreshControl!.frame
+            frame.origin = CGPoint(x: (frame.width - 40)/2.0, y: (frame.height - 40)/2.0)
+            frame.size = CGSize(width: 40, height: 40)
+            
+            refreshIndicator.frame = frame
+        }
+    }
+    
     //MARK: - FUNCTIONS
+    
+    private func configureRefreshControl() {
+        tableView.refreshControl = UIRefreshControl()
+        tableView.refreshControl?.tintColor = .clear
+        tableView.refreshControl?.backgroundColor = .clear
+        refreshIndicator.translatesAutoresizingMaskIntoConstraints = true
+        tableView.refreshControl?.addSubview(refreshIndicator)
+
+        tableView.refreshControl?.addTarget(self, action: #selector(refreshAssets), for: .valueChanged)
+        refreshIndicator.type = .circleStrokeSpin
+        refreshIndicator.color = AssetsColors.primaryBlue.getColor()
+
+    }
+    
     private func configureView(){
         errorTopConstraint.constant = headerHeight
         activityIndicator.type = .circleStrokeSpin
@@ -58,6 +85,12 @@ class AssetListViewController: UIViewController {
         vc.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(vc, animated: true)
     }
+    
+    @objc func refreshAssets(){
+        self.refreshIndicator.startAnimating()
+        viewModel.fetchAssets()
+    }
+
 }
 
 extension AssetListViewController: UITableViewDelegate, UITableViewDataSource {
@@ -94,8 +127,10 @@ extension AssetListViewController: AssetListViewModelDelegate {
     @MainActor
     func refreshData()  {
         DispatchQueue.main.async {
+            self.tableView.refreshControl?.endRefreshing()
             self.tableView.reloadData()
             self.activityIndicator.stopAnimating()
+            self.refreshIndicator.stopAnimating()
         }
         
     }

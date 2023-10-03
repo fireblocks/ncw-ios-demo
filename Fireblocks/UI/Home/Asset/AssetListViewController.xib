@@ -10,12 +10,13 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AssetListViewController" customModule="Fireblocks___Dev__ngrok_" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AssetListViewController" customModule="NCW_sandbox" customModuleProvider="target">
             <connections>
                 <outlet property="activityIndicator" destination="95B-JN-mGW" id="wwM-Po-1ct"/>
                 <outlet property="errorMessage" destination="SI9-ik-qWq" id="TSP-Na-2u3"/>
                 <outlet property="errorTopConstraint" destination="rBV-oB-VX3" id="OOw-HB-lF1"/>
                 <outlet property="errorView" destination="slx-iN-IEx" id="kT5-Z9-74F"/>
+                <outlet property="refreshIndicator" destination="3Gi-Ys-hbb" id="cOc-Cm-PY5"/>
                 <outlet property="tableView" destination="fIT-ZT-zJw" id="hgK-n9-tED"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -67,6 +68,14 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="3NQ-RH-Q6j"/>
                         <constraint firstAttribute="width" constant="40" id="nYg-WI-K7w"/>
+                    </constraints>
+                </view>
+                <view hidden="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3Gi-Ys-hbb" customClass="NVActivityIndicatorView" customModule="NVActivityIndicatorView">
+                    <rect key="frame" x="175" y="402" width="40" height="40"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="40" id="7TS-st-Uk5"/>
+                        <constraint firstAttribute="height" constant="40" id="t8B-pK-pmW"/>
                     </constraints>
                 </view>
             </subviews>
