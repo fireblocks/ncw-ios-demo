@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2B1C33DE2AA9BB44005F1D6B /* FireblocksSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 2B1C33DD2AA9BB44005F1D6B /* FireblocksSDK */; };
 		2B2970162A9642AF000A3C42 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2B2970152A9642AF000A3C42 /* GoogleService-Info.plist */; };
+		2B3E6C032ACC0C40000E91CF /* BackupStatusViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3E6C022ACC0C40000E91CF /* BackupStatusViewModel.swift */; };
 		2B94CFC52A9CDF62003E7508 /* ExtraParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B94CFC42A9CDF62003E7508 /* ExtraParameters.swift */; };
 		2B94CFCA2A9CE576003E7508 /* CodableParsingExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B94CFC82A9CE576003E7508 /* CodableParsingExtension.swift */; };
 		2B94CFCC2A9CE576003E7508 /* CodableAnyExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B94CFC92A9CE576003E7508 /* CodableAnyExtension.swift */; };
@@ -171,6 +172,7 @@
 
 /* Begin PBXFileReference section */
 		2B2970152A9642AF000A3C42 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		2B3E6C022ACC0C40000E91CF /* BackupStatusViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupStatusViewModel.swift; sourceTree = "<group>"; };
 		2B94CFC42A9CDF62003E7508 /* ExtraParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtraParameters.swift; sourceTree = "<group>"; };
 		2B94CFC82A9CE576003E7508 /* CodableParsingExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodableParsingExtension.swift; sourceTree = "<group>"; };
 		2B94CFC92A9CE576003E7508 /* CodableAnyExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodableAnyExtension.swift; sourceTree = "<group>"; };
@@ -674,6 +676,7 @@
 			children = (
 				866A73CB2A696A4B00E8E545 /* BackupStatusViewController.xib */,
 				866A73CA2A696A4B00E8E545 /* BackupStatusViewController.swift */,
+				2B3E6C022ACC0C40000E91CF /* BackupStatusViewModel.swift */,
 			);
 			path = BackupStatus;
 			sourceTree = "<group>";
@@ -1117,6 +1120,7 @@
 				862E2A9C2A543B41002FF774 /* AuthViewModel.swift in Sources */,
 				60DA06B52A65204600160ADC /* SendToViewController.swift in Sources */,
 				2B94CFCC2A9CE576003E7508 /* CodableAnyExtension.swift in Sources */,
+				2B3E6C032ACC0C40000E91CF /* BackupStatusViewModel.swift in Sources */,
 				86EB51332A66C08C00D2911A /* SettingsViewController.swift in Sources */,
 				867828E42A696D170035787D /* Double+Extension.swift in Sources */,
 				862E2AA72A543B86002FF774 /* GoogleSignInManager.swift in Sources */,

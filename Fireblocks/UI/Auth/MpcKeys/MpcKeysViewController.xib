@@ -14,9 +14,12 @@
         </array>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MpcKeysViewController" customModule="Fireblocks___Dev__ngrok_" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MpcKeysViewController" customModule="NCW_sandbox" customModuleProvider="target">
             <connections>
+                <outlet property="footerButton" destination="vAO-yI-l3j" id="4jS-3G-lZu"/>
                 <outlet property="generateMpcKeysButton" destination="Baj-jD-1Wp" id="r9s-sP-YRW"/>
+                <outlet property="headerImageView" destination="jZS-jl-4ug" id="3ZS-yO-0QV"/>
+                <outlet property="headerLabel" destination="Ldb-vK-Rhq" id="UPe-gi-POI"/>
                 <outlet property="view" destination="Vvz-P8-BJg" id="g1c-1d-Mla"/>
             </connections>
         </placeholder>
@@ -43,7 +46,7 @@
                         <action selector="navigateToRecoverWallet:" destination="-1" eventType="touchUpInside" id="NP3-sn-fbm"/>
                     </connections>
                 </button>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Baj-jD-1Wp" userLabel="generateMpcKeysButton" customClass="AppActionBotton" customModule="Fireblocks___Dev__ngrok_" customModuleProvider="target">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Baj-jD-1Wp" userLabel="generateMpcKeysButton" customClass="AppActionBotton" customModule="NCW_sandbox" customModuleProvider="target">
                     <rect key="frame" x="16" y="687" width="361" height="50"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>

@@ -69,3 +69,6 @@
 "failed_to_get_transaction_info" = "Failed to get transaction info, please try again.";
 "approveTxFailed" = "Couldn’t approve the transaction. Try again.";
 "cancelTxFailed" = "Couldn’t cancel the transaction. Try again.";
+"generateMPCKeys" = "Generate MPC Keys";
+"didGenerateMPCKeysSuccessTitle" = "Success Header";
+"illDoThisLater" = "I'll do this later";

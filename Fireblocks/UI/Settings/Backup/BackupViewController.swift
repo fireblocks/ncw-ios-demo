@@ -23,11 +23,15 @@ class BackupViewController: UIViewController{
     @IBOutlet weak var manuallyButton: AppActionBotton!
     
     private lazy var viewModel = { BackupViewModel(self, actionType) }()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         checkIfBackupExist()
         configureUI()
+    }
+    
+    func updateSourceView(didComeFromGenerateKeys: Bool = false) {
+        viewModel.didComeFromGenerateKeys = didComeFromGenerateKeys
     }
     
     private func checkIfBackupExist() {
@@ -96,7 +100,7 @@ class BackupViewController: UIViewController{
     }
     
     private func navigateToBackupStatusViewController() {
-        let vc = BackupStatusViewController()
+        let vc = BackupStatusViewController(didComeFromGenerateKeys: viewModel.didComeFromGenerateKeys)
         navigationController?.pushViewController(vc, animated: true)
     }
     
