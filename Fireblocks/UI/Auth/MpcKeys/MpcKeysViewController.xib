@@ -56,8 +56,8 @@
                         <action selector="generateMpcKey:" destination="-1" eventType="touchUpInside" id="bqC-KE-TVR"/>
                     </connections>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ldb-vK-Rhq">
-                    <rect key="frame" x="24" y="193" width="345" height="75"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ldb-vK-Rhq">
+                    <rect key="frame" x="48" y="193" width="297" height="94"/>
                     <string key="text">To provide the highest level of wallet security, we use multi-party computation (MPC) keys. MPCs allow for different parties to hold a piece of a private key without possessing the entire thing. </string>
                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -74,9 +74,9 @@
                 <constraint firstItem="jZS-jl-4ug" firstAttribute="top" secondItem="lyA-dQ-sdK" secondAttribute="top" constant="30" id="IDB-In-OP7"/>
                 <constraint firstItem="jZS-jl-4ug" firstAttribute="centerX" secondItem="Vvz-P8-BJg" secondAttribute="centerX" id="JaT-fm-NJ2"/>
                 <constraint firstItem="Baj-jD-1Wp" firstAttribute="leading" secondItem="lyA-dQ-sdK" secondAttribute="leading" constant="16" id="VsG-4e-oRB"/>
-                <constraint firstAttribute="trailing" secondItem="Ldb-vK-Rhq" secondAttribute="trailing" constant="24" id="ehZ-9v-zQw"/>
+                <constraint firstAttribute="trailing" secondItem="Ldb-vK-Rhq" secondAttribute="trailing" constant="48" id="ehZ-9v-zQw"/>
                 <constraint firstItem="lyA-dQ-sdK" firstAttribute="trailing" secondItem="vAO-yI-l3j" secondAttribute="trailing" constant="24" id="nBo-0j-IeO"/>
-                <constraint firstItem="Ldb-vK-Rhq" firstAttribute="leading" secondItem="lyA-dQ-sdK" secondAttribute="leading" constant="24" id="p2D-13-Z3w"/>
+                <constraint firstItem="Ldb-vK-Rhq" firstAttribute="leading" secondItem="lyA-dQ-sdK" secondAttribute="leading" constant="48" id="p2D-13-Z3w"/>
                 <constraint firstItem="vAO-yI-l3j" firstAttribute="leading" secondItem="lyA-dQ-sdK" secondAttribute="leading" constant="24" id="yrB-PZ-Y3K"/>
             </constraints>
             <point key="canvasLocation" x="142.74809160305344" y="19.718309859154932"/>

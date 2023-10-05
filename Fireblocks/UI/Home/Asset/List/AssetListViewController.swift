@@ -7,6 +7,7 @@
 
 import UIKit
 import NVActivityIndicatorView
+import SwiftUI
 
 class AssetListViewController: UIViewController {
     
@@ -19,6 +20,7 @@ class AssetListViewController: UIViewController {
     @IBOutlet weak var settingButton: UIButton!
     @IBOutlet weak var errorMessage: UILabel!
     @IBOutlet weak var errorView: UIView!
+    @IBOutlet weak var bottomErrorView: UIView!
     @IBOutlet weak var tableView: UITableView!{
         didSet{
             tableView.register(AssetViewCell.nib, forCellReuseIdentifier: AssetViewCell.nibName)
@@ -91,6 +93,10 @@ class AssetListViewController: UIViewController {
         viewModel.fetchAssets()
     }
 
+    private func showAlertView(message: String){
+        showAlert(description: message, bottomAnchor: bottomErrorView.bottomAnchor)
+    }
+
 }
 
 extension AssetListViewController: UITableViewDelegate, UITableViewDataSource {
@@ -152,11 +158,26 @@ extension AssetListViewController: AssetHeaderDelegate {
         navigateToChooseAssetScreen(flowType: .receive)
     }
     
-    @objc func refreshButtonTapped(){
-        viewModel.fetchAssets()
-        errorView.isHidden = true
-        tableView.isScrollEnabled = true
-        activityIndicator.startAnimating()
+    @objc func plusButtonTapped(){
+        let vc = AddAssetsViewController(devideId: FireblocksManager.shared.getDeviceId(), delegate: self)
+        let nc = UINavigationController(rootViewController: vc)
+        nc.isModalInPresentation = true
+        self.present(nc, animated: true)
+    }
+}
+
+extension AssetListViewController: AddAssetsViewControllerDelegate {
+    func dismissAddAssets(addedAssets: [Asset], failedAssets: [Asset]) {
+        self.dismiss(animated: true)
+        if failedAssets.count > 0 {
+            let prefix = failedAssets.count > 1 ? "The following assets were" : "The following asset was"
+            var assets: String = ""
+            failedAssets.forEach { asset in
+                assets += " \(asset.symbol),"
+            }
+            assets.removeLast()
+            self.showAlertView(message: "\(prefix) not added: \(assets).\nPlease try again\n")
+        }
     }
 }
 

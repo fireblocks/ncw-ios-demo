@@ -70,5 +70,5 @@
 "approveTxFailed" = "Couldn’t approve the transaction. Try again.";
 "cancelTxFailed" = "Couldn’t cancel the transaction. Try again.";
 "generateMPCKeys" = "Generate MPC Keys";
-"didGenerateMPCKeysSuccessTitle" = "Success Header";
+"didGenerateMPCKeysSuccessTitle" = "Keys created";
 "illDoThisLater" = "I'll do this later";

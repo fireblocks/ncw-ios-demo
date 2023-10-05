@@ -13,6 +13,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AssetListViewController" customModule="NCW_sandbox" customModuleProvider="target">
             <connections>
                 <outlet property="activityIndicator" destination="95B-JN-mGW" id="wwM-Po-1ct"/>
+                <outlet property="bottomErrorView" destination="4ag-mU-MRb" id="7Bj-jr-lkq"/>
                 <outlet property="errorMessage" destination="SI9-ik-qWq" id="TSP-Na-2u3"/>
                 <outlet property="errorTopConstraint" destination="rBV-oB-VX3" id="OOw-HB-lF1"/>
                 <outlet property="errorView" destination="slx-iN-IEx" id="kT5-Z9-74F"/>
@@ -78,18 +79,26 @@
                         <constraint firstAttribute="height" constant="40" id="t8B-pK-pmW"/>
                     </constraints>
                 </view>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4ag-mU-MRb">
+                    <rect key="frame" x="0.0" y="63" width="390" height="747"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" name="black"/>
             <constraints>
+                <constraint firstItem="4ag-mU-MRb" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="0lh-2h-ZOA"/>
                 <constraint firstItem="95B-JN-mGW" firstAttribute="centerX" secondItem="fIT-ZT-zJw" secondAttribute="centerX" id="51a-Et-8kI"/>
                 <constraint firstItem="fIT-ZT-zJw" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="30" id="6JR-mE-Qso"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="4ag-mU-MRb" secondAttribute="bottom" id="AdC-Tm-png"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="fIT-ZT-zJw" secondAttribute="trailing" constant="16" id="G32-3M-IVZ"/>
                 <constraint firstItem="fIT-ZT-zJw" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="HX3-zi-38E"/>
                 <constraint firstItem="95B-JN-mGW" firstAttribute="centerY" secondItem="fIT-ZT-zJw" secondAttribute="centerY" id="Kmw-eI-iZs"/>
                 <constraint firstItem="slx-iN-IEx" firstAttribute="trailing" secondItem="fIT-ZT-zJw" secondAttribute="trailing" id="NFs-Qt-V38"/>
                 <constraint firstItem="slx-iN-IEx" firstAttribute="leading" secondItem="fIT-ZT-zJw" secondAttribute="leading" id="QaR-27-H2a"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="4ag-mU-MRb" secondAttribute="trailing" id="Tg8-hT-sIY"/>
                 <constraint firstItem="slx-iN-IEx" firstAttribute="bottom" secondItem="fIT-ZT-zJw" secondAttribute="bottom" id="bqh-Hx-sZm"/>
+                <constraint firstItem="4ag-mU-MRb" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="16" id="dGm-sT-hKB"/>
                 <constraint firstItem="slx-iN-IEx" firstAttribute="top" secondItem="fIT-ZT-zJw" secondAttribute="top" id="rBV-oB-VX3"/>
                 <constraint firstAttribute="bottom" secondItem="fIT-ZT-zJw" secondAttribute="bottom" id="t6R-eU-teF"/>
             </constraints>

@@ -14,7 +14,17 @@ struct AssetSummary: Codable {
     var balance: AssetBalance?
 }
 
-struct Asset: Codable {
+struct Asset: Codable, Identifiable, Hashable {
+    static func == (lhs: Asset, rhs: Asset) -> Bool {
+        return lhs.id == rhs.id && lhs.name == rhs.name
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+        hasher.combine(name)
+    }
+
+    
     var id: String = ""
     var symbol: String = ""
     var name: String
