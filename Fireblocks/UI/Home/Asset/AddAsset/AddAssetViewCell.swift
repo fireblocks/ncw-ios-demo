@@ -44,24 +44,15 @@ class AddAssetViewCell: UITableViewCell {
         assetBlockchainBadgeBackground.layer.cornerRadius = assetBlockchainBadgeBackground.frame.height / 2
     }
     
-    func configCellWith(asset: Asset, isBlockchainHidden: Bool = false) {
+    func configCellWith(assetToAdd: AssetToAdd, isBlockchainHidden: Bool = false) {
+        let asset = assetToAdd.asset
         assetImage.image = asset.image
         assetName.text = asset.name
         assetAbbreviation.text = asset.symbol
         assetBlockchainBadge.text = asset.blockchain
         assetBlockchainBadge.isHidden = isBlockchainHidden
         assetBlockchainBadgeBackground.isHidden = isBlockchainHidden
+        cellBackground.backgroundColor = assetToAdd.isSelected ? AssetsColors.gray2.getColor() : .clear
 
     }
-    
-    func setSelected(isSelected: Bool){
-        var backgroundColor: UIColor? = UIColor.clear
-        
-        if isSelected {
-            backgroundColor = AssetsColors.gray2.getColor()
-        }
-        
-        cellBackground.backgroundColor = backgroundColor
-    }
-
 }

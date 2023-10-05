@@ -35,6 +35,10 @@ struct SuccessValue: Codable {
     var success: Bool?
 }
 
+struct ErrorResponse: Codable {
+    var error: String
+}
+
 struct PostTransactionParams: Encodable {
     let destAddress: String
     let accountId: String = "0"

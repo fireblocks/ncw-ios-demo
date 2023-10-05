@@ -85,14 +85,16 @@ extension AddAssetsViewController: UITableViewDelegate, UITableViewDataSource {
         }
 
         let asset = viewModel.getAssets()[indexPath.row]
-        cell.configCellWith(asset: asset)
+        cell.configCellWith(assetToAdd: asset)
 
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let cell = tableView.cellForRow(at: indexPath) as? AddAssetViewCell {
-            cell.setSelected(isSelected: viewModel.didSelect(indexPath: indexPath))
+            viewModel.didSelect(indexPath: indexPath)
+            let asset = viewModel.getAssets()[indexPath.row]
+            cell.configCellWith(assetToAdd: asset)
             addAssetButton.config(title: "Add Asset", image: UIImage(named: "plus"), style: viewModel.getSelectedCount() == 0 ? .Disabled : .Primary)
             addAssetButton.isEnabled = viewModel.getSelectedCount() > 0
             addAssetButton.config(title: viewModel.getSelectedCount() > 1 ? "Add Assets" : "Add Asset", image: UIImage(named: "plus"), style: .Disabled)

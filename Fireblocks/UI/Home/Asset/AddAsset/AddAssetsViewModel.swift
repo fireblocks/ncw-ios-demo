@@ -7,6 +7,11 @@
 
 import Foundation
 
+struct AssetToAdd {
+    var asset: Asset
+    var isSelected = false
+}
+
 protocol AddAssetsDelegate: AnyObject {
     func didLoadAssets()
     func failedToLoadAssets()
@@ -16,9 +21,8 @@ protocol AddAssetsDelegate: AnyObject {
 
 class AddAssetsViewModel: ObservableObject {
     private let deviceId: String
-    private var assets: [Asset] = []
-    private var searchResults: [Asset] = []
-    private var selectedAssets: [Asset] = []
+    private var assets: [AssetToAdd] = []
+    private var searchResults: [AssetToAdd] = []
     private var addedAssets: [Asset] = []
     private var failedAssets: [Asset] = []
 
@@ -30,8 +34,8 @@ class AddAssetsViewModel: ObservableObject {
             do {
                 let response = try await SessionManager.shared.getAssets(deviceId: deviceId).filter({$0.value.asset != nil}).map({$0.value.asset!})
                 DispatchQueue.main.async {
-                    self.assets = response
-                    self.searchResults = response
+                    self.assets = response.map({AssetToAdd(asset: $0)})
+                    self.searchResults = response.map({AssetToAdd(asset: $0)})
                     self.delegate?.didLoadAssets()
                 }
             } catch {
@@ -46,34 +50,42 @@ class AddAssetsViewModel: ObservableObject {
         return searchResults.count
     }
     
-    func getAssets() -> [Asset] {
+    func getAssets() -> [AssetToAdd] {
         return searchResults
     }
     
     func getSelectedCount() -> Int {
-        return selectedAssets.count
+        return assets.filter({$0.isSelected}).count
     }
     
-    func didSelect(indexPath: IndexPath) -> Bool {
-        if searchResults.count > indexPath.row {
-            let asset = searchResults[indexPath.row]
-            if let index = selectedAssets.firstIndex(where: {$0 == asset}) {
-                selectedAssets.remove(at: index)
-                return false
-            } else {
-                selectedAssets.append(asset)
-                return true
+    func didSelect(indexPath: IndexPath) {
+        //TBD - can be removed when switch to multi selection
+        if !searchResults[indexPath.row].isSelected {
+            if let index = searchResults.firstIndex(where: {$0.isSelected}) {
+                searchResults[index].isSelected = false
+            }
+            if let index = assets.firstIndex(where: {$0.isSelected}) {
+                assets[index].isSelected = false
             }
         }
+        //
         
-        return false
+        searchResults[indexPath.row].isSelected.toggle()
+        if let index = assets.firstIndex(where: {$0.asset == searchResults[indexPath.row].asset}) {
+            assets[index].isSelected.toggle()
+        }
+        delegate?.reloadData()
     }
     
     func createAsset() {
         Task {
-            for asset in selectedAssets {
-                if let _ = try? await SessionManager.shared.createAsset(deviceId: deviceId, assetId: asset.symbol) {
-                    addedAssets.append(asset)
+            for asset in assets.filter({$0.isSelected}).map({$0.asset}) {
+                if let result = try await SessionManager.shared.createAsset(deviceId: deviceId, assetId: asset.symbol), let data = result.data(using: .utf8) {
+                    if let _ = try? JSONDecoder().decode(ErrorResponse.self, from: data) {
+                        failedAssets.append(asset)
+                    } else {
+                        addedAssets.append(asset)
+                    }
                 } else {
                     failedAssets.append(asset)
                 }
@@ -89,7 +101,7 @@ class AddAssetsViewModel: ObservableObject {
         if searchText.isEmpty {
             searchResults = assets
         } else {
-            searchResults = assets.filter({$0.name.localizedStandardContains(searchText) || $0.symbol.localizedStandardContains(searchText)})
+            searchResults = assets.filter({$0.asset.name.localizedStandardContains(searchText) || $0.asset.symbol.localizedStandardContains(searchText)})
         }
         
         self.delegate?.reloadData()
