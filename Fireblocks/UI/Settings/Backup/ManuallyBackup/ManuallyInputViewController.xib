@@ -17,7 +17,7 @@
         </array>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ManuallyInputViewController" customModule="Fireblocks___Dev__ngrok_" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ManuallyInputViewController" customModule="NCW_sandbox" customModuleProvider="target">
             <connections>
                 <outlet property="copyButton" destination="OOt-pa-745" id="Iv2-kh-e94"/>
                 <outlet property="hideKeyButton" destination="EXz-lw-vuF" id="IWg-dw-BzD"/>
@@ -41,7 +41,7 @@
                     <color key="textColor" name="white"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OOt-pa-745" userLabel="Copy recovery key" customClass="AppActionBotton" customModule="Fireblocks___Dev__ngrok_" customModuleProvider="target">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OOt-pa-745" userLabel="Copy recovery key" customClass="AppActionBotton" customModule="NCW_sandbox" customModuleProvider="target">
                     <rect key="frame" x="16" y="247.33333333333337" width="361" height="50"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
@@ -133,7 +133,7 @@
                     <color key="textColor" name="alert"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LLc-BU-qzP" userLabel="Recover wallet" customClass="AppActionBotton" customModule="Fireblocks___Dev__ngrok_" customModuleProvider="target">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LLc-BU-qzP" userLabel="Recover wallet" customClass="AppActionBotton" customModule="NCW_sandbox" customModuleProvider="target">
                     <rect key="frame" x="16" y="760" width="361" height="50"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
@@ -143,15 +143,36 @@
                         <action selector="recoverWalletTapped:" destination="-1" eventType="touchUpInside" id="i7Q-cA-o6Y"/>
                     </connections>
                 </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Iv-0M-gOf">
+                    <rect key="frame" x="24" y="744" width="345" height="50"/>
+                    <color key="backgroundColor" name="primary_blue"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="yF0-AV-ykK"/>
+                    </constraints>
+                    <color key="tintColor" name="white"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" image="home" title=" Go home"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="16"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="navigateToHomeTapped:" destination="-1" eventType="touchUpInside" id="H36-CN-kFn"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" name="black"/>
             <constraints>
                 <constraint firstItem="t3x-13-dhi" firstAttribute="top" secondItem="6kF-U3-7Ok" secondAttribute="bottom" constant="8" id="3pR-kI-mzb"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="4Iv-0M-gOf" secondAttribute="trailing" constant="24" id="7DY-wI-xgQ"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="LLc-BU-qzP" secondAttribute="bottom" constant="8" id="D5b-ob-fUm"/>
                 <constraint firstItem="LLc-BU-qzP" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="J0c-D3-kwe"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="6kF-U3-7Ok" secondAttribute="trailing" constant="16" id="L3c-2p-y5O"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="OOt-pa-745" secondAttribute="trailing" constant="16" id="NL3-vQ-9Fg"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="4Iv-0M-gOf" secondAttribute="bottom" constant="24" id="NXH-3r-sE4"/>
                 <constraint firstItem="t3x-13-dhi" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="NeE-lR-rku"/>
                 <constraint firstItem="OOt-pa-745" firstAttribute="top" secondItem="6kF-U3-7Ok" secondAttribute="bottom" constant="16" id="Nge-pp-SLa"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="LLc-BU-qzP" secondAttribute="trailing" constant="16" id="STj-dA-kRi"/>
@@ -159,6 +180,7 @@
                 <constraint firstItem="6kF-U3-7Ok" firstAttribute="top" secondItem="SS2-QS-8Ka" secondAttribute="bottom" constant="16" id="W2F-lV-bjT"/>
                 <constraint firstItem="OOt-pa-745" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="iGl-ea-abD"/>
                 <constraint firstItem="6kF-U3-7Ok" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="m9r-5d-Muk"/>
+                <constraint firstItem="4Iv-0M-gOf" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="24" id="p1H-P5-ZMb"/>
                 <constraint firstItem="SS2-QS-8Ka" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="29" id="syr-oD-Go8"/>
                 <constraint firstItem="SS2-QS-8Ka" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="24" id="xbn-8g-Rm5"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="t3x-13-dhi" secondAttribute="trailing" constant="16" id="zrQ-y4-Y9N"/>
@@ -169,14 +191,18 @@
     <resources>
         <image name="close" width="20" height="20"/>
         <image name="eye" width="20" height="20"/>
+        <image name="home" width="20" height="20"/>
         <namedColor name="alert">
-            <color red="0.94099998474121094" green="0.32199999690055847" blue="0.32199999690055847" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94117647058823528" green="0.32156862745098042" blue="0.32156862745098042" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="black">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="gray_1">
             <color red="0.097999997437000275" green="0.10599999874830246" blue="0.12200000137090683" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="primary_blue">
+            <color red="0.0" green="0.2669999897480011" blue="0.94900000095367432" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="white">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

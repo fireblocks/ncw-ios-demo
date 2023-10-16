@@ -18,6 +18,7 @@ final class ManuallyInputViewModel {
     private var inputContent: String = ""
     private var preparedInputContent: String = ""
     private var task: Task <Void, Never>?
+    var didComeFromGenerateKeys = false
 
     deinit {
         task?.cancel()

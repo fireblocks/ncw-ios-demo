@@ -66,6 +66,7 @@ class BackupViewController: UIViewController{
         Task {
             showActivityIndicator()
             let vc = ManuallyInputViewController()
+            vc.updateSourceView(didComeFromGenerateKeys: viewModel.didComeFromGenerateKeys)
             vc.manuallyInputStrategy = await viewModel.getManuallyInputStrategy()
             hideActivityIndicator()
             navigationController?.pushViewController(vc, animated: true)
