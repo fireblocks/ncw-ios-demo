@@ -32,7 +32,7 @@ class AddAssetsViewModel: ObservableObject {
         self.deviceId = deviceId
         Task {
             do {
-                let response = try await SessionManager.shared.getAssets(deviceId: deviceId).filter({$0.value.asset != nil}).map({$0.value.asset!})
+                let response = try await SessionManager.shared.getSupportedAssets(deviceId: deviceId)
                 DispatchQueue.main.async {
                     self.assets = response.map({AssetToAdd(asset: $0)})
                     self.searchResults = response.map({AssetToAdd(asset: $0)})

@@ -8,13 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		2B1C33DE2AA9BB44005F1D6B /* FireblocksSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 2B1C33DD2AA9BB44005F1D6B /* FireblocksSDK */; };
-		2B2970162A9642AF000A3C42 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2B2970152A9642AF000A3C42 /* GoogleService-Info.plist */; };
 		2B3E6C032ACC0C40000E91CF /* BackupStatusViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3E6C022ACC0C40000E91CF /* BackupStatusViewModel.swift */; };
 		2B3E6C092ACD8CFD000E91CF /* AddAssetsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3E6C082ACD8CFD000E91CF /* AddAssetsViewModel.swift */; };
 		2B3E6C0D2ACDAB0B000E91CF /* AddAssetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3E6C0C2ACDAB0B000E91CF /* AddAssetsViewController.swift */; };
 		2B3E6C0F2ACDAB97000E91CF /* AddAssetsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B3E6C0E2ACDAB97000E91CF /* AddAssetsViewController.xib */; };
 		2B3E6C112ACE96AC000E91CF /* AddAssetViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3E6C102ACE96AC000E91CF /* AddAssetViewCell.swift */; };
 		2B3E6C132ACE96D7000E91CF /* AddAssetViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B3E6C122ACE96D7000E91CF /* AddAssetViewCell.xib */; };
+		2B427EE62ADD1BCD00245C01 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2B427EE52ADD1BCD00245C01 /* GoogleService-Info.plist */; };
 		2B94CFC52A9CDF62003E7508 /* ExtraParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B94CFC42A9CDF62003E7508 /* ExtraParameters.swift */; };
 		2B94CFCA2A9CE576003E7508 /* CodableParsingExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B94CFC82A9CE576003E7508 /* CodableParsingExtension.swift */; };
 		2B94CFCC2A9CE576003E7508 /* CodableAnyExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B94CFC92A9CE576003E7508 /* CodableAnyExtension.swift */; };
@@ -176,13 +176,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		2B2970152A9642AF000A3C42 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2B3E6C022ACC0C40000E91CF /* BackupStatusViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupStatusViewModel.swift; sourceTree = "<group>"; };
 		2B3E6C082ACD8CFD000E91CF /* AddAssetsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAssetsViewModel.swift; sourceTree = "<group>"; };
 		2B3E6C0C2ACDAB0B000E91CF /* AddAssetsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAssetsViewController.swift; sourceTree = "<group>"; };
 		2B3E6C0E2ACDAB97000E91CF /* AddAssetsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddAssetsViewController.xib; sourceTree = "<group>"; };
 		2B3E6C102ACE96AC000E91CF /* AddAssetViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAssetViewCell.swift; sourceTree = "<group>"; };
 		2B3E6C122ACE96D7000E91CF /* AddAssetViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddAssetViewCell.xib; sourceTree = "<group>"; };
+		2B427EE52ADD1BCD00245C01 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2B94CFC42A9CDF62003E7508 /* ExtraParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtraParameters.swift; sourceTree = "<group>"; };
 		2B94CFC82A9CE576003E7508 /* CodableParsingExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodableParsingExtension.swift; sourceTree = "<group>"; };
 		2B94CFC92A9CE576003E7508 /* CodableAnyExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodableAnyExtension.swift; sourceTree = "<group>"; };
@@ -824,7 +824,7 @@
 				86665EFD2A399FD3002D4A2C /* Fireblocks.entitlements */,
 				86859F5D2A384D8B0056E3C6 /* LaunchScreen.storyboard */,
 				86859F582A384D8A0056E3C6 /* Main.storyboard */,
-				2B2970152A9642AF000A3C42 /* GoogleService-Info.plist */,
+				2B427EE52ADD1BCD00245C01 /* GoogleService-Info.plist */,
 				86859F602A384D8B0056E3C6 /* Info.plist */,
 			);
 			path = Fireblocks;
@@ -1077,12 +1077,12 @@
 				867828ED2A696D7D0035787D /* BackupDetailsViewController.xib in Resources */,
 				862E2AAA2A543C6C002FF774 /* AuthViewController.xib in Resources */,
 				60DA06A32A651D9300160ADC /* AssetViewCell.xib in Resources */,
-				2B2970162A9642AF000A3C42 /* GoogleService-Info.plist in Resources */,
 				603B70EB2A810D6200796CEE /* Roboto-Bold.ttf in Resources */,
 				86DC6E9D2A39ECC000A0B313 /* Localizable.strings in Resources */,
 				603903762A6D1F560060E026 /* ApproveViewController.xib in Resources */,
 				86859F5F2A384D8B0056E3C6 /* LaunchScreen.storyboard in Resources */,
 				608293922A56BB1400B11839 /* TransferCell.xib in Resources */,
+				2B427EE62ADD1BCD00245C01 /* GoogleService-Info.plist in Resources */,
 				608293C52A5AD72400B11839 /* TransferDetailsViewController.xib in Resources */,
 				603B70F12A810D6200796CEE /* Roboto-Regular.ttf in Resources */,
 				6082938D2A56B85800B11839 /* TransfersViewController.xib in Resources */,
