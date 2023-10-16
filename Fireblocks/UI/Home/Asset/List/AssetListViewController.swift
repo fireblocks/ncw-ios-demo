@@ -16,7 +16,6 @@ class AssetListViewController: UIViewController {
     //MARK: - PROPERTIES
     @IBOutlet weak var activityIndicator: NVActivityIndicatorView!
     @IBOutlet weak var refreshIndicator: NVActivityIndicatorView!
-    @IBOutlet weak var errorTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var settingButton: UIButton!
     @IBOutlet weak var errorMessage: UILabel!
     @IBOutlet weak var errorView: UIView!
@@ -69,7 +68,6 @@ class AssetListViewController: UIViewController {
     }
     
     private func configureView(){
-        errorTopConstraint.constant = headerHeight
         activityIndicator.type = .circleStrokeSpin
         activityIndicator.color = AssetsColors.primaryBlue.getColor()
     }
@@ -143,9 +141,27 @@ extension AssetListViewController: AssetListViewModelDelegate {
     
     @MainActor
     func gotError()  {
-        self.errorView.isHidden = false
-        self.tableView.isScrollEnabled = false
-        self.activityIndicator.stopAnimating()
+        DispatchQueue.main.async {
+            self.errorView.alpha = 0
+            self.errorView.isHidden = false
+            self.tableView.isScrollEnabled = false
+            self.activityIndicator.stopAnimating()
+            self.refreshIndicator.stopAnimating()
+            self.tableView.refreshControl?.endRefreshing()
+
+            UIView.animate(withDuration: 0.3) {
+                self.errorView.alpha = 1
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                    UIView.animate(withDuration: 0.3, animations: {
+                        self.errorView.alpha = 0
+                    }, completion: { finished in
+                        self.errorView.isHidden = true
+                        self.tableView.isScrollEnabled = true
+                    })
+                }
+
+            }
+        }
     }
 }
 
