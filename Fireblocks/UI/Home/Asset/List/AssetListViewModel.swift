@@ -69,7 +69,7 @@ class AssetListViewModel {
     }
     
     func getAssets() -> [Asset] {
-        assets
+        assets.sorted(by: {$0.name < $1.name})
     }
     
     func getAssetsCount() -> Int {
