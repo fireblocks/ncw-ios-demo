@@ -32,6 +32,7 @@ class AssetViewCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        assetImage.image = nil
         assetName.text = ""
         assetAbbreviation.text = ""
         assetBlockchainBadge.text = ""
@@ -47,7 +48,11 @@ class AssetViewCell: UITableViewCell {
     }
     
     func configCellWith(asset: Asset, isBlockchainHidden: Bool = false) {
-        assetImage.image = asset.image
+        if let iconURL = asset.iconURL {
+            assetImage.sd_setImage(with: URL(string: iconURL), placeholderImage: asset.image)
+        } else {
+            assetImage.image = asset.image
+        }
         assetName.text = asset.name
         assetAbbreviation.text = asset.symbol
         assetBlockchainBadge.text = asset.blockchain
