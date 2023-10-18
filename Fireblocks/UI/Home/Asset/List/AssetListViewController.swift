@@ -194,6 +194,10 @@ extension AssetListViewController: AddAssetsViewControllerDelegate {
             assets.removeLast()
             self.showAlertView(message: "\(prefix) not added: \(assets).\nPlease try again\n")
         }
+        if addedAssets.count > 0 {
+            activityIndicator.startAnimating()
+            refreshAssets()
+        }
     }
 }
 
