@@ -112,7 +112,7 @@ final class TransfersViewModel: ObservableObject {
     }
     
     func updateStatusWhenApproved(index: Int) {
-//        transfers[index].status = .Queued
+        transfers[index].status = .Confirming
         updateUI()
     }
 }
