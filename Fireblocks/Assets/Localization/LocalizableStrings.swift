@@ -71,4 +71,7 @@ struct LocalizableStrings{
     static let failedToGetTransactionInfo = "failed_to_get_transaction_info".localize()
     static let approveTxFailed = "approveTxFailed".localize()
     static let cancelTxFailed = "cancelTxFailed".localize()
+    static let generateMPCKeys = "generateMPCKeys".localize()
+    static let didGenerateMPCKeysSuccessTitle = "didGenerateMPCKeysSuccessTitle".localize()
+    static let illDoThisLater = "illDoThisLater".localize()
 }

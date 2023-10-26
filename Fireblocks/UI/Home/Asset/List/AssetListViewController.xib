@@ -10,12 +10,13 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AssetListViewController" customModule="Fireblocks___Dev__ngrok_" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AssetListViewController" customModule="NCW_sandbox" customModuleProvider="target">
             <connections>
                 <outlet property="activityIndicator" destination="95B-JN-mGW" id="wwM-Po-1ct"/>
+                <outlet property="bottomErrorView" destination="4ag-mU-MRb" id="7Bj-jr-lkq"/>
                 <outlet property="errorMessage" destination="SI9-ik-qWq" id="TSP-Na-2u3"/>
-                <outlet property="errorTopConstraint" destination="rBV-oB-VX3" id="OOw-HB-lF1"/>
                 <outlet property="errorView" destination="slx-iN-IEx" id="kT5-Z9-74F"/>
+                <outlet property="refreshIndicator" destination="3Gi-Ys-hbb" id="cOc-Cm-PY5"/>
                 <outlet property="tableView" destination="fIT-ZT-zJw" id="hgK-n9-tED"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -30,7 +31,7 @@
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </tableView>
                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="slx-iN-IEx" userLabel="ErrorView">
-                    <rect key="frame" x="16" y="77" width="358" height="767"/>
+                    <rect key="frame" x="16" y="564" width="358" height="280"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="error_image" translatesAutoresizingMaskIntoConstraints="NO" id="kAI-VX-p43">
                             <rect key="frame" x="139" y="15" width="80" height="80"/>
@@ -53,9 +54,10 @@
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" name="black"/>
                     <constraints>
                         <constraint firstItem="SI9-ik-qWq" firstAttribute="top" secondItem="kAI-VX-p43" secondAttribute="bottom" constant="16" id="TgB-wx-MhY"/>
+                        <constraint firstAttribute="height" constant="280" id="dsg-rN-JDz"/>
                         <constraint firstItem="kAI-VX-p43" firstAttribute="top" secondItem="slx-iN-IEx" secondAttribute="top" constant="15" id="nMj-H8-uAX"/>
                         <constraint firstItem="kAI-VX-p43" firstAttribute="centerX" secondItem="slx-iN-IEx" secondAttribute="centerX" id="t9c-df-gOo"/>
                         <constraint firstItem="SI9-ik-qWq" firstAttribute="centerX" secondItem="slx-iN-IEx" secondAttribute="centerX" id="ty6-6Q-U1D"/>
@@ -69,19 +71,34 @@
                         <constraint firstAttribute="width" constant="40" id="nYg-WI-K7w"/>
                     </constraints>
                 </view>
+                <view hidden="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3Gi-Ys-hbb" customClass="NVActivityIndicatorView" customModule="NVActivityIndicatorView">
+                    <rect key="frame" x="175" y="402" width="40" height="40"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="40" id="7TS-st-Uk5"/>
+                        <constraint firstAttribute="height" constant="40" id="t8B-pK-pmW"/>
+                    </constraints>
+                </view>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4ag-mU-MRb">
+                    <rect key="frame" x="0.0" y="63" width="390" height="747"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" name="black"/>
             <constraints>
+                <constraint firstItem="4ag-mU-MRb" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="0lh-2h-ZOA"/>
                 <constraint firstItem="95B-JN-mGW" firstAttribute="centerX" secondItem="fIT-ZT-zJw" secondAttribute="centerX" id="51a-Et-8kI"/>
                 <constraint firstItem="fIT-ZT-zJw" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="30" id="6JR-mE-Qso"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="4ag-mU-MRb" secondAttribute="bottom" id="AdC-Tm-png"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="fIT-ZT-zJw" secondAttribute="trailing" constant="16" id="G32-3M-IVZ"/>
                 <constraint firstItem="fIT-ZT-zJw" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="HX3-zi-38E"/>
                 <constraint firstItem="95B-JN-mGW" firstAttribute="centerY" secondItem="fIT-ZT-zJw" secondAttribute="centerY" id="Kmw-eI-iZs"/>
                 <constraint firstItem="slx-iN-IEx" firstAttribute="trailing" secondItem="fIT-ZT-zJw" secondAttribute="trailing" id="NFs-Qt-V38"/>
+                <constraint firstAttribute="bottom" secondItem="slx-iN-IEx" secondAttribute="bottom" id="NQz-mH-Yf1"/>
                 <constraint firstItem="slx-iN-IEx" firstAttribute="leading" secondItem="fIT-ZT-zJw" secondAttribute="leading" id="QaR-27-H2a"/>
-                <constraint firstItem="slx-iN-IEx" firstAttribute="bottom" secondItem="fIT-ZT-zJw" secondAttribute="bottom" id="bqh-Hx-sZm"/>
-                <constraint firstItem="slx-iN-IEx" firstAttribute="top" secondItem="fIT-ZT-zJw" secondAttribute="top" id="rBV-oB-VX3"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="4ag-mU-MRb" secondAttribute="trailing" id="Tg8-hT-sIY"/>
+                <constraint firstItem="4ag-mU-MRb" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="16" id="dGm-sT-hKB"/>
                 <constraint firstAttribute="bottom" secondItem="fIT-ZT-zJw" secondAttribute="bottom" id="t6R-eU-teF"/>
             </constraints>
             <point key="canvasLocation" x="136.92307692307691" y="20.616113744075829"/>

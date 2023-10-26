@@ -8,7 +8,7 @@
 import Foundation
 
 protocol MpcKeysViewModelDelegate: AnyObject {
-    func navigateNextScreen()
+    func configSuccessUI()
     func showAlertMessage(message: String)
 }
 
@@ -17,6 +17,7 @@ final class MpcKeysViewModel {
     private let mpcKeysRepository = MpcKeysRepository()
     private var incomingMessageTask: Task<Void, Never>?
     private var mpcKeyTask: Task<Void, Never>?
+    var didSucceedGenerateKeys = false
     weak var delegate: MpcKeysViewModelDelegate?
     
     deinit {
@@ -45,7 +46,8 @@ final class MpcKeysViewModel {
         Task {
             let isSucceed = await mpcKeysRepository.createAssets()
             if isSucceed {
-                self.delegate?.navigateNextScreen()
+                didSucceedGenerateKeys = true
+                self.delegate?.configSuccessUI()
             } else {
                 self.delegate?.showAlertMessage(message: LocalizableStrings.accountCreationFailed)
             }

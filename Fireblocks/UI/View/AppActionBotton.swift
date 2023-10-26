@@ -10,7 +10,8 @@ import UIKit
 enum ButtonStyle {
     case Primary
     case Secondary
-    
+    case Disabled
+
     var colors: (primaryBackgountColor: UIColor,
                  tappedBackgountColor: UIColor,
                  disabledBackgountColor: UIColor,
@@ -27,6 +28,12 @@ enum ButtonStyle {
             return (AssetsColors.gray1.getColor(),
                     AssetsColors.gray2.getColor(),
                     AssetsColors.disableGray.getColor(),
+                    AssetsColors.white.getColor(),
+                    AssetsColors.gray3.getColor())
+        case .Disabled:
+            return (AssetsColors.primaryBlue.getColor(),
+                    AssetsColors.tapBlue.getColor(),
+                    AssetsColors.darkerBlue.getColor(),
                     AssetsColors.white.getColor(),
                     AssetsColors.gray3.getColor())
         }

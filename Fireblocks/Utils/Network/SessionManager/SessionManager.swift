@@ -35,6 +35,10 @@ struct SuccessValue: Codable {
     var success: Bool?
 }
 
+struct ErrorResponse: Codable {
+    var error: String
+}
+
 struct PostTransactionParams: Encodable {
     let destAddress: String
     let accountId: String = "0"
@@ -179,6 +183,7 @@ class SessionManager: ObservableObject {
         case denyTransaction(String, String)
         case createAsset(String, String)
         case getAssets(String)
+        case getSupportedAssets(String)
         case getAssetBalance(String, String)
         case getAssetAddress(String, String)
         case estimateFee(String)
@@ -205,6 +210,8 @@ class SessionManager: ObservableObject {
                 return EnvironmentConstants.baseURL + "/api/devices/\(deviceId)/accounts/0/assets/\(assetId)"
             case .getAssets(let deviceId):
                 return EnvironmentConstants.baseURL + "/api/devices/\(deviceId)/accounts/0/assets/summary"
+            case .getSupportedAssets(let deviceId):
+                return EnvironmentConstants.baseURL + "/api/devices/\(deviceId)/accounts/0/assets/supported_assets"
             case .getAssetBalance(let deviceId, let assetId):
                 return EnvironmentConstants.baseURL + "/api/devices/\(deviceId)/accounts/0/assets/\(assetId)/balance"
             case .getAssetAddress(let deviceId, let assetId):
@@ -236,6 +243,8 @@ class SessionManager: ObservableObject {
             case.createAsset(_, _):
                 return 30.0
             case.getAssets(_):
+                return 30.0
+            case.getSupportedAssets(_):
                 return 30.0
             case .estimateFee(_):
                 return 30.0
@@ -426,6 +435,16 @@ extension SessionManager {
         if let url = URL(string: FBURL.getAssets(deviceId).url) {
             let data = try await sendRequest(url: url, httpMethod: "GET", timeout: FBURL.getAssets(deviceId).timeout, numberOfRetries: 0)
             let assets: [String: AssetSummary] = try JSONDecoder().decode([String: AssetSummary].self, from: data)
+            return assets
+        } else {
+            throw SessionManager.error
+        }
+    }
+
+    func getSupportedAssets(deviceId: String) async throws -> [Asset] {
+        if let url = URL(string: FBURL.getSupportedAssets(deviceId).url) {
+            let data = try await sendRequest(url: url, httpMethod: "GET", timeout: FBURL.getAssets(deviceId).timeout, numberOfRetries: 0)
+            let assets: [Asset] = try JSONDecoder().decode([Asset].self, from: data)
             return assets
         } else {
             throw SessionManager.error

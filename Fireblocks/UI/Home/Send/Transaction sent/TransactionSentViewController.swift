@@ -33,7 +33,12 @@ class TransactionSentViewController: UIViewController {
     private func configView(){
         addressBackground.layer.cornerRadius = 4
         
-        assetImage.image = viewModel.transaction.asset.image
+        if let iconURL = viewModel.transaction.asset.iconUrl {
+            assetImage.sd_setImage(with: URL(string: iconURL), placeholderImage: viewModel.transaction.asset.image)
+        } else {
+            assetImage.image = viewModel.transaction.asset.image
+        }
+
         sendTitle.text = viewModel.getTitle()
         assetAmount.text = viewModel.getAmount()
         amountPrice.text = viewModel.getAmountPrice()

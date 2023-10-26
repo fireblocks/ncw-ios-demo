@@ -10,7 +10,7 @@ import UIKit
 @objc protocol AssetHeaderDelegate: AnyObject {
     @objc func sendButtonTapped()
     @objc func receiveButtonTapped()
-    @objc func refreshButtonTapped()
+    @objc func plusButtonTapped()
 }
 
 class AssetHeaderUIView: UIView {
@@ -64,11 +64,11 @@ class AssetHeaderUIView: UIView {
         return label
     }()
     
-    private let refreshButton: UIButton = {
+    private let plusButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = .clear
-        button.setImage(AssetsIcons.refresh.getIcon(), for: .normal)
+        button.setImage(AssetsIcons.plus.getIcon(), for: .normal)
         button.tintColor = AssetsColors.white.getColor()
         return button
     }()
@@ -101,7 +101,7 @@ class AssetHeaderUIView: UIView {
         initBalanceLabel()
         initSendButton()
         initReceiveButton()
-        initRefreshButton()
+        initPlusButton()
         initAssetsTitleLabel()
         addTargetToButtons()
     }
@@ -142,14 +142,14 @@ class AssetHeaderUIView: UIView {
         ])
     }
     
-    private func initRefreshButton() {
-        addSubview(refreshButton)
+    private func initPlusButton() {
+        addSubview(plusButton)
         NSLayoutConstraint.activate([
-            refreshButton.topAnchor.constraint(equalTo: sendButton.bottomAnchor, constant: AssetHeaderUIView.bigPadding),
-            refreshButton.trailingAnchor.constraint(equalTo: trailingAnchor),
-            refreshButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: AssetHeaderUIView.smallPadding),
-            refreshButton.widthAnchor.constraint(equalToConstant: AssetHeaderUIView.buttonHeight),
-            refreshButton.heightAnchor.constraint(equalToConstant: AssetHeaderUIView.buttonHeight)
+            plusButton.topAnchor.constraint(equalTo: sendButton.bottomAnchor, constant: AssetHeaderUIView.bigPadding),
+            plusButton.trailingAnchor.constraint(equalTo: trailingAnchor),
+            plusButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: AssetHeaderUIView.smallPadding),
+            plusButton.widthAnchor.constraint(equalToConstant: AssetHeaderUIView.buttonHeight),
+            plusButton.heightAnchor.constraint(equalToConstant: AssetHeaderUIView.buttonHeight)
         ])
     }
     
@@ -157,13 +157,13 @@ class AssetHeaderUIView: UIView {
         addSubview(assetsLabel)
         NSLayoutConstraint.activate([
             assetsLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: AssetHeaderUIView.smallPadding),
-            assetsLabel.centerYAnchor.constraint(equalTo: refreshButton.centerYAnchor)
+            assetsLabel.centerYAnchor.constraint(equalTo: plusButton.centerYAnchor)
         ])
     }
     
     private func addTargetToButtons() {
         sendButton.addTarget(nil, action: #selector(delegate?.sendButtonTapped), for: .touchUpInside)
         receiveButton.addTarget(nil, action: #selector(delegate?.receiveButtonTapped), for: .touchUpInside)
-        refreshButton.addTarget(nil, action: #selector(delegate?.refreshButtonTapped), for: .touchUpInside)
+        plusButton.addTarget(nil, action: #selector(delegate?.plusButtonTapped), for: .touchUpInside)
     }
 }

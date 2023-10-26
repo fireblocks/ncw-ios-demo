@@ -36,7 +36,11 @@ class ReceiveViewController: UIViewController {
         addressBackground.layer.cornerRadius = 16
         copyButton.setTitle("", for: .normal)
         
-        assetImage.image = viewModel.asset.image
+        if let iconURL = viewModel.asset.iconUrl {
+            assetImage.sd_setImage(with: URL(string: iconURL), placeholderImage: viewModel.asset.image)
+        } else {
+            assetImage.image = viewModel.asset.image
+        }
         assetName.text = viewModel.asset.name
         assetBlockchainName.text = viewModel.asset.blockchain
         assetAddressTitle.text = "\(viewModel.asset.symbol) address"

@@ -41,6 +41,7 @@ class BackupViewModel {
     private var task: Task<Void, Never>?
     private weak var delegate: BackupDelegate?
     private let actionType: BackupViewControllerStrategy
+    var didComeFromGenerateKeys = false
     
     init(_ delegate: BackupDelegate, _ actionType: BackupViewControllerStrategy){
         self.delegate = delegate

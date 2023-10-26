@@ -23,6 +23,10 @@ class ManuallyInputViewController: UIViewController {
     private let viewModel = ManuallyInputViewModel()
     var manuallyInputStrategy: ManuallyInputViewControllerStrategy = ManuallyBackup(inputContent: "")
     
+    func updateSourceView(didComeFromGenerateKeys: Bool = false) {
+        viewModel.didComeFromGenerateKeys = didComeFromGenerateKeys
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel.setInputContent(manuallyInputStrategy.inputContent, isHidden: manuallyInputStrategy.isInputContentHidden)
@@ -140,6 +144,16 @@ extension ManuallyInputViewController: UITextViewDelegate {
         }
 
     }
+    
+    @IBAction func navigateToHomeTapped(_ sender: UIButton) {
+        if viewModel.didComeFromGenerateKeys {
+            let vc = TabBarViewController()
+            self.navigationController?.setViewControllers([vc], animated: true)
+        } else {
+            navigationController?.popToRootViewController(animated: true)
+        }
+    }
+
 }
 
 //MARK: - ManuallyInputDelegate

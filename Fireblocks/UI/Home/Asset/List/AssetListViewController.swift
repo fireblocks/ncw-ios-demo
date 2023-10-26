@@ -7,6 +7,7 @@
 
 import UIKit
 import NVActivityIndicatorView
+import SwiftUI
 
 class AssetListViewController: UIViewController {
     
@@ -14,15 +15,17 @@ class AssetListViewController: UIViewController {
     
     //MARK: - PROPERTIES
     @IBOutlet weak var activityIndicator: NVActivityIndicatorView!
-    @IBOutlet weak var errorTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var refreshIndicator: NVActivityIndicatorView!
     @IBOutlet weak var settingButton: UIButton!
     @IBOutlet weak var errorMessage: UILabel!
     @IBOutlet weak var errorView: UIView!
+    @IBOutlet weak var bottomErrorView: UIView!
     @IBOutlet weak var tableView: UITableView!{
         didSet{
             tableView.register(AssetViewCell.nib, forCellReuseIdentifier: AssetViewCell.nibName)
             tableView.delegate = self
             tableView.dataSource = self
+            configureRefreshControl()
         }
     }
     
@@ -38,9 +41,33 @@ class AssetListViewController: UIViewController {
         activityIndicator.startAnimating()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        if tableView.refreshControl?.frame != nil {
+            var frame = tableView.refreshControl!.frame
+            frame.origin = CGPoint(x: (frame.width - 40)/2.0, y: (frame.height - 40)/2.0)
+            frame.size = CGSize(width: 40, height: 40)
+            
+            refreshIndicator.frame = frame
+        }
+    }
+    
     //MARK: - FUNCTIONS
+    
+    private func configureRefreshControl() {
+        tableView.refreshControl = UIRefreshControl()
+        tableView.refreshControl?.tintColor = .clear
+        tableView.refreshControl?.backgroundColor = .clear
+        refreshIndicator.translatesAutoresizingMaskIntoConstraints = true
+        tableView.refreshControl?.addSubview(refreshIndicator)
+
+        tableView.refreshControl?.addTarget(self, action: #selector(refreshAssets), for: .valueChanged)
+        refreshIndicator.type = .circleStrokeSpin
+        refreshIndicator.color = AssetsColors.primaryBlue.getColor()
+
+    }
+    
     private func configureView(){
-        errorTopConstraint.constant = headerHeight
         activityIndicator.type = .circleStrokeSpin
         activityIndicator.color = AssetsColors.primaryBlue.getColor()
     }
@@ -58,6 +85,16 @@ class AssetListViewController: UIViewController {
         vc.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(vc, animated: true)
     }
+    
+    @objc func refreshAssets(){
+        self.refreshIndicator.startAnimating()
+        viewModel.fetchAssets()
+    }
+
+    private func showAlertView(message: String){
+        showAlert(description: message, bottomAnchor: bottomErrorView.bottomAnchor)
+    }
+
 }
 
 extension AssetListViewController: UITableViewDelegate, UITableViewDataSource {
@@ -94,17 +131,37 @@ extension AssetListViewController: AssetListViewModelDelegate {
     @MainActor
     func refreshData()  {
         DispatchQueue.main.async {
+            self.tableView.refreshControl?.endRefreshing()
             self.tableView.reloadData()
             self.activityIndicator.stopAnimating()
+            self.refreshIndicator.stopAnimating()
         }
         
     }
     
     @MainActor
     func gotError()  {
-        self.errorView.isHidden = false
-        self.tableView.isScrollEnabled = false
-        self.activityIndicator.stopAnimating()
+        DispatchQueue.main.async {
+            self.errorView.alpha = 0
+            self.errorView.isHidden = false
+            self.tableView.isScrollEnabled = false
+            self.activityIndicator.stopAnimating()
+            self.refreshIndicator.stopAnimating()
+            self.tableView.refreshControl?.endRefreshing()
+
+            UIView.animate(withDuration: 0.3) {
+                self.errorView.alpha = 1
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                    UIView.animate(withDuration: 0.3, animations: {
+                        self.errorView.alpha = 0
+                    }, completion: { finished in
+                        self.errorView.isHidden = true
+                        self.tableView.isScrollEnabled = true
+                    })
+                }
+
+            }
+        }
     }
 }
 
@@ -117,11 +174,30 @@ extension AssetListViewController: AssetHeaderDelegate {
         navigateToChooseAssetScreen(flowType: .receive)
     }
     
-    @objc func refreshButtonTapped(){
-        viewModel.fetchAssets()
-        errorView.isHidden = true
-        tableView.isScrollEnabled = true
-        activityIndicator.startAnimating()
+    @objc func plusButtonTapped(){
+        let vc = AddAssetsViewController(devideId: FireblocksManager.shared.getDeviceId(), delegate: self)
+        let nc = UINavigationController(rootViewController: vc)
+        nc.isModalInPresentation = true
+        self.present(nc, animated: true)
+    }
+}
+
+extension AssetListViewController: AddAssetsViewControllerDelegate {
+    func dismissAddAssets(addedAssets: [Asset], failedAssets: [Asset]) {
+        self.dismiss(animated: true)
+        if failedAssets.count > 0 {
+            let prefix = failedAssets.count > 1 ? "The following assets were" : "The following asset was"
+            var assets: String = ""
+            failedAssets.forEach { asset in
+                assets += " \(asset.symbol),"
+            }
+            assets.removeLast()
+            self.showAlertView(message: "\(prefix) not added: \(assets).\nPlease try again\n")
+        }
+        if addedAssets.count > 0 {
+            activityIndicator.startAnimating()
+            refreshAssets()
+        }
     }
 }
 

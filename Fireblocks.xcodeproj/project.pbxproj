@@ -8,7 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		2B1C33DE2AA9BB44005F1D6B /* FireblocksSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 2B1C33DD2AA9BB44005F1D6B /* FireblocksSDK */; };
-		2B2970162A9642AF000A3C42 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2B2970152A9642AF000A3C42 /* GoogleService-Info.plist */; };
+		2B3E6C032ACC0C40000E91CF /* BackupStatusViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3E6C022ACC0C40000E91CF /* BackupStatusViewModel.swift */; };
+		2B3E6C092ACD8CFD000E91CF /* AddAssetsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3E6C082ACD8CFD000E91CF /* AddAssetsViewModel.swift */; };
+		2B3E6C0D2ACDAB0B000E91CF /* AddAssetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3E6C0C2ACDAB0B000E91CF /* AddAssetsViewController.swift */; };
+		2B3E6C0F2ACDAB97000E91CF /* AddAssetsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B3E6C0E2ACDAB97000E91CF /* AddAssetsViewController.xib */; };
+		2B3E6C112ACE96AC000E91CF /* AddAssetViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3E6C102ACE96AC000E91CF /* AddAssetViewCell.swift */; };
+		2B3E6C132ACE96D7000E91CF /* AddAssetViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B3E6C122ACE96D7000E91CF /* AddAssetViewCell.xib */; };
+		2B427EE62ADD1BCD00245C01 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2B427EE52ADD1BCD00245C01 /* GoogleService-Info.plist */; };
 		2B94CFC52A9CDF62003E7508 /* ExtraParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B94CFC42A9CDF62003E7508 /* ExtraParameters.swift */; };
 		2B94CFCA2A9CE576003E7508 /* CodableParsingExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B94CFC82A9CE576003E7508 /* CodableParsingExtension.swift */; };
 		2B94CFCC2A9CE576003E7508 /* CodableAnyExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B94CFC92A9CE576003E7508 /* CodableAnyExtension.swift */; };
@@ -170,7 +176,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		2B2970152A9642AF000A3C42 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		2B3E6C022ACC0C40000E91CF /* BackupStatusViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupStatusViewModel.swift; sourceTree = "<group>"; };
+		2B3E6C082ACD8CFD000E91CF /* AddAssetsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAssetsViewModel.swift; sourceTree = "<group>"; };
+		2B3E6C0C2ACDAB0B000E91CF /* AddAssetsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAssetsViewController.swift; sourceTree = "<group>"; };
+		2B3E6C0E2ACDAB97000E91CF /* AddAssetsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddAssetsViewController.xib; sourceTree = "<group>"; };
+		2B3E6C102ACE96AC000E91CF /* AddAssetViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAssetViewCell.swift; sourceTree = "<group>"; };
+		2B3E6C122ACE96D7000E91CF /* AddAssetViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddAssetViewCell.xib; sourceTree = "<group>"; };
+		2B427EE52ADD1BCD00245C01 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2B94CFC42A9CDF62003E7508 /* ExtraParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtraParameters.swift; sourceTree = "<group>"; };
 		2B94CFC82A9CE576003E7508 /* CodableParsingExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodableParsingExtension.swift; sourceTree = "<group>"; };
 		2B94CFC92A9CE576003E7508 /* CodableAnyExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodableAnyExtension.swift; sourceTree = "<group>"; };
@@ -338,6 +350,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2B3E6C042ACD44A5000E91CF /* List */ = {
+			isa = PBXGroup;
+			children = (
+				60DA065A2A645E2E00160ADC /* AssetListViewModel.swift */,
+				6025732F2A39E7F600A3C5D5 /* AssetListViewController.swift */,
+				602573302A39E7F600A3C5D5 /* AssetListViewController.xib */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		2B3E6C072ACD8CEB000E91CF /* AddAsset */ = {
+			isa = PBXGroup;
+			children = (
+				2B3E6C082ACD8CFD000E91CF /* AddAssetsViewModel.swift */,
+				2B3E6C0C2ACDAB0B000E91CF /* AddAssetsViewController.swift */,
+				2B3E6C0E2ACDAB97000E91CF /* AddAssetsViewController.xib */,
+				2B3E6C102ACE96AC000E91CF /* AddAssetViewCell.swift */,
+				2B3E6C122ACE96D7000E91CF /* AddAssetViewCell.xib */,
+			);
+			path = AddAsset;
+			sourceTree = "<group>";
+		};
 		2B94CFC72A9CE576003E7508 /* CodableExtensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -379,8 +413,8 @@
 		6025732D2A39E7C500A3C5D5 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				60EECFA42A66BE6400F3891C /* Receive */,
 				60DA069E2A651C5200160ADC /* TabBarViewController.swift */,
+				60EECFA42A66BE6400F3891C /* Receive */,
 				60DA065E2A645E9A00160ADC /* Send */,
 				6025732E2A39E7D000A3C5D5 /* Asset */,
 				608293892A56B78C00B11839 /* Transfer */,
@@ -391,9 +425,8 @@
 		6025732E2A39E7D000A3C5D5 /* Asset */ = {
 			isa = PBXGroup;
 			children = (
-				60DA065A2A645E2E00160ADC /* AssetListViewModel.swift */,
-				6025732F2A39E7F600A3C5D5 /* AssetListViewController.swift */,
-				602573302A39E7F600A3C5D5 /* AssetListViewController.xib */,
+				2B3E6C042ACD44A5000E91CF /* List */,
+				2B3E6C072ACD8CEB000E91CF /* AddAsset */,
 			);
 			path = Asset;
 			sourceTree = "<group>";
@@ -674,6 +707,7 @@
 			children = (
 				866A73CB2A696A4B00E8E545 /* BackupStatusViewController.xib */,
 				866A73CA2A696A4B00E8E545 /* BackupStatusViewController.swift */,
+				2B3E6C022ACC0C40000E91CF /* BackupStatusViewModel.swift */,
 			);
 			path = BackupStatus;
 			sourceTree = "<group>";
@@ -790,7 +824,7 @@
 				86665EFD2A399FD3002D4A2C /* Fireblocks.entitlements */,
 				86859F5D2A384D8B0056E3C6 /* LaunchScreen.storyboard */,
 				86859F582A384D8A0056E3C6 /* Main.storyboard */,
-				2B2970152A9642AF000A3C42 /* GoogleService-Info.plist */,
+				2B427EE52ADD1BCD00245C01 /* GoogleService-Info.plist */,
 				86859F602A384D8B0056E3C6 /* Info.plist */,
 			);
 			path = Fireblocks;
@@ -1043,12 +1077,12 @@
 				867828ED2A696D7D0035787D /* BackupDetailsViewController.xib in Resources */,
 				862E2AAA2A543C6C002FF774 /* AuthViewController.xib in Resources */,
 				60DA06A32A651D9300160ADC /* AssetViewCell.xib in Resources */,
-				2B2970162A9642AF000A3C42 /* GoogleService-Info.plist in Resources */,
 				603B70EB2A810D6200796CEE /* Roboto-Bold.ttf in Resources */,
 				86DC6E9D2A39ECC000A0B313 /* Localizable.strings in Resources */,
 				603903762A6D1F560060E026 /* ApproveViewController.xib in Resources */,
 				86859F5F2A384D8B0056E3C6 /* LaunchScreen.storyboard in Resources */,
 				608293922A56BB1400B11839 /* TransferCell.xib in Resources */,
+				2B427EE62ADD1BCD00245C01 /* GoogleService-Info.plist in Resources */,
 				608293C52A5AD72400B11839 /* TransferDetailsViewController.xib in Resources */,
 				603B70F12A810D6200796CEE /* Roboto-Regular.ttf in Resources */,
 				6082938D2A56B85800B11839 /* TransfersViewController.xib in Resources */,
@@ -1072,7 +1106,9 @@
 				603B71092A8137AF00796CEE /* Inter-Bold.ttf in Resources */,
 				86ED2BAE2A64430F00377F6C /* SettingsViewController.xib in Resources */,
 				603B71062A81379D00796CEE /* Inter-Regular.ttf in Resources */,
+				2B3E6C0F2ACDAB97000E91CF /* AddAssetsViewController.xib in Resources */,
 				60DA06B72A65204600160ADC /* SendToViewController.xib in Resources */,
+				2B3E6C132ACE96D7000E91CF /* AddAssetViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1087,6 +1123,7 @@
 				869A71482A3885E800653C8F /* MpcKeysViewController.swift in Sources */,
 				603903752A6D1F560060E026 /* ApproveViewController.swift in Sources */,
 				60B137B72A8B6A4C009A4ECB /* TransactionSentViewModel.swift in Sources */,
+				2B3E6C112ACE96AC000E91CF /* AddAssetViewCell.swift in Sources */,
 				608293942A56BEF200B11839 /* TransferStatusType.swift in Sources */,
 				60503F512A5FDCED00C2DAB8 /* TransferDetailsViewModel.swift in Sources */,
 				86E8350D2A602D50003E98BE /* EnvironmentConstants.swift in Sources */,
@@ -1101,6 +1138,7 @@
 				60DA06972A651AA000160ADC /* AppActionBotton.swift in Sources */,
 				86B67A392A6FF925007AC728 /* Int+Extension.swift in Sources */,
 				86859F532A384D8A0056E3C6 /* AppDelegate.swift in Sources */,
+				2B3E6C092ACD8CFD000E91CF /* AddAssetsViewModel.swift in Sources */,
 				60DA06862A645ED300160ADC /* FeeRateRepository.swift in Sources */,
 				867828E62A696D170035787D /* ActivityIndicator.swift in Sources */,
 				862F43102A6AC23600C594CA /* BackupViewControllerStrategy.swift in Sources */,
@@ -1117,6 +1155,7 @@
 				862E2A9C2A543B41002FF774 /* AuthViewModel.swift in Sources */,
 				60DA06B52A65204600160ADC /* SendToViewController.swift in Sources */,
 				2B94CFCC2A9CE576003E7508 /* CodableAnyExtension.swift in Sources */,
+				2B3E6C032ACC0C40000E91CF /* BackupStatusViewModel.swift in Sources */,
 				86EB51332A66C08C00D2911A /* SettingsViewController.swift in Sources */,
 				867828E42A696D170035787D /* Double+Extension.swift in Sources */,
 				862E2AA72A543B86002FF774 /* GoogleSignInManager.swift in Sources */,
@@ -1182,6 +1221,7 @@
 				867828E22A696D170035787D /* UIView+Extension.swift in Sources */,
 				86B6E9302A5E8AB800F35260 /* AuthUser.swift in Sources */,
 				60DA06752A645E9A00160ADC /* AmountToSendViewModel.swift in Sources */,
+				2B3E6C0D2ACDAB0B000E91CF /* AddAssetsViewController.swift in Sources */,
 				86ED2BAC2A64430F00377F6C /* SettingsViewModel.swift in Sources */,
 				2B94CFFF2A9F3F03003E7508 /* PollingManager.swift in Sources */,
 			);
@@ -1332,7 +1372,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 2HS962GC9R;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1355,7 +1395,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.0.3;
 				OTHER_SWIFT_FLAGS = "-DEC2";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fireblocks.ncw.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1379,7 +1419,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 2HS962GC9R;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1402,7 +1442,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.0.3;
 				OTHER_SWIFT_FLAGS = "-DEC2";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fireblocks.ncw.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
