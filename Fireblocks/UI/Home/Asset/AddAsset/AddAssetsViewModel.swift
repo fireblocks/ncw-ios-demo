@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct AssetToAdd {
     var asset: Asset
@@ -27,9 +28,11 @@ class AddAssetsViewModel: ObservableObject {
     private var failedAssets: [Asset] = []
 
     weak var delegate: AddAssetsDelegate?
-    
+        
     init(deviceId: String) {
         self.deviceId = deviceId
+        
+
         Task {
             do {
                 let response = try await SessionManager.shared.getSupportedAssets(deviceId: deviceId)
@@ -45,7 +48,7 @@ class AddAssetsViewModel: ObservableObject {
             }
         }
     }
-    
+        
     func getAssetsCount() -> Int {
         return searchResults.count
     }

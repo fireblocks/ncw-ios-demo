@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import Combine
 
 protocol AddAssetsViewControllerDelegate: AnyObject {
     func dismissAddAssets(addedAssets: [Asset], failedAssets: [Asset])
@@ -31,8 +32,11 @@ class AddAssetsViewController: UIViewController {
         }
     }
 
+    @IBOutlet weak var addAssetButtonBC: NSLayoutConstraint!
+    
     let viewModel: AddAssetsViewModel
     weak var delegate: AddAssetsViewControllerDelegate?
+    var cancellable = Set<AnyCancellable>()
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -42,6 +46,7 @@ class AddAssetsViewController: UIViewController {
         self.delegate = delegate
         self.viewModel = AddAssetsViewModel(deviceId: devideId)
         super.init (nibName: "AddAssetsViewController", bundle: nil)
+        
     }
 
 //MARK: - LIFECYCLE functions
@@ -57,8 +62,27 @@ class AddAssetsViewController: UIViewController {
         addAssetButton.isEnabled = false
         navigationItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "close"), style: .plain, target: self, action: #selector(handleCloseTap))]
 
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
+    @objc func keyboardWillShow(notification: NSNotification) {
+        let height = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.height ?? 5.0
+        self.addAssetButtonBC.constant = height
+        UIView.animate(withDuration: 0.3) {
+            self.view.layoutIfNeeded()
+        }
+
+    }
+
+    @objc func keyboardWillHide(notification: NSNotification) {
+        self.addAssetButtonBC.constant = 5
+        UIView.animate(withDuration: 0.3) {
+            self.view.layoutIfNeeded()
+        }
+    }
+
+
     @objc func handleCloseTap() {
         self.dismiss(animated: true)
     }

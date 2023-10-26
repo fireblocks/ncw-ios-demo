@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddAssetsViewController" customModule="NCW_sandbox" customModuleProvider="target">
             <connections>
                 <outlet property="addAssetButton" destination="drF-Hj-40N" id="x6N-GN-Rzd"/>
+                <outlet property="addAssetButtonBC" destination="0AS-vL-4rW" id="NX5-eh-sYm"/>
                 <outlet property="noResultsView" destination="6z7-Aw-bUX" id="361-uF-TL7"/>
                 <outlet property="searchBar" destination="eFu-Nk-gAz" id="MAK-28-eNo"/>
                 <outlet property="tableView" destination="yQd-KR-BnM" id="KaX-Dt-NDx"/>
