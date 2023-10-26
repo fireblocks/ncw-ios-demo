@@ -96,7 +96,7 @@ extension MpcKeysViewController: MpcKeysViewModelDelegate {
             self.navigationItem.title = LocalizableStrings.didGenerateMPCKeysSuccessTitle
             self.headerImageView.image = UIImage(named: "generateSuccess")
             
-            self.headerLabel.text = "Congratulations!\nYou’ve successfully created your keys! Next, create a key backup to make sure you never lose key access."
+            self.headerLabel.text = "You’ve successfully created your keys! Next, create a key backup to make sure you never lose key access."
             self.headerLabel.textAlignment = .center
             
             self.generateMpcKeysButton.config(title: LocalizableStrings.createKeyBackup, style: .Primary)
