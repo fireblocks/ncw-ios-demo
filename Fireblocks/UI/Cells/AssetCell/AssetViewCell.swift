@@ -48,7 +48,7 @@ class AssetViewCell: UITableViewCell {
     }
     
     func configCellWith(asset: Asset, isBlockchainHidden: Bool = false) {
-        if let iconURL = asset.iconURL {
+        if let iconURL = asset.iconUrl {
             assetImage.sd_setImage(with: URL(string: iconURL), placeholderImage: asset.image)
         } else {
             assetImage.image = asset.image

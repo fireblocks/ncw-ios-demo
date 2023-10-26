@@ -36,7 +36,7 @@ class ReceiveViewController: UIViewController {
         addressBackground.layer.cornerRadius = 16
         copyButton.setTitle("", for: .normal)
         
-        if let iconURL = viewModel.asset.iconURL {
+        if let iconURL = viewModel.asset.iconUrl {
             assetImage.sd_setImage(with: URL(string: iconURL), placeholderImage: viewModel.asset.image)
         } else {
             assetImage.image = viewModel.asset.image
