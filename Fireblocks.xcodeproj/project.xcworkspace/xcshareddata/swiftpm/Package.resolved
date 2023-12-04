@@ -131,8 +131,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/fireblocks/ncw-ios-sdk.git",
       "state" : {
-        "revision" : "2e62d403f864fc6678cce0d995eb93d2246e789f",
-        "version" : "1.0.5"
+        "revision" : "d57e811408cf669892512d3ad31143e70bd60df0",
+        "version" : "2.0.0"
       }
     },
     {

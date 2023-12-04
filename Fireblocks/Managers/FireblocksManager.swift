@@ -187,18 +187,6 @@ class FireblocksManager {
 }
 
 extension FireblocksManager: PollingListenerDelegate {
-    func handleIncomingMessage(payload: String, messageId: Int?) {
-        let instance = try? Fireblocks.getInstance(deviceId: deviceId)
-        instance?.handleIncomingMessage(payload: payload, callback: { [weak self] success in
-            if let self, let messageId {
-                Task {
-                    await SessionManager.shared.deleteMessage(deviceId: self.deviceId, messageId: "\(messageId)")
-                }
-            }
-        })
-
-    }
-    
     func handleTransactions(transactions: [TransactionResponse]) {
         TransfersViewModel.shared.handleTransactions(transactions: transactions)
     }
@@ -228,22 +216,7 @@ extension FireblocksManager: MessageHandlerDelegate {
             }
         }
     }
-    
-    func handleIncomingMessage(data: [Any]) {
-        for element in data {
-            do {
-                let instance = try Fireblocks.getInstance(deviceId: deviceId)
-                if let payload = castByteArrayToString(element) {
-                    instance.handleIncomingMessage(payload: payload) { messageHandled in
-                        logger.log("FireblocksManager, incoming message handled: \(messageHandled).")
-                    }
-                }
-            } catch {
-                logger.log("FireblocksManager, handleIncomingMessage() throws exception: \(error).")
-            }
-        }
-    }
-    
+        
     private func castByteArrayToString(_ data: Any) -> String? {
         guard let data = data as? [String: Any] else {
             return nil

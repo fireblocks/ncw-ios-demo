@@ -23,7 +23,7 @@ class ICloudManager {
         do {
             let database = container.privateCloudDatabase
             let record = try await database.record(for: getRecordId())
-            let passPhrase = record.value(forKey: "\(recordKey)_\(FireblocksManager.shared.getDeviceId().replaceHyphenWithUnderscore())") as? String ?? ""
+            let passPhrase = record.value(forKey: recordKey) as? String ?? ""
             return passPhrase
         } catch {
             print("ICloudManager data fetching failed: \(error)")
@@ -37,7 +37,7 @@ class ICloudManager {
     
     private func getCkRecord(_ value: String) -> CKRecord {
         let record = CKRecord(recordType: recordType, recordID: getRecordId())
-        record.setValue(value, forKey: "\(recordKey)_\(FireblocksManager.shared.getDeviceId().replaceHyphenWithUnderscore())")
+        record.setValue(value, forKey: recordKey)
         return record
     }
     
