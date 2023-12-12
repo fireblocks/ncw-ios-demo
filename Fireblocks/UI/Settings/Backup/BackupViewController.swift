@@ -18,9 +18,10 @@ class BackupViewController: UIViewController{
     lazy var actionType: BackupViewControllerStrategy = { Backup(delegate: self) }()
     
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var backupDateAndAccountLabel: UILabel!
+    @IBOutlet weak var backupDateAndAccountLabelHC: NSLayoutConstraint!
     @IBOutlet weak var googleDriveButton: AppActionBotton!
     @IBOutlet weak var iCloudButton: AppActionBotton!
-    @IBOutlet weak var manuallyButton: AppActionBotton!
     
     private lazy var viewModel = { BackupViewModel(self, actionType) }()
 
@@ -46,34 +47,29 @@ class BackupViewController: UIViewController{
         titleLabel.text = actionType.explanation
         googleDriveButton.config(title: actionType.googleTitle, image: AssetsIcons.googleIcon.getIcon(), style: .Secondary)
         iCloudButton.config(title: actionType.iCloudTitle, image: AssetsIcons.appleIcon.getIcon(), style: .Secondary)
-        manuallyButton.config(title: actionType.manuallyTitle, image: AssetsIcons.save.getIcon(), style: .Secondary)
     }
     
     @IBAction func driveBackupTapped(_ sender: AppActionBotton) {
-        authenticateUser()
+        showActivityIndicator()
+        Task {
+            let passphraseInfo = await viewModel.getPassphraseInfo(location: .GoogleDrive)
+            authenticateUser(passphraseId: passphraseInfo.passphraseId)
+        }
     }
     
     @IBAction func iCloudBackupTapped(_ sender: AppActionBotton) {
-        actionType.performICloudAction()
+        showActivityIndicator()
+        Task {
+            let passphraseInfo = await viewModel.getPassphraseInfo(location: .iCloud)
+            actionType.performICloudAction(passphraseId: passphraseInfo.passphraseId)
+        }
     }
     
     @IBAction func goBackTapped(_ sender: UIButton) {
         navigationController?.popViewController(animated: true)
     }
     
-    @MainActor
-    @IBAction func manuallyBackupTapped(_ sender: AppActionBotton) {
-        Task {
-            showActivityIndicator()
-            let vc = ManuallyInputViewController()
-            vc.updateSourceView(didComeFromGenerateKeys: viewModel.didComeFromGenerateKeys)
-            vc.manuallyInputStrategy = await viewModel.getManuallyInputStrategy()
-            hideActivityIndicator()
-            navigationController?.pushViewController(vc, animated: true)
-        }
-    }
-    
-    private func authenticateUser() {
+    private func authenticateUser(passphraseId: String) {
         guard let gidConfig = viewModel.getGidConfiguration() else {
             print("❌ BackupViewController, gidConfig is nil.")
             return
@@ -87,28 +83,23 @@ class BackupViewController: UIViewController{
         ) { [unowned self] result, error in
             
             guard error == nil else {
+                hideActivityIndicator()
                 print("Authentication failed with: \(String(describing: error?.localizedDescription)).")
                 return
             }
             
             guard let gidUser = result?.user else {
+                hideActivityIndicator()
                 print("GIDGoogleUser is nil")
                 return
             }
             
-            actionType.performDriveAction(gidUser)
+            actionType.performDriveAction(gidUser, passphraseId: passphraseId)
         }
     }
     
     private func navigateToBackupStatusViewController() {
         let vc = BackupStatusViewController(didComeFromGenerateKeys: viewModel.didComeFromGenerateKeys)
-        navigationController?.pushViewController(vc, animated: true)
-    }
-    
-    private func navigateToBackupDetailsViewController(_ backupData: BackupData) {
-        let vc = BackupDetailsViewController()
-        vc.delegate = self
-        vc.backupData = backupData
         navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -136,7 +127,9 @@ extension BackupViewController: BackupDelegate {
             
             self.hideActivityIndicator()
             if let backupData = backupData {
-                self.navigateToBackupDetailsViewController(backupData)
+                UIView.animate(withDuration: 0.3) {
+                    self.titleLabel.attributedText = self.viewModel.getBackupDetails(backupData: backupData)
+                }
             }
         }
     }
@@ -173,14 +166,14 @@ extension BackupViewController: BackupDelegate {
 }
 
 extension BackupViewController: BackupProviderDelegate {
-    func backupToGoogleDrive(_ gidUser: GIDGoogleUser) {
+    func backupToGoogleDrive(_ gidUser: GIDGoogleUser, passphraseId: String) {
         showActivityIndicator()
-        viewModel.backupToGoogleDrive(gidUser)
+        viewModel.backupToGoogleDrive(gidUser, passphraseId: passphraseId)
     }
     
-    func backupToICloud() {
+    func backupToICloud(passphraseId: String) {
         showActivityIndicator()
-        viewModel.backupToICloud()
+        viewModel.backupToICloud(passphraseId: passphraseId)
     }
     
     func recoverFromGoogleDrive(_ gidUser: GIDGoogleUser) {
@@ -196,16 +189,15 @@ extension BackupViewController: BackupProviderDelegate {
 
 extension BackupViewController: UpdateBackupDelegate {
     func updateBackupToGoogleDrive() {
-        driveBackupTapped(AppActionBotton())
+        Task {
+            let passphraseInfo = await viewModel.getPassphraseInfo(location: .GoogleDrive)
+            authenticateUser(passphraseId: passphraseInfo.passphraseId)
+        }
     }
     
     func updateBackupToICloud() {
         iCloudBackupTapped(AppActionBotton())
     }
     
-    func updateBackupToExternal() {
-        manuallyBackupTapped(AppActionBotton())
-    }
-
 }
 

@@ -14,13 +14,17 @@
 		2B3E6C112ACE96AC000E91CF /* AddAssetViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3E6C102ACE96AC000E91CF /* AddAssetViewCell.swift */; };
 		2B3E6C132ACE96D7000E91CF /* AddAssetViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B3E6C122ACE96D7000E91CF /* AddAssetViewCell.xib */; };
 		2B427EE62ADD1BCD00245C01 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2B427EE52ADD1BCD00245C01 /* GoogleService-Info.plist */; };
-		2B769BA12B1E1AAF00557E97 /* FireblocksSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 2B769BA02B1E1AAF00557E97 /* FireblocksSDK */; };
 		2B94CFC52A9CDF62003E7508 /* ExtraParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B94CFC42A9CDF62003E7508 /* ExtraParameters.swift */; };
 		2B94CFCA2A9CE576003E7508 /* CodableParsingExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B94CFC82A9CE576003E7508 /* CodableParsingExtension.swift */; };
 		2B94CFCC2A9CE576003E7508 /* CodableAnyExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B94CFC92A9CE576003E7508 /* CodableAnyExtension.swift */; };
 		2B94CFD32A9CE627003E7508 /* CodableExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B94CFD02A9CE627003E7508 /* CodableExtension.swift */; };
 		2B94CFFD2A9F3F03003E7508 /* PollingListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B94CFFB2A9F3F03003E7508 /* PollingListener.swift */; };
 		2B94CFFF2A9F3F03003E7508 /* PollingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B94CFFC2A9F3F03003E7508 /* PollingManager.swift */; };
+		2BC4A2232B2743DC00C6F0F4 /* MPCFBFramework.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BC4A2212B2743D500C6F0F4 /* MPCFBFramework.xcframework */; };
+		2BC4A2242B2743DC00C6F0F4 /* MPCFBFramework.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2BC4A2212B2743D500C6F0F4 /* MPCFBFramework.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2BD53A232B28735700756C4A /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD53A222B28735700756C4A /* Date+Extensions.swift */; };
+		2BD53A262B287DCF00756C4A /* FireblocksSDK.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BD53A242B287DB700756C4A /* FireblocksSDK.xcframework */; };
+		2BD53A272B287DCF00756C4A /* FireblocksSDK.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2BD53A242B287DB700756C4A /* FireblocksSDK.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		602573282A39D6F000A3C5D5 /* AssetsColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602573272A39D6F000A3C5D5 /* AssetsColors.swift */; };
 		6025732A2A39D76900A3C5D5 /* AssetsIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602573292A39D76900A3C5D5 /* AssetsIcons.swift */; };
 		602573312A39E7F600A3C5D5 /* AssetListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6025732F2A39E7F600A3C5D5 /* AssetListViewController.swift */; };
@@ -169,6 +173,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				2BD53A272B287DCF00756C4A /* FireblocksSDK.xcframework in Embed Frameworks */,
+				2BC4A2242B2743DC00C6F0F4 /* MPCFBFramework.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -191,6 +197,9 @@
 		2B94CFD02A9CE627003E7508 /* CodableExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodableExtension.swift; sourceTree = "<group>"; };
 		2B94CFFB2A9F3F03003E7508 /* PollingListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PollingListener.swift; sourceTree = "<group>"; };
 		2B94CFFC2A9F3F03003E7508 /* PollingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PollingManager.swift; sourceTree = "<group>"; };
+		2BC4A2212B2743D500C6F0F4 /* MPCFBFramework.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = MPCFBFramework.xcframework; sourceTree = "<group>"; };
+		2BD53A222B28735700756C4A /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
+		2BD53A242B287DB700756C4A /* FireblocksSDK.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = FireblocksSDK.xcframework; sourceTree = "<group>"; };
 		602573272A39D6F000A3C5D5 /* AssetsColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetsColors.swift; sourceTree = "<group>"; };
 		602573292A39D76900A3C5D5 /* AssetsIcons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetsIcons.swift; sourceTree = "<group>"; };
 		6025732F2A39E7F600A3C5D5 /* AssetListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetListViewController.swift; sourceTree = "<group>"; };
@@ -331,16 +340,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				866A73C22A696A0F00E8E545 /* GoogleAPIClientForREST_Drive in Frameworks */,
-				2B769BA12B1E1AAF00557E97 /* FireblocksSDK in Frameworks */,
 				869A71392A3859C900653C8F /* FirebaseAuth in Frameworks */,
 				86A9971C2A6FAD0B00A6B60B /* SDWebImageMapKit in Frameworks */,
 				86AF7C4D2A430BF70026DF15 /* (null) in Frameworks */,
 				866A73C42A696A0F00E8E545 /* GoogleAPIClientForREST_DriveActivity in Frameworks */,
 				869A71392A3859C900653C8F /* FirebaseAuth in Frameworks */,
+				2BD53A262B287DCF00756C4A /* FireblocksSDK.xcframework in Frameworks */,
 				86E8351A2A60331B003E98BE /* NVActivityIndicatorViewExtended in Frameworks */,
 				86C127FB2A53087B00255757 /* (null) in Frameworks */,
 				869A713B2A3859C900653C8F /* FirebaseAuthCombine-Community in Frameworks */,
 				86E835182A60331B003E98BE /* NVActivityIndicatorView in Frameworks */,
+				2BC4A2232B2743DC00C6F0F4 /* MPCFBFramework.xcframework in Frameworks */,
 				86A9971A2A6FAD0B00A6B60B /* SDWebImage in Frameworks */,
 				869A713E2A385D5300653C8F /* GoogleSignIn in Frameworks */,
 				866A73C62A696A0F00E8E545 /* GoogleAPIClientForREST_DriveLabels in Frameworks */,
@@ -756,6 +766,7 @@
 				2B94CFC72A9CE576003E7508 /* CodableExtensions */,
 				86B67A372A6FF925007AC728 /* Int+Extension.swift */,
 				86B67A362A6FF925007AC728 /* String+Extensions.swift */,
+				2BD53A222B28735700756C4A /* Date+Extensions.swift */,
 				86D77DBA2A6D254200D77B9F /* ViewController+Extensions.swift */,
 				867828CF2A696D170035787D /* UIButton+Extension.swift */,
 				867828D12A696D170035787D /* UIView+Extension.swift */,
@@ -794,6 +805,8 @@
 		86859F462A384D8A0056E3C6 = {
 			isa = PBXGroup;
 			children = (
+				2BD53A242B287DB700756C4A /* FireblocksSDK.xcframework */,
+				2BC4A2212B2743D500C6F0F4 /* MPCFBFramework.xcframework */,
 				2B769B9E2B1DFCC700557E97 /* NCW-sandboxRelease.entitlements */,
 				2B769B9D2B1DFCBA00557E97 /* NCW-sandboxDebug.entitlements */,
 				86859F512A384D8A0056E3C6 /* Fireblocks */,
@@ -1021,7 +1034,6 @@
 				866A73C12A696A0F00E8E545 /* GoogleAPIClientForREST_Drive */,
 				866A73C32A696A0F00E8E545 /* GoogleAPIClientForREST_DriveActivity */,
 				866A73C52A696A0F00E8E545 /* GoogleAPIClientForREST_DriveLabels */,
-				2B769BA02B1E1AAF00557E97 /* FireblocksSDK */,
 			);
 			productName = Fireblocks;
 			productReference = 86859F4F2A384D8A0056E3C6 /* NCW-sandbox.app */;
@@ -1057,7 +1069,6 @@
 				86E835162A60331B003E98BE /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */,
 				86A997182A6FAD0A00A6B60B /* XCRemoteSwiftPackageReference "SDWebImage" */,
 				866A73C02A696A0F00E8E545 /* XCRemoteSwiftPackageReference "google-api-objectivec-client-for-rest" */,
-				2B769B9F2B1E1AAE00557E97 /* XCRemoteSwiftPackageReference "ncw-ios-sdk" */,
 			);
 			productRefGroup = 86859F502A384D8A0056E3C6 /* Products */;
 			projectDirPath = "";
@@ -1144,6 +1155,7 @@
 				60DA06862A645ED300160ADC /* FeeRateRepository.swift in Sources */,
 				867828E62A696D170035787D /* ActivityIndicator.swift in Sources */,
 				862F43102A6AC23600C594CA /* BackupViewControllerStrategy.swift in Sources */,
+				2BD53A232B28735700756C4A /* Date+Extensions.swift in Sources */,
 				60EECF9E2A66BE2700F3891C /* AssetsImageMapper.swift in Sources */,
 				866A73D92A696AA200E8E545 /* ICloudManager.swift in Sources */,
 				86346ACD2A6D0D2C0002FE34 /* ToastView.swift in Sources */,
@@ -1483,14 +1495,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		2B769B9F2B1E1AAE00557E97 /* XCRemoteSwiftPackageReference "ncw-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/fireblocks/ncw-ios-sdk.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.0;
-			};
-		};
 		866A73C02A696A0F00E8E545 /* XCRemoteSwiftPackageReference "google-api-objectivec-client-for-rest" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/google/google-api-objectivec-client-for-rest";
@@ -1534,11 +1538,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		2B769BA02B1E1AAF00557E97 /* FireblocksSDK */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2B769B9F2B1E1AAE00557E97 /* XCRemoteSwiftPackageReference "ncw-ios-sdk" */;
-			productName = FireblocksSDK;
-		};
 		866A73C12A696A0F00E8E545 /* GoogleAPIClientForREST_Drive */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 866A73C02A696A0F00E8E545 /* XCRemoteSwiftPackageReference "google-api-objectivec-client-for-rest" */;

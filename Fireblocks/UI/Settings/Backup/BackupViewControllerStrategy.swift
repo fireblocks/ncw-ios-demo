@@ -16,8 +16,8 @@ protocol BackupViewControllerStrategy {
     var iCloudTitle: String { get }
     var manuallyTitle: String { get }
 
-    func performDriveAction(_ gidUser: GIDGoogleUser)
-    func performICloudAction()
+    func performDriveAction(_ gidUser: GIDGoogleUser, passphraseId: String)
+    func performICloudAction(passphraseId: String)
 }
 
 struct Backup: BackupViewControllerStrategy {
@@ -34,12 +34,12 @@ struct Backup: BackupViewControllerStrategy {
         self.delegate = delegate
     }
     
-    func performDriveAction(_ gidUser: GIDGoogleUser) {
-        delegate?.backupToGoogleDrive(gidUser)
+    func performDriveAction(_ gidUser: GIDGoogleUser, passphraseId: String) {
+        delegate?.backupToGoogleDrive(gidUser, passphraseId: passphraseId)
     }
     
-    func performICloudAction() {
-        delegate?.backupToICloud()
+    func performICloudAction(passphraseId: String) {
+        delegate?.backupToICloud(passphraseId: passphraseId)
     }
 }
 
@@ -57,11 +57,11 @@ struct Recover: BackupViewControllerStrategy {
         self.delegate = delegate
     }
     
-    func performDriveAction(_ gidUser: GIDGoogleUser) {
+    func performDriveAction(_ gidUser: GIDGoogleUser, passphraseId: String) {
         delegate?.recoverFromGoogleDrive(gidUser)
     }
     
-    func performICloudAction() {
+    func performICloudAction(passphraseId: String) {
         delegate?.recoverFromICLoud()
     }
 }

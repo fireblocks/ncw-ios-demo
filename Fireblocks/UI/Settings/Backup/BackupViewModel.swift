@@ -19,8 +19,8 @@ protocol BackupDelegate: AnyObject {
 }
 
 protocol BackupProviderDelegate: AnyObject {
-    func backupToGoogleDrive(_ gidUser: GIDGoogleUser)
-    func backupToICloud()
+    func backupToGoogleDrive(_ gidUser: GIDGoogleUser, passphraseId: String)
+    func backupToICloud(passphraseId: String)
     func recoverFromGoogleDrive(_ gidUser: GIDGoogleUser)
     func recoverFromICLoud()
 }
@@ -28,7 +28,6 @@ protocol BackupProviderDelegate: AnyObject {
 protocol UpdateBackupDelegate: AnyObject {
     func updateBackupToGoogleDrive()
     func updateBackupToICloud()
-    func updateBackupToExternal()
 }
 
 
@@ -53,13 +52,41 @@ class BackupViewModel {
         task = nil
     }
     
+    func getBackupDetails(backupData: BackupData) -> NSAttributedString {
+        let backupDate = backupData.date ?? "-"
+        let backupDetails = LocalizableStrings.backupDateAndAccount
+            .replacingOccurrences(of: "{date}", with: backupDate)
+            .replacingOccurrences(of: "{backup_provider}", with: backupData.title ?? "-")
+        
+        return makeSelectedTextBold(text: backupDetails, boldSubstring: backupDate)
+    }
+
+    private func makeSelectedTextBold(text: String, boldSubstring: String) -> NSAttributedString {
+        let attributedString = NSMutableAttributedString(string: text)
+        let range = (text as NSString).range(of: boldSubstring)
+        
+        if range.location != NSNotFound {
+            attributedString.addAttribute(.font, value: UIFont.boldSystemFont(ofSize: 16), range: range)
+        }
+        
+        return attributedString
+    }
+
+    func getBackupInfo() async -> BackupInfo? {
+        return await repository.getBackupInfo()
+    }
+    
+    func getPassphraseInfo(location: BackupProvider) async -> PassphraseInfo {
+        return await repository.getPassphraseInfos()?.passphrases.last ?? PassphraseInfo(passphraseId: FireblocksManager.shared.generatePassphraseId(), location: location)
+    }
+    
     func checkIfBackupExist() {
         task = Task {
-            let backupData = await repository.fetchBackupData()
-            if backupData?.isBackedUp == false {
-                delegate?.isBackupExist(nil)
-            } else {
+            if let backupInfo = await getBackupInfo() {
+                let backupData = BackupData(backupInfo: backupInfo)
                 delegate?.isBackupExist(backupData)
+            } else {
+                delegate?.isBackupExist(nil)
             }
         }
     }
@@ -80,21 +107,21 @@ class BackupViewModel {
         return googleDriveScope
     }
     
-    func backupToGoogleDrive(_ gidUser: GIDGoogleUser) {
+    func backupToGoogleDrive(_ gidUser: GIDGoogleUser, passphraseId: String) {
         task = Task {
-            let result = await repository.backupToGoogleDrive(gidUser: gidUser)
+            let result = await repository.backupToGoogleDrive(gidUser: gidUser, passphraseId: passphraseId)
             delegate?.isBackupSucceed(result)
         }
     }
     
-    func backupToICloud() {
+    func backupToICloud(passphraseId: String) {
         task = Task {
             guard let container = await getCKContainer() else {
                 delegate?.isBackupSucceed(false)
                 return
             }
             
-            let result = await repository.backupToICloud(container: container)
+            let result = await repository.backupToICloud(container: container, passphraseId: passphraseId)
             delegate?.isBackupSucceed(result)
         }
     }
@@ -118,19 +145,6 @@ class BackupViewModel {
             let isSucceed = await recoverMpcKeys(passPhrase)
             delegate?.isRecoverSucceed(isSucceed)
         }
-    }
-    
-    func getManuallyInputStrategy() async -> ManuallyInputViewControllerStrategy {
-        if actionType is Backup {
-            return await ManuallyBackup(inputContent: backupManually() ?? "")
-        } else {
-            return ManuallyRecover(inputContent: "")
-        }
-    }
-    
-    
-    private func backupManually() async -> String? {
-        return await repository.backupManually()
     }
     
     private func recoverMpcKeys(_ passPhrase: String) async -> Bool {

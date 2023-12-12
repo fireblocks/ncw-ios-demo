@@ -7,17 +7,19 @@
 
 import Foundation
 
-enum BackupProvider: CaseIterable {
-    case iCloud, googleDrive, external
+enum BackupProvider: String, CaseIterable, Codable {
+    case iCloud
+    case GoogleDrive
+    case external
     
-    func getValue() -> String {
+    func title() -> String {
         switch self {
         case .iCloud:
-            return LocalizableStrings.iCloud
-        case .googleDrive:
-            return LocalizableStrings.googleDrive
+            return "iCloud"
+        case .GoogleDrive:
+            return "Google Drive"
         case .external:
-            return LocalizableStrings.externalLocation
+            return "External"
         }
     }
 }

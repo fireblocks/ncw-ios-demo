@@ -169,6 +169,25 @@ struct AmountInfo: Codable {
     var amountUSD: String?
 }
 
+struct BackupInfo: Codable {
+    var location: BackupProvider
+    var createdAt: Int
+}
+
+struct PassphraseInfo: Codable {
+    let passphraseId: String
+    let location: BackupProvider
+}
+
+struct PassphraseInfoBody: Codable {
+    let passphraseId: String
+    let location: String
+}
+
+struct PassphraseInfos: Codable {
+    let passphrases: [PassphraseInfo]
+}
+
 class SessionManager: ObservableObject {
     var isLoggedIn = false
     
@@ -187,7 +206,10 @@ class SessionManager: ObservableObject {
         case getAssetBalance(String, String)
         case getAssetAddress(String, String)
         case estimateFee(String)
-
+        case getLatestBackupInfo(String)
+        case getPassphraseInfos
+        case createPassphraseInfo(PassphraseInfoBody)
+        
         var url: String {
             switch self {
             case .login:
@@ -218,7 +240,12 @@ class SessionManager: ObservableObject {
                 return EnvironmentConstants.baseURL + "/api/devices/\(deviceId)/accounts/0/assets/\(assetId)/address"
             case .estimateFee(let deviceId):
                 return EnvironmentConstants.baseURL + "/api/devices/\(deviceId)/transactions"
-
+            case .getLatestBackupInfo(let walletId):
+                return EnvironmentConstants.baseURL + "/api/wallets/\(walletId)/backup/latest"
+            case .getPassphraseInfos:
+                return EnvironmentConstants.baseURL + "/api/passphrase"
+            case .createPassphraseInfo(let passphraseInfo):
+                return EnvironmentConstants.baseURL + "/api/passphrase/\(passphraseInfo.passphraseId)"
             }
         }
         
@@ -251,6 +278,12 @@ class SessionManager: ObservableObject {
             case .getAssetBalance(_, _):
                 return 30.0
             case .getAssetAddress(_, _):
+                return 30.0
+            case .getLatestBackupInfo(_):
+                return 30.0
+            case .getPassphraseInfos:
+                return 30.0
+            case .createPassphraseInfo(_):
                 return 30.0
             }
         }
@@ -486,6 +519,34 @@ extension SessionManager {
             let data = try await sendRequest(url: url, httpMethod: "POST", timeout: FBURL.denyTransaction(deviceId, txId).timeout, numberOfRetries: 0)
             let success: SuccessValue = try JSONDecoder().decode(SuccessValue.self, from: data)
             return success.success ?? false
+        } else {
+            throw SessionManager.error
+        }
+    }
+
+    func getLatestBackupInfo(walletId: String) async throws -> BackupInfo {
+        if let url = URL(string: FBURL.getLatestBackupInfo(walletId).url) {
+            let data = try await sendRequest(url: url, httpMethod: "GET", timeout: FBURL.getLatestBackupInfo(walletId).timeout, numberOfRetries: 0)
+            let info: BackupInfo = try JSONDecoder().decode(BackupInfo.self, from: data)
+            return info
+        } else {
+            throw SessionManager.error
+        }
+    }
+    
+    func getPassphraseInfos() async throws -> PassphraseInfos {
+        if let url = URL(string: FBURL.getPassphraseInfos.url) {
+            let data = try await sendRequest(url: url, httpMethod: "GET", timeout: FBURL.getPassphraseInfos.timeout, numberOfRetries: 0)
+            let info: PassphraseInfos = try JSONDecoder().decode(PassphraseInfos.self, from: data)
+            return info
+        } else {
+            throw SessionManager.error
+        }
+    }
+    
+    func createPassphraseInfo(passphraseInfo: PassphraseInfoBody) async throws {
+        if let url = URL(string: FBURL.createPassphraseInfo(passphraseInfo).url) {
+            let _ = try await sendRequest(url: url, httpMethod: "POST", timeout: FBURL.createPassphraseInfo(passphraseInfo).timeout, numberOfRetries: 0, body: passphraseInfo.dictionary())
         } else {
             throw SessionManager.error
         }

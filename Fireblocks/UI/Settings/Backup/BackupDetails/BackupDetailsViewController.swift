@@ -45,12 +45,10 @@ class BackupDetailsViewController: UIViewController {
         }) { finished in
             if finished {
                 if let location = self.backupData?.location {
-                    if location == LocalizableStrings.googleDrive {
+                    if location == BackupProvider.GoogleDrive.rawValue {
                         self.delegate?.updateBackupToGoogleDrive()
-                    } else if location == LocalizableStrings.iCloud {
+                    } else if location == BackupProvider.iCloud.rawValue {
                         self.delegate?.updateBackupToICloud()
-                    } else if location == LocalizableStrings.externalLocation {
-                        self.delegate?.updateBackupToExternal()
                     }
                 }
             }

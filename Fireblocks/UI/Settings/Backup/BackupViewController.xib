@@ -1,24 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="Roboto-Bold.ttf">
+            <string>Roboto-Bold</string>
+        </array>
         <array key="Roboto-Regular.ttf">
             <string>Roboto-Regular</string>
         </array>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BackupViewController" customModule="Fireblocks___Dev__ngrok_" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BackupViewController" customModule="NCW_sandbox" customModuleProvider="target">
             <connections>
+                <outlet property="backupDateAndAccountLabel" destination="jKV-yM-Khw" id="Gx3-fr-Wmv"/>
+                <outlet property="backupDateAndAccountLabelHC" destination="9VB-fX-2Qu" id="IAw-lS-xlT"/>
                 <outlet property="googleDriveButton" destination="Lig-Bm-VvG" id="Zgq-qw-eCd"/>
                 <outlet property="iCloudButton" destination="cNm-Sz-HqY" id="FEk-WG-zda"/>
-                <outlet property="manuallyButton" destination="d2c-Rk-GTP" id="AVG-GP-ZdD"/>
                 <outlet property="titleLabel" destination="y1U-Lu-5rT" id="fNe-qK-3TR"/>
                 <outlet property="view" destination="EFa-WA-2Of" id="j48-LM-l1S"/>
             </connections>
@@ -29,14 +33,14 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y1U-Lu-5rT">
-                    <rect key="frame" x="16" y="89" width="361" height="75"/>
+                    <rect key="frame" x="16" y="89" width="361" height="74.666666666666686"/>
                     <string key="text">Use the recovery key backup to recover your assets in case you lose access to your account. The backup updates automatically every time you add a new wallet.</string>
                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
                     <color key="textColor" name="white"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lig-Bm-VvG" userLabel="Backup on drive" customClass="AppActionBotton" customModule="Fireblocks___Dev__ngrok_" customModuleProvider="target">
-                    <rect key="frame" x="16" y="188" width="361" height="50"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lig-Bm-VvG" userLabel="Backup on drive" customClass="AppActionBotton" customModule="NCW_sandbox" customModuleProvider="target">
+                    <rect key="frame" x="16" y="211.66666666666666" width="361" height="49.999999999999972"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="xrj-lc-0QQ"/>
@@ -45,8 +49,8 @@
                         <action selector="driveBackupTapped:" destination="-1" eventType="touchUpInside" id="RaW-we-Y2H"/>
                     </connections>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cNm-Sz-HqY" userLabel="Backup on iCloud" customClass="AppActionBotton" customModule="Fireblocks___Dev__ngrok_" customModuleProvider="target">
-                    <rect key="frame" x="16" y="246" width="361" height="50"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cNm-Sz-HqY" userLabel="Backup on iCloud" customClass="AppActionBotton" customModule="NCW_sandbox" customModuleProvider="target">
+                    <rect key="frame" x="16" y="269.66666666666669" width="361" height="50"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="19E-qi-dOR"/>
@@ -55,31 +59,32 @@
                         <action selector="iCloudBackupTapped:" destination="-1" eventType="touchUpInside" id="JNc-pB-5Ab"/>
                     </connections>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d2c-Rk-GTP" userLabel="Copy to save locally" customClass="AppActionBotton" customModule="Fireblocks___Dev__ngrok_" customModuleProvider="target">
-                    <rect key="frame" x="16" y="304" width="361" height="50"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jKV-yM-Khw">
+                    <rect key="frame" x="24" y="187.66666666666666" width="345" height="0.0"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="50" id="Tvy-dx-2nY"/>
+                        <constraint firstAttribute="height" id="9VB-fX-2Qu"/>
                     </constraints>
-                    <connections>
-                        <action selector="manuallyBackupTapped:" destination="-1" eventType="touchUpInside" id="ZOq-wh-BhA"/>
-                    </connections>
-                </view>
+                    <string key="text">Your recovery key was last backed up 05/31/2023 
+using the Google Drive account associated with:</string>
+                    <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="16"/>
+                    <color key="textColor" name="white"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="hCM-Oe-Dne"/>
             <color key="backgroundColor" name="black"/>
             <constraints>
                 <constraint firstItem="cNm-Sz-HqY" firstAttribute="top" secondItem="Lig-Bm-VvG" secondAttribute="bottom" constant="8" id="5Dx-x2-SCP"/>
-                <constraint firstItem="d2c-Rk-GTP" firstAttribute="top" secondItem="cNm-Sz-HqY" secondAttribute="bottom" constant="8" id="Gyn-wa-ysr"/>
-                <constraint firstItem="hCM-Oe-Dne" firstAttribute="trailing" secondItem="d2c-Rk-GTP" secondAttribute="trailing" constant="16" id="OAh-zl-56M"/>
+                <constraint firstItem="jKV-yM-Khw" firstAttribute="leading" secondItem="hCM-Oe-Dne" secondAttribute="leading" constant="24" id="BjS-z6-VLk"/>
                 <constraint firstItem="hCM-Oe-Dne" firstAttribute="trailing" secondItem="Lig-Bm-VvG" secondAttribute="trailing" constant="16" id="PWD-sL-VuI"/>
                 <constraint firstItem="hCM-Oe-Dne" firstAttribute="trailing" secondItem="cNm-Sz-HqY" secondAttribute="trailing" constant="16" id="Yfn-HX-UlQ"/>
                 <constraint firstItem="hCM-Oe-Dne" firstAttribute="trailing" secondItem="y1U-Lu-5rT" secondAttribute="trailing" constant="16" id="bwN-0v-X1e"/>
                 <constraint firstItem="y1U-Lu-5rT" firstAttribute="top" secondItem="hCM-Oe-Dne" secondAttribute="top" constant="30" id="d4B-LT-N8i"/>
-                <constraint firstItem="d2c-Rk-GTP" firstAttribute="leading" secondItem="hCM-Oe-Dne" secondAttribute="leading" constant="16" id="ezf-pj-X0A"/>
-                <constraint firstItem="Lig-Bm-VvG" firstAttribute="top" secondItem="y1U-Lu-5rT" secondAttribute="bottom" constant="24" id="ipx-dl-hWH"/>
                 <constraint firstItem="y1U-Lu-5rT" firstAttribute="leading" secondItem="hCM-Oe-Dne" secondAttribute="leading" constant="16" id="kGB-G1-rGt"/>
                 <constraint firstItem="Lig-Bm-VvG" firstAttribute="leading" secondItem="hCM-Oe-Dne" secondAttribute="leading" constant="16" id="kMq-d2-QwC"/>
+                <constraint firstItem="jKV-yM-Khw" firstAttribute="top" secondItem="y1U-Lu-5rT" secondAttribute="bottom" constant="24" id="pVd-1e-CKC"/>
+                <constraint firstItem="Lig-Bm-VvG" firstAttribute="top" secondItem="jKV-yM-Khw" secondAttribute="bottom" constant="24" id="peY-h1-Esl"/>
+                <constraint firstItem="hCM-Oe-Dne" firstAttribute="trailing" secondItem="jKV-yM-Khw" secondAttribute="trailing" constant="24" id="uMU-p7-AFv"/>
                 <constraint firstItem="cNm-Sz-HqY" firstAttribute="leading" secondItem="hCM-Oe-Dne" secondAttribute="leading" constant="16" id="zno-lC-2GB"/>
             </constraints>
             <point key="canvasLocation" x="3246.5648854961833" y="-643.66197183098598"/>

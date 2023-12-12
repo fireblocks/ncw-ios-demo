@@ -56,7 +56,7 @@
 "recover_wallet_title" = "Recover wallet";
 "export_private_key_title" = "Export private key";
 "takeover_private_key" = "Create a private key to move your assets to a different location.";
-"backup_explanation" = "Use the recovery key backup to recover your assets in case you lose access to your account. The backup updates automatically every time you add a new wallet.";
+"backup_explanation" = "Backup your keys to recover your assets in case you lose access to your account";
 "backup_on_drive" = " Back up on Drive";
 "backup_on_icloud" = " Back up on iCloud";
 "backup_manually" = " Copy to save locally";
