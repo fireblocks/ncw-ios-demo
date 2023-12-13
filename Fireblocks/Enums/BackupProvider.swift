@@ -10,7 +10,6 @@ import Foundation
 enum BackupProvider: String, CaseIterable, Codable {
     case iCloud
     case GoogleDrive
-    case external
     
     func title() -> String {
         switch self {
@@ -18,8 +17,6 @@ enum BackupProvider: String, CaseIterable, Codable {
             return "iCloud"
         case .GoogleDrive:
             return "Google Drive"
-        case .external:
-            return "External"
         }
     }
 }

@@ -11,9 +11,22 @@ import GoogleSignIn
 
 final class GoogleDriveManager {
     
+    private let googleDriveApiClientId = "CLIENT_ID"
     private static let fileName = "passphrase.txt"
     private var passphrase = ""
     
+    func getGidConfiguration() -> GIDConfiguration? {
+        var configuration: GIDConfiguration? = nil
+        if let path = Bundle.main.path(forResource: "GoogleService-Info", ofType: "plist"),
+           let infoDict = NSDictionary(contentsOfFile: path) as? [String: Any] {
+            if let clientId = infoDict[googleDriveApiClientId] as? String {
+                configuration = GIDConfiguration(clientID: clientId)
+            }
+        }
+        
+        return configuration
+    }
+
     func backupToDrive(gidUser: GIDGoogleUser, passphrase: String, passphraseId: String) async -> Bool {
         self.passphrase = passphrase
         let service = GTLRDriveService()

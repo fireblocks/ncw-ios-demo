@@ -60,6 +60,7 @@
 "backup_on_drive" = " Back up on Drive";
 "backup_on_icloud" = " Back up on iCloud";
 "backup_manually" = " Copy to save locally";
+"try_again" = "Try Again";
 "choose_recovery_location" = "Choose a wallet backup recovery location.";
 "copied" = "Copied";
 "feeInfoMessage" = "This shouldn’t take more than\na few moments.";

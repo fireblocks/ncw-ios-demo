@@ -14,9 +14,9 @@ protocol BackupViewControllerStrategy {
     var explanation: String { get }
     var googleTitle: String { get }
     var iCloudTitle: String { get }
-    var manuallyTitle: String { get }
+    var tryAgainTitle: String { get }
 
-    func performDriveAction(_ gidUser: GIDGoogleUser, passphraseId: String)
+    func performDriveAction(_ gidUser: GIDGoogleUser, passphraseId: String, callback: @escaping (String) -> ())
     func performICloudAction(passphraseId: String)
 }
 
@@ -26,15 +26,15 @@ struct Backup: BackupViewControllerStrategy {
     let explanation: String = LocalizableStrings.backupExplanation
     let googleTitle: String = LocalizableStrings.backupOnDrive
     let iCloudTitle: String = LocalizableStrings.backupOnICloud
-    let manuallyTitle: String = LocalizableStrings.backupManually
-    
+    let tryAgainTitle: String = LocalizableStrings.tryAgain
+
     private weak var delegate: BackupProviderDelegate?
     
     init(delegate: BackupProviderDelegate) {
         self.delegate = delegate
     }
     
-    func performDriveAction(_ gidUser: GIDGoogleUser, passphraseId: String) {
+    func performDriveAction(_ gidUser: GIDGoogleUser, passphraseId: String, callback: @escaping (String) -> ()) {
         delegate?.backupToGoogleDrive(gidUser, passphraseId: passphraseId)
     }
     
@@ -49,16 +49,16 @@ struct Recover: BackupViewControllerStrategy {
     let explanation: String = LocalizableStrings.chooseRecoveryLocation
     let googleTitle: String = LocalizableStrings.recoverFromDrive
     let iCloudTitle: String = LocalizableStrings.recoverFromICloud
-    let manuallyTitle: String = LocalizableStrings.recoverManually
-    
+    let tryAgainTitle: String = LocalizableStrings.tryAgain
+
     private weak var delegate: BackupProviderDelegate?
 
     init(delegate: BackupProviderDelegate) {
         self.delegate = delegate
     }
     
-    func performDriveAction(_ gidUser: GIDGoogleUser, passphraseId: String) {
-        delegate?.recoverFromGoogleDrive(gidUser)
+    func performDriveAction(_ gidUser: GIDGoogleUser, passphraseId: String, callback: @escaping (String) -> ()) {
+        delegate?.recoverFromGoogleDrive(gidUser, passphraseId: passphraseId, callback: callback)
     }
     
     func performICloudAction(passphraseId: String) {

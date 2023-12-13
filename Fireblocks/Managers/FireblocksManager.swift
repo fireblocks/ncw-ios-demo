@@ -126,13 +126,13 @@ class FireblocksManager {
         }
     }
     
-    func recoverWallet(recoverKey: String) async -> Bool {
+    func recoverWallet(resolver: FireblocksPassphraseResolver) async -> Bool {
         guard let instance = getSdkInstance() else {
             return false
         }
         
         do {
-            let keySet = try await instance.recoverKeys(passphrase: recoverKey)
+            let keySet = try await instance.recoverKeys(passphraseResolver: resolver)
             if keySet.isEmpty { return false }
             if keySet.first(where: {$0.keyRecoveryStatus == .ERROR}) != nil  { return false }
             return true

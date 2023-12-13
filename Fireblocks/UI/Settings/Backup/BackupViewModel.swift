@@ -11,6 +11,7 @@ import GoogleSignIn
 import GoogleAPIClientForREST_Drive
 import FirebaseAuth
 import CloudKit
+import FireblocksSDK
 
 protocol BackupDelegate: AnyObject {
     func isBackupSucceed(_ isSucceed: Bool)
@@ -21,7 +22,7 @@ protocol BackupDelegate: AnyObject {
 protocol BackupProviderDelegate: AnyObject {
     func backupToGoogleDrive(_ gidUser: GIDGoogleUser, passphraseId: String)
     func backupToICloud(passphraseId: String)
-    func recoverFromGoogleDrive(_ gidUser: GIDGoogleUser)
+    func recoverFromGoogleDrive(_ gidUser: GIDGoogleUser, passphraseId: String, callback: @escaping (String) -> ())
     func recoverFromICLoud()
 }
 
@@ -30,8 +31,9 @@ protocol UpdateBackupDelegate: AnyObject {
     func updateBackupToICloud()
 }
 
-
-private let googleDriveApiClientId = "CLIENT_ID"
+protocol ResolveRecoverDelegate: AnyObject {
+    func recover(passphraseId: String, provider: BackupProvider, callback: @escaping (String) -> ())
+}
 
 class BackupViewModel {
     
@@ -39,12 +41,15 @@ class BackupViewModel {
     private let repository = BackupRepository()
     private var task: Task<Void, Never>?
     private weak var delegate: BackupDelegate?
+    private weak var resolveRecoverDelegate: ResolveRecoverDelegate?
     private let actionType: BackupViewControllerStrategy
     var didComeFromGenerateKeys = false
+    var recoverProvider: BackupProvider?
     
-    init(_ delegate: BackupDelegate, _ actionType: BackupViewControllerStrategy){
+    init(_ delegate: BackupDelegate, _ actionType: BackupViewControllerStrategy, _ resolveRecoverDelegate: ResolveRecoverDelegate){
         self.delegate = delegate
         self.actionType = actionType
+        self.resolveRecoverDelegate = resolveRecoverDelegate
     }
     
     deinit {
@@ -92,15 +97,7 @@ class BackupViewModel {
     }
     
     func getGidConfiguration() -> GIDConfiguration? {
-        var configuration: GIDConfiguration? = nil
-        if let path = Bundle.main.path(forResource: "GoogleService-Info", ofType: "plist"),
-           let infoDict = NSDictionary(contentsOfFile: path) as? [String: Any] {
-            if let clientId = infoDict[googleDriveApiClientId] as? String {
-                configuration = GIDConfiguration(clientID: clientId)
-            }
-        }
-        
-        return configuration
+        return GoogleDriveManager().getGidConfiguration()
     }
     
     func getGoogleDriveScope() -> [String] {
@@ -126,29 +123,28 @@ class BackupViewModel {
         }
     }
     
-    func recoverFromGoogleDrive(_ gidUser: GIDGoogleUser) {
+    func recoverFromGoogleDrive(_ gidUser: GIDGoogleUser, passphraseId: String, callback: @escaping (String) -> ()) {
         task = Task {
-            let passPhrase = await repository.recoverFromGoogleDrive(gidUser: gidUser)
-            let isSucceed = await recoverMpcKeys(passPhrase)
-            delegate?.isRecoverSucceed(isSucceed)
+            let passphrase = await repository.recoverFromGoogleDrive(gidUser: gidUser, passphraseId: passphraseId)
+            callback(passphrase)
         }
     }
     
-    func recoverFromICloud() {
+    func recoverFromICloud(passphraseId: String, callback: @escaping (String) -> ()) {
         task = Task {
             guard let container = await getCKContainer() else {
-                delegate?.isBackupSucceed(false)
+                callback("")
                 return
             }
             
-            let passPhrase = await repository.recoverFromICloud(container: container)
-            let isSucceed = await recoverMpcKeys(passPhrase)
-            delegate?.isRecoverSucceed(isSucceed)
+            let passphrase = await repository.recoverFromICloud(container: container, passphraseId: passphraseId)
+            callback(passphrase)
         }
     }
     
-    private func recoverMpcKeys(_ passPhrase: String) async -> Bool {
-        return await FireblocksManager.shared.recoverWallet(recoverKey: passPhrase)
+    func recoverMpcKeys(recoverProvider: BackupProvider) async -> Bool {
+        self.recoverProvider = recoverProvider
+        return await FireblocksManager.shared.recoverWallet(resolver: self)
     }
     
     private func getCKContainer() async -> CKContainer? {
@@ -161,3 +157,21 @@ class BackupViewModel {
         }
     }
 }
+
+extension BackupViewModel: FireblocksPassphraseResolver {
+    func resolve(passphraseId: String, callback: @escaping (String) -> ()) {
+        Task {
+            if let recoverProvider  {
+                switch recoverProvider {
+                case .iCloud:
+                    self.recoverFromICloud(passphraseId: passphraseId, callback: callback)
+                case .GoogleDrive:
+                    self.resolveRecoverDelegate?.recover(passphraseId: passphraseId, provider: recoverProvider, callback: callback)
+                }
+            } else {
+                callback("")
+            }
+        }
+    }
+}
+

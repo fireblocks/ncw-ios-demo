@@ -91,9 +91,9 @@ extension FireblocksSDK.Fireblocks {
 }
 extension FireblocksSDK.Fireblocks {
   #if compiler(>=5.3) && $AsyncAwait
-  final public func recoverKeys(passphrase: Swift.String) async throws -> Swift.Set<FireblocksSDK.KeyRecovery>
+  final public func recoverKeys(passphraseResolver: any FireblocksSDK.FireblocksPassphraseResolver) async throws -> Swift.Set<FireblocksSDK.KeyRecovery>
   #endif
-  final public func recoverKeys(passphrase: Swift.String, callback: @escaping (Swift.Set<FireblocksSDK.KeyRecovery>) -> ()) throws
+  final public func recoverKeys(passphraseResolver: any FireblocksSDK.FireblocksPassphraseResolver, callback: @escaping (Swift.Set<FireblocksSDK.KeyRecovery>) -> ()) throws
 }
 extension FireblocksSDK.Fireblocks {
   #if compiler(>=5.3) && $AsyncAwait
@@ -221,6 +221,9 @@ public struct DerivationParams {
     get
   }
   public init(from decoder: any Swift.Decoder) throws
+}
+public protocol FireblocksPassphraseResolver {
+  func resolve(passphraseId: Swift.String, callback: @escaping (Swift.String) -> ())
 }
 public enum LogLevel : Swift.String {
   case none

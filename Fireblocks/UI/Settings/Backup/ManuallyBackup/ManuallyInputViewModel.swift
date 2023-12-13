@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import FireblocksSDK
 
 protocol ManuallyInputDelegate: AnyObject {
     func isWalletRecovered(_ isRecovered: Bool) async
@@ -53,12 +54,18 @@ final class ManuallyInputViewModel {
     
     func recoverWallet(_ delegate: ManuallyInputDelegate, _ passPhrase: String) {
         task = Task {
-            let isRecovered = await FireblocksManager.shared.recoverWallet(recoverKey: passPhrase)
+            let isRecovered = await FireblocksManager.shared.recoverWallet(resolver: self)
             await delegate.isWalletRecovered(isRecovered)
         }
     }
     
     func setInputContent(input: String) {
         inputContent = input
+    }
+}
+
+extension ManuallyInputViewModel: FireblocksPassphraseResolver {
+    func resolve(passphraseId: String, callback: @escaping (String) -> ()) {
+        
     }
 }

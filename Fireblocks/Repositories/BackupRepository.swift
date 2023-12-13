@@ -74,12 +74,12 @@ final public class BackupRepository {
     
     // MARK: Recover
     
-    func recoverFromGoogleDrive(gidUser: GIDGoogleUser) async -> String {
-        return await GoogleDriveManager().recoverFromDrive(gidUser: gidUser, passphraseId: "") ?? ""
+    func recoverFromGoogleDrive(gidUser: GIDGoogleUser, passphraseId: String) async -> String {
+        return await GoogleDriveManager().recoverFromDrive(gidUser: gidUser, passphraseId: passphraseId) ?? ""
     }
     
-    func recoverFromICloud(container: CKContainer) async -> String {
-        return await ICloudManager().fetchData(container: container, passphraseId: "") ?? ""
+    func recoverFromICloud(container: CKContainer, passphraseId: String) async -> String {
+        return await ICloudManager().fetchData(container: container, passphraseId: passphraseId) ?? ""
     }
     
     private func getUserCredentials() async -> UserCredentials {

@@ -209,6 +209,7 @@ class SessionManager: ObservableObject {
         case getLatestBackupInfo(String)
         case getPassphraseInfos
         case createPassphraseInfo(PassphraseInfoBody)
+        case getPassphraseInfo(String)
         
         var url: String {
             switch self {
@@ -246,6 +247,8 @@ class SessionManager: ObservableObject {
                 return EnvironmentConstants.baseURL + "/api/passphrase"
             case .createPassphraseInfo(let passphraseInfo):
                 return EnvironmentConstants.baseURL + "/api/passphrase/\(passphraseInfo.passphraseId)"
+            case .getPassphraseInfo(let passphraseId):
+                return EnvironmentConstants.baseURL + "/api/passphrase/\(passphraseId)"
             }
         }
         
@@ -284,6 +287,8 @@ class SessionManager: ObservableObject {
             case .getPassphraseInfos:
                 return 30.0
             case .createPassphraseInfo(_):
+                return 30.0
+            case .getPassphraseInfo(_):
                 return 30.0
             }
         }
@@ -551,5 +556,16 @@ extension SessionManager {
             throw SessionManager.error
         }
     }
+
+    func getPassphraseInfo(passphraseId: String) async throws -> PassphraseInfo {
+        if let url = URL(string: FBURL.getPassphraseInfo(passphraseId).url) {
+            let data = try await sendRequest(url: url, httpMethod: "GET", timeout: FBURL.getPassphraseInfo(passphraseId).timeout, numberOfRetries: 0)
+            let info: PassphraseInfo = try JSONDecoder().decode(PassphraseInfo.self, from: data)
+            return info
+        } else {
+            throw SessionManager.error
+        }
+    }
+    
 
 }

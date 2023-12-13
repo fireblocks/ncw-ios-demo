@@ -1474,6 +1474,16 @@
         "name": "Foundation",
         "printedName": "Foundation",
         "declKind": "Import",
+        "moduleName": "FireblocksSDK",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
         "moduleName": "FireblocksSDK"
       },
       {
@@ -2058,7 +2068,7 @@
           {
             "kind": "Function",
             "name": "recoverKeys",
-            "printedName": "recoverKeys(passphrase:)",
+            "printedName": "recoverKeys(passphraseResolver:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -2076,14 +2086,14 @@
               },
               {
                 "kind": "TypeNominal",
-                "name": "String",
-                "printedName": "Swift.String",
-                "usr": "s:SS"
+                "name": "FireblocksPassphraseResolver",
+                "printedName": "FireblocksSDK.FireblocksPassphraseResolver",
+                "usr": "s:13FireblocksSDK0A18PassphraseResolverP"
               }
             ],
             "declKind": "Func",
-            "usr": "s:13FireblocksSDK0A0C11recoverKeys10passphraseShyAA11KeyRecoveryCGSS_tYaKF",
-            "mangledName": "$s13FireblocksSDK0A0C11recoverKeys10passphraseShyAA11KeyRecoveryCGSS_tYaKF",
+            "usr": "s:13FireblocksSDK0A0C11recoverKeys18passphraseResolverShyAA11KeyRecoveryCGAA0a10PassphraseF0_p_tYaKF",
+            "mangledName": "$s13FireblocksSDK0A0C11recoverKeys18passphraseResolverShyAA11KeyRecoveryCGAA0a10PassphraseF0_p_tYaKF",
             "moduleName": "FireblocksSDK",
             "declAttributes": [
               "Final",
@@ -2097,7 +2107,7 @@
           {
             "kind": "Function",
             "name": "recoverKeys",
-            "printedName": "recoverKeys(passphrase:callback:)",
+            "printedName": "recoverKeys(passphraseResolver:callback:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -2106,9 +2116,9 @@
               },
               {
                 "kind": "TypeNominal",
-                "name": "String",
-                "printedName": "Swift.String",
-                "usr": "s:SS"
+                "name": "FireblocksPassphraseResolver",
+                "printedName": "FireblocksSDK.FireblocksPassphraseResolver",
+                "usr": "s:13FireblocksSDK0A18PassphraseResolverP"
               },
               {
                 "kind": "TypeFunc",
@@ -2138,8 +2148,8 @@
               }
             ],
             "declKind": "Func",
-            "usr": "s:13FireblocksSDK0A0C11recoverKeys10passphrase8callbackySS_yShyAA11KeyRecoveryCGctKF",
-            "mangledName": "$s13FireblocksSDK0A0C11recoverKeys10passphrase8callbackySS_yShyAA11KeyRecoveryCGctKF",
+            "usr": "s:13FireblocksSDK0A0C11recoverKeys18passphraseResolver8callbackyAA0a10PassphraseF0_p_yShyAA11KeyRecoveryCGctKF",
+            "mangledName": "$s13FireblocksSDK0A0C11recoverKeys18passphraseResolver8callbackyAA0a10PassphraseF0_p_yShyAA11KeyRecoveryCGctKF",
             "moduleName": "FireblocksSDK",
             "declAttributes": [
               "Final",
@@ -5598,6 +5608,75 @@
         "moduleName": "FireblocksSDK",
         "declAttributes": [
           "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "FireblocksSDK",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "FireblocksPassphraseResolver",
+        "printedName": "FireblocksPassphraseResolver",
+        "children": [
+          {
+            "kind": "Function",
+            "name": "resolve",
+            "printedName": "resolve(passphraseId:callback:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(Swift.String) -> ()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ]
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:13FireblocksSDK0A18PassphraseResolverP7resolve12passphraseId8callbackySS_ySSctF",
+            "mangledName": "$s13FireblocksSDK0A18PassphraseResolverP7resolve12passphraseId8callbackySS_ySSctF",
+            "moduleName": "FireblocksSDK",
+            "genericSig": "<τ_0_0 where τ_0_0 : FireblocksSDK.FireblocksPassphraseResolver>",
+            "sugared_genericSig": "<Self where Self : FireblocksSDK.FireblocksPassphraseResolver>",
+            "protocolReq": true,
+            "reqNewWitnessTableEntry": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Protocol",
+        "usr": "s:13FireblocksSDK0A18PassphraseResolverP",
+        "mangledName": "$s13FireblocksSDK0A18PassphraseResolverP",
+        "moduleName": "FireblocksSDK",
+        "declAttributes": [
+          "AccessControl"
         ]
       },
       {
@@ -14819,7 +14898,7 @@
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/RecoveryRepo.swift",
       "kind": "BooleanLiteral",
-      "offset": 586,
+      "offset": 662,
       "length": 4,
       "value": "true"
     },
@@ -15904,420 +15983,420 @@
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "Dictionary",
-      "offset": 2179,
+      "offset": 2239,
       "length": 3,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "BooleanLiteral",
-      "offset": 2741,
+      "offset": 2854,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "BooleanLiteral",
-      "offset": 2789,
+      "offset": 2902,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "BooleanLiteral",
-      "offset": 2835,
+      "offset": 2948,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "BooleanLiteral",
-      "offset": 2893,
+      "offset": 3006,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "BooleanLiteral",
-      "offset": 2941,
+      "offset": 3054,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "BooleanLiteral",
-      "offset": 3031,
+      "offset": 3144,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "BooleanLiteral",
-      "offset": 4152,
+      "offset": 4332,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "StringLiteral",
-      "offset": 8643,
+      "offset": 8823,
       "length": 47,
       "value": "\"Notification Update - certifcatesUpdateNeeded\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "BooleanLiteral",
-      "offset": 8786,
+      "offset": 8966,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "BooleanLiteral",
-      "offset": 8802,
+      "offset": 8982,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "StringLiteral",
-      "offset": 8945,
+      "offset": 9125,
       "length": 41,
       "value": "\"Failed to download service certificates\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "BooleanLiteral",
-      "offset": 9187,
+      "offset": 9367,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "BooleanLiteral",
-      "offset": 9204,
+      "offset": 9384,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "StringLiteral",
-      "offset": 9339,
+      "offset": 9519,
       "length": 41,
       "value": "\"Failed to download service certificates\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "BooleanLiteral",
-      "offset": 9541,
+      "offset": 9721,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "BooleanLiteral",
-      "offset": 10867,
+      "offset": 11047,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "BooleanLiteral",
-      "offset": 10950,
+      "offset": 11130,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "StringLiteral",
-      "offset": 11124,
+      "offset": 11304,
       "length": 23,
       "value": "\"Upload logs succeeded\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "BooleanLiteral",
-      "offset": 11381,
+      "offset": 11561,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "IntegerLiteral",
-      "offset": 13752,
+      "offset": 13932,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "BooleanLiteral",
-      "offset": 15205,
+      "offset": 15385,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "BooleanLiteral",
-      "offset": 15245,
+      "offset": 15425,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "BooleanLiteral",
-      "offset": 15553,
+      "offset": 15733,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "BooleanLiteral",
-      "offset": 15938,
+      "offset": 16118,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "StringLiteral",
-      "offset": 16006,
+      "offset": 16186,
       "length": 31,
       "value": "\"Flow Failed: \""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "StringLiteral",
-      "offset": 16036,
+      "offset": 16216,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "BooleanLiteral",
-      "offset": 19642,
+      "offset": 19822,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "BooleanLiteral",
-      "offset": 19675,
+      "offset": 19855,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "BooleanLiteral",
-      "offset": 19993,
+      "offset": 20173,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "BooleanLiteral",
-      "offset": 20120,
+      "offset": 20300,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "StringLiteral",
-      "offset": 20188,
+      "offset": 20368,
       "length": 35,
       "value": "\"Flow Failed: \""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "StringLiteral",
-      "offset": 20222,
+      "offset": 20402,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "BooleanLiteral",
-      "offset": 22095,
+      "offset": 22123,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "BooleanLiteral",
-      "offset": 22130,
+      "offset": 22158,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "BooleanLiteral",
-      "offset": 22512,
+      "offset": 22594,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "BooleanLiteral",
-      "offset": 22924,
+      "offset": 23006,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "StringLiteral",
-      "offset": 22992,
+      "offset": 23074,
       "length": 35,
       "value": "\"Flow Failed: \""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "StringLiteral",
-      "offset": 23026,
+      "offset": 23108,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "StringLiteral",
-      "offset": 24272,
+      "offset": 24354,
       "length": 38,
       "value": "\"Sign Transaction has already started\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "IntegerLiteral",
-      "offset": 24529,
+      "offset": 24611,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "StringLiteral",
-      "offset": 24577,
+      "offset": 24659,
       "length": 73,
       "value": "\"Failed to sign transaction \""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "StringLiteral",
-      "offset": 24612,
+      "offset": 24694,
       "length": 5,
       "value": "\" Error - failed to get keys on device\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "BooleanLiteral",
-      "offset": 25006,
+      "offset": 25088,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "BooleanLiteral",
-      "offset": 25586,
+      "offset": 25668,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "StringLiteral",
-      "offset": 25724,
+      "offset": 25806,
       "length": 11,
       "value": "\"Succeeded\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "StringLiteral",
-      "offset": 25960,
+      "offset": 26042,
       "length": 63,
       "value": "\"Failed to sign transaction \""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "StringLiteral",
-      "offset": 25995,
+      "offset": 26077,
       "length": 5,
       "value": "\" Error - code: \""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "StringLiteral",
-      "offset": 26022,
+      "offset": 26104,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "BooleanLiteral",
-      "offset": 26275,
+      "offset": 26357,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "StringLiteral",
-      "offset": 26323,
+      "offset": 26405,
       "length": 31,
       "value": "\"Unexpected result from keyRef\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "BooleanLiteral",
-      "offset": 28290,
+      "offset": 28372,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "BooleanLiteral",
-      "offset": 28925,
+      "offset": 29007,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "BooleanLiteral",
-      "offset": 29094,
+      "offset": 29176,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "BooleanLiteral",
-      "offset": 31252,
+      "offset": 31334,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "BooleanLiteral",
-      "offset": 31996,
+      "offset": 32078,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "BooleanLiteral",
-      "offset": 32166,
+      "offset": 32248,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "BooleanLiteral",
-      "offset": 34280,
+      "offset": 34362,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "BooleanLiteral",
-      "offset": 35085,
+      "offset": 35167,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "BooleanLiteral",
-      "offset": 35254,
+      "offset": 35336,
       "length": 4,
       "value": "true"
     },
@@ -18095,562 +18174,555 @@
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/RecoverKeysStep.swift",
       "kind": "BooleanLiteral",
-      "offset": 1831,
+      "offset": 1897,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/RecoverKeysStep.swift",
       "kind": "StringLiteral",
-      "offset": 2267,
+      "offset": 2333,
       "length": 30,
       "value": "\"Failed to get backed up keys\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/RecoverKeysStep.swift",
       "kind": "StringLiteral",
-      "offset": 2647,
+      "offset": 2623,
+      "length": 34,
+      "value": "\"Failed to get resolve passphrase\""
+    },
+    {
+      "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/RecoverKeysStep.swift",
+      "kind": "StringLiteral",
+      "offset": 3016,
       "length": 28,
       "value": "\"Failed to get recover keys\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/RecoverKeysStep.swift",
       "kind": "BooleanLiteral",
-      "offset": 3061,
+      "offset": 3430,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/RecoverKeysStep.swift",
       "kind": "BooleanLiteral",
-      "offset": 3091,
+      "offset": 3460,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/RecoverKeysStep.swift",
       "kind": "StringLiteral",
-      "offset": 3844,
+      "offset": 4213,
       "length": 56,
       "value": "\"KeyBackUpFlow - Failed to create salt data from string\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/RecoverKeysStep.swift",
       "kind": "Dictionary",
-      "offset": 4022,
+      "offset": 4391,
       "length": 3,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/RecoverKeysStep.swift",
       "kind": "Array",
-      "offset": 4077,
+      "offset": 4446,
       "length": 2,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/RecoverKeysStep.swift",
       "kind": "StringLiteral",
-      "offset": 4520,
+      "offset": 4889,
       "length": 48,
       "value": "\"Can't parse algorithm - \""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/RecoverKeysStep.swift",
       "kind": "StringLiteral",
-      "offset": 4567,
+      "offset": 4936,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/RecoverKeysStep.swift",
       "kind": "BooleanLiteral",
-      "offset": 5041,
+      "offset": 5410,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/RecoverKeysStep.swift",
       "kind": "BooleanLiteral",
-      "offset": 5161,
+      "offset": 5530,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/RecoverKeysStep.swift",
       "kind": "StringLiteral",
-      "offset": 5208,
+      "offset": 5577,
       "length": 11,
       "value": "\"ecdsa key\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/RecoverKeysStep.swift",
       "kind": "StringLiteral",
-      "offset": 5249,
+      "offset": 5618,
       "length": 10,
       "value": "\"00000000\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/RecoverKeysStep.swift",
       "kind": "StringLiteral",
-      "offset": 5447,
+      "offset": 5816,
       "length": 11,
       "value": "\"eddsa key\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/RecoverKeysStep.swift",
       "kind": "StringLiteral",
-      "offset": 5488,
+      "offset": 5857,
       "length": 10,
       "value": "\"01000000\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/RecoverKeysStep.swift",
       "kind": "StringLiteral",
-      "offset": 5738,
+      "offset": 6107,
       "length": 7,
       "value": "\"CLOUD\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/RecoverKeysStep.swift",
       "kind": "IntegerLiteral",
-      "offset": 5778,
+      "offset": 6147,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/RecoverKeysStep.swift",
       "kind": "StringLiteral",
-      "offset": 5809,
+      "offset": 6178,
       "length": 8,
       "value": "\"MOBILE\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/RecoverKeysStep.swift",
       "kind": "StringLiteral",
-      "offset": 5860,
+      "offset": 6229,
       "length": 4,
       "value": "\"id\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/RecoverKeysStep.swift",
       "kind": "StringLiteral",
-      "offset": 5875,
+      "offset": 6244,
       "length": 6,
       "value": "\"type\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/RecoverKeysStep.swift",
       "kind": "StringLiteral",
-      "offset": 6084,
+      "offset": 6453,
       "length": 42,
       "value": "\"KeyBackUpFlow - Failed to map player ids\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/RecoverKeysStep.swift",
       "kind": "StringLiteral",
-      "offset": 6479,
+      "offset": 6848,
       "length": 39,
       "value": "\"KeyBackUpFlow - Failed to decrypt key\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/RecoverKeysStep.swift",
       "kind": "BooleanLiteral",
-      "offset": 6695,
+      "offset": 7064,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/RecoverKeysStep.swift",
       "kind": "StringLiteral",
-      "offset": 7017,
+      "offset": 7431,
       "length": 37,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/RecoverKeysStep.swift",
       "kind": "StringLiteral",
-      "offset": 7044,
+      "offset": 7458,
       "length": 1,
       "value": "\".\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/RecoverKeysStep.swift",
       "kind": "StringLiteral",
-      "offset": 7053,
+      "offset": 7467,
       "length": 44,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/RecoverKeysStep.swift",
       "kind": "StringLiteral",
-      "offset": 7148,
+      "offset": 7562,
       "length": 37,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/RecoverKeysStep.swift",
       "kind": "StringLiteral",
-      "offset": 7157,
+      "offset": 7571,
       "length": 13,
       "value": "\" auxiliaryKeys save success\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/RecoverKeysStep.swift",
       "kind": "StringLiteral",
-      "offset": 7281,
+      "offset": 7695,
       "length": 36,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/RecoverKeysStep.swift",
       "kind": "StringLiteral",
-      "offset": 7290,
+      "offset": 7704,
       "length": 13,
       "value": "\" auxiliaryKeys save failed\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/RecoverKeysStep.swift",
       "kind": "StringLiteral",
-      "offset": 7505,
+      "offset": 7919,
       "length": 32,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/RecoverKeysStep.swift",
       "kind": "StringLiteral",
-      "offset": 7527,
+      "offset": 7941,
       "length": 1,
       "value": "\".\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/RecoverKeysStep.swift",
       "kind": "StringLiteral",
-      "offset": 7536,
+      "offset": 7950,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/RecoverKeysStep.swift",
       "kind": "StringLiteral",
-      "offset": 7585,
+      "offset": 8058,
       "length": 32,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/RecoverKeysStep.swift",
       "kind": "StringLiteral",
-      "offset": 7594,
+      "offset": 8067,
       "length": 8,
       "value": "\" metadata save success\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/RecoverKeysStep.swift",
       "kind": "BooleanLiteral",
-      "offset": 7657,
+      "offset": 8130,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/RecoverKeysStep.swift",
       "kind": "StringLiteral",
-      "offset": 7827,
+      "offset": 8300,
       "length": 30,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/RecoverKeysStep.swift",
       "kind": "StringLiteral",
-      "offset": 7836,
+      "offset": 8309,
       "length": 6,
       "value": "\" marked as cmp in sm\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/RecoverKeysStep.swift",
       "kind": "StringLiteral",
-      "offset": 7945,
+      "offset": 8418,
       "length": 73,
       "value": "\"Failed to parse json for mpcAlogrithm: \""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/RecoverKeysStep.swift",
       "kind": "StringLiteral",
-      "offset": 8000,
+      "offset": 8473,
       "length": 1,
       "value": "\", keyId: \""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/RecoverKeysStep.swift",
       "kind": "StringLiteral",
-      "offset": 8017,
+      "offset": 8490,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/RecoverKeysStep.swift",
       "kind": "BooleanLiteral",
-      "offset": 8175,
+      "offset": 8648,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/RecoverKeysStep.swift",
       "kind": "IntegerLiteral",
-      "offset": 8218,
+      "offset": 8691,
       "length": 2,
       "value": "36"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/RecoverKeysStep.swift",
       "kind": "StringLiteral",
-      "offset": 8315,
+      "offset": 8788,
       "length": 24,
       "value": "\"got key with algorithm\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/RecoverKeysStep.swift",
       "kind": "BooleanLiteral",
-      "offset": 8378,
+      "offset": 8851,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/RecoverKeysStep.swift",
       "kind": "StringLiteral",
-      "offset": 8446,
+      "offset": 8919,
       "length": 27,
       "value": "\"got key without algorithm\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/RecoverKeysStep.swift",
       "kind": "IntegerLiteral",
-      "offset": 8550,
+      "offset": 9023,
       "length": 2,
       "value": "32"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/RecoverKeysStep.swift",
       "kind": "StringLiteral",
-      "offset": 8612,
+      "offset": 9085,
       "length": 56,
       "value": "\"Wrong size for decrypted key!! - \""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/RecoverKeysStep.swift",
       "kind": "StringLiteral",
-      "offset": 8667,
+      "offset": 9140,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/RecoverKeysStep.swift",
       "kind": "StringLiteral",
-      "offset": 9334,
-      "length": 108,
-      "value": "\"KeyBackUpFlow - failed to build metadata - objectiveCExcpetion: \""
-    },
-    {
-      "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/RecoverKeysStep.swift",
-      "kind": "StringLiteral",
-      "offset": 9441,
-      "length": 2,
-      "value": "\"\""
-    },
-    {
-      "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/RecoverKeysStep.swift",
-      "kind": "StringLiteral",
-      "offset": 9643,
+      "offset": 10264,
       "length": 42,
       "value": "\"KeyBackUpFlow - failed to build metadata\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/RecoverKeysStep.swift",
       "kind": "StringLiteral",
-      "offset": 9821,
+      "offset": 10442,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/RecoverKeysStep.swift",
       "kind": "StringLiteral",
-      "offset": 9988,
+      "offset": 10609,
       "length": 41,
       "value": "\"decryptedKey len: \""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/RecoverKeysStep.swift",
       "kind": "StringLiteral",
-      "offset": 10028,
+      "offset": 10649,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/RecoverKeysStep.swift",
       "kind": "StringLiteral",
-      "offset": 10069,
+      "offset": 10690,
       "length": 45,
       "value": "\"finalDecrypted len: \""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/RecoverKeysStep.swift",
       "kind": "StringLiteral",
-      "offset": 10113,
+      "offset": 10734,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/RecoverKeysStep.swift",
       "kind": "StringLiteral",
-      "offset": 10261,
+      "offset": 10882,
       "length": 32,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/RecoverKeysStep.swift",
       "kind": "StringLiteral",
-      "offset": 10283,
+      "offset": 10904,
       "length": 1,
       "value": "\".\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/RecoverKeysStep.swift",
       "kind": "StringLiteral",
-      "offset": 10292,
+      "offset": 10913,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/RecoverKeysStep.swift",
       "kind": "StringLiteral",
-      "offset": 10434,
+      "offset": 11055,
       "length": 31,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/RecoverKeysStep.swift",
       "kind": "StringLiteral",
-      "offset": 10455,
+      "offset": 11076,
       "length": 1,
       "value": "\".\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/RecoverKeysStep.swift",
       "kind": "StringLiteral",
-      "offset": 10464,
+      "offset": 11085,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/RecoverKeysStep.swift",
       "kind": "StringLiteral",
-      "offset": 10545,
+      "offset": 11166,
       "length": 32,
       "value": "\"Wrong Key Info data - \""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/RecoverKeysStep.swift",
       "kind": "StringLiteral",
-      "offset": 10576,
+      "offset": 11197,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/RecoverKeysStep.swift",
       "kind": "IntegerLiteral",
-      "offset": 10724,
+      "offset": 11345,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/RecoverKeysStep.swift",
       "kind": "StringLiteral",
-      "offset": 10915,
+      "offset": 11536,
       "length": 26,
       "value": "\"Missing keyId - \""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/RecoverKeysStep.swift",
       "kind": "StringLiteral",
-      "offset": 10940,
+      "offset": 11561,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/RecoverKeysStep.swift",
       "kind": "StringLiteral",
-      "offset": 11243,
+      "offset": 11864,
       "length": 48,
       "value": "\"Can't parse algorithm - \""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/RecoverKeysStep.swift",
       "kind": "StringLiteral",
-      "offset": 11290,
+      "offset": 11911,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/RecoverKeysStep.swift",
       "kind": "IntegerLiteral",
-      "offset": 11503,
+      "offset": 12124,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/RecoverKeysStep.swift",
       "kind": "StringLiteral",
-      "offset": 11879,
+      "offset": 12500,
       "length": 28,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/RecoverKeysStep.swift",
       "kind": "StringLiteral",
-      "offset": 11888,
+      "offset": 12509,
       "length": 5,
       "value": "\" saved - \""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/RecoverKeysStep.swift",
       "kind": "StringLiteral",
-      "offset": 11906,
+      "offset": 12527,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/RecoverKeysStep.swift",
       "kind": "IntegerLiteral",
-      "offset": 11942,
+      "offset": 12563,
       "length": 1,
       "value": "1"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/RecoverKeysStep.swift",
       "kind": "StringLiteral",
-      "offset": 12447,
+      "offset": 13068,
       "length": 58,
       "value": "\"KeyBackUpFlow - key: \""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/RecoverKeysStep.swift",
       "kind": "StringLiteral",
-      "offset": 12477,
+      "offset": 13098,
       "length": 1,
       "value": "\" - failure. status - failed\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/RecoverKeysStep.swift",
       "kind": "Array",
-      "offset": 12910,
+      "offset": 13531,
       "length": 2,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/RecoverKeysStep.swift",
       "kind": "StringLiteral",
-      "offset": 12938,
-      "length": 20,
-      "value": "\"get_backed_up_keys\""
+      "offset": 13559,
+      "length": 12,
+      "value": "\"get_backup\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Codable\/CodableParsingExtension.swift",
@@ -21805,77 +21877,105 @@
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/GetBackedUpKeysStep.swift",
       "kind": "BooleanLiteral",
-      "offset": 358,
+      "offset": 690,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/GetBackedUpKeysStep.swift",
       "kind": "IntegerLiteral",
-      "offset": 936,
+      "offset": 1325,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/GetBackedUpKeysStep.swift",
+      "kind": "StringLiteral",
+      "offset": 1754,
+      "length": 49,
+      "value": "\"Failed to recover keys: \""
+    },
+    {
+      "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/GetBackedUpKeysStep.swift",
+      "kind": "StringLiteral",
+      "offset": 1802,
+      "length": 2,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/GetBackedUpKeysStep.swift",
+      "kind": "StringLiteral",
+      "offset": 2242,
+      "length": 55,
+      "value": "\"Failed to resolve passphrase: \""
+    },
+    {
+      "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/GetBackedUpKeysStep.swift",
+      "kind": "StringLiteral",
+      "offset": 2296,
+      "length": 2,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/GetBackedUpKeysStep.swift",
       "kind": "BooleanLiteral",
-      "offset": 1061,
+      "offset": 2682,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/GetBackedUpKeysStep.swift",
       "kind": "StringLiteral",
-      "offset": 1491,
+      "offset": 3158,
       "length": 48,
       "value": "\"Can't parse algorithm - \""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/GetBackedUpKeysStep.swift",
       "kind": "StringLiteral",
-      "offset": 1538,
+      "offset": 3205,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/GetBackedUpKeysStep.swift",
       "kind": "BooleanLiteral",
-      "offset": 1811,
+      "offset": 3494,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/GetBackedUpKeysStep.swift",
       "kind": "BooleanLiteral",
-      "offset": 2170,
+      "offset": 3917,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/GetBackedUpKeysStep.swift",
       "kind": "StringLiteral",
-      "offset": 2435,
+      "offset": 4238,
       "length": 49,
       "value": "\"Failed to recover keys: \""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/GetBackedUpKeysStep.swift",
       "kind": "StringLiteral",
-      "offset": 2483,
+      "offset": 4286,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/GetBackedUpKeysStep.swift",
       "kind": "StringLiteral",
-      "offset": 2861,
+      "offset": 4664,
       "length": 49,
       "value": "\"Failed to recover keys: \""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RecoveryRepo\/GetBackedUpKeysStep.swift",
       "kind": "StringLiteral",
-      "offset": 2909,
+      "offset": 4712,
       "length": 2,
       "value": "\"\""
     },
@@ -24633,21 +24733,21 @@
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/OutgoingManager\/SuccessResponse.swift",
       "kind": "StringLiteral",
-      "offset": 1012,
+      "offset": 1139,
       "length": 8,
       "value": "\"status\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/OutgoingManager\/SuccessResponse.swift",
       "kind": "StringLiteral",
-      "offset": 1012,
+      "offset": 1139,
       "length": 8,
       "value": "\"status\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/OutgoingManager\/SuccessResponse.swift",
       "kind": "StringLiteral",
-      "offset": 1406,
+      "offset": 1533,
       "length": 2,
       "value": "\"\""
     },
