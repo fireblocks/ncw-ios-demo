@@ -42,7 +42,7 @@
 "google_drive" = "Google Drive";
 "icloud" = "iCloud";
 "external_location" = "External location";
-"backup_date_and_account" = "Your recovery key was last backed up {date} using the {backup_provider} account associated with:";
+"backup_date_and_account" = "Your recovery key was last backed up {date} using the {backup_provider}. \nTo update your backup select below.";
 "create_a_private_key" = "Create a private key to move your assets to a different location.";
 "copy_key" = " Copy key";
 "recover_title" = "Choose a wallet backup recovery location.";

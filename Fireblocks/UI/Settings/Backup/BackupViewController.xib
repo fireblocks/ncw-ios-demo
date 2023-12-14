@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -32,14 +32,21 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y1U-Lu-5rT">
-                    <rect key="frame" x="16" y="89" width="361" height="75"/>
+                    <rect key="frame" x="16" y="179" width="361" height="75"/>
                     <string key="text">Use the recovery key backup to recover your assets in case you lose access to your account. The backup updates automatically every time you add a new wallet.</string>
                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
                     <color key="textColor" name="white"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="key_image" translatesAutoresizingMaskIntoConstraints="NO" id="ohf-0D-ZAG">
+                    <rect key="frame" x="156.66666666666666" y="83" width="80" height="80"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="80" id="VFM-jq-pEU"/>
+                        <constraint firstAttribute="width" constant="80" id="iiI-Ea-M5L"/>
+                    </constraints>
+                </imageView>
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qJa-2S-0un">
-                    <rect key="frame" x="16" y="188" width="361" height="58"/>
+                    <rect key="frame" x="16" y="278" width="361" height="58"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lig-Bm-VvG" userLabel="Backup on drive" customClass="AppActionBotton" customModule="NCW_sandbox" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="361" height="50"/>
@@ -62,7 +69,7 @@
                     </constraints>
                 </view>
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="egP-ja-0LG">
-                    <rect key="frame" x="16" y="246" width="361" height="58"/>
+                    <rect key="frame" x="16" y="336" width="361" height="58"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cNm-Sz-HqY" userLabel="Backup on iCloud" customClass="AppActionBotton" customModule="NCW_sandbox" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="361" height="50"/>
@@ -85,7 +92,7 @@
                     </constraints>
                 </view>
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QDT-Wl-FzU">
-                    <rect key="frame" x="16" y="304" width="361" height="0.0"/>
+                    <rect key="frame" x="16" y="394" width="361" height="0.0"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j5p-db-C6j" userLabel="Try Again" customClass="AppActionBotton" customModule="NCW_sandbox" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="361" height="50"/>
@@ -113,21 +120,24 @@
             <constraints>
                 <constraint firstItem="hCM-Oe-Dne" firstAttribute="trailing" secondItem="qJa-2S-0un" secondAttribute="trailing" constant="16" id="4b3-rN-s1I"/>
                 <constraint firstItem="egP-ja-0LG" firstAttribute="top" secondItem="qJa-2S-0un" secondAttribute="bottom" id="5xv-oH-84q"/>
+                <constraint firstItem="y1U-Lu-5rT" firstAttribute="top" secondItem="ohf-0D-ZAG" secondAttribute="bottom" constant="16" id="A0p-Y3-jL7"/>
                 <constraint firstItem="qJa-2S-0un" firstAttribute="top" secondItem="y1U-Lu-5rT" secondAttribute="bottom" constant="24" id="Dcy-Up-elY"/>
+                <constraint firstItem="ohf-0D-ZAG" firstAttribute="top" secondItem="hCM-Oe-Dne" secondAttribute="top" constant="24" id="EOt-zQ-L5e"/>
                 <constraint firstItem="QDT-Wl-FzU" firstAttribute="top" secondItem="egP-ja-0LG" secondAttribute="bottom" id="G59-TQ-FUa"/>
                 <constraint firstItem="QDT-Wl-FzU" firstAttribute="leading" secondItem="hCM-Oe-Dne" secondAttribute="leading" constant="16" id="TOJ-HZ-oLr"/>
                 <constraint firstItem="hCM-Oe-Dne" firstAttribute="trailing" secondItem="QDT-Wl-FzU" secondAttribute="trailing" constant="16" id="VeM-WB-leN"/>
                 <constraint firstItem="hCM-Oe-Dne" firstAttribute="trailing" secondItem="y1U-Lu-5rT" secondAttribute="trailing" constant="16" id="bwN-0v-X1e"/>
-                <constraint firstItem="y1U-Lu-5rT" firstAttribute="top" secondItem="hCM-Oe-Dne" secondAttribute="top" constant="30" id="d4B-LT-N8i"/>
                 <constraint firstItem="qJa-2S-0un" firstAttribute="leading" secondItem="hCM-Oe-Dne" secondAttribute="leading" constant="16" id="iVz-FD-kg4"/>
                 <constraint firstItem="egP-ja-0LG" firstAttribute="leading" secondItem="hCM-Oe-Dne" secondAttribute="leading" constant="16" id="jYG-Qf-qDZ"/>
                 <constraint firstItem="y1U-Lu-5rT" firstAttribute="leading" secondItem="hCM-Oe-Dne" secondAttribute="leading" constant="16" id="kGB-G1-rGt"/>
+                <constraint firstItem="ohf-0D-ZAG" firstAttribute="centerX" secondItem="EFa-WA-2Of" secondAttribute="centerX" id="nKS-rX-gA7"/>
                 <constraint firstItem="hCM-Oe-Dne" firstAttribute="trailing" secondItem="egP-ja-0LG" secondAttribute="trailing" constant="16" id="vgp-Cf-GkK"/>
             </constraints>
             <point key="canvasLocation" x="3246.5648854961833" y="-643.66197183098598"/>
         </view>
     </objects>
     <resources>
+        <image name="key_image" width="80" height="80"/>
         <namedColor name="black">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
