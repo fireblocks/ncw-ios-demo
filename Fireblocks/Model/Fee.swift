@@ -26,6 +26,22 @@ struct FeeResponse: Codable {
     var low: FeeData?
     var medium: FeeData?
     var high: FeeData?
+    
+    func calcFee(feeResponse: FeeResponse) -> [Fee] {
+        var feeArray: [Fee] = []
+        if let feeData = low, let fee = feeData.networkFee {
+            feeArray.append(Fee(feeRateType: .low, fee: "\(fee)"))
+        }
+        if let feeData = medium, let fee = feeData.networkFee {
+            feeArray.append(Fee(feeRateType: .medium, fee: "\(fee)"))
+        }
+        if let feeData = high, let fee = feeData.networkFee {
+            feeArray.append(Fee(feeRateType: .high, fee: "\(fee)"))
+        }
+
+        return feeArray
+    }
+
 }
 
 struct FeeData: Codable {

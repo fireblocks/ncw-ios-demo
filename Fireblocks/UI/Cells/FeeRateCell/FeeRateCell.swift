@@ -26,6 +26,9 @@ class FeeRateCell: UITableViewCell {
     func configCell(with fee: Fee, assetName: String){
         speedTitle.text = fee.getFeeName()
         feeTitle.text = "~" + fee.fee + " " + assetName
+        if let feeDouble = Double(fee.fee)?.formatFractions(fractionDigits: 6) {
+            feeTitle.text = "~" + "\(feeDouble)" + " " + assetName
+        }
         setSelected(isSelected: isFeeSelected)
     }
     

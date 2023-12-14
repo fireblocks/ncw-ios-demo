@@ -146,6 +146,7 @@ extension BackupViewController: BackupDelegate {
                 if let backupData = backupData {
                     UIView.animate(withDuration: 0.3) {
                         self.titleLabel.attributedText = self.viewModel.getBackupDetails(backupData: backupData)
+                        self.titleLabel.textAlignment = .center
                     }
                 }
             } else {

@@ -19,30 +19,6 @@ protocol ManuallyInputViewControllerStrategy {
     var recoverButtonIsHidden: Bool { get }
 }
 
-struct ManuallyBackup: ManuallyInputViewControllerStrategy {
-    var inputContent: String
-    var isInputContentHidden: Bool = true
-    var inputContentIsEditable: Bool = false
-    let viewControllerTitle: String = LocalizableStrings.createKeyBackup
-    let explanation: String = LocalizableStrings.saveRecoveryKey
-    let deleteContentButtonIsHidden: Bool = true
-    let copyButtonTitle: String = LocalizableStrings.copyRecoveryKey
-    let copyButtonIsHidden: Bool = false
-    let recoverButtonIsHidden: Bool = true
-}
-
-struct ManuallyRecover: ManuallyInputViewControllerStrategy {
-    var inputContent: String
-    var isInputContentHidden: Bool = false
-    var inputContentIsEditable: Bool = true
-    let viewControllerTitle: String = LocalizableStrings.recoverWalletTitle
-    let explanation: String = LocalizableStrings.copyAndPasteYourRecoveryKey
-    let deleteContentButtonIsHidden: Bool = false
-    let copyButtonTitle: String = ""
-    let copyButtonIsHidden: Bool = true
-    let recoverButtonIsHidden: Bool = false
-}
-
 struct ManuallyTakeover: ManuallyInputViewControllerStrategy {
     var inputContent: String
     var isInputContentHidden: Bool = true

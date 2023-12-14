@@ -55,7 +55,6 @@
 		60B137BC2A8BA264009A4ECB /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B137BB2A8BA264009A4ECB /* UIApplication+Extension.swift */; };
 		60B287E32A8903CF00DEA50C /* KeyStorageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B287E12A8903CF00DEA50C /* KeyStorageProvider.swift */; };
 		60B287E52A8903CF00DEA50C /* UsersLocalStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B287E22A8903CF00DEA50C /* UsersLocalStorageManager.swift */; };
-		60B2881C2A8B48F800DEA50C /* MpcKeysRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B2881B2A8B48F800DEA50C /* MpcKeysRepository.swift */; };
 		60DA06572A645E1300160ADC /* Asset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DA06542A645E1300160ADC /* Asset.swift */; };
 		60DA06582A645E1300160ADC /* Fee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DA06552A645E1300160ADC /* Fee.swift */; };
 		60DA06592A645E1300160ADC /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DA06562A645E1300160ADC /* Transaction.swift */; };
@@ -232,7 +231,6 @@
 		60B137BB2A8BA264009A4ECB /* UIApplication+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
 		60B287E12A8903CF00DEA50C /* KeyStorageProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyStorageProvider.swift; sourceTree = "<group>"; };
 		60B287E22A8903CF00DEA50C /* UsersLocalStorageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersLocalStorageManager.swift; sourceTree = "<group>"; };
-		60B2881B2A8B48F800DEA50C /* MpcKeysRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MpcKeysRepository.swift; sourceTree = "<group>"; };
 		60DA06542A645E1300160ADC /* Asset.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Asset.swift; sourceTree = "<group>"; };
 		60DA06552A645E1300160ADC /* Fee.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fee.swift; sourceTree = "<group>"; };
 		60DA06562A645E1300160ADC /* Transaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
@@ -641,7 +639,6 @@
 				60DA065C2A645E4700160ADC /* AssetListRepository.swift */,
 				862E2A9F2A543B6D002FF774 /* AuthRepository.swift */,
 				603903782A6D3F880060E026 /* ApproveRepository.swift */,
-				60B2881B2A8B48F800DEA50C /* MpcKeysRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -1190,7 +1187,6 @@
 				60EECFDA2A69198B00F3891C /* AlertView.swift in Sources */,
 				86A997152A6EB60900A6B60B /* ManuallyInputViewModel.swift in Sources */,
 				86ED2BB42A64434500377F6C /* AreYouSureBottomSheet.swift in Sources */,
-				60B2881C2A8B48F800DEA50C /* MpcKeysRepository.swift in Sources */,
 				60DA06592A645E1300160ADC /* Transaction.swift in Sources */,
 				60DA067D2A645E9A00160ADC /* ChooseAssetViewController.swift in Sources */,
 				60DA065B2A645E2E00160ADC /* AssetListViewModel.swift in Sources */,
@@ -1386,7 +1382,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 2HS962GC9R;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1409,7 +1405,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.4;
+				MARKETING_VERSION = 1.0.5;
 				OTHER_SWIFT_FLAGS = "-DEC2";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fireblocks.ncw.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1433,7 +1429,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 2HS962GC9R;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1456,7 +1452,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.4;
+				MARKETING_VERSION = 1.0.5;
 				OTHER_SWIFT_FLAGS = "-DEC2";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fireblocks.ncw.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
