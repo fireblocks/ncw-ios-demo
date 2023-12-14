@@ -24,7 +24,9 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var recoverWalletButton: SettingsOptionButton!
     @IBOutlet weak var exportPrivateKeyButton: SettingsOptionButton!
     @IBOutlet weak var advancedInfoButton: SettingsOptionButton!
-    
+    @IBOutlet weak var versionLabel: UILabel!
+    @IBOutlet weak var versionLabelContainer: UIView!
+
     private let viewModel = SettingsViewModel()
     
     override func viewDidLoad() {
@@ -32,10 +34,17 @@ class SettingsViewController: UIViewController {
         configureUI()
         displayUserData()
     }
-    
+
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        versionLabelContainer.layer.cornerRadius = versionLabelContainer.frame.height/2.0
+    }
+
     private func configureUI() {
         configureButtons()
         checkIfAdvancedFeaturesAvailable()
+        versionLabel.text = Bundle.main.versionLabel
+        versionLabelContainer.backgroundColor = AssetsColors.gray2.getColor()
     }
     
     private func configureButtons() {

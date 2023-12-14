@@ -18,7 +18,7 @@
         </array>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AuthViewController" customModule="Fireblocks___Dev__ec2_" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AuthViewController" customModule="NCW_sandbox" customModuleProvider="target">
             <connections>
                 <outlet property="appleButton" destination="iMo-tx-tfd" id="dav-eF-3uD"/>
                 <outlet property="buttonsContainerView" destination="E3m-YK-mss" id="nk8-DM-Yw2"/>
@@ -30,6 +30,8 @@
                 <outlet property="signInMethodStackView" destination="WHv-Mb-2Qz" id="leD-3K-8ys"/>
                 <outlet property="signUpButton" destination="4SR-jQ-OwO" id="ffi-nJ-8uh"/>
                 <outlet property="subTitle" destination="Opv-M9-003" id="i9Y-pt-GOh"/>
+                <outlet property="versionLabel" destination="Kjv-Ha-jfs" id="X3C-lU-Tss"/>
+                <outlet property="versionLabelContainer" destination="K2x-Vo-2i7" id="qCu-wE-Di7"/>
                 <outlet property="view" destination="qQc-VQ-J8X" id="5i3-CW-27Z"/>
                 <outlet property="welcomeTitle" destination="7Cq-B3-BPx" id="eoa-yz-jc2"/>
             </connections>
@@ -96,7 +98,7 @@ digital assets on the go.</string>
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E3m-YK-mss">
-                    <rect key="frame" x="24" y="341.66666666666674" width="345" height="476.33333333333326"/>
+                    <rect key="frame" x="24" y="341.66666666666674" width="345" height="430"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="WHv-Mb-2Qz">
                             <rect key="frame" x="0.0" y="0.0" width="345" height="58"/>
@@ -162,7 +164,7 @@ digital assets on the go.</string>
                             <color key="textColor" name="white"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z2Y-1I-LDF" userLabel="Sign up with Google" customClass="AppActionBotton" customModule="Fireblocks___Dev__ec2_" customModuleProvider="target">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z2Y-1I-LDF" userLabel="Sign up with Google" customClass="AppActionBotton" customModule="NCW_sandbox" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="125" width="345" height="50"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
@@ -172,7 +174,7 @@ digital assets on the go.</string>
                                 <action selector="signInWithGoogleTapped:" destination="-1" eventType="touchUpInside" id="Q3n-WW-2KI"/>
                             </connections>
                         </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iMo-tx-tfd" userLabel="Sign up with Apple" customClass="AppActionBotton" customModule="Fireblocks___Dev__ec2_" customModuleProvider="target">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iMo-tx-tfd" userLabel="Sign up with Apple" customClass="AppActionBotton" customModule="NCW_sandbox" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="182.99999999999994" width="345" height="50"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
@@ -218,23 +220,44 @@ digital assets on the go.</string>
                         <constraint firstItem="9GJ-ro-FzQ" firstAttribute="leading" secondItem="Vso-pa-sUU" secondAttribute="trailing" constant="4" id="mzI-gN-LlA"/>
                     </constraints>
                 </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K2x-Vo-2i7">
+                    <rect key="frame" x="167.33333333333334" y="779.66666666666663" width="58.333333333333343" height="22.333333333333371"/>
+                    <subviews>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kjv-Ha-jfs">
+                            <rect key="frame" x="8" y="4.0000000000000009" width="42.333333333333336" height="14.333333333333336"/>
+                            <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="12"/>
+                            <color key="textColor" name="gray_4"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="Kjv-Ha-jfs" firstAttribute="top" secondItem="K2x-Vo-2i7" secondAttribute="top" constant="4" id="5PE-fo-PgX"/>
+                        <constraint firstItem="Kjv-Ha-jfs" firstAttribute="leading" secondItem="K2x-Vo-2i7" secondAttribute="leading" constant="8" id="9SQ-dV-bHb"/>
+                        <constraint firstItem="Kjv-Ha-jfs" firstAttribute="centerX" secondItem="K2x-Vo-2i7" secondAttribute="centerX" id="EcF-aN-qD2"/>
+                        <constraint firstAttribute="bottom" secondItem="Kjv-Ha-jfs" secondAttribute="bottom" constant="4" id="FON-zh-gfR"/>
+                        <constraint firstAttribute="trailing" secondItem="Kjv-Ha-jfs" secondAttribute="trailing" constant="8" id="spL-WN-w7A"/>
+                    </constraints>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="AMW-Eo-tXo"/>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="sHX-QC-6y9" firstAttribute="top" secondItem="qQc-VQ-J8X" secondAttribute="top" id="4z2-zH-DoN"/>
                 <constraint firstItem="AMW-Eo-tXo" firstAttribute="trailing" secondItem="7Cq-B3-BPx" secondAttribute="trailing" constant="24" id="7qg-UP-AsD"/>
+                <constraint firstItem="K2x-Vo-2i7" firstAttribute="top" secondItem="E3m-YK-mss" secondAttribute="bottom" constant="8" id="AbL-nl-Tma"/>
                 <constraint firstAttribute="trailing" secondItem="Opv-M9-003" secondAttribute="trailing" constant="24" id="HVX-aj-mih"/>
                 <constraint firstItem="7Cq-B3-BPx" firstAttribute="leading" secondItem="AMW-Eo-tXo" secondAttribute="leading" constant="24" id="HgA-SX-4DB"/>
                 <constraint firstItem="sHX-QC-6y9" firstAttribute="leading" secondItem="qQc-VQ-J8X" secondAttribute="leading" id="OkZ-M2-FjC"/>
                 <constraint firstItem="Opv-M9-003" firstAttribute="leading" secondItem="AMW-Eo-tXo" secondAttribute="leading" constant="24" id="OzU-1T-942"/>
-                <constraint firstItem="E3m-YK-mss" firstAttribute="bottom" secondItem="AMW-Eo-tXo" secondAttribute="bottom" id="UMK-vH-MTb"/>
                 <constraint firstItem="Opv-M9-003" firstAttribute="top" secondItem="7Cq-B3-BPx" secondAttribute="bottom" constant="16" id="ZSk-2L-bfr"/>
                 <constraint firstAttribute="trailing" secondItem="E3m-YK-mss" secondAttribute="trailing" constant="24" id="Zp7-nn-KfJ"/>
                 <constraint firstItem="7Cq-B3-BPx" firstAttribute="top" secondItem="NM2-rU-FvE" secondAttribute="top" constant="40" id="dyJ-06-wgq"/>
                 <constraint firstItem="E3m-YK-mss" firstAttribute="top" secondItem="Opv-M9-003" secondAttribute="bottom" constant="40" id="jlJ-kH-oSR"/>
                 <constraint firstItem="AMW-Eo-tXo" firstAttribute="trailing" secondItem="sHX-QC-6y9" secondAttribute="trailing" id="pNO-Ub-cCq"/>
                 <constraint firstItem="E3m-YK-mss" firstAttribute="leading" secondItem="AMW-Eo-tXo" secondAttribute="leading" constant="24" id="qzX-wG-bvY"/>
+                <constraint firstItem="AMW-Eo-tXo" firstAttribute="bottom" secondItem="K2x-Vo-2i7" secondAttribute="bottom" constant="16" id="t2r-dS-lHb"/>
+                <constraint firstItem="K2x-Vo-2i7" firstAttribute="centerX" secondItem="qQc-VQ-J8X" secondAttribute="centerX" id="xRu-aW-nrh"/>
             </constraints>
             <point key="canvasLocation" x="-457.25190839694653" y="34.507042253521128"/>
         </view>

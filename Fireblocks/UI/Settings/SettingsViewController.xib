@@ -6,6 +6,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -17,7 +18,7 @@
         </array>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SettingsViewController" customModule="Fireblocks___Dev__ngrok_" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SettingsViewController" customModule="NCW_sandbox" customModuleProvider="target">
             <connections>
                 <outlet property="advancedInfoButton" destination="s5j-8F-sU7" id="Xx1-BW-3hO"/>
                 <outlet property="backupButton" destination="uxe-9E-tNo" id="Fyb-ju-jIE"/>
@@ -26,6 +27,8 @@
                 <outlet property="recoverWalletButton" destination="78U-7E-bw6" id="xJw-pz-YJf"/>
                 <outlet property="userEmailLabel" destination="MPO-Kg-UUD" id="a4f-Bk-X9z"/>
                 <outlet property="userFullNameLabel" destination="KP9-o7-UXb" id="XOJ-yD-pCb"/>
+                <outlet property="versionLabel" destination="ghB-wD-c6I" id="b1v-dd-4uF"/>
+                <outlet property="versionLabelContainer" destination="GVb-Cq-gY2" id="Rhf-tE-9fO"/>
                 <outlet property="view" destination="vah-6e-N5b" id="8Vb-hZ-R3v"/>
             </connections>
         </placeholder>
@@ -49,13 +52,13 @@
                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="LMe-ah-u8c">
                     <rect key="frame" x="16" y="271.33333333333331" width="361" height="130"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uxe-9E-tNo" customClass="SettingsOptionButton" customModule="Fireblocks___Dev__ngrok_" customModuleProvider="target">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uxe-9E-tNo" customClass="SettingsOptionButton" customModule="NCW_sandbox" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="176.66666666666666" height="130"/>
                             <connections>
                                 <action selector="backupTapped:" destination="-1" eventType="touchUpInside" id="jBM-x6-Z1N"/>
                             </connections>
                         </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="78U-7E-bw6" customClass="SettingsOptionButton" customModule="Fireblocks___Dev__ngrok_" customModuleProvider="target">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="78U-7E-bw6" customClass="SettingsOptionButton" customModule="NCW_sandbox" customModuleProvider="target">
                             <rect key="frame" x="184.66666666666663" y="0.0" width="176.33333333333337" height="130"/>
                             <connections>
                                 <action selector="recoverTapped:" destination="-1" eventType="touchUpInside" id="hci-zg-lfL"/>
@@ -69,13 +72,13 @@
                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="wR7-eb-FjG">
                     <rect key="frame" x="16" y="409.33333333333331" width="361" height="129.99999999999994"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gOh-Qw-ZDl" customClass="SettingsOptionButton" customModule="Fireblocks___Dev__ngrok_" customModuleProvider="target">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gOh-Qw-ZDl" customClass="SettingsOptionButton" customModule="NCW_sandbox" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="176.66666666666666" height="130"/>
                             <connections>
                                 <action selector="exportPrivateKeyTapped:" destination="-1" eventType="touchUpInside" id="90U-WH-7PI"/>
                             </connections>
                         </view>
-                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s5j-8F-sU7" customClass="SettingsOptionButton" customModule="Fireblocks___Dev__ngrok_" customModuleProvider="target">
+                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s5j-8F-sU7" customClass="SettingsOptionButton" customModule="NCW_sandbox" customModuleProvider="target">
                             <rect key="frame" x="184.66666666666663" y="0.0" width="176.33333333333337" height="130"/>
                             <connections>
                                 <action selector="advancedInfoTapped:" destination="-1" eventType="touchUpInside" id="I8F-h7-C79"/>
@@ -88,7 +91,7 @@
                     </constraints>
                 </stackView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lPd-lX-cQs">
-                    <rect key="frame" x="16" y="694" width="361" height="50"/>
+                    <rect key="frame" x="16" y="647.66666666666663" width="361" height="50"/>
                     <color key="backgroundColor" name="gray_1"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="9pZ-mM-DZc"/>
@@ -113,7 +116,7 @@
                     </constraints>
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n3e-Gc-wbL" userLabel="Share log view">
-                    <rect key="frame" x="16" y="760" width="361" height="50"/>
+                    <rect key="frame" x="16" y="713.66666666666663" width="361" height="50"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RfC-cz-v36">
                             <rect key="frame" x="0.0" y="0.0" width="361" height="50"/>
@@ -136,6 +139,25 @@
                         <constraint firstAttribute="bottom" secondItem="RfC-cz-v36" secondAttribute="bottom" id="vLY-TH-bns"/>
                     </constraints>
                 </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GVb-Cq-gY2">
+                    <rect key="frame" x="167.33333333333334" y="779.66666666666663" width="58.333333333333343" height="22.333333333333371"/>
+                    <subviews>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ghB-wD-c6I">
+                            <rect key="frame" x="8" y="4.0000000000000009" width="42.333333333333336" height="14.333333333333336"/>
+                            <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="12"/>
+                            <color key="textColor" name="gray_4"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="ghB-wD-c6I" firstAttribute="leading" secondItem="GVb-Cq-gY2" secondAttribute="leading" constant="8" id="2Ei-mi-BXe"/>
+                        <constraint firstAttribute="bottom" secondItem="ghB-wD-c6I" secondAttribute="bottom" constant="4" id="3ad-3J-92K"/>
+                        <constraint firstItem="ghB-wD-c6I" firstAttribute="top" secondItem="GVb-Cq-gY2" secondAttribute="top" constant="4" id="Oa8-Jy-bps"/>
+                        <constraint firstItem="ghB-wD-c6I" firstAttribute="centerX" secondItem="GVb-Cq-gY2" secondAttribute="centerX" id="bMm-Ld-qEh"/>
+                        <constraint firstAttribute="trailing" secondItem="ghB-wD-c6I" secondAttribute="trailing" constant="8" id="eDW-rM-y3X"/>
+                    </constraints>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="VQN-n3-aw8"/>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -144,10 +166,10 @@
                 <constraint firstItem="lPd-lX-cQs" firstAttribute="leading" secondItem="VQN-n3-aw8" secondAttribute="leading" constant="16" id="9Rr-fT-Zgc"/>
                 <constraint firstItem="KP9-o7-UXb" firstAttribute="top" secondItem="bs8-1Z-eY5" secondAttribute="bottom" constant="18" id="C1M-bq-ETQ"/>
                 <constraint firstItem="MPO-Kg-UUD" firstAttribute="top" secondItem="KP9-o7-UXb" secondAttribute="bottom" constant="4" id="DYw-P9-8MX"/>
-                <constraint firstItem="VQN-n3-aw8" firstAttribute="bottom" secondItem="n3e-Gc-wbL" secondAttribute="bottom" constant="8" id="Dz6-vH-HRV"/>
                 <constraint firstItem="KP9-o7-UXb" firstAttribute="leading" secondItem="VQN-n3-aw8" secondAttribute="leading" constant="16" id="Fdb-tU-LfG"/>
                 <constraint firstItem="n3e-Gc-wbL" firstAttribute="top" secondItem="lPd-lX-cQs" secondAttribute="bottom" constant="16" id="H6M-CQ-ngP"/>
                 <constraint firstItem="VQN-n3-aw8" firstAttribute="trailing" secondItem="MPO-Kg-UUD" secondAttribute="trailing" constant="16" id="NTu-5v-e6F"/>
+                <constraint firstItem="GVb-Cq-gY2" firstAttribute="centerX" secondItem="vah-6e-N5b" secondAttribute="centerX" id="Nz5-Ae-gky"/>
                 <constraint firstItem="LMe-ah-u8c" firstAttribute="top" secondItem="MPO-Kg-UUD" secondAttribute="bottom" constant="40" id="Re8-H5-3Lv"/>
                 <constraint firstItem="VQN-n3-aw8" firstAttribute="trailing" secondItem="n3e-Gc-wbL" secondAttribute="trailing" constant="16" id="RqA-Z0-AZd"/>
                 <constraint firstItem="wR7-eb-FjG" firstAttribute="leading" secondItem="VQN-n3-aw8" secondAttribute="leading" constant="16" id="Sdl-e8-byj"/>
@@ -158,6 +180,8 @@
                 <constraint firstItem="wR7-eb-FjG" firstAttribute="top" secondItem="LMe-ah-u8c" secondAttribute="bottom" constant="8" id="ht6-Xt-kbg"/>
                 <constraint firstItem="VQN-n3-aw8" firstAttribute="trailing" secondItem="lPd-lX-cQs" secondAttribute="trailing" constant="16" id="j8S-WX-my9"/>
                 <constraint firstItem="VQN-n3-aw8" firstAttribute="trailing" secondItem="wR7-eb-FjG" secondAttribute="trailing" constant="16" id="mYi-RU-ou7"/>
+                <constraint firstItem="VQN-n3-aw8" firstAttribute="bottom" secondItem="GVb-Cq-gY2" secondAttribute="bottom" constant="16" id="pNp-2u-e1n"/>
+                <constraint firstItem="GVb-Cq-gY2" firstAttribute="top" secondItem="n3e-Gc-wbL" secondAttribute="bottom" constant="16" id="pY5-AU-fM8"/>
                 <constraint firstItem="VQN-n3-aw8" firstAttribute="trailing" secondItem="KP9-o7-UXb" secondAttribute="trailing" constant="16" id="sHB-8E-1ra"/>
                 <constraint firstItem="bs8-1Z-eY5" firstAttribute="centerX" secondItem="vah-6e-N5b" secondAttribute="centerX" id="zHF-7n-Q96"/>
             </constraints>
@@ -177,5 +201,8 @@
         <namedColor name="white">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>
