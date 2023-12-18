@@ -51,7 +51,7 @@ final class GoogleDriveManager {
         return await withCheckedContinuation { continuation in
             service.executeQuery(getSearchQuery()) { ticket, result, error in
                 let files = (result as? GTLRDrive_FileList)?.files
-                let identifier: String? = files?.filter({$0.name != nil}).first(where: {$0.name!.hasPrefix(passphraseId)})?.identifier
+                let identifier: String? = files?.filter({$0.name != nil}).first(where: {$0.name!.hasPrefix("passphrase_\(passphraseId)")})?.identifier
                 continuation.resume(returning: identifier)
             }
         }
