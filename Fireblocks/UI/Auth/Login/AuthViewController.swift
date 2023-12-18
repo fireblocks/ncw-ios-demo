@@ -35,7 +35,9 @@ class AuthViewController: UIViewController {
     @IBOutlet weak var googleButton: AppActionBotton!
     @IBOutlet weak var appleButton: AppActionBotton!
     @IBOutlet weak var buttonsContainerView: UIView!
-    
+    @IBOutlet weak var versionLabel: UILabel!
+    @IBOutlet weak var versionLabelContainer: UIView!
+
     private lazy var viewModel: AuthViewModel = { AuthViewModel(self) }()
     
     override func viewDidLoad() {
@@ -43,7 +45,13 @@ class AuthViewController: UIViewController {
         setHeaderSize()
         addPaddingStackView()
         signInTapped(signInButton)
-        
+        versionLabel.text = Bundle.main.versionLabel
+        versionLabelContainer.backgroundColor = AssetsColors.gray2.getColor()
+    }
+
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        versionLabelContainer.layer.cornerRadius = versionLabelContainer.frame.height/2.0
     }
     
     private func setHeaderSize(){

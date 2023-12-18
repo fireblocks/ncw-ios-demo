@@ -16,14 +16,14 @@ class BackupDetailsViewModel {
     }
     
     func getAccountAssociatedWithLastBackup() -> String {
-        return backupData?.email ?? "-"
+        return ""
     }
     
     func getBackupDetails() -> NSAttributedString {
         let backupDate = backupData?.date ?? "-"
         let backupDetails = LocalizableStrings.backupDateAndAccount
             .replacingOccurrences(of: "{date}", with: backupDate)
-            .replacingOccurrences(of: "{backup_provider}", with: backupData?.location ?? "-")
+            .replacingOccurrences(of: "{backup_provider}", with: backupData?.title ?? "-")
         
         return makeSelectedTextBold(text: backupDetails, boldSubstring: backupDate)
     }

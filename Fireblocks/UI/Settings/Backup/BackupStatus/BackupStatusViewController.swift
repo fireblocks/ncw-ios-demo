@@ -17,6 +17,7 @@ class BackupStatusViewController: UIViewController {
     init(didComeFromGenerateKeys: Bool) {
         self.viewModel = BackupStatusViewModel(didComeFromGenerateKeys: didComeFromGenerateKeys)
         super.init (nibName: "BackupStatusViewController", bundle: nil)
+        self.navigationItem.setHidesBackButton(true, animated:true);
     }
 
     @IBAction func navigateToHomeTapped(_ sender: UIButton) {

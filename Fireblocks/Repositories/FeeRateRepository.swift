@@ -21,8 +21,8 @@ class FeeRateRepository {
         let deviceId = FireblocksManager.shared.getDeviceId()
         let payload = EstimatedFeeRequestBody(assetId: assetId, destAddress: address, amount: amount)
         let response = try await SessionManager.shared.estimateFee(deviceId: deviceId, body: payload.dictionary())
-        if let assetType = AssetType(rawValue: assetId), let feeResponse = response?.fee {
-            return assetType.calcFee(feeResponse: feeResponse)
+        if let feeResponse = response?.fee {
+            return feeResponse.calcFee(feeResponse: feeResponse)
         }
         
         throw AssetError.failedToGetFee(assetId: assetId)

@@ -13,98 +13,73 @@ private typealias UserCredentials = (email: String, walletId: String, deviceId: 
 
 final public class BackupRepository {
     
-    func fetchBackupData() async -> BackupData? {
-        let userCredentials = await getUserCredentials()
-        return UsersLocalStorageManager.shared.backUpData(deviceId: userCredentials.deviceId)
+    func getBackupInfo() async -> BackupInfo? {
+        let walletId = FireblocksManager.shared.getWalletId()
+        let info = try? await SessionManager.shared.getLatestBackupInfo(walletId: walletId)
+        return info
     }
     
+    func getPassphraseInfos() async -> PassphraseInfos? {
+        return try? await SessionManager.shared.getPassphraseInfos()
+    }
     
     // MARK: Backup
     
-    func backupToGoogleDrive(gidUser: GIDGoogleUser) async -> Bool {
-        let passphrase = FireblocksManager.shared.generatePassphrase()
-        let isSucceeded = await GoogleDriveManager().backupToDrive(gidUser: gidUser, passphrase: passphrase)
+    func backupToGoogleDrive(gidUser: GIDGoogleUser, passphraseId: String) async -> Bool {
+        let passphrase = await GoogleDriveManager().recoverFromDrive(gidUser: gidUser, passphraseId: passphraseId) ?? FireblocksManager.shared.generatePassphrase()
+        let isSucceeded = await GoogleDriveManager().backupToDrive(gidUser: gidUser, passphrase: passphrase, passphraseId: passphraseId)
         if isSucceeded {
-            if let backupKeys = await FireblocksManager.shared.backupKeys(passphrase: passphrase) {
-                if backupKeys.contains(where: {$0.keyBackupStatus != .SUCCESS}) {
-                    print("BackupRepository, backupToGoogleDrive: failed to backup keys")
-                } else {
-                    print(backupKeys)
-                    await updateBackupRecordOnServer(backupProvider: .googleDrive)
-                    return true
-                }
-            } else {
-                print("BackupRepository, backupToGoogleDrive: failed to backup keys")
+            do {
+                try await SessionManager.shared.createPassphraseInfo(passphraseInfo: PassphraseInfoBody(passphraseId: passphraseId, location: BackupProvider.GoogleDrive.rawValue))
+                return await backupKeys(passphrase: passphrase, passphraseId: passphraseId, backupProvider: .GoogleDrive)
+            } catch {
+                print("BackupRepository, backupToGoogleDrive: failed to create passphrase info \(error)")
             }
-        } else {
-            print("BackupRepository, backupToGoogleDrive: failed to backup passphrase")
         }
-        
+
+        print("BackupRepository, backupToGoogleDrive: failed to backup passphrase")
         return false
         
     }
     
-    func backupToICloud(container: CKContainer) async -> Bool {
-        let passphrase = FireblocksManager.shared.generatePassphrase()
-        let isSucceed = await ICloudManager().uploadData(container: container, passPhrase: passphrase)
-        if isSucceed {
-            if let backupKeys = await FireblocksManager.shared.backupKeys(passphrase: passphrase) {
-                if backupKeys.contains(where: {$0.keyBackupStatus != .SUCCESS}) {
-                    print("BackupRepository, backupToICloud: failed to backup keys")
-                } else {
-                    print(backupKeys)
-                    await updateBackupRecordOnServer(backupProvider: .iCloud)
-                    return true
-                }
-            } else {
-                print("BackupRepository, backupToICloud: failed to backup keys")
+    func backupToICloud(container: CKContainer, passphraseId: String) async -> Bool {
+        let passphrase = await ICloudManager().fetchData(container: container, passphraseId: passphraseId) ?? FireblocksManager.shared.generatePassphrase()
+        let isSucceeded = await ICloudManager().uploadData(container: container, passPhrase: passphrase, passphraseId: passphraseId)
+        if isSucceeded {
+            do {
+                try await SessionManager.shared.createPassphraseInfo(passphraseInfo: PassphraseInfoBody(passphraseId: passphraseId, location: BackupProvider.iCloud.rawValue))
+                return await backupKeys(passphrase: passphrase, passphraseId: passphraseId, backupProvider: .iCloud)
+            } catch {
+                print("BackupRepository, backupToICloud: failed to create passphrase info \(error)")
             }
-        } else {
-            print("BackupRepository, backupToICloud: failed to backup passphrase")
         }
         
+        print("BackupRepository, backupToICloud: failed to backup passphrase")
         return false
 
     }
     
-    func backupManually() async -> String? {
-        let passphrase = FireblocksManager.shared.generatePassphrase()
-        if let backupKeys = await FireblocksManager.shared.backupKeys(passphrase: passphrase) {
+    private func backupKeys(passphrase: String, passphraseId: String, backupProvider: BackupProvider) async -> Bool {
+        if let backupKeys = await FireblocksManager.shared.backupKeys(passphrase: passphrase, passphraseId: passphraseId) {
             if backupKeys.contains(where: {$0.keyBackupStatus != .SUCCESS}) {
-                print("BackupRepository, backupToICloud: failed to backup keys")
+                print("BackupRepository, \(backupProvider.rawValue): failed to backup keys")
             } else {
                 print(backupKeys)
-                await updateBackupRecordOnServer(backupProvider: .external)
-                return passphrase
+                print("BackupRepository, \(backupProvider.rawValue): succeeded")
+                return true
             }
-        } else {
-            print("BackupRepository, backupToICloud: failed to backup keys")
         }
-        return nil
+        return false
     }
-    
-    func updateBackupRecordOnServer(backupProvider: BackupProvider) async {
-        let userCredentials = await getUserCredentials()
-        
-        let backupData = BackupData(
-            isBackedUp: true,
-            email: userCredentials.email,
-            date: getCurrentDate(),
-            location: backupProvider.getValue()
-        )
-        
-        UsersLocalStorageManager.shared.setBackUpData(deviceId: userCredentials.deviceId, backupData: backupData)
-    }
-    
     
     // MARK: Recover
     
-    func recoverFromGoogleDrive(gidUser: GIDGoogleUser) async -> String {
-        return await GoogleDriveManager().recoverFromDrive(gidUser: gidUser)
+    func recoverFromGoogleDrive(gidUser: GIDGoogleUser, passphraseId: String) async -> String {
+        return await GoogleDriveManager().recoverFromDrive(gidUser: gidUser, passphraseId: passphraseId) ?? ""
     }
     
-    func recoverFromICloud(container: CKContainer) async -> String {
-        return await ICloudManager().fetchData(container: container)
+    func recoverFromICloud(container: CKContainer, passphraseId: String) async -> String {
+        return await ICloudManager().fetchData(container: container, passphraseId: passphraseId) ?? ""
     }
     
     private func getUserCredentials() async -> UserCredentials {

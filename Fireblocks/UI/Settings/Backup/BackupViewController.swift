@@ -19,10 +19,13 @@ class BackupViewController: UIViewController{
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var googleDriveButton: AppActionBotton!
+    @IBOutlet weak var googleDriveContainerHC: NSLayoutConstraint!
     @IBOutlet weak var iCloudButton: AppActionBotton!
-    @IBOutlet weak var manuallyButton: AppActionBotton!
+    @IBOutlet weak var iCloudDriveContainerHC: NSLayoutConstraint!
+    @IBOutlet weak var tryAgainButton: AppActionBotton!
+    @IBOutlet weak var tryAgainContainerHC: NSLayoutConstraint!
     
-    private lazy var viewModel = { BackupViewModel(self, actionType) }()
+    private lazy var viewModel = { BackupViewModel(self, actionType, self) }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,45 +38,54 @@ class BackupViewController: UIViewController{
     }
     
     private func checkIfBackupExist() {
-        if actionType is Backup {
-            showActivityIndicator()
-            viewModel.checkIfBackupExist()
-        }
+        tryAgainContainerHC.constant = 0
+        tryAgainButton.layoutIfNeeded()
+        showActivityIndicator()
+        viewModel.checkIfBackupExist()
     }
     
     private func configureUI() {
         self.navigationItem.title = actionType.viewControllerTitle
         titleLabel.text = actionType.explanation
-        googleDriveButton.config(title: actionType.googleTitle, image: AssetsIcons.googleIcon.getIcon(), style: .Secondary)
-        iCloudButton.config(title: actionType.iCloudTitle, image: AssetsIcons.appleIcon.getIcon(), style: .Secondary)
-        manuallyButton.config(title: actionType.manuallyTitle, image: AssetsIcons.save.getIcon(), style: .Secondary)
+        if actionType is Backup {
+            googleDriveButton.config(title: actionType.googleTitle, image: AssetsIcons.googleIcon.getIcon(), style: .Secondary)
+            iCloudButton.config(title: actionType.iCloudTitle, image: AssetsIcons.appleIcon.getIcon(), style: .Secondary)
+        } else {
+            googleDriveContainerHC.constant = 0
+            iCloudDriveContainerHC.constant = 0
+        }
     }
     
     @IBAction func driveBackupTapped(_ sender: AppActionBotton) {
-        authenticateUser()
+        showActivityIndicator()
+        if actionType is Recover {
+            recoverFromGoogleDrive()
+        } else {
+            Task {
+                let passphraseInfo = await viewModel.getPassphraseInfo(location: .GoogleDrive)
+                authenticateUser(passphraseId: passphraseInfo.passphraseId) { _ in
+                }
+            }
+        }
     }
     
     @IBAction func iCloudBackupTapped(_ sender: AppActionBotton) {
-        actionType.performICloudAction()
+        showActivityIndicator()
+        Task {
+            let passphraseInfo = await viewModel.getPassphraseInfo(location: .iCloud)
+            actionType.performICloudAction(passphraseId: passphraseInfo.passphraseId)
+        }
+    }
+    
+    @IBAction func tryAgainTapped(_ sender: AppActionBotton) {
+        checkIfBackupExist()
     }
     
     @IBAction func goBackTapped(_ sender: UIButton) {
         navigationController?.popViewController(animated: true)
     }
     
-    @MainActor
-    @IBAction func manuallyBackupTapped(_ sender: AppActionBotton) {
-        Task {
-            showActivityIndicator()
-            let vc = ManuallyInputViewController()
-            vc.updateSourceView(didComeFromGenerateKeys: viewModel.didComeFromGenerateKeys)
-            vc.manuallyInputStrategy = await viewModel.getManuallyInputStrategy()
-            hideActivityIndicator()
-            navigationController?.pushViewController(vc, animated: true)
-        }
-    }
-    
-    private func authenticateUser() {
+    private func authenticateUser(passphraseId: String, callback: @escaping (String) -> ()) {
         guard let gidConfig = viewModel.getGidConfiguration() else {
             print("❌ BackupViewController, gidConfig is nil.")
             return
@@ -87,28 +99,23 @@ class BackupViewController: UIViewController{
         ) { [unowned self] result, error in
             
             guard error == nil else {
+                hideActivityIndicator()
                 print("Authentication failed with: \(String(describing: error?.localizedDescription)).")
                 return
             }
             
             guard let gidUser = result?.user else {
+                hideActivityIndicator()
                 print("GIDGoogleUser is nil")
                 return
             }
             
-            actionType.performDriveAction(gidUser)
+            actionType.performDriveAction(gidUser, passphraseId: passphraseId, callback: callback)
         }
     }
     
     private func navigateToBackupStatusViewController() {
         let vc = BackupStatusViewController(didComeFromGenerateKeys: viewModel.didComeFromGenerateKeys)
-        navigationController?.pushViewController(vc, animated: true)
-    }
-    
-    private func navigateToBackupDetailsViewController(_ backupData: BackupData) {
-        let vc = BackupDetailsViewController()
-        vc.delegate = self
-        vc.backupData = backupData
         navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -135,8 +142,27 @@ extension BackupViewController: BackupDelegate {
             }
             
             self.hideActivityIndicator()
-            if let backupData = backupData {
-                self.navigateToBackupDetailsViewController(backupData)
+            if actionType is Backup {
+                if let backupData = backupData {
+                    UIView.animate(withDuration: 0.3) {
+                        self.titleLabel.attributedText = self.viewModel.getBackupDetails(backupData: backupData)
+                    }
+                }
+            } else {
+                if let backupData = backupData, let location = backupData.location {
+                    if location == BackupProvider.GoogleDrive.rawValue {
+                        googleDriveButton.config(title: actionType.googleTitle, image: AssetsIcons.googleIcon.getIcon(), style: .Secondary)
+                        googleDriveContainerHC.constant = 58.0
+                    } else if location == BackupProvider.iCloud.rawValue {
+                        iCloudButton.config(title: actionType.iCloudTitle, image: AssetsIcons.appleIcon.getIcon(), style: .Secondary)
+                        iCloudDriveContainerHC.constant = 58.0
+                    }
+                    self.view.layoutIfNeeded()
+                } else {
+                    tryAgainButton.config(title: actionType.tryAgainTitle, style: .Secondary)
+                    tryAgainContainerHC.constant = 58.0
+                    showError(message: LocalizableStrings.failedToRecoverWallet)
+                }
             }
         }
     }
@@ -173,39 +199,66 @@ extension BackupViewController: BackupDelegate {
 }
 
 extension BackupViewController: BackupProviderDelegate {
-    func backupToGoogleDrive(_ gidUser: GIDGoogleUser) {
+    func backupToGoogleDrive(_ gidUser: GIDGoogleUser, passphraseId: String) {
         showActivityIndicator()
-        viewModel.backupToGoogleDrive(gidUser)
+        viewModel.backupToGoogleDrive(gidUser, passphraseId: passphraseId)
     }
     
-    func backupToICloud() {
+    func backupToICloud(passphraseId: String) {
         showActivityIndicator()
-        viewModel.backupToICloud()
+        viewModel.backupToICloud(passphraseId: passphraseId)
     }
     
-    func recoverFromGoogleDrive(_ gidUser: GIDGoogleUser) {
+    func recoverFromGoogleDrive() {
         showActivityIndicator()
-        viewModel.recoverFromGoogleDrive(gidUser)
+        Task {
+            let isSucceeded = await viewModel.recoverMpcKeys(recoverProvider: .GoogleDrive)
+            DispatchQueue.main.async {
+                self.isRecoverSucceed(isSucceeded)
+            }
+        }
+    }
+    
+    func recoverFromGoogleDrive(_ gidUser: GIDGoogleUser, passphraseId: String, callback: @escaping (String) -> ()) {
+        showActivityIndicator()
+        viewModel.recoverFromGoogleDrive(gidUser, passphraseId: passphraseId, callback: callback)
     }
     
     func recoverFromICLoud() {
         showActivityIndicator()
-        viewModel.recoverFromICloud()
+        Task {
+            let isSucceeded = await viewModel.recoverMpcKeys(recoverProvider: .iCloud)
+            DispatchQueue.main.async {
+                self.isRecoverSucceed(isSucceeded)
+            }
+        }
     }
 }
 
 extension BackupViewController: UpdateBackupDelegate {
     func updateBackupToGoogleDrive() {
-        driveBackupTapped(AppActionBotton())
+        Task {
+            let passphraseInfo = await viewModel.getPassphraseInfo(location: .GoogleDrive)
+            authenticateUser(passphraseId: passphraseInfo.passphraseId) { _ in
+            }
+        }
     }
     
     func updateBackupToICloud() {
         iCloudBackupTapped(AppActionBotton())
     }
     
-    func updateBackupToExternal() {
-        manuallyBackupTapped(AppActionBotton())
-    }
-
 }
 
+extension BackupViewController: ResolveRecoverDelegate {
+    func recover(passphraseId: String, provider: BackupProvider, callback: @escaping (String) -> ()) {
+        switch provider {
+        case .iCloud:
+            actionType.performICloudAction(passphraseId: passphraseId)
+        case .GoogleDrive:
+            DispatchQueue.main.async {
+                self.authenticateUser(passphraseId: passphraseId, callback: callback)
+            }
+        }
+    }
+}

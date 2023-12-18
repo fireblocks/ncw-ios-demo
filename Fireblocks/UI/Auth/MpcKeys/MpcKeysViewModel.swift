@@ -14,7 +14,6 @@ protocol MpcKeysViewModelDelegate: AnyObject {
 
 final class MpcKeysViewModel {
     
-    private let mpcKeysRepository = MpcKeysRepository()
     private var incomingMessageTask: Task<Void, Never>?
     private var mpcKeyTask: Task<Void, Never>?
     var didSucceedGenerateKeys = false
@@ -44,13 +43,8 @@ final class MpcKeysViewModel {
     
     func createAssets(){
         Task {
-            let isSucceed = await mpcKeysRepository.createAssets()
-            if isSucceed {
-                didSucceedGenerateKeys = true
-                self.delegate?.configSuccessUI()
-            } else {
-                self.delegate?.showAlertMessage(message: LocalizableStrings.accountCreationFailed)
-            }
+            didSucceedGenerateKeys = true
+            self.delegate?.configSuccessUI()
         }
     }
 
