@@ -42,7 +42,7 @@
 "google_drive" = "Google Drive";
 "icloud" = "iCloud";
 "external_location" = "External location";
-"backup_date_and_account" = "Your recovery key was last backed up {date} using the {backup_provider} account associated with:";
+"backup_date_and_account" = "Your recovery key was last backed up {date} using the {backup_provider}. \nTo update your backup select below.";
 "create_a_private_key" = "Create a private key to move your assets to a different location.";
 "copy_key" = " Copy key";
 "recover_title" = "Choose a wallet backup recovery location.";
@@ -56,10 +56,11 @@
 "recover_wallet_title" = "Recover wallet";
 "export_private_key_title" = "Export private key";
 "takeover_private_key" = "Create a private key to move your assets to a different location.";
-"backup_explanation" = "Use the recovery key backup to recover your assets in case you lose access to your account. The backup updates automatically every time you add a new wallet.";
+"backup_explanation" = "Backup your keys to recover your assets in case you lose access to your account";
 "backup_on_drive" = " Back up on Drive";
 "backup_on_icloud" = " Back up on iCloud";
 "backup_manually" = " Copy to save locally";
+"try_again" = "Try Again";
 "choose_recovery_location" = "Choose a wallet backup recovery location.";
 "copied" = "Copied";
 "feeInfoMessage" = "This shouldn’t take more than\na few moments.";

@@ -62,6 +62,7 @@ struct LocalizableStrings{
     static let backupOnDrive = "backup_on_drive".localize()
     static let backupOnICloud = "backup_on_icloud".localize()
     static let backupManually = "backup_manually".localize()
+    static let tryAgain = "try_again".localize()
     static let chooseRecoveryLocation = "choose_recovery_location".localize()
     static let copied = "copied".localize()
     static let feeActivityIndicatorMessage = "feeInfoMessage".localize()

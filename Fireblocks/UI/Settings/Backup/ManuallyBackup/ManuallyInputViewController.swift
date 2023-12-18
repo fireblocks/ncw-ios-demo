@@ -21,7 +21,7 @@ class ManuallyInputViewController: UIViewController {
     @IBOutlet weak var recoverErrorLabel: UILabel!
     
     private let viewModel = ManuallyInputViewModel()
-    var manuallyInputStrategy: ManuallyInputViewControllerStrategy = ManuallyBackup(inputContent: "")
+    var manuallyInputStrategy: ManuallyInputViewControllerStrategy = ManuallyTakeover(inputContent: "")
     
     func updateSourceView(didComeFromGenerateKeys: Bool = false) {
         viewModel.didComeFromGenerateKeys = didComeFromGenerateKeys

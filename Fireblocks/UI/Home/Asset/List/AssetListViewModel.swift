@@ -33,7 +33,6 @@ class AssetListViewModel {
     
     func createAssets() {
         Task {
-            await repository.createAssets()
             fetchAssets()
         }
 

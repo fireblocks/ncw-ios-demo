@@ -70,6 +70,10 @@ class FireblocksManager {
         return Fireblocks.generateDeviceId()
     }
     
+    func generatePassphraseId() -> String {
+        return Fireblocks.generatePassphraseId()
+    }
+    
     func generateMpcKeys(_ delegate: FireblocksKeyCreationDelegate) async {
         do {
             let algorithms: Set<Algorithm> = Set([.MPC_ECDSA_SECP256K1])
@@ -122,13 +126,13 @@ class FireblocksManager {
         }
     }
     
-    func recoverWallet(recoverKey: String) async -> Bool {
+    func recoverWallet(resolver: FireblocksPassphraseResolver) async -> Bool {
         guard let instance = getSdkInstance() else {
             return false
         }
         
         do {
-            let keySet = try await instance.recoverKeys(passphrase: recoverKey)
+            let keySet = try await instance.recoverKeys(passphraseResolver: resolver)
             if keySet.isEmpty { return false }
             if keySet.first(where: {$0.keyRecoveryStatus == .ERROR}) != nil  { return false }
             return true
@@ -142,13 +146,13 @@ class FireblocksManager {
         return Fireblocks.generateRandomPassPhrase()
     }
     
-    func backupKeys(passphrase: String) async -> Set<FireblocksSDK.KeyBackup>? {
+    func backupKeys(passphrase: String, passphraseId: String) async -> Set<FireblocksSDK.KeyBackup>? {
         guard let instance = getSdkInstance() else {
             return nil
         }
         
         do {
-            return try await instance.backupKeys(passphrase: passphrase)
+            return try await instance.backupKeys(passphrase: passphrase, passphraseId: passphraseId)
         } catch {
             logger.log("FireblocksManager, backupKeys(): \(error).")
             return nil
@@ -161,7 +165,7 @@ class FireblocksManager {
                 deviceId: deviceId,
                 messageHandlerDelegate: self,
                 keyStorageDelegate: KeyStorageProvider(deviceId: self.deviceId),
-                fireblocksOptions: FireblocksOptions(env: .sandbox, eventHandlerDelegate: self)
+                fireblocksOptions: FireblocksOptions(env: EnvironmentConstants.env, eventHandlerDelegate: self)
             )
         }
         
