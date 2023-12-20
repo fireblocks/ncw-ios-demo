@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import FireblocksSDK
+import FireblocksDev
 
 struct GetDevicesResponse: Codable {
     let devices: [FireblocksDevice]

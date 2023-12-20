@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import FireblocksSDK
+import FireblocksDev
 
 protocol TakeoverViewModelDelegate: AnyObject {
     func didReceiveFullKeys(fullKeys: Set<FullKey>?)

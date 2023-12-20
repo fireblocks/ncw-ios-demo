@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import FireblocksSDK
+import FireblocksDev
 import SwiftUI
 
 class PollingManager: ObservableObject {

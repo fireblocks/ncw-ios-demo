@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import FireblocksSDK
+import FireblocksDev
 import LocalAuthentication
 
 class KeyStorageProvider: KeyStorageDelegate {

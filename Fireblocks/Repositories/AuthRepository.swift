@@ -9,7 +9,7 @@ import Foundation
 import FirebaseAuth
 import AuthenticationServices
 import GoogleSignIn
-import FireblocksSDK
+import FireblocksDev
 
 class AuthRepository  {
     

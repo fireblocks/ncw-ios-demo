@@ -5,7 +5,7 @@
 //  Created by Fireblocks Ltd. on 13/06/2023.
 //
 
-import FireblocksSDK
+import FireblocksDev
 import UIKit
 
 class MpcKeysViewController: UIViewController {

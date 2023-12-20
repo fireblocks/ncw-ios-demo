@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import FireblocksSDK
+import FireblocksDev
 
 class MpcKeyCellView: UICollectionViewCell {
     

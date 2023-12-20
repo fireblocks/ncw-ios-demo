@@ -6,7 +6,7 @@
 //
 
 import AuthenticationServices
-import FireblocksSDK
+import FireblocksDev
 import FirebaseAuth
 import GoogleSignIn
 import Foundation

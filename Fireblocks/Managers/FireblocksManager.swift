@@ -5,7 +5,7 @@
 //  Created by Fireblocks Ltd. on 10/07/2023.
 //
 
-import FireblocksSDK
+import FireblocksDev
 import FirebaseAuth
 import Foundation
 import OSLog
@@ -57,7 +57,7 @@ class FireblocksManager {
         }
     }
         
-    func getSdkInstance() -> FireblocksSDK.Fireblocks? {
+    func getSdkInstance() -> FireblocksDev.Fireblocks? {
         do {
             return try Fireblocks.getInstance(deviceId: deviceId)
         } catch {
@@ -146,7 +146,7 @@ class FireblocksManager {
         return Fireblocks.generateRandomPassPhrase()
     }
     
-    func backupKeys(passphrase: String, passphraseId: String) async -> Set<FireblocksSDK.KeyBackup>? {
+    func backupKeys(passphrase: String, passphraseId: String) async -> Set<FireblocksDev.KeyBackup>? {
         guard let instance = getSdkInstance() else {
             return nil
         }
@@ -165,7 +165,7 @@ class FireblocksManager {
                 deviceId: deviceId,
                 messageHandlerDelegate: self,
                 keyStorageDelegate: KeyStorageProvider(deviceId: self.deviceId),
-                fireblocksOptions: FireblocksOptions(env: EnvironmentConstants.env, eventHandlerDelegate: self)
+                fireblocksOptions: FireblocksOptions(env: EnvironmentConstants.env, eventHandlerDelegate: self, logLevel: .debug)
             )
         }
         
@@ -180,7 +180,7 @@ class FireblocksManager {
     }
 
     
-    private func isAllKeysBackedUp(_ keyBackupSet: Set<FireblocksSDK.KeyBackup>) -> Bool {
+    private func isAllKeysBackedUp(_ keyBackupSet: Set<FireblocksDev.KeyBackup>) -> Bool {
         for status in keyBackupSet {
             if status.keyBackupStatus != .SUCCESS {
                 return false
@@ -235,7 +235,7 @@ extension FireblocksManager: MessageHandlerDelegate {
 }
 
 extension FireblocksManager: EventHandlerDelegate {
-    func onEvent(event: FireblocksSDK.FireblocksEvent) {
+    func onEvent(event: FireblocksDev.FireblocksEvent) {
         switch event {
         case let .KeyCreation(status, error):
             logger.log("FireblocksManager, status(.KeyCreation): \(status.description()). Error: \(String(describing: error)).")

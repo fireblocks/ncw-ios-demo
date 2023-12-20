@@ -92,5 +92,6 @@ iOSInjectionProject/
 .DS_Store
 Fireblocks/Config.xcconfig
 
+EnvironmentConstantsDev.swift
 GoogleService-Info.plist
 Info.plist

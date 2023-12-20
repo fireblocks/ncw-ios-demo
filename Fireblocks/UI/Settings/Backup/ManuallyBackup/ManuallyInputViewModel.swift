@@ -7,7 +7,7 @@
 
 import Foundation
 import UIKit
-import FireblocksSDK
+import FireblocksDev
 
 protocol ManuallyInputDelegate: AnyObject {
     func isWalletRecovered(_ isRecovered: Bool) async
