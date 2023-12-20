@@ -14,7 +14,7 @@
 		2B3E6C0F2ACDAB97000E91CF /* AddAssetsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B3E6C0E2ACDAB97000E91CF /* AddAssetsViewController.xib */; };
 		2B3E6C112ACE96AC000E91CF /* AddAssetViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3E6C102ACE96AC000E91CF /* AddAssetViewCell.swift */; };
 		2B3E6C132ACE96D7000E91CF /* AddAssetViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B3E6C122ACE96D7000E91CF /* AddAssetViewCell.xib */; };
-		2B427EE62ADD1BCD00245C01 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2B427EE52ADD1BCD00245C01 /* GoogleService-Info.plist */; };
+		2B7C47A32B32F077001C804B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2B7C47A22B32F077001C804B /* GoogleService-Info.plist */; };
 		2B94CFC52A9CDF62003E7508 /* ExtraParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B94CFC42A9CDF62003E7508 /* ExtraParameters.swift */; };
 		2B94CFCA2A9CE576003E7508 /* CodableParsingExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B94CFC82A9CE576003E7508 /* CodableParsingExtension.swift */; };
 		2B94CFCC2A9CE576003E7508 /* CodableAnyExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B94CFC92A9CE576003E7508 /* CodableAnyExtension.swift */; };
@@ -184,9 +184,9 @@
 		2B3E6C0E2ACDAB97000E91CF /* AddAssetsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddAssetsViewController.xib; sourceTree = "<group>"; };
 		2B3E6C102ACE96AC000E91CF /* AddAssetViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAssetViewCell.swift; sourceTree = "<group>"; };
 		2B3E6C122ACE96D7000E91CF /* AddAssetViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddAssetViewCell.xib; sourceTree = "<group>"; };
-		2B427EE52ADD1BCD00245C01 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2B769B9D2B1DFCBA00557E97 /* NCW-sandboxDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "NCW-sandboxDebug.entitlements"; sourceTree = "<group>"; };
 		2B769B9E2B1DFCC700557E97 /* NCW-sandboxRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "NCW-sandboxRelease.entitlements"; sourceTree = "<group>"; };
+		2B7C47A22B32F077001C804B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2B94CFC42A9CDF62003E7508 /* ExtraParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtraParameters.swift; sourceTree = "<group>"; };
 		2B94CFC82A9CE576003E7508 /* CodableParsingExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodableParsingExtension.swift; sourceTree = "<group>"; };
 		2B94CFC92A9CE576003E7508 /* CodableAnyExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodableAnyExtension.swift; sourceTree = "<group>"; };
@@ -373,6 +373,14 @@
 				2B3E6C122ACE96D7000E91CF /* AddAssetViewCell.xib */,
 			);
 			path = AddAsset;
+			sourceTree = "<group>";
+		};
+		2B7C47A12B32F077001C804B /* prod */ = {
+			isa = PBXGroup;
+			children = (
+				2B7C47A22B32F077001C804B /* GoogleService-Info.plist */,
+			);
+			path = prod;
 			sourceTree = "<group>";
 		};
 		2B94CFC72A9CE576003E7508 /* CodableExtensions */ = {
@@ -829,8 +837,8 @@
 				86859F662A384E8E0056E3C6 /* UI */,
 				86859F5D2A384D8B0056E3C6 /* LaunchScreen.storyboard */,
 				86859F582A384D8A0056E3C6 /* Main.storyboard */,
-				2B427EE52ADD1BCD00245C01 /* GoogleService-Info.plist */,
 				86859F602A384D8B0056E3C6 /* Info.plist */,
+				2B7C47A12B32F077001C804B /* prod */,
 			);
 			path = Fireblocks;
 			sourceTree = "<group>";
@@ -1087,7 +1095,7 @@
 				603903762A6D1F560060E026 /* ApproveViewController.xib in Resources */,
 				86859F5F2A384D8B0056E3C6 /* LaunchScreen.storyboard in Resources */,
 				608293922A56BB1400B11839 /* TransferCell.xib in Resources */,
-				2B427EE62ADD1BCD00245C01 /* GoogleService-Info.plist in Resources */,
+				2B7C47A32B32F077001C804B /* GoogleService-Info.plist in Resources */,
 				608293C52A5AD72400B11839 /* TransferDetailsViewController.xib in Resources */,
 				603B70F12A810D6200796CEE /* Roboto-Regular.ttf in Resources */,
 				6082938D2A56B85800B11839 /* TransfersViewController.xib in Resources */,
