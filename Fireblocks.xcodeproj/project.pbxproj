@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B09D4642B3831B40031D647 /* FireblocksSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 2B09D4632B3831B30031D647 /* FireblocksSDK */; };
 		2B2D36162B2B205A00B04667 /* AppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2D36152B2B205A00B04667 /* AppLogger.swift */; };
 		2B3E6C032ACC0C40000E91CF /* BackupStatusViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3E6C022ACC0C40000E91CF /* BackupStatusViewModel.swift */; };
 		2B3E6C092ACD8CFD000E91CF /* AddAssetsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3E6C082ACD8CFD000E91CF /* AddAssetsViewModel.swift */; };
@@ -22,7 +23,6 @@
 		2B94CFFD2A9F3F03003E7508 /* PollingListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B94CFFB2A9F3F03003E7508 /* PollingListener.swift */; };
 		2B94CFFF2A9F3F03003E7508 /* PollingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B94CFFC2A9F3F03003E7508 /* PollingManager.swift */; };
 		2BD53A232B28735700756C4A /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD53A222B28735700756C4A /* Date+Extensions.swift */; };
-		2BF6E7112B3081D9005D3581 /* FireblocksSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 2BF6E7102B3081D9005D3581 /* FireblocksSDK */; };
 		602573282A39D6F000A3C5D5 /* AssetsColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602573272A39D6F000A3C5D5 /* AssetsColors.swift */; };
 		6025732A2A39D76900A3C5D5 /* AssetsIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602573292A39D76900A3C5D5 /* AssetsIcons.swift */; };
 		602573312A39E7F600A3C5D5 /* AssetListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6025732F2A39E7F600A3C5D5 /* AssetListViewController.swift */; };
@@ -333,7 +333,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				866A73C22A696A0F00E8E545 /* GoogleAPIClientForREST_Drive in Frameworks */,
-				2BF6E7112B3081D9005D3581 /* FireblocksSDK in Frameworks */,
+				2B09D4642B3831B40031D647 /* FireblocksSDK in Frameworks */,
 				869A71392A3859C900653C8F /* FirebaseAuth in Frameworks */,
 				86A9971C2A6FAD0B00A6B60B /* SDWebImageMapKit in Frameworks */,
 				86AF7C4D2A430BF70026DF15 /* (null) in Frameworks */,
@@ -1032,7 +1032,7 @@
 				866A73C12A696A0F00E8E545 /* GoogleAPIClientForREST_Drive */,
 				866A73C32A696A0F00E8E545 /* GoogleAPIClientForREST_DriveActivity */,
 				866A73C52A696A0F00E8E545 /* GoogleAPIClientForREST_DriveLabels */,
-				2BF6E7102B3081D9005D3581 /* FireblocksSDK */,
+				2B09D4632B3831B30031D647 /* FireblocksSDK */,
 			);
 			productName = Fireblocks;
 			productReference = 86859F4F2A384D8A0056E3C6 /* NCW-sandbox.app */;
@@ -1068,7 +1068,7 @@
 				86E835162A60331B003E98BE /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */,
 				86A997182A6FAD0A00A6B60B /* XCRemoteSwiftPackageReference "SDWebImage" */,
 				866A73C02A696A0F00E8E545 /* XCRemoteSwiftPackageReference "google-api-objectivec-client-for-rest" */,
-				2BF6E70F2B3081D9005D3581 /* XCRemoteSwiftPackageReference "ncw-ios-sdk" */,
+				2B09D4622B3831B30031D647 /* XCRemoteSwiftPackageReference "ncw-ios-sdk" */,
 			);
 			productRefGroup = 86859F502A384D8A0056E3C6 /* Products */;
 			projectDirPath = "";
@@ -1386,7 +1386,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 2HS962GC9R;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1433,7 +1433,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 2HS962GC9R;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1495,12 +1495,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		2BF6E70F2B3081D9005D3581 /* XCRemoteSwiftPackageReference "ncw-ios-sdk" */ = {
+		2B09D4622B3831B30031D647 /* XCRemoteSwiftPackageReference "ncw-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/fireblocks/ncw-ios-sdk.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 2.1.0;
+				minimumVersion = 2.0.0;
 			};
 		};
 		866A73C02A696A0F00E8E545 /* XCRemoteSwiftPackageReference "google-api-objectivec-client-for-rest" */ = {
@@ -1546,9 +1546,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		2BF6E7102B3081D9005D3581 /* FireblocksSDK */ = {
+		2B09D4632B3831B30031D647 /* FireblocksSDK */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 2BF6E70F2B3081D9005D3581 /* XCRemoteSwiftPackageReference "ncw-ios-sdk" */;
+			package = 2B09D4622B3831B30031D647 /* XCRemoteSwiftPackageReference "ncw-ios-sdk" */;
 			productName = FireblocksSDK;
 		};
 		866A73C12A696A0F00E8E545 /* GoogleAPIClientForREST_Drive */ = {

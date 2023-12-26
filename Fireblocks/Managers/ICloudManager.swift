@@ -11,8 +11,8 @@ import CloudKit
 class ICloudManager {
     
     private var recordName = "passphrase"
-    private let recordKey = "passphrase"
-    private let recordType = "String"
+    private let recordKey = "phrase"
+    private let recordType = "Backup"
     
     func uploadData(container: CKContainer, passPhrase: String, passphraseId: String) async -> Bool {
         await deleteRecordIfExist(container, passphraseId: passphraseId)
@@ -32,7 +32,7 @@ class ICloudManager {
     }
     
     private func getRecordId(passphraseId: String) -> CKRecord.ID {
-        return CKRecord.ID(recordName: "passphrase_\(passphraseId).txt")
+        return CKRecord.ID(recordName: "backup_t_\(passphraseId)")
     }
     
     private func getCkRecord(_ value: String, passphraseId: String) -> CKRecord {
@@ -51,7 +51,9 @@ class ICloudManager {
     
     private func saveNewRecord(container: CKContainer, passPhrase: String, passphraseId: String) async -> Bool {
         do {
-            let _ = try await container.privateCloudDatabase.save(getCkRecord(passPhrase, passphraseId: passphraseId))
+            let record = getCkRecord(passPhrase, passphraseId: passphraseId)
+            record["phrase"] = passPhrase as CKRecordValue
+            let _ = try await container.privateCloudDatabase.save(record)
             return true
         } catch {
             print("ICloudManager uploading failed: \(error)")
