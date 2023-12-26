@@ -38,6 +38,7 @@ class AssetListViewController: UIViewController {
         configureView()
         viewModel.delegate = self
         viewModel.createAssets()
+        viewModel.listenToTransferChanges()
         activityIndicator.startAnimating()
     }
     

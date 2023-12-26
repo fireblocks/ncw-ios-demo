@@ -43,7 +43,8 @@ final public class BackupRepository {
     }
     
     func backupToICloud(container: CKContainer, passphraseId: String) async -> Bool {
-        let passphrase = await ICloudManager().fetchData(container: container, passphraseId: passphraseId) ?? FireblocksManager.shared.generatePassphrase()
+//        let passphrase = await ICloudManager().fetchData(container: container, passphraseId: passphraseId) ?? FireblocksManager.shared.generatePassphrase()
+        let passphrase = FireblocksManager.shared.generatePassphrase()
         let isSucceeded = await ICloudManager().uploadData(container: container, passPhrase: passphrase, passphraseId: passphraseId)
         if isSucceeded {
             do {

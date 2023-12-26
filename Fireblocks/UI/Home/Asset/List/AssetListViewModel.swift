@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 protocol AssetListViewModelDelegate: AnyObject {
     func refreshData()
@@ -18,19 +19,30 @@ class AssetListViewModel {
     private var assets: [Asset] = []
     private let repository = AssetListRepository()
     private var task: Task<Void, Never>?
-    
+    var cancellable = Set<AnyCancellable>()
+
     static let shared = AssetListViewModel()
-    
+
     private init() {}
     
     func signOut() {
         assets.removeAll()
+        cancellable.removeAll()
     }
     
     deinit {
         task?.cancel()
     }
     
+    func listenToTransferChanges() {
+        TransfersViewModel.shared.$transfers.receive(on: RunLoop.main)
+            .sink { [weak self] transfers in
+                if let self {
+                    self.fetchAssets()
+                }
+            }.store(in: &cancellable)
+    }
+
     func createAssets() {
         Task {
             fetchAssets()

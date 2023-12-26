@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B09D4642B3831B40031D647 /* FireblocksSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 2B09D4632B3831B30031D647 /* FireblocksSDK */; };
 		2B2D36162B2B205A00B04667 /* AppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2D36152B2B205A00B04667 /* AppLogger.swift */; };
 		2B3E6C032ACC0C40000E91CF /* BackupStatusViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3E6C022ACC0C40000E91CF /* BackupStatusViewModel.swift */; };
 		2B3E6C092ACD8CFD000E91CF /* AddAssetsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3E6C082ACD8CFD000E91CF /* AddAssetsViewModel.swift */; };
@@ -1884,7 +1885,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 2HS962GC9R;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1931,7 +1932,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 2HS962GC9R;
 				FRAMEWORK_SEARCH_PATHS = (
