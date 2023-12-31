@@ -32,11 +32,14 @@ class AuthViewController: UIViewController {
     @IBOutlet weak var signInButton: UIButton!
     @IBOutlet weak var roundedCornerViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var signUpButton: UIButton!
-    @IBOutlet weak var googleButton: AppActionBotton!
-    @IBOutlet weak var appleButton: AppActionBotton!
+//    @IBOutlet weak var googleButton: AppActionBotton!
+//    @IBOutlet weak var appleButton: AppActionBotton!
     @IBOutlet weak var buttonsContainerView: UIView!
     @IBOutlet weak var versionLabel: UILabel!
     @IBOutlet weak var versionLabelContainer: UIView!
+
+    @IBOutlet weak var mainViewContainer: UIView!
+    @IBOutlet weak var loginButtonsContainer: UIView!
 
     private lazy var viewModel: AuthViewModel = { AuthViewModel(self) }()
     
@@ -44,7 +47,6 @@ class AuthViewController: UIViewController {
         super.viewDidLoad()
         setHeaderSize()
         addPaddingStackView()
-        signInTapped(signInButton)
         versionLabel.text = Bundle.main.versionLabel
         versionLabelContainer.backgroundColor = AssetsColors.gray2.getColor()
     }
@@ -75,16 +77,25 @@ class AuthViewController: UIViewController {
         setSignUpView()
     }
     
-    private func setLoginView(){
-        setButtonSelectedState(selectedButton: signInButton, disabledButton: signUpButton)
-        googleButton.config(title: LocalizableStrings.loginGoogleSignIn, image: AssetsIcons.googleIcon.getIcon(), style: .Secondary)
-        appleButton.config(title: LocalizableStrings.loginAppleSignIn, image: AssetsIcons.appleIcon.getIcon(), style: .Secondary)
+    private func setTransition() {
+        UIView.animate(withDuration: 0.3) {
+            self.mainViewContainer.alpha = 0
+            self.loginButtonsContainer.alpha = 1
+        }
+    }
+    
+    private func setLoginView() {
+        setTransition()
+//        setButtonSelectedState(selectedButton: signInButton, disabledButton: signUpButton)
+//        googleButton.config(title: LocalizableStrings.loginGoogleSignIn, image: AssetsIcons.googleIcon.getIcon(), style: .Secondary)
+//        appleButton.config(title: LocalizableStrings.loginAppleSignIn, image: AssetsIcons.appleIcon.getIcon(), style: .Secondary)
     }
     
     private func setSignUpView(){
-        setButtonSelectedState(selectedButton: signUpButton, disabledButton: signInButton)
-        googleButton.config(title: LocalizableStrings.loginGoogleSignUp, image: AssetsIcons.googleIcon.getIcon(), style: .Secondary)
-        appleButton.config(title: LocalizableStrings.loginAppleSignUP, image: AssetsIcons.appleIcon.getIcon(), style: .Secondary)
+        setTransition()
+//        setButtonSelectedState(selectedButton: signUpButton, disabledButton: signInButton)
+//        googleButton.config(title: LocalizableStrings.loginGoogleSignUp, image: AssetsIcons.googleIcon.getIcon(), style: .Secondary)
+//        appleButton.config(title: LocalizableStrings.loginAppleSignUP, image: AssetsIcons.appleIcon.getIcon(), style: .Secondary)
     }
     
     private func setButtonSelectedState(selectedButton: UIButton, disabledButton: UIButton){
