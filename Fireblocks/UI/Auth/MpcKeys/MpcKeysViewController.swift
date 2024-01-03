@@ -15,10 +15,19 @@ class MpcKeysViewController: UIViewController {
     @IBOutlet weak var headerImageView: UIImageView!
     @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var generateMpcKeysButton: AppActionBotton!
-    @IBOutlet weak var footerButton: UIButton!
+//    @IBOutlet weak var footerButton: UIButton!
 
-    private let viewModel = MpcKeysViewModel()
+    private let viewModel: MpcKeysViewModel
     private var alertView: AlertView?
+    
+    init(isAddingDevice: Bool) {
+        self.viewModel = MpcKeysViewModel(isAddingDevice: isAddingDevice)
+        super.init (nibName: "MpcKeysViewController", bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,16 +38,30 @@ class MpcKeysViewController: UIViewController {
     
     private func configUI(){
         self.navigationItem.title = LocalizableStrings.generateMPCKeys
-        generateMpcKeysButton.config(title: LocalizableStrings.generateKeysButtonTitle, style: .Primary)
+        if viewModel.isAddingDevice {
+            headerImageView.image = AssetsIcons.addDeviceImage.getIcon()
+            headerLabel.text = LocalizableStrings.mpcKeysAddDeviceTitle
+            generateMpcKeysButton.config(title: LocalizableStrings.continueTitle, style: .Primary)
+        } else {
+            headerImageView.image = AssetsIcons.generateKeyImage.getIcon()
+            headerLabel.text = LocalizableStrings.mpcKeysGenertaeTitle
+            generateMpcKeysButton.config(title: LocalizableStrings.generateKeysButtonTitle, style: .Primary)
+        }
     }
     
     @IBAction func generateMpcKey(_ sender: AppActionBotton) {
-        if !viewModel.didSucceedGenerateKeys {
+        if viewModel.isAddingDevice {
             removeAlertView()
-            showActivityIndicator(message: LocalizableStrings.generateKeysIndicatorMessage)
-            viewModel.generateMpcKeys()
+            showActivityIndicator(message: LocalizableStrings.preparingDeviceIndicatorMessage)
+            viewModel.addDevice()
         } else {
-            self.navigateCreateBackupScreen()
+            if !viewModel.didSucceedGenerateKeys {
+                removeAlertView()
+                showActivityIndicator(message: LocalizableStrings.generateKeysIndicatorMessage)
+                viewModel.generateMpcKeys()
+            } else {
+                self.navigateCreateBackupScreen()
+            }
         }
     }
     
@@ -100,7 +123,7 @@ extension MpcKeysViewController: MpcKeysViewModelDelegate {
             self.headerLabel.textAlignment = .center
             
             self.generateMpcKeysButton.config(title: LocalizableStrings.createKeyBackup, style: .Primary)
-            self.footerButton.setTitle(LocalizableStrings.illDoThisLater, for: .normal)
+//            self.footerButton.setTitle(LocalizableStrings.illDoThisLater, for: .normal)
         }
 
 

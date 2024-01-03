@@ -20,9 +20,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AuthViewController" customModule="NCW_sandbox" customModuleProvider="target">
             <connections>
+                <outlet property="appleButton" destination="Oxb-PF-O53" id="TBH-5O-39t"/>
                 <outlet property="buttonsContainerView" destination="E3m-YK-mss" id="nk8-DM-Yw2"/>
+                <outlet property="googleButton" destination="cci-Pc-k0x" id="SEV-gC-mRG"/>
                 <outlet property="headerConstraints" destination="baE-aX-U3N" id="I6u-h4-5Dl"/>
                 <outlet property="loginButtonsContainer" destination="cD3-7J-71V" id="WRc-dK-bjP"/>
+                <outlet property="loginSubTitle" destination="8HA-uo-7zN" id="Emh-aL-mX3"/>
                 <outlet property="mainViewContainer" destination="E3m-YK-mss" id="ZJq-0A-aCn"/>
                 <outlet property="roundedCornerView" destination="NM2-rU-FvE" id="YvH-42-9JL"/>
                 <outlet property="roundedCornerViewHeightConstraint" destination="zG2-fu-N56" id="cXZ-HC-5Uf"/>
@@ -123,7 +126,7 @@ digital assets on the go.</string>
                                                 <action selector="signInTapped:" destination="-1" eventType="touchUpInside" id="uE6-E3-vmg"/>
                                             </connections>
                                         </button>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="existingAccount" translatesAutoresizingMaskIntoConstraints="NO" id="bv1-Xt-8qy">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="existing_account" translatesAutoresizingMaskIntoConstraints="NO" id="bv1-Xt-8qy">
                                             <rect key="frame" x="16" y="32" width="24" height="24"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="24" id="Rrf-Sw-tpD"/>
@@ -179,7 +182,7 @@ digital assets on the go.</string>
                                                 <action selector="signUpTapped:" destination="-1" eventType="touchUpInside" id="Erl-Md-qWy"/>
                                             </connections>
                                         </button>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="newAccount" translatesAutoresizingMaskIntoConstraints="NO" id="G2X-FQ-4RM">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="new_account" translatesAutoresizingMaskIntoConstraints="NO" id="G2X-FQ-4RM">
                                             <rect key="frame" x="16" y="32" width="24" height="24"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="24" id="sNh-Y1-c1B"/>
@@ -270,6 +273,9 @@ digital assets on the go.</string>
                                         </userDefinedRuntimeAttribute>
                                         <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                     </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="addDeviceTapped:" destination="-1" eventType="touchUpInside" id="1Vp-oe-pgy"/>
+                                    </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign in with a new device" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S4N-KP-xUH">
                                     <rect key="frame" x="16" y="15.999999999999998" width="313" height="19.333333333333329"/>
@@ -324,7 +330,50 @@ digital assets on the go.</string>
                 </view>
                 <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cD3-7J-71V">
                     <rect key="frame" x="24" y="259.33333333333331" width="345" height="542.66666666666674"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8HA-uo-7zN">
+                            <rect key="frame" x="12" y="7.9999999999999982" width="321" height="19.333333333333329"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <color key="textColor" name="white"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="ojv-aG-Pec">
+                            <rect key="frame" x="0.0" y="43.333333333333371" width="345" height="116"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cci-Pc-k0x" customClass="AppActionBotton" customModule="NCW_sandbox" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="345" height="50"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="50" id="2Ac-bq-0C9"/>
+                                    </constraints>
+                                    <state key="normal" title="Button"/>
+                                    <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                    <connections>
+                                        <action selector="signInWithGoogleTapped:" destination="-1" eventType="touchUpInside" id="5SN-wx-zjv"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oxb-PF-O53" customClass="AppActionBotton" customModule="NCW_sandbox" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="66" width="345" height="50"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="50" id="CsX-ZP-r7X"/>
+                                    </constraints>
+                                    <state key="normal" title="Button"/>
+                                    <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                    <connections>
+                                        <action selector="signInWithAppleTapped:" destination="-1" eventType="touchUpInside" id="o4B-K3-mhc"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="8HA-uo-7zN" firstAttribute="top" secondItem="cD3-7J-71V" secondAttribute="top" constant="8" id="49c-Oi-82t"/>
+                        <constraint firstAttribute="trailing" secondItem="ojv-aG-Pec" secondAttribute="trailing" id="EIO-SD-9Ug"/>
+                        <constraint firstItem="ojv-aG-Pec" firstAttribute="top" secondItem="8HA-uo-7zN" secondAttribute="bottom" constant="16" id="Hkh-QY-7xd"/>
+                        <constraint firstAttribute="trailing" secondItem="8HA-uo-7zN" secondAttribute="trailing" constant="12" id="SwH-bN-Qxz"/>
+                        <constraint firstItem="8HA-uo-7zN" firstAttribute="leading" secondItem="cD3-7J-71V" secondAttribute="leading" constant="12" id="Tmo-LV-nwT"/>
+                        <constraint firstItem="ojv-aG-Pec" firstAttribute="leading" secondItem="cD3-7J-71V" secondAttribute="leading" id="gg1-Z9-vD1"/>
+                    </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K2x-Vo-2i7">
                     <rect key="frame" x="167.33333333333334" y="148.66666666666666" width="58.333333333333343" height="22.333333333333343"/>
@@ -371,9 +420,9 @@ digital assets on the go.</string>
     </objects>
     <resources>
         <image name="FireblocksLogo" width="52" height="56"/>
-        <image name="existingAccount" width="24" height="24"/>
+        <image name="existing_account" width="24" height="24"/>
         <image name="login_header" width="390" height="284"/>
-        <image name="newAccount" width="24" height="24"/>
+        <image name="new_account" width="24" height="24"/>
         <namedColor name="black">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

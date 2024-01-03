@@ -15,6 +15,7 @@ class AuthRepository  {
     
     private let googleSignInManager = GoogleSignInManager()
     private let appleSignInManager = AppleSignInManager()
+    var isAddingDevice: Bool = false
     
     func getGIDConfiguration() -> GIDConfiguration? {
         return googleSignInManager.getGIDConfiguration()
@@ -24,9 +25,9 @@ class AuthRepository  {
         return appleSignInManager.getAppleRequest()
     }
     
-    func signIn(with result: FirebaseAuthDelegate?, user: String, isSignIn: Bool) async -> AuthUser? {
+    func signIn(with result: FirebaseAuthDelegate?, user: String, loginMethod: LoginMethod) async -> AuthUser? {
         if await isSignInToFirebaseSucceed(with: result) {
-            return await getAuthUserFromServer(user: user, isSignIn: isSignIn)
+            return await getAuthUserFromServer(user: user, loginMethod: loginMethod)
         } else {
             return nil
         }
@@ -46,21 +47,88 @@ class AuthRepository  {
         }
     }
     
-    private func getAuthUserFromServer(user: String, isSignIn: Bool) async -> AuthUser? {
+    private func getAuthUserFromServer(user: String, loginMethod: LoginMethod) async -> AuthUser? {
         do {
             let userToken = await AuthRepository.getUserIdToken()
             let _ = try await SessionManager.shared.login()
-            let devices = try await SessionManager.shared.getDevices()
-            if let device = devices?.devices.last, isSignIn {
-                let generatedDeviceId = device.deviceId
-                return AuthUser(userToken: userToken, deviceId: generatedDeviceId, walletId: device.walletId)
-            } else {
-                let generatedDeviceId = FireblocksManager.shared.generateDeviceId()
-                let result = try await SessionManager.shared.assign(deviceId:generatedDeviceId)
-                return AuthUser(userToken: userToken, deviceId: generatedDeviceId, walletId: result.walletId)
+            guard let email = Auth.auth().currentUser?.email else {
+                print("AuthRepository, getAuthResponse() throws exception: cannot get email address.")
+                return nil
             }
+            
+            
+            switch loginMethod {
+            case .signUp:
+                return try await signUp(userToken: userToken, email: email)
+            case .signIn:
+                return try await signIn(userToken: userToken, email: email)
+            case .addDevice:
+                return try await addDevice(userToken: userToken, email: email)
+            }
+            
         } catch {
             print("AuthRepository, getAuthResponse() throws exception: \(error).")
+            return nil
+        }
+    }
+    
+    private func signUp(userToken: String, email: String) async throws -> AuthUser? {
+        let generatedDeviceId = FireblocksManager.shared.generateDeviceId()
+        UsersLocalStorageManager.shared.setLastDeviceId(deviceId: generatedDeviceId, email: email)
+        let result = try await SessionManager.shared.assign(deviceId:generatedDeviceId)
+        if let walletId = result.walletId {
+            return AuthUser(userToken: userToken, deviceId: generatedDeviceId, walletId: walletId)
+        } else {
+            print("AuthRepository, getAuthResponse() throws exception: invalid assign response.")
+            return nil
+        }
+    }
+    
+    private func signIn(userToken: String, email: String) async throws -> AuthUser? {
+        if let deviceId = UsersLocalStorageManager.shared.lastDeviceId(email: email) {
+            let result = try await SessionManager.shared.assign(deviceId:deviceId)
+            if let walletId = result.walletId {
+                return AuthUser(userToken: userToken, deviceId: deviceId, walletId: walletId)
+            } else {
+                print("AuthRepository, getAuthResponse() throws exception: invalid assign response.")
+                return nil
+            }
+        }
+        
+        let devices = try await SessionManager.shared.getDevices()
+        if let device = devices?.devices.last {
+            if let deviceId = device.deviceId, !deviceId.isEmpty, let walletId = device.walletId, !walletId.isEmpty {
+                let info = try await SessionManager.shared.getLatestBackupInfo(walletId: walletId)
+                if info.deviceId != nil {
+                    return AuthUser(userToken: userToken, deviceId: deviceId, walletId: walletId)
+                } else {
+                    print("AuthRepository, getAuthResponse() throws exception: invalid GetDevicesResponse.")
+                    return nil
+                }
+            } else {
+                print("AuthRepository, getAuthResponse() throws exception: invalid GetDevicesResponse.")
+                return nil
+            }
+        } else {
+            print("AuthRepository, getAuthResponse() throws exception: invalid GetDevicesResponse.")
+            return nil
+        }
+    }
+    
+    private func addDevice(userToken: String, email: String) async throws -> AuthUser? {
+        let devices = try await SessionManager.shared.getDevices()
+        if let device = devices?.devices.last {
+            if let walletId = device.walletId, !walletId.isEmpty {
+                let generatedDeviceId = FireblocksManager.shared.generateDeviceId()
+                UsersLocalStorageManager.shared.setLastDeviceId(deviceId: generatedDeviceId, email: email)
+                let result = try await SessionManager.shared.joinWallet(deviceId: generatedDeviceId, walletId: walletId)
+                return AuthUser(userToken: userToken, deviceId: generatedDeviceId, walletId: walletId)
+            } else {
+                print("AuthRepository, getAuthResponse() throws exception: invalid GetDevicesResponse.")
+                return nil
+            }
+        } else {
+            print("AuthRepository, getAuthResponse() throws exception: invalid GetDevicesResponse.")
             return nil
         }
     }

@@ -95,6 +95,16 @@ class FireblocksManager {
         }
     }
     
+    func addDevice(_ delegate: FireblocksKeyCreationDelegate) async {
+        do {
+            let result = try await getSdkInstance()?.requestJoinExistingWallet()
+            let isGenerated = result?.first?.keyStatus == .READY
+            await delegate.isKeysGenerated(isGenerated: isGenerated)
+        } catch {
+            logger.log("FireblocksManager, addDevice() failed: \(error).")
+        }
+    }
+    
     func getMpcKeys() -> [KeyDescriptor] {
         return getSdkInstance()?.getKeysStatus() ?? []
     }

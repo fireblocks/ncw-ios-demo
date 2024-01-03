@@ -32,12 +32,13 @@ class AuthViewController: UIViewController {
     @IBOutlet weak var signInButton: UIButton!
     @IBOutlet weak var roundedCornerViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var signUpButton: UIButton!
-//    @IBOutlet weak var googleButton: AppActionBotton!
-//    @IBOutlet weak var appleButton: AppActionBotton!
+    @IBOutlet weak var googleButton: AppActionBotton!
+    @IBOutlet weak var appleButton: AppActionBotton!
     @IBOutlet weak var buttonsContainerView: UIView!
     @IBOutlet weak var versionLabel: UILabel!
     @IBOutlet weak var versionLabelContainer: UIView!
 
+    @IBOutlet weak var loginSubTitle: UILabel!
     @IBOutlet weak var mainViewContainer: UIView!
     @IBOutlet weak var loginButtonsContainer: UIView!
 
@@ -68,13 +69,18 @@ class AuthViewController: UIViewController {
     }
     
     @IBAction func signInTapped(_ sender: UIButton) {
-        viewModel.setSignIn(isSignIn: true)
+        viewModel.setLoginMethod(loginMethod: .signIn)
         setLoginView()
     }
     
     @IBAction func signUpTapped(_ sender: UIButton) {
-        viewModel.setSignIn(isSignIn: false)
+        viewModel.setLoginMethod(loginMethod: .signUp)
         setSignUpView()
+    }
+    
+    @IBAction func addDeviceTapped(_ sender: UIButton) {
+        viewModel.setLoginMethod(loginMethod: .addDevice)
+        setAddDeviceView()
     }
     
     private func setTransition() {
@@ -87,15 +93,25 @@ class AuthViewController: UIViewController {
     private func setLoginView() {
         setTransition()
 //        setButtonSelectedState(selectedButton: signInButton, disabledButton: signUpButton)
-//        googleButton.config(title: LocalizableStrings.loginGoogleSignIn, image: AssetsIcons.googleIcon.getIcon(), style: .Secondary)
-//        appleButton.config(title: LocalizableStrings.loginAppleSignIn, image: AssetsIcons.appleIcon.getIcon(), style: .Secondary)
+        loginSubTitle.text = LocalizableStrings.signInTitle
+        googleButton.config(title: LocalizableStrings.loginGoogleSignIn, image: AssetsIcons.googleIcon.getIcon(), style: .Secondary)
+        appleButton.config(title: LocalizableStrings.loginAppleSignIn, image: AssetsIcons.appleIcon.getIcon(), style: .Secondary)
     }
     
     private func setSignUpView(){
         setTransition()
 //        setButtonSelectedState(selectedButton: signUpButton, disabledButton: signInButton)
-//        googleButton.config(title: LocalizableStrings.loginGoogleSignUp, image: AssetsIcons.googleIcon.getIcon(), style: .Secondary)
-//        appleButton.config(title: LocalizableStrings.loginAppleSignUP, image: AssetsIcons.appleIcon.getIcon(), style: .Secondary)
+        loginSubTitle.text = LocalizableStrings.signUpTitle
+        googleButton.config(title: LocalizableStrings.loginGoogleSignUp, image: AssetsIcons.googleIcon.getIcon(), style: .Secondary)
+        appleButton.config(title: LocalizableStrings.loginAppleSignUP, image: AssetsIcons.appleIcon.getIcon(), style: .Secondary)
+    }
+    
+    private func setAddDeviceView() {
+        setTransition()
+//        setButtonSelectedState(selectedButton: signUpButton, disabledButton: signInButton)
+        loginSubTitle.text = LocalizableStrings.addDeviceTitle
+        googleButton.config(title: LocalizableStrings.loginGoogleAddDevice, image: AssetsIcons.googleIcon.getIcon(), style: .Secondary)
+        appleButton.config(title: LocalizableStrings.loginAppleAddDevice, image: AssetsIcons.appleIcon.getIcon(), style: .Secondary)
     }
     
     private func setButtonSelectedState(selectedButton: UIButton, disabledButton: UIButton){
@@ -146,7 +162,16 @@ class AuthViewController: UIViewController {
     }
     
     private func navigateWithAnimation() {
-        let vc = viewModel.isUserHaveKeys() ? UINavigationController(rootViewController: TabBarViewController()) : UINavigationController(rootViewController: MpcKeysViewController()) 
+        let vc: UIViewController
+        switch viewModel.getLoginMethod() {
+        case .signUp:
+            vc = UINavigationController(rootViewController: MpcKeysViewController(isAddingDevice: false))
+        case .signIn:
+            vc = viewModel.isUserHaveKeys() ? UINavigationController(rootViewController: TabBarViewController()) : UINavigationController(rootViewController: MpcKeysViewController(isAddingDevice: false))
+        case .addDevice:
+            vc = UINavigationController(rootViewController: MpcKeysViewController(isAddingDevice: true))
+        }
+
         UIView.animate(withDuration: 1, animations: {
             self.welcomeTitle.alpha = 0
             self.subTitle.alpha = 0

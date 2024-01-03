@@ -11,6 +11,12 @@ import FirebaseAuth
 import GoogleSignIn
 import Foundation
 
+enum LoginMethod: String, CaseIterable {
+    case signIn
+    case signUp
+    case addDevice
+}
+
 protocol AuthViewModelDelegate {
     func isUserSignedIn(_ isUserSignedIn: Bool) async
 }
@@ -20,8 +26,11 @@ final class AuthViewModel {
     private let authRepository = AuthRepository()
     private let delegate: AuthViewModelDelegate
     private var signInTask: Task<Void, Never>?
-    private var isSignIn = true
+    private var loginMethod: LoginMethod = .signUp
     
+//    private var isSignIn = true
+//    private var isAddingDevice = false
+
     init(_ delegate: AuthViewModelDelegate) {
         self.delegate = delegate
     }
@@ -40,7 +49,8 @@ final class AuthViewModel {
     
     func signInToFirebase(with result: FirebaseAuthDelegate?, user: String) {
         signInTask = Task {
-            guard let authUser = await authRepository.signIn(with: result, user: user, isSignIn: isSignIn) else {
+            authRepository.isAddingDevice = loginMethod == .addDevice
+            guard let authUser = await authRepository.signIn(with: result, user: user, loginMethod: loginMethod) else {
                 await delegate.isUserSignedIn(false)
                 return
             }
@@ -50,16 +60,16 @@ final class AuthViewModel {
         }
     }
     
-    func setSignIn(isSignIn: Bool) {
-        self.isSignIn = isSignIn
+    func setLoginMethod(loginMethod: LoginMethod) {
+        self.loginMethod = loginMethod
     }
-    
-    func getSignIn() -> Bool {
-        return isSignIn
+
+    func getLoginMethod() -> LoginMethod {
+        return loginMethod
     }
     
     func getErrorMessage() -> String {
-        return isSignIn ? LocalizableStrings.signInFailed : LocalizableStrings.signUpFailed
+        return loginMethod == .addDevice ? LocalizableStrings.addDeviceFailed : loginMethod == .signIn ? LocalizableStrings.signInFailed : LocalizableStrings.signUpFailed
     }
     
     func isUserHaveKeys() -> Bool {

@@ -20,7 +20,13 @@ struct LocalizableStrings{
     static let loginAppleSignIn = "login_apple_sign_in".localize()
     static let loginGoogleSignUp = "login_google_sign_up".localize()
     static let loginAppleSignUP = "login_apple_sign_up".localize()
+    static let loginGoogleAddDevice = "login_google_add_device".localize()
+    static let loginAppleAddDevice = "login_apple_add_device".localize()
+    static let signInTitle = "sign_in_title".localize()
+    static let signUpTitle = "sign_up_title".localize()
+    static let addDeviceTitle = "add_device_title".localize()
     static let areYouSure = "are_you_sure".localize()
+    static let continueTitle = "continue".localize()
     static let confirm = "confirm".localize()
     static let neverMind = "never_mind".localize()
     static let singOutConfirmation = "sign_out_confirmation".localize()
@@ -33,6 +39,7 @@ struct LocalizableStrings{
     static let mpcKeysGenerationFailed = "mpc_keys_generation_failed".localize()
     static let accountCreationFailed = "account_creation_failed".localize()
     static let signInFailed = "sign_in_failed".localize()
+    static let addDeviceFailed = "add_device_failed".localize()
     static let failedToCreateKeyBackup = "failed_to_create_key_backup".localize()
     static let failedToRecoverWallet = "failed_to_recover_wallet".localize()
     static let failedToFindValidRecoveryKey = "failed_to_find_valid_recovery_key".localize()
@@ -68,6 +75,8 @@ struct LocalizableStrings{
     static let feeActivityIndicatorMessage = "feeInfoMessage".localize()
     static let generateKeysButtonTitle = "generate_keys_button_title".localize()
     static let generateKeysIndicatorMessage = "generate_keys_indicator_message".localize()
+    static let preparingDeviceIndicatorMessage = "preparing_device_indicator_message".localize()
+    
     static let failedCreateTransaction = "failed_create_transaction".localize()
     static let failedToGetTransactionInfo = "failed_to_get_transaction_info".localize()
     static let approveTxFailed = "approveTxFailed".localize()
@@ -75,4 +84,9 @@ struct LocalizableStrings{
     static let generateMPCKeys = "generateMPCKeys".localize()
     static let didGenerateMPCKeysSuccessTitle = "didGenerateMPCKeysSuccessTitle".localize()
     static let illDoThisLater = "illDoThisLater".localize()
+    
+    static let mpcKeysGenertaeTitle = "mpc_keys_genertae_title".localize()
+    static let mpcKeysAddDeviceTitle = "mpc_keys_add_device_title".localize()
+    static let mpcKeysAddDeviceHeader = "mpc_keys_add_device_header".localize()
+
 }

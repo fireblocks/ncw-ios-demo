@@ -63,6 +63,9 @@ enum AssetsIcons: String {
     case keyImage = "key_image"
     case searchImage = "search_image"
     case successImage = "success_image"
+    case addDeviceImage = "add_device"
+    case addAccountImage = "add_account"
+    case existingAccountImage = "existing_account"
     case transferImage = "transfer_image"
 }
 

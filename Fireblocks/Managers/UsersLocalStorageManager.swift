@@ -38,4 +38,12 @@ class UsersLocalStorageManager: ObservableObject {
         }
     }
 
+    func lastDeviceId(email: String) -> String? {
+        return UserDefaults.standard.string(forKey: "\(email)-deviceId")
+    }
+
+    func setLastDeviceId(deviceId: String, email: String) {
+        UserDefaults.standard.set(deviceId, forKey: "\(email)-deviceId")
+    }
+
 }

@@ -17,7 +17,12 @@ final class MpcKeysViewModel {
     private var incomingMessageTask: Task<Void, Never>?
     private var mpcKeyTask: Task<Void, Never>?
     var didSucceedGenerateKeys = false
+    var isAddingDevice: Bool
     weak var delegate: MpcKeysViewModelDelegate?
+    
+    init(isAddingDevice: Bool) {
+        self.isAddingDevice = isAddingDevice
+    }
     
     deinit {
         cancelTasks()
@@ -32,6 +37,18 @@ final class MpcKeysViewModel {
             await FireblocksManager.shared.generateMpcKeys(delegate)
         }
     }
+    
+    func addDevice() {
+        addDeviceFromSdk(self)
+    }
+    
+    private func addDeviceFromSdk(_ delegate: FireblocksKeyCreationDelegate) {
+        mpcKeyTask = Task {
+            await FireblocksManager.shared.addDevice(self)
+        }
+    }
+    
+
     
     private func cancelTasks() {
         incomingMessageTask?.cancel()
