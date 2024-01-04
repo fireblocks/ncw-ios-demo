@@ -3122,7 +3122,7 @@
           {
             "kind": "Function",
             "name": "requestJoinExistingWallet",
-            "printedName": "requestJoinExistingWallet()",
+            "printedName": "requestJoinExistingWallet(joinWalletHandler:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -3137,11 +3137,17 @@
                   }
                 ],
                 "usr": "s:Sh"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "FireblocksJoinWalletHandler",
+                "printedName": "FireblocksSDK.FireblocksJoinWalletHandler",
+                "usr": "s:13FireblocksSDK0A17JoinWalletHandlerP"
               }
             ],
             "declKind": "Func",
-            "usr": "s:13FireblocksSDK0A0C25requestJoinExistingWalletShyAA13KeyDescriptorCGyYaKF",
-            "mangledName": "$s13FireblocksSDK0A0C25requestJoinExistingWalletShyAA13KeyDescriptorCGyYaKF",
+            "usr": "s:13FireblocksSDK0A0C25requestJoinExistingWallet04joinF7HandlerShyAA13KeyDescriptorCGAA0adfH0_p_tYaKF",
+            "mangledName": "$s13FireblocksSDK0A0C25requestJoinExistingWallet04joinF7HandlerShyAA13KeyDescriptorCGAA0adfH0_p_tYaKF",
             "moduleName": "FireblocksSDK",
             "declAttributes": [
               "Final",
@@ -3154,12 +3160,18 @@
           {
             "kind": "Function",
             "name": "requestJoinExistingWallet",
-            "printedName": "requestJoinExistingWallet(callback:)",
+            "printedName": "requestJoinExistingWallet(joinWalletHandler:callback:)",
             "children": [
               {
                 "kind": "TypeNominal",
                 "name": "Void",
                 "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "FireblocksJoinWalletHandler",
+                "printedName": "FireblocksSDK.FireblocksJoinWalletHandler",
+                "usr": "s:13FireblocksSDK0A17JoinWalletHandlerP"
               },
               {
                 "kind": "TypeFunc",
@@ -3189,8 +3201,8 @@
               }
             ],
             "declKind": "Func",
-            "usr": "s:13FireblocksSDK0A0C25requestJoinExistingWallet8callbackyyShyAA13KeyDescriptorCGc_tKF",
-            "mangledName": "$s13FireblocksSDK0A0C25requestJoinExistingWallet8callbackyyShyAA13KeyDescriptorCGc_tKF",
+            "usr": "s:13FireblocksSDK0A0C25requestJoinExistingWallet04joinF7Handler8callbackyAA0adfH0_p_yShyAA13KeyDescriptorCGctKF",
+            "mangledName": "$s13FireblocksSDK0A0C25requestJoinExistingWallet04joinF7Handler8callbackyAA0adfH0_p_yShyAA13KeyDescriptorCGctKF",
             "moduleName": "FireblocksSDK",
             "declAttributes": [
               "Final",
@@ -6781,6 +6793,103 @@
         "moduleName": "FireblocksSDK",
         "declAttributes": [
           "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "FireblocksSDK",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "FireblocksJoinWalletHandler",
+        "printedName": "FireblocksJoinWalletHandler",
+        "children": [
+          {
+            "kind": "Function",
+            "name": "onRequestId",
+            "printedName": "onRequestId(requestId:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:13FireblocksSDK0A17JoinWalletHandlerP11onRequestId07requestH0ySS_tF",
+            "mangledName": "$s13FireblocksSDK0A17JoinWalletHandlerP11onRequestId07requestH0ySS_tF",
+            "moduleName": "FireblocksSDK",
+            "genericSig": "<τ_0_0 where τ_0_0 : FireblocksSDK.FireblocksJoinWalletHandler>",
+            "sugared_genericSig": "<Self where Self : FireblocksSDK.FireblocksJoinWalletHandler>",
+            "protocolReq": true,
+            "reqNewWitnessTableEntry": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "onProvisionerFound",
+            "printedName": "onProvisionerFound()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:13FireblocksSDK0A17JoinWalletHandlerP18onProvisionerFoundyyF",
+            "mangledName": "$s13FireblocksSDK0A17JoinWalletHandlerP18onProvisionerFoundyyF",
+            "moduleName": "FireblocksSDK",
+            "genericSig": "<τ_0_0 where τ_0_0 : FireblocksSDK.FireblocksJoinWalletHandler>",
+            "sugared_genericSig": "<Self where Self : FireblocksSDK.FireblocksJoinWalletHandler>",
+            "protocolReq": true,
+            "reqNewWitnessTableEntry": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "onProvisionerFound",
+            "printedName": "onProvisionerFound()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:13FireblocksSDK0A17JoinWalletHandlerPAAE18onProvisionerFoundyyF",
+            "mangledName": "$s13FireblocksSDK0A17JoinWalletHandlerPAAE18onProvisionerFoundyyF",
+            "moduleName": "FireblocksSDK",
+            "genericSig": "<τ_0_0 where τ_0_0 : FireblocksSDK.FireblocksJoinWalletHandler>",
+            "sugared_genericSig": "<Self where Self : FireblocksSDK.FireblocksJoinWalletHandler>",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Protocol",
+        "usr": "s:13FireblocksSDK0A17JoinWalletHandlerP",
+        "mangledName": "$s13FireblocksSDK0A17JoinWalletHandlerP",
+        "moduleName": "FireblocksSDK",
+        "genericSig": "<τ_0_0 : AnyObject>",
+        "sugared_genericSig": "<Self : AnyObject>",
+        "declAttributes": [
+          "AccessControl"
         ]
       },
       {
@@ -17312,23 +17421,9 @@
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "Dictionary",
-      "offset": 2434,
+      "offset": 2528,
       "length": 3,
       "value": "[]"
-    },
-    {
-      "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
-      "kind": "BooleanLiteral",
-      "offset": 3082,
-      "length": 5,
-      "value": "false"
-    },
-    {
-      "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
-      "kind": "BooleanLiteral",
-      "offset": 3130,
-      "length": 5,
-      "value": "false"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
@@ -17340,455 +17435,469 @@
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "BooleanLiteral",
-      "offset": 3234,
+      "offset": 3224,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "BooleanLiteral",
-      "offset": 3282,
+      "offset": 3270,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "BooleanLiteral",
-      "offset": 3331,
+      "offset": 3328,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "BooleanLiteral",
-      "offset": 3483,
+      "offset": 3376,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "BooleanLiteral",
-      "offset": 4784,
+      "offset": 3425,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
+      "kind": "BooleanLiteral",
+      "offset": 3577,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
+      "kind": "BooleanLiteral",
+      "offset": 4878,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "StringLiteral",
-      "offset": 9275,
+      "offset": 9369,
       "length": 47,
       "value": "\"Notification Update - certifcatesUpdateNeeded\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "BooleanLiteral",
-      "offset": 9418,
+      "offset": 9512,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "BooleanLiteral",
-      "offset": 9434,
+      "offset": 9528,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "StringLiteral",
-      "offset": 9577,
+      "offset": 9671,
       "length": 41,
       "value": "\"Failed to download service certificates\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "BooleanLiteral",
-      "offset": 9819,
+      "offset": 9913,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "BooleanLiteral",
-      "offset": 9836,
+      "offset": 9930,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "StringLiteral",
-      "offset": 9971,
+      "offset": 10065,
       "length": 41,
       "value": "\"Failed to download service certificates\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "BooleanLiteral",
-      "offset": 10173,
+      "offset": 10267,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "BooleanLiteral",
-      "offset": 11499,
+      "offset": 11593,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "BooleanLiteral",
-      "offset": 11582,
+      "offset": 11676,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "StringLiteral",
-      "offset": 11756,
+      "offset": 11850,
       "length": 23,
       "value": "\"Upload logs succeeded\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "BooleanLiteral",
-      "offset": 12013,
+      "offset": 12107,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "IntegerLiteral",
-      "offset": 14384,
+      "offset": 14478,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "BooleanLiteral",
-      "offset": 15837,
+      "offset": 15931,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "BooleanLiteral",
-      "offset": 15877,
+      "offset": 15971,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "BooleanLiteral",
-      "offset": 16185,
+      "offset": 16279,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "BooleanLiteral",
-      "offset": 16570,
+      "offset": 16664,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "StringLiteral",
-      "offset": 16638,
+      "offset": 16732,
       "length": 31,
       "value": "\"Flow Failed: \""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "StringLiteral",
-      "offset": 16668,
+      "offset": 16762,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "BooleanLiteral",
-      "offset": 20274,
+      "offset": 20368,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "BooleanLiteral",
-      "offset": 20307,
+      "offset": 20401,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "BooleanLiteral",
-      "offset": 20625,
+      "offset": 20719,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "BooleanLiteral",
-      "offset": 20752,
+      "offset": 20846,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "StringLiteral",
-      "offset": 20820,
+      "offset": 20914,
       "length": 35,
       "value": "\"Flow Failed: \""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "StringLiteral",
-      "offset": 20854,
+      "offset": 20948,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "BooleanLiteral",
-      "offset": 22575,
+      "offset": 22669,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "BooleanLiteral",
-      "offset": 22610,
+      "offset": 22704,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "BooleanLiteral",
-      "offset": 23111,
+      "offset": 23205,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "BooleanLiteral",
-      "offset": 23570,
+      "offset": 23664,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "StringLiteral",
-      "offset": 23638,
+      "offset": 23732,
       "length": 35,
       "value": "\"Flow Failed: \""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "StringLiteral",
-      "offset": 23672,
+      "offset": 23766,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "StringLiteral",
-      "offset": 24918,
+      "offset": 25012,
       "length": 38,
       "value": "\"Sign Transaction has already started\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "IntegerLiteral",
-      "offset": 25175,
+      "offset": 25269,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "StringLiteral",
-      "offset": 25223,
+      "offset": 25317,
       "length": 73,
       "value": "\"Failed to sign transaction \""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "StringLiteral",
-      "offset": 25258,
+      "offset": 25352,
       "length": 5,
       "value": "\" Error - failed to get keys on device\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "BooleanLiteral",
-      "offset": 25652,
+      "offset": 25746,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "BooleanLiteral",
-      "offset": 26232,
+      "offset": 26326,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "StringLiteral",
-      "offset": 26370,
+      "offset": 26464,
       "length": 11,
       "value": "\"Succeeded\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "StringLiteral",
-      "offset": 26606,
+      "offset": 26700,
       "length": 63,
       "value": "\"Failed to sign transaction \""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "StringLiteral",
-      "offset": 26641,
+      "offset": 26735,
       "length": 5,
       "value": "\" Error - code: \""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "StringLiteral",
-      "offset": 26668,
+      "offset": 26762,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "BooleanLiteral",
-      "offset": 26921,
+      "offset": 27015,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "StringLiteral",
-      "offset": 26969,
+      "offset": 27063,
       "length": 31,
       "value": "\"Unexpected result from keyRef\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "BooleanLiteral",
-      "offset": 28936,
+      "offset": 29030,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "BooleanLiteral",
-      "offset": 29571,
+      "offset": 29665,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "BooleanLiteral",
-      "offset": 29740,
+      "offset": 29834,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "BooleanLiteral",
-      "offset": 31898,
+      "offset": 31992,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "BooleanLiteral",
-      "offset": 32642,
+      "offset": 32736,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "BooleanLiteral",
-      "offset": 32812,
+      "offset": 32906,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "BooleanLiteral",
-      "offset": 34926,
+      "offset": 35020,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "BooleanLiteral",
-      "offset": 35731,
+      "offset": 35825,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "BooleanLiteral",
-      "offset": 35900,
+      "offset": 35994,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "Array",
-      "offset": 37204,
+      "offset": 37430,
       "length": 2,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "BooleanLiteral",
-      "offset": 37669,
+      "offset": 37978,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "BooleanLiteral",
-      "offset": 37729,
+      "offset": 38038,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "BooleanLiteral",
-      "offset": 37765,
+      "offset": 38074,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "BooleanLiteral",
-      "offset": 38059,
+      "offset": 38368,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "BooleanLiteral",
-      "offset": 38440,
+      "offset": 38749,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "StringLiteral",
-      "offset": 38508,
+      "offset": 38817,
       "length": 31,
       "value": "\"Flow Failed: \""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/Fireblocks.swift",
       "kind": "StringLiteral",
-      "offset": 38538,
+      "offset": 38847,
       "length": 2,
       "value": "\"\""
     },
@@ -19629,28 +19738,28 @@
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RequestJoinExistingWalletRepo\/RequestJoinExistingWalletRepo.swift",
       "kind": "BooleanLiteral",
-      "offset": 777,
+      "offset": 825,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RequestJoinExistingWalletRepo\/RequestJoinExistingWalletRepo.swift",
       "kind": "BooleanLiteral",
-      "offset": 965,
+      "offset": 1013,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RequestJoinExistingWalletRepo\/RequestJoinExistingWalletRepo.swift",
       "kind": "BooleanLiteral",
-      "offset": 1464,
+      "offset": 1574,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RequestJoinExistingWalletRepo\/RequestJoinExistingWalletRepo.swift",
       "kind": "BooleanLiteral",
-      "offset": 1652,
+      "offset": 1762,
       "length": 5,
       "value": "false"
     },
@@ -26328,21 +26437,21 @@
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/OutgoingManager\/SuccessResponse.swift",
       "kind": "StringLiteral",
-      "offset": 1139,
+      "offset": 1318,
       "length": 8,
       "value": "\"status\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/OutgoingManager\/SuccessResponse.swift",
       "kind": "StringLiteral",
-      "offset": 1139,
+      "offset": 1318,
       "length": 8,
       "value": "\"status\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/OutgoingManager\/SuccessResponse.swift",
       "kind": "StringLiteral",
-      "offset": 1533,
+      "offset": 1712,
       "length": 2,
       "value": "\"\""
     },
@@ -27203,98 +27312,91 @@
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RequestJoinExistingWalletRepo\/AddDeviceSetupStep.swift",
       "kind": "BooleanLiteral",
-      "offset": 920,
+      "offset": 1084,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RequestJoinExistingWalletRepo\/AddDeviceSetupStep.swift",
       "kind": "BooleanLiteral",
-      "offset": 1614,
-      "length": 4,
-      "value": "true"
-    },
-    {
-      "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RequestJoinExistingWalletRepo\/AddDeviceSetupStep.swift",
-      "kind": "BooleanLiteral",
-      "offset": 1997,
+      "offset": 2452,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RequestJoinExistingWalletRepo\/AddDeviceSetupStep.swift",
       "kind": "StringLiteral",
-      "offset": 2400,
+      "offset": 2856,
       "length": 39,
       "value": "\"Did recieve addDeviceListener timeout\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RequestJoinExistingWalletRepo\/AddDeviceSetupStep.swift",
       "kind": "BooleanLiteral",
-      "offset": 2477,
+      "offset": 2933,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RequestJoinExistingWalletRepo\/AddDeviceSetupStep.swift",
       "kind": "StringLiteral",
-      "offset": 2975,
+      "offset": 3432,
       "length": 57,
       "value": "\"Did recieve bad addDeviceListener response: \""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RequestJoinExistingWalletRepo\/AddDeviceSetupStep.swift",
       "kind": "StringLiteral",
-      "offset": 3031,
+      "offset": 3488,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RequestJoinExistingWalletRepo\/AddDeviceSetupStep.swift",
       "kind": "BooleanLiteral",
-      "offset": 3117,
+      "offset": 3574,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RequestJoinExistingWalletRepo\/AddDeviceSetupStep.swift",
       "kind": "BooleanLiteral",
-      "offset": 3159,
+      "offset": 3616,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RequestJoinExistingWalletRepo\/AddDeviceSetupStep.swift",
       "kind": "StringLiteral",
-      "offset": 3452,
+      "offset": 3910,
       "length": 57,
       "value": "\"Did recieve bad addDeviceListener response: \""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RequestJoinExistingWalletRepo\/AddDeviceSetupStep.swift",
       "kind": "StringLiteral",
-      "offset": 3508,
+      "offset": 3966,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RequestJoinExistingWalletRepo\/AddDeviceSetupStep.swift",
       "kind": "BooleanLiteral",
-      "offset": 3547,
+      "offset": 4005,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RequestJoinExistingWalletRepo\/AddDeviceSetupStep.swift",
       "kind": "StringLiteral",
-      "offset": 3687,
+      "offset": 4146,
       "length": 18,
       "value": "\"Unexpected error\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/RequestJoinExistingWalletRepo\/AddDeviceSetupStep.swift",
       "kind": "BooleanLiteral",
-      "offset": 3735,
+      "offset": 4194,
       "length": 5,
       "value": "false"
     },

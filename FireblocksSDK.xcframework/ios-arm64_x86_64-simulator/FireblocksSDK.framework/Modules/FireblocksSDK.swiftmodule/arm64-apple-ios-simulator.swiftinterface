@@ -135,9 +135,9 @@ extension FireblocksSDK.Fireblocks {
 }
 extension FireblocksSDK.Fireblocks {
   #if compiler(>=5.3) && $AsyncAwait
-  final public func requestJoinExistingWallet() async throws -> Swift.Set<FireblocksSDK.KeyDescriptor>
+  final public func requestJoinExistingWallet(joinWalletHandler: any FireblocksSDK.FireblocksJoinWalletHandler) async throws -> Swift.Set<FireblocksSDK.KeyDescriptor>
   #endif
-  final public func requestJoinExistingWallet(callback: @escaping (Swift.Set<FireblocksSDK.KeyDescriptor>) -> ()) throws
+  final public func requestJoinExistingWallet(joinWalletHandler: any FireblocksSDK.FireblocksJoinWalletHandler, callback: @escaping (Swift.Set<FireblocksSDK.KeyDescriptor>) -> ()) throws
 }
 public enum KeyTakeoverStatus : Swift.String, Swift.Codable, Swift.Equatable {
   case INITIATED
@@ -265,6 +265,13 @@ public struct DerivationParams {
 }
 public protocol FireblocksPassphraseResolver {
   func resolve(passphraseId: Swift.String, callback: @escaping (Swift.String) -> ())
+}
+public protocol FireblocksJoinWalletHandler : AnyObject {
+  func onRequestId(requestId: Swift.String)
+  func onProvisionerFound()
+}
+extension FireblocksSDK.FireblocksJoinWalletHandler {
+  public func onProvisionerFound()
 }
 public enum LogLevel : Swift.String {
   case none

@@ -7,6 +7,7 @@
 
 import FireblocksSDK
 import UIKit
+import SwiftUI
 
 class MpcKeysViewController: UIViewController {
     
@@ -37,12 +38,13 @@ class MpcKeysViewController: UIViewController {
     }
     
     private func configUI(){
-        self.navigationItem.title = LocalizableStrings.generateMPCKeys
         if viewModel.isAddingDevice {
+            self.navigationItem.title = ""
             headerImageView.image = AssetsIcons.addDeviceImage.getIcon()
             headerLabel.text = LocalizableStrings.mpcKeysAddDeviceTitle
             generateMpcKeysButton.config(title: LocalizableStrings.continueTitle, style: .Primary)
         } else {
+            self.navigationItem.title = LocalizableStrings.generateMPCKeys
             headerImageView.image = AssetsIcons.generateKeyImage.getIcon()
             headerLabel.text = LocalizableStrings.mpcKeysGenertaeTitle
             generateMpcKeysButton.config(title: LocalizableStrings.generateKeysButtonTitle, style: .Primary)
@@ -52,6 +54,7 @@ class MpcKeysViewController: UIViewController {
     @IBAction func generateMpcKey(_ sender: AppActionBotton) {
         if viewModel.isAddingDevice {
             removeAlertView()
+            navigationItem.rightBarButtonItem = nil
             showActivityIndicator(message: LocalizableStrings.preparingDeviceIndicatorMessage)
             viewModel.addDevice()
         } else {
@@ -136,5 +139,18 @@ extension MpcKeysViewController: MpcKeysViewModelDelegate {
             
             self.showErrorView(message: message)
         }
-    } 
+    }
+    
+    func onRequestId(requestId: String) {
+        DispatchQueue.main.async {
+            self.hideActivityIndicator()
+            let view = AddDeviceQRView(requestId: requestId, email: self.viewModel.email)
+            let vc = FBHostingViewController(rootView: AnyView(view))
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
+    func onProvisionerFound() {
+        print("im here")
+    }
 }

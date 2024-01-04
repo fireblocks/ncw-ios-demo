@@ -6,10 +6,14 @@
 //
 
 import Foundation
+import FireblocksSDK
+import FirebaseAuth
 
 protocol MpcKeysViewModelDelegate: AnyObject {
     func configSuccessUI()
     func showAlertMessage(message: String)
+    func onRequestId(requestId: String)
+    func onProvisionerFound()
 }
 
 final class MpcKeysViewModel {
@@ -18,10 +22,12 @@ final class MpcKeysViewModel {
     private var mpcKeyTask: Task<Void, Never>?
     var didSucceedGenerateKeys = false
     var isAddingDevice: Bool
+    var email: String?
     weak var delegate: MpcKeysViewModelDelegate?
     
     init(isAddingDevice: Bool) {
         self.isAddingDevice = isAddingDevice
+        self.email = Auth.auth().currentUser?.email
     }
     
     deinit {
@@ -44,7 +50,7 @@ final class MpcKeysViewModel {
     
     private func addDeviceFromSdk(_ delegate: FireblocksKeyCreationDelegate) {
         mpcKeyTask = Task {
-            await FireblocksManager.shared.addDevice(self)
+            await FireblocksManager.shared.addDevice(self, joinWalletHandler: self)
         }
     }
     
@@ -75,5 +81,15 @@ extension MpcKeysViewModel: FireblocksKeyCreationDelegate {
         } else {
             self.delegate?.showAlertMessage(message: LocalizableStrings.mpcKeysGenerationFailed)
         }
+    }
+}
+
+extension MpcKeysViewModel: FireblocksJoinWalletHandler {
+    func onRequestId(requestId: String) {
+        self.delegate?.onRequestId(requestId: requestId)
+    }
+    
+    func onProvisionerFound() {
+        self.delegate?.onProvisionerFound()
     }
 }

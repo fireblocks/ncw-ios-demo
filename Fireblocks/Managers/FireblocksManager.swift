@@ -95,9 +95,9 @@ class FireblocksManager {
         }
     }
     
-    func addDevice(_ delegate: FireblocksKeyCreationDelegate) async {
+    func addDevice(_ delegate: FireblocksKeyCreationDelegate, joinWalletHandler: FireblocksJoinWalletHandler) async {
         do {
-            let result = try await getSdkInstance()?.requestJoinExistingWallet()
+            let result = try await getSdkInstance()?.requestJoinExistingWallet(joinWalletHandler: joinWalletHandler)
             let isGenerated = result?.first?.keyStatus == .READY
             await delegate.isKeysGenerated(isGenerated: isGenerated)
         } catch {

@@ -46,4 +46,12 @@ class UsersLocalStorageManager: ObservableObject {
         UserDefaults.standard.set(deviceId, forKey: "\(email)-deviceId")
     }
 
+    func setAddDeviceTimer() {
+        UserDefaults.standard.set(Date().timeIntervalSince1970, forKey: "addDeviceStartTimer")
+    }
+
+    func getAddDeviceTimer() -> Double? {
+        UserDefaults.standard.double(forKey: "addDeviceStartTimer")
+    }
+
 }
