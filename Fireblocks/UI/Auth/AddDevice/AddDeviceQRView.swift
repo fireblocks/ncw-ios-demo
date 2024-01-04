@@ -82,6 +82,7 @@ struct AddDeviceQRView: View {
                                             .padding(8)
                                             .lineLimit(1)
                                         Button {
+                                            viewModel.showToast()
                                             UIPasteboard.general.string = url
                                         } label: {
                                             Image(uiImage: AssetsIcons.copy.getIcon())
@@ -89,6 +90,7 @@ struct AddDeviceQRView: View {
                                         .tint(.white)
                                     }
                                     .padding(.horizontal, 8)
+                                    .padding(.bottom, 16)
                                 }
                                 
 //                                Text(decoded)

@@ -12,12 +12,14 @@ import UIKit
 
 protocol UIHostingViewDelegate: AnyObject {
     func showIndicator()
+    func copied()
 }
 
 class FBHostingViewController: UIHostingController<AnyView> {
     override init(rootView: AnyView) {
         super.init(rootView: rootView)
         NotificationCenter.default.addObserver(self, selector: #selector(showIndicator), name: Notification.Name("showIndicator"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(copied), name: Notification.Name("copied"), object: nil)
     }
     
     @MainActor required dynamic init?(coder aDecoder: NSCoder) {
@@ -33,5 +35,10 @@ extension FBHostingViewController: UIHostingViewDelegate {
     @objc func showIndicator() {
         self.showActivityIndicator()
     }
+    
+    @objc func copied() {
+        self.showToast("Copied!")
+    }
+
 }
 

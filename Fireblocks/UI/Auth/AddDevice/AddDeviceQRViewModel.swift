@@ -53,6 +53,10 @@ class AddDeviceQRViewModel: ObservableObject {
         NotificationCenter.default.post(name: Notification.Name("showIndicator"), object: nil, userInfo: nil)
     }
     
+    func showToast() {
+        NotificationCenter.default.post(name: Notification.Name("copied"), object: nil, userInfo: nil)
+    }
+    
     func startTimer() {
         UsersLocalStorageManager.shared.setAddDeviceTimer()
     }

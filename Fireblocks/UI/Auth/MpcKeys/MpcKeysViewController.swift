@@ -8,6 +8,7 @@
 import FireblocksSDK
 import UIKit
 import SwiftUI
+import FirebaseAuth
 
 class MpcKeysViewController: UIViewController {
     
@@ -34,7 +35,6 @@ class MpcKeysViewController: UIViewController {
         super.viewDidLoad()
         viewModel.delegate = self
         configUI()
-        setNavigationControllerRightButton(icon: AssetsIcons.settings, action: #selector(navigateToSettings))
     }
     
     private func configUI(){
@@ -43,11 +43,14 @@ class MpcKeysViewController: UIViewController {
             headerImageView.image = AssetsIcons.addDeviceImage.getIcon()
             headerLabel.text = LocalizableStrings.mpcKeysAddDeviceTitle
             generateMpcKeysButton.config(title: LocalizableStrings.continueTitle, style: .Primary)
+            setNavigationControllerRightButton(icon: AssetsIcons.close, action: #selector(signOut))
+
         } else {
             self.navigationItem.title = LocalizableStrings.generateMPCKeys
             headerImageView.image = AssetsIcons.generateKeyImage.getIcon()
             headerLabel.text = LocalizableStrings.mpcKeysGenertaeTitle
             generateMpcKeysButton.config(title: LocalizableStrings.generateKeysButtonTitle, style: .Primary)
+            setNavigationControllerRightButton(icon: AssetsIcons.settings, action: #selector(navigateToSettings))
         }
     }
     
@@ -65,6 +68,24 @@ class MpcKeysViewController: UIViewController {
             } else {
                 self.navigateCreateBackupScreen()
             }
+        }
+    }
+    
+    @objc func signOut() {
+        FireblocksManager.shared.stopPollingMessages()
+        do{
+            try Auth.auth().signOut()
+            TransfersViewModel.shared.signOut()
+            AssetListViewModel.shared.signOut()
+            FireblocksManager.shared.stopPollingMessages()
+        }catch{
+            print("SettingsViewModel can't sign out with current user: \(error)")
+        }
+        if let window = view.window {
+            let rootViewController = UINavigationController()
+            let vc = AuthViewController()
+            rootViewController.pushViewController(vc, animated: true)
+            window.rootViewController = rootViewController
         }
     }
     
@@ -86,6 +107,10 @@ class MpcKeysViewController: UIViewController {
     }
     
     private func showErrorView(message: String){
+        if viewModel.isAddingDevice {
+            setNavigationControllerRightButton(icon: AssetsIcons.close, action: #selector(signOut))
+        }
+        
         alertView = showAlert(
             description: message,
             isAnimationEnabled: false,
