@@ -15,12 +15,15 @@
 		2B3E6C0F2ACDAB97000E91CF /* AddAssetsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B3E6C0E2ACDAB97000E91CF /* AddAssetsViewController.xib */; };
 		2B3E6C112ACE96AC000E91CF /* AddAssetViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3E6C102ACE96AC000E91CF /* AddAssetViewCell.swift */; };
 		2B3E6C132ACE96D7000E91CF /* AddAssetViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B3E6C122ACE96D7000E91CF /* AddAssetViewCell.xib */; };
-		2B7A71EE2B42B3A10011C398 /* MPCFBFramework.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B7A71EC2B42B39F0011C398 /* MPCFBFramework.xcframework */; };
-		2B7A71EF2B42B3A10011C398 /* MPCFBFramework.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2B7A71EC2B42B39F0011C398 /* MPCFBFramework.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		2B7A72112B4599140011C398 /* FireblocksSDK.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B7A720F2B4599110011C398 /* FireblocksSDK.xcframework */; };
-		2B7A72122B4599150011C398 /* FireblocksSDK.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2B7A720F2B4599110011C398 /* FireblocksSDK.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		2B7A72162B45A0CA0011C398 /* AddDeviceQRViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B7A72152B45A0CA0011C398 /* AddDeviceQRViewController.xib */; };
-		2B7A72192B45A0EC0011C398 /* AddDeviceQRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A72182B45A0EC0011C398 /* AddDeviceQRViewController.swift */; };
+		2B558E842B47042D006212B2 /* UIHostingBridgeNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558E832B47042D006212B2 /* UIHostingBridgeNotifications.swift */; };
+		2B558E862B47044C006212B2 /* PrepareForScanViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558E852B47044C006212B2 /* PrepareForScanViewModel.swift */; };
+		2B558E882B4704BA006212B2 /* PrepareForScanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558E872B4704BA006212B2 /* PrepareForScanView.swift */; };
+		2B558E922B4817E4006212B2 /* FireblocksSDK.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B558E902B4817DE006212B2 /* FireblocksSDK.xcframework */; };
+		2B558E932B4817E4006212B2 /* FireblocksSDK.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2B558E902B4817DE006212B2 /* FireblocksSDK.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2B558E942B4817E5006212B2 /* MPCFBFramework.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B558E8E2B481797006212B2 /* MPCFBFramework.xcframework */; };
+		2B558E952B4817E5006212B2 /* MPCFBFramework.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2B558E8E2B481797006212B2 /* MPCFBFramework.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2B558E972B48347D006212B2 /* AddDeviceHostingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558E962B48347D006212B2 /* AddDeviceHostingVC.swift */; };
+		2B558E992B483CB3006212B2 /* PrepareForScanHostingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558E982B483CB3006212B2 /* PrepareForScanHostingVC.swift */; };
 		2B7A721B2B45A2250011C398 /* AddDeviceQRViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A721A2B45A2250011C398 /* AddDeviceQRViewModel.swift */; };
 		2B7A721D2B45A8FF0011C398 /* AddDeviceQRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A721C2B45A8FF0011C398 /* AddDeviceQRView.swift */; };
 		2B7A72202B45AAEB0011C398 /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A721F2B45AAEB0011C398 /* Modifiers.swift */; };
@@ -183,8 +186,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				2B7A72122B4599150011C398 /* FireblocksSDK.xcframework in Embed Frameworks */,
-				2B7A71EF2B42B3A10011C398 /* MPCFBFramework.xcframework in Embed Frameworks */,
+				2B558E932B4817E4006212B2 /* FireblocksSDK.xcframework in Embed Frameworks */,
+				2B558E952B4817E5006212B2 /* MPCFBFramework.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -200,12 +203,15 @@
 		2B3E6C0E2ACDAB97000E91CF /* AddAssetsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddAssetsViewController.xib; sourceTree = "<group>"; };
 		2B3E6C102ACE96AC000E91CF /* AddAssetViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAssetViewCell.swift; sourceTree = "<group>"; };
 		2B3E6C122ACE96D7000E91CF /* AddAssetViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddAssetViewCell.xib; sourceTree = "<group>"; };
+		2B558E832B47042D006212B2 /* UIHostingBridgeNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHostingBridgeNotifications.swift; sourceTree = "<group>"; };
+		2B558E852B47044C006212B2 /* PrepareForScanViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareForScanViewModel.swift; sourceTree = "<group>"; };
+		2B558E872B4704BA006212B2 /* PrepareForScanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareForScanView.swift; sourceTree = "<group>"; };
+		2B558E8E2B481797006212B2 /* MPCFBFramework.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = MPCFBFramework.xcframework; sourceTree = "<group>"; };
+		2B558E902B4817DE006212B2 /* FireblocksSDK.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = FireblocksSDK.xcframework; sourceTree = "<group>"; };
+		2B558E962B48347D006212B2 /* AddDeviceHostingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDeviceHostingVC.swift; sourceTree = "<group>"; };
+		2B558E982B483CB3006212B2 /* PrepareForScanHostingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareForScanHostingVC.swift; sourceTree = "<group>"; };
 		2B769B9D2B1DFCBA00557E97 /* NCW-sandboxDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "NCW-sandboxDebug.entitlements"; sourceTree = "<group>"; };
 		2B769B9E2B1DFCC700557E97 /* NCW-sandboxRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "NCW-sandboxRelease.entitlements"; sourceTree = "<group>"; };
-		2B7A71EC2B42B39F0011C398 /* MPCFBFramework.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = MPCFBFramework.xcframework; sourceTree = "<group>"; };
-		2B7A720F2B4599110011C398 /* FireblocksSDK.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = FireblocksSDK.xcframework; sourceTree = "<group>"; };
-		2B7A72152B45A0CA0011C398 /* AddDeviceQRViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddDeviceQRViewController.xib; sourceTree = "<group>"; };
-		2B7A72182B45A0EC0011C398 /* AddDeviceQRViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDeviceQRViewController.swift; sourceTree = "<group>"; };
 		2B7A721A2B45A2250011C398 /* AddDeviceQRViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDeviceQRViewModel.swift; sourceTree = "<group>"; };
 		2B7A721C2B45A8FF0011C398 /* AddDeviceQRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDeviceQRView.swift; sourceTree = "<group>"; };
 		2B7A721F2B45AAEB0011C398 /* Modifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifiers.swift; sourceTree = "<group>"; };
@@ -365,12 +371,12 @@
 				86AF7C4D2A430BF70026DF15 /* (null) in Frameworks */,
 				866A73C42A696A0F00E8E545 /* GoogleAPIClientForREST_DriveActivity in Frameworks */,
 				869A71392A3859C900653C8F /* FirebaseAuth in Frameworks */,
-				2B7A72112B4599140011C398 /* FireblocksSDK.xcframework in Frameworks */,
+				2B558E922B4817E4006212B2 /* FireblocksSDK.xcframework in Frameworks */,
+				2B558E942B4817E5006212B2 /* MPCFBFramework.xcframework in Frameworks */,
 				86E8351A2A60331B003E98BE /* NVActivityIndicatorViewExtended in Frameworks */,
 				86C127FB2A53087B00255757 /* (null) in Frameworks */,
 				869A713B2A3859C900653C8F /* FirebaseAuthCombine-Community in Frameworks */,
 				86E835182A60331B003E98BE /* NVActivityIndicatorView in Frameworks */,
-				2B7A71EE2B42B3A10011C398 /* MPCFBFramework.xcframework in Frameworks */,
 				86A9971A2A6FAD0B00A6B60B /* SDWebImage in Frameworks */,
 				869A713E2A385D5300653C8F /* GoogleSignIn in Frameworks */,
 				866A73C62A696A0F00E8E545 /* GoogleAPIClientForREST_DriveLabels in Frameworks */,
@@ -403,15 +409,34 @@
 			path = AddAsset;
 			sourceTree = "<group>";
 		};
+		2B558E812B470037006212B2 /* PrepareForScan */ = {
+			isa = PBXGroup;
+			children = (
+				2B558E852B47044C006212B2 /* PrepareForScanViewModel.swift */,
+				2B558E872B4704BA006212B2 /* PrepareForScanView.swift */,
+				2B558E982B483CB3006212B2 /* PrepareForScanHostingVC.swift */,
+			);
+			path = PrepareForScan;
+			sourceTree = "<group>";
+		};
+		2B558E822B47009C006212B2 /* AddDeviceQR */ = {
+			isa = PBXGroup;
+			children = (
+				2B7A721A2B45A2250011C398 /* AddDeviceQRViewModel.swift */,
+				2B7A721C2B45A8FF0011C398 /* AddDeviceQRView.swift */,
+				2B558E962B48347D006212B2 /* AddDeviceHostingVC.swift */,
+			);
+			path = AddDeviceQR;
+			sourceTree = "<group>";
+		};
 		2B7A72172B45A0DF0011C398 /* AddDevice */ = {
 			isa = PBXGroup;
 			children = (
-				2B7A72152B45A0CA0011C398 /* AddDeviceQRViewController.xib */,
-				2B7A72182B45A0EC0011C398 /* AddDeviceQRViewController.swift */,
-				2B7A721A2B45A2250011C398 /* AddDeviceQRViewModel.swift */,
-				2B7A721C2B45A8FF0011C398 /* AddDeviceQRView.swift */,
+				2B558E812B470037006212B2 /* PrepareForScan */,
+				2B558E822B47009C006212B2 /* AddDeviceQR */,
 				2B05C0692B4698BF004CF1CE /* JoinRequestData.swift */,
 				2BA53D3C2B46B348008C7B6C /* FBHostingViewController.swift */,
+				2B558E832B47042D006212B2 /* UIHostingBridgeNotifications.swift */,
 			);
 			path = AddDevice;
 			sourceTree = "<group>";
@@ -857,8 +882,8 @@
 		86859F462A384D8A0056E3C6 = {
 			isa = PBXGroup;
 			children = (
-				2B7A720F2B4599110011C398 /* FireblocksSDK.xcframework */,
-				2B7A71EC2B42B39F0011C398 /* MPCFBFramework.xcframework */,
+				2B558E902B4817DE006212B2 /* FireblocksSDK.xcframework */,
+				2B558E8E2B481797006212B2 /* MPCFBFramework.xcframework */,
 				2B769B9E2B1DFCC700557E97 /* NCW-sandboxRelease.entitlements */,
 				2B769B9D2B1DFCBA00557E97 /* NCW-sandboxDebug.entitlements */,
 				86859F512A384D8A0056E3C6 /* Fireblocks */,
@@ -1171,7 +1196,6 @@
 				86ED2BB32A64434500377F6C /* AreYouSureBottomSheet.xib in Resources */,
 				602573322A39E7F600A3C5D5 /* AssetListViewController.xib in Resources */,
 				603B71092A8137AF00796CEE /* Inter-Bold.ttf in Resources */,
-				2B7A72162B45A0CA0011C398 /* AddDeviceQRViewController.xib in Resources */,
 				86ED2BAE2A64430F00377F6C /* SettingsViewController.xib in Resources */,
 				603B71062A81379D00796CEE /* Inter-Regular.ttf in Resources */,
 				2B3E6C0F2ACDAB97000E91CF /* AddAssetsViewController.xib in Resources */,
@@ -1202,6 +1226,7 @@
 				8668C22A2A67109400575A6A /* AdvancedInfoViewModel.swift in Sources */,
 				86E4A1682A6852CE00A2861D /* TakeoverViewController.swift in Sources */,
 				60DA06A42A651D9300160ADC /* AssetViewCell.swift in Sources */,
+				2B558E972B48347D006212B2 /* AddDeviceHostingVC.swift in Sources */,
 				866A73CF2A696A5E00E8E545 /* BackupRepository.swift in Sources */,
 				60DA06972A651AA000160ADC /* AppActionBotton.swift in Sources */,
 				86B67A392A6FF925007AC728 /* Int+Extension.swift in Sources */,
@@ -1223,8 +1248,10 @@
 				2B05C06A2B4698BF004CF1CE /* JoinRequestData.swift in Sources */,
 				60DA069F2A651C5200160ADC /* TabBarViewController.swift in Sources */,
 				2B7A72202B45AAEB0011C398 /* Modifiers.swift in Sources */,
+				2B558E842B47042D006212B2 /* UIHostingBridgeNotifications.swift in Sources */,
 				60DA06AA2A651F7E00160ADC /* FeeRateViewModel.swift in Sources */,
 				862E2A9C2A543B41002FF774 /* AuthViewModel.swift in Sources */,
+				2B558E862B47044C006212B2 /* PrepareForScanViewModel.swift in Sources */,
 				60DA06B52A65204600160ADC /* SendToViewController.swift in Sources */,
 				2B94CFCC2A9CE576003E7508 /* CodableAnyExtension.swift in Sources */,
 				2B3E6C032ACC0C40000E91CF /* BackupStatusViewModel.swift in Sources */,
@@ -1237,7 +1264,6 @@
 				60DA06582A645E1300160ADC /* Fee.swift in Sources */,
 				2B94CFFD2A9F3F03003E7508 /* PollingListener.swift in Sources */,
 				86229D812A8B7FF20089F7DA /* AssetHeaderUIView.swift in Sources */,
-				2B7A72192B45A0EC0011C398 /* AddDeviceQRViewController.swift in Sources */,
 				86C26BEC2A488ACD00884C47 /* LocalizableStrings.swift in Sources */,
 				2B7A721D2B45A8FF0011C398 /* AddDeviceQRView.swift in Sources */,
 				2B7A72222B45AB2D0011C398 /* FBFont.swift in Sources */,
@@ -1261,6 +1287,7 @@
 				60B137B92A8B6A4C009A4ECB /* TransactionSentViewController.swift in Sources */,
 				862E2AA62A543B86002FF774 /* AppleSignInManager.swift in Sources */,
 				862E2AA82A543B86002FF774 /* AuthProtocols.swift in Sources */,
+				2B558E992B483CB3006212B2 /* PrepareForScanHostingVC.swift in Sources */,
 				60EECFA02A66BE3100F3891C /* ChooseAssetRepository.swift in Sources */,
 				602573312A39E7F600A3C5D5 /* AssetListViewController.swift in Sources */,
 				603903772A6D1F560060E026 /* ApproveViewModel.swift in Sources */,
@@ -1270,6 +1297,7 @@
 				2B94CFC52A9CDF62003E7508 /* ExtraParameters.swift in Sources */,
 				867828E02A696D170035787D /* UIButton+Extension.swift in Sources */,
 				2B94CFD32A9CE627003E7508 /* CodableExtension.swift in Sources */,
+				2B558E882B4704BA006212B2 /* PrepareForScanView.swift in Sources */,
 				6025732A2A39D76900A3C5D5 /* AssetsIcons.swift in Sources */,
 				866A73CC2A696A4B00E8E545 /* BackupStatusViewController.swift in Sources */,
 				866A73DA2A696AA200E8E545 /* GoogleDriveManager.swift in Sources */,

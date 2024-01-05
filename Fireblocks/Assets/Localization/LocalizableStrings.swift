@@ -90,5 +90,6 @@ struct LocalizableStrings{
     static let mpcKeysAddDeviceHeader = "mpc_keys_add_device_header".localize()
     static let shareLogs = "share_logs".localize()
     static let addNewDevice = "add_new_device".localize()
-
+    static let addNewDeviceNavigationBar = "add_new_device_navigation_bar".localize()
+    
 }

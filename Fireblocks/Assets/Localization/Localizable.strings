@@ -28,6 +28,7 @@
 "mpc_keys_add_device_header" = "Add new device";
 "share_logs" = "Share\nlogs";
 "add_new_device" = "Add new\ndevice";
+"add_new_device_navigation_bar" = "Add new device";
 
 "continue" = "Continue";
 "are_you_sure" = "Are you sure?";

@@ -167,15 +167,26 @@ extension MpcKeysViewController: MpcKeysViewModelDelegate {
     }
     
     func onRequestId(requestId: String) {
+        guard let email = self.viewModel.email else {
+            return
+        }
+        
         DispatchQueue.main.async {
             self.hideActivityIndicator()
-            let view = AddDeviceQRView(requestId: requestId, email: self.viewModel.email)
-            let vc = FBHostingViewController(rootView: AnyView(view))
+            //            let view = AddDeviceQRView(requestId: requestId, email: self.viewModel.email)
+            let vc = AddDeviceHostingVC(requestId: requestId, email: email)
             self.navigationController?.pushViewController(vc, animated: true)
         }
+
     }
     
     func onProvisionerFound() {
         print("im here")
+    }
+}
+
+extension MpcKeysViewController: QRCodeScannerViewControllerDelegate {
+    func gotAddress(address: String) {
+        print("")
     }
 }

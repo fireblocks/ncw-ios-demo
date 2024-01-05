@@ -4,6 +4,18 @@
 <dict>
 	<key>files</key>
 	<dict>
+		<key>Frameworks/MPCFBFramework.framework/Info.plist</key>
+		<data>
+		A77CalMUqkwnfvolBj2+m7wBxVQ=
+		</data>
+		<key>Frameworks/MPCFBFramework.framework/MPCFBFramework</key>
+		<data>
+		t8QsL8d9uMvIT8xHBbCtRUGasCs=
+		</data>
+		<key>Frameworks/MPCFBFramework.framework/_CodeSignature/CodeResources</key>
+		<data>
+		xJFQhi1aV7jmzYWzc2MD5YBHrM4=
+		</data>
 		<key>Headers/FireblocksSDK-Swift.h</key>
 		<data>
 		952JqQm7+vVUa/EA9lvYK2IF4HA=
@@ -38,7 +50,7 @@
 		</data>
 		<key>Modules/FireblocksSDK.swiftmodule/arm64-apple-ios.swiftmodule</key>
 		<data>
-		gsYHFGUGyBuL7lQQerL50JQIJqM=
+		HwkJgEiSBQF17ECHCWAl9dMOW/Y=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -63,6 +75,27 @@
 	</dict>
 	<key>files2</key>
 	<dict>
+		<key>Frameworks/MPCFBFramework.framework/Info.plist</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			oh5foWyNGMbEzBRh/+jEREdOqTanQer3k0W314F2Yrg=
+			</data>
+		</dict>
+		<key>Frameworks/MPCFBFramework.framework/MPCFBFramework</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			MLZvGzHAJneUvO4fzvj7Eh/6ulmTaborXOxEGxc9y7c=
+			</data>
+		</dict>
+		<key>Frameworks/MPCFBFramework.framework/_CodeSignature/CodeResources</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			DN5pdjn91vexuK8QrmOgUGayXpFP3YUBBLWDj7X7XM0=
+			</data>
+		</dict>
 		<key>Headers/FireblocksSDK-Swift.h</key>
 		<dict>
 			<key>hash2</key>
@@ -116,7 +149,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			DQ99XtlCsPhHBiZSUyqadE/ijSJ4rzrP83RMdTEawwU=
+			ys17By99DQiqyTvP0PeQ/BzwyEhcis/lA6gEmPetgdk=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

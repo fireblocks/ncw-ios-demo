@@ -9,6 +9,7 @@ import UIKit
 import UIKit
 import SDWebImage
 import FirebaseAuth
+import SwiftUI
 
 class SettingsViewController: UIViewController {
     
@@ -131,7 +132,7 @@ class SettingsViewController: UIViewController {
     }
     
     @IBAction func addNewDeviceTapped(_ sender: SettingsOptionButton) {
-        navigateToAdvancedInfoViewController()
+        navigateToAddDeviceViewController()
     }
     
     @IBAction func shareLogsTapped(_ sender: SettingsOptionButton) {
@@ -156,6 +157,12 @@ class SettingsViewController: UIViewController {
         vc.actionType = Recover(delegate: vc.self)
         navigationController?.pushViewController(vc, animated: true)
     }
+    
+    private func navigateToAddDeviceViewController() {
+        let vc = PrepareForScanHostingVC()
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+
     
     private func navigateToTakeoverViewController() {
         if isDisableAdvancedFeatures {

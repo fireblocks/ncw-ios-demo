@@ -4,6 +4,18 @@
 <dict>
 	<key>files</key>
 	<dict>
+		<key>Frameworks/MPCFBFramework.framework/Info.plist</key>
+		<data>
+		InKMxjyY1Pd9QsBvrcOK7vcYq7A=
+		</data>
+		<key>Frameworks/MPCFBFramework.framework/MPCFBFramework</key>
+		<data>
+		eU80pF8SiHgMTgwg+/ueo8jduvw=
+		</data>
+		<key>Frameworks/MPCFBFramework.framework/_CodeSignature/CodeResources</key>
+		<data>
+		hL22hndZXuhBTkI2JUJf1T5W1Mk=
+		</data>
 		<key>Headers/FireblocksSDK-Swift.h</key>
 		<data>
 		/ZeV2pm10m1Q63HHlXCJRNdHnZ0=
@@ -38,7 +50,7 @@
 		</data>
 		<key>Modules/FireblocksSDK.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		ujD6FDxUkD4q60Jg9IzdajYP+/s=
+		VowJ9bdKJPQ7WZ7ifxjkCgAm7ls=
 		</data>
 		<key>Modules/FireblocksSDK.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<data>
@@ -58,7 +70,7 @@
 		</data>
 		<key>Modules/FireblocksSDK.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		rKerIdAkpF5yRv2bPq80KrOi+S8=
+		aEizdm+6zIvHFJONM3tYhuyYJu4=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -83,6 +95,27 @@
 	</dict>
 	<key>files2</key>
 	<dict>
+		<key>Frameworks/MPCFBFramework.framework/Info.plist</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			pajNCEeblpcPgIZqyYUNMhsniEXk4moUlGTQw6B6uZE=
+			</data>
+		</dict>
+		<key>Frameworks/MPCFBFramework.framework/MPCFBFramework</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			LN01Ok7ifgC7vVJm61kcz87AjlyGqJTs5/p/FDxsrpQ=
+			</data>
+		</dict>
+		<key>Frameworks/MPCFBFramework.framework/_CodeSignature/CodeResources</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			v5CqRUFNZDFh6zEuK8Q8w94NBPBtw4JOgCueJesdJvs=
+			</data>
+		</dict>
 		<key>Headers/FireblocksSDK-Swift.h</key>
 		<dict>
 			<key>hash2</key>
@@ -136,7 +169,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			SZtJhxvwqPFOJeQivzx2Vn0K0fqc0fsIyJDi0GP9fNw=
+			ByFInfSH/5NC64Ntlm3exSBNSnipSKdBMI6XzRwQwDc=
 			</data>
 		</dict>
 		<key>Modules/FireblocksSDK.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
@@ -171,7 +204,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			4gKX2KkFkGnEX14Er1tF6KaV23TqQqQDD1S23oNaziA=
+			N2BRf7Aj8oqE6iIg+OGOuGUfB+g0aoRSRUHiF5WfyAg=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

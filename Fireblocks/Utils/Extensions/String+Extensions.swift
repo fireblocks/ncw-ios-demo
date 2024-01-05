@@ -31,4 +31,8 @@ extension String {
         return String(data: data, encoding: .utf8)
     }
 
+    var isTrimmedEmpty: Bool {
+        return self.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+    }
+
 }
