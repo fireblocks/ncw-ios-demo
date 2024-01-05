@@ -24,6 +24,10 @@
 		2B558E952B4817E5006212B2 /* MPCFBFramework.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2B558E8E2B481797006212B2 /* MPCFBFramework.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2B558E972B48347D006212B2 /* AddDeviceHostingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558E962B48347D006212B2 /* AddDeviceHostingVC.swift */; };
 		2B558E992B483CB3006212B2 /* PrepareForScanHostingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558E982B483CB3006212B2 /* PrepareForScanHostingVC.swift */; };
+		2B558E9B2B484A87006212B2 /* ValidateRequestIdViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558E9A2B484A87006212B2 /* ValidateRequestIdViewModel.swift */; };
+		2B558E9E2B484AC4006212B2 /* ValidateRequestIdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558E9D2B484AC4006212B2 /* ValidateRequestIdView.swift */; };
+		2B558EA02B484ADC006212B2 /* ValidateRequestIdHostingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558E9F2B484ADC006212B2 /* ValidateRequestIdHostingVC.swift */; };
+		2B558EA22B484BE1006212B2 /* Platform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558EA12B484BE1006212B2 /* Platform.swift */; };
 		2B7A721B2B45A2250011C398 /* AddDeviceQRViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A721A2B45A2250011C398 /* AddDeviceQRViewModel.swift */; };
 		2B7A721D2B45A8FF0011C398 /* AddDeviceQRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A721C2B45A8FF0011C398 /* AddDeviceQRView.swift */; };
 		2B7A72202B45AAEB0011C398 /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A721F2B45AAEB0011C398 /* Modifiers.swift */; };
@@ -210,6 +214,10 @@
 		2B558E902B4817DE006212B2 /* FireblocksSDK.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = FireblocksSDK.xcframework; sourceTree = "<group>"; };
 		2B558E962B48347D006212B2 /* AddDeviceHostingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDeviceHostingVC.swift; sourceTree = "<group>"; };
 		2B558E982B483CB3006212B2 /* PrepareForScanHostingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareForScanHostingVC.swift; sourceTree = "<group>"; };
+		2B558E9A2B484A87006212B2 /* ValidateRequestIdViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateRequestIdViewModel.swift; sourceTree = "<group>"; };
+		2B558E9D2B484AC4006212B2 /* ValidateRequestIdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateRequestIdView.swift; sourceTree = "<group>"; };
+		2B558E9F2B484ADC006212B2 /* ValidateRequestIdHostingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateRequestIdHostingVC.swift; sourceTree = "<group>"; };
+		2B558EA12B484BE1006212B2 /* Platform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Platform.swift; sourceTree = "<group>"; };
 		2B769B9D2B1DFCBA00557E97 /* NCW-sandboxDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "NCW-sandboxDebug.entitlements"; sourceTree = "<group>"; };
 		2B769B9E2B1DFCC700557E97 /* NCW-sandboxRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "NCW-sandboxRelease.entitlements"; sourceTree = "<group>"; };
 		2B7A721A2B45A2250011C398 /* AddDeviceQRViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDeviceQRViewModel.swift; sourceTree = "<group>"; };
@@ -429,14 +437,26 @@
 			path = AddDeviceQR;
 			sourceTree = "<group>";
 		};
+		2B558E9C2B484A8F006212B2 /* ValidateRequestId */ = {
+			isa = PBXGroup;
+			children = (
+				2B558E9A2B484A87006212B2 /* ValidateRequestIdViewModel.swift */,
+				2B558E9D2B484AC4006212B2 /* ValidateRequestIdView.swift */,
+				2B558E9F2B484ADC006212B2 /* ValidateRequestIdHostingVC.swift */,
+			);
+			path = ValidateRequestId;
+			sourceTree = "<group>";
+		};
 		2B7A72172B45A0DF0011C398 /* AddDevice */ = {
 			isa = PBXGroup;
 			children = (
+				2B558E9C2B484A8F006212B2 /* ValidateRequestId */,
 				2B558E812B470037006212B2 /* PrepareForScan */,
 				2B558E822B47009C006212B2 /* AddDeviceQR */,
 				2B05C0692B4698BF004CF1CE /* JoinRequestData.swift */,
 				2BA53D3C2B46B348008C7B6C /* FBHostingViewController.swift */,
 				2B558E832B47042D006212B2 /* UIHostingBridgeNotifications.swift */,
+				2B558EA12B484BE1006212B2 /* Platform.swift */,
 			);
 			path = AddDevice;
 			sourceTree = "<group>";
@@ -1244,6 +1264,7 @@
 				2B2D36162B2B205A00B04667 /* AppLogger.swift in Sources */,
 				867828EE2A696D7D0035787D /* BackupDetailsViewModel.swift in Sources */,
 				60DA068B2A645EF400160ADC /* FeeRateCell.swift in Sources */,
+				2B558EA22B484BE1006212B2 /* Platform.swift in Sources */,
 				60DA06B42A65204600160ADC /* QRCodeScannerViewController.swift in Sources */,
 				2B05C06A2B4698BF004CF1CE /* JoinRequestData.swift in Sources */,
 				60DA069F2A651C5200160ADC /* TabBarViewController.swift in Sources */,
@@ -1293,7 +1314,9 @@
 				603903772A6D1F560060E026 /* ApproveViewModel.swift in Sources */,
 				602573312A39E7F600A3C5D5 /* AssetListViewController.swift in Sources */,
 				60B287E32A8903CF00DEA50C /* KeyStorageProvider.swift in Sources */,
+				2B558E9B2B484A87006212B2 /* ValidateRequestIdViewModel.swift in Sources */,
 				86EBAABA2A5C3D560085E76B /* FireblocksManager.swift in Sources */,
+				2B558E9E2B484AC4006212B2 /* ValidateRequestIdView.swift in Sources */,
 				2B94CFC52A9CDF62003E7508 /* ExtraParameters.swift in Sources */,
 				867828E02A696D170035787D /* UIButton+Extension.swift in Sources */,
 				2B94CFD32A9CE627003E7508 /* CodableExtension.swift in Sources */,
@@ -1307,6 +1330,7 @@
 				86EB51382A66C08C00D2911A /* BackupViewController.swift in Sources */,
 				862E2AA02A543B6D002FF774 /* AuthRepository.swift in Sources */,
 				86E4A1672A6852CE00A2861D /* TakeoverViewModel.swift in Sources */,
+				2B558EA02B484ADC006212B2 /* ValidateRequestIdHostingVC.swift in Sources */,
 				60DA065D2A645E4700160ADC /* AssetListRepository.swift in Sources */,
 				60DA06992A651AE000160ADC /* AmountToSendViewController.swift in Sources */,
 				86859F552A384D8A0056E3C6 /* SceneDelegate.swift in Sources */,

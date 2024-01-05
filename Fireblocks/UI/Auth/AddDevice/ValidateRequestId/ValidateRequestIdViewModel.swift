@@ -1,48 +1,56 @@
 //
-//  AddDeviceQRViewModel.swift
+//  ValidateRequestIdViewModel.swift
 //  NCW-sandbox
 //
-//  Created by Dudi Shani-Gabay on 03/01/2024.
+//  Created by Dudi Shani-Gabay on 05/01/2024.
 //
 
 import Foundation
-
-class AddDeviceQRViewModel: ObservableObject, UIHostingBridgeNotifications {
+class ValidateRequestIdViewModel: ObservableObject, UIHostingBridgeNotifications {
     var didAppear: Bool = false
     let requestId: String
     var email: String?
-    var url: String?
+    var platform: String?
+    
     let expiredInterval: TimeInterval = 180.seconds
     var timer: Timer?
     @Published var timeleft = ""
     @Published var isToolbarHidden = false
     
-    init(requestId: String, email: String?) {
+    init(requestId: String) {
         self.requestId = requestId
-        self.email = email
-        self.url = setURL()
-        self.startTimer()
-        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] timer in
-            if let self {
-                if self.isExpired() {
-                    self.timer?.invalidate()
-                    self.timer = nil
-                    self.timeleft = ""
-                } else {
-                    self.timeleft = self.timeLeft()
+        if let decoded = self.qrData(encoded: requestId.base64Decoded() ?? "") {
+            self.email = decoded.email
+            self.platform = decoded.platform
+            
+            self.startTimer()
+            timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] timer in
+                if let self {
+                    if self.isExpired() {
+                        self.timer?.invalidate()
+                        self.timer = nil
+                        self.timeleft = ""
+                    } else {
+                        self.timeleft = self.timeLeft()
+                    }
                 }
             }
+            timer?.fire()
+        } else {
+            //handle error
         }
-        timer?.fire()
+
     }
     
-    func setURL() -> String? {
-        guard let email else { return nil }
-        let joinData = JoinRequestData(requestId: requestId, platform: "iOS", email: email)
-        let encoded = joinData.toString().base64Encoded()
-        return encoded
+    private func qrData(encoded: String) -> JoinRequestData? {
+        if let data = encoded.data(using: .utf8) {
+            let decoder = JSONDecoder()
+            return try? decoder.decode(JoinRequestData.self, from: data)
+        }
+        return nil
     }
     
+
     func presentIndicator() {
         isToolbarHidden = true
         showIndicator()

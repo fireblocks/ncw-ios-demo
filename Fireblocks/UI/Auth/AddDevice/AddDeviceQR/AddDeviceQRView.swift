@@ -11,9 +11,7 @@ import CoreImage.CIFilterBuiltins
 struct AddDeviceQRView: View {
     @Environment(\.dismiss) var dismiss
     @StateObject var viewModel: AddDeviceQRViewModel
-    @State var timeleft = ""
     
-    private let imageWidth = 171.0
     let context = CIContext()
     let filter = CIFilter.qrCodeGenerator()
     
@@ -60,47 +58,8 @@ struct AddDeviceQRView: View {
                             }
                             .padding(.bottom, 40)
                             
-                            VStack(spacing: 0) {
-                                Image(uiImage: generateQRCode(from: viewModel.url))
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: imageWidth, height: imageWidth)
-                                    .padding(.bottom, 24)
-                                
-                                Text("QR code link")
-                                    .font(.subtitle1)
-                                    .padding(.top, 16)
-                                
-                                if let url = viewModel.url {
-                                    HStack {
-                                        Text(url)
-                                            .foregroundColor(AssetsColors.gray4.color())
-                                            .padding(8)
-                                            .lineLimit(1)
-                                        Button {
-                                            viewModel.showToast()
-                                            UIPasteboard.general.string = url
-                                        } label: {
-                                            Image(uiImage: AssetsIcons.copy.getIcon())
-                                        }
-                                        .tint(.white)
-                                    }
-                                    .padding(.horizontal, 8)
-                                    .padding(.bottom, 16)
-                                }
-                                
-//                                Text(decoded)
-//                                Button("Decode") {
-//                                    viewModel.delegate?.gotAddress(address: "FFFFFF")
-                                    //                                    viewModel.showIndicator()
-//                                    if let url = viewModel.url {
-//                                        decoded = viewModel.qrData(encoded: url.base64Decoded() ?? "")?.email ?? "Wrong"
-//                                    }
-//                                }
-                            }
-                            .padding(.top, 40)
-                            .background(AssetsColors.gray1.color())
-                            .cornerRadius(16)
+                            AddDeviceQRInnerView(image: generateQRCode(from: viewModel.url), url: viewModel.url, action: viewModel.showToast)
+                            
                             Spacer()
                         }
                         .padding(.horizontal, 26)
@@ -118,9 +77,6 @@ struct AddDeviceQRView: View {
                     .font(.body3)
                     .foregroundColor(AssetsColors.gray4.color())
             }
-            .onChange(of: viewModel.timeleft, perform: { newValue in
-                timeleft = newValue
-            })
             .toolbar {
                 ToolbarItem {
                     Button {
@@ -136,7 +92,7 @@ struct AddDeviceQRView: View {
         .onAppear() {
             viewModel.didInit()
         }
-        .navigationTitle(LocalizableStrings.addNewDevice)
+        .navigationTitle(LocalizableStrings.addNewDeviceNavigationBar)
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden()
         .interactiveDismissDisabled()
@@ -158,6 +114,49 @@ struct AddDeviceQRView: View {
 
     }
 
+}
+
+struct AddDeviceQRInnerView: View {
+    let image: UIImage
+    let url: String?
+    let action: () -> ()
+    private let imageWidth = 171.0
+
+    var body: some View {
+        VStack(spacing: 0) {
+            Image(uiImage: image)
+                .resizable()
+                .scaledToFit()
+                .frame(width: imageWidth, height: imageWidth)
+                .padding(.bottom, 24)
+            
+            Text("QR code link")
+                .font(.subtitle1)
+                .padding(.top, 16)
+            
+            if let url = url {
+                HStack {
+                    Text(url)
+                        .foregroundColor(AssetsColors.gray4.color())
+                        .padding(8)
+                        .lineLimit(1)
+                    Button {
+                        action()
+                        UIPasteboard.general.string = url
+                    } label: {
+                        Image(uiImage: AssetsIcons.copy.getIcon())
+                    }
+                    .tint(.white)
+                }
+                .padding(.horizontal, 8)
+                .padding(.bottom, 16)
+            }
+        }
+        .padding(.top, 40)
+        .background(AssetsColors.gray1.color())
+        .cornerRadius(16)
+
+    }
 }
 
 struct Bullet: View {

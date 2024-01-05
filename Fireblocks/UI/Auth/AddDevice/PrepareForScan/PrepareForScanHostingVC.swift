@@ -32,7 +32,8 @@ class PrepareForScanHostingVC: FBHostingViewController {
 
 extension PrepareForScanHostingVC: QRCodeScannerViewControllerDelegate {
     func gotAddress(address: String) {
-        print(address)
+        let vc = ValidateRequestIdHostingVC(requestId: address)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 

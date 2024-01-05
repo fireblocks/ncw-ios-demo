@@ -120,8 +120,8 @@ extension QRCodeScannerViewController: AVCaptureMetadataOutputObjectsDelegate {
         let transformedMetadataObject = videoPreviewLayer.transformedMetadataObject(for: metadataObject)
         if isQRCodeReceivedFromScanningArea(metadataObject: transformedMetadataObject) {
             AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
-            delegate?.gotAddress(address: stringValue)
             navigateBack()
+            delegate?.gotAddress(address: stringValue)
         }
     }
     

@@ -42,7 +42,6 @@ extension FBHostingViewController: UIHostingViewDelegate {
     }
 
     @objc func didInit() {
-        self.showToast("Copied!")
     }
 
 }
