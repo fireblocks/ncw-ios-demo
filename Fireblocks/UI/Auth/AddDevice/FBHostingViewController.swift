@@ -19,6 +19,7 @@ class FBHostingViewController: UIHostingController<AnyView> {
     override init(rootView: AnyView) {
         super.init(rootView: rootView)
         NotificationCenter.default.addObserver(self, selector: #selector(showIndicator), name: Notification.Name("showIndicator"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(hideIndicator), name: Notification.Name("hideIndicator"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(copied), name: Notification.Name("copied"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(didInit), name: Notification.Name("didInit"), object: nil)
     }
@@ -35,6 +36,10 @@ class FBHostingViewController: UIHostingController<AnyView> {
 extension FBHostingViewController: UIHostingViewDelegate {
     @objc func showIndicator() {
         self.showActivityIndicator()
+    }
+    
+    @objc func hideIndicator() {
+        self.hideActivityIndicator()
     }
     
     @objc func copied() {

@@ -55,6 +55,15 @@ typedef NSString* (^getPublicKeySwiftBridge)(uint64_t playerId);
 -(NSDictionary*)store_signature_commitments:(NSString*)sessionContext :(NSString*)txId :(NSDictionary*)commitments :(int)version;
 -(NSDictionary*)on_mta_message:(NSString*)sessionContext :(NSString*)txId :(NSDictionary*)mta_messages;
 -(NSDictionary*)on_gamma_broadcast:(NSString*)sessionContext :(NSString*)txId :(NSDictionary*)messages;
+-(NSDictionary*)add_device_request:(NSString*)sessionContext
+                            :(NSString *)keyId
+                            :(NSString *) newKeyId
+                            :(NSString *) tenantId
+                            :(NSArray*)playerIds
+                            :(int)t
+                            :(int64_t)ttl
+                            :(int)algorithm
+                            :(int)algorithmIndex;
 -(NSDictionary*)add_user_request:(NSString*)keyId :(NSString*)newKeyId :(NSString*)tenantId :(NSArray*)playerIds :(int)t :(int64_t)ttl :(int)algorithm :(BOOL)isCmp;
 -(NSDictionary*)add_user:(NSString*)sessionContext :(NSString*)tenantId :(NSString*)txId :(NSDictionary*)shares_and_proofs :(int64_t)ttl :(int)algorithm;
 -(NSDictionary*)on_mta_message_reply:(NSString*)sessionContext :(NSString*)txId :(NSDictionary*)mta_messages;

@@ -138,6 +138,10 @@ extension FireblocksSDK.Fireblocks {
   final public func requestJoinExistingWallet(joinWalletHandler: any FireblocksSDK.FireblocksJoinWalletHandler) async throws -> Swift.Set<FireblocksSDK.KeyDescriptor>
   #endif
   final public func requestJoinExistingWallet(joinWalletHandler: any FireblocksSDK.FireblocksJoinWalletHandler, callback: @escaping (Swift.Set<FireblocksSDK.KeyDescriptor>) -> ()) throws
+  #if compiler(>=5.3) && $AsyncAwait
+  final public func approveJoinWalletRequest(requestId: Swift.String) async throws -> Swift.Set<FireblocksSDK.JoinWalletDescriptor>
+  #endif
+  final public func approveJoinWalletRequest(requestId: Swift.String, callback: @escaping (Swift.Set<FireblocksSDK.JoinWalletDescriptor>) -> ()) throws
 }
 public enum KeyTakeoverStatus : Swift.String, Swift.Codable, Swift.Equatable {
   case INITIATED
@@ -165,6 +169,7 @@ public enum KeyTakeoverStatus : Swift.String, Swift.Codable, Swift.Equatable {
   final public var status: FireblocksSDK.JoinWalletStatus? {
     get
   }
+  final public func description() -> Swift.String
   public typealias ID = Swift.ObjectIdentifier
   @objc deinit
   final public func encode(to encoder: any Swift.Encoder) throws

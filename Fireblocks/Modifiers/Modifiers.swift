@@ -24,13 +24,14 @@ enum FontStyleType: Equatable {
     case body1
     case body2
     case body3
+    case body4
     case custom(fontName: String, size: CGFloat, lineSpacing: CGFloat = 0)
     
     var fontName: String {
         switch self {
         case .h1, .h2, .subtitle1, .subtitle2, .subtitle3:
             return AppFonts.defaultBold
-        case .body1, .body2, .body3:
+        case .body1, .body2, .body3, .body4:
             return AppFonts.defaultRegular
         case .custom(fontName: let fontName, _, _):
             return fontName
@@ -55,6 +56,8 @@ enum FontStyleType: Equatable {
             return 14
         case .body3:
             return 12
+        case .body4:
+            return 20
         case .custom(_, size: let size, _):
             return size
         }

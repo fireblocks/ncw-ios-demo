@@ -18,10 +18,6 @@
 		2B558E842B47042D006212B2 /* UIHostingBridgeNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558E832B47042D006212B2 /* UIHostingBridgeNotifications.swift */; };
 		2B558E862B47044C006212B2 /* PrepareForScanViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558E852B47044C006212B2 /* PrepareForScanViewModel.swift */; };
 		2B558E882B4704BA006212B2 /* PrepareForScanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558E872B4704BA006212B2 /* PrepareForScanView.swift */; };
-		2B558E922B4817E4006212B2 /* FireblocksSDK.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B558E902B4817DE006212B2 /* FireblocksSDK.xcframework */; };
-		2B558E932B4817E4006212B2 /* FireblocksSDK.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2B558E902B4817DE006212B2 /* FireblocksSDK.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		2B558E942B4817E5006212B2 /* MPCFBFramework.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B558E8E2B481797006212B2 /* MPCFBFramework.xcframework */; };
-		2B558E952B4817E5006212B2 /* MPCFBFramework.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2B558E8E2B481797006212B2 /* MPCFBFramework.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2B558E972B48347D006212B2 /* AddDeviceHostingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558E962B48347D006212B2 /* AddDeviceHostingVC.swift */; };
 		2B558E992B483CB3006212B2 /* PrepareForScanHostingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558E982B483CB3006212B2 /* PrepareForScanHostingVC.swift */; };
 		2B558E9B2B484A87006212B2 /* ValidateRequestIdViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558E9A2B484A87006212B2 /* ValidateRequestIdViewModel.swift */; };
@@ -43,6 +39,15 @@
 		2B94CFFF2A9F3F03003E7508 /* PollingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B94CFFC2A9F3F03003E7508 /* PollingManager.swift */; };
 		2BA53D3D2B46B348008C7B6C /* FBHostingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA53D3C2B46B348008C7B6C /* FBHostingViewController.swift */; };
 		2BD53A232B28735700756C4A /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD53A222B28735700756C4A /* Date+Extensions.swift */; };
+		2BF8ED882B552F6500046F0B /* MPCFBFramework.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BF8ED822B552F2B00046F0B /* MPCFBFramework.xcframework */; };
+		2BF8ED892B552F6600046F0B /* MPCFBFramework.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2BF8ED822B552F2B00046F0B /* MPCFBFramework.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2BF8EDB02B557CE400046F0B /* FireblocksSDK.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BF8EDAE2B557CC600046F0B /* FireblocksSDK.xcframework */; };
+		2BF8EDB12B557CE600046F0B /* FireblocksSDK.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2BF8EDAE2B557CC600046F0B /* FireblocksSDK.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2BF8EDB62B56673300046F0B /* EndFlowFeedbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF8EDB52B56673300046F0B /* EndFlowFeedbackView.swift */; };
+		2BF8EDB92B56676300046F0B /* EndFlowFeedbackViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF8EDB82B56676300046F0B /* EndFlowFeedbackViewModel.swift */; };
+		2BF8EDBB2B566E3C00046F0B /* EndFlowFeedbackHostingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF8EDBA2B566E3C00046F0B /* EndFlowFeedbackHostingVC.swift */; };
+		2BF8EDBE2B56758300046F0B /* AlertBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF8EDBD2B56758300046F0B /* AlertBannerView.swift */; };
+		2BF8EDC02B569D3B00046F0B /* ValidateRequestIdTimeOutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF8EDBF2B569D3B00046F0B /* ValidateRequestIdTimeOutView.swift */; };
 		602573282A39D6F000A3C5D5 /* AssetsColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602573272A39D6F000A3C5D5 /* AssetsColors.swift */; };
 		6025732A2A39D76900A3C5D5 /* AssetsIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602573292A39D76900A3C5D5 /* AssetsIcons.swift */; };
 		602573312A39E7F600A3C5D5 /* AssetListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6025732F2A39E7F600A3C5D5 /* AssetListViewController.swift */; };
@@ -190,8 +195,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				2B558E932B4817E4006212B2 /* FireblocksSDK.xcframework in Embed Frameworks */,
-				2B558E952B4817E5006212B2 /* MPCFBFramework.xcframework in Embed Frameworks */,
+				2BF8EDB12B557CE600046F0B /* FireblocksSDK.xcframework in Embed Frameworks */,
+				2BF8ED892B552F6600046F0B /* MPCFBFramework.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -210,8 +215,6 @@
 		2B558E832B47042D006212B2 /* UIHostingBridgeNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHostingBridgeNotifications.swift; sourceTree = "<group>"; };
 		2B558E852B47044C006212B2 /* PrepareForScanViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareForScanViewModel.swift; sourceTree = "<group>"; };
 		2B558E872B4704BA006212B2 /* PrepareForScanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareForScanView.swift; sourceTree = "<group>"; };
-		2B558E8E2B481797006212B2 /* MPCFBFramework.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = MPCFBFramework.xcframework; sourceTree = "<group>"; };
-		2B558E902B4817DE006212B2 /* FireblocksSDK.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = FireblocksSDK.xcframework; sourceTree = "<group>"; };
 		2B558E962B48347D006212B2 /* AddDeviceHostingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDeviceHostingVC.swift; sourceTree = "<group>"; };
 		2B558E982B483CB3006212B2 /* PrepareForScanHostingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareForScanHostingVC.swift; sourceTree = "<group>"; };
 		2B558E9A2B484A87006212B2 /* ValidateRequestIdViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateRequestIdViewModel.swift; sourceTree = "<group>"; };
@@ -235,6 +238,13 @@
 		2B94CFFC2A9F3F03003E7508 /* PollingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PollingManager.swift; sourceTree = "<group>"; };
 		2BA53D3C2B46B348008C7B6C /* FBHostingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBHostingViewController.swift; sourceTree = "<group>"; };
 		2BD53A222B28735700756C4A /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
+		2BF8ED822B552F2B00046F0B /* MPCFBFramework.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = MPCFBFramework.xcframework; sourceTree = "<group>"; };
+		2BF8EDAE2B557CC600046F0B /* FireblocksSDK.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = FireblocksSDK.xcframework; sourceTree = "<group>"; };
+		2BF8EDB52B56673300046F0B /* EndFlowFeedbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndFlowFeedbackView.swift; sourceTree = "<group>"; };
+		2BF8EDB82B56676300046F0B /* EndFlowFeedbackViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndFlowFeedbackViewModel.swift; sourceTree = "<group>"; };
+		2BF8EDBA2B566E3C00046F0B /* EndFlowFeedbackHostingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndFlowFeedbackHostingVC.swift; sourceTree = "<group>"; };
+		2BF8EDBD2B56758300046F0B /* AlertBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertBannerView.swift; sourceTree = "<group>"; };
+		2BF8EDBF2B569D3B00046F0B /* ValidateRequestIdTimeOutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateRequestIdTimeOutView.swift; sourceTree = "<group>"; };
 		602573272A39D6F000A3C5D5 /* AssetsColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetsColors.swift; sourceTree = "<group>"; };
 		602573292A39D76900A3C5D5 /* AssetsIcons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetsIcons.swift; sourceTree = "<group>"; };
 		6025732F2A39E7F600A3C5D5 /* AssetListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetListViewController.swift; sourceTree = "<group>"; };
@@ -379,8 +389,8 @@
 				86AF7C4D2A430BF70026DF15 /* (null) in Frameworks */,
 				866A73C42A696A0F00E8E545 /* GoogleAPIClientForREST_DriveActivity in Frameworks */,
 				869A71392A3859C900653C8F /* FirebaseAuth in Frameworks */,
-				2B558E922B4817E4006212B2 /* FireblocksSDK.xcframework in Frameworks */,
-				2B558E942B4817E5006212B2 /* MPCFBFramework.xcframework in Frameworks */,
+				2BF8EDB02B557CE400046F0B /* FireblocksSDK.xcframework in Frameworks */,
+				2BF8ED882B552F6500046F0B /* MPCFBFramework.xcframework in Frameworks */,
 				86E8351A2A60331B003E98BE /* NVActivityIndicatorViewExtended in Frameworks */,
 				86C127FB2A53087B00255757 /* (null) in Frameworks */,
 				869A713B2A3859C900653C8F /* FirebaseAuthCombine-Community in Frameworks */,
@@ -442,6 +452,7 @@
 			children = (
 				2B558E9A2B484A87006212B2 /* ValidateRequestIdViewModel.swift */,
 				2B558E9D2B484AC4006212B2 /* ValidateRequestIdView.swift */,
+				2BF8EDBF2B569D3B00046F0B /* ValidateRequestIdTimeOutView.swift */,
 				2B558E9F2B484ADC006212B2 /* ValidateRequestIdHostingVC.swift */,
 			);
 			path = ValidateRequestId;
@@ -507,6 +518,24 @@
 			path = PollingManager;
 			sourceTree = "<group>";
 		};
+		2BF8EDB72B56673E00046F0B /* EndFlowFeedback */ = {
+			isa = PBXGroup;
+			children = (
+				2BF8EDB52B56673300046F0B /* EndFlowFeedbackView.swift */,
+				2BF8EDB82B56676300046F0B /* EndFlowFeedbackViewModel.swift */,
+				2BF8EDBA2B566E3C00046F0B /* EndFlowFeedbackHostingVC.swift */,
+			);
+			path = EndFlowFeedback;
+			sourceTree = "<group>";
+		};
+		2BF8EDBC2B56756700046F0B /* SwiftUIViews */ = {
+			isa = PBXGroup;
+			children = (
+				2BF8EDBD2B56758300046F0B /* AlertBannerView.swift */,
+			);
+			path = SwiftUIViews;
+			sourceTree = "<group>";
+		};
 		6025730B2A38992100A3C5D5 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -522,6 +551,7 @@
 			isa = PBXGroup;
 			children = (
 				60DA069E2A651C5200160ADC /* TabBarViewController.swift */,
+				2BF8EDB72B56673E00046F0B /* EndFlowFeedback */,
 				60EECFA42A66BE6400F3891C /* Receive */,
 				60DA065E2A645E9A00160ADC /* Send */,
 				6025732E2A39E7D000A3C5D5 /* Asset */,
@@ -902,8 +932,8 @@
 		86859F462A384D8A0056E3C6 = {
 			isa = PBXGroup;
 			children = (
-				2B558E902B4817DE006212B2 /* FireblocksSDK.xcframework */,
-				2B558E8E2B481797006212B2 /* MPCFBFramework.xcframework */,
+				2BF8EDAE2B557CC600046F0B /* FireblocksSDK.xcframework */,
+				2BF8ED822B552F2B00046F0B /* MPCFBFramework.xcframework */,
 				2B769B9E2B1DFCC700557E97 /* NCW-sandboxRelease.entitlements */,
 				2B769B9D2B1DFCBA00557E97 /* NCW-sandboxDebug.entitlements */,
 				86859F512A384D8A0056E3C6 /* Fireblocks */,
@@ -946,6 +976,7 @@
 		86859F662A384E8E0056E3C6 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				2BF8EDBC2B56756700046F0B /* SwiftUIViews */,
 				86859F672A384E920056E3C6 /* Auth */,
 				6025732D2A39E7C500A3C5D5 /* Home */,
 				86ED2BA62A64430F00377F6C /* Settings */,
@@ -1258,6 +1289,7 @@
 				2BD53A232B28735700756C4A /* Date+Extensions.swift in Sources */,
 				60EECF9E2A66BE2700F3891C /* AssetsImageMapper.swift in Sources */,
 				866A73D92A696AA200E8E545 /* ICloudManager.swift in Sources */,
+				2BF8EDC02B569D3B00046F0B /* ValidateRequestIdTimeOutView.swift in Sources */,
 				86346ACD2A6D0D2C0002FE34 /* ToastView.swift in Sources */,
 				866A73C82A696A3100E8E545 /* BackupViewModel.swift in Sources */,
 				862E2A9D2A543B41002FF774 /* AuthViewController.swift in Sources */,
@@ -1276,6 +1308,7 @@
 				60DA06B52A65204600160ADC /* SendToViewController.swift in Sources */,
 				2B94CFCC2A9CE576003E7508 /* CodableAnyExtension.swift in Sources */,
 				2B3E6C032ACC0C40000E91CF /* BackupStatusViewModel.swift in Sources */,
+				2BF8EDBE2B56758300046F0B /* AlertBannerView.swift in Sources */,
 				86EB51332A66C08C00D2911A /* SettingsViewController.swift in Sources */,
 				867828E42A696D170035787D /* Double+Extension.swift in Sources */,
 				862E2AA72A543B86002FF774 /* GoogleSignInManager.swift in Sources */,
@@ -1294,6 +1327,7 @@
 				2B7A72262B45ADAA0011C398 /* Extensions.swift in Sources */,
 				60B287E52A8903CF00DEA50C /* UsersLocalStorageManager.swift in Sources */,
 				867828DD2A696D170035787D /* SessionManager.swift in Sources */,
+				2BF8EDB62B56673300046F0B /* EndFlowFeedbackView.swift in Sources */,
 				86C26BEC2A488ACD00884C47 /* LocalizableStrings.swift in Sources */,
 				602573282A39D6F000A3C5D5 /* AssetsColors.swift in Sources */,
 				608293912A56BB1400B11839 /* TransferCell.swift in Sources */,
@@ -1302,6 +1336,7 @@
 				86A997152A6EB60900A6B60B /* ManuallyInputViewModel.swift in Sources */,
 				86ED2BB42A64434500377F6C /* AreYouSureBottomSheet.swift in Sources */,
 				60DA06592A645E1300160ADC /* Transaction.swift in Sources */,
+				2BF8EDB92B56676300046F0B /* EndFlowFeedbackViewModel.swift in Sources */,
 				60DA067D2A645E9A00160ADC /* ChooseAssetViewController.swift in Sources */,
 				60DA065B2A645E2E00160ADC /* AssetListViewModel.swift in Sources */,
 				86D77DBB2A6D254200D77B9F /* ViewController+Extensions.swift in Sources */,
@@ -1337,6 +1372,7 @@
 				86A997132A6EB60900A6B60B /* ManuallyInputViewController.swift in Sources */,
 				86F972212A6A936100C896B2 /* ManuallyInputViewControllerStrategy.swift in Sources */,
 				608293B92A56E57A00B11839 /* Transfer.swift in Sources */,
+				2BF8EDBB2B566E3C00046F0B /* EndFlowFeedbackHostingVC.swift in Sources */,
 				6082938C2A56B85800B11839 /* TransfersViewController.swift in Sources */,
 				608293C42A5AD72400B11839 /* TransferDetailsViewController.swift in Sources */,
 				608293BB2A56F0AD00B11839 /* TransfersViewModel.swift in Sources */,

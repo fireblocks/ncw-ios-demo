@@ -181,7 +181,9 @@ extension MpcKeysViewController: MpcKeysViewModelDelegate {
     }
     
     func onProvisionerFound() {
-        print("im here")
+        DispatchQueue.main.async {
+            self.showActivityIndicator(message: "Adding device...")
+        }
     }
 }
 

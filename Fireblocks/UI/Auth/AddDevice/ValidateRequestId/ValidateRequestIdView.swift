@@ -15,10 +15,7 @@ struct ValidateRequestIdView: View {
         ZStack {
             Color.black
                 .edgesIgnoringSafeArea(.all)
-            VStack {
-                Color.black
-                    .frame(height: 12)
-                
+            VStack(spacing: 0) {
                 Image(uiImage: AssetsIcons.addDeviceImage.getIcon())
                     .padding(.top, 12)
                     .padding(.bottom, 24)
@@ -57,10 +54,15 @@ struct ValidateRequestIdView: View {
                 .padding(.horizontal, 16)
                 
                 Spacer()
-
+                
+                if let error = viewModel.error {
+                    AlertBannerView(message: error)
+                        .padding(.vertical, 16)
+                }
+                
                 VStack(spacing: 8) {
                     Button {
-                        print("add device")
+                        viewModel.approveJoinWallet()
                     } label: {
                         HStack {
                             Spacer()
@@ -78,7 +80,7 @@ struct ValidateRequestIdView: View {
                     .cornerRadius(16)
                     
                     Button {
-                        dismiss()
+                        viewModel.didTapCancel()
                     } label: {
                         HStack {
                             Spacer()
@@ -95,21 +97,25 @@ struct ValidateRequestIdView: View {
                     .cornerRadius(16)
 
                 }
-                .padding(.vertical, 24)
+                .padding(.bottom, 24)
                 Text("QR code expires in: \(viewModel.timeleft)")
                     .font(.body3)
                     .foregroundColor(AssetsColors.gray4.color())
             }
+            .padding(.horizontal, 16)
+        }
+        .onAppear() {
+            viewModel.didInit()
         }
         .navigationTitle(LocalizableStrings.addNewDeviceNavigationBar)
         .navigationBarTitleDisplayMode(.inline)
-        .navigationBarBackButtonHidden()
-        .interactiveDismissDisabled()
     }
 }
 
 struct ValidateRequestIdView_Previews: PreviewProvider {
     static var previews: some View {
-        ValidateRequestIdView(viewModel: ValidateRequestIdViewModel(requestId: "AAAAAA"))
+        NavigationView {
+            ValidateRequestIdView(viewModel: ValidateRequestIdViewModel(requestId: "AAAAAA"))
+        }
     }
 }

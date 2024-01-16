@@ -79,6 +79,12 @@ class FireblocksManager {
             let algorithms: Set<Algorithm> = Set([.MPC_ECDSA_SECP256K1])
             let result = try await getSdkInstance()?.generateMPCKeys(algorithms: algorithms)
             let isGenerated = result?.first?.keyStatus == .READY
+            if isGenerated {
+                //We simulate a simple way to implement a Polling mechanism.
+                //During the integration it is ineeded to generate a mechanism for fetching and listening to incoming messages and transactions, which could be any implementation (e.g. polling, web-socket, push etc.)
+                PollingManager.shared.createListener(deviceId: deviceId, instance: self, sessionManager: SessionManager.shared)
+            }
+            
             await delegate.isKeysGenerated(isGenerated: isGenerated)
         } catch {
             logger.log("FireblocksManager, generateMpcKeys() failed: \(error).")
@@ -99,10 +105,18 @@ class FireblocksManager {
         do {
             let result = try await getSdkInstance()?.requestJoinExistingWallet(joinWalletHandler: joinWalletHandler)
             let isGenerated = result?.first?.keyStatus == .READY
+            if isGenerated {
+                PollingManager.shared.createListener(deviceId: deviceId, instance: self, sessionManager: SessionManager.shared)
+            }
             await delegate.isKeysGenerated(isGenerated: isGenerated)
         } catch {
             logger.log("FireblocksManager, addDevice() failed: \(error).")
         }
+    }
+    
+    func approveJoinWallet(requestId: String) async throws -> Set<FireblocksSDK.JoinWalletDescriptor> {
+        let instance = try Fireblocks.getInstance(deviceId: deviceId)
+        return try await instance.approveJoinWalletRequest(requestId: requestId)
     }
     
     func getMpcKeys() -> [KeyDescriptor] {
@@ -145,6 +159,8 @@ class FireblocksManager {
             let keySet = try await instance.recoverKeys(passphraseResolver: resolver)
             if keySet.isEmpty { return false }
             if keySet.first(where: {$0.keyRecoveryStatus == .ERROR}) != nil  { return false }
+            PollingManager.shared.createListener(deviceId: deviceId, instance: self, sessionManager: SessionManager.shared)
+
             return true
         } catch {
             logger.log("FireblocksManager, recoverWallet() can't recover wallet: \(error).")
@@ -178,11 +194,6 @@ class FireblocksManager {
                 fireblocksOptions: FireblocksOptions(env: EnvironmentConstants.env, eventHandlerDelegate: self)
             )
         }
-        
-        //We simulate a simple way to implement a Polling mechanism.
-        //During the integration it is ineeded to generate a mechanism for fetching and listening to incoming messages and transactions, which could be any implementation (e.g. polling, web-socket, push etc.)
-        PollingManager.shared.createListener(deviceId: deviceId, instance: self, sessionManager: SessionManager.shared)
-        
     }
     
     func stopPollingMessages() {
@@ -258,6 +269,12 @@ extension FireblocksManager: EventHandlerDelegate {
             break
         case let .Transaction(status, error):
             logger.log("FireblocksManager, status(.Transaction): \(status.description()). Error: \(String(describing: error)).")
+            break
+        case let .Takeover(status, error):
+            logger.log("FireblocksManager, status(.Takeover): \(status.description()). Error: \(String(describing: error)).")
+            break
+        case let .JoinWallet(status, error):
+            logger.log("FireblocksManager, status(.JoinWallet): \(status.description()). Error: \(String(describing: error)).")
             break
         @unknown default:
             logger.log("FireblocksManager, @unknown case")

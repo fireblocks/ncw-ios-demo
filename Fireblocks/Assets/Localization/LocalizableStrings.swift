@@ -92,4 +92,10 @@ struct LocalizableStrings{
     static let addNewDevice = "add_new_device".localize()
     static let addNewDeviceNavigationBar = "add_new_device_navigation_bar".localize()
     
+    static let approveJoinWalletSucceeded = "approveJoinWalletSucceeded".localize()
+    static let approveJoinWalletFailed = "approveJoinWalletFailed".localize()
+    static let approveJoinWalletCanceled = "approveJoinWalletCanceled".localize()
+    static let approveJoinWalletCanceledSubtitle = "approveJoinWalletCanceledSubtitle".localize()
+    static let goHome = "goHome".localize()
+
 }

@@ -6,23 +6,34 @@
 //
 
 import Foundation
+import FireblocksSDK
+
+protocol ValidateRequestIdDelegate: AnyObject {
+    func didApproveJoinWallet()
+    func didCancelJoinWallet()
+    func didApproveJoinWalletTimeExpired()
+}
+
 class ValidateRequestIdViewModel: ObservableObject, UIHostingBridgeNotifications {
     var didAppear: Bool = false
-    let requestId: String
+    var requestId: String?
+    weak var delegate: ValidateRequestIdDelegate?
     var email: String?
     var platform: String?
-    
-    let expiredInterval: TimeInterval = 180.seconds
+    private var approveJoinWalletTask: Task<Void, Never>?
+
+    let expiredInterval: TimeInterval = 10.seconds
     var timer: Timer?
     @Published var timeleft = ""
     @Published var isToolbarHidden = false
+    @Published var error: String?
     
     init(requestId: String) {
-        self.requestId = requestId
         if let decoded = self.qrData(encoded: requestId.base64Decoded() ?? "") {
             self.email = decoded.email
             self.platform = decoded.platform
-            
+            self.requestId = decoded.requestId
+
             self.startTimer()
             timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] timer in
                 if let self {
@@ -30,6 +41,7 @@ class ValidateRequestIdViewModel: ObservableObject, UIHostingBridgeNotifications
                         self.timer?.invalidate()
                         self.timer = nil
                         self.timeleft = ""
+                        self.delegate?.didApproveJoinWalletTimeExpired()
                     } else {
                         self.timeleft = self.timeLeft()
                     }
@@ -51,11 +63,15 @@ class ValidateRequestIdViewModel: ObservableObject, UIHostingBridgeNotifications
     }
     
 
-    func presentIndicator() {
-        isToolbarHidden = true
-        showIndicator()
+    func presentIndicator(show: Bool) {
+        isToolbarHidden = show
+        if show {
+            showIndicator()
+        } else {
+            hideIndicator()
+        }
     }
-    
+        
     func startTimer() {
         UsersLocalStorageManager.shared.setAddDeviceTimer()
     }
@@ -72,5 +88,34 @@ class ValidateRequestIdViewModel: ObservableObject, UIHostingBridgeNotifications
         let seconds = totalSecondsLeft % 60
         
         return "\(String(format: "%02d", minutes)):\(String(format: "%02d", seconds))"
+    }
+    
+    func approveJoinWallet() {
+        guard let requestId else { return }
+        presentIndicator(show: true)
+        approveJoinWalletTask = Task {
+            do {
+                let keys = try await FireblocksManager.shared.approveJoinWallet(requestId: requestId)
+                DispatchQueue.main.async {
+                    self.presentIndicator(show: false)
+                    if let _ = keys.first(where: {$0.status == .ERROR}) {
+                        self.error = LocalizableStrings.approveJoinWalletFailed
+                        return
+                    }
+                    self.delegate?.didApproveJoinWallet()
+                }
+            } catch {
+                DispatchQueue.main.async {
+                    self.presentIndicator(show: false)
+                    self.error = error.localizedDescription
+                }
+            }
+        }
+    }
+    
+    func didTapCancel() {
+        self.timer?.invalidate()
+        self.timer = nil
+        delegate?.didCancelJoinWallet()
     }
 }

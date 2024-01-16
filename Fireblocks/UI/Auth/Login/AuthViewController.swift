@@ -50,6 +50,12 @@ class AuthViewController: UIViewController {
         addPaddingStackView()
         versionLabel.text = Bundle.main.versionLabel
         versionLabelContainer.backgroundColor = AssetsColors.gray2.getColor()
+        
+        let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true) // get the Documents folder path
+        
+        let pathForDocumentDir = documentsPath[0]
+        print("pathForDocumentDir: \(pathForDocumentDir)")
+
     }
 
     override func viewWillLayoutSubviews() {

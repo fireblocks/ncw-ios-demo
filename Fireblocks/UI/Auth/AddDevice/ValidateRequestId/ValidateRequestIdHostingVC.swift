@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import FireblocksSDK
 
 class ValidateRequestIdHostingVC: FBHostingViewController {
     let viewModel: ValidateRequestIdViewModel
@@ -18,5 +19,36 @@ class ValidateRequestIdHostingVC: FBHostingViewController {
     
     @MainActor required dynamic init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func didInit() {
+        viewModel.delegate = self
+    }
+}
+
+extension ValidateRequestIdHostingVC: ValidateRequestIdDelegate {
+    func didApproveJoinWallet() {
+        let vc = EndFlowFeedbackHostingVC(icon: AssetsIcons.addDeviceSucceeded.rawValue, title: LocalizableStrings.approveJoinWalletSucceeded, buttonTitle: LocalizableStrings.goHome, actionButton:  {
+            self.navigationController?.popToRootViewController(animated: true)
+        })
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func didCancelJoinWallet() {
+        let vc = EndFlowFeedbackHostingVC(icon: AssetsIcons.addDeviceFailed.rawValue, title: LocalizableStrings.approveJoinWalletCanceled, subTitle: LocalizableStrings.approveJoinWalletCanceledSubtitle, buttonTitle: LocalizableStrings.goHome, actionButton:  {
+            self.navigationController?.popToRootViewController(animated: true)
+        })
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func didApproveJoinWalletTimeExpired() {
+        let vc = EndFlowFeedbackHostingVC(icon: AssetsIcons.errorImage.rawValue, title: LocalizableStrings.approveJoinWalletCanceled, buttonTitle: LocalizableStrings.tryAgain, rightToolbarItemIcon: AssetsIcons.close.rawValue, rightToolbarItemAction: {
+            self.didCancelJoinWallet()
+        }, content: AnyView(ValidateRequestIdTimeOutView())) {
+            if let targetVC = self.navigationController?.viewControllers.first(where: {$0 is PrepareForScanHostingVC}) {
+                self.navigationController?.popToViewController(targetVC, animated: true)
+            }
+        }
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
