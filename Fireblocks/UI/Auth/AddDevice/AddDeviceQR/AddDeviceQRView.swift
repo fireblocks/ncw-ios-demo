@@ -58,7 +58,7 @@ struct AddDeviceQRView: View {
                             }
                             .padding(.bottom, 40)
                             
-                            AddDeviceQRInnerView(image: generateQRCode(from: viewModel.url), url: viewModel.url, action: viewModel.showToast)
+                            AddDeviceQRInnerView(image: generateQRCode(from: viewModel.url, size: CGSize(width: 171.0, height: 171.0)), url: viewModel.url, action: viewModel.showToast)
                             
                             Spacer()
                         }
@@ -99,33 +99,39 @@ struct AddDeviceQRView: View {
         .interactiveDismissDisabled()
     }
     
-    func generateQRCode(from url: String?) -> UIImage {
+    func generateQRCode(from url: String?, size: CGSize) -> Image {
         guard let url else {
-            return UIImage(systemName: "xmark.circle") ?? UIImage()
+            return Image(systemName: "xmark.circle")
         }
         
         filter.message = Data(url.utf8)
+        filter.correctionLevel = "Q"
+        
+        if let output = filter.outputImage {
+            let x = size.width / output.extent.size.width
+            let y = size.height / output.extent.size.height
 
-        if let outputImage = filter.outputImage {
-            if let cgimg = context.createCGImage(outputImage, from: outputImage.extent) {
-                return UIImage(cgImage: cgimg)
+            let scaled = output.transformed(by: CGAffineTransform(scaleX: x, y: y))
+            if let cg = CIContext().createCGImage(scaled, from: scaled.extent) {
+                return Image(uiImage: UIImage(cgImage: cg))
             }
         }
-        return UIImage(systemName: "xmark.circle") ?? UIImage()
+
+        return Image(systemName: "xmark.circle")
 
     }
 
 }
 
 struct AddDeviceQRInnerView: View {
-    let image: UIImage
+    let image: Image
     let url: String?
     let action: () -> ()
     private let imageWidth = 171.0
 
     var body: some View {
         VStack(spacing: 0) {
-            Image(uiImage: image)
+            image
                 .resizable()
                 .scaledToFit()
                 .frame(width: imageWidth, height: imageWidth)

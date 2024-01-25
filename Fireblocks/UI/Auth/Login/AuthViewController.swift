@@ -42,6 +42,8 @@ class AuthViewController: UIViewController {
     @IBOutlet weak var mainViewContainer: UIView!
     @IBOutlet weak var loginButtonsContainer: UIView!
 
+    @IBOutlet weak var hiddenBackButton: UIButton!
+
     private lazy var viewModel: AuthViewModel = { AuthViewModel(self) }()
     
     override func viewDidLoad() {
@@ -93,7 +95,20 @@ class AuthViewController: UIViewController {
         UIView.animate(withDuration: 0.3) {
             self.mainViewContainer.alpha = 0
             self.loginButtonsContainer.alpha = 1
+            self.hiddenBackButton.alpha = 1
         }
+    }
+    
+    private func revertTransition() {
+        UIView.animate(withDuration: 0.3) {
+            self.mainViewContainer.alpha = 1
+            self.loginButtonsContainer.alpha = 0
+            self.hiddenBackButton.alpha = 0
+        }
+    }
+
+    @IBAction func didTapBack(_ sender: UIButton) {
+        revertTransition()
     }
     
     private func setLoginView() {
@@ -177,7 +192,7 @@ class AuthViewController: UIViewController {
                 FireblocksManager.shared.startPolling()
                 vc = UINavigationController(rootViewController: TabBarViewController())
             } else {
-                vc = UINavigationController(rootViewController: MpcKeysViewController(isAddingDevice: false))
+                vc = UINavigationController(rootViewController: RedirectNewUserHostingVC())
             }
         case .addDevice:
             vc = UINavigationController(rootViewController: MpcKeysViewController(isAddingDevice: true))

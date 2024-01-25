@@ -56,7 +56,7 @@ struct PrepareForScanView: View {
                         } label: {
                             HStack {
                                 Spacer()
-                                Text("Enter QR code manaually")
+                                Text("Enter QR code link")
                                     .font(.body1)
                                 Spacer()
                             }

@@ -10,6 +10,9 @@
 		2B05C06A2B4698BF004CF1CE /* JoinRequestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B05C0692B4698BF004CF1CE /* JoinRequestData.swift */; };
 		2B174FE52B60057A00BE63A8 /* FireblocksSDK.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B174FE32B60057100BE63A8 /* FireblocksSDK.xcframework */; };
 		2B174FE62B60057C00BE63A8 /* FireblocksSDK.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2B174FE32B60057100BE63A8 /* FireblocksSDK.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2B174FE92B62446900BE63A8 /* RedirectNewUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B174FE82B62446900BE63A8 /* RedirectNewUserView.swift */; };
+		2B174FEB2B62447900BE63A8 /* RedirectNewUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B174FEA2B62447900BE63A8 /* RedirectNewUserViewModel.swift */; };
+		2B174FED2B624EEA00BE63A8 /* RedirectNewUserHostingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B174FEC2B624EEA00BE63A8 /* RedirectNewUserHostingVC.swift */; };
 		2B2D36162B2B205A00B04667 /* AppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2D36152B2B205A00B04667 /* AppLogger.swift */; };
 		2B3E6C032ACC0C40000E91CF /* BackupStatusViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3E6C022ACC0C40000E91CF /* BackupStatusViewModel.swift */; };
 		2B3E6C092ACD8CFD000E91CF /* AddAssetsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3E6C082ACD8CFD000E91CF /* AddAssetsViewModel.swift */; };
@@ -206,6 +209,9 @@
 /* Begin PBXFileReference section */
 		2B05C0692B4698BF004CF1CE /* JoinRequestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinRequestData.swift; sourceTree = "<group>"; };
 		2B174FE32B60057100BE63A8 /* FireblocksSDK.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = FireblocksSDK.xcframework; sourceTree = "<group>"; };
+		2B174FE82B62446900BE63A8 /* RedirectNewUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedirectNewUserView.swift; sourceTree = "<group>"; };
+		2B174FEA2B62447900BE63A8 /* RedirectNewUserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedirectNewUserViewModel.swift; sourceTree = "<group>"; };
+		2B174FEC2B624EEA00BE63A8 /* RedirectNewUserHostingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedirectNewUserHostingVC.swift; sourceTree = "<group>"; };
 		2B2D36152B2B205A00B04667 /* AppLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLogger.swift; sourceTree = "<group>"; };
 		2B3E6C022ACC0C40000E91CF /* BackupStatusViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupStatusViewModel.swift; sourceTree = "<group>"; };
 		2B3E6C082ACD8CFD000E91CF /* AddAssetsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAssetsViewModel.swift; sourceTree = "<group>"; };
@@ -405,6 +411,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2B174FE72B62444500BE63A8 /* RedirectNewUser */ = {
+			isa = PBXGroup;
+			children = (
+				2B174FE82B62446900BE63A8 /* RedirectNewUserView.swift */,
+				2B174FEA2B62447900BE63A8 /* RedirectNewUserViewModel.swift */,
+				2B174FEC2B624EEA00BE63A8 /* RedirectNewUserHostingVC.swift */,
+			);
+			path = RedirectNewUser;
+			sourceTree = "<group>";
+		};
 		2B3E6C042ACD44A5000E91CF /* List */ = {
 			isa = PBXGroup;
 			children = (
@@ -989,6 +1005,7 @@
 		86859F672A384E920056E3C6 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
+				2B174FE72B62444500BE63A8 /* RedirectNewUser */,
 				869A71462A38859F00653C8F /* Login */,
 				869A71452A38857100653C8F /* MpcKeys */,
 				2B7A72172B45A0DF0011C398 /* AddDevice */,
@@ -1293,6 +1310,7 @@
 				86346ACD2A6D0D2C0002FE34 /* ToastView.swift in Sources */,
 				866A73C82A696A3100E8E545 /* BackupViewModel.swift in Sources */,
 				862E2A9D2A543B41002FF774 /* AuthViewController.swift in Sources */,
+				2B174FE92B62446900BE63A8 /* RedirectNewUserView.swift in Sources */,
 				2B2D36162B2B205A00B04667 /* AppLogger.swift in Sources */,
 				867828EE2A696D7D0035787D /* BackupDetailsViewModel.swift in Sources */,
 				60DA068B2A645EF400160ADC /* FeeRateCell.swift in Sources */,
@@ -1325,6 +1343,7 @@
 				602573282A39D6F000A3C5D5 /* AssetsColors.swift in Sources */,
 				86B67A382A6FF925007AC728 /* String+Extensions.swift in Sources */,
 				2B7A72262B45ADAA0011C398 /* Extensions.swift in Sources */,
+				2B174FEB2B62447900BE63A8 /* RedirectNewUserViewModel.swift in Sources */,
 				60B287E52A8903CF00DEA50C /* UsersLocalStorageManager.swift in Sources */,
 				867828DD2A696D170035787D /* SessionManager.swift in Sources */,
 				2BF8EDB62B56673300046F0B /* EndFlowFeedbackView.swift in Sources */,
@@ -1365,6 +1384,7 @@
 				86EB51382A66C08C00D2911A /* BackupViewController.swift in Sources */,
 				862E2AA02A543B6D002FF774 /* AuthRepository.swift in Sources */,
 				86E4A1672A6852CE00A2861D /* TakeoverViewModel.swift in Sources */,
+				2B174FED2B624EEA00BE63A8 /* RedirectNewUserHostingVC.swift in Sources */,
 				2B558EA02B484ADC006212B2 /* ValidateRequestIdHostingVC.swift in Sources */,
 				60DA065D2A645E4700160ADC /* AssetListRepository.swift in Sources */,
 				60DA06992A651AE000160ADC /* AmountToSendViewController.swift in Sources */,

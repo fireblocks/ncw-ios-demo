@@ -24,6 +24,7 @@
                 <outlet property="buttonsContainerView" destination="E3m-YK-mss" id="nk8-DM-Yw2"/>
                 <outlet property="googleButton" destination="cci-Pc-k0x" id="SEV-gC-mRG"/>
                 <outlet property="headerConstraints" destination="baE-aX-U3N" id="I6u-h4-5Dl"/>
+                <outlet property="hiddenBackButton" destination="QUu-vT-swR" id="bOw-8p-e9v"/>
                 <outlet property="loginButtonsContainer" destination="cD3-7J-71V" id="WRc-dK-bjP"/>
                 <outlet property="loginSubTitle" destination="8HA-uo-7zN" id="Emh-aL-mX3"/>
                 <outlet property="mainViewContainer" destination="E3m-YK-mss" id="ZJq-0A-aCn"/>
@@ -92,6 +93,15 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QUu-vT-swR">
+                    <rect key="frame" x="24" y="214.33333333333334" width="40" height="30"/>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" image="back"/>
+                    <connections>
+                        <action selector="didTapBack:" destination="-1" eventType="touchUpInside" id="DTo-rC-r8J"/>
+                    </connections>
+                </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E3m-YK-mss">
                     <rect key="frame" x="24" y="259.33333333333331" width="345" height="542.66666666666674"/>
                     <subviews>
@@ -409,7 +419,9 @@ digital assets on the go.</string>
                 <constraint firstItem="E3m-YK-mss" firstAttribute="top" secondItem="7Cq-B3-BPx" secondAttribute="bottom" constant="16" id="R4O-Uy-c4c"/>
                 <constraint firstItem="cD3-7J-71V" firstAttribute="trailing" secondItem="E3m-YK-mss" secondAttribute="trailing" id="SgO-E6-SVe"/>
                 <constraint firstAttribute="trailing" secondItem="E3m-YK-mss" secondAttribute="trailing" constant="24" id="Zp7-nn-KfJ"/>
+                <constraint firstItem="QUu-vT-swR" firstAttribute="leading" secondItem="7Cq-B3-BPx" secondAttribute="leading" id="cIJ-f7-NSd"/>
                 <constraint firstItem="7Cq-B3-BPx" firstAttribute="top" secondItem="NM2-rU-FvE" secondAttribute="top" constant="40" id="dyJ-06-wgq"/>
+                <constraint firstItem="QUu-vT-swR" firstAttribute="centerY" secondItem="7Cq-B3-BPx" secondAttribute="centerY" id="hXo-vb-KtI"/>
                 <constraint firstItem="AMW-Eo-tXo" firstAttribute="trailing" secondItem="sHX-QC-6y9" secondAttribute="trailing" id="pNO-Ub-cCq"/>
                 <constraint firstItem="E3m-YK-mss" firstAttribute="leading" secondItem="AMW-Eo-tXo" secondAttribute="leading" constant="24" id="qzX-wG-bvY"/>
                 <constraint firstItem="K2x-Vo-2i7" firstAttribute="centerX" secondItem="qQc-VQ-J8X" secondAttribute="centerX" id="xRu-aW-nrh"/>
@@ -420,6 +432,7 @@ digital assets on the go.</string>
     </objects>
     <resources>
         <image name="FireblocksLogo" width="52" height="56"/>
+        <image name="back" width="16" height="16"/>
         <image name="existing_account" width="24" height="24"/>
         <image name="login_header" width="390" height="284"/>
         <image name="new_account" width="24" height="24"/>
