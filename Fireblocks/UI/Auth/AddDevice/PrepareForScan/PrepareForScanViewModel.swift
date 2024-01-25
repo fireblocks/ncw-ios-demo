@@ -26,7 +26,12 @@ class PrepareForScanViewModel: ObservableObject, UIHostingBridgeNotifications {
     func qrData(encoded: String) -> JoinRequestData? {
         if let data = encoded.data(using: .utf8) {
             let decoder = JSONDecoder()
-            return try? decoder.decode(JoinRequestData.self, from: data)
+            do {
+                return try decoder.decode(JoinRequestData.self, from: data)
+            } catch {
+                print(error)
+                return nil
+            }
         }
         return nil
     }

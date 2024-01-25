@@ -6,7 +6,7 @@
 	<dict>
 		<key>Headers/FireblocksSDK-Swift.h</key>
 		<data>
-		/ZeV2pm10m1Q63HHlXCJRNdHnZ0=
+		bDb80CmTGPZFBULZzADGM8vAvhg=
 		</data>
 		<key>Headers/FireblocksSDK.h</key>
 		<data>
@@ -18,47 +18,47 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		FMfANQ1a7UCQDI+8gkqGk+Z6ijc=
+		wThklchy6FBh7Js01u3iphy9Mcc=
 		</data>
 		<key>Modules/FireblocksSDK.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<data>
-		TGefUl0U6PGi3rPE3EM4vCoEs7A=
+		IyWNHorJJq55DgaaNVn/N3hML6A=
 		</data>
 		<key>Modules/FireblocksSDK.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		kErqgO8V46x64dBjp9CcU+ZJK4I=
+		RjVN1fPmYZq0K+Sl0Zj7fXaLPsw=
 		</data>
 		<key>Modules/FireblocksSDK.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		Cgcy7e3sInTzAIdtPTNAson70Ck=
+		i34doDRVnqEw2wx6o9SgkR2sxO4=
 		</data>
 		<key>Modules/FireblocksSDK.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		kErqgO8V46x64dBjp9CcU+ZJK4I=
+		RjVN1fPmYZq0K+Sl0Zj7fXaLPsw=
 		</data>
 		<key>Modules/FireblocksSDK.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		IaA6rpSEPOJqf+SdutIA+mgZXhc=
+		6+au7kgKXFVWJK3IyKJd6eBkcwU=
 		</data>
 		<key>Modules/FireblocksSDK.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<data>
-		TGefUl0U6PGi3rPE3EM4vCoEs7A=
+		IyWNHorJJq55DgaaNVn/N3hML6A=
 		</data>
 		<key>Modules/FireblocksSDK.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		Ai1CrSFk7STxauy+OqxrsevhcdM=
+		xKkwrdYLq2g9pNcS1H/tYx2bMoE=
 		</data>
 		<key>Modules/FireblocksSDK.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		bMr3JkiljMsQNUCqvNaAEEHDf80=
+		kxLhjWevfR3BAg69zfEMNDjJbNw=
 		</data>
 		<key>Modules/FireblocksSDK.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		Ai1CrSFk7STxauy+OqxrsevhcdM=
+		xKkwrdYLq2g9pNcS1H/tYx2bMoE=
 		</data>
 		<key>Modules/FireblocksSDK.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		Sq8ys70g2uTiDjpVnVk4yNRoT+o=
+		LuV1uDawsnBjuVOCCF/gox8pI1g=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -87,7 +87,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			URFYVJCQ+VWDNewvjrXxw3Gxbf70gxmEq+NV9z/Z8tU=
+			tkUmmzaNBABOxMFXurcfbqA3pF3syVrdVyPBIEmPC3w=
 			</data>
 		</dict>
 		<key>Headers/FireblocksSDK.h</key>
@@ -108,70 +108,70 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			YHUUR8CRkArJDxHVWX90J8e10IVyL+6GBu5fKevCb3s=
+			JYC1+eimj/g08dEhEzSb5Imo2CYYVV3clF237QfJ3Gg=
 			</data>
 		</dict>
 		<key>Modules/FireblocksSDK.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			31tRB+DpcEjCBNU/PeeUwBUXzbKUuVRzGmfvuCZCslc=
+			RI/2t0dM4AQKf9eLYLW/Wc61evXbqIuwLJwgE4zlw+k=
 			</data>
 		</dict>
 		<key>Modules/FireblocksSDK.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			MuuolU4KYk9ierQPWO/l8Um2P6GCBQzyA/gysc7WRMw=
+			JpekLFK8yK+tEHiqi+bqkrEznGnZA4DtKWCEzsIUp/w=
 			</data>
 		</dict>
 		<key>Modules/FireblocksSDK.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			31tRB+DpcEjCBNU/PeeUwBUXzbKUuVRzGmfvuCZCslc=
+			RI/2t0dM4AQKf9eLYLW/Wc61evXbqIuwLJwgE4zlw+k=
 			</data>
 		</dict>
 		<key>Modules/FireblocksSDK.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			lGbiCr2FwBhFvWhmSvWLWSETQpQlx5VqlmG1ZOyCBH8=
+			Zu9Y4EQYdSD07U64KRSyq+LquNr0KNGIBTnoF8bPPVQ=
 			</data>
 		</dict>
 		<key>Modules/FireblocksSDK.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			YHUUR8CRkArJDxHVWX90J8e10IVyL+6GBu5fKevCb3s=
+			JYC1+eimj/g08dEhEzSb5Imo2CYYVV3clF237QfJ3Gg=
 			</data>
 		</dict>
 		<key>Modules/FireblocksSDK.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			okjA+x9RWuj/NyAu45W/ht49qWccB1xAvVqta1CUC/0=
+			aDyvAsEbAQY+uOdvJHI23DhFWqVEZ1aDUO8qPuTAQGg=
 			</data>
 		</dict>
 		<key>Modules/FireblocksSDK.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			WfIRFH2GQXcA85A2ZDPxx+vzGMFP423+7QktB8pTF6g=
+			lqMK1K6OG51LEk7f/aTYGstd22Y5aPULeDqdRFpbZMk=
 			</data>
 		</dict>
 		<key>Modules/FireblocksSDK.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			okjA+x9RWuj/NyAu45W/ht49qWccB1xAvVqta1CUC/0=
+			aDyvAsEbAQY+uOdvJHI23DhFWqVEZ1aDUO8qPuTAQGg=
 			</data>
 		</dict>
 		<key>Modules/FireblocksSDK.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			OtiSbgEd2OfX+dos3rayyRZ0sWFc4RAwV6CGNiWpAnA=
+			WVr1VfpRgIthF0EviCQ7GT7qaQvOnyl5QjKYnPF64xM=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

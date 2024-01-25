@@ -97,10 +97,6 @@ class ValidateRequestIdViewModel: ObservableObject, UIHostingBridgeNotifications
     
     func approveJoinWallet() {
         guard let requestId else { return }
-        guard let _ = self.qrData(encoded: requestId.base64Decoded() ?? "") else {
-            self.error = "Missing request ID. Go back and try again"
-            return
-        }
 
         presentIndicator(show: true)
         approveJoinWalletTask = Task {
