@@ -95,3 +95,8 @@
 "approveJoinWalletCanceledSubtitle" = "The process was canceled.";
 "goHome" = "Go home";
 "try_again" = "Try again";
+
+"addDeviceAdded" = "Your device was added!";
+"addDeviceFailedTitle" = "Couldn’t add device";
+"addDeviceFailedSubtitle" = "The process has failed.";
+"addDeviceFailedToGenerateQR" = "Couldn’t generate QR code";

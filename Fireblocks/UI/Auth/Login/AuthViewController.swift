@@ -173,7 +173,12 @@ class AuthViewController: UIViewController {
         case .signUp:
             vc = UINavigationController(rootViewController: MpcKeysViewController(isAddingDevice: false))
         case .signIn:
-            vc = viewModel.isUserHaveKeys() ? UINavigationController(rootViewController: TabBarViewController()) : UINavigationController(rootViewController: MpcKeysViewController(isAddingDevice: false))
+            if viewModel.isUserHaveKeys() {
+                FireblocksManager.shared.startPolling()
+                vc = UINavigationController(rootViewController: TabBarViewController())
+            } else {
+                vc = UINavigationController(rootViewController: MpcKeysViewController(isAddingDevice: false))
+            }
         case .addDevice:
             vc = UINavigationController(rootViewController: MpcKeysViewController(isAddingDevice: true))
         }

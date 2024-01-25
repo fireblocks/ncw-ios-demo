@@ -52,6 +52,7 @@ public enum JoinWalletStatus : Swift.String, Swift.Codable, Swift.Equatable {
   case PROVISION_KEYS_SETUP_STARTED
   case PROVISION_SETUP_STARTED
   case PROVISION_SETUP_COMPLETED
+  case STOPPED
   case TIMEOUT
   case ERROR
   public init?(rawValue: Swift.String)
@@ -142,6 +143,7 @@ extension FireblocksSDK.Fireblocks {
   final public func approveJoinWalletRequest(requestId: Swift.String) async throws -> Swift.Set<FireblocksSDK.JoinWalletDescriptor>
   #endif
   final public func approveJoinWalletRequest(requestId: Swift.String, callback: @escaping (Swift.Set<FireblocksSDK.JoinWalletDescriptor>) -> ()) throws
+  final public func stopJoinWallet()
 }
 public enum KeyTakeoverStatus : Swift.String, Swift.Codable, Swift.Equatable {
   case INITIATED

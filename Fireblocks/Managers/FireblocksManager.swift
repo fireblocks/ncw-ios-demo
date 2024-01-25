@@ -12,7 +12,7 @@ import OSLog
 
 private let logger = Logger(subsystem: "Fireblocks", category: "FireblocksManager")
 protocol FireblocksKeyCreationDelegate {
-    func isKeysGenerated(isGenerated: Bool) async
+    func isKeysGenerated(isGenerated: Bool, didJoin: Bool) async
 }
 
 class FireblocksManager {
@@ -82,13 +82,16 @@ class FireblocksManager {
             if isGenerated {
                 //We simulate a simple way to implement a Polling mechanism.
                 //During the integration it is ineeded to generate a mechanism for fetching and listening to incoming messages and transactions, which could be any implementation (e.g. polling, web-socket, push etc.)
-                PollingManager.shared.createListener(deviceId: deviceId, instance: self, sessionManager: SessionManager.shared)
+                startPolling()
             }
-            
-            await delegate.isKeysGenerated(isGenerated: isGenerated)
+            await delegate.isKeysGenerated(isGenerated: isGenerated, didJoin: false)
         } catch {
             logger.log("FireblocksManager, generateMpcKeys() failed: \(error).")
         }
+    }
+    
+    func startPolling() {
+        PollingManager.shared.createListener(deviceId: deviceId, instance: self, sessionManager: SessionManager.shared)
     }
     
     func signTransaction(transactionId: String) async -> Bool {
@@ -106,9 +109,9 @@ class FireblocksManager {
             let result = try await getSdkInstance()?.requestJoinExistingWallet(joinWalletHandler: joinWalletHandler)
             let isGenerated = result?.first?.keyStatus == .READY
             if isGenerated {
-                PollingManager.shared.createListener(deviceId: deviceId, instance: self, sessionManager: SessionManager.shared)
+                startPolling()
             }
-            await delegate.isKeysGenerated(isGenerated: isGenerated)
+            await delegate.isKeysGenerated(isGenerated: isGenerated, didJoin: true)
         } catch {
             logger.log("FireblocksManager, addDevice() failed: \(error).")
         }
@@ -159,8 +162,7 @@ class FireblocksManager {
             let keySet = try await instance.recoverKeys(passphraseResolver: resolver)
             if keySet.isEmpty { return false }
             if keySet.first(where: {$0.keyRecoveryStatus == .ERROR}) != nil  { return false }
-            PollingManager.shared.createListener(deviceId: deviceId, instance: self, sessionManager: SessionManager.shared)
-
+            startPolling()
             return true
         } catch {
             logger.log("FireblocksManager, recoverWallet() can't recover wallet: \(error).")
@@ -200,6 +202,9 @@ class FireblocksManager {
         PollingManager.shared.removeListener(deviceId: deviceId)
     }
 
+    func stopJoinWallet() {
+        getSdkInstance()?.stopJoinWallet()
+    }
     
     private func isAllKeysBackedUp(_ keyBackupSet: Set<FireblocksSDK.KeyBackup>) -> Bool {
         for status in keyBackupSet {

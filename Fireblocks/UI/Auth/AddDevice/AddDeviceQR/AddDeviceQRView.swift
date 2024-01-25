@@ -80,6 +80,7 @@ struct AddDeviceQRView: View {
             .toolbar {
                 ToolbarItem {
                     Button {
+                        viewModel.dismiss()
                         dismiss()
                     } label: {
                         Image(uiImage: AssetsIcons.close.getIcon())

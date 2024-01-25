@@ -22,7 +22,7 @@ class ValidateRequestIdViewModel: ObservableObject, UIHostingBridgeNotifications
     var platform: String?
     private var approveJoinWalletTask: Task<Void, Never>?
 
-    let expiredInterval: TimeInterval = 10.seconds
+    let expiredInterval: TimeInterval = 180.seconds
     var timer: Timer?
     @Published var timeleft = ""
     @Published var isToolbarHidden = false
@@ -52,6 +52,11 @@ class ValidateRequestIdViewModel: ObservableObject, UIHostingBridgeNotifications
             //handle error
         }
 
+    }
+    
+    deinit {
+        self.timer?.invalidate()
+        self.timer = nil
     }
     
     private func qrData(encoded: String) -> JoinRequestData? {
@@ -97,6 +102,8 @@ class ValidateRequestIdViewModel: ObservableObject, UIHostingBridgeNotifications
             do {
                 let keys = try await FireblocksManager.shared.approveJoinWallet(requestId: requestId)
                 DispatchQueue.main.async {
+                    self.timer?.invalidate()
+                    self.timer = nil
                     self.presentIndicator(show: false)
                     if let _ = keys.first(where: {$0.status == .ERROR}) {
                         self.error = LocalizableStrings.approveJoinWalletFailed
@@ -106,7 +113,10 @@ class ValidateRequestIdViewModel: ObservableObject, UIHostingBridgeNotifications
                 }
             } catch {
                 DispatchQueue.main.async {
+                    self.timer?.invalidate()
+                    self.timer = nil
                     self.presentIndicator(show: false)
+                    FireblocksManager.shared.stopJoinWallet()
                     self.error = error.localizedDescription
                 }
             }
@@ -116,6 +126,7 @@ class ValidateRequestIdViewModel: ObservableObject, UIHostingBridgeNotifications
     func didTapCancel() {
         self.timer?.invalidate()
         self.timer = nil
+        FireblocksManager.shared.stopJoinWallet()
         delegate?.didCancelJoinWallet()
     }
 }

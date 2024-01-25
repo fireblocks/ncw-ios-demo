@@ -10,6 +10,10 @@ import UIKit
 import SwiftUI
 import FirebaseAuth
 
+protocol MainSignOutDelegate: AnyObject {
+    func didSignOut()
+}
+
 class MpcKeysViewController: UIViewController {
     
     static let identifier = "MpcKeysViewController"
@@ -78,10 +82,16 @@ class MpcKeysViewController: UIViewController {
             TransfersViewModel.shared.signOut()
             AssetListViewModel.shared.signOut()
             FireblocksManager.shared.stopPollingMessages()
+            FireblocksManager.shared.stopJoinWallet()
         }catch{
             print("SettingsViewModel can't sign out with current user: \(error)")
         }
         if let window = view.window {
+            let rootViewController = UINavigationController()
+            let vc = AuthViewController()
+            rootViewController.pushViewController(vc, animated: true)
+            window.rootViewController = rootViewController
+        } else if let window = navigationController?.view.window {
             let rootViewController = UINavigationController()
             let vc = AuthViewController()
             rootViewController.pushViewController(vc, animated: true)
@@ -173,8 +183,7 @@ extension MpcKeysViewController: MpcKeysViewModelDelegate {
         
         DispatchQueue.main.async {
             self.hideActivityIndicator()
-            //            let view = AddDeviceQRView(requestId: requestId, email: self.viewModel.email)
-            let vc = AddDeviceHostingVC(requestId: requestId, email: email)
+            let vc = AddDeviceHostingVC(requestId: requestId, email: email, delegate: self)
             self.navigationController?.pushViewController(vc, animated: true)
         }
 
@@ -182,13 +191,39 @@ extension MpcKeysViewController: MpcKeysViewModelDelegate {
     
     func onProvisionerFound() {
         DispatchQueue.main.async {
-            self.showActivityIndicator(message: "Adding device...")
+            NotificationCenter.default.post(name: Notification.Name("onProvisionerFound"), object: nil, userInfo: nil)
         }
     }
+    
+    func onAddingDevice(success: Bool) {
+        DispatchQueue.main.async {
+            if success {
+                let vc = EndFlowFeedbackHostingVC(icon: AssetsIcons.addDeviceSucceeded.rawValue, title: LocalizableStrings.addDeviceAdded, buttonTitle: LocalizableStrings.goHome, actionButton:  {
+                    self.navigateNextScreen()
+                })
+                self.navigationController?.pushViewController(vc, animated: true)
+            } else {
+                let vc = EndFlowFeedbackHostingVC(icon: AssetsIcons.addDeviceFailed.rawValue, title: LocalizableStrings.addDeviceFailedTitle, subTitle: LocalizableStrings.addDeviceFailedSubtitle, buttonTitle: LocalizableStrings.goHome, actionButton:  {
+                    self.navigationController?.popToRootViewController(animated: true)
+                })
+                self.navigationController?.pushViewController(vc, animated: true)
+
+            }
+        }
+    }
+
 }
 
 extension MpcKeysViewController: QRCodeScannerViewControllerDelegate {
     func gotAddress(address: String) {
         print("")
+    }
+}
+
+extension MpcKeysViewController: MainSignOutDelegate {
+    func didSignOut() {
+        DispatchQueue.main.async {
+            self.signOut()
+        }
     }
 }

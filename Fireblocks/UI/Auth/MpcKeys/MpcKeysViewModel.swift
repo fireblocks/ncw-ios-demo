@@ -14,6 +14,7 @@ protocol MpcKeysViewModelDelegate: AnyObject {
     func showAlertMessage(message: String)
     func onRequestId(requestId: String)
     func onProvisionerFound()
+    func onAddingDevice(success: Bool)
 }
 
 final class MpcKeysViewModel {
@@ -75,11 +76,15 @@ final class MpcKeysViewModel {
 
 //MARK: - FireblocksKeyCreationDelegate
 extension MpcKeysViewModel: FireblocksKeyCreationDelegate {
-    func isKeysGenerated(isGenerated: Bool) {
-        if isGenerated {
-            self.createAssets()
+    func isKeysGenerated(isGenerated: Bool, didJoin: Bool = false) {
+        if didJoin {
+            self.delegate?.onAddingDevice(success: isGenerated)
         } else {
-            self.delegate?.showAlertMessage(message: LocalizableStrings.mpcKeysGenerationFailed)
+            if isGenerated {
+                self.createAssets()
+            } else {
+                self.delegate?.showAlertMessage(message: LocalizableStrings.mpcKeysGenerationFailed)
+            }
         }
     }
 }

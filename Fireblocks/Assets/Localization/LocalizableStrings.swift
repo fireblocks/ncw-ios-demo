@@ -97,5 +97,9 @@ struct LocalizableStrings{
     static let approveJoinWalletCanceled = "approveJoinWalletCanceled".localize()
     static let approveJoinWalletCanceledSubtitle = "approveJoinWalletCanceledSubtitle".localize()
     static let goHome = "goHome".localize()
+    static let addDeviceAdded = "addDeviceAdded".localize()
+    static let addDeviceFailedTitle = "addDeviceFailedTitle".localize()
+    static let addDeviceFailedSubtitle = "addDeviceFailedSubtitle".localize()
+    static let addDeviceFailedToGenerateQR = "addDeviceFailedToGenerateQR".localize()
 
 }
