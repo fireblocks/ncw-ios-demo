@@ -38,7 +38,7 @@
 		</data>
 		<key>Modules/FireblocksSDK.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		D9ZBdU9HS13usDGzM4h7RHrx2Yk=
+		IaA6rpSEPOJqf+SdutIA+mgZXhc=
 		</data>
 		<key>Modules/FireblocksSDK.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<data>
@@ -58,7 +58,7 @@
 		</data>
 		<key>Modules/FireblocksSDK.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		bRivmksgcRo5gpXhQIzlLDykDBI=
+		Sq8ys70g2uTiDjpVnVk4yNRoT+o=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -136,7 +136,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			EmtIypkz8quMTtHzkURfBk2AROQJHCn/Zrpa8bFL+IU=
+			lGbiCr2FwBhFvWhmSvWLWSETQpQlx5VqlmG1ZOyCBH8=
 			</data>
 		</dict>
 		<key>Modules/FireblocksSDK.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
@@ -171,7 +171,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			YcqdAWiket0rby2dSSdkiYe9VLeWTvmE7YxjMHGOnjI=
+			OtiSbgEd2OfX+dos3rayyRZ0sWFc4RAwV6CGNiWpAnA=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

@@ -32,6 +32,10 @@ class PrepareForScanHostingVC: FBHostingViewController {
 
 extension PrepareForScanHostingVC: QRCodeScannerViewControllerDelegate {
     func gotAddress(address: String) {
+        guard let _ = viewModel.qrData(encoded: address) else {
+            viewModel.error = "Missing request ID. Go back and try again"
+            return
+        }
         let vc = ValidateRequestIdHostingVC(requestId: address)
         self.navigationController?.pushViewController(vc, animated: true)
     }

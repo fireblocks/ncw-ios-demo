@@ -85,12 +85,20 @@ struct PrepareForScanView: View {
                                 RoundedRectangle(cornerRadius: 16)
                                     .stroke(AssetsColors.gray2.color(), lineWidth: 1)
                             )
+                            .onTapGesture {
+                                viewModel.error = nil
+                            }
                         Spacer()
                     }
                     .opacity(isTextFieldPresented ? 1 : 0)
                 }
                 Spacer()
                 
+                if let error = viewModel.error {
+                    AlertBannerView(message: error)
+                        .padding(.vertical, 16)
+                }
+
                 Button {
                     viewModel.sendRequestId()
                 } label: {
