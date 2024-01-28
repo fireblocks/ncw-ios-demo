@@ -76,14 +76,14 @@ final class MpcKeysViewModel {
 
 //MARK: - FireblocksKeyCreationDelegate
 extension MpcKeysViewModel: FireblocksKeyCreationDelegate {
-    func isKeysGenerated(isGenerated: Bool, didJoin: Bool = false) {
+    func isKeysGenerated(isGenerated: Bool, didJoin: Bool = false, error: String? = nil) {
         if didJoin {
             self.delegate?.onAddingDevice(success: isGenerated)
         } else {
             if isGenerated {
                 self.createAssets()
             } else {
-                self.delegate?.showAlertMessage(message: LocalizableStrings.mpcKeysGenerationFailed)
+                self.delegate?.showAlertMessage(message: error ?? LocalizableStrings.mpcKeysGenerationFailed)
             }
         }
     }

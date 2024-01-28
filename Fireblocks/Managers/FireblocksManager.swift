@@ -12,7 +12,7 @@ import OSLog
 
 private let logger = Logger(subsystem: "Fireblocks", category: "FireblocksManager")
 protocol FireblocksKeyCreationDelegate {
-    func isKeysGenerated(isGenerated: Bool, didJoin: Bool) async
+    func isKeysGenerated(isGenerated: Bool, didJoin: Bool, error: String?) async
 }
 
 class FireblocksManager {
@@ -84,7 +84,7 @@ class FireblocksManager {
                 //During the integration it is ineeded to generate a mechanism for fetching and listening to incoming messages and transactions, which could be any implementation (e.g. polling, web-socket, push etc.)
                 startPolling()
             }
-            await delegate.isKeysGenerated(isGenerated: isGenerated, didJoin: false)
+            await delegate.isKeysGenerated(isGenerated: isGenerated, didJoin: false, error: nil)
         } catch {
             logger.log("FireblocksManager, generateMpcKeys() failed: \(error).")
         }
@@ -111,9 +111,13 @@ class FireblocksManager {
             if isGenerated {
                 startPolling()
             }
-            await delegate.isKeysGenerated(isGenerated: isGenerated, didJoin: true)
+            await delegate.isKeysGenerated(isGenerated: isGenerated, didJoin: true, error: nil)
+        } catch let err as FireblocksError {
+            logger.log("FireblocksManager, addDevice() failed: \(err.description).")
+            await delegate.isKeysGenerated(isGenerated: false, didJoin: false, error: err.description)
         } catch {
-            logger.log("FireblocksManager, addDevice() failed: \(error).")
+            logger.log("FireblocksManager, addDevice() failed: \(error.localizedDescription).")
+            await delegate.isKeysGenerated(isGenerated: false, didJoin: false, error: error.localizedDescription)
         }
     }
     
