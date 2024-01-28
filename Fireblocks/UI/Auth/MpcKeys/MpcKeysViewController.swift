@@ -21,8 +21,10 @@ class MpcKeysViewController: UIViewController {
     @IBOutlet weak var headerImageView: UIImageView!
     @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var generateMpcKeysButton: AppActionBotton!
-//    @IBOutlet weak var footerButton: UIButton!
+    @IBOutlet weak var footerButton: AppActionBotton!
 
+    @IBOutlet weak var footerButtonTC: NSLayoutConstraint!
+    @IBOutlet weak var footerButtonHC: NSLayoutConstraint!
     private let viewModel: MpcKeysViewModel
     private var alertView: AlertView?
     
@@ -42,19 +44,23 @@ class MpcKeysViewController: UIViewController {
     }
     
     private func configUI(){
+        footerButtonHC.constant = 0
+        footerButtonTC.constant = 0
+
         if viewModel.isAddingDevice {
             self.navigationItem.title = ""
             headerImageView.image = AssetsIcons.addDeviceImage.getIcon()
             headerLabel.text = LocalizableStrings.mpcKeysAddDeviceTitle
             generateMpcKeysButton.config(title: LocalizableStrings.continueTitle, style: .Primary)
             setNavigationControllerRightButton(icon: AssetsIcons.close, action: #selector(signOut))
-
         } else {
             self.navigationItem.title = LocalizableStrings.generateMPCKeys
             headerImageView.image = AssetsIcons.generateKeyImage.getIcon()
             headerLabel.text = LocalizableStrings.mpcKeysGenertaeTitle
             generateMpcKeysButton.config(title: LocalizableStrings.generateKeysButtonTitle, style: .Primary)
+            footerButton.config(title: LocalizableStrings.illDoThisLater, style: .Transparent)
             setNavigationControllerRightButton(icon: AssetsIcons.settings, action: #selector(navigateToSettings))
+
         }
     }
     
@@ -73,6 +79,10 @@ class MpcKeysViewController: UIViewController {
                 self.navigateCreateBackupScreen()
             }
         }
+    }
+    
+    @IBAction func didTapIllDoItLater(_ sender: AppActionBotton) {
+        navigateNextScreen()
     }
     
     @objc func signOut() {
@@ -161,7 +171,9 @@ extension MpcKeysViewController: MpcKeysViewModelDelegate {
             self.headerLabel.textAlignment = .center
             
             self.generateMpcKeysButton.config(title: LocalizableStrings.createKeyBackup, style: .Primary)
-//            self.footerButton.setTitle(LocalizableStrings.illDoThisLater, for: .normal)
+            self.footerButton.config(title: LocalizableStrings.illDoThisLater, style: .Transparent)
+            self.footerButtonHC.constant = 50
+            self.footerButtonTC.constant = 8
         }
 
 

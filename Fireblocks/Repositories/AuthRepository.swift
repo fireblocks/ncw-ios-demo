@@ -99,8 +99,8 @@ class AuthRepository  {
         if let device = devices?.devices.last {
             if let deviceId = device.deviceId, !deviceId.isEmpty, let walletId = device.walletId, !walletId.isEmpty {
                 let info = try await SessionManager.shared.getLatestBackupInfo(walletId: walletId)
-                if info.deviceId != nil {
-                    return AuthUser(userToken: userToken, deviceId: deviceId, walletId: walletId)
+                if let backedUpDeviceId = info.deviceId {
+                    return AuthUser(userToken: userToken, deviceId: backedUpDeviceId, walletId: walletId)
                 } else {
                     print("AuthRepository, getAuthResponse() throws exception: invalid GetDevicesResponse.")
                     return nil
