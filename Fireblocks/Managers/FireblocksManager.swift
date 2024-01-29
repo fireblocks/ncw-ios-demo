@@ -41,7 +41,7 @@ class FireblocksManager {
         guard let deviceId = authUser?.deviceId,
               let walletId = authUser?.walletId
         else {
-            logger.log("FireblocksManager, initInstance() failed: user credentials is nil")
+            AppLoggerManager.shared.logger()?.log("FireblocksManager, initInstance() failed: user credentials is nil")
             return false
         }
         
@@ -52,7 +52,7 @@ class FireblocksManager {
             try initializeFireblocksSDK()
             return true
         } catch {
-            logger.log("FireblocksManager, initInstance() throws exc: \(error).")
+            AppLoggerManager.shared.logger()?.log("FireblocksManager, initInstance() throws exc: \(error).")
             return false
         }
     }
@@ -61,7 +61,7 @@ class FireblocksManager {
         do {
             return try Fireblocks.getInstance(deviceId: deviceId)
         } catch {
-            logger.log("FireblocksManager, getFireblocksInstance() can't get instance: \(error).")
+            AppLoggerManager.shared.logger()?.log("FireblocksManager, getFireblocksInstance() can't get instance: \(error).")
             return nil
         }
     }
@@ -79,6 +79,8 @@ class FireblocksManager {
             let algorithms: Set<Algorithm> = Set([.MPC_ECDSA_SECP256K1])
             let result = try await getSdkInstance()?.generateMPCKeys(algorithms: algorithms)
             let isGenerated = result?.first?.keyStatus == .READY
+            AppLoggerManager.shared.logger()?.log("FireblocksManager, generateMpcKeys() isGenerated value: \(isGenerated).")
+
             if isGenerated {
                 //We simulate a simple way to implement a Polling mechanism.
                 //During the integration it is ineeded to generate a mechanism for fetching and listening to incoming messages and transactions, which could be any implementation (e.g. polling, web-socket, push etc.)
@@ -86,7 +88,7 @@ class FireblocksManager {
             }
             await delegate.isKeysGenerated(isGenerated: isGenerated, didJoin: false, error: nil)
         } catch {
-            logger.log("FireblocksManager, generateMpcKeys() failed: \(error).")
+            AppLoggerManager.shared.logger()?.log("FireblocksManager, generateMpcKeys() failed: \(error).")
         }
     }
     
@@ -99,10 +101,10 @@ class FireblocksManager {
             let result = try await getSdkInstance()?.signTransaction(txId: transactionId)
             return result?.transactionSignatureStatus == .COMPLETED
         } catch let err as FireblocksError {
-            logger.log("FireblocksManager, signTransaction() failed: \(err.description).")
+            AppLoggerManager.shared.logger()?.log("FireblocksManager, signTransaction() failed: \(err.description).")
             return false
         } catch {
-            logger.log("FireblocksManager, signTransaction() failed: \(error.localizedDescription).")
+            AppLoggerManager.shared.logger()?.log("FireblocksManager, signTransaction() failed: \(error.localizedDescription).")
             return false
         }
     }
@@ -116,10 +118,10 @@ class FireblocksManager {
             }
             await delegate.isKeysGenerated(isGenerated: isGenerated, didJoin: true, error: nil)
         } catch let err as FireblocksError {
-            logger.log("FireblocksManager, addDevice() failed: \(err.description).")
+            AppLoggerManager.shared.logger()?.log("FireblocksManager, addDevice() failed: \(err.description).")
             await delegate.isKeysGenerated(isGenerated: false, didJoin: false, error: err.description)
         } catch {
-            logger.log("FireblocksManager, addDevice() failed: \(error.localizedDescription).")
+            AppLoggerManager.shared.logger()?.log("FireblocksManager, addDevice() failed: \(error.localizedDescription).")
             await delegate.isKeysGenerated(isGenerated: false, didJoin: false, error: error.localizedDescription)
         }
     }
@@ -155,7 +157,7 @@ class FireblocksManager {
         do {
             return try await instance.takeover()
         } catch {
-            logger.log("FireblocksManager, Takeover() can't takeover keys: \(error).")
+            AppLoggerManager.shared.logger()?.log("FireblocksManager, Takeover() can't takeover keys: \(error).")
             return nil
         }
     }
@@ -172,7 +174,7 @@ class FireblocksManager {
             startPolling()
             return true
         } catch {
-            logger.log("FireblocksManager, recoverWallet() can't recover wallet: \(error).")
+            AppLoggerManager.shared.logger()?.log("FireblocksManager, recoverWallet() can't recover wallet: \(error).")
             return false
         }
     }
@@ -189,7 +191,7 @@ class FireblocksManager {
         do {
             return try await instance.backupKeys(passphrase: passphrase, passphraseId: passphraseId)
         } catch {
-            logger.log("FireblocksManager, backupKeys(): \(error).")
+            AppLoggerManager.shared.logger()?.log("FireblocksManager, backupKeys(): \(error).")
             return nil
         }
     }
@@ -233,7 +235,7 @@ extension FireblocksManager: PollingListenerDelegate {
     }
     
     func handleError(error: String?) {
-        logger.log("\(error ?? "")")
+        AppLoggerManager.shared.logger()?.log("\(error ?? "")")
     }
     
     
@@ -271,25 +273,25 @@ extension FireblocksManager: EventHandlerDelegate {
     func onEvent(event: FireblocksSDK.FireblocksEvent) {
         switch event {
         case let .KeyCreation(status, error):
-            logger.log("FireblocksManager, status(.KeyCreation): \(status.description()). Error: \(String(describing: error)).")
+            AppLoggerManager.shared.logger()?.log("FireblocksManager, status(.KeyCreation): \(status.description()). Error: \(String(describing: error)).")
             break
         case let .Backup(status, error):
-            logger.log("FireblocksManager, status(.Backup): \(status.description()). Error: \(String(describing: error)).")
+            AppLoggerManager.shared.logger()?.log("FireblocksManager, status(.Backup): \(status.description()). Error: \(String(describing: error)).")
             break
         case let .Recover(status, error):
-            logger.log("FireblocksManager, status(.Recover): \(String(describing: status?.description())). Error: \(String(describing: error)).")
+            AppLoggerManager.shared.logger()?.log("FireblocksManager, status(.Recover): \(String(describing: status?.description())). Error: \(String(describing: error)).")
             break
         case let .Transaction(status, error):
-            logger.log("FireblocksManager, status(.Transaction): \(status.description()). Error: \(String(describing: error)).")
+            AppLoggerManager.shared.logger()?.log("FireblocksManager, status(.Transaction): \(status.description()). Error: \(String(describing: error)).")
             break
         case let .Takeover(status, error):
-            logger.log("FireblocksManager, status(.Takeover): \(status.description()). Error: \(String(describing: error)).")
+            AppLoggerManager.shared.logger()?.log("FireblocksManager, status(.Takeover): \(status.description()). Error: \(String(describing: error)).")
             break
         case let .JoinWallet(status, error):
-            logger.log("FireblocksManager, status(.JoinWallet): \(status.description()). Error: \(String(describing: error)).")
+            AppLoggerManager.shared.logger()?.log("FireblocksManager, status(.JoinWallet): \(status.description()). Error: \(String(describing: error)).")
             break
         @unknown default:
-            logger.log("FireblocksManager, @unknown case")
+            AppLoggerManager.shared.logger()?.log("FireblocksManager, @unknown case")
             break
         }
     }

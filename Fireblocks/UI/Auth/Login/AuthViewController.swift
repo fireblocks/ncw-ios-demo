@@ -198,6 +198,8 @@ class AuthViewController: UIViewController {
             vc = UINavigationController(rootViewController: MpcKeysViewController(isAddingDevice: true))
         }
 
+        AppLoggerManager.shared.loggers[FireblocksManager.shared.getDeviceId()] = AppLogger(deviceId: FireblocksManager.shared.getDeviceId())
+        AppLoggerManager.shared.logger()?.log("User logged in")
         UIView.animate(withDuration: 1, animations: {
             self.welcomeTitle.alpha = 0
             self.subTitle.alpha = 0

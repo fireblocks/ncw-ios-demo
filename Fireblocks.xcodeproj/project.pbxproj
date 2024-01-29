@@ -507,6 +507,14 @@
 			path = prod;
 			sourceTree = "<group>";
 		};
+		2B8A984D2B67A99C00DA8A2E /* Logger */ = {
+			isa = PBXGroup;
+			children = (
+				2B2D36152B2B205A00B04667 /* AppLogger.swift */,
+			);
+			path = Logger;
+			sourceTree = "<group>";
+		};
 		2B94CFC72A9CE576003E7508 /* CodableExtensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -873,7 +881,7 @@
 				867828CE2A696D170035787D /* Extensions */,
 				867828D52A696D170035787D /* ActivityIndicator */,
 				867828D72A696D170035787D /* QRCodeGenerator */,
-				2B2D36152B2B205A00B04667 /* AppLogger.swift */,
+				2B8A984D2B67A99C00DA8A2E /* Logger */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1558,7 +1566,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 2HS962GC9R;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1605,7 +1613,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 2HS962GC9R;
 				FRAMEWORK_SEARCH_PATHS = (

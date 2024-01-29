@@ -308,7 +308,7 @@ class SessionManager: ObservableObject {
     
     private init() {}
     
-    func sendRequest(url: URL, httpMethod: String = "POST", timeout: TimeInterval? = nil, numberOfRetries: Int = 2, message: String? = nil, body: Any? = nil) async throws -> (Data) {
+    func sendRequest(url: URL, httpMethod: String = "POST", timeout: TimeInterval? = nil, numberOfRetries: Int = 2, message: String? = nil, body: Any? = nil, skipLogs: Bool = false) async throws -> (Data) {
         let currentAccessToken: String = await AuthRepository.getUserIdToken()
         var request = URLRequest(url: url)
         request.setValue(
@@ -339,16 +339,20 @@ class SessionManager: ObservableObject {
         }
         
         let session = URLSession.shared
-        print("\n📣📣📣📣\nSessionManager send request:\n\(request)\n📣📣📣📣")
+        AppLoggerManager.shared.logger()?.log("\n📣📣📣📣\nSessionManager send request:\n\(request)\n📣📣📣📣")
         do {
             let (data, _) = try await session.data(for: request)
             print("RESPONSE: \(String(data: data, encoding: .utf8))")
+            if !skipLogs {
+                AppLoggerManager.shared.logger()?.log("RESPONSE: \(String(data: data, encoding: .utf8))")
+            }
             return data
         } catch {
             if numberOfRetries == 0 {
                 throw error
             } else {
                 print("Retry \(url.absoluteString) - \(numberOfRetries) more retries")
+                AppLoggerManager.shared.logger()?.log("Retry \(url.absoluteString) - \(numberOfRetries) more retries")
                 return try await self.sendRequest(url: url, httpMethod: httpMethod, timeout: timeout, numberOfRetries: numberOfRetries - 1)
             }
         }
@@ -431,7 +435,7 @@ extension SessionManager {
     func rpc(deviceId: String, message: String) async throws -> String? {
         print("RPC: \(message)")
         if let url = URL(string: FBURL.rpc(deviceId).url) {
-            let str = String(data: try await sendRequest(url: url, timeout: FBURL.rpc(deviceId).timeout, message: message), encoding: .utf8)
+            let str = String(data: try await sendRequest(url: url, timeout: FBURL.rpc(deviceId).timeout, message: message, skipLogs: true), encoding: .utf8)
             print(str ?? "", message, url)
             return str
         } else {
