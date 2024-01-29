@@ -307,6 +307,11 @@ SWIFT_CLASS("_TtC13FireblocksSDK7FullKey")
 @end
 
 
+/// Information about the approval request to join an existing wallet or the join request to an existing wallet.
+/// @property requestId the id of this approval request.
+/// @property algorithm the Algorithm of this approval request.
+/// @property provisionKeyId the id of the provision key. This is the new key that will be created for the device that requested to join the existing wallet.
+/// @property status the status of this approval request.
 SWIFT_CLASS("_TtC13FireblocksSDK20JoinWalletDescriptor")
 @interface JoinWalletDescriptor : NSObject
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
@@ -655,6 +660,11 @@ SWIFT_CLASS("_TtC13FireblocksSDK7FullKey")
 @end
 
 
+/// Information about the approval request to join an existing wallet or the join request to an existing wallet.
+/// @property requestId the id of this approval request.
+/// @property algorithm the Algorithm of this approval request.
+/// @property provisionKeyId the id of the provision key. This is the new key that will be created for the device that requested to join the existing wallet.
+/// @property status the status of this approval request.
 SWIFT_CLASS("_TtC13FireblocksSDK20JoinWalletDescriptor")
 @interface JoinWalletDescriptor : NSObject
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;

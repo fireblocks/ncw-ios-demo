@@ -98,8 +98,11 @@ class FireblocksManager {
         do {
             let result = try await getSdkInstance()?.signTransaction(txId: transactionId)
             return result?.transactionSignatureStatus == .COMPLETED
+        } catch let err as FireblocksError {
+            logger.log("FireblocksManager, signTransaction() failed: \(err.description).")
+            return false
         } catch {
-            logger.log("FireblocksManager, signTransaction() failed: \(error).")
+            logger.log("FireblocksManager, signTransaction() failed: \(error.localizedDescription).")
             return false
         }
     }

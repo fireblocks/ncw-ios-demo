@@ -105,12 +105,19 @@ extension ApproveViewController: ApproveViewModelDelegate {
     
     func cancelTransactionStatusChanged(isCanceled: Bool) {
         DispatchQueue.main.async { [weak self] in
-            self?.hideActivityIndicator()
-            if isCanceled {
-                self?.navigateHome()
-            } else {
-                self?.showAlertView(message: LocalizableStrings.cancelTxFailed)
+            if let self {
+                self.hideActivityIndicator()
+                if isCanceled {
+                    self.navigateHome()
+                } else {
+                    self.showAlertView(message: LocalizableStrings.cancelTxFailed)
+                    self.navigationItem.leftBarButtonItems = [UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self, action: #selector(goHome))]
+                }
             }
         }
+    }
+    
+    @objc func goHome() {
+        self.navigationController?.popToRootViewController(animated: true)
     }
 }
