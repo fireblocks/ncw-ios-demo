@@ -18,10 +18,10 @@
 "login_apple_sign_in" = " Sign in with Apple";
 "login_google_sign_up" = " Sign up with Google";
 "login_apple_sign_up" = " Sign up with Apple";
-"login_google_add_device" = " Add with Google";
-"login_apple_add_device" = " Add with Apple";
-"sign_in_title" = "Sign in to your Bitvault account";
-"sign_up_title" = "Create a new Bitvault account";
+"login_google_add_device" = " Sign in with Google";
+"login_apple_add_device" = " Sign in with Apple";
+"sign_in_title" = "Sign in to your existing wallet";
+"sign_up_title" = "Create a Bitvault user";
 "add_device_title" = "Add a device to an existing wallet";
 "mpc_keys_genertae_title" = "To provide the highest level of wallet security, we use multi-party computation (MPC) keys. MPCs allow for different parties to hold a piece of a private key without possessing the entire thing.";
 "mpc_keys_add_device_title" = "To keep your assets safe, your BitVault wallet must be added to this device using your existing device. Make sure you have your existing device nearby before continuing.";

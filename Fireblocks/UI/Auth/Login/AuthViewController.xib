@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -143,13 +143,13 @@ digital assets on the go.</string>
                                                 <constraint firstAttribute="height" constant="24" id="dzh-t6-SzL"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Existing Account" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SeH-rl-ge4">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Existing User" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SeH-rl-ge4">
                                             <rect key="frame" x="16" y="68" width="151.66666666666666" height="19.333333333333329"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <color key="textColor" name="white"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign in to your existing account" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xRN-UE-d4q">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign in to your existing wallet" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xRN-UE-d4q">
                                             <rect key="frame" x="16" y="95.333333333333314" width="151.66666666666666" height="12"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                             <color key="textColor" name="white"/>
@@ -199,13 +199,13 @@ digital assets on the go.</string>
                                                 <constraint firstAttribute="width" constant="24" id="ydN-y4-QDQ"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New Account" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FXu-y4-u4v">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New User" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FXu-y4-u4v">
                                             <rect key="frame" x="16" y="68" width="151.66666666666666" height="19.333333333333329"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <color key="textColor" name="white"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create a new Bitvault account" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sb4-Ah-6d5">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create a Bitvault user" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sb4-Ah-6d5">
                                             <rect key="frame" x="16" y="95.333333333333314" width="151.66666666666666" height="12"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                             <color key="textColor" name="white"/>
@@ -267,14 +267,16 @@ digital assets on the go.</string>
                         <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gKb-w6-AEm">
                             <rect key="frame" x="0.0" y="471.66666666666669" width="345" height="71.000000000000057"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cqy-1r-ur9">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cqy-1r-ur9">
                                     <rect key="frame" x="0.0" y="0.0" width="345" height="71"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="71" id="heD-S2-2VU"/>
                                     </constraints>
                                     <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <state key="normal" title="Button"/>
-                                    <buttonConfiguration key="configuration" style="gray">
+                                    <buttonConfiguration key="configuration" style="gray" title="Add a device to an existing wallet">
+                                        <fontDescription key="titleFontDescription" type="system" pointSize="16"/>
+                                        <color key="baseForegroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="baseBackgroundColor" name="gray_1"/>
                                     </buttonConfiguration>
                                     <userDefinedRuntimeAttributes>
@@ -287,32 +289,11 @@ digital assets on the go.</string>
                                         <action selector="addDeviceTapped:" destination="-1" eventType="touchUpInside" id="1Vp-oe-pgy"/>
                                     </connections>
                                 </button>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign in with a new device" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S4N-KP-xUH">
-                                    <rect key="frame" x="16" y="15.999999999999998" width="313" height="19.333333333333329"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                    <color key="textColor" name="white"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add a device to an existing wallet add more explanation here" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yRs-O5-KAH">
-                                    <rect key="frame" x="16" y="41.333333333333371" width="313" height="12"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                    <color key="textColor" name="white"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstItem="yRs-O5-KAH" firstAttribute="leading" secondItem="S4N-KP-xUH" secondAttribute="leading" id="894-yi-wjo"/>
-                                <constraint firstAttribute="bottom" secondItem="Cqy-1r-ur9" secondAttribute="bottom" id="8uS-N1-4hx"/>
-                                <constraint firstItem="S4N-KP-xUH" firstAttribute="leading" secondItem="gKb-w6-AEm" secondAttribute="leading" constant="16" id="Eef-cd-t2s"/>
-                                <constraint firstItem="S4N-KP-xUH" firstAttribute="top" secondItem="gKb-w6-AEm" secondAttribute="top" constant="16" id="LJr-Us-wTE"/>
-                                <constraint firstAttribute="trailing" secondItem="Cqy-1r-ur9" secondAttribute="trailing" id="a9N-jq-YyJ"/>
-                                <constraint firstAttribute="trailing" secondItem="S4N-KP-xUH" secondAttribute="trailing" constant="16" id="diO-ek-aaZ"/>
                                 <constraint firstAttribute="bottom" secondItem="Cqy-1r-ur9" secondAttribute="bottom" id="grx-iH-S8X"/>
-                                <constraint firstItem="yRs-O5-KAH" firstAttribute="trailing" secondItem="S4N-KP-xUH" secondAttribute="trailing" id="iv5-eC-VSX"/>
-                                <constraint firstItem="Cqy-1r-ur9" firstAttribute="leading" secondItem="gKb-w6-AEm" secondAttribute="leading" id="k3b-wS-ZMa"/>
                                 <constraint firstItem="Cqy-1r-ur9" firstAttribute="leading" secondItem="gKb-w6-AEm" secondAttribute="leading" id="ko7-07-mHw"/>
-                                <constraint firstItem="yRs-O5-KAH" firstAttribute="top" secondItem="S4N-KP-xUH" secondAttribute="bottom" constant="6" id="psi-MT-vcW"/>
                                 <constraint firstItem="Cqy-1r-ur9" firstAttribute="top" secondItem="gKb-w6-AEm" secondAttribute="top" id="xAU-Ej-D9e"/>
                                 <constraint firstAttribute="trailing" secondItem="Cqy-1r-ur9" secondAttribute="trailing" id="yrp-ci-nig"/>
                             </constraints>

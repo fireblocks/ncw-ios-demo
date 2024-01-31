@@ -41,7 +41,7 @@ class ApproveViewController: UIViewController {
     }
     
     private func configButtons(){
-        navigationItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "close"), style: .plain, target: self, action: #selector(handleCloseTap))]
+        self.showToolbar(show: true)
         self.navigationItem.title = "Preview"
         self.navigationItem.hidesBackButton = true
         let buttonImage = AssetsIcons.checkMark.getIcon()
@@ -63,6 +63,7 @@ class ApproveViewController: UIViewController {
     }
     
     @IBAction func approveTapped(_ sender: AppActionBotton) {
+        self.showToolbar(show: false)
         viewModel.approveTransaction()
         showActivityIndicator()
     }
@@ -85,6 +86,7 @@ class ApproveViewController: UIViewController {
 //MARK: - UserActionDelegate
 extension ApproveViewController: UserActionDelegate {
     func confirmButtonClicked() {
+        self.showToolbar(show: false)
         viewModel.cancelTransaction()
         showActivityIndicator()
     }
@@ -94,11 +96,14 @@ extension ApproveViewController: UserActionDelegate {
 extension ApproveViewController: ApproveViewModelDelegate {
     func transactionStatusChanged(isApproved: Bool) {
         DispatchQueue.main.async { [weak self] in
-            self?.hideActivityIndicator()
-            if isApproved{
-                self?.navigateToTransactionSent()
-            } else {
-                self?.showAlertView(message: LocalizableStrings.approveTxFailed)
+            if let self {
+                self.hideActivityIndicator()
+                if isApproved{
+                    self.navigateToTransactionSent()
+                } else {
+                    self.showToolbar(show: true)
+                    self.showAlertView(message: LocalizableStrings.approveTxFailed)
+                }
             }
         }
     }
@@ -110,11 +115,25 @@ extension ApproveViewController: ApproveViewModelDelegate {
                 if isCanceled {
                     self.navigateHome()
                 } else {
+                    self.showToolbar(show: true)
                     self.showAlertView(message: LocalizableStrings.cancelTxFailed)
-                    self.navigationItem.leftBarButtonItems = [UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self, action: #selector(goHome))]
                 }
             }
         }
+    }
+    
+    private func showToolbar(show: Bool) {
+        if show {
+            self.navigationItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "close"), style: .plain, target: self, action: #selector(handleCloseTap))]
+            self.navigationItem.leftBarButtonItems = [UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self, action: #selector(goHome))]
+        } else {
+            self.navigationItem.rightBarButtonItems = nil
+            self.navigationItem.leftBarButtonItems = nil
+        }
+    }
+    
+    func hideIndicator() {
+        self.hideActivityIndicator()
     }
     
     @objc func goHome() {

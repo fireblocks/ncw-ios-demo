@@ -10,6 +10,7 @@ import Foundation
 protocol ApproveViewModelDelegate: AnyObject {
     func transactionStatusChanged(isApproved: Bool)
     func cancelTransactionStatusChanged(isCanceled: Bool)
+    func hideIndicator()
 }
 
 final class ApproveViewModel {
@@ -58,7 +59,10 @@ final class ApproveViewModel {
     }
     
     func approveTransaction() {
-        guard let transactionId = transaction.txId else { return }
+        guard let transactionId = transaction.txId else {
+            delegate?.hideIndicator()
+            return
+        }
         Task {
             let isApproved = await repository.approveTransaction(transactionId: transactionId)
             self.delegate?.transactionStatusChanged(isApproved: isApproved)
@@ -67,14 +71,17 @@ final class ApproveViewModel {
     }
     
     func cancelTransaction() {
-        guard let transactionId = transaction.txId else { return }
+        guard let transactionId = transaction.txId else {
+            delegate?.hideIndicator()
+            return
+        }
         let assetId = transaction.asset.id
         Task {
             do {
                 let isCanceled = try await repository.cancelTransaction(assetId: assetId, txId: transactionId)
                 delegate?.cancelTransactionStatusChanged(isCanceled: isCanceled)
             } catch {
-                print("error")
+                delegate?.cancelTransactionStatusChanged(isCanceled: false)
             }
             
         }
