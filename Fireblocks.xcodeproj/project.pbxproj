@@ -42,6 +42,8 @@
 		2B94CFFF2A9F3F03003E7508 /* PollingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B94CFFC2A9F3F03003E7508 /* PollingManager.swift */; };
 		2BA1EB3C2B6926270069390B /* FireblocksSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 2BA1EB3B2B6926270069390B /* FireblocksSDK */; };
 		2BA53D3D2B46B348008C7B6C /* FBHostingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA53D3C2B46B348008C7B6C /* FBHostingViewController.swift */; };
+		2BC5837E2B6BD5DC005E6EEB /* Bullet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC5837D2B6BD5DC005E6EEB /* Bullet.swift */; };
+		2BC583802B6BD5FF005E6EEB /* VerticalSeparator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC5837F2B6BD5FF005E6EEB /* VerticalSeparator.swift */; };
 		2BD53A232B28735700756C4A /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD53A222B28735700756C4A /* Date+Extensions.swift */; };
 		2BF8EDB62B56673300046F0B /* EndFlowFeedbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF8EDB52B56673300046F0B /* EndFlowFeedbackView.swift */; };
 		2BF8EDB92B56676300046F0B /* EndFlowFeedbackViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF8EDB82B56676300046F0B /* EndFlowFeedbackViewModel.swift */; };
@@ -238,6 +240,8 @@
 		2B94CFFB2A9F3F03003E7508 /* PollingListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PollingListener.swift; sourceTree = "<group>"; };
 		2B94CFFC2A9F3F03003E7508 /* PollingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PollingManager.swift; sourceTree = "<group>"; };
 		2BA53D3C2B46B348008C7B6C /* FBHostingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBHostingViewController.swift; sourceTree = "<group>"; };
+		2BC5837D2B6BD5DC005E6EEB /* Bullet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bullet.swift; sourceTree = "<group>"; };
+		2BC5837F2B6BD5FF005E6EEB /* VerticalSeparator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalSeparator.swift; sourceTree = "<group>"; };
 		2BD53A222B28735700756C4A /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		2BF8EDB52B56673300046F0B /* EndFlowFeedbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndFlowFeedbackView.swift; sourceTree = "<group>"; };
 		2BF8EDB82B56676300046F0B /* EndFlowFeedbackViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndFlowFeedbackViewModel.swift; sourceTree = "<group>"; };
@@ -548,6 +552,8 @@
 			isa = PBXGroup;
 			children = (
 				2BF8EDBD2B56758300046F0B /* AlertBannerView.swift */,
+				2BC5837D2B6BD5DC005E6EEB /* Bullet.swift */,
+				2BC5837F2B6BD5FF005E6EEB /* VerticalSeparator.swift */,
 			);
 			path = SwiftUIViews;
 			sourceTree = "<group>";
@@ -1406,10 +1412,12 @@
 				60DA06AB2A651F7E00160ADC /* FeeRateViewController.swift in Sources */,
 				867828E22A696D170035787D /* UIView+Extension.swift in Sources */,
 				86B6E9302A5E8AB800F35260 /* AuthUser.swift in Sources */,
+				2BC583802B6BD5FF005E6EEB /* VerticalSeparator.swift in Sources */,
 				60DA06752A645E9A00160ADC /* AmountToSendViewModel.swift in Sources */,
 				2B3E6C0D2ACDAB0B000E91CF /* AddAssetsViewController.swift in Sources */,
 				86ED2BAC2A64430F00377F6C /* SettingsViewModel.swift in Sources */,
 				2B94CFFF2A9F3F03003E7508 /* PollingManager.swift in Sources */,
+				2BC5837E2B6BD5DC005E6EEB /* Bullet.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

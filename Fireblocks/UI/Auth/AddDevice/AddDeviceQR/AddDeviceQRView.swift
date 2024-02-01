@@ -29,14 +29,14 @@ struct AddDeviceQRView: View {
                             VStack(spacing: 8) {
                                 HStack {
                                     Bullet(text: "1")
-                                    Text("Launch BitVault on your existing device.")
+                                    Text(LocalizableStrings.launchOnExistingDevice)
                                         .font(.subtitle1)
                                     Spacer()
                                 }
                                 VerticalSeparator()
                                 HStack {
                                     Bullet(text: "2")
-                                    Text("Open the settings menu.")
+                                    Text(LocalizableStrings.openSettingsMenu)
                                         .font(.subtitle1)
                                     Image(uiImage: AssetsIcons.settings.getIcon())
                                     Spacer()
@@ -44,14 +44,14 @@ struct AddDeviceQRView: View {
                                 VerticalSeparator()
                                 HStack {
                                     Bullet(text: "3")
-                                    Text("Tap “Add new device”.")
+                                    Text(LocalizableStrings.tapAddNewDevice)
                                         .font(.subtitle1)
                                     Spacer()
                                 }
                                 VerticalSeparator()
                                 HStack {
                                     Bullet(text: "4")
-                                    Text("Scan the QR code.")
+                                    Text(LocalizableStrings.scanTheQRCode)
                                         .font(.subtitle1)
                                     Spacer()
                                 }
@@ -73,7 +73,7 @@ struct AddDeviceQRView: View {
             
             VStack {
                 Spacer()
-                Text("QR code expires in: \(viewModel.timeleft)")
+                Text("\(LocalizableStrings.qrCodeExpiresIn) \(viewModel.timeleft)")
                     .font(.body3)
                     .foregroundColor(AssetsColors.gray4.color())
             }
@@ -137,7 +137,7 @@ struct AddDeviceQRInnerView: View {
                 .frame(width: imageWidth, height: imageWidth)
                 .padding(.bottom, 24)
             
-            Text("QR code link")
+            Text(LocalizableStrings.qrCodeLink)
                 .font(.subtitle1)
                 .padding(.top, 16)
             
@@ -166,32 +166,6 @@ struct AddDeviceQRInnerView: View {
     }
 }
 
-struct Bullet: View {
-    let text: String
-    
-    var body: some View {
-        Text(text)
-            .font(.subtitle3)
-            .contentShape(Rectangle())
-            .padding(.horizontal, 8)
-            .padding(.vertical, 4)
-            .background(AssetsColors.gray1.color())
-            .cornerRadius(4)
-    }
-}
-
-struct VerticalSeparator: View {
-    var body: some View {
-        HStack {
-            HStack {}
-                .frame(width: 4, height: 32)
-                .background(AssetsColors.gray1.color())
-                .cornerRadius(4)
-                .padding(.horizontal, 11)
-            Spacer()
-        }
-    }
-}
 
 //struct AddDeviceQRView_Previews: PreviewProvider {
 //    static var previews: some View {

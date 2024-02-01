@@ -100,3 +100,15 @@
 "addDeviceFailedTitle" = "Couldn’t add device";
 "addDeviceFailedSubtitle" = "The process has failed.";
 "addDeviceFailedToGenerateQR" = "Couldn’t generate QR code";
+
+"launchOnExistingDevice" = "Launch BitVault on your existing device.";
+"openSettingsMenu" = "Open the settings menu.";
+"tapAddNewDevice" = "Tap “Add new device”.";
+"scanTheQRCode" = "Scan the QR code.";
+"scanQRCode" = "Scan QR code.";
+"qrCodeExpiresIn" = "QR code expires in:";
+"qrCodeLink" = "QR code link";
+
+"prepareForScanHeader" = "Scan the QR code on your new device to add it to your BitVault wallet.";
+"enterQRCodeLink" = "Enter QR code link";
+"copyQRCodeLink" = "Copy the QR code link";

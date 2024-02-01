@@ -22,7 +22,7 @@ struct PrepareForScanView: View {
                         .padding(.top, 12)
                         .padding(.bottom, 24)
                     
-                    Text("Scan the QR code on your new device to add it to your BitVault wallet. ")
+                    Text(LocalizableStrings.prepareForScanHeader)
                         .multilineTextAlignment(.center)
                         .padding(.bottom, 32)
                     Button {
@@ -31,7 +31,7 @@ struct PrepareForScanView: View {
                         HStack {
                             Spacer()
                             Image(AssetsIcons.scanQrCode.rawValue)
-                            Text("Scan QR Code")
+                            Text(LocalizableStrings.scanQRCode)
                                 .font(.body1)
                             Spacer()
                         }
@@ -57,7 +57,7 @@ struct PrepareForScanView: View {
                             } label: {
                                 HStack {
                                     Spacer()
-                                    Text("Enter QR code link")
+                                    Text(LocalizableStrings.enterQRCodeLink)
                                         .font(.body1)
                                     Spacer()
                                 }
@@ -74,7 +74,7 @@ struct PrepareForScanView: View {
                         }
                         
                         VStack(spacing: 12) {
-                            Text("Copy the QR code link")
+                            Text(LocalizableStrings.copyQRCodeLink)
                                 .font(.body1)
                             
                             TextField("", text: $viewModel.requestId)
@@ -105,7 +105,7 @@ struct PrepareForScanView: View {
                     } label: {
                         HStack {
                             Spacer()
-                            Text("Continue")
+                            Text(LocalizableStrings.continueTitle)
                                 .font(.body1)
                             Spacer()
                         }

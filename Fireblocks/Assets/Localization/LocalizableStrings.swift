@@ -102,4 +102,14 @@ struct LocalizableStrings{
     static let addDeviceFailedSubtitle = "addDeviceFailedSubtitle".localize()
     static let addDeviceFailedToGenerateQR = "addDeviceFailedToGenerateQR".localize()
 
+    static let launchOnExistingDevice = "launchOnExistingDevice".localize()
+    static let openSettingsMenu = "openSettingsMenu".localize()
+    static let tapAddNewDevice = "tapAddNewDevice".localize()
+    static let scanTheQRCode = "scanTheQRCode".localize()
+    static let scanQRCode = "scanQRCode".localize()
+    static let qrCodeExpiresIn = "qrCodeExpiresIn".localize()
+    static let qrCodeLink = "qrCodeLink".localize()
+    static let prepareForScanHeader = "prepareForScanHeader".localize()
+    static let enterQRCodeLink = "enterQRCodeLink".localize()
+    static let copyQRCodeLink = "copyQRCodeLink".localize()
 }
