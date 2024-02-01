@@ -9,7 +9,7 @@ import Foundation
 import FireblocksSDK
 
 struct EnvironmentConstants {
-    static let baseURL = "https://ncw-demo-dev.2uaqu5aka49io.eu-central-1.cs.amazonlightsail.com"
+    static let baseURL = "https://api-sb-1.ncw-demo.com"
     static let env: FireblocksSDK.FireblocksEnvironment = .sandbox
 }
 
