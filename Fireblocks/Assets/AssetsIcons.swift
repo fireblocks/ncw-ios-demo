@@ -34,7 +34,9 @@ enum AssetsIcons: String {
     case warning = "warning"
     case transfer = "transfer"
     case wallet = "wallet"
-    
+    case addNewDevice = "addNewDevice"
+    case shareLogs = "shareLogs"
+
     case profilePlaceholder = "profile_placeholder"
     case cancelTransaction = "cancel_transaction"
     case signOut = "sign_out"
@@ -63,6 +65,11 @@ enum AssetsIcons: String {
     case keyImage = "key_image"
     case searchImage = "search_image"
     case successImage = "success_image"
+    case addDeviceImage = "add_device"
+    case addDeviceSucceeded = "add_device_succeed"
+    case addDeviceFailed = "add_device_failed"
+    case addAccountImage = "add_account"
+    case existingAccountImage = "existing_account"
     case transferImage = "transfer_image"
 }
 

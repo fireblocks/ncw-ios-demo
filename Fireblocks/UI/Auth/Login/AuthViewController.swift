@@ -38,15 +38,26 @@ class AuthViewController: UIViewController {
     @IBOutlet weak var versionLabel: UILabel!
     @IBOutlet weak var versionLabelContainer: UIView!
 
+    @IBOutlet weak var loginSubTitle: UILabel!
+    @IBOutlet weak var mainViewContainer: UIView!
+    @IBOutlet weak var loginButtonsContainer: UIView!
+
+    @IBOutlet weak var hiddenBackButton: UIButton!
+
     private lazy var viewModel: AuthViewModel = { AuthViewModel(self) }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setHeaderSize()
         addPaddingStackView()
-        signInTapped(signInButton)
         versionLabel.text = Bundle.main.versionLabel
         versionLabelContainer.backgroundColor = AssetsColors.gray2.getColor()
+        
+        let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true) // get the Documents folder path
+        
+        let pathForDocumentDir = documentsPath[0]
+        print("pathForDocumentDir: \(pathForDocumentDir)")
+
     }
 
     override func viewWillLayoutSubviews() {
@@ -66,25 +77,62 @@ class AuthViewController: UIViewController {
     }
     
     @IBAction func signInTapped(_ sender: UIButton) {
-        viewModel.setSignIn(isSignIn: true)
+        viewModel.setLoginMethod(loginMethod: .signIn)
         setLoginView()
     }
     
     @IBAction func signUpTapped(_ sender: UIButton) {
-        viewModel.setSignIn(isSignIn: false)
+        viewModel.setLoginMethod(loginMethod: .signUp)
         setSignUpView()
     }
     
-    private func setLoginView(){
-        setButtonSelectedState(selectedButton: signInButton, disabledButton: signUpButton)
+    @IBAction func addDeviceTapped(_ sender: UIButton) {
+        viewModel.setLoginMethod(loginMethod: .addDevice)
+        setAddDeviceView()
+    }
+    
+    private func setTransition() {
+        UIView.animate(withDuration: 0.3) {
+            self.mainViewContainer.alpha = 0
+            self.loginButtonsContainer.alpha = 1
+            self.hiddenBackButton.alpha = 1
+        }
+    }
+    
+    private func revertTransition() {
+        UIView.animate(withDuration: 0.3) {
+            self.mainViewContainer.alpha = 1
+            self.loginButtonsContainer.alpha = 0
+            self.hiddenBackButton.alpha = 0
+        }
+    }
+
+    @IBAction func didTapBack(_ sender: UIButton) {
+        revertTransition()
+    }
+    
+    private func setLoginView() {
+        setTransition()
+//        setButtonSelectedState(selectedButton: signInButton, disabledButton: signUpButton)
+        loginSubTitle.text = LocalizableStrings.signInTitle
         googleButton.config(title: LocalizableStrings.loginGoogleSignIn, image: AssetsIcons.googleIcon.getIcon(), style: .Secondary)
         appleButton.config(title: LocalizableStrings.loginAppleSignIn, image: AssetsIcons.appleIcon.getIcon(), style: .Secondary)
     }
     
     private func setSignUpView(){
-        setButtonSelectedState(selectedButton: signUpButton, disabledButton: signInButton)
+        setTransition()
+//        setButtonSelectedState(selectedButton: signUpButton, disabledButton: signInButton)
+        loginSubTitle.text = LocalizableStrings.signUpTitle
         googleButton.config(title: LocalizableStrings.loginGoogleSignUp, image: AssetsIcons.googleIcon.getIcon(), style: .Secondary)
         appleButton.config(title: LocalizableStrings.loginAppleSignUP, image: AssetsIcons.appleIcon.getIcon(), style: .Secondary)
+    }
+    
+    private func setAddDeviceView() {
+        setTransition()
+//        setButtonSelectedState(selectedButton: signUpButton, disabledButton: signInButton)
+        loginSubTitle.text = LocalizableStrings.addDeviceTitle
+        googleButton.config(title: LocalizableStrings.loginGoogleAddDevice, image: AssetsIcons.googleIcon.getIcon(), style: .Secondary)
+        appleButton.config(title: LocalizableStrings.loginAppleAddDevice, image: AssetsIcons.appleIcon.getIcon(), style: .Secondary)
     }
     
     private func setButtonSelectedState(selectedButton: UIButton, disabledButton: UIButton){
@@ -135,7 +183,23 @@ class AuthViewController: UIViewController {
     }
     
     private func navigateWithAnimation() {
-        let vc = viewModel.isUserHaveKeys() ? UINavigationController(rootViewController: TabBarViewController()) : UINavigationController(rootViewController: MpcKeysViewController()) 
+        let vc: UIViewController
+        switch viewModel.getLoginMethod() {
+        case .signUp:
+            vc = UINavigationController(rootViewController: MpcKeysViewController(isAddingDevice: false))
+        case .signIn:
+            if viewModel.isUserHaveKeys() {
+                FireblocksManager.shared.startPolling()
+                vc = UINavigationController(rootViewController: TabBarViewController())
+            } else {
+                vc = UINavigationController(rootViewController: RedirectNewUserHostingVC())
+            }
+        case .addDevice:
+            vc = UINavigationController(rootViewController: MpcKeysViewController(isAddingDevice: true))
+        }
+
+        AppLoggerManager.shared.loggers[FireblocksManager.shared.getDeviceId()] = AppLogger(deviceId: FireblocksManager.shared.getDeviceId())
+        AppLoggerManager.shared.logger()?.log("User logged in")
         UIView.animate(withDuration: 1, animations: {
             self.welcomeTitle.alpha = 0
             self.subTitle.alpha = 0

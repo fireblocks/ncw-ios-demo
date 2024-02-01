@@ -9,6 +9,7 @@ import UIKit
 import UIKit
 import SDWebImage
 import FirebaseAuth
+import SwiftUI
 
 class SettingsViewController: UIViewController {
     
@@ -24,6 +25,8 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var recoverWalletButton: SettingsOptionButton!
     @IBOutlet weak var exportPrivateKeyButton: SettingsOptionButton!
     @IBOutlet weak var advancedInfoButton: SettingsOptionButton!
+    @IBOutlet weak var addNewDeviceButton: SettingsOptionButton!
+    @IBOutlet weak var shareLogsButton: SettingsOptionButton!
     @IBOutlet weak var versionLabel: UILabel!
     @IBOutlet weak var versionLabelContainer: UIView!
 
@@ -49,7 +52,7 @@ class SettingsViewController: UIViewController {
     
     private func configureButtons() {
         navigationItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "close"), style: .plain, target: self, action: #selector(handleCloseTap))]
-        
+        navigationItem.setHidesBackButton(true, animated: false)
         backupButton.setData(
             title: LocalizableStrings.createABackup,
             icon: AssetsIcons.backup
@@ -66,6 +69,14 @@ class SettingsViewController: UIViewController {
         advancedInfoButton.setData(
             title: LocalizableStrings.advancedInfo,
             icon: AssetsIcons.info
+        )
+        addNewDeviceButton.setData(
+            title: LocalizableStrings.addNewDevice,
+            icon: AssetsIcons.addNewDevice
+        )
+        shareLogsButton.setData(
+            title: LocalizableStrings.shareLogs,
+            icon: AssetsIcons.shareLogs
         )
     }
     
@@ -120,6 +131,14 @@ class SettingsViewController: UIViewController {
         navigateToAdvancedInfoViewController()
     }
     
+    @IBAction func addNewDeviceTapped(_ sender: SettingsOptionButton) {
+        navigateToAddDeviceViewController()
+    }
+    
+    @IBAction func shareLogsTapped(_ sender: SettingsOptionButton) {
+        self.createLogFile()
+    }
+    
     @IBAction func signOutTapped(_ button: UIButton) {
         showConfirmationBottomSheet()
     }
@@ -138,6 +157,12 @@ class SettingsViewController: UIViewController {
         vc.actionType = Recover(delegate: vc.self)
         navigationController?.pushViewController(vc, animated: true)
     }
+    
+    private func navigateToAddDeviceViewController() {
+        let vc = PrepareForScanHostingVC()
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+
     
     private func navigateToTakeoverViewController() {
         if isDisableAdvancedFeatures {
@@ -178,10 +203,6 @@ class SettingsViewController: UIViewController {
             rootViewController.pushViewController(vc, animated: true)
             window.rootViewController = rootViewController
         }
-    }
-    
-    @IBAction func shareLogsTapped(_ sender: UIButton) {
-        self.createLogFile()
     }
 }
 

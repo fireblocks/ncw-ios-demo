@@ -28,13 +28,18 @@ class QRCodeScannerViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupCaptureSession()
         configButtons()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setupCaptureSession()
         startScanning()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        previewLayer.frame = CGRect(origin: .zero, size: backgroundCameraView.bounds.size)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -44,6 +49,7 @@ class QRCodeScannerViewController: UIViewController{
     
 //MARK: - FUNCTIONS
     private func configButtons(){
+        navigationItem.setHidesBackButton(true, animated: false)
         navigationItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "close"), style: .plain, target: self, action: #selector(handleCloseTap))]
         self.navigationItem.title = "Scan QR"
     }
@@ -80,7 +86,7 @@ class QRCodeScannerViewController: UIViewController{
         }
         
         previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-        previewLayer.frame = backgroundCameraView.bounds
+        previewLayer.frame = CGRect(origin: .zero, size: backgroundCameraView.bounds.size)
         previewLayer.videoGravity = .resizeAspectFill
         backgroundCameraView.layer.addSublayer(previewLayer)
     }
@@ -114,8 +120,8 @@ extension QRCodeScannerViewController: AVCaptureMetadataOutputObjectsDelegate {
         let transformedMetadataObject = videoPreviewLayer.transformedMetadataObject(for: metadataObject)
         if isQRCodeReceivedFromScanningArea(metadataObject: transformedMetadataObject) {
             AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
-            delegate?.gotAddress(address: stringValue)
             navigateBack()
+            delegate?.gotAddress(address: stringValue)
         }
     }
     

@@ -9,17 +9,21 @@ import Foundation
 import FireblocksSDK
 
 struct GetDevicesResponse: Codable {
-    let devices: [FireblocksDevice]
+    var devices: [FireblocksDevice] = []
 }
 
 struct FireblocksDevice: Codable {
-    let walletId: String
-    let deviceId: String
-    let createdAt: Int
+    var walletId: String?
+    var deviceId: String?
+    var createdAt: Int?
 }
 
 struct AssignResponse: Codable {
-    var walletId: String
+    var walletId: String?
+}
+
+struct JoinWalletResponse: Codable {
+    var walletId: String?
 }
 
 struct MessageResponse: Codable {
@@ -170,8 +174,9 @@ struct AmountInfo: Codable {
 }
 
 struct BackupInfo: Codable {
-    var location: BackupProvider
-    var createdAt: Int
+    var deviceId: String?
+    var location: BackupProvider?
+    var createdAt: Int?
 }
 
 struct PassphraseInfo: Codable {
@@ -195,6 +200,7 @@ class SessionManager: ObservableObject {
         case login
         case devices
         case assign(String)
+        case joinWallet(String)
         case messages(String)
         case delete(String, String)
         case rpc(String)
@@ -219,6 +225,8 @@ class SessionManager: ObservableObject {
                 return EnvironmentConstants.baseURL + "/api/devices"
             case .assign(let deviceId):
                 return EnvironmentConstants.baseURL + "/api/devices/\(deviceId)/assign"
+            case .joinWallet(let deviceId):
+                return EnvironmentConstants.baseURL + "/api/devices/\(deviceId)/join"
             case .messages(let deviceId):
                 return EnvironmentConstants.baseURL + "/api/devices/\(deviceId)/messages"
             case .delete(let deviceId, let messageId):
@@ -260,6 +268,8 @@ class SessionManager: ObservableObject {
                 return 30.0
             case .assign(_):
                 return 30.0
+            case .joinWallet(_):
+                return 30.0
             case .messages(_):
                 return 30.0
             case .delete(_, _):
@@ -298,7 +308,7 @@ class SessionManager: ObservableObject {
     
     private init() {}
     
-    func sendRequest(url: URL, httpMethod: String = "POST", timeout: TimeInterval? = nil, numberOfRetries: Int = 2, message: String? = nil, body: Any? = nil) async throws -> (Data) {
+    func sendRequest(url: URL, httpMethod: String = "POST", timeout: TimeInterval? = nil, numberOfRetries: Int = 2, message: String? = nil, body: Any? = nil, skipLogs: Bool = false) async throws -> (Data) {
         let currentAccessToken: String = await AuthRepository.getUserIdToken()
         var request = URLRequest(url: url)
         request.setValue(
@@ -329,16 +339,20 @@ class SessionManager: ObservableObject {
         }
         
         let session = URLSession.shared
-        print("\n📣📣📣📣\nSessionManager send request:\n\(request)\n📣📣📣📣")
+        AppLoggerManager.shared.logger()?.log("\n📣📣📣📣\nSessionManager send request:\n\(request)\n📣📣📣📣")
         do {
             let (data, _) = try await session.data(for: request)
             print("RESPONSE: \(String(data: data, encoding: .utf8))")
+            if !skipLogs {
+                AppLoggerManager.shared.logger()?.log("RESPONSE: \(String(data: data, encoding: .utf8))")
+            }
             return data
         } catch {
             if numberOfRetries == 0 {
                 throw error
             } else {
                 print("Retry \(url.absoluteString) - \(numberOfRetries) more retries")
+                AppLoggerManager.shared.logger()?.log("Retry \(url.absoluteString) - \(numberOfRetries) more retries")
                 return try await self.sendRequest(url: url, httpMethod: httpMethod, timeout: timeout, numberOfRetries: numberOfRetries - 1)
             }
         }
@@ -370,6 +384,17 @@ extension SessionManager {
         if let url = URL(string: FBURL.assign(deviceId).url) {
             let data = try await sendRequest(url: url, numberOfRetries: 5)
             let value = try JSONDecoder().decode(AssignResponse.self, from: data)
+            return value
+        } else {
+            throw SessionManager.error
+        }
+    }
+
+    func joinWallet(deviceId: String, walletId: String) async throws -> JoinWalletResponse {
+        let body = ["walletId": walletId]
+        if let url = URL(string: FBURL.joinWallet(deviceId).url) {
+            let data = try await sendRequest(url: url, numberOfRetries: 5, body: body)
+            let value = try JSONDecoder().decode(JoinWalletResponse.self, from: data)
             return value
         } else {
             throw SessionManager.error
@@ -410,7 +435,7 @@ extension SessionManager {
     func rpc(deviceId: String, message: String) async throws -> String? {
         print("RPC: \(message)")
         if let url = URL(string: FBURL.rpc(deviceId).url) {
-            let str = String(data: try await sendRequest(url: url, timeout: FBURL.rpc(deviceId).timeout, message: message), encoding: .utf8)
+            let str = String(data: try await sendRequest(url: url, timeout: FBURL.rpc(deviceId).timeout, message: message, skipLogs: true), encoding: .utf8)
             print(str ?? "", message, url)
             return str
         } else {

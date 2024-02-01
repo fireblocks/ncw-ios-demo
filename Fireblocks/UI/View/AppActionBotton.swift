@@ -10,6 +10,7 @@ import UIKit
 enum ButtonStyle {
     case Primary
     case Secondary
+    case Transparent
     case Disabled
 
     var colors: (primaryBackgountColor: UIColor,
@@ -29,6 +30,12 @@ enum ButtonStyle {
                     AssetsColors.gray2.getColor(),
                     AssetsColors.disableGray.getColor(),
                     AssetsColors.white.getColor(),
+                    AssetsColors.gray3.getColor())
+        case .Transparent:
+            return (.clear,
+                    .clear,
+                    .clear,
+                    AssetsColors.lightBlue.getColor(),
                     AssetsColors.gray3.getColor())
         case .Disabled:
             return (AssetsColors.primaryBlue.getColor(),
@@ -154,10 +161,13 @@ class AppActionBotton: UIButton {
         switch self.state {
         case .normal:
             backgroundColor = style.colors.primaryBackgountColor
+            updatedConfiguration.baseForegroundColor = style.colors.primaryTitleColor
         case .highlighted:
             backgroundColor = style.colors.tappedBackgountColor
+            updatedConfiguration.baseForegroundColor = style.colors.primaryTitleColor
         case .disabled:
             backgroundColor = style.colors.disabledBackgountColor
+            updatedConfiguration.baseForegroundColor = style.colors.disabledTitleColor
         default:
             backgroundColor = UIColor.white
         }
@@ -167,7 +177,6 @@ class AppActionBotton: UIButton {
         }
         
         updatedConfiguration.background = background
-        
         self.configuration = updatedConfiguration
     }
 }
