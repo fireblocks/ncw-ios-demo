@@ -92,11 +92,13 @@ class KeyStorageProvider: KeyStorageDelegate {
     }
 
     func store(keys: [String : Data], callback: @escaping ([String : Bool]) -> ()) {
+        print("generateMpcKeys started store: \(Date())")
         biometricStatus { status in
             if status == .ready {
                 self.saveToKeychain(keys: keys, callback: callback)
             } else {
                 DispatchQueue.main.async {
+                    print("generateMpcKeys ended store: \(Date())")
                     callback([:])
                 }
             }
@@ -106,6 +108,7 @@ class KeyStorageProvider: KeyStorageDelegate {
     
     private func saveToKeychain(keys: [String : Data], callback: @escaping ([String : Bool]) -> ()) {
         guard let acl = self.getAcl() else {
+            print("generateMpcKeys ended store: \(Date())")
             callback([:])
             return
         }
@@ -141,6 +144,8 @@ class KeyStorageProvider: KeyStorageDelegate {
             }
 
         }
+        
+        print("generateMpcKeys ended store: \(Date())")
         callback(mpcSecretKeys)
 
 
