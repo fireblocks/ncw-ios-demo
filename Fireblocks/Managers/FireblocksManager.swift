@@ -77,7 +77,9 @@ class FireblocksManager {
     func generateMpcKeys(_ delegate: FireblocksKeyCreationDelegate) async {
         do {
             let algorithms: Set<Algorithm> = Set([.MPC_ECDSA_SECP256K1])
+            print("Measure - generateMpcKeys started: \(Date().milliseconds())")
             let result = try await getSdkInstance()?.generateMPCKeys(algorithms: algorithms)
+            print("Measure - generateMpcKeys ended: \(Date().milliseconds())")
             let isGenerated = result?.first?.keyStatus == .READY
             AppLoggerManager.shared.logger()?.log("FireblocksManager, generateMpcKeys() isGenerated value: \(isGenerated).")
 

@@ -41,9 +41,7 @@ final class MpcKeysViewModel {
     
     private func generateMpcFromSdk(_ delegate: FireblocksKeyCreationDelegate) {
         mpcKeyTask = Task {
-            print("generateMpcKeys started: \(Date())")
             await FireblocksManager.shared.generateMpcKeys(delegate)
-            print("generateMpcKeys ended: \(Date())")
         }
     }
     

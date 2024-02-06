@@ -27,8 +27,8 @@
 		2B558E9E2B484AC4006212B2 /* ValidateRequestIdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558E9D2B484AC4006212B2 /* ValidateRequestIdView.swift */; };
 		2B558EA02B484ADC006212B2 /* ValidateRequestIdHostingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558E9F2B484ADC006212B2 /* ValidateRequestIdHostingVC.swift */; };
 		2B558EA22B484BE1006212B2 /* Platform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558EA12B484BE1006212B2 /* Platform.swift */; };
-		2B6F004F2B7233AB00FC3D29 /* FireblocksSDK.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B6F004D2B7233A800FC3D29 /* FireblocksSDK.xcframework */; };
-		2B6F00502B7233AB00FC3D29 /* FireblocksSDK.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2B6F004D2B7233A800FC3D29 /* FireblocksSDK.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2B6F00572B725EB200FC3D29 /* FireblocksSDK.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B6F00552B725EB000FC3D29 /* FireblocksSDK.xcframework */; };
+		2B6F00582B725EB200FC3D29 /* FireblocksSDK.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2B6F00552B725EB000FC3D29 /* FireblocksSDK.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2B7A721B2B45A2250011C398 /* AddDeviceQRViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A721A2B45A2250011C398 /* AddDeviceQRViewModel.swift */; };
 		2B7A721D2B45A8FF0011C398 /* AddDeviceQRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A721C2B45A8FF0011C398 /* AddDeviceQRView.swift */; };
 		2B7A72202B45AAEB0011C398 /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A721F2B45AAEB0011C398 /* Modifiers.swift */; };
@@ -200,7 +200,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				2B6F00502B7233AB00FC3D29 /* FireblocksSDK.xcframework in Embed Frameworks */,
+				2B6F00582B725EB200FC3D29 /* FireblocksSDK.xcframework in Embed Frameworks */,
 				2BC583882B70DF51005E6EEB /* MPCFBFramework.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -229,7 +229,7 @@
 		2B558E9D2B484AC4006212B2 /* ValidateRequestIdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateRequestIdView.swift; sourceTree = "<group>"; };
 		2B558E9F2B484ADC006212B2 /* ValidateRequestIdHostingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateRequestIdHostingVC.swift; sourceTree = "<group>"; };
 		2B558EA12B484BE1006212B2 /* Platform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Platform.swift; sourceTree = "<group>"; };
-		2B6F004D2B7233A800FC3D29 /* FireblocksSDK.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = FireblocksSDK.xcframework; sourceTree = "<group>"; };
+		2B6F00552B725EB000FC3D29 /* FireblocksSDK.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = FireblocksSDK.xcframework; sourceTree = "<group>"; };
 		2B769B9D2B1DFCBA00557E97 /* NCW-sandboxDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "NCW-sandboxDebug.entitlements"; sourceTree = "<group>"; };
 		2B769B9E2B1DFCC700557E97 /* NCW-sandboxRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "NCW-sandboxRelease.entitlements"; sourceTree = "<group>"; };
 		2B7A721A2B45A2250011C398 /* AddDeviceQRViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDeviceQRViewModel.swift; sourceTree = "<group>"; };
@@ -399,7 +399,7 @@
 				86AF7C4D2A430BF70026DF15 /* (null) in Frameworks */,
 				866A73C42A696A0F00E8E545 /* GoogleAPIClientForREST_DriveActivity in Frameworks */,
 				869A71392A3859C900653C8F /* FirebaseAuth in Frameworks */,
-				2B6F004F2B7233AB00FC3D29 /* FireblocksSDK.xcframework in Frameworks */,
+				2B6F00572B725EB200FC3D29 /* FireblocksSDK.xcframework in Frameworks */,
 				2BC583872B70DF51005E6EEB /* MPCFBFramework.xcframework in Frameworks */,
 				86E8351A2A60331B003E98BE /* NVActivityIndicatorViewExtended in Frameworks */,
 				86C127FB2A53087B00255757 /* (null) in Frameworks */,
@@ -962,7 +962,7 @@
 		86859F462A384D8A0056E3C6 = {
 			isa = PBXGroup;
 			children = (
-				2B6F004D2B7233A800FC3D29 /* FireblocksSDK.xcframework */,
+				2B6F00552B725EB000FC3D29 /* FireblocksSDK.xcframework */,
 				2BC583832B70DF44005E6EEB /* MPCFBFramework.xcframework */,
 				2B769B9E2B1DFCC700557E97 /* NCW-sandboxRelease.entitlements */,
 				2B769B9D2B1DFCBA00557E97 /* NCW-sandboxDebug.entitlements */,
