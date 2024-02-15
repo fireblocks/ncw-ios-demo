@@ -16,7 +16,7 @@ class PrepareForScanViewModel: ObservableObject, UIHostingBridgeNotifications {
     weak var prepareDelegate: PrepareForScanDelegate?
 
     func sendRequestId() {
-        if !requestId.isTrimmedEmpty, let _ = qrData(encoded: requestId) {
+        if !requestId.isTrimmedEmpty, let _ = qrData(encoded: requestId.base64Decoded() ?? "") {
             self.delegate?.gotAddress(address: requestId)
         } else {
             self.error = "Missing request ID. Go back and try again"

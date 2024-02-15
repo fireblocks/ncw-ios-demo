@@ -35,14 +35,14 @@ extension ValidateRequestIdHostingVC: ValidateRequestIdDelegate {
     }
     
     func didCancelJoinWallet() {
-        let vc = EndFlowFeedbackHostingVC(icon: AssetsIcons.addDeviceFailed.rawValue, title: LocalizableStrings.approveJoinWalletCanceled, subTitle: LocalizableStrings.approveJoinWalletCanceledSubtitle, buttonTitle: LocalizableStrings.goHome, actionButton:  {
+        let vc = EndFlowFeedbackHostingVC(icon: AssetsIcons.addDeviceFailed.rawValue, title: LocalizableStrings.approveJoinWalletCanceled, subTitle: LocalizableStrings.approveJoinWalletCanceledSubtitle, didFail: true, buttonTitle: LocalizableStrings.goHome, actionButton:  {
             self.navigationController?.popToRootViewController(animated: true)
         })
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func didApproveJoinWalletTimeExpired() {
-        let vc = EndFlowFeedbackHostingVC(icon: AssetsIcons.errorImage.rawValue, title: LocalizableStrings.approveJoinWalletCanceled, buttonTitle: LocalizableStrings.tryAgain, rightToolbarItemIcon: AssetsIcons.close.rawValue, rightToolbarItemAction: {
+        let vc = EndFlowFeedbackHostingVC(icon: AssetsIcons.errorImage.rawValue, title: LocalizableStrings.approveJoinWalletCanceled, didFail: true, buttonTitle: LocalizableStrings.tryAgain, rightToolbarItemIcon: AssetsIcons.close.rawValue, rightToolbarItemAction: {
             self.didCancelJoinWallet()
         }, content: AnyView(ValidateRequestIdTimeOutView())) {
             if let targetVC = self.navigationController?.viewControllers.first(where: {$0 is PrepareForScanHostingVC}) {

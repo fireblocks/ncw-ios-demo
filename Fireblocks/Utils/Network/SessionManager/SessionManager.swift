@@ -341,26 +341,44 @@ class SessionManager: ObservableObject {
         let session = URLSession.shared
         AppLoggerManager.shared.logger()?.log("\n📣📣📣📣\nSessionManager send request:\n\(request)\n📣📣📣📣")
         do {
-            let (data, _) = try await session.data(for: request)
-            print("RESPONSE: \(String(data: data, encoding: .utf8))")
-            if !skipLogs {
-                AppLoggerManager.shared.logger()?.log("RESPONSE: \(String(data: data, encoding: .utf8))")
-            }
-            return data
-        } catch {
-            if numberOfRetries == 0 {
-                throw error
+            AppLoggerManager.shared.logger()?.log("SessionManager REQUEST: \(String(describing: request))")
+            print("SessionManager REQUEST: \(String(describing: request))")
+            let (data, response) = try await session.data(for: request)
+            if let statusCode = (response as? HTTPURLResponse)?.statusCode {
+                if statusCode >= 200, statusCode <= 299 {
+                    print("SessionManager RESPONSE: \(url)\n\(String(describing: String(data: data, encoding: .utf8)))")
+                    if !skipLogs {
+                        AppLoggerManager.shared.logger()?.log("SessionManager RESPONSE: \(String(describing: String(data: data, encoding: .utf8)))")
+                    }
+                    return data
+                } else {
+                    return try await retry(url: url, httpMethod: httpMethod, timeout: timeout, numberOfRetries: numberOfRetries, message: message, body: body, skipLogs: skipLogs, error: SessionManager.appError(code: statusCode))
+                }
             } else {
-                print("Retry \(url.absoluteString) - \(numberOfRetries) more retries")
-                AppLoggerManager.shared.logger()?.log("Retry \(url.absoluteString) - \(numberOfRetries) more retries")
-                return try await self.sendRequest(url: url, httpMethod: httpMethod, timeout: timeout, numberOfRetries: numberOfRetries - 1)
+                return try await retry(url: url, httpMethod: httpMethod, timeout: timeout, numberOfRetries: numberOfRetries, message: message, body: body, skipLogs: skipLogs, error: SessionManager.error)
             }
+        } catch {
+            print("SessionManager Error: \(error)")
+            return try await retry(url: url, httpMethod: httpMethod, timeout: timeout, numberOfRetries: numberOfRetries, message: message, body: body, skipLogs: skipLogs, error: error as NSError)
+        }
+    }
+    
+    private func retry(url: URL, httpMethod: String, timeout: TimeInterval?, numberOfRetries: Int, message: String?, body: Any?, skipLogs: Bool, error: NSError) async throws -> (Data) {
+        if numberOfRetries <= 0 {
+            throw SessionManager.error
+        } else {
+            print("Retry \(url.absoluteString) - \(numberOfRetries) more retries")
+            AppLoggerManager.shared.logger()?.log("Retry \(url.absoluteString) - \(numberOfRetries) more retries. Error: \(error.localizedDescription)")
+            return try await self.sendRequest(url: url, httpMethod: httpMethod, timeout: timeout, numberOfRetries: numberOfRetries - 1, message: message, body: body, skipLogs: skipLogs)
         }
     }
 }
 
 extension SessionManager {
     static let error = NSError(domain: "Networking", code: 0, userInfo: [NSLocalizedDescriptionKey : "Networking Error"])
+    static func appError(code: Int) -> NSError {
+        return NSError(domain: "Networking", code: code, userInfo: [NSLocalizedDescriptionKey : "Networking Error"])
+    }
     
     func login() async throws -> String? {
         if let url = URL(string: FBURL.login.url) {

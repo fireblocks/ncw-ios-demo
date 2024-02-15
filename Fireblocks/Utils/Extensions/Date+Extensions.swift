@@ -16,4 +16,11 @@ extension Date {
         return formatter.string(from: self)
 
     }
+    
+    func milliseconds() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "y-MM-dd H:mm:ss.SSSS"
+
+        return formatter.string(from: self)
+    }
 }

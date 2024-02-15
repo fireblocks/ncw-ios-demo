@@ -215,7 +215,7 @@ extension MpcKeysViewController: MpcKeysViewModelDelegate {
                 })
                 self.navigationController?.pushViewController(vc, animated: true)
             } else {
-                let vc = EndFlowFeedbackHostingVC(icon: AssetsIcons.addDeviceFailed.rawValue, title: LocalizableStrings.addDeviceFailedTitle, subTitle: LocalizableStrings.addDeviceFailedSubtitle, buttonTitle: LocalizableStrings.goHome, actionButton:  {
+                let vc = EndFlowFeedbackHostingVC(icon: AssetsIcons.addDeviceFailed.rawValue, title: LocalizableStrings.addDeviceFailedTitle, subTitle: LocalizableStrings.addDeviceFailedSubtitle, didFail: true, buttonTitle: LocalizableStrings.goHome, actionButton:  {
                     self.navigationController?.popToRootViewController(animated: true)
                 })
                 self.navigationController?.pushViewController(vc, animated: true)
