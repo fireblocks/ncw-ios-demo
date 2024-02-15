@@ -12,7 +12,7 @@ import OSLog
 
 private let logger = Logger(subsystem: "Fireblocks", category: "FireblocksManager")
 protocol FireblocksKeyCreationDelegate {
-    func isKeysGenerated(isGenerated: Bool, didJoin: Bool, error: String?) async
+    func isKeysGenerated(isGenerated: Bool, didJoin: Bool, error: String?)
 }
 
 class FireblocksManager {
@@ -77,9 +77,9 @@ class FireblocksManager {
     func generateMpcKeys(_ delegate: FireblocksKeyCreationDelegate) async {
         do {
             let algorithms: Set<Algorithm> = Set([.MPC_ECDSA_SECP256K1])
-            print("Measure - generateMpcKeys started: \(Date().milliseconds())")
+            let startDate = Date()
             let result = try await getSdkInstance()?.generateMPCKeys(algorithms: algorithms)
-            print("Measure - generateMpcKeys ended: \(Date().milliseconds())")
+            print("Measure - generateMpcKeys \(Date().timeIntervalSince(startDate))")
             let isGenerated = result?.first?.keyStatus == .READY
             AppLoggerManager.shared.logger()?.log("FireblocksManager, generateMpcKeys() isGenerated value: \(isGenerated).")
 
@@ -88,7 +88,8 @@ class FireblocksManager {
                 //During the integration it is ineeded to generate a mechanism for fetching and listening to incoming messages and transactions, which could be any implementation (e.g. polling, web-socket, push etc.)
                 startPolling()
             }
-            await delegate.isKeysGenerated(isGenerated: isGenerated, didJoin: false, error: nil)
+            
+            delegate.isKeysGenerated(isGenerated: isGenerated, didJoin: false, error: nil)
         } catch {
             AppLoggerManager.shared.logger()?.log("FireblocksManager, generateMpcKeys() failed: \(error).")
         }
@@ -100,7 +101,10 @@ class FireblocksManager {
     
     func signTransaction(transactionId: String) async -> Bool {
         do {
+            let startDate = Date()
             let result = try await getSdkInstance()?.signTransaction(txId: transactionId)
+            print("Measure - signTransaction \(Date().timeIntervalSince(startDate))")
+
             return result?.transactionSignatureStatus == .COMPLETED
         } catch let err as FireblocksError {
             AppLoggerManager.shared.logger()?.log("FireblocksManager, signTransaction() failed: \(err.description).")

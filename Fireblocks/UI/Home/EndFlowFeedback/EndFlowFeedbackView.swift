@@ -66,7 +66,28 @@ struct EndFlowFeedbackView: View {
                     .frame(maxWidth: .infinity)
                     .background(AssetsColors.primaryBlue.color())
                     .cornerRadius(16)
+                    
                 }
+                
+                if viewModel.didFail {
+                    Button {
+                        viewModel.shareLogs()
+                    } label: {
+                        HStack {
+                            Text("Share Logs")
+                                .font(.body1)
+                        }
+                        .padding(16)
+                        .contentShape(Rectangle())
+                        
+                    }
+                    .buttonStyle(.borderless)
+                    .frame(maxWidth: .infinity)
+                    .foregroundStyle(AssetsColors.primaryBlue.color())
+                    .cornerRadius(16)
+                    .padding(.top)
+                }
+
             }
             .padding(16)
 

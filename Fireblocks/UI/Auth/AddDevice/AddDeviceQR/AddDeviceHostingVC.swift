@@ -31,7 +31,7 @@ class AddDeviceHostingVC: FBHostingViewController {
 
 extension AddDeviceHostingVC: AddDeviceQRDelegate {
     func didQRTimeExpired() {
-        let vc = EndFlowFeedbackHostingVC(icon: AssetsIcons.errorImage.rawValue, title: LocalizableStrings.approveJoinWalletCanceled, buttonTitle: LocalizableStrings.tryAgain, rightToolbarItemIcon: AssetsIcons.close.rawValue, rightToolbarItemAction: {
+        let vc = EndFlowFeedbackHostingVC(icon: AssetsIcons.errorImage.rawValue, title: LocalizableStrings.approveJoinWalletCanceled, didFail: true, buttonTitle: LocalizableStrings.tryAgain, rightToolbarItemIcon: AssetsIcons.close.rawValue, rightToolbarItemAction: {
             self.delegate?.didSignOut()
         }, content: AnyView(ValidateRequestIdTimeOutView())) {
             self.navigationController?.popToRootViewController(animated: true)

@@ -152,11 +152,13 @@ class KeyStorageProvider: KeyStorageDelegate {
     }
     
     func load(keyIds: Set<String>, callback: @escaping ([String : Data]) -> ()) {
+        let startDate = Date()
         biometricStatus { status in
             if status == .ready {
                 self.getKeys(keyIds: keyIds, callback: callback)
             } else {
                 DispatchQueue.main.async {
+                    print("Measure - load keys \(Date().timeIntervalSince(startDate))")
                     callback([:])
                 }
             }
@@ -165,7 +167,8 @@ class KeyStorageProvider: KeyStorageDelegate {
     
     private func getKeys(keyIds: Set<String>, callback: @escaping ([String : Data]) -> ()) {
         var dict: [String: Data] = [:]
-        
+        let startDate = Date()
+
         for keyId in keyIds {
             getMpcSecret(keyId: keyId) { result in
                 switch result {
@@ -176,6 +179,7 @@ class KeyStorageProvider: KeyStorageDelegate {
                 }
             }
         }
+        print("Measure - load keys \(Date().timeIntervalSince(startDate))")
         callback(dict)
     }
     

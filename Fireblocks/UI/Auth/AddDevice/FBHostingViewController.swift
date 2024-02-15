@@ -22,6 +22,7 @@ class FBHostingViewController: UIHostingController<AnyView> {
         NotificationCenter.default.addObserver(self, selector: #selector(hideIndicator), name: Notification.Name("hideIndicator"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(copied), name: Notification.Name("copied"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(didInit), name: Notification.Name("didInit"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(sendLogs), name: Notification.Name("sendLogs"), object: nil)
     }
     
     @MainActor required dynamic init?(coder aDecoder: NSCoder) {
@@ -44,6 +45,10 @@ extension FBHostingViewController: UIHostingViewDelegate {
     
     @objc func copied() {
         self.showToast("Copied!")
+    }
+
+    @objc func sendLogs() {
+        self.createLogFile()
     }
 
     @objc func didInit() {
