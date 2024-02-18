@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="QRCodeScannerViewController" customModule="Fireblocks___Dev__ngrok_" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="QRCodeScannerViewController" customModule="NCW_sandbox" customModuleProvider="target">
             <connections>
                 <outlet property="backgroundCameraView" destination="FeE-f7-OAs" id="yhY-yO-4xW"/>
                 <outlet property="borderView" destination="o14-25-LZ0" id="bSb-gT-JZm"/>
@@ -103,16 +103,17 @@
                 <constraint firstItem="o14-25-LZ0" firstAttribute="trailing" secondItem="t1w-Sk-NjB" secondAttribute="trailing" constant="24" id="Ddv-Ia-Nyz"/>
                 <constraint firstItem="t1w-Sk-NjB" firstAttribute="leading" secondItem="UnY-41-FTA" secondAttribute="trailing" id="DgS-RC-vS4"/>
                 <constraint firstItem="UnY-41-FTA" firstAttribute="top" secondItem="Mqf-pD-JyX" secondAttribute="bottom" id="E7r-B7-wmN"/>
-                <constraint firstItem="FeE-f7-OAs" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="ETD-T0-OuX"/>
                 <constraint firstItem="Vvf-xk-G0V" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="FcW-ef-KSC"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="o14-25-LZ0" secondAttribute="trailing" constant="36" id="HIY-2o-zt2"/>
                 <constraint firstAttribute="bottom" secondItem="Vvf-xk-G0V" secondAttribute="bottom" id="JvB-oG-CrT"/>
                 <constraint firstItem="o14-25-LZ0" firstAttribute="bottom" secondItem="t1w-Sk-NjB" secondAttribute="bottom" constant="24" id="KpU-5a-BcB"/>
                 <constraint firstItem="t1w-Sk-NjB" firstAttribute="leading" secondItem="o14-25-LZ0" secondAttribute="leading" constant="24" id="LR8-O7-ASc"/>
                 <constraint firstItem="UnY-41-FTA" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="SWp-x8-MPx"/>
+                <constraint firstAttribute="trailing" secondItem="FeE-f7-OAs" secondAttribute="trailing" id="WXY-4z-XWr"/>
                 <constraint firstItem="o14-25-LZ0" firstAttribute="centerY" secondItem="FeE-f7-OAs" secondAttribute="centerY" id="aHc-rc-Ou5"/>
                 <constraint firstItem="Mqf-pD-JyX" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="dOr-ct-Stg"/>
                 <constraint firstItem="oBS-1c-GYH" firstAttribute="top" secondItem="Mqf-pD-JyX" secondAttribute="bottom" id="iQl-O6-4vQ"/>
+                <constraint firstItem="FeE-f7-OAs" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="jFe-Uo-I3M"/>
                 <constraint firstAttribute="bottom" secondItem="FeE-f7-OAs" secondAttribute="bottom" id="jJL-3J-mRo"/>
                 <constraint firstItem="Mqf-pD-JyX" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="jsi-oD-f5Q"/>
                 <constraint firstItem="FeE-f7-OAs" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="lms-Nd-CSg"/>
@@ -120,7 +121,6 @@
                 <constraint firstItem="Vvf-xk-G0V" firstAttribute="top" secondItem="oBS-1c-GYH" secondAttribute="bottom" id="nkY-nH-3sg"/>
                 <constraint firstItem="Vvf-xk-G0V" firstAttribute="top" secondItem="t1w-Sk-NjB" secondAttribute="bottom" id="qWc-W3-MJx"/>
                 <constraint firstItem="Mqf-pD-JyX" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="uf9-x0-uVU"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="FeE-f7-OAs" secondAttribute="trailing" id="xFO-Hc-Twm"/>
             </constraints>
             <point key="canvasLocation" x="139.69465648854961" y="20.422535211267608"/>
         </view>

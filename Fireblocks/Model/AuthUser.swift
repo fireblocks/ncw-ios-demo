@@ -29,8 +29,8 @@ struct BackupData: Codable {
     
     init(backupInfo: BackupInfo) {
         self.isBackedUp = true
-        self.location = backupInfo.location.rawValue
-        self.date = "\(Date(timeIntervalSince1970: TimeInterval(backupInfo.createdAt)/1000).format())"
-        self.title = backupInfo.location.title()
+        self.location = backupInfo.location?.rawValue
+        self.date = backupInfo.createdAt != nil ? "\(Date(timeIntervalSince1970: TimeInterval(backupInfo.createdAt!)/1000).format())" : nil
+        self.title = backupInfo.location?.title()
     }
 }

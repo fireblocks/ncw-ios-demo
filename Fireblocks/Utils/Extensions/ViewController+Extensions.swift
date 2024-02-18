@@ -90,15 +90,17 @@ extension UIViewController {
             return
         }
         
+        guard let appLogUrl = AppLoggerManager.shared.logger()?.getURLForLogFiles() else {
+            print("Can't get app file log url")
+            return
+        }
+        
         let activityVC = UIActivityViewController(
-            activityItems: [url as Any],
+            activityItems: [url as Any, appLogUrl as Any],
             applicationActivities: nil
         )
         
-        UIApplication
-            .shared
-            .currentUIWindow()?
-            .rootViewController?
+        UIApplication.shared.currentUIWindow()?.rootViewController?
             .present(
                 activityVC, animated: true, completion: nil
             )

@@ -43,7 +43,8 @@ class ICloudManager {
     
     private func deleteRecordIfExist(_ container: CKContainer, passphraseId: String) async {
         do {
-            let _ = try await container.privateCloudDatabase.deleteRecord(withID: getRecordId(passphraseId: passphraseId))
+            let state = try await container.privateCloudDatabase.deleteRecord(withID: getRecordId(passphraseId: passphraseId))
+            print(state)
         } catch {
             print("ICloudManager, deleteRecordIfExist() failed: \(error)")
         }
@@ -53,7 +54,7 @@ class ICloudManager {
         do {
             let record = getCkRecord(passPhrase, passphraseId: passphraseId)
             record["phrase"] = passPhrase as CKRecordValue
-            let _ = try await container.privateCloudDatabase.save(record)
+            let state = try await container.privateCloudDatabase.save(record)
             return true
         } catch {
             print("ICloudManager uploading failed: \(error)")

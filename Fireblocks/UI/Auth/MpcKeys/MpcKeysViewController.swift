@@ -7,6 +7,12 @@
 
 import FireblocksDev
 import UIKit
+import SwiftUI
+import FirebaseAuth
+
+protocol MainSignOutDelegate: AnyObject {
+    func didSignOut()
+}
 
 class MpcKeysViewController: UIViewController {
     
@@ -15,30 +21,91 @@ class MpcKeysViewController: UIViewController {
     @IBOutlet weak var headerImageView: UIImageView!
     @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var generateMpcKeysButton: AppActionBotton!
-    @IBOutlet weak var footerButton: UIButton!
+    @IBOutlet weak var footerButton: AppActionBotton!
 
-    private let viewModel = MpcKeysViewModel()
+    @IBOutlet weak var footerButtonTC: NSLayoutConstraint!
+    @IBOutlet weak var footerButtonHC: NSLayoutConstraint!
+    private let viewModel: MpcKeysViewModel
     private var alertView: AlertView?
+    
+    init(isAddingDevice: Bool) {
+        self.viewModel = MpcKeysViewModel(isAddingDevice: isAddingDevice)
+        super.init (nibName: "MpcKeysViewController", bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel.delegate = self
         configUI()
-        setNavigationControllerRightButton(icon: AssetsIcons.settings, action: #selector(navigateToSettings))
     }
     
     private func configUI(){
-        self.navigationItem.title = LocalizableStrings.generateMPCKeys
-        generateMpcKeysButton.config(title: LocalizableStrings.generateKeysButtonTitle, style: .Primary)
+        footerButtonHC.constant = 0
+        footerButtonTC.constant = 0
+
+        if viewModel.isAddingDevice {
+            self.navigationItem.title = ""
+            headerImageView.image = AssetsIcons.addDeviceImage.getIcon()
+            headerLabel.text = LocalizableStrings.mpcKeysAddDeviceTitle
+            generateMpcKeysButton.config(title: LocalizableStrings.continueTitle, style: .Primary)
+            setNavigationControllerRightButton(icon: AssetsIcons.close, action: #selector(signOut))
+        } else {
+            self.navigationItem.title = LocalizableStrings.generateMPCKeys
+            headerImageView.image = AssetsIcons.generateKeyImage.getIcon()
+            headerLabel.text = LocalizableStrings.mpcKeysGenertaeTitle
+            generateMpcKeysButton.config(title: LocalizableStrings.generateKeysButtonTitle, style: .Primary)
+            footerButton.config(title: LocalizableStrings.illDoThisLater, style: .Transparent)
+            setNavigationControllerRightButton(icon: AssetsIcons.settings, action: #selector(navigateToSettings))
+
+        }
     }
     
     @IBAction func generateMpcKey(_ sender: AppActionBotton) {
-        if !viewModel.didSucceedGenerateKeys {
+        if viewModel.isAddingDevice {
             removeAlertView()
-            showActivityIndicator(message: LocalizableStrings.generateKeysIndicatorMessage)
-            viewModel.generateMpcKeys()
+            navigationItem.rightBarButtonItem = nil
+            showActivityIndicator(message: LocalizableStrings.preparingDeviceIndicatorMessage)
+            viewModel.addDevice()
         } else {
-            self.navigateCreateBackupScreen()
+            if !viewModel.didSucceedGenerateKeys {
+                removeAlertView()
+                showActivityIndicator(message: LocalizableStrings.generateKeysIndicatorMessage)
+                viewModel.generateMpcKeys()
+            } else {
+                self.navigateCreateBackupScreen()
+            }
+        }
+    }
+    
+    @IBAction func didTapIllDoItLater(_ sender: AppActionBotton) {
+        navigateNextScreen()
+    }
+    
+    @objc func signOut() {
+        FireblocksManager.shared.stopPollingMessages()
+        do{
+            try Auth.auth().signOut()
+            TransfersViewModel.shared.signOut()
+            AssetListViewModel.shared.signOut()
+            FireblocksManager.shared.stopPollingMessages()
+            FireblocksManager.shared.stopJoinWallet()
+        }catch{
+            print("SettingsViewModel can't sign out with current user: \(error)")
+        }
+        if let window = view.window {
+            let rootViewController = UINavigationController()
+            let vc = AuthViewController()
+            rootViewController.pushViewController(vc, animated: true)
+            window.rootViewController = rootViewController
+        } else if let window = navigationController?.view.window {
+            let rootViewController = UINavigationController()
+            let vc = AuthViewController()
+            rootViewController.pushViewController(vc, animated: true)
+            window.rootViewController = rootViewController
         }
     }
     
@@ -60,6 +127,10 @@ class MpcKeysViewController: UIViewController {
     }
     
     private func showErrorView(message: String){
+        if viewModel.isAddingDevice {
+            setNavigationControllerRightButton(icon: AssetsIcons.close, action: #selector(signOut))
+        }
+        
         alertView = showAlert(
             description: message,
             isAnimationEnabled: false,
@@ -100,7 +171,9 @@ extension MpcKeysViewController: MpcKeysViewModelDelegate {
             self.headerLabel.textAlignment = .center
             
             self.generateMpcKeysButton.config(title: LocalizableStrings.createKeyBackup, style: .Primary)
-            self.footerButton.setTitle(LocalizableStrings.illDoThisLater, for: .normal)
+            self.footerButton.config(title: LocalizableStrings.illDoThisLater, style: .Transparent)
+            self.footerButtonHC.constant = 50
+            self.footerButtonTC.constant = 8
         }
 
 
@@ -113,5 +186,56 @@ extension MpcKeysViewController: MpcKeysViewModelDelegate {
             
             self.showErrorView(message: message)
         }
-    } 
+    }
+    
+    func onRequestId(requestId: String) {
+        guard let email = self.viewModel.email else {
+            return
+        }
+        
+        DispatchQueue.main.async {
+            self.hideActivityIndicator()
+            let vc = AddDeviceHostingVC(requestId: requestId, email: email, delegate: self)
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+
+    }
+    
+    func onProvisionerFound() {
+        DispatchQueue.main.async {
+            NotificationCenter.default.post(name: Notification.Name("onProvisionerFound"), object: nil, userInfo: nil)
+        }
+    }
+    
+    func onAddingDevice(success: Bool) {
+        DispatchQueue.main.async {
+            if success {
+                let vc = EndFlowFeedbackHostingVC(icon: AssetsIcons.addDeviceSucceeded.rawValue, title: LocalizableStrings.addDeviceAdded, buttonTitle: LocalizableStrings.goHome, actionButton:  {
+                    self.navigateNextScreen()
+                })
+                self.navigationController?.pushViewController(vc, animated: true)
+            } else {
+                let vc = EndFlowFeedbackHostingVC(icon: AssetsIcons.addDeviceFailed.rawValue, title: LocalizableStrings.addDeviceFailedTitle, subTitle: LocalizableStrings.addDeviceFailedSubtitle, didFail: true, buttonTitle: LocalizableStrings.goHome, actionButton:  {
+                    self.navigationController?.popToRootViewController(animated: true)
+                })
+                self.navigationController?.pushViewController(vc, animated: true)
+
+            }
+        }
+    }
+
+}
+
+extension MpcKeysViewController: QRCodeScannerViewControllerDelegate {
+    func gotAddress(address: String) {
+        print("")
+    }
+}
+
+extension MpcKeysViewController: MainSignOutDelegate {
+    func didSignOut() {
+        DispatchQueue.main.async {
+            self.signOut()
+        }
+    }
 }

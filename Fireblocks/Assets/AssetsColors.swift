@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit.UIColor
+import SwiftUI
 
 enum AssetsColors: String{
     case alert = "alert"
@@ -36,5 +37,10 @@ extension AssetsColors {
         }
         
         return color
+    }
+    
+    func color() -> Color {
+        let colorName = self.rawValue
+        return Color(colorName)
     }
 }
