@@ -1,0 +1,11 @@
+framework module FireblocksDev {
+  umbrella header "FireblocksDev.h"
+  export *
+
+  module * { export * }
+}
+
+module FireblocksDev.Swift {
+  header "FireblocksDev-Swift.h"
+  requires objc
+}

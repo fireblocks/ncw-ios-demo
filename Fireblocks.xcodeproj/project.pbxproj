@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2B09D4642B3831B40031D647 /* FireblocksSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 2B09D4632B3831B30031D647 /* FireblocksSDK */; };
 		2B2D36162B2B205A00B04667 /* AppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2D36152B2B205A00B04667 /* AppLogger.swift */; };
 		2B3E6C032ACC0C40000E91CF /* BackupStatusViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3E6C022ACC0C40000E91CF /* BackupStatusViewModel.swift */; };
 		2B3E6C092ACD8CFD000E91CF /* AddAssetsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3E6C082ACD8CFD000E91CF /* AddAssetsViewModel.swift */; };
@@ -178,6 +177,10 @@
 		2B94CFD32A9CE627003E7508 /* CodableExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B94CFD02A9CE627003E7508 /* CodableExtension.swift */; };
 		2B94CFFD2A9F3F03003E7508 /* PollingListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B94CFFB2A9F3F03003E7508 /* PollingListener.swift */; };
 		2B94CFFF2A9F3F03003E7508 /* PollingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B94CFFC2A9F3F03003E7508 /* PollingManager.swift */; };
+		2BAB68092B820892003592F1 /* FireblocksSDKDev.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BAB68072B820890003592F1 /* FireblocksSDKDev.xcframework */; };
+		2BAB680A2B820892003592F1 /* FireblocksSDKDev.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2BAB68072B820890003592F1 /* FireblocksSDKDev.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2BAB680D2B8208AB003592F1 /* MPCFBFramework.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BAB680B2B8208A8003592F1 /* MPCFBFramework.xcframework */; };
+		2BAB680E2B8208AB003592F1 /* MPCFBFramework.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2BAB680B2B8208A8003592F1 /* MPCFBFramework.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2BD53A232B28735700756C4A /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD53A222B28735700756C4A /* Date+Extensions.swift */; };
 		602573282A39D6F000A3C5D5 /* AssetsColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602573272A39D6F000A3C5D5 /* AssetsColors.swift */; };
 		6025732A2A39D76900A3C5D5 /* AssetsIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602573292A39D76900A3C5D5 /* AssetsIcons.swift */; };
@@ -324,6 +327,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				2BAB680A2B820892003592F1 /* FireblocksSDKDev.xcframework in Embed Frameworks */,
+				2BAB680E2B8208AB003592F1 /* MPCFBFramework.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -366,6 +371,8 @@
 		2B94CFD02A9CE627003E7508 /* CodableExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodableExtension.swift; sourceTree = "<group>"; };
 		2B94CFFB2A9F3F03003E7508 /* PollingListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PollingListener.swift; sourceTree = "<group>"; };
 		2B94CFFC2A9F3F03003E7508 /* PollingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PollingManager.swift; sourceTree = "<group>"; };
+		2BAB68072B820890003592F1 /* FireblocksSDKDev.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = FireblocksSDKDev.xcframework; sourceTree = "<group>"; };
+		2BAB680B2B8208A8003592F1 /* MPCFBFramework.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = MPCFBFramework.xcframework; sourceTree = "<group>"; };
 		2BD53A222B28735700756C4A /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		602573272A39D6F000A3C5D5 /* AssetsColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetsColors.swift; sourceTree = "<group>"; };
 		602573292A39D76900A3C5D5 /* AssetsIcons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetsIcons.swift; sourceTree = "<group>"; };
@@ -505,6 +512,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2BAB68092B820892003592F1 /* FireblocksSDKDev.xcframework in Frameworks */,
 				2B7C478A2B32DAB7001C804B /* NVActivityIndicatorViewExtended in Frameworks */,
 				2B7C47862B32DAAB001C804B /* GoogleSignInSwift in Frameworks */,
 				2B7C478E2B32DAC1001C804B /* SDWebImageMapKit in Frameworks */,
@@ -513,6 +521,7 @@
 				2B7C47802B32DA8D001C804B /* GoogleAPIClientForREST_DriveActivity in Frameworks */,
 				2B7C478C2B32DAC1001C804B /* SDWebImage in Frameworks */,
 				2B7C477A2B32DA77001C804B /* FirebaseAuth in Frameworks */,
+				2BAB680D2B8208AB003592F1 /* MPCFBFramework.xcframework in Frameworks */,
 				2B7C47882B32DAB7001C804B /* NVActivityIndicatorView in Frameworks */,
 				2B7C477C2B32DA78001C804B /* FirebaseAuthCombine-Community in Frameworks */,
 				2B7C477E2B32DA8D001C804B /* GoogleAPIClientForREST_Drive in Frameworks */,
@@ -1030,6 +1039,8 @@
 		86859F462A384D8A0056E3C6 = {
 			isa = PBXGroup;
 			children = (
+				2BAB68072B820890003592F1 /* FireblocksSDKDev.xcframework */,
+				2BAB680B2B8208A8003592F1 /* MPCFBFramework.xcframework */,
 				2B769B9E2B1DFCC700557E97 /* NCW-sandboxRelease.entitlements */,
 				2B769B9D2B1DFCBA00557E97 /* NCW-sandboxDebug.entitlements */,
 				86859F512A384D8A0056E3C6 /* Fireblocks */,

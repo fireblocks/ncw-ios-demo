@@ -10,6 +10,6 @@ import FireblocksDev
 
 struct EnvironmentConstants {
     static let baseURL = "https://ncw-demo-dev.2uaqu5aka49io.eu-central-1.cs.amazonlightsail.com"
-    static let env: FireblocksDev.FireblocksEnvironment = .sandbox
+    static let env: FireblocksDev.FireblocksEnvironment = .dev9
 }
 
