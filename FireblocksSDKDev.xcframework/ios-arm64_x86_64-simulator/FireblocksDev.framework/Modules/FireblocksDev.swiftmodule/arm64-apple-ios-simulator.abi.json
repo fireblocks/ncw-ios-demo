@@ -14440,42 +14440,42 @@
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/UpgradeManager\/UpgradeManager.swift",
       "kind": "StringLiteral",
-      "offset": 1430,
+      "offset": 1432,
       "length": 95,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/UpgradeManager\/UpgradeManager.swift",
       "kind": "StringLiteral",
-      "offset": 1458,
+      "offset": 1460,
       "length": 1,
       "value": "\" - run upgrade on version: \""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/UpgradeManager\/UpgradeManager.swift",
       "kind": "StringLiteral",
-      "offset": 1524,
+      "offset": 1526,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/UpgradeManager\/UpgradeManager.swift",
       "kind": "StringLiteral",
-      "offset": 1641,
+      "offset": 1643,
       "length": 96,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/UpgradeManager\/UpgradeManager.swift",
       "kind": "StringLiteral",
-      "offset": 1669,
+      "offset": 1671,
       "length": 1,
       "value": "\" - skip upgrade on version: \""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/Fireblocks\/UpgradeManager\/UpgradeManager.swift",
       "kind": "StringLiteral",
-      "offset": 1736,
+      "offset": 1738,
       "length": 2,
       "value": "\"\""
     },
@@ -14516,260 +14516,274 @@
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/CertificationManager\/CertificateStore.swift",
+      "kind": "StringLiteral",
+      "offset": 3124,
+      "length": 83,
+      "value": "\"getPlayerPemCertificate - need to download from backend for playerId: \""
+    },
+    {
+      "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/CertificationManager\/CertificateStore.swift",
+      "kind": "StringLiteral",
+      "offset": 3206,
+      "length": 2,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/CertificationManager\/CertificateStore.swift",
       "kind": "BooleanLiteral",
-      "offset": 4083,
+      "offset": 4247,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/CertificationManager\/CertificateStore.swift",
       "kind": "BooleanLiteral",
-      "offset": 4113,
+      "offset": 4277,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/CertificationManager\/CertificateStore.swift",
       "kind": "StringLiteral",
-      "offset": 4320,
+      "offset": 4484,
       "length": 13,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/CertificationManager\/CertificateStore.swift",
       "kind": "StringLiteral",
-      "offset": 4332,
+      "offset": 4496,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/CertificationManager\/CertificateStore.swift",
       "kind": "StringLiteral",
-      "offset": 4684,
+      "offset": 4848,
       "length": 25,
       "value": "\"CertifcatesUpdateNeeded\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/CertificationManager\/CertificateStore.swift",
       "kind": "StringLiteral",
-      "offset": 5000,
+      "offset": 5164,
       "length": 22,
       "value": "\"SERVICE_CERTIFICATE_\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/CertificationManager\/CertificateStore.swift",
       "kind": "Dictionary",
-      "offset": 5096,
+      "offset": 5260,
       "length": 3,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/CertificationManager\/CertificateStore.swift",
       "kind": "StringLiteral",
-      "offset": 5165,
+      "offset": 5329,
       "length": 4,
       "value": "\"ps\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/CertificationManager\/CertificateStore.swift",
       "kind": "StringLiteral",
-      "offset": 5188,
+      "offset": 5352,
       "length": 4,
       "value": "\"cm\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/CertificationManager\/CertificateStore.swift",
       "kind": "StringLiteral",
-      "offset": 5211,
+      "offset": 5375,
       "length": 4,
       "value": "\"ss\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/CertificationManager\/CertificateStore.swift",
       "kind": "StringLiteral",
-      "offset": 5234,
+      "offset": 5398,
       "length": 4,
       "value": "\"zs\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/CertificationManager\/CertificateStore.swift",
       "kind": "StringLiteral",
-      "offset": 5257,
+      "offset": 5421,
       "length": 4,
       "value": "\"oe\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/CertificationManager\/CertificateStore.swift",
       "kind": "StringLiteral",
-      "offset": 5283,
+      "offset": 5447,
       "length": 7,
       "value": "\"nckms\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/CertificationManager\/CertificateStore.swift",
       "kind": "StringLiteral",
-      "offset": 5165,
+      "offset": 5329,
       "length": 4,
       "value": "\"ps\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/CertificationManager\/CertificateStore.swift",
       "kind": "StringLiteral",
-      "offset": 5188,
+      "offset": 5352,
       "length": 4,
       "value": "\"cm\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/CertificationManager\/CertificateStore.swift",
       "kind": "StringLiteral",
-      "offset": 5211,
+      "offset": 5375,
       "length": 4,
       "value": "\"ss\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/CertificationManager\/CertificateStore.swift",
       "kind": "StringLiteral",
-      "offset": 5234,
+      "offset": 5398,
       "length": 4,
       "value": "\"zs\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/CertificationManager\/CertificateStore.swift",
       "kind": "StringLiteral",
-      "offset": 5257,
+      "offset": 5421,
       "length": 4,
       "value": "\"oe\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/CertificationManager\/CertificateStore.swift",
       "kind": "StringLiteral",
-      "offset": 5283,
+      "offset": 5447,
       "length": 7,
       "value": "\"nckms\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/CertificationManager\/CertificateStore.swift",
       "kind": "StringLiteral",
-      "offset": 5485,
+      "offset": 5649,
       "length": 60,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/CertificationManager\/CertificateStore.swift",
       "kind": "StringLiteral",
-      "offset": 5492,
+      "offset": 5656,
       "length": 1,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/CertificationManager\/CertificateStore.swift",
       "kind": "StringLiteral",
-      "offset": 5544,
+      "offset": 5708,
       "length": 9,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/CertificationManager\/CertificateStore.swift",
       "kind": "StringLiteral",
-      "offset": 5552,
+      "offset": 5716,
       "length": 21,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/CertificationManager\/CertificateStore.swift",
       "kind": "StringLiteral",
-      "offset": 5572,
+      "offset": 5736,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/CertificationManager\/CertificateStore.swift",
       "kind": "Array",
-      "offset": 6345,
+      "offset": 6509,
       "length": 2,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/CertificationManager\/CertificateStore.swift",
       "kind": "Dictionary",
-      "offset": 6532,
+      "offset": 6696,
       "length": 3,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/CertificationManager\/CertificateStore.swift",
       "kind": "Dictionary",
-      "offset": 7005,
+      "offset": 7169,
       "length": 3,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/CertificationManager\/CertificateStore.swift",
       "kind": "BooleanLiteral",
-      "offset": 7335,
+      "offset": 7499,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/CertificationManager\/CertificateStore.swift",
       "kind": "BooleanLiteral",
-      "offset": 7441,
+      "offset": 7605,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/CertificationManager\/CertificateStore.swift",
       "kind": "BooleanLiteral",
-      "offset": 8025,
+      "offset": 8189,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/CertificationManager\/CertificateStore.swift",
       "kind": "BooleanLiteral",
-      "offset": 8097,
+      "offset": 8261,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/CertificationManager\/CertificateStore.swift",
       "kind": "BooleanLiteral",
-      "offset": 8735,
+      "offset": 8899,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/CertificationManager\/CertificateStore.swift",
       "kind": "BooleanLiteral",
-      "offset": 9272,
+      "offset": 9436,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/CertificationManager\/CertificateStore.swift",
       "kind": "BooleanLiteral",
-      "offset": 9303,
+      "offset": 9467,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/CertificationManager\/CertificateStore.swift",
       "kind": "StringLiteral",
-      "offset": 9481,
+      "offset": 9645,
       "length": 29,
       "value": "\"-----BEGIN CERTIFICATE-----\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/CertificationManager\/CertificateStore.swift",
       "kind": "IntegerLiteral",
-      "offset": 9591,
+      "offset": 9755,
       "length": 1,
       "value": "1"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/CertificationManager\/CertificateStore.swift",
       "kind": "StringLiteral",
-      "offset": 9667,
+      "offset": 9831,
       "length": 27,
       "value": "\"-----END CERTIFICATE-----\""
     },
@@ -23598,7 +23612,7 @@
       "kind": "StringLiteral",
       "offset": 597,
       "length": 7,
-      "value": "\"2.3.0\""
+      "value": "\"2.3.1\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/StorageManager\/MultiDeviceStorageManager.swift",
@@ -29609,49 +29623,56 @@
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/AuthRepo\/EnrollPlayerStep.swift",
       "kind": "StringLiteral",
-      "offset": 1987,
-      "length": 19,
-      "value": "\"Failed to get CSR\""
-    },
-    {
-      "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/AuthRepo\/EnrollPlayerStep.swift",
-      "kind": "StringLiteral",
-      "offset": 3481,
+      "offset": 3142,
       "length": 19,
       "value": "\"Failed to get CSR\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/AuthRepo\/EnrollPlayerStep.swift",
       "kind": "BooleanLiteral",
-      "offset": 4302,
+      "offset": 3963,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/AuthRepo\/EnrollPlayerStep.swift",
       "kind": "StringLiteral",
-      "offset": 4384,
+      "offset": 4045,
       "length": 13,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/AuthRepo\/EnrollPlayerStep.swift",
       "kind": "StringLiteral",
-      "offset": 4396,
+      "offset": 4057,
       "length": 14,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/AuthRepo\/EnrollPlayerStep.swift",
       "kind": "StringLiteral",
-      "offset": 4479,
+      "offset": 4140,
       "length": 79,
       "value": "\"EnrollPlayerStep - downloaded and stored certificate for playerId \""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/AuthRepo\/EnrollPlayerStep.swift",
       "kind": "StringLiteral",
-      "offset": 4557,
+      "offset": 4218,
+      "length": 2,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/AuthRepo\/EnrollPlayerStep.swift",
+      "kind": "StringLiteral",
+      "offset": 4324,
+      "length": 74,
+      "value": "\"EnrollPlayerStep - could not verify certificate for playerId \""
+    },
+    {
+      "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/AuthRepo\/EnrollPlayerStep.swift",
+      "kind": "StringLiteral",
+      "offset": 4397,
       "length": 2,
       "value": "\"\""
     },
@@ -29659,34 +29680,20 @@
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/AuthRepo\/EnrollPlayerStep.swift",
       "kind": "StringLiteral",
       "offset": 4663,
-      "length": 74,
-      "value": "\"EnrollPlayerStep - could not verify certificate for playerId \""
-    },
-    {
-      "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/AuthRepo\/EnrollPlayerStep.swift",
-      "kind": "StringLiteral",
-      "offset": 4736,
-      "length": 2,
-      "value": "\"\""
-    },
-    {
-      "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/AuthRepo\/EnrollPlayerStep.swift",
-      "kind": "StringLiteral",
-      "offset": 5002,
       "length": 18,
       "value": "\"Unexpected error\""
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/AuthRepo\/EnrollPlayerStep.swift",
       "kind": "BooleanLiteral",
-      "offset": 5050,
+      "offset": 4711,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/dudishani-gabay\/projects\/fireblocks-ios-sdk\/Shared\/Fireblocks\/FlowCoordinator\/Flows\/AuthRepo\/EnrollPlayerStep.swift",
       "kind": "Array",
-      "offset": 5420,
+      "offset": 5081,
       "length": 2,
       "value": "[]"
     },

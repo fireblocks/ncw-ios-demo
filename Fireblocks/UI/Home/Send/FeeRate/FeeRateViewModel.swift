@@ -101,7 +101,7 @@ final class FeeRateViewModel {
         
         listenToTransactionStatusChanges()
         
-        let transactionParams = PostTransactionParams(destAddress: receiverAddress,
+        let transactionParams = PostTransactionParams(assetId: transaction.asset.id, destAddress: receiverAddress,
                                                       amount: "\(transaction.amountToSend)",
                                                       note: "test transaction",
                                                       feeLevel: fees[selectedFeeIndex].feeRateType.rawValue)
