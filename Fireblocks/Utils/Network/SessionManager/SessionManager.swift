@@ -44,6 +44,7 @@ struct ErrorResponse: Codable {
 }
 
 struct PostTransactionParams: Encodable {
+    let assetId: String
     let destAddress: String
     let accountId: String = "0"
     let amount: String
