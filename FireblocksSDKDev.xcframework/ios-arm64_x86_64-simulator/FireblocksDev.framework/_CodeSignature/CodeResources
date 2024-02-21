@@ -22,7 +22,7 @@
 		</data>
 		<key>Modules/FireblocksDev.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<data>
-		U2cTQnpAOIjEv+kZXPR5OSBB/nU=
+		Bu9ZwokCn5VbWWuJKWQJ/IVpz/c=
 		</data>
 		<key>Modules/FireblocksDev.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
@@ -42,7 +42,7 @@
 		</data>
 		<key>Modules/FireblocksDev.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<data>
-		U2cTQnpAOIjEv+kZXPR5OSBB/nU=
+		Bu9ZwokCn5VbWWuJKWQJ/IVpz/c=
 		</data>
 		<key>Modules/FireblocksDev.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
@@ -140,7 +140,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			ThjiDyHWJg0CFKsSBlIk7vYWq6iRzSugT20k/Hbv0hk=
+			m+gj3I9Roz3BSRytPmCscRop6wErLIZRm6SgNexGFts=
 			</data>
 		</dict>
 		<key>Modules/FireblocksDev.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
@@ -175,7 +175,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			ThjiDyHWJg0CFKsSBlIk7vYWq6iRzSugT20k/Hbv0hk=
+			m+gj3I9Roz3BSRytPmCscRop6wErLIZRm6SgNexGFts=
 			</data>
 		</dict>
 		<key>Modules/FireblocksDev.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
