@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2B05C06A2B4698BF004CF1CE /* JoinRequestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B05C0692B4698BF004CF1CE /* JoinRequestData.swift */; };
+		2B16256D2B9071B500DC66FD /* FireblocksSDKDev.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B16256B2B9071AE00DC66FD /* FireblocksSDKDev.xcframework */; };
+		2B16256E2B9071B500DC66FD /* FireblocksSDKDev.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2B16256B2B9071AE00DC66FD /* FireblocksSDKDev.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2B174FE92B62446900BE63A8 /* RedirectNewUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B174FE82B62446900BE63A8 /* RedirectNewUserView.swift */; };
 		2B174FEB2B62447900BE63A8 /* RedirectNewUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B174FEA2B62447900BE63A8 /* RedirectNewUserViewModel.swift */; };
 		2B174FED2B624EEA00BE63A8 /* RedirectNewUserHostingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B174FEC2B624EEA00BE63A8 /* RedirectNewUserHostingVC.swift */; };
@@ -229,8 +231,6 @@
 		2BC583802B6BD5FF005E6EEB /* VerticalSeparator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC5837F2B6BD5FF005E6EEB /* VerticalSeparator.swift */; };
 		2BD53A232B28735700756C4A /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD53A222B28735700756C4A /* Date+Extensions.swift */; };
 		2BD785CB2B83703F00FEA796 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2BD785CA2B83703F00FEA796 /* GoogleService-Info.plist */; };
-		2BD7E6B62B8640FC00888D19 /* FireblocksSDKDev.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BD7E6B42B8640D700888D19 /* FireblocksSDKDev.xcframework */; };
-		2BD7E6B72B8640FC00888D19 /* FireblocksSDKDev.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2BD7E6B42B8640D700888D19 /* FireblocksSDKDev.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2BF8EDB62B56673300046F0B /* EndFlowFeedbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF8EDB52B56673300046F0B /* EndFlowFeedbackView.swift */; };
 		2BF8EDB92B56676300046F0B /* EndFlowFeedbackViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF8EDB82B56676300046F0B /* EndFlowFeedbackViewModel.swift */; };
 		2BF8EDBB2B566E3C00046F0B /* EndFlowFeedbackHostingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF8EDBA2B566E3C00046F0B /* EndFlowFeedbackHostingVC.swift */; };
@@ -381,7 +381,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				2BD7E6B72B8640FC00888D19 /* FireblocksSDKDev.xcframework in Embed Frameworks */,
+				2B16256E2B9071B500DC66FD /* FireblocksSDKDev.xcframework in Embed Frameworks */,
 				2BAB680E2B8208AB003592F1 /* MPCFBFramework.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -401,6 +401,7 @@
 
 /* Begin PBXFileReference section */
 		2B05C0692B4698BF004CF1CE /* JoinRequestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinRequestData.swift; sourceTree = "<group>"; };
+		2B16256B2B9071AE00DC66FD /* FireblocksSDKDev.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = FireblocksSDKDev.xcframework; sourceTree = "<group>"; };
 		2B174FE82B62446900BE63A8 /* RedirectNewUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedirectNewUserView.swift; sourceTree = "<group>"; };
 		2B174FEA2B62447900BE63A8 /* RedirectNewUserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedirectNewUserViewModel.swift; sourceTree = "<group>"; };
 		2B174FEC2B624EEA00BE63A8 /* RedirectNewUserHostingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedirectNewUserHostingVC.swift; sourceTree = "<group>"; };
@@ -449,7 +450,6 @@
 		2BC5837F2B6BD5FF005E6EEB /* VerticalSeparator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalSeparator.swift; sourceTree = "<group>"; };
 		2BD53A222B28735700756C4A /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		2BD785CA2B83703F00FEA796 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		2BD7E6B42B8640D700888D19 /* FireblocksSDKDev.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = FireblocksSDKDev.xcframework; sourceTree = "<group>"; };
 		2BF8EDB52B56673300046F0B /* EndFlowFeedbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndFlowFeedbackView.swift; sourceTree = "<group>"; };
 		2BF8EDB82B56676300046F0B /* EndFlowFeedbackViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndFlowFeedbackViewModel.swift; sourceTree = "<group>"; };
 		2BF8EDBA2B566E3C00046F0B /* EndFlowFeedbackHostingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndFlowFeedbackHostingVC.swift; sourceTree = "<group>"; };
@@ -597,7 +597,7 @@
 				2B7C47862B32DAAB001C804B /* GoogleSignInSwift in Frameworks */,
 				2B7C478E2B32DAC1001C804B /* SDWebImageMapKit in Frameworks */,
 				2B7C47842B32DAAB001C804B /* GoogleSignIn in Frameworks */,
-				2BD7E6B62B8640FC00888D19 /* FireblocksSDKDev.xcframework in Frameworks */,
+				2B16256D2B9071B500DC66FD /* FireblocksSDKDev.xcframework in Frameworks */,
 				2B7C47822B32DA8D001C804B /* GoogleAPIClientForREST_DriveLabels in Frameworks */,
 				2B7C47802B32DA8D001C804B /* GoogleAPIClientForREST_DriveActivity in Frameworks */,
 				2B7C478C2B32DAC1001C804B /* SDWebImage in Frameworks */,
@@ -1221,7 +1221,7 @@
 		86859F462A384D8A0056E3C6 = {
 			isa = PBXGroup;
 			children = (
-				2BD7E6B42B8640D700888D19 /* FireblocksSDKDev.xcframework */,
+				2B16256B2B9071AE00DC66FD /* FireblocksSDKDev.xcframework */,
 				2BAB680B2B8208A8003592F1 /* MPCFBFramework.xcframework */,
 				2B769B9E2B1DFCC700557E97 /* NCW-sandboxRelease.entitlements */,
 				2B769B9D2B1DFCBA00557E97 /* NCW-sandboxDebug.entitlements */,

@@ -335,7 +335,6 @@ public enum DeviceStatus : Swift.String, Swift.Equatable, Swift.Codable {
   }
 }
 public enum Algorithm : Swift.String, Swift.Codable, Swift.CaseIterable {
-  case MPC_EDDSA_ED25519
   case MPC_ECDSA_SECP256K1
   public init?(rawValue: Swift.String)
   public typealias AllCases = [FireblocksDev.Algorithm]
