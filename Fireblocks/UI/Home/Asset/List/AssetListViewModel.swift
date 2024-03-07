@@ -79,6 +79,10 @@ class AssetListViewModel {
         delegate?.refreshData()
     }
     
+    func getAssetSummary() -> [AssetSummary] {
+        return assetsSummary
+    }
+    
     func getAssets() -> [Asset] {
         assets.sorted(by: {$0.name < $1.name})
     }

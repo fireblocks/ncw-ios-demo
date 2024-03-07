@@ -8,10 +8,14 @@
 import Foundation
 import UIKit.UIImage
 
-struct AssetSummary: Codable {
+struct AssetSummary: Codable, Identifiable {
     var asset: Asset?
     var address: AssetAddress?
     var balance: AssetBalance?
+    
+    var id: String {
+        return asset?.id ?? ""
+    }
 }
 
 struct Asset: Codable, Identifiable, Hashable {
@@ -67,4 +71,6 @@ struct AssetAddress: Codable {
     var accountId: String?
     var accountName: String?
     var addressType: String?
+    var addressIndex: Int?
+
 }
