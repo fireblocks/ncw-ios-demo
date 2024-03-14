@@ -53,7 +53,12 @@ struct NCWDemoApp: App {
                             }
                         }
                     case .generateKeys:
-                        Text("GENERATE KEYS")
+                        LoaderContainer(showLoader: $showLoader, toast: $toast) {
+                            NavigationContainer(path: $addDevicePath, showLoader: $showLoader, toast: $toast) {
+                                GenerateKeysView(showLoader: $showLoader, path: $addDevicePath)
+                            }
+                        }
+
                     case .assets:
                         Text("ASSETS")
                     }

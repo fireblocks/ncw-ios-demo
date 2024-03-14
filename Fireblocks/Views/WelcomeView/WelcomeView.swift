@@ -34,7 +34,7 @@ struct WelcomeView: View {
                                 }
                             }
                         } else {
-                            VStack(spacing: 16) {
+                            VStack(spacing: 8) {
                                 LabeldButton(icon: Image(.googleIcon), title: AuthType.Google.title(loginMethod: viewModel.loginMethod)) {
                                     viewModel.authType = .Google
                                 }

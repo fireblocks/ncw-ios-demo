@@ -186,7 +186,7 @@ class AuthViewController: UIViewController {
         let vc: UIViewController
         switch viewModel.getLoginMethod() {
         case .signUp:
-            vc = UINavigationController(rootViewController: MpcKeysViewController(isAddingDevice: false))
+            vc = UINavigationController(rootViewController: MpcKeysViewController())
         case .signIn:
             if viewModel.isUserHaveKeys() {
                 FireblocksManager.shared.startPolling()
@@ -195,7 +195,7 @@ class AuthViewController: UIViewController {
                 vc = UINavigationController(rootViewController: RedirectNewUserHostingVC())
             }
         case .addDevice:
-            vc = UINavigationController(rootViewController: MpcKeysViewController(isAddingDevice: true))
+            vc = UINavigationController(rootViewController: MpcKeysViewController())
         }
 
         AppLoggerManager.shared.loggers[FireblocksManager.shared.getDeviceId()] = AppLogger(deviceId: FireblocksManager.shared.getDeviceId())

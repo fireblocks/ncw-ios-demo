@@ -20,7 +20,7 @@ protocol AppleSignInProtocol {
 }
 
 extension WelcomeView {
-    class ViewModel: ObservableObject {
+    class ViewModel: NSObject, ObservableObject {
         @Published var isMainPresented = true
         @Published var loginMethod: LoginMethod = .signUp
         @Published var showLoader = false
@@ -135,6 +135,39 @@ extension WelcomeView.ViewModel: GoogleSignInProtocol {
 
 extension WelcomeView.ViewModel: AppleSignInProtocol {
     func iCloudSignIn() {
-        
+        if let authRepository {
+            let authorizationController = ASAuthorizationController(
+                authorizationRequests: [getAppleRequest(authRepository: authRepository)]
+            )
+            authorizationController.delegate = self
+            authorizationController.presentationContextProvider = self
+            authorizationController.performRequests()
+        }
+    }
+    
+    private func getAppleRequest(authRepository: AuthRepository) -> ASAuthorizationAppleIDRequest {
+        return authRepository.getAppleRequest()
+    }
+
+}
+
+extension WelcomeView.ViewModel:
+    ASAuthorizationControllerDelegate,
+    ASAuthorizationControllerPresentationContextProviding
+{
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        showLoader = true
+        if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
+            signInToFirebase(with: authorization, user: appleIDCredential.user)
+        }
+    }
+    
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+        print("Sign in with Apple errored: \(error)")
+    }
+    
+    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+        return ASPresentationAnchor()
     }
 }
+

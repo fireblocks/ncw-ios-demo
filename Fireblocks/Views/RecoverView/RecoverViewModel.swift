@@ -83,7 +83,6 @@ extension RecoverView {
                     }
                 } else {
                     bannerErrorsManager?.errorMessage = getError()
-//                    showError(message: LocalizableStrings.failedToRecoverWallet)
                 }
             }
         }
@@ -92,19 +91,6 @@ extension RecoverView {
             return await repository.getBackupInfo()
         }
         
-
-        func getBackupDetails() -> String {
-            if let backupData {
-                let backupDate = backupData.date ?? "-"
-                let backupDetails = LocalizableStrings.backupDateAndAccount
-                    .replacingOccurrences(of: "{date}", with: backupDate)
-                    .replacingOccurrences(of: "{backup_provider}", with: backupData.title ?? "-")
-                
-                return backupDetails
-            } else {
-                return LocalizableStrings.chooseRecoveryLocation
-            }
-        }
 
         func getError() -> String {
             return LocalizableStrings.failedToRecoverWallet

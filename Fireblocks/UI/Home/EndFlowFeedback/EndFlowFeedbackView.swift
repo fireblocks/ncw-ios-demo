@@ -19,23 +19,7 @@ struct EndFlowFeedbackView: View {
     var body: some View {
         ZStack {
             VStack(spacing: 0) {
-                if let icon = viewModel.icon {
-                    Image(icon)
-                        .padding(.top, 12)
-                        .padding(.bottom, 24)
-                }
-                
-                if let title = viewModel.title {
-                    Text(title)
-                        .font(.h2)
-                        .padding(.bottom, 24)
-                }
-                
-                if let subtitle = viewModel.subTitle {
-                    Text(subtitle)
-                        .font(.body4)
-                        .multilineTextAlignment(.center)
-                }
+                GenericHeaderView(icon: viewModel.icon, title: viewModel.title, subtitle: viewModel.subTitle)
 
                 content
                     .padding(.top, 32)

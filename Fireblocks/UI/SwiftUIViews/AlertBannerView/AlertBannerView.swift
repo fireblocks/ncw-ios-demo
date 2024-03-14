@@ -41,3 +41,15 @@ struct AlertBannerView_Previews: PreviewProvider {
         AlertBannerView(message: "\(LocalizableStrings.approveJoinWalletCanceled)\n\(LocalizableStrings.approveJoinWalletCanceledSubtitle)")
     }
 }
+
+struct InnerAlertBannerView: View {
+    var message: String?
+    
+    var body: some View {
+        VStack {
+            Spacer()
+            AlertBannerView(message: message)
+        }
+    }
+}
+

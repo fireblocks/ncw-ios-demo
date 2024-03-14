@@ -28,8 +28,8 @@ class MpcKeysViewController: UIViewController {
     private let viewModel: MpcKeysViewModel
     private var alertView: AlertView?
     
-    init(isAddingDevice: Bool) {
-        self.viewModel = MpcKeysViewModel(isAddingDevice: isAddingDevice)
+    init() {
+        self.viewModel = MpcKeysViewModel()
         super.init (nibName: "MpcKeysViewController", bundle: nil)
     }
     
@@ -47,37 +47,21 @@ class MpcKeysViewController: UIViewController {
         footerButtonHC.constant = 0
         footerButtonTC.constant = 0
 
-        if viewModel.isAddingDevice {
-            self.navigationItem.title = ""
-            headerImageView.image = AssetsIcons.addDeviceImage.getIcon()
-            headerLabel.text = LocalizableStrings.mpcKeysAddDeviceTitle
-            generateMpcKeysButton.config(title: LocalizableStrings.continueTitle, style: .Primary)
-            setNavigationControllerRightButton(icon: AssetsIcons.close, action: #selector(signOut))
-        } else {
-            self.navigationItem.title = LocalizableStrings.generateMPCKeys
-            headerImageView.image = AssetsIcons.generateKeyImage.getIcon()
-            headerLabel.text = LocalizableStrings.mpcKeysGenertaeTitle
-            generateMpcKeysButton.config(title: LocalizableStrings.generateKeysButtonTitle, style: .Primary)
-            footerButton.config(title: LocalizableStrings.illDoThisLater, style: .Transparent)
-            setNavigationControllerRightButton(icon: AssetsIcons.settings, action: #selector(navigateToSettings))
-
-        }
+        self.navigationItem.title = LocalizableStrings.generateMPCKeys
+        headerImageView.image = AssetsIcons.generateKeyImage.getIcon()
+        headerLabel.text = LocalizableStrings.mpcKeysGenertaeTitle
+        generateMpcKeysButton.config(title: LocalizableStrings.generateKeysButtonTitle, style: .Primary)
+        footerButton.config(title: LocalizableStrings.illDoThisLater, style: .Transparent)
+        setNavigationControllerRightButton(icon: AssetsIcons.settings, action: #selector(navigateToSettings))
     }
     
     @IBAction func generateMpcKey(_ sender: AppActionBotton) {
-        if viewModel.isAddingDevice {
+        if !viewModel.didSucceedGenerateKeys {
             removeAlertView()
-            navigationItem.rightBarButtonItem = nil
-            showActivityIndicator(message: LocalizableStrings.preparingDeviceIndicatorMessage)
-            viewModel.addDevice()
+            showActivityIndicator(message: LocalizableStrings.generateKeysIndicatorMessage)
+            viewModel.generateMpcKeys()
         } else {
-            if !viewModel.didSucceedGenerateKeys {
-                removeAlertView()
-                showActivityIndicator(message: LocalizableStrings.generateKeysIndicatorMessage)
-                viewModel.generateMpcKeys()
-            } else {
-                self.navigateCreateBackupScreen()
-            }
+            self.navigateCreateBackupScreen()
         }
     }
     
@@ -127,10 +111,6 @@ class MpcKeysViewController: UIViewController {
     }
     
     private func showErrorView(message: String){
-        if viewModel.isAddingDevice {
-            setNavigationControllerRightButton(icon: AssetsIcons.close, action: #selector(signOut))
-        }
-        
         alertView = showAlert(
             description: message,
             isAnimationEnabled: false,
@@ -187,26 +167,7 @@ extension MpcKeysViewController: MpcKeysViewModelDelegate {
             self.showErrorView(message: message)
         }
     }
-    
-    func onRequestId(requestId: String) {
-        guard let email = self.viewModel.email else {
-            return
-        }
         
-        DispatchQueue.main.async {
-            self.hideActivityIndicator()
-            let vc = AddDeviceHostingVC(requestId: requestId, email: email, delegate: self)
-            self.navigationController?.pushViewController(vc, animated: true)
-        }
-
-    }
-    
-    func onProvisionerFound() {
-//        DispatchQueue.main.async {
-//            NotificationCenter.default.post(name: Notification.Name("onProvisionerFound"), object: nil, userInfo: nil)
-//        }
-    }
-    
     func onAddingDevice(success: Bool) {
         DispatchQueue.main.async {
             if success {

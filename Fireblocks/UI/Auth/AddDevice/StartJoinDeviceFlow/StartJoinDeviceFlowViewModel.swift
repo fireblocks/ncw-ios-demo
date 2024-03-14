@@ -32,6 +32,7 @@ extension StartJoinDeviceFlowView {
             try? Auth.auth().signOut()
             self.appRootManager?.currentRoot = .login
         }
+        
         func addDeviceFromSdk() {
             showLoader = true
             task = Task {
