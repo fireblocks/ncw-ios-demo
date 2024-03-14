@@ -16,6 +16,7 @@
 "biometrics_access_explanation" = "An app need access to biometrics FaceID or TouchID to provide secure and convenient authentication";
 "login_google_sign_in" = " Sign in with Google";
 "login_apple_sign_in" = " Sign in with Apple";
+"main_view_title" = "Securely store, send, and receive\ndigital assets on the go.";
 "login_google_sign_up" = " Sign up with Google";
 "login_apple_sign_up" = " Sign up with Apple";
 "login_google_add_device" = " Sign in with Google";

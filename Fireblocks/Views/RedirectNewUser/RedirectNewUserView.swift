@@ -8,27 +8,23 @@
 import SwiftUI
 
 struct RedirectNewUserView: View {
-    @Environment (\.dismiss) var dismiss
-    @StateObject var viewModel: ViewModel
-
-    init(viewModel: ViewModel) {
-        _viewModel = StateObject(wrappedValue: viewModel)
-    }
-
+    @EnvironmentObject var appRootManager: AppRootManager
+    
+    @StateObject var viewModel = ViewModel()
+    @Binding var path: NavigationPath
+    
     var body: some View {
         ZStack {
-            Color.black
-                .edgesIgnoringSafeArea(.all)
             VStack(spacing: 0) {
                 Image(AssetsIcons.addDeviceImage.rawValue)
                     .padding(.top, 12)
                     .padding(.bottom, 42)
-
+                
                 Text("You can add this device to your existing wallet or recover your existing wallet on this device.")
                     .font(.body4)
                     .multilineTextAlignment(.center)
                     .padding(.bottom, 74)
-
+                
                 Button {
                     viewModel.addDeviceTapped()
                 } label: {
@@ -41,29 +37,30 @@ struct RedirectNewUserView: View {
                     }
                     .padding(16)
                     .contentShape(Rectangle())
-
+                    
                 }
-                .tint(.white)
                 .buttonStyle(.plain)
+                .tint(.primary)
                 .frame(maxWidth: .infinity)
-                .background(AssetsColors.gray1.color())
+                .background(.secondary.opacity(0.2))
                 .cornerRadius(16)
-
+                
                 HStack {
                     Rectangle()
                         .frame(height: 2)
-                        .foregroundColor(AssetsColors.gray2.color())
+                        .foregroundColor(.secondary)
                     Text("or")
                         .font(.body1)
-                        .foregroundColor(AssetsColors.gray3.color())
+                        .foregroundColor(.secondary)
                         .padding(16)
                     Rectangle()
                         .frame(height: 2)
-                        .foregroundColor(AssetsColors.gray2.color())
-
+                        .foregroundColor(.secondary)
+                    
                 }
+                
                 Button {
-                    viewModel.recoverTapped()
+                    path.append(NavigationTypes.Recover)
                 } label: {
                     HStack {
                         Spacer()
@@ -74,21 +71,21 @@ struct RedirectNewUserView: View {
                     }
                     .padding(16)
                     .contentShape(Rectangle())
-
+                    
                 }
-                .tint(.white)
                 .buttonStyle(.plain)
+                .tint(.primary)
                 .frame(maxWidth: .infinity)
-                .background(AssetsColors.gray1.color())
+                .background(.secondary.opacity(0.2))
                 .cornerRadius(16)
-
+                
                 Spacer()
             }
             .padding(16)
-
+            
         }
         .onAppear() {
-            viewModel.didInit()
+            viewModel.setup(appRootManager: appRootManager)
         }
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
@@ -97,7 +94,7 @@ struct RedirectNewUserView: View {
                 } label: {
                     Image(AssetsIcons.close.rawValue)
                 }
-                .tint(.white)
+                .tint(.primary)
             }
         }
         .navigationTitle("Add your keys to this device")
@@ -110,7 +107,7 @@ struct RedirectNewUserView: View {
 struct RedirectNewUserView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            RedirectNewUserView(viewModel: RedirectNewUserView.ViewModel())
+            RedirectNewUserView(viewModel: RedirectNewUserView.ViewModel(), path: .constant(NavigationPath()))
         }
     }
 }

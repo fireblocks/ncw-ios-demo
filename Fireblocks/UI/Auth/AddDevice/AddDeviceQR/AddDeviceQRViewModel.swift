@@ -11,7 +11,16 @@ protocol AddDeviceQRDelegate: AnyObject {
     func didQRTimeExpired()
 }
 
-class AddDeviceQRViewModel: ObservableObject, UIHostingBridgeNotifications {
+class AddDeviceQRViewModel: ObservableObject, Equatable, Hashable {
+    static func == (lhs: AddDeviceQRViewModel, rhs: AddDeviceQRViewModel) -> Bool {
+        return lhs.requestId == rhs.requestId
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(requestId)
+    }
+
+    
     var didAppear: Bool = false
     let requestId: String
     var email: String?
@@ -20,9 +29,13 @@ class AddDeviceQRViewModel: ObservableObject, UIHostingBridgeNotifications {
     var timer: Timer?
     weak var delegate: AddDeviceQRDelegate?
     
+    private var bannerErrorsManager: BannerErrorsManager?
+    
     @Published var timeleft = ""
     @Published var isToolbarHidden = false
-    
+    @Published var showLoader = false
+    @Published var navigationType: NavigationTypes?
+
     init(requestId: String, email: String?, expiredInterval: TimeInterval = 180.seconds) {
         self.requestId = requestId
         self.email = email
@@ -35,6 +48,7 @@ class AddDeviceQRViewModel: ObservableObject, UIHostingBridgeNotifications {
                     self.timer?.invalidate()
                     self.timer = nil
                     self.timeleft = ""
+                    self.navigationType = .JoinDevicetimeExpired
                     self.delegate?.didQRTimeExpired()
                 } else {
                     self.timeleft = self.timeLeft()
@@ -55,6 +69,10 @@ class AddDeviceQRViewModel: ObservableObject, UIHostingBridgeNotifications {
         FireblocksManager.shared.stopJoinWallet()
     }
     
+    func setup(bannerErrorsManager: BannerErrorsManager) {
+        self.bannerErrorsManager = bannerErrorsManager
+    }
+    
     func setURL() -> String? {
         guard let email else { return nil }
         let joinData = JoinRequestData(requestId: requestId, platform: "iOS", email: email)
@@ -68,7 +86,7 @@ class AddDeviceQRViewModel: ObservableObject, UIHostingBridgeNotifications {
     
     func presentIndicator() {
         isToolbarHidden = true
-        showIndicator()
+        self.showLoader = true
     }
     
     func startTimer() {

@@ -34,7 +34,7 @@ struct ValidateRequestIdTimeOutView: View {
 
 
         }
-        .background(AssetsColors.gray1.color())
+        .background(.secondary.opacity(0.2))
         .cornerRadius(16)
         .padding(.horizontal, 16)
     }

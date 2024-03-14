@@ -11,11 +11,6 @@ import FirebaseAuth
 import GoogleSignIn
 import Foundation
 
-enum LoginMethod: String, CaseIterable {
-    case signIn
-    case signUp
-    case addDevice
-}
 
 protocol AuthViewModelDelegate {
     func isUserSignedIn(_ isUserSignedIn: Bool) async

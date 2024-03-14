@@ -51,9 +51,9 @@ struct Recover: BackupViewControllerStrategy {
     let iCloudTitle: String = LocalizableStrings.recoverFromICloud
     let tryAgainTitle: String = LocalizableStrings.tryAgain
 
-    private weak var delegate: BackupProviderDelegate?
+    private weak var delegate: RecoverProviderDelegate?
 
-    init(delegate: BackupProviderDelegate) {
+    init(delegate: RecoverProviderDelegate) {
         self.delegate = delegate
     }
     

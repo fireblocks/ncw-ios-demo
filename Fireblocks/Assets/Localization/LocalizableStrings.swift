@@ -22,6 +22,7 @@ struct LocalizableStrings{
     static let loginAppleSignUP = "login_apple_sign_up".localize()
     static let loginGoogleAddDevice = "login_google_add_device".localize()
     static let loginAppleAddDevice = "login_apple_add_device".localize()
+    static let mainViewTitle = "main_view_title".localize()
     static let signInTitle = "sign_in_title".localize()
     static let signUpTitle = "sign_up_title".localize()
     static let addDeviceTitle = "add_device_title".localize()

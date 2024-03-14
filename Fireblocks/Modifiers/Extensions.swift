@@ -8,6 +8,12 @@
 import Foundation
 import SwiftUI
 
+extension Bool {
+    func toDouble() -> Double {
+        return self ? 1 : 0
+    }
+}
+
 class GenericDecoder {
     static func decode<T: Codable>(dictionary: Any?) -> T? {
        guard let dictionary = dictionary as? [String: Any] else { return nil }

@@ -119,7 +119,7 @@ class MpcKeysViewController: UIViewController {
     @IBAction func navigateToRecoverWallet(_ sender: UIButton){
         if !viewModel.didSucceedGenerateKeys {
             let vc = BackupViewController()
-            vc.actionType = Recover(delegate: vc.self)
+            vc.actionType = Recover(delegate: vc.self as! RecoverProviderDelegate)
             navigationController?.pushViewController(vc, animated: true)
         } else {
             self.navigateNextScreen()
@@ -202,9 +202,9 @@ extension MpcKeysViewController: MpcKeysViewModelDelegate {
     }
     
     func onProvisionerFound() {
-        DispatchQueue.main.async {
-            NotificationCenter.default.post(name: Notification.Name("onProvisionerFound"), object: nil, userInfo: nil)
-        }
+//        DispatchQueue.main.async {
+//            NotificationCenter.default.post(name: Notification.Name("onProvisionerFound"), object: nil, userInfo: nil)
+//        }
     }
     
     func onAddingDevice(success: Bool) {

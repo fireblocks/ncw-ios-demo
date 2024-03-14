@@ -11,7 +11,7 @@ import AuthenticationServices
 import GoogleSignIn
 import FireblocksSDK
 
-class AuthRepository  {
+class AuthRepository: ObservableObject  {
     
     private let googleSignInManager = GoogleSignInManager()
     private let appleSignInManager = AppleSignInManager()

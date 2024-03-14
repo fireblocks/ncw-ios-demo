@@ -13,7 +13,7 @@ struct VerticalSeparator: View {
         HStack {
             HStack {}
                 .frame(width: 4, height: 32)
-                .background(AssetsColors.gray1.color())
+                .background(.secondary.opacity(0.2))
                 .cornerRadius(4)
                 .padding(.horizontal, 11)
             Spacer()

@@ -13,7 +13,7 @@ class RedirectNewUserHostingVC: FBHostingViewController {
 
     init() {
         self.viewModel = RedirectNewUserView.ViewModel()
-        let view = RedirectNewUserView(viewModel: self.viewModel)
+        let view = RedirectNewUserView(viewModel: self.viewModel, path: .constant(NavigationPath()))
         super.init(rootView: AnyView(view))
     }
     
@@ -22,7 +22,6 @@ class RedirectNewUserHostingVC: FBHostingViewController {
     }
     
     override func didInit() {
-        viewModel.delegate = self
     }
 
 }
@@ -45,7 +44,7 @@ extension RedirectNewUserHostingVC: RedirectNewUserDelegate {
     
     func recoverTapped() {
         let vc = BackupViewController()
-        vc.actionType = Recover(delegate: vc.self)
+        vc.actionType = Recover(delegate: vc.self as! RecoverProviderDelegate)
         navigationController?.pushViewController(vc, animated: true)
     }
 }

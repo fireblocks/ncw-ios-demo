@@ -7,16 +7,20 @@
 
 import SwiftUI
 
+protocol AlertBannerViewProtocol {
+    var showAlert: Bool { get set }
+}
+
 struct AlertBannerView: View {
     var icon: String = AssetsIcons.error.rawValue
-    let message: String
-    
+    var message: String?
+        
     var body: some View {
         HStack(spacing: 16) {
             Image(icon)
-            Text(message)
+            Text(message ?? "")
                 .multilineTextAlignment(.leading)
-                .foregroundColor(AssetsColors.white.color())
+                .foregroundColor(.primary)
             Spacer()
         }
         .foregroundColor(AssetsColors.alert.color())
@@ -27,7 +31,8 @@ struct AlertBannerView: View {
             RoundedRectangle(cornerRadius: 16)
                 .stroke(AssetsColors.alert.color(), lineWidth: 1)
         )
-
+        .opacity(message != nil ? 1 : 0)
+        .animation(.default, value: message)
     }
 }
 

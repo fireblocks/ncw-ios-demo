@@ -17,7 +17,7 @@ struct Bullet: View {
             .contentShape(Rectangle())
             .padding(.horizontal, 8)
             .padding(.vertical, 4)
-            .background(AssetsColors.gray1.color())
+            .background(.secondary.opacity(0.2))
             .cornerRadius(4)
     }
 }

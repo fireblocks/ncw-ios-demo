@@ -9,18 +9,20 @@ import SwiftUI
 import CoreImage.CIFilterBuiltins
 
 struct AddDeviceQRView: View {
+    @EnvironmentObject var bannerErrorsManager: BannerErrorsManager
     @Environment(\.dismiss) var dismiss
     @StateObject var viewModel: AddDeviceQRViewModel
     
     let context = CIContext()
     let filter = CIFilter.qrCodeGenerator()
-    
+    @Binding var toast: String?
+    @Binding var showLoader: Bool
+    @Binding var path: NavigationPath
+
     var body: some View {
         ZStack {
-            Color.black
-                .edgesIgnoringSafeArea(.all)
             VStack {
-                Color.black
+                Color(.reverse)
                     .frame(height: 12)
 
                 ScrollView {
@@ -58,7 +60,9 @@ struct AddDeviceQRView: View {
                             }
                             .padding(.bottom, 40)
                             
-                            AddDeviceQRInnerView(image: generateQRCode(from: viewModel.url, size: CGSize(width: 171.0, height: 171.0)), url: viewModel.url, action: viewModel.showToast)
+                            AddDeviceQRInnerView(image: generateQRCode(from: viewModel.url, size: CGSize(width: 171.0, height: 171.0)), url: viewModel.url) {
+                                bannerErrorsManager.toastMessage = "copied"
+                            }
                             
                             Spacer()
                         }
@@ -85,13 +89,19 @@ struct AddDeviceQRView: View {
                     } label: {
                         Image(uiImage: AssetsIcons.close.getIcon())
                     }
-                    .tint(.white)
+                    .tint(.primary)
                     .opacity(viewModel.isToolbarHidden ? 0 : 1)
                 }
             }
         }
-        .onAppear() {
-            viewModel.didInit()
+        .toast(message: bannerErrorsManager.toastMessage)
+        .onChange(of: viewModel.showLoader) { value in
+            showLoader = value
+        }
+        .onChange(of: viewModel.navigationType) { value in
+            if let value {
+                path.append(value)
+            }
         }
         .navigationTitle(LocalizableStrings.addNewDeviceNavigationBar)
         .navigationBarTitleDisplayMode(.inline)
@@ -153,14 +163,14 @@ struct AddDeviceQRInnerView: View {
                     } label: {
                         Image(uiImage: AssetsIcons.copy.getIcon())
                     }
-                    .tint(.white)
+                    .tint(.primary)
                 }
                 .padding(.horizontal, 8)
                 .padding(.bottom, 16)
             }
         }
         .padding(.top, 40)
-        .background(AssetsColors.gray1.color())
+        .background(.secondary.opacity(0.2))
         .cornerRadius(16)
 
     }

@@ -154,7 +154,7 @@ class SettingsViewController: UIViewController {
     
     private func navigateToRecoverViewController() {
         let vc = BackupViewController()
-        vc.actionType = Recover(delegate: vc.self)
+        vc.actionType = Recover(delegate: vc.self as! RecoverProviderDelegate)
         navigationController?.pushViewController(vc, animated: true)
     }
     

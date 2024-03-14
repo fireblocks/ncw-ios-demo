@@ -58,5 +58,9 @@ extension SwiftUI.Font {
         return .custom(FontStyleType.body4.fontName, size: FontStyleType.body4.size)
     }
 
+    static var body5: SwiftUI.Font {
+        return .custom(FontStyleType.body5.fontName, size: FontStyleType.body5.size)
+    }
+
 }
 

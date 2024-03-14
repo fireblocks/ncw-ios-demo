@@ -18,8 +18,6 @@ struct EndFlowFeedbackView: View {
     
     var body: some View {
         ZStack {
-            Color.black
-                .edgesIgnoringSafeArea(.all)
             VStack(spacing: 0) {
                 if let icon = viewModel.icon {
                     Image(icon)
@@ -30,12 +28,13 @@ struct EndFlowFeedbackView: View {
                 if let title = viewModel.title {
                     Text(title)
                         .font(.h2)
-                        .padding(.bottom, 4)
+                        .padding(.bottom, 24)
                 }
                 
                 if let subtitle = viewModel.subTitle {
                     Text(subtitle)
                         .font(.body4)
+                        .multilineTextAlignment(.center)
                 }
 
                 content
@@ -66,7 +65,7 @@ struct EndFlowFeedbackView: View {
                     .frame(maxWidth: .infinity)
                     .background(AssetsColors.primaryBlue.color())
                     .cornerRadius(16)
-                    
+                    .tint(.primary)
                 }
                 
                 if viewModel.didFail {
@@ -100,7 +99,7 @@ struct EndFlowFeedbackView: View {
                     Image(viewModel.rightToolbarItemIcon ?? "")
                 }
                 .opacity(viewModel.rightToolbarItemAction != nil ? 1 : 0)
-                .tint(.white)
+                .tint(.primary)
             }
         }
         .navigationTitle(viewModel.navigationBarTitle)

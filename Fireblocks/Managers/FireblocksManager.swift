@@ -122,13 +122,13 @@ class FireblocksManager {
             if isGenerated {
                 startPolling()
             }
-            await delegate.isKeysGenerated(isGenerated: isGenerated, didJoin: true, error: nil)
+            delegate.isKeysGenerated(isGenerated: isGenerated, didJoin: true, error: nil)
         } catch let err as FireblocksError {
             AppLoggerManager.shared.logger()?.log("FireblocksManager, addDevice() failed: \(err.description).")
-            await delegate.isKeysGenerated(isGenerated: false, didJoin: false, error: err.description)
+            delegate.isKeysGenerated(isGenerated: false, didJoin: false, error: err.description)
         } catch {
             AppLoggerManager.shared.logger()?.log("FireblocksManager, addDevice() failed: \(error.localizedDescription).")
-            await delegate.isKeysGenerated(isGenerated: false, didJoin: false, error: error.localizedDescription)
+            delegate.isKeysGenerated(isGenerated: false, didJoin: false, error: error.localizedDescription)
         }
     }
     

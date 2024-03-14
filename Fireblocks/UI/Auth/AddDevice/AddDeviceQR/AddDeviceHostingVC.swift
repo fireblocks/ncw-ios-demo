@@ -15,7 +15,7 @@ class AddDeviceHostingVC: FBHostingViewController {
     init(requestId: String, email: String, delegate: MainSignOutDelegate?) {
         self.viewModel = AddDeviceQRViewModel(requestId: requestId, email: email)
         self.delegate = delegate
-        let view = AddDeviceQRView(viewModel: self.viewModel)
+        let view = AddDeviceQRView(viewModel: self.viewModel, toast: .constant(""), showLoader: .constant(true), path: .constant(NavigationPath()))
         super.init(rootView: AnyView(view))
     }
     
