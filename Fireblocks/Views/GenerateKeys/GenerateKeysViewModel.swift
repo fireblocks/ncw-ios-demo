@@ -43,7 +43,7 @@ extension GenerateKeysView.ViewModel:  FireblocksKeyCreationDelegate {
         DispatchQueue.main.async {
             if isGenerated {
                 self.showLoader = false
-                self.navigationType = .FirstBackup
+                self.navigationType = .GenerateSucceeded
             } else {
                 self.showLoader = false
                 self.bannerErrorsManager?.errorMessage = error ?? LocalizableStrings.mpcKeysGenerationFailed

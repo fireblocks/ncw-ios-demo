@@ -28,7 +28,7 @@ struct GenericHeaderView: View {
             
             if let subtitle {
                 Text(subtitle)
-                    .font(.body4)
+                    .font(.body1)
                     .multilineTextAlignment(.center)
             }
 
@@ -37,5 +37,5 @@ struct GenericHeaderView: View {
 }
 
 #Preview {
-    GenericHeaderView()
+    GenericHeaderView(icon: AssetsIcons.keyImage.rawValue, title: LocalizableStrings.createKeyBackup, subtitle: LocalizableStrings.backupExplanation)
 }

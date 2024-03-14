@@ -14,7 +14,9 @@ struct RecoverView: View {
     @EnvironmentObject var bannerErrorsManager: BannerErrorsManager
     @StateObject var viewModel = ViewModel()
     @Binding var showLoader: Bool
-
+    @Binding var path: NavigationPath
+    let isFirstRecover: Bool
+    
     var body: some View {
         ZStack {
             VStack(spacing: 0) {
@@ -25,9 +27,7 @@ struct RecoverView: View {
 
                 if viewModel.backupProvider != nil {
                     LabeldButton(icon: viewModel.getRecoverButtonIcon(), title: viewModel.getRecoverButtonTitle()) {
-                        Task {
-                            await viewModel.recover()
-                        }
+                        viewModel.recover()
                     }
                 }
 
@@ -45,8 +45,13 @@ struct RecoverView: View {
         .onChange(of: viewModel.showLoader) { value in
             showLoader = value
         }
+        .onChange(of: viewModel.didSucceeded) { value in
+            if value, !isFirstRecover {
+                path = NavigationPath()
+            }
+        }
         .onAppear() {
-            viewModel.setup(appRootManager: appRootManager, authRepository: authRepository, bannerErrorsManager: bannerErrorsManager)
+            viewModel.setup(appRootManager: appRootManager, authRepository: authRepository, bannerErrorsManager: bannerErrorsManager, isFirstRecover: isFirstRecover)
             viewModel.checkIfBackupExist()
         }
         .addBridge(viewModel.bridge)

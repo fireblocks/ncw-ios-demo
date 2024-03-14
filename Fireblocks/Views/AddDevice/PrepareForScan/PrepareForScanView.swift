@@ -8,23 +8,17 @@
 import SwiftUI
 
 struct PrepareForScanView: View {
-    @StateObject var viewModel: PrepareForScanViewModel
+    @StateObject var viewModel = PrepareForScanViewModel()
     @State var isTextFieldPresented = false
+    @Binding var path: NavigationPath
     
     var body: some View {
         ScrollView {
             ZStack {
-                Color.black
-                    .ignoresSafeArea(.all)
-                
                 VStack(spacing: 0) {
-                    Image(uiImage: AssetsIcons.addDeviceImage.getIcon())
-                        .padding(.top, 12)
-                        .padding(.bottom, 24)
-                    
-                    Text(LocalizableStrings.prepareForScanHeader)
-                        .multilineTextAlignment(.center)
+                    GenericHeaderView(icon: AssetsIcons.addDeviceImage.rawValue, subtitle: LocalizableStrings.prepareForScanHeader)
                         .padding(.bottom, 32)
+
                     Button {
                         viewModel.scanQR()
                     } label: {
@@ -39,10 +33,10 @@ struct PrepareForScanView: View {
                         .contentShape(Rectangle())
                         
                     }
-                    .tint(.white)
+                    .tint(.primary)
                     .buttonStyle(.plain)
                     .frame(maxWidth: .infinity)
-                    .background(AssetsColors.gray1.color())
+                    .background(.secondary.opacity(0.2))
                     .cornerRadius(16)
                     
                     Text("or")
@@ -80,7 +74,7 @@ struct PrepareForScanView: View {
                             TextField("", text: $viewModel.requestId)
                                 .frame(maxWidth: .infinity)
                                 .padding()
-                                .background(AssetsColors.gray1.color())
+                                .background(.secondary.opacity(0.2))
                                 .cornerRadius(16)
                                 .overlay(
                                     RoundedRectangle(cornerRadius: 16)
@@ -107,6 +101,7 @@ struct PrepareForScanView: View {
                             Spacer()
                             Text(LocalizableStrings.continueTitle)
                                 .font(.body1)
+                                .foregroundStyle(.white)
                             Spacer()
                         }
                         .padding(16)
@@ -120,13 +115,33 @@ struct PrepareForScanView: View {
                     .disabled(viewModel.requestId.isTrimmedEmpty)
                     .opacity(isTextFieldPresented ? 1 : 0)
                 }
-                .onAppear() {
-                    viewModel.didInit()
+                .onChange(of: viewModel.vc) { vc in
+                    if vc != nil {
+                        path.append(viewModel)
+                        viewModel.vc = nil
+                    }
+                }
+                .onChange(of: viewModel.navigationType) { type in
+                    if let type {
+                        path.append(type)
+                        viewModel.navigationType = nil
+                    }
+                }
+                .toolbar {
+                    ToolbarItem(placement: .topBarLeading) {
+                        Button {
+                            path.removeLast()
+                        } label: {
+                            Image(AssetsIcons.back.rawValue)
+                        }
+                        .tint(.primary)
+                    }
                 }
                 .animation(.default, value: isTextFieldPresented)
                 .padding(24)
                 .navigationTitle(LocalizableStrings.addNewDeviceNavigationBar)
                 .navigationBarTitleDisplayMode(.inline)
+                .navigationBarBackButtonHidden()
             }
         }
     }
@@ -134,6 +149,6 @@ struct PrepareForScanView: View {
 
 struct PrepareForScanView_Previews: PreviewProvider {
     static var previews: some View {
-        PrepareForScanView(viewModel: PrepareForScanViewModel())
+        PrepareForScanView(path: .constant(NavigationPath()))
     }
 }

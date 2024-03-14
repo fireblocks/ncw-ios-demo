@@ -7,17 +7,24 @@
 
 import Foundation
 
-class PrepareForScanViewModel: ObservableObject, UIHostingBridgeNotifications {
+class PrepareForScanViewModel: ObservableObject, Hashable {
+    static func == (lhs: PrepareForScanViewModel, rhs: PrepareForScanViewModel) -> Bool {
+        return lhs.requestId == rhs.requestId
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(requestId)
+    }
+
     var didAppear: Bool = false
     @Published var requestId: String = ""
     @Published var error: String?
-
-    weak var delegate: QRCodeScannerViewControllerDelegate?
-    weak var prepareDelegate: PrepareForScanDelegate?
+    @Published var vc: QRCodeScannerRep?
+    @Published var navigationType: NavigationTypes?
 
     func sendRequestId() {
         if !requestId.isTrimmedEmpty, let _ = qrData(encoded: requestId.base64Decoded() ?? "") {
-            self.delegate?.gotAddress(address: requestId)
+            self.gotAddress(address: requestId)
         } else {
             self.error = "Missing request ID. Go back and try again"
         }
@@ -39,6 +46,17 @@ class PrepareForScanViewModel: ObservableObject, UIHostingBridgeNotifications {
     
     func scanQR() {
         self.error = nil
-        self.prepareDelegate?.scanQR()
+        vc = QRCodeScannerRep(delegate: self)
+        
+    }
+}
+
+extension PrepareForScanViewModel: QRCodeScannerViewControllerDelegate {
+    func gotAddress(address: String) {
+        guard let _ = qrData(encoded: address.base64Decoded() ?? "") else {
+            error = "Missing request ID. Go back and try again"
+            return
+        }
+        navigationType = .ValidateRequestId(address)
     }
 }

@@ -22,19 +22,6 @@ struct LoaderContainer<Content: View>: View {
                 Spinner()
             }
             .opacity(showLoader ? 1 : 0)
-
-            if let toast {
-                Text(toast)
-                    .font(.body1)
-                    .foregroundStyle(.secondary)
-                    .padding(.horizontal, 16)
-                    .padding(.vertical, 4)
-                    .overlay(
-                        Capsule()
-                            .stroke(.secondary, lineWidth: 1)
-                    )
-            }
-
         }
         .animation(.default, value: showLoader)
     }
@@ -48,6 +35,6 @@ struct LoaderContainer<Content: View>: View {
         ZStack {
             Color.green
         }
-        .toast(message: "ffff")
+        .toast(item: ToastItem(icon: AssetsIcons.checkMark.rawValue, message: "copied"))
     }
 }

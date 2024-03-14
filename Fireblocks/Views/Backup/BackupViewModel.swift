@@ -24,7 +24,8 @@ extension BackupView {
         private var appRootManager: AppRootManager?
         private var authRepository: AuthRepository?
         private var bannerErrorsManager: BannerErrorsManager?
-
+        private var isFirstBackup: Bool = false
+        
         private let googleDriveScope = [kGTLRAuthScopeDriveFile, kGTLRAuthScopeDriveAppdata]
         private var task: Task<Void, Never>?
 
@@ -32,17 +33,21 @@ extension BackupView {
 
         lazy var actionType: BackupViewControllerStrategy = { Backup(delegate: self) }()
 
-        func setup(appRootManager: AppRootManager, authRepository: AuthRepository, bannerErrorsManager: BannerErrorsManager) {
+        func setup(appRootManager: AppRootManager, authRepository: AuthRepository, bannerErrorsManager: BannerErrorsManager, isFirstBackup: Bool) {
             self.appRootManager = appRootManager
             self.authRepository = authRepository
             self.bannerErrorsManager = bannerErrorsManager
+            self.isFirstBackup = isFirstBackup
         }
 
         func checkIfBackupExist() {
             showLoader = true
             task = Task {
                 if let backupInfo = await getBackupInfo() {
-                    backupData = BackupData(backupInfo: backupInfo)
+                    DispatchQueue.main.async {
+                        self.showLoader = false
+                        self.backupData = BackupData(backupInfo: backupInfo)
+                    }
                 } else {
                     DispatchQueue.main.async {
                         self.showLoader = false
@@ -101,10 +106,12 @@ extension BackupView.ViewModel: BackupProviderDelegate {
     func backupToGoogleDrive(_ gidUser: GIDGoogleUser, passphraseId: String) {
         task = Task {
             let result = await repository.backupToGoogleDrive(gidUser: gidUser, passphraseId: passphraseId)
-            if result {
-                navigationType = .BackupSucceeded
-            } else {
-                bannerErrorsManager?.errorMessage = getError()
+            DispatchQueue.main.async {
+                if result {
+                    self.navigationType = .BackupSucceeded(self.isFirstBackup)
+                } else {
+                    self.bannerErrorsManager?.errorMessage = self.getError()
+                }
             }
         }
     }
@@ -112,15 +119,19 @@ extension BackupView.ViewModel: BackupProviderDelegate {
     func backupToICloud(passphraseId: String) {
         task = Task {
             guard let container = await getCKContainer() else {
-                bannerErrorsManager?.errorMessage = getError()
+                DispatchQueue.main.async {
+                    self.bannerErrorsManager?.errorMessage = self.getError()
+                }
                 return
             }
             
             let result = await repository.backupToICloud(container: container, passphraseId: passphraseId)
-            if result {
-                navigationType = .BackupSucceeded
-            } else {
-                bannerErrorsManager?.errorMessage = getError()
+            DispatchQueue.main.async {
+                if result {
+                    self.navigationType = .BackupSucceeded(self.isFirstBackup)
+                } else {
+                    self.bannerErrorsManager?.errorMessage = self.getError()
+                }
             }
 
         }

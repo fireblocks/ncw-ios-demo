@@ -30,17 +30,7 @@ final class MpcKeysViewModel {
     deinit {
         cancelTasks()
     }
-    
-    func generateMpcKeys() {
-        generateMpcFromSdk(self)
-    }
-    
-    private func generateMpcFromSdk(_ delegate: FireblocksKeyCreationDelegate) {
-        mpcKeyTask = Task {
-            await FireblocksManager.shared.generateMpcKeys(delegate)
-        }
-    }
-    
+        
     private func cancelTasks() {
         incomingMessageTask?.cancel()
         incomingMessageTask = nil
@@ -54,19 +44,4 @@ final class MpcKeysViewModel {
         self.delegate?.configSuccessUI()
     }
 
-}
-
-//MARK: - FireblocksKeyCreationDelegate
-extension MpcKeysViewModel: FireblocksKeyCreationDelegate {
-    func isKeysGenerated(isGenerated: Bool, didJoin: Bool = false, error: String? = nil) {
-        if didJoin {
-            self.delegate?.onAddingDevice(success: isGenerated)
-        } else {
-            if isGenerated {
-                self.createAssets()
-            } else {
-                self.delegate?.showAlertMessage(message: error ?? LocalizableStrings.mpcKeysGenerationFailed)
-            }
-        }
-    }
 }

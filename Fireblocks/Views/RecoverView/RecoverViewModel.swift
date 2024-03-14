@@ -10,12 +10,14 @@ import GoogleAPIClientForREST_Drive
 import GoogleSignIn
 import SwiftUI
 import FireblocksSDK
+import CloudKit
 
 extension RecoverView {
     class ViewModel: ObservableObject {
         @Published var showLoader = false
         @Published var backupProvider: BackupProvider?
         @Published var backupData: BackupData?
+        @Published var didSucceeded = false
 
         private let googleDriveScope = [kGTLRAuthScopeDriveFile, kGTLRAuthScopeDriveAppdata]
         private var task: Task<Void, Never>?
@@ -23,23 +25,23 @@ extension RecoverView {
         private var appRootManager: AppRootManager?
         private var authRepository: AuthRepository?
         private var bannerErrorsManager: BannerErrorsManager?
-
+        private var isFirstRecover = false
+        
         let bridge = BridgeVCView()
 
-        lazy var actionType: BackupViewControllerStrategy = { Recover(delegate: self) }()
-
-        func setup(appRootManager: AppRootManager, authRepository: AuthRepository, bannerErrorsManager: BannerErrorsManager) {
+        func setup(appRootManager: AppRootManager, authRepository: AuthRepository, bannerErrorsManager: BannerErrorsManager, isFirstRecover: Bool) {
             self.appRootManager = appRootManager
             self.authRepository = authRepository
             self.bannerErrorsManager = bannerErrorsManager
+            self.isFirstRecover = isFirstRecover
         }
 
         func getRecoverButtonTitle() -> String {
             switch backupProvider {
             case .iCloud:
-                return actionType.iCloudTitle
+                return LocalizableStrings.recoverFromICloud
             case .GoogleDrive:
-                return actionType.googleTitle
+                return LocalizableStrings.recoverFromDrive
             case nil:
                 return ""
             }
@@ -60,8 +62,10 @@ extension RecoverView {
             showLoader = true
             task = Task {
                 if let backupInfo = await getBackupInfo() {
-                    backupData = BackupData(backupInfo: backupInfo)
-                    isBackupExist(backupData)
+                    DispatchQueue.main.async {
+                        self.backupData = BackupData(backupInfo: backupInfo)
+                        self.isBackupExist(self.backupData)
+                    }
                 } else {
                     isBackupExist(nil)
                 }
@@ -99,32 +103,45 @@ extension RecoverView {
     }
 }
 
-extension RecoverView.ViewModel: RecoverProviderDelegate {
-    func recover() async {
+extension RecoverView.ViewModel {
+    func recover() {
         showLoader = true
-        if await FireblocksManager.shared.recoverWallet(resolver: self) {
+        Task {
+            let result = await FireblocksManager.shared.recoverWallet(resolver: self)
             DispatchQueue.main.async {
                 self.showLoader = false
-                self.appRootManager?.currentRoot = .assets
-            }
-        } else {
-            DispatchQueue.main.async {
-                self.showLoader = false
-                self.bannerErrorsManager?.errorMessage = self.getError()
+                if result {
+                    if self.isFirstRecover {
+                        self.appRootManager?.currentRoot = .assets
+                    } else {
+                        self.didSucceeded = true
+                    }
+                } else {
+                    self.bannerErrorsManager?.errorMessage = self.getError()
+                }
             }
         }
+
     }
     
-    func recoverFromGoogleDrive(_ gidUser: GIDGoogleUser, passphraseId: String, callback: @escaping (String) -> ()) {
+    private func recoverFromGoogleDrive(_ gidUser: GIDGoogleUser, passphraseId: String, callback: @escaping (String) -> ()) {
         task = Task {
             let passphrase = await repository.recoverFromGoogleDrive(gidUser: gidUser, passphraseId: passphraseId)
             callback(passphrase)
         }
     }
-    
 
-    func recoverFromICLoud() {
-        
+    private func recoverFromICLoud(passphraseId: String, callback: @escaping (String) -> ()) {
+        task = Task {
+            guard let container = await getCKContainer() else {
+                callback("")
+                return
+            }
+            
+            let passphrase = await repository.recoverFromICloud(container: container, passphraseId: passphraseId)
+            callback(passphrase)
+        }
+
     }
 
 }
@@ -135,8 +152,7 @@ extension RecoverView.ViewModel: FireblocksPassphraseResolver {
             if let backupProvider  {
                 switch backupProvider {
                 case .iCloud:
-                    callback("")
-                    //                    self.recoverFromICloud(passphraseId: passphraseId, callback: callback)
+                    self.recoverFromICLoud(passphraseId: passphraseId, callback: callback)
                 case .GoogleDrive:
                     DispatchQueue.main.async {
                         self.authenticateUser(passphraseId: passphraseId, callback: callback)
@@ -178,7 +194,18 @@ extension RecoverView.ViewModel: FireblocksPassphraseResolver {
                 return
             }
             
-            actionType.performDriveAction(gidUser, passphraseId: passphraseId, callback: callback)
+            
+            recoverFromGoogleDrive(gidUser, passphraseId: passphraseId, callback: callback)
+        }
+    }
+
+    private func getCKContainer() async -> CKContainer? {
+        do {
+            let container = CKContainer.default()
+            return try await container.accountStatus() == .available ? container : nil
+        } catch {
+            print("BackupViewModel, CKContainer account status throws: \(error).")
+            return nil
         }
     }
 

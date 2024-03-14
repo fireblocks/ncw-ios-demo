@@ -7,8 +7,12 @@
 
 import Foundation
 
+struct ToastItem {
+    var icon: String?
+    var message: String?
+}
 class BannerErrorsManager: ObservableObject {
-    @Published var toastMessage: String? {
+    @Published var toastMessage: ToastItem? {
         didSet {
             if toastMessage != nil {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {

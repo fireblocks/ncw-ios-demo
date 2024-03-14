@@ -62,6 +62,5 @@ struct Recover: BackupViewControllerStrategy {
     }
     
     func performICloudAction(passphraseId: String) {
-        delegate?.recoverFromICLoud()
     }
 }

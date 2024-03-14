@@ -10,20 +10,19 @@ import SwiftUI
 struct ValidateRequestIdView: View {
     @Environment(\.dismiss) var dismiss
     @StateObject var viewModel: ValidateRequestIdViewModel
-        
+    @Binding var showLoader: Bool
+    @Binding var path: NavigationPath
+    
+    init(requestId: String, showLoader: Binding<Bool>, path: Binding<NavigationPath>) {
+        _viewModel = StateObject(wrappedValue: ValidateRequestIdViewModel(requestId: requestId))
+        _showLoader = showLoader
+        _path = path
+    }
     var body: some View {
         ZStack {
-            Color.black
-                .edgesIgnoringSafeArea(.all)
             VStack(spacing: 0) {
-                Image(uiImage: AssetsIcons.addDeviceImage.getIcon())
-                    .padding(.top, 12)
+                GenericHeaderView(icon: AssetsIcons.addDeviceImage.rawValue, subtitle: "Add this device?")
                     .padding(.bottom, 24)
-                
-                Text("Add this device?")
-                    .multilineTextAlignment(.center)
-                    .padding(.bottom, 32)
-                
                 VStack {
                     Text("Device Details")
                         .font(.subtitle1)
@@ -49,7 +48,7 @@ struct ValidateRequestIdView: View {
 
 
                 }
-                .background(AssetsColors.gray1.color())
+                .background(.secondary.opacity(0.2))
                 .cornerRadius(16)
                 .padding(.horizontal, 16)
                 
@@ -104,18 +103,35 @@ struct ValidateRequestIdView: View {
             }
             .padding(.horizontal, 16)
         }
-        .onAppear() {
-            viewModel.didInit()
+        .onChange(of: viewModel.showLoader) { value in
+            showLoader = value
+        }
+        .onChange(of: viewModel.navigationType) { value in
+            if let value {
+                path.append(value)
+                viewModel.navigationType = nil
+            }
+        }
+        .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                Button {
+                    path.removeLast()
+                } label: {
+                    Image(uiImage: AssetsIcons.back.getIcon())
+                }
+                .tint(.primary)
+            }
         }
         .navigationTitle(LocalizableStrings.addNewDeviceNavigationBar)
         .navigationBarTitleDisplayMode(.inline)
+        .navigationBarBackButtonHidden()
     }
 }
 
 struct ValidateRequestIdView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            ValidateRequestIdView(viewModel: ValidateRequestIdViewModel(requestId: "AAAAAA"))
+            ValidateRequestIdView(requestId: "AAAAAA", showLoader: .constant(false), path: .constant(NavigationPath()))
         }
     }
 }

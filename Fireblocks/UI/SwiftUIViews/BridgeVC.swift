@@ -26,21 +26,29 @@ extension View {
         self.background(bridge.frame(width: 0, height: 0))
     }
     
-    func toast(message: String?) -> some View {
+    func toast(item: ToastItem?) -> some View {
         withAnimation {
             self.overlay {
-                if let message {
-                    Text(message)
-                        .font(.body1)
-                        .padding(.horizontal, 16)
-                        .padding(.vertical, 4)
-                        .background(Color(.reverse))
-                        .clipShape(.capsule)
-                        .overlay(
-                            Capsule()
-                                .stroke(.primary, lineWidth: 1)
-                        )
+                HStack(spacing: 8) {
+                    if let icon = item?.icon {
+                        Image(icon)
+                            .font(.body1).bold()
+                    }
+                    if let message = item?.message {
+                        Text(message)
+                            .font(.body1).bold()
+                    }
                 }
+                .padding(.horizontal, 16)
+                .padding(.vertical, 8)
+                .background(Color(.reverse))
+                .clipShape(.capsule)
+                .overlay {
+                    Capsule()
+                        .stroke(.primary, lineWidth: 1)
+                }
+                .opacity(item != nil ? 1 : 0)
+
             }
         }
     }

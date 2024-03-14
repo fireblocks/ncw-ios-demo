@@ -15,6 +15,7 @@ struct BackupView: View {
     @StateObject var viewModel = ViewModel()
     @Binding var showLoader: Bool
     @Binding var path: NavigationPath
+    let isFirstBackup: Bool
     
     var body: some View {
         ZStack {
@@ -45,7 +46,7 @@ struct BackupView: View {
             showLoader = value
         }
         .onAppear() {
-            viewModel.setup(appRootManager: appRootManager, authRepository: authRepository, bannerErrorsManager: bannerErrorsManager)
+            viewModel.setup(appRootManager: appRootManager, authRepository: authRepository, bannerErrorsManager: bannerErrorsManager, isFirstBackup: isFirstBackup)
             viewModel.checkIfBackupExist()
         }
         .onChange(of: viewModel.navigationType) { value in

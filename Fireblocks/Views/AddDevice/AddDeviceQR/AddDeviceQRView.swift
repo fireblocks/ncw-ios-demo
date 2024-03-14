@@ -61,7 +61,7 @@ struct AddDeviceQRView: View {
                             .padding(.bottom, 40)
                             
                             AddDeviceQRInnerView(image: generateQRCode(from: viewModel.url, size: CGSize(width: 171.0, height: 171.0)), url: viewModel.url) {
-                                bannerErrorsManager.toastMessage = "copied"
+                                bannerErrorsManager.toastMessage = ToastItem(icon: AssetsIcons.checkMark.rawValue, message: "copied")
                             }
                             
                             Spacer()
@@ -94,7 +94,7 @@ struct AddDeviceQRView: View {
                 }
             }
         }
-        .toast(message: bannerErrorsManager.toastMessage)
+        .toast(item: bannerErrorsManager.toastMessage)
         .onChange(of: viewModel.showLoader) { value in
             showLoader = value
         }

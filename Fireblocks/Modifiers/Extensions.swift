@@ -8,6 +8,16 @@
 import Foundation
 import SwiftUI
 
+extension UINavigationController {
+    func popViewController(animated:Bool = true, completion: @escaping ()->()) {
+        CATransaction.begin()
+        CATransaction.setCompletionBlock(completion)
+        self.popViewController(animated: animated)
+        CATransaction.commit()
+    }
+
+}
+
 extension Bool {
     func toDouble() -> Double {
         return self ? 1 : 0

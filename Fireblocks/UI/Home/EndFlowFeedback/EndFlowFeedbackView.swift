@@ -103,7 +103,7 @@ struct EndFlowFeedbackView_Previews: PreviewProvider {
                 title: "Couldn't add device",
                 subTitle: "The process was canceled.",
                 navigationBarTitle: "Add Device",
-                buttonIcon: AssetsIcons.addNewDevice.getIcon(),
+                buttonIcon: AssetsIcons.home.getIcon(),
                 buttonTitle: "Go home",
                 actionButton: {
                     print("action")

@@ -28,6 +28,7 @@ struct NCWDemoApp: App {
     
     @State var noUserPath = NavigationPath()
     @State var addDevicePath = NavigationPath()
+    @State var assetsPath = NavigationPath()
 
     var body: some Scene {
         WindowGroup {
@@ -60,7 +61,11 @@ struct NCWDemoApp: App {
                         }
 
                     case .assets:
-                        Text("ASSETS")
+                        LoaderContainer(showLoader: $showLoader, toast: $toast) {
+                            NavigationContainer(path: $assetsPath, showLoader: $showLoader, toast: $toast) {
+                                SettingsView(path: $assetsPath)
+                            }
+                        }
                     }
                 }
             }

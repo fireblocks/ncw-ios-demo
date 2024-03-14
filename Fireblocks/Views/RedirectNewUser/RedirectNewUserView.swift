@@ -60,7 +60,7 @@ struct RedirectNewUserView: View {
                 }
                 
                 Button {
-                    path.append(NavigationTypes.Recover)
+                    path.append(NavigationTypes.Recover(true))
                 } label: {
                     HStack {
                         Spacer()

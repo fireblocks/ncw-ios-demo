@@ -22,3 +22,7 @@ struct Bullet: View {
     }
 }
 
+#Preview {
+    Bullet(text: "Title")
+}
+

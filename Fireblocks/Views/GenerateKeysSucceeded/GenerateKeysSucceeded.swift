@@ -14,9 +14,9 @@ struct GenerateKeysSucceeded: View {
     var body: some View {
         VStack(spacing: 0) {
             EndFlowFeedbackView(viewModel: EndFlowFeedbackView.ViewModel(icon: AssetsIcons.generateSuccess.rawValue, subTitle: "You’ve successfully created your keys! Next, create a key backup to make sure you never lose key access.", navigationBarTitle: LocalizableStrings.didGenerateMPCKeysSuccessTitle, buttonTitle: LocalizableStrings.createKeyBackup, actionButton: {
-                path.append(NavigationTypes.Backup)
+                path.append(NavigationTypes.Backup(true))
             }, rightToolbarItemIcon: AssetsIcons.settings.rawValue, rightToolbarItemAction: {
-                print("settings")
+                path.append(NavigationTypes.Settings)
             }), content: nil)
             Button {
                 appRootManager.currentRoot = .assets

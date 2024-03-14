@@ -56,13 +56,6 @@ class MpcKeysViewController: UIViewController {
     }
     
     @IBAction func generateMpcKey(_ sender: AppActionBotton) {
-        if !viewModel.didSucceedGenerateKeys {
-            removeAlertView()
-            showActivityIndicator(message: LocalizableStrings.generateKeysIndicatorMessage)
-            viewModel.generateMpcKeys()
-        } else {
-            self.navigateCreateBackupScreen()
-        }
     }
     
     @IBAction func didTapIllDoItLater(_ sender: AppActionBotton) {

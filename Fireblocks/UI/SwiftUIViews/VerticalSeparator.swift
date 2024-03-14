@@ -21,3 +21,8 @@ struct VerticalSeparator: View {
     }
 }
 
+#Preview {
+    VerticalSeparator()
+}
+
+

@@ -19,7 +19,7 @@ class QRCodeScannerViewController: UIViewController{
     @IBOutlet weak var scanningAreaView: UIView!
     @IBOutlet weak var backgroundCameraView: UIView!
     
-    var delegate: QRCodeScannerViewControllerDelegate?
+    weak var delegate: QRCodeScannerViewControllerDelegate?
     
     var captureSession = AVCaptureSession()
     var previewLayer: AVCaptureVideoPreviewLayer!
@@ -120,8 +120,9 @@ extension QRCodeScannerViewController: AVCaptureMetadataOutputObjectsDelegate {
         let transformedMetadataObject = videoPreviewLayer.transformedMetadataObject(for: metadataObject)
         if isQRCodeReceivedFromScanningArea(metadataObject: transformedMetadataObject) {
             AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
-            navigateBack()
-            delegate?.gotAddress(address: stringValue)
+            self.navigationController?.popViewController(animated: true, completion: {
+                self.delegate?.gotAddress(address: stringValue)
+            })
         }
     }
     

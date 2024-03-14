@@ -26,7 +26,6 @@ protocol BackupProviderDelegate: AnyObject {
 
 protocol RecoverProviderDelegate: AnyObject {
     func recoverFromGoogleDrive(_ gidUser: GIDGoogleUser, passphraseId: String, callback: @escaping (String) -> ())
-    func recoverFromICLoud()
 }
 
 protocol UpdateBackupDelegate: AnyObject {
