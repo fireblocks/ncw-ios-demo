@@ -40,9 +40,8 @@ class TakeoverViewController: UIViewController {
         viewModel.getTakeoverFullKeys()
     }
     
-    private func navigateToManuallyOptions(_ privateKey: String){
-        let vc = ManuallyInputViewController()
-        vc.manuallyInputStrategy = ManuallyTakeover(inputContent: privateKey)
+    private func navigateToDerivedKeys(_ privateKey: String){
+        let vc = DeriveKeysHostingVC(privateKey: privateKey)
         navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -68,7 +67,7 @@ extension TakeoverViewController: TakeoverViewModelDelegate {
             if let self {
                 self.hideActivityIndicator()
                 if let fullKeys, let privateKey = fullKeys.first?.privateKey {
-                    self.navigateToManuallyOptions(privateKey)
+                    self.navigateToDerivedKeys(privateKey)
                 } else {
                     self.showErrorMessage()
                 }

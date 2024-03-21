@@ -171,6 +171,20 @@ class FireblocksManager {
         }
     }
     
+    func deriveAssetKey(privateKey: String, derivationParams: DerivationParams) async -> KeyData? {
+        guard let instance = getSdkInstance() else {
+            return nil
+        }
+        
+        do {
+            return try await instance.deriveAssetKey(extendedPrivateKey: privateKey, bip44DerivationParams: derivationParams)
+        } catch {
+            AppLoggerManager.shared.logger()?.log("FireblocksManager, deriveAssetKey failed: \(error).")
+            return nil
+        }
+    }
+
+    
     func recoverWallet(resolver: FireblocksPassphraseResolver) async -> Bool {
         guard let instance = getSdkInstance() else {
             return false
