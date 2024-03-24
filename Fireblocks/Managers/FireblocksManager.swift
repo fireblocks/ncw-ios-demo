@@ -76,7 +76,7 @@ class FireblocksManager {
     
     func generateMpcKeys(_ delegate: FireblocksKeyCreationDelegate) async {
         do {
-            let algorithms: Set<Algorithm> = Set([.MPC_ECDSA_SECP256K1])
+            let algorithms: Set<Algorithm> = Set([.MPC_ECDSA_SECP256K1, .MPC_EDDSA_ED25519])
             let startDate = Date()
             let result = try await getSdkInstance()?.generateMPCKeys(algorithms: algorithms)
             print("Measure - generateMpcKeys \(Date().timeIntervalSince(startDate))")
