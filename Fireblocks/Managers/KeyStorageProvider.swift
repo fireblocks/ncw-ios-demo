@@ -92,13 +92,13 @@ class KeyStorageProvider: KeyStorageDelegate {
     }
 
     func store(keys: [String : Data], callback: @escaping ([String : Bool]) -> ()) {
-        print("generateMpcKeys started store: \(Date())")
+        AppLoggerManager.shared.logger()?.log("\n📣📣📣📣\ngenerateMpcKeys started store: \(Date()) - keys: \(keys.keys)\n📣📣📣📣")
         biometricStatus { status in
             if status == .ready {
                 self.saveToKeychain(keys: keys, callback: callback)
             } else {
                 DispatchQueue.main.async {
-                    print("generateMpcKeys ended store: \(Date())")
+                    AppLoggerManager.shared.logger()?.log("\n📣📣📣📣\ngenerateMpcKeys started store: \(Date()) - biometric not ready\n📣📣📣📣")
                     callback([:])
                 }
             }
@@ -108,7 +108,7 @@ class KeyStorageProvider: KeyStorageDelegate {
     
     private func saveToKeychain(keys: [String : Data], callback: @escaping ([String : Bool]) -> ()) {
         guard let acl = self.getAcl() else {
-            print("generateMpcKeys ended store: \(Date())")
+            AppLoggerManager.shared.logger()?.log("\n📣📣📣📣\ngenerateMpcKeys started store: \(Date()) - no acl\n📣📣📣📣")
             callback([:])
             return
         }
@@ -145,7 +145,7 @@ class KeyStorageProvider: KeyStorageDelegate {
 
         }
         
-        print("generateMpcKeys ended store: \(Date())")
+        AppLoggerManager.shared.logger()?.log("\n📣📣📣📣\ngenerateMpcKeys started store: \(Date()) - keys stored: \(mpcSecretKeys)\n📣📣📣📣")
         callback(mpcSecretKeys)
 
 
@@ -158,7 +158,7 @@ class KeyStorageProvider: KeyStorageDelegate {
                 self.getKeys(keyIds: keyIds, callback: callback)
             } else {
                 DispatchQueue.main.async {
-                    print("Measure - load keys \(Date().timeIntervalSince(startDate))")
+                    AppLoggerManager.shared.logger()?.log("\n📣📣📣📣\ngenerateMpcKeys started load: \(Date()) - biometric not ready\n📣📣📣📣")
                     callback([:])
                 }
             }
@@ -173,13 +173,14 @@ class KeyStorageProvider: KeyStorageDelegate {
             getMpcSecret(keyId: keyId) { result in
                 switch result {
                 case .loadSuccess(let data):
+                    AppLoggerManager.shared.logger()?.log("\n📣📣📣📣\ngenerateMpcKeys started load: \(Date()) - succeeded to load key: \(keyId)\n📣📣📣📣")
                     dict[keyId] = data
                 case .failure(let failure):
-                    print(failure)
+                    AppLoggerManager.shared.logger()?.log("\n📣📣📣📣\ngenerateMpcKeys started load: \(Date()) - failed to load key: \(keyId)\n📣📣📣📣")
                 }
             }
         }
-        print("Measure - load keys \(Date().timeIntervalSince(startDate))")
+        AppLoggerManager.shared.logger()?.log("\n📣📣📣📣\ngenerateMpcKeys started load: \(Date()) - loaded keys: \(dict.keys)\n📣📣📣📣")
         callback(dict)
     }
     
