@@ -6,8 +6,12 @@
 //
 
 import Foundation
-import FireblocksDev
 import LocalAuthentication
+#if DEV
+import FireblocksDev
+#else
+import FireblocksSDK
+#endif
 
 class KeyStorageProvider: KeyStorageDelegate {
     private let deviceId: String

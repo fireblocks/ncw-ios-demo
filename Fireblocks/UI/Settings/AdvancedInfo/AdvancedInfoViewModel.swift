@@ -6,7 +6,11 @@
 //
 
 import Foundation
+#if DEV
 import FireblocksDev
+#else
+import FireblocksSDK
+#endif
 
 final class AdvancedInfoViewModel {
     

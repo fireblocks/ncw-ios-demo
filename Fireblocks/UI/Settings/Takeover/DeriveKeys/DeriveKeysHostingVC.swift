@@ -7,7 +7,11 @@
 
 import Foundation
 import SwiftUI
+#if DEV
 import FireblocksDev
+#else
+import FireblocksSDK
+#endif
 
 class DeriveKeysHostingVC: FBHostingViewController {
     let viewModel: DeriveKeysView.ViewModel

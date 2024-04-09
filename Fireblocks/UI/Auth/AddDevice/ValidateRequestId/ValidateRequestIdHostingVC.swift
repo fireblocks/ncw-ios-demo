@@ -7,7 +7,11 @@
 
 import Foundation
 import SwiftUI
+#if DEV
 import FireblocksDev
+#else
+import FireblocksSDK
+#endif
 
 class ValidateRequestIdHostingVC: FBHostingViewController {
     let viewModel: ValidateRequestIdViewModel

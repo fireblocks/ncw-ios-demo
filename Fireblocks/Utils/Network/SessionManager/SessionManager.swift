@@ -6,7 +6,11 @@
 //
 
 import Foundation
+#if DEV
 import FireblocksDev
+#else
+import FireblocksSDK
+#endif
 
 struct GetDevicesResponse: Codable {
     var devices: [FireblocksDevice] = []

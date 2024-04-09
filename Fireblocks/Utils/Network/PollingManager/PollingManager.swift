@@ -6,8 +6,12 @@
 //
 
 import Foundation
-import FireblocksDev
 import SwiftUI
+#if DEV
+import FireblocksDev
+#else
+import FireblocksSDK
+#endif
 
 class PollingManager: ObservableObject {
     private var listeners: [String: PollingListener] = [:]

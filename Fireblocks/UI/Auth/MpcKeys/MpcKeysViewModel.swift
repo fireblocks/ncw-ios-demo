@@ -6,8 +6,12 @@
 //
 
 import Foundation
-import FireblocksDev
 import FirebaseAuth
+#if DEV
+import FireblocksDev
+#else
+import FireblocksSDK
+#endif
 
 protocol MpcKeysViewModelDelegate: AnyObject {
     func configSuccessUI()

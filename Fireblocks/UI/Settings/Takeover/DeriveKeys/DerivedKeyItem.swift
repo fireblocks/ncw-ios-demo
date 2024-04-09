@@ -6,8 +6,12 @@
 //
 
 import Foundation
-import FireblocksDev
 import CommonCrypto
+#if DEV
+import FireblocksDev
+#else
+import FireblocksSDK
+#endif
 
 extension Data {
     init?(hexString: String) {

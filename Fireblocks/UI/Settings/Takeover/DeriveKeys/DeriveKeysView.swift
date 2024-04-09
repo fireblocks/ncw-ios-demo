@@ -6,7 +6,11 @@
 //
 
 import SwiftUI
+#if DEV
 import FireblocksDev
+#else
+import FireblocksSDK
+#endif
 
 struct DeriveKeysView: View {
     @StateObject var viewModel: ViewModel

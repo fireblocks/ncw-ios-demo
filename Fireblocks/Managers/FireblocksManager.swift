@@ -5,10 +5,14 @@
 //  Created by Fireblocks Ltd. on 10/07/2023.
 //
 
-import FireblocksDev
 import FirebaseAuth
 import Foundation
 import OSLog
+#if DEV
+import FireblocksDev
+#else
+import FireblocksSDK
+#endif
 
 private let logger = Logger(subsystem: "Fireblocks", category: "FireblocksManager")
 protocol FireblocksKeyCreationDelegate {
@@ -57,7 +61,7 @@ class FireblocksManager {
         }
     }
         
-    func getSdkInstance() -> FireblocksDev.Fireblocks? {
+    func getSdkInstance() -> Fireblocks? {
         do {
             return try Fireblocks.getInstance(deviceId: deviceId)
         } catch {
@@ -135,7 +139,7 @@ class FireblocksManager {
         }
     }
     
-    func approveJoinWallet(requestId: String) async throws -> Set<FireblocksDev.JoinWalletDescriptor> {
+    func approveJoinWallet(requestId: String) async throws -> Set<JoinWalletDescriptor> {
         let instance = try Fireblocks.getInstance(deviceId: deviceId)
         return try await instance.approveJoinWalletRequest(requestId: requestId)
     }
@@ -206,7 +210,7 @@ class FireblocksManager {
         return Fireblocks.generateRandomPassPhrase()
     }
     
-    func backupKeys(passphrase: String, passphraseId: String) async -> Set<FireblocksDev.KeyBackup>? {
+    func backupKeys(passphrase: String, passphraseId: String) async -> Set<KeyBackup>? {
         guard let instance = getSdkInstance() else {
             return nil
         }
@@ -238,7 +242,7 @@ class FireblocksManager {
         getSdkInstance()?.stopJoinWallet()
     }
     
-    private func isAllKeysBackedUp(_ keyBackupSet: Set<FireblocksDev.KeyBackup>) -> Bool {
+    private func isAllKeysBackedUp(_ keyBackupSet: Set<KeyBackup>) -> Bool {
         for status in keyBackupSet {
             if status.keyBackupStatus != .SUCCESS {
                 return false
@@ -293,7 +297,7 @@ extension FireblocksManager: MessageHandlerDelegate {
 }
 
 extension FireblocksManager: EventHandlerDelegate {
-    func onEvent(event: FireblocksDev.FireblocksEvent) {
+    func onEvent(event: FireblocksEvent) {
         switch event {
         case let .KeyCreation(status, error):
             AppLoggerManager.shared.logger()?.log("FireblocksManager, status(.KeyCreation): \(status.description()). Error: \(String(describing: error)).")

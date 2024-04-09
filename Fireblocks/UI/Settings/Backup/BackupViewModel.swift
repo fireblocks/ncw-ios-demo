@@ -11,7 +11,11 @@ import GoogleSignIn
 import GoogleAPIClientForREST_Drive
 import FirebaseAuth
 import CloudKit
+#if DEV
 import FireblocksDev
+#else
+import FireblocksSDK
+#endif
 
 protocol BackupDelegate: AnyObject {
     func isBackupSucceed(_ isSucceed: Bool)

@@ -6,10 +6,14 @@
 //
 
 import AuthenticationServices
-import FireblocksDev
 import FirebaseAuth
 import GoogleSignIn
 import Foundation
+#if DEV
+import FireblocksDev
+#else
+import FireblocksSDK
+#endif
 
 enum LoginMethod: String, CaseIterable {
     case signIn

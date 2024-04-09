@@ -7,7 +7,11 @@
 
 import Foundation
 import UIKit
+#if DEV
 import FireblocksDev
+#else
+import FireblocksSDK
+#endif
 
 extension DeriveKeysView {
     
