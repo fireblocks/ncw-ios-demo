@@ -95,3 +95,5 @@ Fireblocks/Config.xcconfig
 EnvironmentConstantsDev.swift
 GoogleService-Info.plist
 Info.plist
+FireblocksSDKDev.xcframework
+MPCFBFramework.xcframework
