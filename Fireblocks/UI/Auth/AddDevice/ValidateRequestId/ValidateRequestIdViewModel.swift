@@ -6,7 +6,11 @@
 //
 
 import Foundation
+#if DEV
+import FireblocksDev
+#else
 import FireblocksSDK
+#endif
 
 protocol ValidateRequestIdDelegate: AnyObject {
     func didApproveJoinWallet()

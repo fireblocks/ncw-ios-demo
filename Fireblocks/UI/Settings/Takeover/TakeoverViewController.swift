@@ -6,7 +6,11 @@
 //
 
 import UIKit
+#if DEV
+import FireblocksDev
+#else
 import FireblocksSDK
+#endif
 
 class TakeoverViewController: UIViewController {
 
@@ -40,8 +44,8 @@ class TakeoverViewController: UIViewController {
         viewModel.getTakeoverFullKeys()
     }
     
-    private func navigateToDerivedKeys(_ privateKey: String){
-        let vc = DeriveKeysHostingVC(privateKey: privateKey)
+    private func navigateToDerivedKeys(_ privateKeys: Set<FullKey>){
+        let vc = DeriveKeysHostingVC(privateKeys: privateKeys)
         navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -66,8 +70,9 @@ extension TakeoverViewController: TakeoverViewModelDelegate {
         DispatchQueue.main.async { [weak self] in
             if let self {
                 self.hideActivityIndicator()
-                if let fullKeys, let privateKey = fullKeys.first?.privateKey {
-                    self.navigateToDerivedKeys(privateKey)
+                if let fullKeys {
+//                    let privateKeys = fullKeys.filter({$0.privateKey != nil}).map({$0.privateKey!})
+                    self.navigateToDerivedKeys(fullKeys)
                 } else {
                     self.showErrorMessage()
                 }

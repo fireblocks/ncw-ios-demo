@@ -1,0 +1,6 @@
+framework module MPCFBFramework {
+  umbrella header "MPCFBFramework.h"
+  export *
+
+  module * { export * }
+}

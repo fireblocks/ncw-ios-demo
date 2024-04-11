@@ -55,11 +55,13 @@ class AmountToSendViewModel {
     }
     
     func eraseNumber(){
-        isDecimalEntered = false
         if assetAmountString.count == 1 {
             assetAmountString = "0"
             delegate?.isAmountInputValid(isValid: false, errorMessage: nil)
         } else {
+            if let last = assetAmountString.last, last == "." {
+                isDecimalEntered = false
+            }
             assetAmountString = String(assetAmountString.dropLast())
             checkAmountIsValid()
         }
@@ -84,8 +86,8 @@ class AmountToSendViewModel {
     private func calculatePrice(){
         if let rate = asset.rate {
             calculatedPrice = (assetAmount * rate).formatFractions(fractionDigits: 2)
-            updateUI()
         }
+        updateUI()
     }
     
     private func checkAmountIsValid(){

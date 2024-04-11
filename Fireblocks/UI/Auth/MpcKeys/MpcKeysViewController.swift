@@ -5,7 +5,12 @@
 //  Created by Fireblocks Ltd. on 13/06/2023.
 //
 
+#if DEV
+import FireblocksDev
+#else
 import FireblocksSDK
+#endif
+
 import UIKit
 import SwiftUI
 import FirebaseAuth
