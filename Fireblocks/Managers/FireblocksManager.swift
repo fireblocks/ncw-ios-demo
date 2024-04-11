@@ -78,6 +78,9 @@ class FireblocksManager {
         return Fireblocks.generatePassphraseId()
     }
     
+    /*By default, workspaces are not enabled with EdDSA so you may remove MPC_EDDSA_ED25519 when calling generateMPCKeys
+    Please ask your CSM or in the https://community.fireblocks.com/ to enable your workspace to support EdDSA if you wish to work with EdDSA chains.
+     */
     func generateMpcKeys(_ delegate: FireblocksKeyCreationDelegate) async {
         do {
             let algorithms: Set<Algorithm> = Set([.MPC_ECDSA_SECP256K1, .MPC_EDDSA_ED25519])
