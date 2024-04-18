@@ -89,7 +89,7 @@ struct TransactionResponse: Codable, Identifiable, Hashable, Equatable {
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
     }
-
+    
     
     let id: String
     var status: TransferStatusType?
@@ -132,7 +132,7 @@ struct TransactionResponse: Codable, Identifiable, Hashable, Equatable {
                             receiverWalletID: details.destination?.walletId ?? "",
                             image: image)
     }
-
+    
 }
 
 struct TransactionDetails: Codable {
@@ -345,29 +345,41 @@ class SessionManager: ObservableObject {
         
         let session = URLSession.shared
         AppLoggerManager.shared.logger()?.log("\n📣📣📣📣\nSessionManager send request:\n\(request)\n📣📣📣📣")
-        do {
-            AppLoggerManager.shared.logger()?.log("SessionManager REQUEST: \(String(describing: request)) message: \(message ?? ""), body: \(body ?? "")")
-            print("\(Date().milliseconds()) SessionManager REQUEST: \(String(describing: request))")
-            let (data, response) = try await session.data(for: request)
-            if let statusCode = (response as? HTTPURLResponse)?.statusCode {
-                if statusCode >= 200, statusCode <= 299 {
-                    print("\(Date().milliseconds()) SessionManager RESPONSE: \(url)\n\(String(describing: String(data: data, encoding: .utf8)))")
-                    AppLoggerManager.shared.logger()?.log("SessionManager Got RESPONSE")
-
-                    if !skipLogs {
-                        AppLoggerManager.shared.logger()?.log("SessionManager RESPONSE: \(String(describing: String(data: data, encoding: .utf8)))")
-                    }
-                    return data
-                } else {
-                    return try await retry(url: url, httpMethod: httpMethod, timeout: timeout, numberOfRetries: numberOfRetries, message: message, body: body, skipLogs: skipLogs, error: SessionManager.appError(code: statusCode))
+        AppLoggerManager.shared.logger()?.log("SessionManager REQUEST: \(String(describing: request)) message: \(message ?? ""), body: \(body ?? "")")
+        print("\(Date().milliseconds()) SessionManager REQUEST: \(String(describing: request))")
+        let (data, response) = try await session.data(for: request)
+        if let statusCode = (response as? HTTPURLResponse)?.statusCode {
+            if statusCode >= 200, statusCode <= 299 {
+                print("\(Date().milliseconds()) SessionManager RESPONSE: \(url)\n\(String(describing: String(data: data, encoding: .utf8)))")
+                AppLoggerManager.shared.logger()?.log("SessionManager Got RESPONSE")
+                
+                if !skipLogs {
+                    AppLoggerManager.shared.logger()?.log("SessionManager RESPONSE: \(String(describing: String(data: data, encoding: .utf8)))")
                 }
+                return data
             } else {
-                return try await retry(url: url, httpMethod: httpMethod, timeout: timeout, numberOfRetries: numberOfRetries, message: message, body: body, skipLogs: skipLogs, error: SessionManager.error)
+                print("SessionManager Error statusCode: \(statusCode)")
+                if numberOfRetries <= 0 {
+                    print("SessionManager Error no more retries")
+                    throw SessionManager.error
+                }
+
+                try? await Task.sleep(nanoseconds: 2 * 1_000_000_000) // 1 second
+                
+                return try await sendRequest(url: url, httpMethod: httpMethod, timeout: timeout, numberOfRetries: numberOfRetries - 1, message: message, body: body, skipLogs: skipLogs)
             }
-        } catch {
-            print("SessionManager Error: \(error)")
-            return try await retry(url: url, httpMethod: httpMethod, timeout: timeout, numberOfRetries: numberOfRetries, message: message, body: body, skipLogs: skipLogs, error: error as NSError)
+        } else {
+            print("SessionManager Error")
+            if numberOfRetries <= 0 {
+                print("SessionManager Error no more retries")
+                throw SessionManager.error
+            }
+
+            try? await Task.sleep(nanoseconds: 2 * 1_000_000_000) // 1 second
+            
+            return try await sendRequest(url: url, httpMethod: httpMethod, timeout: timeout, numberOfRetries: numberOfRetries - 1, message: message, body: body, skipLogs: skipLogs)
         }
+        
     }
     
     private func retry(url: URL, httpMethod: String, timeout: TimeInterval?, numberOfRetries: Int, message: String?, body: Any?, skipLogs: Bool, error: NSError) async throws -> (Data) {
@@ -394,7 +406,7 @@ extension SessionManager {
             throw SessionManager.error
         }
     }
-
+    
     func getDevices() async throws -> GetDevicesResponse? {
         if let url = URL(string: FBURL.devices.url) {
             let data = try await sendRequest(url: url, httpMethod: "GET", numberOfRetries: 5)
@@ -404,7 +416,7 @@ extension SessionManager {
             throw SessionManager.error
         }
     }
-
+    
     func assign(deviceId: String) async throws -> AssignResponse {
         if let url = URL(string: FBURL.assign(deviceId).url) {
             let data = try await sendRequest(url: url, numberOfRetries: 5)
@@ -414,7 +426,7 @@ extension SessionManager {
             throw SessionManager.error
         }
     }
-
+    
     func joinWallet(deviceId: String, walletId: String) async throws -> JoinWalletResponse {
         let body = ["walletId": walletId]
         if let url = URL(string: FBURL.joinWallet(deviceId).url) {
@@ -425,15 +437,15 @@ extension SessionManager {
             throw SessionManager.error
         }
     }
-
+    
     func getMessages(deviceId: String) async throws -> [MessageResponse] {
         if let url = URL(string: FBURL.messages(deviceId).url) {
             var components = URLComponents(string: url.absoluteString)
             components?.queryItems = []
             components?.queryItems?.append(
                 URLQueryItem(name: "physicalDeviceId", value: Fireblocks.getPhysicalDeviceId())
-                )
-
+            )
+            
             if let fullString = components?.string, let fullURL = URL(string: fullString) {
                 let data = try await sendRequest(url: fullURL, httpMethod: "GET", timeout: FBURL.messages(deviceId).timeout, numberOfRetries: 0)
                 return try JSONDecoder().decode([MessageResponse].self, from: data)
@@ -455,8 +467,8 @@ extension SessionManager {
             print("DELETED ERROR: \(error.localizedDescription)")
         }
     }
-
-
+    
+    
     func rpc(deviceId: String, message: String) async throws -> String? {
         print("RPC: \(message)")
         if let url = URL(string: FBURL.rpc(deviceId).url) {
@@ -477,7 +489,7 @@ extension SessionManager {
             throw SessionManager.error
         }
     }
-
+    
     func getTransactions(deviceId: String, details: Bool = true, startDate: TimeInterval?) async throws -> [TransactionResponse]? {
         if let url = URL(string: FBURL.transactions(deviceId).url) {
             var components = URLComponents(string: url.absoluteString)
@@ -496,7 +508,7 @@ extension SessionManager {
             components?.queryItems?.append(
                 URLQueryItem(name: "poll", value: "true")
             )
-
+            
             if let fullString = components?.string, let fullURL = URL(string: fullString) {
                 print(fullURL)
                 let data = try await sendRequest(url: fullURL, httpMethod: "GET", timeout: FBURL.transactions( deviceId).timeout, numberOfRetries: 0)
@@ -507,9 +519,9 @@ extension SessionManager {
         } else {
             throw SessionManager.error
         }
-
+        
     }
-
+    
     func createAsset(deviceId: String, assetId: String) async throws -> String? {
         if let url = URL(string: FBURL.createAsset(deviceId, assetId).url) {
             let data = try await sendRequest(url: url, httpMethod: "POST", timeout: FBURL.createAsset(deviceId, assetId).timeout, numberOfRetries: 0)
@@ -518,7 +530,7 @@ extension SessionManager {
             throw SessionManager.error
         }
     }
-
+    
     func getAssets(deviceId: String) async throws -> [String: AssetSummary] {
         if let url = URL(string: FBURL.getAssets(deviceId).url) {
             let data = try await sendRequest(url: url, httpMethod: "GET", timeout: FBURL.getAssets(deviceId).timeout, numberOfRetries: 0)
@@ -528,7 +540,7 @@ extension SessionManager {
             throw SessionManager.error
         }
     }
-
+    
     func getSupportedAssets(deviceId: String) async throws -> [Asset] {
         if let url = URL(string: FBURL.getSupportedAssets(deviceId).url) {
             let data = try await sendRequest(url: url, httpMethod: "GET", timeout: FBURL.getAssets(deviceId).timeout, numberOfRetries: 0)
@@ -538,7 +550,7 @@ extension SessionManager {
             throw SessionManager.error
         }
     }
-
+    
     func getAssetBalance(deviceId: String, assetId: String) async throws -> AssetBalance {
         if let url = URL(string: FBURL.getAssetBalance(deviceId, assetId).url) {
             let data = try await sendRequest(url: url, httpMethod: "GET", timeout: FBURL.getAssetBalance(deviceId, assetId).timeout, numberOfRetries: 0)
@@ -548,7 +560,7 @@ extension SessionManager {
             throw SessionManager.error
         }
     }
-
+    
     func getAssetAddress(deviceId: String, assetId: String) async throws -> AssetAddress {
         if let url = URL(string: FBURL.getAssetAddress(deviceId, assetId).url) {
             let data = try await sendRequest(url: url, httpMethod: "GET", timeout: FBURL.getAssetAddress(deviceId, assetId).timeout, numberOfRetries: 0)
@@ -558,7 +570,7 @@ extension SessionManager {
             throw SessionManager.error
         }
     }
-
+    
     func estimateFee(deviceId: String, body: Any) async throws -> EstimatedFeeResponse? {
         if let url = URL(string: FBURL.estimateFee(deviceId).url) {
             let data = try await sendRequest(url: url, httpMethod: "POST", timeout: FBURL.estimateFee( deviceId).timeout, numberOfRetries: 0, body: body)
@@ -568,7 +580,7 @@ extension SessionManager {
             throw SessionManager.error
         }
     }
-
+    
     func denyTransaction(deviceId: String, txId: String) async throws -> Bool {
         if let url = URL(string: FBURL.denyTransaction(deviceId, txId).url) {
             let data = try await sendRequest(url: url, httpMethod: "POST", timeout: FBURL.denyTransaction(deviceId, txId).timeout, numberOfRetries: 0)
@@ -578,7 +590,7 @@ extension SessionManager {
             throw SessionManager.error
         }
     }
-
+    
     func getLatestBackupInfo(walletId: String) async throws -> BackupInfo {
         if let url = URL(string: FBURL.getLatestBackupInfo(walletId).url) {
             let data = try await sendRequest(url: url, httpMethod: "GET", timeout: FBURL.getLatestBackupInfo(walletId).timeout, numberOfRetries: 0)
@@ -606,7 +618,7 @@ extension SessionManager {
             throw SessionManager.error
         }
     }
-
+    
     func getPassphraseInfo(passphraseId: String) async throws -> PassphraseInfo {
         if let url = URL(string: FBURL.getPassphraseInfo(passphraseId).url) {
             let data = try await sendRequest(url: url, httpMethod: "GET", timeout: FBURL.getPassphraseInfo(passphraseId).timeout, numberOfRetries: 0)
@@ -617,5 +629,5 @@ extension SessionManager {
         }
     }
     
-
+    
 }

@@ -50,7 +50,7 @@ struct DeriveKeysView: View {
                                     ForEach(items, id: \.assetSummary) { item in
                                         if let asset = item.assetSummary.asset, let privateKey = item.privateKey {
                                             Section {
-                                                AssetCell(privateKey: privateKey, copyTextTitle: asset.name, copiedText: $viewModel.copiedText) {
+                                                AssetCell(privateKey: item.keyData?.data ?? "", copyTextTitle: asset.name, copiedText: $viewModel.copiedText) {
                                                     DerivedAssetRow(asset: asset)
                                                 }
                                                 
