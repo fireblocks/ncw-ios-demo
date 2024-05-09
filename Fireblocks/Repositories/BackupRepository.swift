@@ -61,7 +61,7 @@ final public class BackupRepository {
     }
     
     private func backupKeys(passphrase: String, passphraseId: String, backupProvider: BackupProvider) async -> Bool {
-        if let backupKeys = await FireblocksManager.shared.backupKeys(passphrase: passphrase, passphraseId: passphraseId) {
+        if let backupKeys = await FireblocksManager.shared.backupKeys(passphrase: passphrase, passphraseId: passphraseId), backupKeys.count > 0 {
             if backupKeys.contains(where: {$0.keyBackupStatus != .SUCCESS}) {
                 print("BackupRepository, \(backupProvider.rawValue): failed to backup keys")
             } else {

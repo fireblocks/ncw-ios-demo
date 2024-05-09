@@ -25,6 +25,7 @@ class FireblocksManager {
     
     private var deviceId: String = ""
     private var walletId: String = ""
+    private var algoArray: [Algorithm] = [.MPC_ECDSA_SECP256K1, .MPC_EDDSA_ED25519]
 
     private init() {
     }
@@ -83,11 +84,11 @@ class FireblocksManager {
      */
     func generateMpcKeys(_ delegate: FireblocksKeyCreationDelegate) async {
         do {
-            let algorithms: Set<Algorithm> = Set([.MPC_ECDSA_SECP256K1, .MPC_EDDSA_ED25519])
+            let algorithms: Set<Algorithm> = Set(algoArray)
             let startDate = Date()
             let result = try await getSdkInstance()?.generateMPCKeys(algorithms: algorithms)
             print("Measure - generateMpcKeys \(Date().timeIntervalSince(startDate))")
-            let isGenerated = result?.first?.keyStatus == .READY
+            let isGenerated = result?.filter({$0.keyStatus == .READY}).count == algoArray.count
             AppLoggerManager.shared.logger()?.log("FireblocksManager, generateMpcKeys() isGenerated value: \(isGenerated).")
 
             if isGenerated {
@@ -111,8 +112,8 @@ class FireblocksManager {
             let startDate = Date()
             let result = try await getSdkInstance()?.signTransaction(txId: transactionId)
             print("Measure - signTransaction \(Date().timeIntervalSince(startDate))")
-
-            return result?.transactionSignatureStatus == .COMPLETED
+            print("RESULT: \(result?.transactionSignatureStatus.rawValue ?? "")")
+            return result?.transactionSignatureStatus == .SUCCESS
         } catch let err as FireblocksError {
             AppLoggerManager.shared.logger()?.log("FireblocksManager, signTransaction() failed: \(err.description).")
             return false
@@ -122,13 +123,18 @@ class FireblocksManager {
         }
     }
     
+    func stopTransaction() {
+        getSdkInstance()?.stopSignTransaction()
+    }
+    
+
     func addDevice(_ delegate: FireblocksKeyCreationDelegate, joinWalletHandler: FireblocksJoinWalletHandler) async {
         do {
             let startDate = Date()
             let result = try await getSdkInstance()?.requestJoinExistingWallet(joinWalletHandler: joinWalletHandler)
             print("Measure - addDevice \(Date().timeIntervalSince(startDate))")
 
-            let isGenerated = result?.first?.keyStatus == .READY
+            let isGenerated = result?.filter({$0.keyStatus == .READY}).count == algoArray.count
             if isGenerated {
                 startPolling()
             }
