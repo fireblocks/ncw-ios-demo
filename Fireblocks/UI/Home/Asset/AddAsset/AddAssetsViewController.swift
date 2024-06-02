@@ -88,7 +88,7 @@ class AddAssetsViewController: UIViewController {
     }
     
     @IBAction func continueTapped(_ sender: AppActionBotton) {
-        showActivityIndicator(isBackgroundEnabled: false)
+        showActivityIndicator()
         viewModel.createAsset()
     }
     

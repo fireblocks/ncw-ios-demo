@@ -70,8 +70,7 @@ extension TakeoverViewController: TakeoverViewModelDelegate {
         DispatchQueue.main.async { [weak self] in
             if let self {
                 self.hideActivityIndicator()
-                if let fullKeys {
-//                    let privateKeys = fullKeys.filter({$0.privateKey != nil}).map({$0.privateKey!})
+                if let fullKeys, fullKeys.count > 0, fullKeys.filter({$0.error != nil}).isEmpty {
                     self.navigateToDerivedKeys(fullKeys)
                 } else {
                     self.showErrorMessage()

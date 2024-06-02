@@ -67,6 +67,7 @@ class ApproveViewController: UIViewController {
     @IBAction func approveTapped(_ sender: AppActionBotton) {
         self.showToolbar(show: false)
         viewModel.approveTransaction()
+        showActivityIndicator(isBackgroundEnabled: false)
     }
     
     @IBAction func stoppedTapped(_ sender: AppActionBotton) {
