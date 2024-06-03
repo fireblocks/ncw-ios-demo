@@ -189,12 +189,8 @@ class AuthViewController: UIViewController {
             vc = UINavigationController(rootViewController: MpcKeysViewController(isAddingDevice: false))
         case .signIn:
             if viewModel.isUserHaveKeys() {
-                if viewModel.isUserHaveAllKeys() {
-                    FireblocksManager.shared.startPolling()
-                    vc = UINavigationController(rootViewController: TabBarViewController())
-                } else {
-                    vc = UINavigationController(rootViewController: MpcKeysViewController(isAddingDevice: false))
-                }
+                FireblocksManager.shared.startPolling()
+                vc = UINavigationController(rootViewController: TabBarViewController())
             } else {
                 vc = UINavigationController(rootViewController: RedirectNewUserHostingVC())
             }
