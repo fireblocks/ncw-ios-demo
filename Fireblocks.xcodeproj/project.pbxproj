@@ -218,8 +218,6 @@
 		2B558E9E2B484AC4006212B2 /* ValidateRequestIdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558E9D2B484AC4006212B2 /* ValidateRequestIdView.swift */; };
 		2B558EA02B484ADC006212B2 /* ValidateRequestIdHostingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558E9F2B484ADC006212B2 /* ValidateRequestIdHostingVC.swift */; };
 		2B558EA22B484BE1006212B2 /* Platform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558EA12B484BE1006212B2 /* Platform.swift */; };
-		2B57B6462BE394A700B36154 /* FireblocksSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 2B57B6452BE394A700B36154 /* FireblocksSDK */; };
-		2B57B6482BE394B800B36154 /* FireblocksSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 2B57B6472BE394B800B36154 /* FireblocksSDK */; };
 		2B7A721B2B45A2250011C398 /* AddDeviceQRViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A721A2B45A2250011C398 /* AddDeviceQRViewModel.swift */; };
 		2B7A721D2B45A8FF0011C398 /* AddDeviceQRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A721C2B45A8FF0011C398 /* AddDeviceQRView.swift */; };
 		2B7A72202B45AAEB0011C398 /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A721F2B45AAEB0011C398 /* Modifiers.swift */; };
@@ -381,6 +379,7 @@
 		2B7C47992B32EC53001C804B /* EnvironmentConstantsDev.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7C47982B32EC52001C804B /* EnvironmentConstantsDev.swift */; };
 		2B7C479B2B32EC65001C804B /* VersionBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7C479A2B32EC65001C804B /* VersionBanner.swift */; };
 		2B7C479C2B32EC65001C804B /* VersionBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7C479A2B32EC65001C804B /* VersionBanner.swift */; };
+		2B8E80702C0DDCDB00E50FC0 /* FireblocksSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 2B8E806F2C0DDCDB00E50FC0 /* FireblocksSDK */; };
 		2B94CFC52A9CDF62003E7508 /* ExtraParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B94CFC42A9CDF62003E7508 /* ExtraParameters.swift */; };
 		2B94CFCA2A9CE576003E7508 /* CodableParsingExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B94CFC82A9CE576003E7508 /* CodableParsingExtension.swift */; };
 		2B94CFCC2A9CE576003E7508 /* CodableAnyExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B94CFC92A9CE576003E7508 /* CodableAnyExtension.swift */; };
@@ -812,7 +811,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B21D87F2BC56B5C003ADD29 /* GoogleAPIClientForREST_Drive in Frameworks */,
-				2B57B6482BE394B800B36154 /* FireblocksSDK in Frameworks */,
 				2B21D8802BC56B5C003ADD29 /* FirebaseAuth in Frameworks */,
 				2B21D8812BC56B5C003ADD29 /* SDWebImageMapKit in Frameworks */,
 				2B21D8822BC56B5C003ADD29 /* (null) in Frameworks */,
@@ -854,7 +852,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				866A73C22A696A0F00E8E545 /* GoogleAPIClientForREST_Drive in Frameworks */,
-				2B57B6462BE394A700B36154 /* FireblocksSDK in Frameworks */,
+				2B8E80702C0DDCDB00E50FC0 /* FireblocksSDK in Frameworks */,
 				869A71392A3859C900653C8F /* FirebaseAuth in Frameworks */,
 				86A9971C2A6FAD0B00A6B60B /* SDWebImageMapKit in Frameworks */,
 				86AF7C4D2A430BF70026DF15 /* (null) in Frameworks */,
@@ -1727,7 +1725,6 @@
 				2B21D7F22BC56B5C003ADD29 /* GoogleAPIClientForREST_Drive */,
 				2B21D7F42BC56B5C003ADD29 /* GoogleAPIClientForREST_DriveActivity */,
 				2B21D7F52BC56B5C003ADD29 /* GoogleAPIClientForREST_DriveLabels */,
-				2B57B6472BE394B800B36154 /* FireblocksSDK */,
 			);
 			productName = Fireblocks;
 			productReference = 2B21D8BB2BC56B5C003ADD29 /* NCW-production.app */;
@@ -1790,7 +1787,7 @@
 				866A73C12A696A0F00E8E545 /* GoogleAPIClientForREST_Drive */,
 				866A73C32A696A0F00E8E545 /* GoogleAPIClientForREST_DriveActivity */,
 				866A73C52A696A0F00E8E545 /* GoogleAPIClientForREST_DriveLabels */,
-				2B57B6452BE394A700B36154 /* FireblocksSDK */,
+				2B8E806F2C0DDCDB00E50FC0 /* FireblocksSDK */,
 			);
 			productName = Fireblocks;
 			productReference = 86859F4F2A384D8A0056E3C6 /* NCW-sandbox.app */;
@@ -1829,7 +1826,7 @@
 				86E835162A60331B003E98BE /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */,
 				86A997182A6FAD0A00A6B60B /* XCRemoteSwiftPackageReference "SDWebImage" */,
 				866A73C02A696A0F00E8E545 /* XCRemoteSwiftPackageReference "google-api-objectivec-client-for-rest" */,
-				2B57B6442BE394A700B36154 /* XCRemoteSwiftPackageReference "ncw-ios-sdk" */,
+				2BA9BBDF2C0DD9F700DBD6E3 /* XCRemoteSwiftPackageReference "ncw-ios-sdk" */,
 			);
 			productRefGroup = 86859F502A384D8A0056E3C6 /* Products */;
 			projectDirPath = "";
@@ -2471,7 +2468,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.4.1;
+				MARKETING_VERSION = 2.5.0;
 				OTHER_SWIFT_FLAGS = "-DEC2 -DPROD";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fireblocks.ncw.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2518,7 +2515,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.4.1;
+				MARKETING_VERSION = 2.5.0;
 				OTHER_SWIFT_FLAGS = "-DEC2 -DPROD";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fireblocks.ncw.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2540,7 +2537,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "NCW-dev/NCW-devDebug.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"NCW-dev/Preview Content\"";
 				DEVELOPMENT_TEAM = 2HS962GC9R;
 				ENABLE_PREVIEWS = YES;
@@ -2560,7 +2557,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.4.0;
+				MARKETING_VERSION = 2.5.0;
 				OTHER_SWIFT_FLAGS = "-DDEV";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fireblocks.ncw.demo.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2580,7 +2577,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "NCW-dev/NCW-devRelease.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"NCW-dev/Preview Content\"";
 				DEVELOPMENT_TEAM = 2HS962GC9R;
 				ENABLE_PREVIEWS = YES;
@@ -2600,7 +2597,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.4.0;
+				MARKETING_VERSION = 2.5.0;
 				OTHER_SWIFT_FLAGS = "-DDEV";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fireblocks.ncw.demo.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2736,7 +2733,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 2HS962GC9R;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2759,7 +2756,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.4.1;
+				MARKETING_VERSION = 2.5.0;
 				OTHER_SWIFT_FLAGS = "-DEC2 -DPROD";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fireblocks.ncw.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2783,7 +2780,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 2HS962GC9R;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2806,7 +2803,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.4.1;
+				MARKETING_VERSION = 2.5.0;
 				OTHER_SWIFT_FLAGS = "-DEC2 -DPROD";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fireblocks.ncw.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2903,12 +2900,12 @@
 				kind = branch;
 			};
 		};
-		2B57B6442BE394A700B36154 /* XCRemoteSwiftPackageReference "ncw-ios-sdk" */ = {
+		2BA9BBDF2C0DD9F700DBD6E3 /* XCRemoteSwiftPackageReference "ncw-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/fireblocks/ncw-ios-sdk.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 2.4.1;
+				minimumVersion = 2.5.0;
 			};
 		};
 		866A73C02A696A0F00E8E545 /* XCRemoteSwiftPackageReference "google-api-objectivec-client-for-rest" */ = {
@@ -3009,16 +3006,6 @@
 			package = 2B21D7F32BC56B5C003ADD29 /* XCRemoteSwiftPackageReference "google-api-objectivec-client-for-rest" */;
 			productName = GoogleAPIClientForREST_DriveLabels;
 		};
-		2B57B6452BE394A700B36154 /* FireblocksSDK */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2B57B6442BE394A700B36154 /* XCRemoteSwiftPackageReference "ncw-ios-sdk" */;
-			productName = FireblocksSDK;
-		};
-		2B57B6472BE394B800B36154 /* FireblocksSDK */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2B57B6442BE394A700B36154 /* XCRemoteSwiftPackageReference "ncw-ios-sdk" */;
-			productName = FireblocksSDK;
-		};
 		2B7C47792B32DA77001C804B /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 869A71372A3859C900653C8F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
@@ -3073,6 +3060,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 86A997182A6FAD0A00A6B60B /* XCRemoteSwiftPackageReference "SDWebImage" */;
 			productName = SDWebImageMapKit;
+		};
+		2B8E806F2C0DDCDB00E50FC0 /* FireblocksSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2BA9BBDF2C0DD9F700DBD6E3 /* XCRemoteSwiftPackageReference "ncw-ios-sdk" */;
+			productName = FireblocksSDK;
 		};
 		866A73C12A696A0F00E8E545 /* GoogleAPIClientForREST_Drive */ = {
 			isa = XCSwiftPackageProductDependency;

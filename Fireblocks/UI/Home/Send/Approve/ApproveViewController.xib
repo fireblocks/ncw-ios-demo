@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -18,7 +18,7 @@
         </array>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ApproveViewController" customModule="Fireblocks___Dev__ngrok_" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ApproveViewController" customModule="NCW_dev" customModuleProvider="target">
             <connections>
                 <outlet property="amount" destination="Xkw-v3-4g3" id="INB-Wm-7j9"/>
                 <outlet property="amountPrice" destination="34K-uP-fxN" id="ffq-Eh-i9o"/>
@@ -27,6 +27,7 @@
                 <outlet property="feeAmount" destination="faL-bf-cm4" id="tXG-lD-gZh"/>
                 <outlet property="receiverAddress" destination="wSi-eU-edX" id="R2f-L4-da9"/>
                 <outlet property="receiverAddressBackground" destination="ZK7-zH-9tQ" id="5CX-L8-tl0"/>
+                <outlet property="stopButton" destination="I8e-dh-Wxb" id="Pbe-Qm-at0"/>
                 <outlet property="totalAmount" destination="q5Q-8b-Iaf" id="kS1-pr-tn9"/>
                 <outlet property="totalPrice" destination="Yio-sd-hu6" id="SDJ-f0-hVB"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -184,8 +185,8 @@
                     </attributedString>
                     <nil key="highlightedColor"/>
                 </label>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="htg-as-KHu" userLabel="ContinueButton" customClass="AppActionBotton" customModule="Fireblocks___Dev__ngrok_" customModuleProvider="target">
-                    <rect key="frame" x="16" y="752" width="358" height="50"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="htg-as-KHu" userLabel="ContinueButton" customClass="AppActionBotton" customModule="NCW_dev" customModuleProvider="target">
+                    <rect key="frame" x="16" y="694" width="358" height="50"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="7yI-MR-qkS"/>
@@ -194,17 +195,28 @@
                         <action selector="approveTapped:" destination="-1" eventType="touchUpInside" id="uii-31-Oh5"/>
                     </connections>
                 </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I8e-dh-Wxb" userLabel="ContinueButton" customClass="AppActionBotton" customModule="NCW_dev" customModuleProvider="target">
+                    <rect key="frame" x="16" y="752" width="358" height="50"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="LpB-5q-Zj1"/>
+                    </constraints>
+                    <connections>
+                        <action selector="stoppedTapped:" destination="-1" eventType="touchUpInside" id="UcU-Vc-tKA"/>
+                    </connections>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" name="black"/>
             <constraints>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="htg-as-KHu" secondAttribute="bottom" constant="8" id="4px-ui-6es"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="q5Q-8b-Iaf" secondAttribute="trailing" constant="24" id="5Ga-kK-gHd"/>
                 <constraint firstItem="ZK7-zH-9tQ" firstAttribute="top" secondItem="u1p-Pa-LEI" secondAttribute="bottom" constant="16" id="8F1-JK-LW7"/>
                 <constraint firstItem="NpY-ng-0vM" firstAttribute="top" secondItem="ZK7-zH-9tQ" secondAttribute="bottom" constant="32" id="ALV-Nq-9vj"/>
+                <constraint firstItem="I8e-dh-Wxb" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="AbK-Be-Wdx"/>
                 <constraint firstItem="Yio-sd-hu6" firstAttribute="top" secondItem="q5Q-8b-Iaf" secondAttribute="bottom" constant="8" id="CXj-gg-aIv"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ZK7-zH-9tQ" secondAttribute="trailing" constant="24" id="DMe-g9-4ac"/>
                 <constraint firstItem="wek-jN-sRl" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="24" id="E44-jd-zcq"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="I8e-dh-Wxb" secondAttribute="trailing" constant="16" id="FOG-ya-8Ys"/>
                 <constraint firstItem="BkX-ek-oN1" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="28" id="LTt-i1-fHS"/>
                 <constraint firstItem="faL-bf-cm4" firstAttribute="centerY" secondItem="W6r-tf-MEo" secondAttribute="centerY" id="NeZ-9g-NfM"/>
                 <constraint firstItem="BkX-ek-oN1" firstAttribute="top" secondItem="Uew-d1-hCK" secondAttribute="bottom" constant="26" id="NqJ-Vc-Y6z"/>
@@ -212,8 +224,10 @@
                 <constraint firstItem="tCp-Y5-o4a" firstAttribute="leading" secondItem="BkX-ek-oN1" secondAttribute="trailing" constant="8" id="ORI-pK-fML"/>
                 <constraint firstItem="htg-as-KHu" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="Ucm-tW-3BN"/>
                 <constraint firstItem="u1p-Pa-LEI" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="24" id="W4d-bw-12w"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="I8e-dh-Wxb" secondAttribute="bottom" constant="8" id="W9z-WQ-PTi"/>
                 <constraint firstItem="q5Q-8b-Iaf" firstAttribute="centerY" secondItem="wek-jN-sRl" secondAttribute="centerY" id="WzB-aB-GHr"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="htg-as-KHu" secondAttribute="trailing" constant="16" id="dVd-AS-70W"/>
+                <constraint firstItem="I8e-dh-Wxb" firstAttribute="top" secondItem="htg-as-KHu" secondAttribute="bottom" constant="8" id="ddz-u9-MAG"/>
                 <constraint firstItem="tCp-Y5-o4a" firstAttribute="centerY" secondItem="BkX-ek-oN1" secondAttribute="centerY" id="dfe-fq-EJQ"/>
                 <constraint firstItem="Uew-d1-hCK" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="24" id="fbG-Oc-FjQ"/>
                 <constraint firstItem="u1p-Pa-LEI" firstAttribute="top" secondItem="tCp-Y5-o4a" secondAttribute="bottom" constant="24" id="gIv-xd-GYI"/>

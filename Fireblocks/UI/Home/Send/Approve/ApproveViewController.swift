@@ -18,7 +18,8 @@ class ApproveViewController: UIViewController {
     @IBOutlet weak var totalAmount: UILabel!
     @IBOutlet weak var totalPrice: UILabel!
     @IBOutlet weak var approveButton: AppActionBotton!
-    
+    @IBOutlet weak var stopButton: AppActionBotton!
+
     let viewModel = ApproveViewModel()
     
     override func viewDidLoad() {
@@ -46,7 +47,8 @@ class ApproveViewController: UIViewController {
         self.navigationItem.hidesBackButton = true
         let buttonImage = AssetsIcons.checkMark.getIcon()
         approveButton.config(title: "Approve", image: buttonImage, style: .Primary)
-        
+        stopButton.config(title: "Stop", image: buttonImage, style: .Secondary)
+
     }
     
     @objc private func handleCloseTap() {
@@ -65,8 +67,13 @@ class ApproveViewController: UIViewController {
     @IBAction func approveTapped(_ sender: AppActionBotton) {
         self.showToolbar(show: false)
         viewModel.approveTransaction()
-        showActivityIndicator()
+        showActivityIndicator(isBackgroundEnabled: false)
     }
+    
+    @IBAction func stoppedTapped(_ sender: AppActionBotton) {
+        viewModel.stopTransaction()
+    }
+
     
     private func navigateHome(){
         navigationController?.popToRootViewController(animated: true)

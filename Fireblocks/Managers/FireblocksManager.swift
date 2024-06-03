@@ -25,6 +25,7 @@ class FireblocksManager {
     
     private var deviceId: String = ""
     private var walletId: String = ""
+    private var algoArray: [Algorithm] = [.MPC_ECDSA_SECP256K1, .MPC_EDDSA_ED25519]
 
     private init() {
     }
@@ -83,11 +84,11 @@ class FireblocksManager {
      */
     func generateMpcKeys(_ delegate: FireblocksKeyCreationDelegate) async {
         do {
-            let algorithms: Set<Algorithm> = Set([.MPC_ECDSA_SECP256K1, .MPC_EDDSA_ED25519])
+            let algorithms: Set<Algorithm> = Set(algoArray)
             let startDate = Date()
             let result = try await getSdkInstance()?.generateMPCKeys(algorithms: algorithms)
             print("Measure - generateMpcKeys \(Date().timeIntervalSince(startDate))")
-            let isGenerated = result?.first?.keyStatus == .READY
+            let isGenerated = result?.filter({$0.keyStatus == .READY}).count == algoArray.count
             AppLoggerManager.shared.logger()?.log("FireblocksManager, generateMpcKeys() isGenerated value: \(isGenerated).")
 
             if isGenerated {
@@ -111,7 +112,7 @@ class FireblocksManager {
             let startDate = Date()
             let result = try await getSdkInstance()?.signTransaction(txId: transactionId)
             print("Measure - signTransaction \(Date().timeIntervalSince(startDate))")
-
+            print("RESULT: \(result?.transactionSignatureStatus.rawValue ?? "")")
             return result?.transactionSignatureStatus == .COMPLETED
         } catch let err as FireblocksError {
             AppLoggerManager.shared.logger()?.log("FireblocksManager, signTransaction() failed: \(err.description).")
@@ -122,13 +123,18 @@ class FireblocksManager {
         }
     }
     
+    func stopTransaction() {
+        getSdkInstance()?.stopSignTransaction()
+    }
+    
+
     func addDevice(_ delegate: FireblocksKeyCreationDelegate, joinWalletHandler: FireblocksJoinWalletHandler) async {
         do {
             let startDate = Date()
             let result = try await getSdkInstance()?.requestJoinExistingWallet(joinWalletHandler: joinWalletHandler)
             print("Measure - addDevice \(Date().timeIntervalSince(startDate))")
 
-            let isGenerated = result?.first?.keyStatus == .READY
+            let isGenerated = result?.filter({$0.keyStatus == .READY}).count == algoArray.count
             if isGenerated {
                 startPolling()
             }
@@ -159,7 +165,7 @@ class FireblocksManager {
         var keysSet: Set<String> = []
         let allKeys = getMpcKeys()
         for mpcKey in allKeys {
-            keysSet.insert(mpcKey.keyId)
+            keysSet.insert(mpcKey.keyId ?? "")
         }
             
         return nil
@@ -172,6 +178,7 @@ class FireblocksManager {
         
         do {
             return try await instance.takeover()
+//            return try await instance.exportFullKeys(chainCode: "defd6ffedafd9ab5d81a39bc1dfdba1b4e2efc307b45a39fec8b89cb269f8632", cloudKeyShares: ["03c62a71-146d-40d1-a0f7-b5ba0c0e417a": Set(["953e396a7e76c0c26820c1dfd894575f4c580c00e4b648341c32ea01d0ecd072"]), "e99deb75-03e3-42b3-bdf2-e6ae136b2045": Set(["050a88001782f6d3ec5935c1a55bebe014d48bc66cd6960fd07b2070c0a80dc4"])])
         } catch {
             AppLoggerManager.shared.logger()?.log("FireblocksManager, Takeover() can't takeover keys: \(error).")
             return nil
@@ -232,7 +239,7 @@ class FireblocksManager {
                 deviceId: deviceId,
                 messageHandlerDelegate: self,
                 keyStorageDelegate: KeyStorageProvider(deviceId: self.deviceId),
-                fireblocksOptions: FireblocksOptions(env: EnvironmentConstants.env, eventHandlerDelegate: self, logLevel: .debug)
+                fireblocksOptions: FireblocksOptions(env: EnvironmentConstants.env, eventHandlerDelegate: self, logLevel: .debug, logToConsole: true)
             )
         }
     }

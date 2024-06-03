@@ -88,7 +88,7 @@ class SettingsViewController: UIViewController {
         if isDisableAdvancedFeatures {
             backupButton.disableView()
             exportPrivateKeyButton.disableView()
-            advancedInfoButton.disableView()
+//            advancedInfoButton.disableView()
         }
     }
 
@@ -174,9 +174,9 @@ class SettingsViewController: UIViewController {
     }
     
     private func navigateToAdvancedInfoViewController() {
-        if isDisableAdvancedFeatures {
-            return
-        }
+//        if isDisableAdvancedFeatures {
+//            return
+//        }
         let vc = AdvancedInfoViewController()
         navigationController?.pushViewController(vc, animated: true)
     }

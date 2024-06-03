@@ -70,6 +70,10 @@ final class ApproveViewModel {
         }
     }
     
+    func stopTransaction() {
+        repository.stopTransaction()
+    }
+    
     func cancelTransaction() {
         guard let transactionId = transaction.txId else {
             delegate?.hideIndicator()

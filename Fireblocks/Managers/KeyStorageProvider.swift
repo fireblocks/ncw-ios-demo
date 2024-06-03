@@ -20,7 +20,6 @@ class KeyStorageProvider: KeyStorageDelegate {
     init(deviceId: String) {
         self.deviceId = deviceId
         context.touchIDAuthenticationAllowableReuseDuration = 15
-
     }
     
     enum Result {
@@ -28,6 +27,7 @@ class KeyStorageProvider: KeyStorageDelegate {
         case failure(OSStatus)
     }
 
+    @available(*, deprecated, message: "Use remove(keyIds: Set<String>, callback: @escaping ([String : Bool]) -> ()) instead")
     func remove(keyId: String) {
         guard let acl = self.getAcl() else {
             return
@@ -50,6 +50,34 @@ class KeyStorageProvider: KeyStorageDelegate {
         
 
     }
+    
+    func remove(keyIds: Set<String>, callback: @escaping ([String : Bool]) -> ())  {
+        var dict: [String: Bool] = [:]
+
+        guard let acl = self.getAcl() else {
+            callback(dict)
+            return
+        }
+                
+        var attributes = [String : AnyObject]()
+        
+        for keyId in keyIds {
+            if let tag = keyId.data(using: .utf8) {
+                attributes[kSecClass as String] = kSecClassKey
+                attributes[kSecAttrApplicationTag as String] = tag as AnyObject
+                attributes[kSecAttrAccessControl as String] = acl
+                
+                attributes[kSecUseAuthenticationContext as String] = context
+                
+                let status = SecItemDelete(attributes as CFDictionary)
+                print(status)
+                dict[keyId] = status == errSecSuccess
+            }
+        }
+        
+        callback(dict)
+    }
+
     
     func contains(keyIds: Set<String>, callback: @escaping ([String : Bool]) -> ())  {
         load(keyIds: keyIds) { privateKeys in
