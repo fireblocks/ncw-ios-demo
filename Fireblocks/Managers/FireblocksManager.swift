@@ -239,7 +239,7 @@ class FireblocksManager {
                 deviceId: deviceId,
                 messageHandlerDelegate: self,
                 keyStorageDelegate: KeyStorageProvider(deviceId: self.deviceId),
-                fireblocksOptions: FireblocksOptions(env: EnvironmentConstants.env, eventHandlerDelegate: self, logLevel: .debug, logToConsole: true)
+                fireblocksOptions: FireblocksOptions(env: EnvironmentConstants.env, eventHandlerDelegate: self, logLevel: .info, logToConsole: true, reporting: ReportingOptions(enabled: true))
             )
         }
     }
