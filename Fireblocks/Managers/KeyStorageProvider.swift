@@ -16,7 +16,7 @@ import FireblocksSDK
 class KeyStorageProvider: KeyStorageDelegate {
     private let deviceId: String
     let context = LAContext()
-
+    
     init(deviceId: String) {
         self.deviceId = deviceId
         context.touchIDAuthenticationAllowableReuseDuration = 15
@@ -176,6 +176,11 @@ class KeyStorageProvider: KeyStorageDelegate {
     
     func load(keyIds: Set<String>, callback: @escaping ([String : Data]) -> ()) {
         let startDate = Date()
+//        DispatchQueue.main.async {
+//            callback([:])
+//        }
+//        return;
+        
         biometricStatus { status in
             if status == .ready {
                 Task {

@@ -6,7 +6,7 @@ rm -rf ./build
 # Build the project
 xcodebuild -project \
 Fireblocks.xcodeproj \
--scheme NCW-dev \
+-scheme NCW-sandbox \
 -configuration Debug \
 -destination 'platform=iOS Simulator,name=iPhone 15' \
 -derivedDataPath build

@@ -205,10 +205,6 @@
 		2B3E6C0F2ACDAB97000E91CF /* AddAssetsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B3E6C0E2ACDAB97000E91CF /* AddAssetsViewController.xib */; };
 		2B3E6C112ACE96AC000E91CF /* AddAssetViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3E6C102ACE96AC000E91CF /* AddAssetViewCell.swift */; };
 		2B3E6C132ACE96D7000E91CF /* AddAssetViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B3E6C122ACE96D7000E91CF /* AddAssetViewCell.xib */; };
-		2B4EEB5A2BC7BED700BC5E70 /* FireblocksSDKDev.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B4EEB582BC7BECF00BC5E70 /* FireblocksSDKDev.xcframework */; };
-		2B4EEB5B2BC7BED700BC5E70 /* FireblocksSDKDev.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2B4EEB582BC7BECF00BC5E70 /* FireblocksSDKDev.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		2B4EEB5C2BC7BED900BC5E70 /* MPCFBFramework.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B4EEB562BC7BEBE00BC5E70 /* MPCFBFramework.xcframework */; };
-		2B4EEB5D2BC7BED900BC5E70 /* MPCFBFramework.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2B4EEB562BC7BEBE00BC5E70 /* MPCFBFramework.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2B558E842B47042D006212B2 /* UIHostingBridgeNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558E832B47042D006212B2 /* UIHostingBridgeNotifications.swift */; };
 		2B558E862B47044C006212B2 /* PrepareForScanViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558E852B47044C006212B2 /* PrepareForScanViewModel.swift */; };
 		2B558E882B4704BA006212B2 /* PrepareForScanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558E872B4704BA006212B2 /* PrepareForScanView.swift */; };
@@ -218,8 +214,6 @@
 		2B558E9E2B484AC4006212B2 /* ValidateRequestIdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558E9D2B484AC4006212B2 /* ValidateRequestIdView.swift */; };
 		2B558EA02B484ADC006212B2 /* ValidateRequestIdHostingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558E9F2B484ADC006212B2 /* ValidateRequestIdHostingVC.swift */; };
 		2B558EA22B484BE1006212B2 /* Platform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558EA12B484BE1006212B2 /* Platform.swift */; };
-		2B6218122C105A6A00DDA9AF /* FireblocksSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 2B6218112C105A6A00DDA9AF /* FireblocksSDK */; };
-		2B6218142C105B1800DDA9AF /* FireblocksSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 2B6218132C105B1800DDA9AF /* FireblocksSDK */; };
 		2B7A721B2B45A2250011C398 /* AddDeviceQRViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A721A2B45A2250011C398 /* AddDeviceQRViewModel.swift */; };
 		2B7A721D2B45A8FF0011C398 /* AddDeviceQRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A721C2B45A8FF0011C398 /* AddDeviceQRView.swift */; };
 		2B7A72202B45AAEB0011C398 /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A721F2B45AAEB0011C398 /* Modifiers.swift */; };
@@ -425,6 +419,11 @@
 		2BD34A7D2B99D265008406D5 /* DerivedKeyItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD34A7C2B99D265008406D5 /* DerivedKeyItem.swift */; };
 		2BD53A232B28735700756C4A /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD53A222B28735700756C4A /* Date+Extensions.swift */; };
 		2BD785CB2B83703F00FEA796 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2BD785CA2B83703F00FEA796 /* GoogleService-Info.plist */; };
+		2BE16A602C2026B2003D8C12 /* FireblocksSDKDev.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BE16A5E2C202687003D8C12 /* FireblocksSDKDev.xcframework */; };
+		2BE16A612C2026B3003D8C12 /* FireblocksSDKDev.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2BE16A5E2C202687003D8C12 /* FireblocksSDKDev.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2BE16A622C2026B4003D8C12 /* MPCFBFramework.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BE16A5C2C202676003D8C12 /* MPCFBFramework.xcframework */; };
+		2BE16A632C2026B4003D8C12 /* MPCFBFramework.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2BE16A5C2C202676003D8C12 /* MPCFBFramework.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2BE16A892C245D33003D8C12 /* FireblocksSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 2BE16A882C245D33003D8C12 /* FireblocksSDK */; };
 		2BEEF7C52BAC6EFD004AF6AB /* DeriveKeysHostingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD34A742B98B983008406D5 /* DeriveKeysHostingVC.swift */; };
 		2BEEF7C62BAC6F11004AF6AB /* DeriveKeysViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD34A762B98B995008406D5 /* DeriveKeysViewModel.swift */; };
 		2BEEF7C72BAC6F11004AF6AB /* DerivedAssetRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD34A7A2B98C129008406D5 /* DerivedAssetRow.swift */; };
@@ -590,8 +589,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				2B4EEB5B2BC7BED700BC5E70 /* FireblocksSDKDev.xcframework in Embed Frameworks */,
-				2B4EEB5D2BC7BED900BC5E70 /* MPCFBFramework.xcframework in Embed Frameworks */,
+				2BE16A612C2026B3003D8C12 /* FireblocksSDKDev.xcframework in Embed Frameworks */,
+				2BE16A632C2026B4003D8C12 /* MPCFBFramework.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -624,8 +623,6 @@
 		2B3E6C0E2ACDAB97000E91CF /* AddAssetsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddAssetsViewController.xib; sourceTree = "<group>"; };
 		2B3E6C102ACE96AC000E91CF /* AddAssetViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAssetViewCell.swift; sourceTree = "<group>"; };
 		2B3E6C122ACE96D7000E91CF /* AddAssetViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddAssetViewCell.xib; sourceTree = "<group>"; };
-		2B4EEB562BC7BEBE00BC5E70 /* MPCFBFramework.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = MPCFBFramework.xcframework; path = ../mpcfbframework/output/MPCFBFramework.xcframework; sourceTree = "<group>"; };
-		2B4EEB582BC7BECF00BC5E70 /* FireblocksSDKDev.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FireblocksSDKDev.xcframework; path = "../fireblocks-ios-sdk/iOS-FireblocksSDKDev/FireblocksSDKDev.xcframework"; sourceTree = "<group>"; };
 		2B558E832B47042D006212B2 /* UIHostingBridgeNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHostingBridgeNotifications.swift; sourceTree = "<group>"; };
 		2B558E852B47044C006212B2 /* PrepareForScanViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareForScanViewModel.swift; sourceTree = "<group>"; };
 		2B558E872B4704BA006212B2 /* PrepareForScanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareForScanView.swift; sourceTree = "<group>"; };
@@ -668,6 +665,8 @@
 		2BD34A7C2B99D265008406D5 /* DerivedKeyItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DerivedKeyItem.swift; sourceTree = "<group>"; };
 		2BD53A222B28735700756C4A /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		2BD785CA2B83703F00FEA796 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		2BE16A5C2C202676003D8C12 /* MPCFBFramework.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = MPCFBFramework.xcframework; path = ../mpcfbframework/output/MPCFBFramework.xcframework; sourceTree = "<group>"; };
+		2BE16A5E2C202687003D8C12 /* FireblocksSDKDev.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FireblocksSDKDev.xcframework; path = "../fireblocks-ios-sdk/iOS-FireblocksSDKDev/FireblocksSDKDev.xcframework"; sourceTree = "<group>"; };
 		2BF8EDB52B56673300046F0B /* EndFlowFeedbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndFlowFeedbackView.swift; sourceTree = "<group>"; };
 		2BF8EDB82B56676300046F0B /* EndFlowFeedbackViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndFlowFeedbackViewModel.swift; sourceTree = "<group>"; };
 		2BF8EDBA2B566E3C00046F0B /* EndFlowFeedbackHostingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndFlowFeedbackHostingVC.swift; sourceTree = "<group>"; };
@@ -812,7 +811,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B21D87F2BC56B5C003ADD29 /* GoogleAPIClientForREST_Drive in Frameworks */,
-				2B6218142C105B1800DDA9AF /* FireblocksSDK in Frameworks */,
 				2B21D8802BC56B5C003ADD29 /* FirebaseAuth in Frameworks */,
 				2B21D8812BC56B5C003ADD29 /* SDWebImageMapKit in Frameworks */,
 				2B21D8822BC56B5C003ADD29 /* (null) in Frameworks */,
@@ -837,12 +835,12 @@
 				2B7C47862B32DAAB001C804B /* GoogleSignInSwift in Frameworks */,
 				2B7C478E2B32DAC1001C804B /* SDWebImageMapKit in Frameworks */,
 				2B7C47842B32DAAB001C804B /* GoogleSignIn in Frameworks */,
-				2B4EEB5A2BC7BED700BC5E70 /* FireblocksSDKDev.xcframework in Frameworks */,
+				2BE16A602C2026B2003D8C12 /* FireblocksSDKDev.xcframework in Frameworks */,
 				2B7C47822B32DA8D001C804B /* GoogleAPIClientForREST_DriveLabels in Frameworks */,
 				2B7C47802B32DA8D001C804B /* GoogleAPIClientForREST_DriveActivity in Frameworks */,
 				2B7C478C2B32DAC1001C804B /* SDWebImage in Frameworks */,
 				2B7C477A2B32DA77001C804B /* FirebaseAuth in Frameworks */,
-				2B4EEB5C2BC7BED900BC5E70 /* MPCFBFramework.xcframework in Frameworks */,
+				2BE16A622C2026B4003D8C12 /* MPCFBFramework.xcframework in Frameworks */,
 				2B7C47882B32DAB7001C804B /* NVActivityIndicatorView in Frameworks */,
 				2B7C477C2B32DA78001C804B /* FirebaseAuthCombine-Community in Frameworks */,
 				2B7C477E2B32DA8D001C804B /* GoogleAPIClientForREST_Drive in Frameworks */,
@@ -854,7 +852,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				866A73C22A696A0F00E8E545 /* GoogleAPIClientForREST_Drive in Frameworks */,
-				2B6218122C105A6A00DDA9AF /* FireblocksSDK in Frameworks */,
+				2BE16A892C245D33003D8C12 /* FireblocksSDK in Frameworks */,
 				869A71392A3859C900653C8F /* FirebaseAuth in Frameworks */,
 				86A9971C2A6FAD0B00A6B60B /* SDWebImageMapKit in Frameworks */,
 				86AF7C4D2A430BF70026DF15 /* (null) in Frameworks */,
@@ -1482,8 +1480,8 @@
 		86859F462A384D8A0056E3C6 = {
 			isa = PBXGroup;
 			children = (
-				2B4EEB582BC7BECF00BC5E70 /* FireblocksSDKDev.xcframework */,
-				2B4EEB562BC7BEBE00BC5E70 /* MPCFBFramework.xcframework */,
+				2BE16A5E2C202687003D8C12 /* FireblocksSDKDev.xcframework */,
+				2BE16A5C2C202676003D8C12 /* MPCFBFramework.xcframework */,
 				2B769B9E2B1DFCC700557E97 /* NCW-sandboxRelease.entitlements */,
 				2B769B9D2B1DFCBA00557E97 /* NCW-sandboxDebug.entitlements */,
 				86859F512A384D8A0056E3C6 /* Fireblocks */,
@@ -1727,7 +1725,6 @@
 				2B21D7F22BC56B5C003ADD29 /* GoogleAPIClientForREST_Drive */,
 				2B21D7F42BC56B5C003ADD29 /* GoogleAPIClientForREST_DriveActivity */,
 				2B21D7F52BC56B5C003ADD29 /* GoogleAPIClientForREST_DriveLabels */,
-				2B6218132C105B1800DDA9AF /* FireblocksSDK */,
 			);
 			productName = Fireblocks;
 			productReference = 2B21D8BB2BC56B5C003ADD29 /* NCW-production.app */;
@@ -1790,7 +1787,7 @@
 				866A73C12A696A0F00E8E545 /* GoogleAPIClientForREST_Drive */,
 				866A73C32A696A0F00E8E545 /* GoogleAPIClientForREST_DriveActivity */,
 				866A73C52A696A0F00E8E545 /* GoogleAPIClientForREST_DriveLabels */,
-				2B6218112C105A6A00DDA9AF /* FireblocksSDK */,
+				2BE16A882C245D33003D8C12 /* FireblocksSDK */,
 			);
 			productName = Fireblocks;
 			productReference = 86859F4F2A384D8A0056E3C6 /* NCW-sandbox.app */;
@@ -1829,7 +1826,7 @@
 				86E835162A60331B003E98BE /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */,
 				86A997182A6FAD0A00A6B60B /* XCRemoteSwiftPackageReference "SDWebImage" */,
 				866A73C02A696A0F00E8E545 /* XCRemoteSwiftPackageReference "google-api-objectivec-client-for-rest" */,
-				2B6218102C105A6A00DDA9AF /* XCRemoteSwiftPackageReference "ncw-ios-sdk" */,
+				2BE16A872C245D33003D8C12 /* XCRemoteSwiftPackageReference "ncw-ios-sdk" */,
 			);
 			productRefGroup = 86859F502A384D8A0056E3C6 /* Products */;
 			projectDirPath = "";
@@ -2560,7 +2557,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.5.1;
+				MARKETING_VERSION = 2.6.0;
 				OTHER_SWIFT_FLAGS = "-DDEV";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fireblocks.ncw.demo.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2600,7 +2597,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.5.1;
+				MARKETING_VERSION = 2.6.0;
 				OTHER_SWIFT_FLAGS = "-DDEV";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fireblocks.ncw.demo.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2759,7 +2756,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.5.1;
+				MARKETING_VERSION = 2.6.0;
 				OTHER_SWIFT_FLAGS = "-DEC2 -DPROD";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fireblocks.ncw.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2806,7 +2803,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.5.1;
+				MARKETING_VERSION = 2.6.0;
 				OTHER_SWIFT_FLAGS = "-DEC2 -DPROD";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fireblocks.ncw.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2903,12 +2900,12 @@
 				kind = branch;
 			};
 		};
-		2B6218102C105A6A00DDA9AF /* XCRemoteSwiftPackageReference "ncw-ios-sdk" */ = {
+		2BE16A872C245D33003D8C12 /* XCRemoteSwiftPackageReference "ncw-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/fireblocks/ncw-ios-sdk.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.5.1;
+				kind = exactVersion;
+				version = "2.6.0-beta3";
 			};
 		};
 		866A73C02A696A0F00E8E545 /* XCRemoteSwiftPackageReference "google-api-objectivec-client-for-rest" */ = {
@@ -3009,16 +3006,6 @@
 			package = 2B21D7F32BC56B5C003ADD29 /* XCRemoteSwiftPackageReference "google-api-objectivec-client-for-rest" */;
 			productName = GoogleAPIClientForREST_DriveLabels;
 		};
-		2B6218112C105A6A00DDA9AF /* FireblocksSDK */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2B6218102C105A6A00DDA9AF /* XCRemoteSwiftPackageReference "ncw-ios-sdk" */;
-			productName = FireblocksSDK;
-		};
-		2B6218132C105B1800DDA9AF /* FireblocksSDK */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2B6218102C105A6A00DDA9AF /* XCRemoteSwiftPackageReference "ncw-ios-sdk" */;
-			productName = FireblocksSDK;
-		};
 		2B7C47792B32DA77001C804B /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 869A71372A3859C900653C8F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
@@ -3073,6 +3060,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 86A997182A6FAD0A00A6B60B /* XCRemoteSwiftPackageReference "SDWebImage" */;
 			productName = SDWebImageMapKit;
+		};
+		2BE16A882C245D33003D8C12 /* FireblocksSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2BE16A872C245D33003D8C12 /* XCRemoteSwiftPackageReference "ncw-ios-sdk" */;
+			productName = FireblocksSDK;
 		};
 		866A73C12A696A0F00E8E545 /* GoogleAPIClientForREST_Drive */ = {
 			isa = XCSwiftPackageProductDependency;
