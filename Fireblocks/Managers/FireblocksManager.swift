@@ -26,6 +26,8 @@ class FireblocksManager {
     private var deviceId: String = ""
     private var walletId: String = ""
     private var algoArray: [Algorithm] = [.MPC_ECDSA_SECP256K1, .MPC_EDDSA_ED25519]
+    private var broadcast_counter: [String: Int] = [:]
+    private var sendMPC_counter = 0
 
     private init() {
     }
@@ -226,7 +228,8 @@ class FireblocksManager {
         }
         
         do {
-            return try await instance.backupKeys(passphrase: passphrase, passphraseId: passphraseId)
+            let keys = try await instance.backupKeys(passphrase: passphrase, passphraseId: passphraseId)
+            return keys
         } catch {
             AppLoggerManager.shared.logger()?.log("FireblocksManager, backupKeys(): \(error).")
             return nil
@@ -239,7 +242,7 @@ class FireblocksManager {
                 deviceId: deviceId,
                 messageHandlerDelegate: self,
                 keyStorageDelegate: KeyStorageProvider(deviceId: self.deviceId),
-                fireblocksOptions: FireblocksOptions(env: EnvironmentConstants.env, eventHandlerDelegate: self, logLevel: .debug, logToConsole: true)
+                fireblocksOptions: FireblocksOptions(env: EnvironmentConstants.env, eventHandlerDelegate: self, logLevel: .info, logToConsole: true, reporting: ReportingOptions(enabled: true))
             )
         }
     }
@@ -280,6 +283,35 @@ extension FireblocksManager: PollingListenerDelegate {
 
 extension FireblocksManager: MessageHandlerDelegate {
     func handleOutgoingMessage(payload: String, response: @escaping (String?) -> (), error: @escaping (String?) -> ()) {
+//        print("broadcast_counter: \(broadcast_counter)")
+//        if payload.contains("broadcast_mpc_msg") {
+//            let arr1 = payload.components(separatedBy: "transaction")
+//            if arr1.count > 1 {
+//                let arr2 = arr1[1].components(separatedBy: "\"")
+//                if arr2.count > 2 {
+//                    let keyId = arr2[2]
+//                    print("TRANSACTION RETRY \(keyId)")
+//                    if !keyId.isEmpty {
+//                        var counter = broadcast_counter[keyId] ?? 0
+//                        if  counter < 3 {
+//                            broadcast_counter[keyId] = counter + 1
+//                            response("TEST RETRY")
+//                            return
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//        
+//        if payload.contains("send_mpc_public_keys") {
+//            if sendMPC_counter < 3 {
+//                sendMPC_counter += 1
+//                error("TEST ERROR")
+//                return
+//            }
+//        }
+
+        
         Task {
             do {
                 let res = try await SessionManager.shared.rpc(

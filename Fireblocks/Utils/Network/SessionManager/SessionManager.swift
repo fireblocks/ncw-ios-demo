@@ -359,25 +359,11 @@ class SessionManager: ObservableObject {
                 return data
             } else {
                 print("SessionManager Error statusCode: \(statusCode)")
-                if numberOfRetries <= 0 {
-                    print("SessionManager Error no more retries")
-                    throw SessionManager.error
-                }
-
-                try? await Task.sleep(nanoseconds: 2 * 1_000_000_000) // 1 second
-                
-                return try await sendRequest(url: url, httpMethod: httpMethod, timeout: timeout, numberOfRetries: numberOfRetries - 1, message: message, body: body, skipLogs: skipLogs)
+                throw SessionManager.error
             }
         } else {
             print("SessionManager Error")
-            if numberOfRetries <= 0 {
-                print("SessionManager Error no more retries")
-                throw SessionManager.error
-            }
-
-            try? await Task.sleep(nanoseconds: 2 * 1_000_000_000) // 1 second
-            
-            return try await sendRequest(url: url, httpMethod: httpMethod, timeout: timeout, numberOfRetries: numberOfRetries - 1, message: message, body: body, skipLogs: skipLogs)
+            throw SessionManager.error
         }
         
     }

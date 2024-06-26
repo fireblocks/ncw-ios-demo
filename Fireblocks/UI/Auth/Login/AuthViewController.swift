@@ -56,7 +56,7 @@ class AuthViewController: UIViewController {
         let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true) // get the Documents folder path
         
         let pathForDocumentDir = documentsPath[0]
-        print("pathForDocumentDir: \(pathForDocumentDir)")
+        print("pathForDocumentDir:\n\(pathForDocumentDir)")
 
     }
 
