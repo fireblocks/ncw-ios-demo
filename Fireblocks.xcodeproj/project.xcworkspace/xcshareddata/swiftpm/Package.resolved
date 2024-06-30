@@ -1,5 +1,5 @@
 {
-  "originHash" : "be9080ca6ab706696c5601f2cfd5257cc97966ff2413a3e9f65f4ab709d6d85e",
+  "originHash" : "d644661adbcc5b9c340d62ce927bb762c51ed5ae8f9f097269b43b1db6258384",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -137,11 +137,11 @@
       }
     },
     {
-      "identity" : "ncw-ios-sdk",
+      "identity" : "ncw-ios-sdk-dev",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/fireblocks/ncw-ios-sdk.git",
+      "location" : "git@github.com:fireblocks/ncw-ios-sdk-dev.git",
       "state" : {
-        "revision" : "cd6b945d84e3242e5515ad4c6b278df742b996fc",
+        "revision" : "5eba5309c92848d90858b845916869bd15bc7e55",
         "version" : "2.6.0"
       }
     },
