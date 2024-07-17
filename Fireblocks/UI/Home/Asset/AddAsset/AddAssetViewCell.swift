@@ -22,7 +22,7 @@ class AddAssetViewCell: UITableViewCell {
 //MARK: - LIFECYCLE Functions
     override func awakeFromNib() {
         super.awakeFromNib()
-        ConfigCellView()
+        configCellView()
     }
 
 //    override func setSelected(_ selected: Bool, animated: Bool) {
@@ -39,7 +39,7 @@ class AddAssetViewCell: UITableViewCell {
     }
     
 //MARK: - FUNCTIONS
-    private func ConfigCellView(){
+    func configCellView(){
         cellBackground.layer.cornerRadius = 16
         imageBackground.layer.cornerRadius = 9
         assetBlockchainBadgeBackground.layer.cornerRadius = assetBlockchainBadgeBackground.frame.height / 2
@@ -47,17 +47,31 @@ class AddAssetViewCell: UITableViewCell {
     
     func configCellWith(assetToAdd: AssetToAdd, isBlockchainHidden: Bool = false) {
         let asset = assetToAdd.asset
+        configAssetView(asset: asset, isBlockchainHidden: isBlockchainHidden)
+        cellBackground.backgroundColor = assetToAdd.isSelected ? AssetsColors.gray2.getColor() : .clear
+
+    }
+    
+    func configAssetView(asset: Asset, isBlockchainHidden: Bool = false) {
         if let iconURL = asset.iconUrl {
             assetImage.sd_setImage(with: URL(string: iconURL), placeholderImage: asset.image)
         } else {
             assetImage.image = asset.image
         }
+        
+        imageBackground.backgroundColor = isBackgroundTransparent(asset: asset) ? .white : .clear
+
         assetName.text = asset.name
         assetAbbreviation.text = asset.symbol
         assetBlockchainBadge.text = asset.blockchain
         assetBlockchainBadge.isHidden = isBlockchainHidden
         assetBlockchainBadgeBackground.isHidden = isBlockchainHidden
-        cellBackground.backgroundColor = assetToAdd.isSelected ? AssetsColors.gray2.getColor() : .clear
-
     }
+
+    private func isBackgroundTransparent(asset: Asset) -> Bool {
+        if asset.symbol.lowercased().hasPrefix("algo") { return true }
+        
+        return false
+    }
+
 }
