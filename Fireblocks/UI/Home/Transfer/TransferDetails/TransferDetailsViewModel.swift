@@ -25,6 +25,11 @@ class TransferDetailsViewModel {
     var isPending: Bool {
         return transferInfo?.status == .PendingSignature
     }
+    
+    var isCompleted: Bool {
+        return transferInfo?.status == .Completed
+    }
+
 
     init(transferInfo: TransferInfo? = nil, hideBackBarButton: Bool) {
         self.transferInfo = transferInfo

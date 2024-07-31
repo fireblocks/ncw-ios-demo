@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 protocol ApproveViewModelDelegate: AnyObject {
     func transactionStatusChanged(isApproved: Bool)
@@ -18,6 +19,27 @@ final class ApproveViewModel {
     let repository = ApproveRepository()
     weak var delegate: ApproveViewModelDelegate?
     
+    var transferInfo: TransferInfo?
+    weak var transferDelegate: TransferDetailsViewModelDelegate?
+    private var cancellable = Set<AnyCancellable>()
+
+    func setDelegate(delegate: TransferDetailsViewModelDelegate?) {
+        self.transferDelegate = delegate
+        listenToTransferChanges()
+    }
+
+    private func listenToTransferChanges() {
+        TransfersViewModel.shared.$transfers.receive(on: RunLoop.main)
+            .sink { [weak self] transfers in
+                if let self {
+                    if let transactionInfo = transfers.first(where: {$0.transactionID == self.transaction.txId}) {
+                        self.transferInfo = transactionInfo
+                        self.transferDelegate?.transferDidUpdate()
+                    }
+                }
+            }.store(in: &cancellable)
+    }
+
     func getTransaction() -> Transaction {
         return transaction
     }

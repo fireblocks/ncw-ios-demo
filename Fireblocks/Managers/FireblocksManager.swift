@@ -26,6 +26,7 @@ class FireblocksManager {
     private var deviceId: String = ""
     private var walletId: String = ""
     private var algoArray: [Algorithm] = [.MPC_ECDSA_SECP256K1, .MPC_EDDSA_ED25519]
+//    private var algoArray: [Algorithm] = [.MPC_EDDSA_ED25519]
     private var broadcast_counter: [String: Int] = [:]
     private var sendMPC_counter = 0
 
@@ -318,6 +319,13 @@ extension FireblocksManager: MessageHandlerDelegate {
                     deviceId: deviceId,
                     message: payload
                 )
+//                if let res, res.contains("STORE_EDDSA_SIGNING_COMMITMENTS") {
+//                    DispatchQueue.main.asyncAfter(deadline: .now() + 20.0) {
+//                        response(res)
+//                    }
+//                    return
+//                }
+
                 response(res)
             } catch let err {
                 error(err.localizedDescription)

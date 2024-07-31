@@ -19,12 +19,16 @@ class ApproveViewController: UIViewController {
     @IBOutlet weak var totalPrice: UILabel!
     @IBOutlet weak var approveButton: AppActionBotton!
     @IBOutlet weak var stopButton: AppActionBotton!
+    @IBOutlet weak var statusBackground: UIView!
+    @IBOutlet weak var statusLabel: UILabel!
+    @IBOutlet weak var txId: UILabel!
 
     let viewModel = ApproveViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel.delegate = self
+        viewModel.setDelegate(delegate: self)
         configView()
         configButtons()
     }
@@ -48,7 +52,11 @@ class ApproveViewController: UIViewController {
         let buttonImage = AssetsIcons.checkMark.getIcon()
         approveButton.config(title: "Approve", image: buttonImage, style: .Primary)
         stopButton.config(title: "Stop", image: buttonImage, style: .Secondary)
-
+        statusBackground.layer.cornerRadius = 6
+        statusLabel.text = viewModel.transferInfo?.status.rawValue
+        statusLabel.textColor = viewModel.transferInfo?.status.color
+        statusBackground.addBorder(color: viewModel.transferInfo?.status.color ?? UIColor.clear, width: 0.5)
+        txId.text = viewModel.transferInfo?.transactionID
     }
     
     @objc private func handleCloseTap() {
@@ -93,7 +101,7 @@ class ApproveViewController: UIViewController {
 //MARK: - UserActionDelegate
 extension ApproveViewController: UserActionDelegate {
     func confirmButtonClicked() {
-        self.showToolbar(show: false)
+//        self.showToolbar(show: false)
         viewModel.cancelTransaction()
         showActivityIndicator()
     }
@@ -146,4 +154,16 @@ extension ApproveViewController: ApproveViewModelDelegate {
     @objc func goHome() {
         self.navigationController?.popToRootViewController(animated: true)
     }
+}
+
+extension ApproveViewController: TransferDetailsViewModelDelegate {
+    func transferDidUpdate() {
+        configButtons()
+    }
+    
+    func transactionCancelStatusChanged(isCanceled: Bool) {
+    
+    }
+    
+    
 }
