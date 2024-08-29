@@ -214,6 +214,7 @@ extension MpcKeysViewController: MpcKeysViewModelDelegate {
     
     func onAddingDevice(success: Bool) {
         DispatchQueue.main.async {
+            NotificationCenter.default.post(name: Notification.Name("onAddingDevice"), object: nil, userInfo: nil)
             if success {
                 let vc = EndFlowFeedbackHostingVC(icon: AssetsIcons.addDeviceSucceeded.rawValue, title: LocalizableStrings.addDeviceAdded, buttonTitle: LocalizableStrings.goHome, actionButton:  {
                     self.navigateNextScreen()

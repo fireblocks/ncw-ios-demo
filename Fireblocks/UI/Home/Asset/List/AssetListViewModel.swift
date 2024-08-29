@@ -10,7 +10,9 @@ import Combine
 
 protocol AssetListViewModelDelegate: AnyObject {
     func refreshData()
+    func refreshSection(section: Int)
     func gotError()
+    func navigateToNextScreen(with asset: Asset)
 }
 
 class AssetListViewModel {
@@ -20,6 +22,7 @@ class AssetListViewModel {
     private let repository = AssetListRepository()
     private var task: Task<Void, Never>?
     var cancellable = Set<AnyCancellable>()
+    var chooseAssetFlowType: ChooseAssetFlowType = .send
 
     static let shared = AssetListViewModel()
 
@@ -48,9 +51,18 @@ class AssetListViewModel {
         task = Task {
             do {
                 let assetResponse = try await repository.getAssets()
-                assetsSummary = assetResponse.map({$0.value})
-                assets = assetsSummary.filter({$0.asset != nil}).map({$0.asset!})
-                fetchBalance()
+                DispatchQueue.main.async {
+                    self.assetsSummary = assetResponse.map({$0.value})
+                    let newAssets = self.assetsSummary.filter({$0.asset != nil}).map({$0.asset!})
+                    var tempAssets: [Asset] = []
+                    for asset in newAssets {
+                        var newAsset = asset
+                        newAsset.isExpanded = self.assets.first(where: {$0 == newAsset})?.isExpanded ?? false
+                        tempAssets.append(newAsset)
+                    }
+                    self.assets = tempAssets
+                    self.fetchBalance()
+                }
             } catch URLError.cancelled {
                 print("URLError.cancelled")
             } catch let error as NSError {
@@ -61,6 +73,13 @@ class AssetListViewModel {
                     delegate?.gotError()
                 }
             }
+        }
+    }
+    
+    func toggleAssetExpanded(asset: Asset, section: Int) {
+        if let index = assets.firstIndex(where: {$0 == asset}) {
+            assets[index].isExpanded?.toggle()
+            delegate?.refreshSection(section: section)
         }
     }
     
@@ -99,7 +118,7 @@ class AssetListViewModel {
             }
         }
         
-        return "$\(balanceSum)"
+        return "$\(balanceSum.formatFractions())"
     }
     
     func getIsButtonsEnabled() -> Bool {
@@ -109,4 +128,22 @@ class AssetListViewModel {
     func getAsset(by assetId: String) -> Asset? {
         return assets.first(where: {$0.id == assetId})
     }
+    
+    func didTapSend(index: Int) {
+        if assets.count > index {
+            let asset = getAssets()[index]
+            self.chooseAssetFlowType = .send
+            delegate?.navigateToNextScreen(with: asset)
+        }
+    }
+    
+    func didTapReceive(index: Int) {
+        if assets.count > index {
+            let asset = getAssets()[index]
+            self.chooseAssetFlowType = .receive
+            delegate?.navigateToNextScreen(with: asset)
+        }
+    }
+
+    
 }

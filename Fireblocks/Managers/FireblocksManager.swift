@@ -29,6 +29,7 @@ class FireblocksManager {
 //    private var algoArray: [Algorithm] = [.MPC_EDDSA_ED25519]
     private var broadcast_counter: [String: Int] = [:]
     private var sendMPC_counter = 0
+    private var didTimeout = 0
 
     private init() {
     }
@@ -181,7 +182,6 @@ class FireblocksManager {
         
         do {
             return try await instance.takeover()
-//            return try await instance.exportFullKeys(chainCode: "defd6ffedafd9ab5d81a39bc1dfdba1b4e2efc307b45a39fec8b89cb269f8632", cloudKeyShares: ["03c62a71-146d-40d1-a0f7-b5ba0c0e417a": Set(["953e396a7e76c0c26820c1dfd894575f4c580c00e4b648341c32ea01d0ecd072"]), "e99deb75-03e3-42b3-bdf2-e6ae136b2045": Set(["050a88001782f6d3ec5935c1a55bebe014d48bc66cd6960fd07b2070c0a80dc4"])])
         } catch {
             AppLoggerManager.shared.logger()?.log("FireblocksManager, Takeover() can't takeover keys: \(error).")
             return nil
@@ -284,6 +284,8 @@ extension FireblocksManager: PollingListenerDelegate {
 
 extension FireblocksManager: MessageHandlerDelegate {
     func handleOutgoingMessage(payload: String, response: @escaping (String?) -> (), error: @escaping (String?) -> ()) {
+
+//  **** SIMULATE TIMEOUT ****
 //        print("broadcast_counter: \(broadcast_counter)")
 //        if payload.contains("broadcast_mpc_msg") {
 //            let arr1 = payload.components(separatedBy: "transaction")
@@ -311,26 +313,38 @@ extension FireblocksManager: MessageHandlerDelegate {
 //                return
 //            }
 //        }
-
-        
-        Task {
-            do {
-                let res = try await SessionManager.shared.rpc(
-                    deviceId: deviceId,
-                    message: payload
-                )
-//                if let res, res.contains("STORE_EDDSA_SIGNING_COMMITMENTS") {
+//
+//        if didTimeout == 0, payload.contains("PROOF") {
+//            didTimeout += 1
+//            Task {
+//                do {
+//                    let res = try? await SessionManager.shared.rpc(
+//                        deviceId: deviceId,
+//                        message: payload
+//                    )
 //                    DispatchQueue.main.asyncAfter(deadline: .now() + 20.0) {
 //                        response(res)
 //                    }
-//                    return
+//                } catch let err {
+//                    error(err.localizedDescription)
 //                }
-
-                response(res)
-            } catch let err {
-                error(err.localizedDescription)
+//            }
+//        } else {
+//            didTimeout = 0
+            Task {
+                do {
+                    let res = try await SessionManager.shared.rpc(
+                        deviceId: deviceId,
+                        message: payload
+                    )
+                    response(res)
+                } catch let err {
+                    error(err.localizedDescription)
+                }
             }
-        }
+
+//        }
+        
     }
         
     private func castByteArrayToString(_ data: Any) -> String? {
