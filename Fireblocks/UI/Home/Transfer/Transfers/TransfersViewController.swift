@@ -73,6 +73,10 @@ extension TransfersViewController: UITableViewDataSource {
 
         return cell
     } 
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 96
+    }
 }
 
 //MARK: - UITableViewDelegate
@@ -85,12 +89,14 @@ extension TransfersViewController: UITableViewDelegate {
                 UIView.animate(withDuration: 0.3) {
                     cell.setSelected(isSelected: false)
                 }
+                let vc = TransferDetailsViewController(withTransfer: self.viewModel.getTransferFor(index: indexPath.row), hideBackBarButton: false)
+                vc.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(vc, animated: true)
+
             })
+
         }
         
-        let vc = TransferDetailsViewController(withTransfer: viewModel.getTransferFor(index: indexPath.row), hideBackBarButton: false)
-        vc.hidesBottomBarWhenPushed = true
-        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 

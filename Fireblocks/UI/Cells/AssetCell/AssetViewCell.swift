@@ -32,9 +32,9 @@ class AssetViewCell: AddAssetViewCell {
         configCellView()
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
+//    override func setSelected(_ selected: Bool, animated: Bool) {
+//        super.setSelected(selected, animated: animated)
+//    }
     
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -91,6 +91,14 @@ class AssetViewCell: AddAssetViewCell {
         delegate?.didTapReceive(index: sender.tag)
     }
 
+    func setSelected(isSelected: Bool){
+        var backgroundColor: UIColor? = AssetsColors.gray1.getColor()
+        if isSelected {
+            backgroundColor = AssetsColors.primaryBlue.getColor().withAlphaComponent(0.4)
+        }
+        contentView.backgroundColor = backgroundColor
+        contentView.backgroundColor = backgroundColor
+    }
 
 
 }

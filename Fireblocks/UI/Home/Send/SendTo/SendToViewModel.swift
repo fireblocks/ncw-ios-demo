@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 protocol SendToViewModelDelegate: AnyObject {
     func addressIsValid(isValid: Bool)
@@ -15,6 +16,42 @@ class SendToViewModel {
     weak var delegate: SendToViewModelDelegate?
     var address: String?
     var transaction: Transaction?
+    var transfers: [TransferInfo] = []
+    
+    var cancellable = Set<AnyCancellable>()
+
+    init() {
+        self.transfers = TransfersViewModel.shared.transfers
+        self.listenToTransferChanges()
+    }
+    
+    deinit {
+        cancellable.removeAll()
+    }
+    
+    private func listenToTransferChanges() {
+        TransfersViewModel.shared.$transfers.receive(on: RunLoop.main)
+            .sink { [weak self] transfers in
+                if let self {
+                    self.filterTransaction(transfers: transfers)
+                }
+            }.store(in: &cancellable)
+    }
+    
+    var sortedTransfer: [TransferInfo] {
+        return transfers.filter({$0.lastUpdated != nil}).sorted(by: {$0.lastUpdated! > $1.lastUpdated!})
+    }
+
+    func getTransferFor(index: Int) -> TransferInfo {
+        return sortedTransfer[index]
+    }
+
+    private func filterTransaction(transfers: [TransferInfo]) {
+        guard let transaction = transaction else { return }
+        let asset = transaction.asset
+        self.transfers = transfers.filter({$0.assetId == asset.id})
+
+    }
     
     func getAmountToSendAsString() -> String {
         guard let transaction = transaction else { return "" }

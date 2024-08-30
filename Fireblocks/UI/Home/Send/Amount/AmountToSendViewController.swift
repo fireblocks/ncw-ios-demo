@@ -21,7 +21,8 @@ class AmountToSendViewController: UIViewController {
     @IBOutlet weak var errorMessage: UILabel!
     @IBOutlet var numberPadKeys: [UIButton]!
     @IBOutlet weak var continueButton: AppActionBotton!
-    
+    @IBOutlet weak var receiveButton: AppActionBotton!
+
     var viewModel = AmountToSendViewModel()
     
     
@@ -34,12 +35,13 @@ class AmountToSendViewController: UIViewController {
     }
     
     private func configView(){
-        errorMessage.isHidden = true
+        errorMessage.alpha = 0
+        errorMessage.text = " "
         amountInput.text = "0 \(viewModel.getAsset().symbol)"
         
-        for key in numberPadKeys {
-            key.layer.cornerRadius = 16
-        }
+//        for key in numberPadKeys {
+//            key.layer.cornerRadius = 16
+//        }
         
         configAssetView()
         configButtons()
@@ -57,14 +59,18 @@ class AmountToSendViewController: UIViewController {
         let widthConstraint = assetCellView.widthAnchor.constraint(equalTo: assetView.widthAnchor)
         let heightConstraint = assetCellView.heightAnchor.constraint(equalTo: assetView.heightAnchor)
         NSLayoutConstraint.activate([horizontalConstraint, verticalConstraint, widthConstraint, heightConstraint])
+        assetCellView.contentView.backgroundColor = .clear
     }
     
     private func configButtons(){
         navigationItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "close"), style: .plain, target: self, action: #selector(handleCloseTap))]
         self.navigationItem.title = "Amount"
 
-        continueButton.config(title: "Continue", style: .Primary)
+        continueButton.config(title: "Send", image: AssetsIcons.send.getIcon(), style: .Primary)
         continueButton.isEnabled = false
+        receiveButton.config(title: "Receive", image: AssetsIcons.receive.getIcon(), style: .Secondary)
+        receiveButton.isEnabled = true
+
     }
     
     @objc func handleCloseTap() {
@@ -93,31 +99,44 @@ class AmountToSendViewController: UIViewController {
         navigateToAddReceiverScreen()
     }
     
+    @IBAction func receiveButtonTapped(_ sender: AppActionBotton) {
+        navigateToReceiverScreen()
+    }
+    
     private func navigateToAddReceiverScreen(){
         let vc = SendToViewController(nibName: "SendToViewController", bundle: nil)
         vc.viewModel.transaction = viewModel.createTransaction()
         vc.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(vc, animated: true)
     }
+    
+    private func navigateToReceiverScreen(){
+        let vc = ReceiveViewController(nibName: "ReceiveViewController", bundle: nil)
+        vc.viewModel.asset = viewModel.asset
+        vc.viewModel.asset.isExpanded = false
+        vc.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+
 }
 
 //MARK: - AmountToSendViewModelDelegate
 extension AmountToSendViewController: AmountToSendViewModelDelegate {
     
+    @MainActor
     func amountAndSumChanged(amount: String, price: String) {
-        DispatchQueue.main.async { [weak self] in
-            guard let self = self else { return }
+//        UIView.animate(withDuration: 0.3) {
             self.amountInput.text = amount
             self.amountPrice.text = price
-        }
+//        }
     }
     
-    func isAmountInputValid(isValid: Bool, errorMessage: String?) {
-        DispatchQueue.main.async { [weak self] in
-            guard let self = self else { return }
-            self.continueButton.isEnabled = isValid
-            self.errorMessage.isHidden = isValid
-            self.errorMessage.text = errorMessage
+    @MainActor
+    func isAmountInputValid(isValid: Bool, errorMessage: String?, amount: Double) {
+        UIView.animate(withDuration: 0.3) {
+            self.continueButton.isEnabled = isValid && amount != 0
+            self.errorMessage.alpha = isValid ? 0 : 1
+            self.errorMessage.text = errorMessage != nil ? errorMessage! : " "
         }
     }
 }

@@ -9,7 +9,7 @@ import Foundation
 
 protocol AmountToSendViewModelDelegate: AnyObject {
     func amountAndSumChanged(amount: String, price: String)
-    func isAmountInputValid(isValid: Bool, errorMessage: String?)
+    func isAmountInputValid(isValid: Bool, errorMessage: String?, amount: Double)
 }
 
 class AmountToSendViewModel {
@@ -57,7 +57,7 @@ class AmountToSendViewModel {
     func eraseNumber(){
         if assetAmountString.count == 1 {
             assetAmountString = "0"
-            delegate?.isAmountInputValid(isValid: false, errorMessage: nil)
+            delegate?.isAmountInputValid(isValid: true, errorMessage: nil, amount: 0)
         } else {
             if let last = assetAmountString.last, last == "." {
                 isDecimalEntered = false
@@ -92,14 +92,17 @@ class AmountToSendViewModel {
     
     private func checkAmountIsValid(){
         if let balance = asset.balance {
-            let isValid = assetAmount <= balance && assetAmount != 0
-            updateUIIsAmountValid(isValid: isValid)
+            if assetAmount == 0 {
+                updateUIIsAmountValid(isValid: true, amount: 0)
+                return
+            }
+            updateUIIsAmountValid(isValid: assetAmount <= balance, amount: assetAmount)
         }
     }
     
-    private func updateUIIsAmountValid(isValid: Bool){
+    private func updateUIIsAmountValid(isValid: Bool, amount: Double){
         let errorMessage = isValid ? nil : "You have \(asset.balance ?? 0.0) \(asset.symbol) available."
-        delegate?.isAmountInputValid(isValid: isValid, errorMessage: errorMessage)
+        delegate?.isAmountInputValid(isValid: isValid, errorMessage: errorMessage, amount: amount)
     }
     
     private func updateUI(){

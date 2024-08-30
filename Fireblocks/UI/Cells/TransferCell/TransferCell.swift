@@ -19,8 +19,13 @@ class TransferCell: UITableViewCell {
     @IBOutlet weak var amount: UILabel!
     @IBOutlet weak var price: UILabel!
     @IBOutlet weak var showDetailsButton: UIButton!
+    @IBOutlet weak var receiverAddressTitle: UILabel!
+    @IBOutlet weak var receiverAddress: UILabel!
+    @IBOutlet weak var addressContainer: UIView!
+    @IBOutlet weak var addressContainerHC: NSLayoutConstraint!
     
-//MARK: - LIFECYCLE functions
+    @IBOutlet weak var cellBackgroundHC: NSLayoutConstraint!
+    //MARK: - LIFECYCLE functions
     override func awakeFromNib() {
         super.awakeFromNib()
         configCellView()
@@ -38,13 +43,26 @@ class TransferCell: UITableViewCell {
         cellBackground.layer.cornerRadius = 16
     }
     
-    func configCell(with transfer: TransferInfo){
+    func configCell(with transfer: TransferInfo, isExpanded: Bool = false){
         transferTitle.text = transfer.getTransferTitle(walletId: FireblocksManager.shared.getWalletId())
         assetBlockchainName.text = transfer.blockChainName
         statusLabel.text = transfer.status.rawValue
         amount.text = "\(transfer.amount.formatFractions(fractionDigits: 6))"
         price.text = transfer.getPriceString()
         
+        if isExpanded {
+            addressContainerHC.constant = 85
+            cellBackgroundHC.constant = 181
+            addressContainer.layoutIfNeeded()
+            cellBackground.layoutIfNeeded()
+            self.contentView.layoutIfNeeded()
+            showDetailsButton.setImage(AssetsIcons.copy.getIcon(), for: .normal)
+            showDetailsButton.isUserInteractionEnabled = false
+        }
+        
+        receiverAddressTitle.text = transfer.getReceiverTitle(walletId: FireblocksManager.shared.getWalletId())
+        receiverAddress.text = transfer.getReceiverAddress(walletId: FireblocksManager.shared.getWalletId())
+
         updateStatusLabel(with: transfer.status.color)
         setSelected(isSelected: false)
     }
@@ -73,5 +91,7 @@ class TransferCell: UITableViewCell {
         transferTitle.textColor = textColor
         amount.textColor = textColor
         price.textColor = subTextColor
+        receiverAddress.textColor = subTextColor
+        receiverAddressTitle.textColor = subTextColor
     }
 }

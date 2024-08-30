@@ -35,6 +35,7 @@ class AssetListViewModel {
     
     deinit {
         task?.cancel()
+        cancellable.removeAll()
     }
     
     func listenToTransferChanges() {

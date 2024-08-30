@@ -142,9 +142,28 @@ extension AssetListViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if viewModel.getAssets().count > (indexPath.section - 1) {
-            self.viewModel.toggleAssetExpanded(asset: viewModel.getAssets()[indexPath.section - 1], section: indexPath.section)
+
+        guard let cell = tableView.cellForRow(at: indexPath) as? AssetViewCell else {
+            return
         }
+        
+        if indexPath.section == 0 {
+            return
+        }
+
+        UIView.animate(withDuration: 0.3, animations: {
+            cell.setSelected(isSelected: true)
+        },completion: { finished in
+            UIView.animate(withDuration: 0.3) {
+                cell.setSelected(isSelected: false)
+                self.viewModel.didTapSend(index: indexPath.section - 1)
+            }
+
+        })
+
+//        if viewModel.getAssets().count > (indexPath.section - 1) {
+//            self.viewModel.toggleAssetExpanded(asset: viewModel.getAssets()[indexPath.section - 1], section: indexPath.section)
+//        }
     }
         
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -157,6 +176,33 @@ extension AssetListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return cellHeight
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        if indexPath.section == 0 {
+            return nil
+        }
+
+        if viewModel.getAssets().count > (indexPath.section - 1) {
+            let asset = viewModel.getAssets()[indexPath.section - 1]
+            let receiveAction = UIContextualAction(style: .normal, title: nil, handler: {
+                    (action, sourceView, completionHandler) in
+                
+                self.viewModel.didTapReceive(index: indexPath.section - 1)
+
+                completionHandler(true)
+            })
+            
+            receiveAction.image = AssetsIcons.scanQrCode.getIcon()
+            receiveAction.backgroundColor = .orange
+                                                   
+            let swipeConfiguration = UISwipeActionsConfiguration(actions: [receiveAction])
+            return swipeConfiguration
+
+        }
+        
+        return nil
+
     }
 }
 
