@@ -10,6 +10,7 @@ import Combine
 
 protocol SendToViewModelDelegate: AnyObject {
     func addressIsValid(isValid: Bool)
+    func refreshData()
 }
 
 class SendToViewModel {
@@ -50,7 +51,7 @@ class SendToViewModel {
         guard let transaction = transaction else { return }
         let asset = transaction.asset
         self.transfers = transfers.filter({$0.assetId == asset.id})
-
+        self.delegate?.refreshData()
     }
     
     func getAmountToSendAsString() -> String {

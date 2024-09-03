@@ -66,7 +66,7 @@
                                         <buttonConfiguration key="configuration" style="plain" image="arrow_right"/>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y3e-JS-7L7">
-                                        <rect key="frame" x="0.0" y="19.333333333333332" width="312" height="46.666666666666671"/>
+                                        <rect key="frame" x="0.0" y="17.333333333333332" width="312" height="50.666666666666671"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wn6-Uq-Stb">
                                                 <rect key="frame" x="0.0" y="0.0" width="31.666666666666668" height="19.333333333333332"/>
@@ -100,7 +100,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M27-tu-2yl" userLabel="StatusLabel">
-                                                <rect key="frame" x="0.0" y="23.333333333333336" width="74.333333333333329" height="23.333333333333336"/>
+                                                <rect key="frame" x="0.0" y="27.333333333333336" width="74.333333333333329" height="23.333333333333336"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ethereum" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bBI-Si-PKf" userLabel="assetBlockchainName">
                                                         <rect key="frame" x="10.000000000000004" y="4.3333333333333366" width="54.333333333333343" height="14.333333333333336"/>
@@ -122,7 +122,7 @@
                                         <constraints>
                                             <constraint firstItem="5Pa-rj-iqx" firstAttribute="leading" secondItem="wn6-Uq-Stb" secondAttribute="trailing" constant="4" id="5bw-9S-igb"/>
                                             <constraint firstItem="M27-tu-2yl" firstAttribute="leading" secondItem="Y3e-JS-7L7" secondAttribute="leading" id="6ui-2c-IgU"/>
-                                            <constraint firstItem="M27-tu-2yl" firstAttribute="top" secondItem="wn6-Uq-Stb" secondAttribute="bottom" constant="4" id="Mep-ln-gUj"/>
+                                            <constraint firstItem="M27-tu-2yl" firstAttribute="top" secondItem="wn6-Uq-Stb" secondAttribute="bottom" constant="8" id="Mep-ln-gUj"/>
                                             <constraint firstItem="5Pa-rj-iqx" firstAttribute="centerY" secondItem="wn6-Uq-Stb" secondAttribute="centerY" id="aSR-Od-PWp"/>
                                             <constraint firstAttribute="bottom" secondItem="M27-tu-2yl" secondAttribute="bottom" id="hqa-Ro-NyA"/>
                                             <constraint firstItem="wn6-Uq-Stb" firstAttribute="top" secondItem="Y3e-JS-7L7" secondAttribute="top" id="lBL-Ow-FsN"/>

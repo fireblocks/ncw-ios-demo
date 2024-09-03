@@ -148,6 +148,10 @@ extension SendToViewController: SendToViewModelDelegate {
             self?.continueButton.isEnabled = isValid
         }
     }
+    
+    func refreshData() {
+        self.tableView.reloadData()
+    }
 }
 
 extension SendToViewController: UITableViewDelegate, UITableViewDataSource {

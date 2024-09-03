@@ -106,7 +106,7 @@ class AmountToSendViewModel {
     }
     
     private func updateUI(){
-        delegate?.amountAndSumChanged(amount: "\(assetAmountString) \(asset.symbol)", price: "$\(calculatedPrice)")
+        delegate?.amountAndSumChanged(amount: "\(assetAmountString) \(asset.symbol)", price: "$\(calculatedPrice.formatFractions(fractionDigits: 2))")
     }
     
     func createTransaction() -> Transaction {

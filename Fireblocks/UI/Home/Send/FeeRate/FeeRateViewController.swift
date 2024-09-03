@@ -27,6 +27,7 @@ class FeeRateViewController: UIViewController {
         super.viewDidLoad()
         configButtons()
         viewModel.delegate = self
+        showActivityIndicator()
         viewModel.fetchFeeRates()
     }
     
@@ -122,6 +123,7 @@ extension FeeRateViewController: FeeRateViewModelDelegate {
     func refreshData() {
         DispatchQueue.main.async { [weak self] in
             if let self {
+                self.hideActivityIndicator()
                 self.tableView.reloadData()
                 self.createTransactionButton.isEnabled = self.viewModel.isContinueButtonEnabled()
             }

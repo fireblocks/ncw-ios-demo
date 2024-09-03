@@ -10,7 +10,7 @@ import Foundation
 extension Double {
     func formatFractions(fractionDigits: Int = 6) -> Double {
         let numberFormatter = NumberFormatter()
-        numberFormatter.numberStyle = .decimal
+        numberFormatter.numberStyle = .none
         numberFormatter.maximumFractionDigits = fractionDigits
         
         if let formattedString = numberFormatter.string(from: NSNumber(value: self)) {
