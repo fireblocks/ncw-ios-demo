@@ -49,8 +49,14 @@ class AmountToSendViewController: UIViewController {
         let cellNib = UINib(nibName: "AssetViewCell", bundle: nil)
         let assetCellView = cellNib.instantiate(withOwner: nil, options: nil).first as! AssetViewCell
         assetCellView.frame = assetView.bounds
-        assetCellView.configCellWith(asset: viewModel.getAsset())
+        assetCellView.translatesAutoresizingMaskIntoConstraints = false
+        assetCellView.configTransparentCellWith(asset: viewModel.getAsset())
         assetView.addSubview(assetCellView)
+        let horizontalConstraint = assetCellView.centerXAnchor.constraint(equalTo: assetView.centerXAnchor)
+        let verticalConstraint = assetCellView.centerYAnchor.constraint(equalTo: assetView.centerYAnchor)
+        let widthConstraint = assetCellView.widthAnchor.constraint(equalTo: assetView.widthAnchor)
+        let heightConstraint = assetCellView.heightAnchor.constraint(equalTo: assetView.heightAnchor)
+        NSLayoutConstraint.activate([horizontalConstraint, verticalConstraint, widthConstraint, heightConstraint])
     }
     
     private func configButtons(){

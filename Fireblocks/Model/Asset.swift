@@ -53,7 +53,8 @@ struct Asset: Codable, Identifiable, Hashable {
     var address: String?
     var iconUrl: String?
     var algorithm: String?
-
+    var isExpanded: Bool? = false
+    
     var image: UIImage {
         let assetImage = AssetsImageMapper().getIconForAsset(id)
         return assetImage

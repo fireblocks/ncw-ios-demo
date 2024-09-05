@@ -55,7 +55,7 @@ extension ChooseAssetViewController: UITableViewDelegate, UITableViewDataSource 
         viewModel.getdataForNextScreen(index: indexPath.row)
     }
     
-    private func navigateToNextScreen(with asset: Asset){
+    private func navigateToNextScreen(with asset: Asset) {
         switch viewModel.chooseAssetFlowType {
         case .send:
             let vc = AmountToSendViewController(nibName: "AmountToSendViewController", bundle: nil)

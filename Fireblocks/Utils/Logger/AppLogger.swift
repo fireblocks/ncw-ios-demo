@@ -187,7 +187,7 @@ final class AppLogger {
     
     private func debugPrint(_ item: Any) {
         #if DEBUG
-        print(item)
+//        print(item)
         #endif
     }
     

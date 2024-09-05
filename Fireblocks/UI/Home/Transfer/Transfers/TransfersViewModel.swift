@@ -67,25 +67,29 @@ final class TransfersViewModel: ObservableObject {
     }
     
     func handleTransactions(transactions: [TransactionResponse]) {
+        var didChange = false
         if transfers.isEmpty {
             transfers = transactions.map({$0.toTransferInfo()})
+            didChange = true
         } else {
             for transaction in transactions {
                 let transferInfo = transaction.toTransferInfo()
                 if let index = transfers.firstIndex(where: {$0.transactionID == transferInfo.transactionID}) {
                     if transfers[index].lastUpdated != transferInfo.lastUpdated {
                         transfers[index] = transferInfo
+                        didChange = true
                         print("TRANSFER_UPDATED: \(transferInfo)")
                     }
 
                 } else {
                     transfers.append(transferInfo)
+                    didChange = true
                     print("TRANSFER_ADDED: \(transferInfo)")
                 }
             }
         }
         
-        if transactions.count > 0 {
+        if didChange, transactions.count > 0 {
             updateUI()
         }
     }

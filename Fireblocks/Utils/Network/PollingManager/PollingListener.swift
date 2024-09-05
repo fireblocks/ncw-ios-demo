@@ -46,7 +46,6 @@ class PollingListener {
         Task {
             do {
                 if let transactions = try await sessionManager.getTransactions(deviceId: deviceId, startDate: startDate) {
-                    print(transactions)
                     self.instance?.handleTransactions(transactions: transactions)
                     self.didRequestAlltransactions = true
                 }

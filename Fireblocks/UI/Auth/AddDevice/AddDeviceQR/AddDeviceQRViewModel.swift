@@ -44,6 +44,7 @@ class AddDeviceQRViewModel: ObservableObject, UIHostingBridgeNotifications {
         timer?.fire()
         
         NotificationCenter.default.addObserver(self, selector: #selector(onProvisionerFound), name: Notification.Name("onProvisionerFound"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(onAddingDevice), name: Notification.Name("onAddingDevice"), object: nil)
 
     }
     
@@ -63,7 +64,14 @@ class AddDeviceQRViewModel: ObservableObject, UIHostingBridgeNotifications {
     }
     
     @objc func onProvisionerFound() {
+        self.timer?.invalidate()
+        self.timer = nil
         presentIndicator()
+    }
+    
+    @objc func onAddingDevice() {
+        self.timer?.invalidate()
+        self.timer = nil
     }
     
     func presentIndicator() {

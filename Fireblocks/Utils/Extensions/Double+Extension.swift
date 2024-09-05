@@ -8,7 +8,7 @@
 import Foundation
 
 extension Double {
-    func formatFractions(fractionDigits: Int) -> Double {
+    func formatFractions(fractionDigits: Int = 6) -> Double {
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .decimal
         numberFormatter.maximumFractionDigits = fractionDigits

@@ -496,7 +496,6 @@ extension SessionManager {
             )
             
             if let fullString = components?.string, let fullURL = URL(string: fullString) {
-                print(fullURL)
                 let data = try await sendRequest(url: fullURL, httpMethod: "GET", timeout: FBURL.transactions( deviceId).timeout, numberOfRetries: 0)
                 let transactions: [TransactionResponse] = try JSONDecoder().decode([TransactionResponse].self, from: data)
                 return transactions

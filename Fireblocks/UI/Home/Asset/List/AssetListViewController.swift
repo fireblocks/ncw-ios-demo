@@ -11,8 +11,9 @@ import SwiftUI
 
 class AssetListViewController: UIViewController {
     
-    private let headerHeight: CGFloat = 240
-    
+    private let headerHeight: CGFloat = 170
+    private let cellHeight: CGFloat = 83
+
     //MARK: - PROPERTIES
     @IBOutlet weak var activityIndicator: NVActivityIndicatorView!
     @IBOutlet weak var refreshIndicator: NVActivityIndicatorView!
@@ -99,21 +100,29 @@ class AssetListViewController: UIViewController {
 }
 
 extension AssetListViewController: UITableViewDelegate, UITableViewDataSource {
-    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = AssetHeaderUIView()
-        header.setCurrenBalance(viewModel.getBalance())
-        header.setDelegate(self)
-        header.isButtonsEnabled(viewModel.getIsButtonsEnabled())
-        return header
+        if section == 0 {
+            let header = AssetHeaderUIView()
+            header.setCurrenBalance(viewModel.getBalance())
+            header.setDelegate(self)
+            header.isButtonsEnabled(viewModel.getIsButtonsEnabled())
+            return header
+        }
+        return nil
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return headerHeight
+        if section == 0 {
+            return headerHeight
+        }
+        return 0
     }
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return viewModel.getAssetsCount() + 1
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.getAssetsCount()
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -121,10 +130,33 @@ extension AssetListViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         
-        let asset = viewModel.getAssets()[indexPath.row]
-        cell.configCellWith(asset: asset)
+        if indexPath.section == 0 {
+            return UITableViewCell()
+        }
+        
+        let asset = viewModel.getAssets()[indexPath.section - 1]
+        cell.configCellWith(asset: asset, section: indexPath.section - 1)
+        cell.delegate = self
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if viewModel.getAssets().count > (indexPath.section - 1) {
+            self.viewModel.toggleAssetExpanded(asset: viewModel.getAssets()[indexPath.section - 1], section: indexPath.section)
+        }
+    }
+        
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 0 {
+            return 0
+        }
+        return UITableView.automaticDimension
+
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return cellHeight
     }
 }
 
@@ -137,8 +169,16 @@ extension AssetListViewController: AssetListViewModelDelegate {
             self.activityIndicator.stopAnimating()
             self.refreshIndicator.stopAnimating()
         }
+    }
+    
+    @MainActor
+    func refreshSection(section: Int)  {
+        DispatchQueue.main.async {
+            self.tableView.reloadSections(IndexSet(integer: section), with: .automatic)
+        }
         
     }
+
     
     @MainActor
     func gotError()  {
@@ -164,6 +204,25 @@ extension AssetListViewController: AssetListViewModelDelegate {
             }
         }
     }
+    
+    @MainActor
+    func navigateToNextScreen(with asset: Asset){
+        switch viewModel.chooseAssetFlowType {
+        case .send:
+            let vc = AmountToSendViewController(nibName: "AmountToSendViewController", bundle: nil)
+            vc.viewModel.asset = asset
+            vc.viewModel.asset.isExpanded = false
+            vc.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(vc, animated: true)
+        case .receive:
+            let vc = ReceiveViewController(nibName: "ReceiveViewController", bundle: nil)
+            vc.viewModel.asset = asset
+            vc.viewModel.asset.isExpanded = false
+            vc.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+
 }
 
 extension AssetListViewController: AssetHeaderDelegate {
@@ -181,6 +240,18 @@ extension AssetListViewController: AssetHeaderDelegate {
         nc.isModalInPresentation = true
         self.present(nc, animated: true)
     }
+}
+
+extension AssetListViewController: AssetViewCellDelegate {
+    func didTapSend(index: Int) {
+        viewModel.didTapSend(index: index)
+    }
+    
+    func didTapReceive(index: Int) {
+        viewModel.didTapReceive(index: index)
+    }
+    
+    
 }
 
 extension AssetListViewController: AddAssetsViewControllerDelegate {
