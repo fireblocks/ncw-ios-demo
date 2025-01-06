@@ -15,7 +15,7 @@ protocol ApproveViewModelDelegate: AnyObject {
 }
 
 final class ApproveViewModel {
-    var transaction: Transaction!
+    var transaction: FBTransaction!
     let repository = ApproveRepository()
     weak var delegate: ApproveViewModelDelegate?
     
@@ -40,7 +40,7 @@ final class ApproveViewModel {
             }.store(in: &cancellable)
     }
 
-    func getTransaction() -> Transaction {
+    func getTransaction() -> FBTransaction {
         return transaction
     }
     

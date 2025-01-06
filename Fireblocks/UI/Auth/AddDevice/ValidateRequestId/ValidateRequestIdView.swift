@@ -26,7 +26,7 @@ struct ValidateRequestIdView: View {
                 
                 VStack {
                     Text("Device Details")
-                        .font(.subtitle1)
+                        .font(.b1)
                         .padding(24)
                     VStack(spacing: 16) {
                         HStack {
@@ -34,14 +34,14 @@ struct ValidateRequestIdView: View {
                             Text("Type: \(viewModel.platform ?? Platform.Unknown.rawValue)")
                             Spacer()
                         }
-                        .font(.subtitle2)
+                        .font(.b2)
 
                         HStack {
                             Text("\u{2022} ")
                             Text("User: \(viewModel.email ?? "")")
                             Spacer()
                         }
-                        .font(.subtitle2)
+                        .font(.b2)
 
                     }
                     .padding(.horizontal)
@@ -67,7 +67,7 @@ struct ValidateRequestIdView: View {
                         HStack {
                             Spacer()
                             Text("Add device")
-                                .font(.body1)
+                                .font(.b1)
                             Spacer()
                         }
                         .padding(16)
@@ -85,7 +85,7 @@ struct ValidateRequestIdView: View {
                         HStack {
                             Spacer()
                             Text("Cancel")
-                                .font(.body1)
+                                .font(.b1)
                             Spacer()
                         }
                         .padding(16)
@@ -99,7 +99,7 @@ struct ValidateRequestIdView: View {
                 }
                 .padding(.bottom, 24)
                 Text("QR code expires in: \(viewModel.timeleft)")
-                    .font(.body3)
+                    .font(.b3)
                     .foregroundColor(AssetsColors.gray4.color())
             }
             .padding(.horizontal, 16)

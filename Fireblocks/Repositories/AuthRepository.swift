@@ -8,6 +8,7 @@
 import Foundation
 import FirebaseAuth
 import AuthenticationServices
+//import EmbeddedWalletSDKDev
 import GoogleSignIn
 #if DEV
 import FireblocksDev
@@ -28,6 +29,16 @@ class AuthRepository  {
     func getAppleRequest() -> ASAuthorizationAppleIDRequest {
         return appleSignInManager.getAppleRequest()
     }
+    
+    func signInToFirebase(with result: FirebaseAuthDelegate?, user: String) async -> Bool {
+        guard let _ = await signIn(with: result, user: user, loginMethod: .signIn) else {
+            return false
+        }
+        return true
+    }
+
+    
+    
     
     func signIn(with result: FirebaseAuthDelegate?, user: String, loginMethod: LoginMethod) async -> AuthUser? {
         if await isSignInToFirebaseSucceed(with: result) {
@@ -79,6 +90,10 @@ class AuthRepository  {
     private func signUp(userToken: String, email: String) async throws -> AuthUser? {
         let generatedDeviceId = FireblocksManager.shared.generateDeviceId()
         UsersLocalStorageManager.shared.setLastDeviceId(deviceId: generatedDeviceId, email: email)
+//        if let instance = EWManager().initialize(token: userToken) {
+//            let result = await instance.assignWallet()
+//            print(result)
+//        }
         let result = try await SessionManager.shared.assign(deviceId:generatedDeviceId)
         if let walletId = result.walletId {
             return AuthUser(userToken: userToken, deviceId: generatedDeviceId, walletId: walletId)

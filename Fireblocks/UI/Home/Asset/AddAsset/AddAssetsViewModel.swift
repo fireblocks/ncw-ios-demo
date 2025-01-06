@@ -83,13 +83,17 @@ class AddAssetsViewModel: ObservableObject {
     func createAsset() {
         Task {
             for asset in assets.filter({$0.isSelected}).map({$0.asset}) {
-                if let result = try await SessionManager.shared.createAsset(deviceId: deviceId, assetId: asset.id), let data = result.data(using: .utf8) {
-                    if let error = try? JSONDecoder().decode(ErrorResponse.self, from: data) {
-                        failedAssets.append(asset)
+                do {
+                    if let result = try await SessionManager.shared.createAsset(deviceId: deviceId, assetId: asset.id), let data = result.data(using: .utf8) {
+                        if let error = try? JSONDecoder().decode(ErrorResponse.self, from: data) {
+                            failedAssets.append(asset)
+                        } else {
+                            addedAssets.append(asset)
+                        }
                     } else {
-                        addedAssets.append(asset)
+                        failedAssets.append(asset)
                     }
-                } else {
+                } catch {
                     failedAssets.append(asset)
                 }
             }

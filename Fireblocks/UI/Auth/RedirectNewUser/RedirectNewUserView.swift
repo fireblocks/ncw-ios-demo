@@ -25,7 +25,7 @@ struct RedirectNewUserView: View {
                     .padding(.bottom, 42)
 
                 Text("You can add this device to your existing wallet or recover your existing wallet on this device.")
-                    .font(.body4)
+                    .font(.b1)
                     .multilineTextAlignment(.center)
                     .padding(.bottom, 74)
 
@@ -36,7 +36,7 @@ struct RedirectNewUserView: View {
                         Spacer()
                         Image(AssetsIcons.scanQrCode.rawValue)
                         Text("Add device from sign-in screen")
-                            .font(.body1)
+                            .font(.b1)
                         Spacer()
                     }
                     .padding(16)
@@ -54,7 +54,7 @@ struct RedirectNewUserView: View {
                         .frame(height: 2)
                         .foregroundColor(AssetsColors.gray2.color())
                     Text("or")
-                        .font(.body1)
+                        .font(.b1)
                         .foregroundColor(AssetsColors.gray3.color())
                         .padding(16)
                     Rectangle()
@@ -69,7 +69,7 @@ struct RedirectNewUserView: View {
                         Spacer()
                         Image(AssetsIcons.scanQrCode.rawValue)
                         Text("Recover wallet")
-                            .font(.body1)
+                            .font(.b1)
                         Spacer()
                     }
                     .padding(16)

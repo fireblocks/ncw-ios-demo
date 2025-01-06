@@ -153,7 +153,7 @@ class AuthViewController: UIViewController {
                 return
             }
             
-            showLoader(isShow: true)
+            isLoading(isShow: true)
             showButtons(isShow: false)
             if let user = result?.user.userID {
                 viewModel.signInToFirebase(with: result, user: user)
@@ -170,7 +170,7 @@ class AuthViewController: UIViewController {
         authorizationController.performRequests()
     }
     
-    private func showLoader(isShow: Bool) {
+    private func isLoading(isShow: Bool) {
         if isShow {
             showActivityIndicator(isBackgroundEnabled: false)
         } else {
@@ -188,9 +188,11 @@ class AuthViewController: UIViewController {
         case .signUp:
             vc = UINavigationController(rootViewController: MpcKeysViewController(isAddingDevice: false))
         case .signIn:
-            if viewModel.isUserHaveKeys() {
+            if viewModel.isUserHaveAllKeys() {
                 FireblocksManager.shared.startPolling()
                 vc = UINavigationController(rootViewController: TabBarViewController())
+            } else if viewModel.isUserHaveKeys(){
+                vc = UINavigationController(rootViewController: MpcKeysViewController(isAddingDevice: false))
             } else {
                 vc = UINavigationController(rootViewController: RedirectNewUserHostingVC())
             }
@@ -220,7 +222,7 @@ extension AuthViewController:
     ASAuthorizationControllerPresentationContextProviding
 {
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
-        showLoader(isShow: true)
+        isLoading(isShow: true)
         showButtons(isShow: false)
         if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
             viewModel.signInToFirebase(with: authorization, user: appleIDCredential.user)
@@ -239,7 +241,7 @@ extension AuthViewController:
 extension AuthViewController: AuthViewModelDelegate {
     @MainActor
     func isUserSignedIn(_ isUserSignedIn: Bool) async {
-        showLoader(isShow: false)
+        isLoading(isShow: false)
         if isUserSignedIn {
             showButtons(isShow: false)
             navigateWithAnimation()

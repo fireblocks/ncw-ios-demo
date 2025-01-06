@@ -32,7 +32,7 @@ struct PrepareForScanView: View {
                             Spacer()
                             Image(AssetsIcons.scanQrCode.rawValue)
                             Text(LocalizableStrings.scanQRCode)
-                                .font(.body1)
+                                .font(.b1)
                             Spacer()
                         }
                         .padding(16)
@@ -46,7 +46,7 @@ struct PrepareForScanView: View {
                     .cornerRadius(16)
                     
                     Text("or")
-                        .font(.body1)
+                        .font(.b1)
                         .foregroundColor(AssetsColors.gray3.color())
                         .padding(16)
                     
@@ -58,7 +58,7 @@ struct PrepareForScanView: View {
                                 HStack {
                                     Spacer()
                                     Text(LocalizableStrings.enterQRCodeLink)
-                                        .font(.body1)
+                                        .font(.b1)
                                     Spacer()
                                 }
                                 .padding(16)
@@ -75,7 +75,7 @@ struct PrepareForScanView: View {
                         
                         VStack(spacing: 12) {
                             Text(LocalizableStrings.copyQRCodeLink)
-                                .font(.body1)
+                                .font(.b1)
                             
                             TextField("", text: $viewModel.requestId)
                                 .frame(maxWidth: .infinity)
@@ -106,7 +106,7 @@ struct PrepareForScanView: View {
                         HStack {
                             Spacer()
                             Text(LocalizableStrings.continueTitle)
-                                .font(.body1)
+                                .font(.b1)
                             Spacer()
                         }
                         .padding(16)

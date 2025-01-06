@@ -15,7 +15,7 @@ protocol FeeRateViewModelDelegate: AnyObject {
 
 final class FeeRateViewModel {
     //MARK: - PROPERTIES
-    var transaction: Transaction?
+    var transaction: FBTransaction?
     private var fees: [Fee] = []
     private var selectedFeeIndex: Int = 0
     private let repository = FeeRateRepository()
@@ -71,7 +71,7 @@ final class FeeRateViewModel {
         selectedFeeIndex = index
     }
     
-    func getTransaction() -> Transaction? {
+    func getTransaction() -> FBTransaction? {
         if var transaction = transaction, let txId = transactionID {
             if fees.count > selectedFeeIndex {
                 transaction.fee = fees[selectedFeeIndex]

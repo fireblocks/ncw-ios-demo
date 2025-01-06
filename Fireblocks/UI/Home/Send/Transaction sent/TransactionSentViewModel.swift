@@ -15,7 +15,7 @@ protocol TransactionSentViewModelDelegate: AnyObject {
 final class TransactionSentViewModel {
     
 //MARK: - PROPERTIES
-    var transaction: Transaction!
+    var transaction: FBTransaction!
     private var transfersInfo: [TransferInfo] = []
     weak var delegate: TransactionSentViewModelDelegate?
     

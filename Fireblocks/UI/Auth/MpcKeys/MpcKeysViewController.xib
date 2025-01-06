@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23094" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23084"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,11 +13,13 @@
         </array>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MpcKeysViewController" customModule="NCW_sandbox" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MpcKeysViewController" customModule="NCW_dev" customModuleProvider="target">
             <connections>
                 <outlet property="footerButton" destination="f98-vB-FfQ" id="uax-rQ-Rgq"/>
                 <outlet property="footerButtonHC" destination="iB0-nk-3hX" id="lWf-JP-Whl"/>
                 <outlet property="footerButtonTC" destination="hZx-2s-CRu" id="Lry-fi-99i"/>
+                <outlet property="generateECDSAButton" destination="Hx4-Bl-4Tm" id="1Fv-oJ-6Ju"/>
+                <outlet property="generateEDDSAButton" destination="Hp3-9x-061" id="0AE-Ax-5JO"/>
                 <outlet property="generateMpcKeysButton" destination="Baj-jD-1Wp" id="r9s-sP-YRW"/>
                 <outlet property="headerImageView" destination="jZS-jl-4ug" id="3ZS-yO-0QV"/>
                 <outlet property="headerLabel" destination="Ldb-vK-Rhq" id="UPe-gi-POI"/>
@@ -36,7 +38,7 @@
                         <constraint firstAttribute="height" constant="80" id="aGa-bs-IRP"/>
                     </constraints>
                 </imageView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Baj-jD-1Wp" userLabel="generateMpcKeysButton" customClass="AppActionBotton" customModule="NCW_sandbox" customModuleProvider="target">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Baj-jD-1Wp" userLabel="generateMpcKeysButton" customClass="AppActionBotton" customModule="NCW_dev" customModuleProvider="target">
                     <rect key="frame" x="16" y="686" width="361" height="50"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
@@ -46,7 +48,27 @@
                         <action selector="generateMpcKey:" destination="-1" eventType="touchUpInside" id="bqC-KE-TVR"/>
                     </connections>
                 </view>
-                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f98-vB-FfQ" userLabel="backupLaterButton" customClass="AppActionBotton" customModule="NCW_sandbox" customModuleProvider="target">
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hp3-9x-061" userLabel="generateMpcKeysButton" customClass="AppActionBotton" customModule="NCW_dev" customModuleProvider="target">
+                    <rect key="frame" x="16" y="620" width="361" height="50"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="eA4-DQ-99Z"/>
+                    </constraints>
+                    <connections>
+                        <action selector="generateEDDSAKey:" destination="-1" eventType="touchUpInside" id="LHB-5d-xGR"/>
+                    </connections>
+                </view>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hx4-Bl-4Tm" userLabel="generateMpcKeysButton" customClass="AppActionBotton" customModule="NCW_dev" customModuleProvider="target">
+                    <rect key="frame" x="16" y="554" width="361" height="50"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="AsT-MY-ao3"/>
+                    </constraints>
+                    <connections>
+                        <action selector="generateECDSAKey:" destination="-1" eventType="touchUpInside" id="9Fj-w4-nmY"/>
+                    </connections>
+                </view>
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f98-vB-FfQ" userLabel="backupLaterButton" customClass="AppActionBotton" customModule="NCW_dev" customModuleProvider="target">
                     <rect key="frame" x="16" y="744" width="361" height="50"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
@@ -67,16 +89,22 @@
             <viewLayoutGuide key="safeArea" id="lyA-dQ-sdK"/>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
+                <constraint firstItem="Hp3-9x-061" firstAttribute="leading" secondItem="lyA-dQ-sdK" secondAttribute="leading" constant="16" id="9x1-be-2VV"/>
                 <constraint firstItem="lyA-dQ-sdK" firstAttribute="trailing" secondItem="Baj-jD-1Wp" secondAttribute="trailing" constant="16" id="DZU-Cz-led"/>
                 <constraint firstItem="Ldb-vK-Rhq" firstAttribute="top" secondItem="jZS-jl-4ug" secondAttribute="bottom" constant="24" id="FAv-N7-DbM"/>
+                <constraint firstItem="Baj-jD-1Wp" firstAttribute="top" secondItem="Hp3-9x-061" secondAttribute="bottom" constant="16" id="Hdi-mO-97l"/>
                 <constraint firstItem="jZS-jl-4ug" firstAttribute="top" secondItem="lyA-dQ-sdK" secondAttribute="top" constant="30" id="IDB-In-OP7"/>
                 <constraint firstItem="jZS-jl-4ug" firstAttribute="centerX" secondItem="Vvz-P8-BJg" secondAttribute="centerX" id="JaT-fm-NJ2"/>
                 <constraint firstItem="lyA-dQ-sdK" firstAttribute="bottom" secondItem="f98-vB-FfQ" secondAttribute="bottom" constant="24" id="Jk7-Tb-DO0"/>
                 <constraint firstItem="f98-vB-FfQ" firstAttribute="leading" secondItem="Baj-jD-1Wp" secondAttribute="leading" id="VP6-xi-dtb"/>
                 <constraint firstItem="Baj-jD-1Wp" firstAttribute="leading" secondItem="lyA-dQ-sdK" secondAttribute="leading" constant="16" id="VsG-4e-oRB"/>
+                <constraint firstItem="lyA-dQ-sdK" firstAttribute="trailing" secondItem="Hp3-9x-061" secondAttribute="trailing" constant="16" id="ZUn-eC-iQo"/>
+                <constraint firstItem="Hx4-Bl-4Tm" firstAttribute="leading" secondItem="lyA-dQ-sdK" secondAttribute="leading" constant="16" id="d9a-Yp-Tlz"/>
                 <constraint firstAttribute="trailing" secondItem="Ldb-vK-Rhq" secondAttribute="trailing" constant="48" id="ehZ-9v-zQw"/>
                 <constraint firstItem="f98-vB-FfQ" firstAttribute="top" secondItem="Baj-jD-1Wp" secondAttribute="bottom" constant="8" id="hZx-2s-CRu"/>
+                <constraint firstItem="Hp3-9x-061" firstAttribute="top" secondItem="Hx4-Bl-4Tm" secondAttribute="bottom" constant="16" id="oZr-Fw-NIN"/>
                 <constraint firstItem="Ldb-vK-Rhq" firstAttribute="leading" secondItem="lyA-dQ-sdK" secondAttribute="leading" constant="48" id="p2D-13-Z3w"/>
+                <constraint firstItem="lyA-dQ-sdK" firstAttribute="trailing" secondItem="Hx4-Bl-4Tm" secondAttribute="trailing" constant="16" id="pbV-E0-PPA"/>
                 <constraint firstItem="f98-vB-FfQ" firstAttribute="trailing" secondItem="Baj-jD-1Wp" secondAttribute="trailing" id="zlm-hb-zrZ"/>
             </constraints>
             <point key="canvasLocation" x="142.74809160305344" y="19.718309859154932"/>

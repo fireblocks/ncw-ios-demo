@@ -85,7 +85,7 @@ extension UIViewController{
 
 extension UIViewController {
     func createLogFile() {
-        guard let url = FireblocksManager.shared.getSdkInstance()?.getURLForLogFiles() else {
+        guard let url = FireblocksManager.shared.getURLForLogFiles() else {
             print("Can't get file log url")
             return
         }

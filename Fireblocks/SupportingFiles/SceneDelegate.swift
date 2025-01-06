@@ -6,19 +6,57 @@
 //
 
 import UIKit
+import SwiftUI
+import Combine
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
+    private var cancellable = Set<AnyCancellable>()
     
+    //MARK: - FUNCTIONS
+    deinit {
+        cancellable.removeAll()
+    }
+
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let window = (scene as? UIWindowScene) else { return }
-        loadRootViewController(window)
+//        loadRootViewController(window)
+        loadLaunchViewController(window)
     }
     
+    private func loadLaunchViewController(_ windowScene: UIWindowScene) {
+        let window = UIWindow(windowScene: windowScene)
+        let viewModel = LaunchView.ViewModel()
+        let rootViewController = UIHostingController(
+            rootView: NavigationContainerView() {
+                LaunchView(viewModel: viewModel)
+            }
+        )
+        window.rootViewController = rootViewController
+        self.window = window
+        window.makeKeyAndVisible()
+        viewModel.$didTapLetsGo.receive(on: RunLoop.main)
+            .sink { [weak self] value in
+            if value {
+                let rootViewController = UINavigationController()
+                let vc = AuthViewController()
+                rootViewController.isNavigationBarHidden = true
+                
+                self?.configNavigationBar()
+                
+                rootViewController.setViewControllers([vc], animated: true)
+
+                UIView.animate(withDuration: 0.3) {
+                    window.rootViewController = rootViewController
+                }
+            }
+        }.store(in: &cancellable)
+    }
+
     private func loadRootViewController(_ windowScene: UIWindowScene) {
         let window = UIWindow(windowScene: windowScene)
         let rootViewController = UINavigationController()

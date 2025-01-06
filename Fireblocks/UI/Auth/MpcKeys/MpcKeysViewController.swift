@@ -26,6 +26,8 @@ class MpcKeysViewController: UIViewController {
     @IBOutlet weak var headerImageView: UIImageView!
     @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var generateMpcKeysButton: AppActionBotton!
+    @IBOutlet weak var generateECDSAButton: AppActionBotton!
+    @IBOutlet weak var generateEDDSAButton: AppActionBotton!
     @IBOutlet weak var footerButton: AppActionBotton!
 
     @IBOutlet weak var footerButtonTC: NSLayoutConstraint!
@@ -63,9 +65,17 @@ class MpcKeysViewController: UIViewController {
             headerImageView.image = AssetsIcons.generateKeyImage.getIcon()
             headerLabel.text = LocalizableStrings.mpcKeysGenertaeTitle
             generateMpcKeysButton.config(title: LocalizableStrings.generateKeysButtonTitle, style: .Primary)
+            generateECDSAButton.config(title: "Generate EcDSA Key", style: .Primary)
+            generateEDDSAButton.config(title: "Generate EDDSA Key", style: .Primary)
             footerButton.config(title: LocalizableStrings.illDoThisLater, style: .Transparent)
             setNavigationControllerRightButton(icon: AssetsIcons.settings, action: #selector(navigateToSettings))
-
+//            #if DEV
+            generateECDSAButton.isHidden = false
+            generateEDDSAButton.isHidden = false
+//            #else
+//            generateECDSAButton.isHidden = true
+//            generateEDDSAButton.isHidden = true
+//            #endif
         }
     }
     
@@ -86,6 +96,27 @@ class MpcKeysViewController: UIViewController {
         }
     }
     
+    @IBAction func generateECDSAKey(_ sender: AppActionBotton) {
+        if !viewModel.didSucceedGenerateKeys {
+            removeAlertView()
+            showActivityIndicator(message: LocalizableStrings.generateKeysIndicatorMessage)
+            viewModel.generateECDSAKeys()
+        } else {
+            self.navigateCreateBackupScreen()
+        }
+    }
+
+    @IBAction func generateEDDSAKey(_ sender: AppActionBotton) {
+        if !viewModel.didSucceedGenerateKeys {
+            removeAlertView()
+            showActivityIndicator(message: LocalizableStrings.generateKeysIndicatorMessage)
+            viewModel.generateEDDSAKeys()
+        } else {
+            self.navigateCreateBackupScreen()
+        }
+    }
+
+
     @IBAction func didTapIllDoItLater(_ sender: AppActionBotton) {
         navigateNextScreen()
     }
@@ -175,6 +206,8 @@ extension MpcKeysViewController: MpcKeysViewModelDelegate {
             self.headerLabel.text = "You’ve successfully created your keys! Next, create a key backup to make sure you never lose key access."
             self.headerLabel.textAlignment = .center
             
+            generateECDSAButton.isHidden = true
+            generateEDDSAButton.isHidden = true
             self.generateMpcKeysButton.config(title: LocalizableStrings.createKeyBackup, style: .Primary)
             self.footerButton.config(title: LocalizableStrings.illDoThisLater, style: .Transparent)
             self.footerButtonHC.constant = 50

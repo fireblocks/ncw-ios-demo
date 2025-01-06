@@ -43,9 +43,29 @@ final class MpcKeysViewModel {
         generateMpcFromSdk(self)
     }
     
+    func generateEDDSAKeys() {
+        generateEDDSAKeys(self)
+    }
+    
+    func generateECDSAKeys() {
+        generateECDSAKeys(self)
+    }
+    
     private func generateMpcFromSdk(_ delegate: FireblocksKeyCreationDelegate) {
         mpcKeyTask = Task {
             await FireblocksManager.shared.generateMpcKeys(delegate)
+        }
+    }
+    
+    private func generateEDDSAKeys(_ delegate: FireblocksKeyCreationDelegate) {
+        mpcKeyTask = Task {
+            await FireblocksManager.shared.generateEDDSAKeys(delegate)
+        }
+    }
+    
+    private func generateECDSAKeys(_ delegate: FireblocksKeyCreationDelegate) {
+        mpcKeyTask = Task {
+            await FireblocksManager.shared.generateECDSAKeys(delegate)
         }
     }
     

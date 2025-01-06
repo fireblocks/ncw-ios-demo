@@ -45,7 +45,7 @@ struct DerivedAssetRow: View {
             .clipShape(RoundedRectangle(cornerRadius: 8.0))
 
             Text(asset.name)
-                .font(.body1)
+                .font(.b1)
                 .multilineTextAlignment(.leading)
 
         }

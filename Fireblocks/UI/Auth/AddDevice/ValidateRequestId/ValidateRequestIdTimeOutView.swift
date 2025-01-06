@@ -11,7 +11,7 @@ struct ValidateRequestIdTimeOutView: View {
     var body: some View {
         VStack {
             Text("Why did this happen?")
-                .font(.subtitle1)
+                .font(.b1)
                 .padding(24)
             VStack(spacing: 16) {
                 HStack {
@@ -19,14 +19,14 @@ struct ValidateRequestIdTimeOutView: View {
                     Text("The QR code expired\nScan the QR code within 3 minutes.")
                     Spacer()
                 }
-                .font(.subtitle2)
+                .font(.b2)
 
                 HStack {
                     Text("\u{2022} ")
                     Text("Bitvault couldn’t connect\nCheck your connection and try again.")
                     Spacer()
                 }
-                .font(.subtitle2)
+                .font(.b2)
 
             }
             .padding(.horizontal)

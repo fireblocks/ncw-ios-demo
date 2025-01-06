@@ -62,9 +62,9 @@ struct TransferInfo {
         return transactionHash.isEmpty
     }
     
-    func toTransaction() -> Transaction? {
+    func toTransaction() -> FBTransaction? {
         if let asset = AssetListViewModel.shared.getAsset(by: assetId) {
-            return Transaction(asset: asset, amountToSend: amount, price: price, receiverAddress: receiverAddress, txId: transactionID, isTransferred: true, transferFee: fee)
+            return FBTransaction(asset: asset, amountToSend: amount, price: price, receiverAddress: receiverAddress, txId: transactionID, isTransferred: true, transferFee: fee)
         }
         return nil
 

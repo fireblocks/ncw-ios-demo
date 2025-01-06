@@ -25,20 +25,21 @@ protocol AuthViewModelDelegate {
     func isUserSignedIn(_ isUserSignedIn: Bool) async
 }
 
-final class AuthViewModel {
+final class AuthViewModel: ObservableObject {
     
     private let authRepository = AuthRepository()
-    private let delegate: AuthViewModelDelegate
+    private var delegate: AuthViewModelDelegate?
     private var signInTask: Task<Void, Never>?
     private var loginMethod: LoginMethod = .signUp
+    @Published var isSignedIn:Bool?
     
 //    private var isSignIn = true
 //    private var isAddingDevice = false
 
-    init(_ delegate: AuthViewModelDelegate) {
+    init(_ delegate: AuthViewModelDelegate? = nil) {
         self.delegate = delegate
     }
-    
+        
     deinit {
         signInTask?.cancel()
     }
@@ -55,12 +56,19 @@ final class AuthViewModel {
         signInTask = Task {
             authRepository.isAddingDevice = loginMethod == .addDevice
             guard let authUser = await authRepository.signIn(with: result, user: user, loginMethod: loginMethod) else {
-                await delegate.isUserSignedIn(false)
+                await delegate?.isUserSignedIn(false)
+                await MainActor.run {
+                    isSignedIn = false
+                }
+
                 return
             }
             
             let isSdkInitialized = FireblocksManager.shared.isInstanceInitialized(authUser: authUser)
-            await delegate.isUserSignedIn(isSdkInitialized)
+            await delegate?.isUserSignedIn(isSdkInitialized)
+            await MainActor.run {
+                isSignedIn = isSdkInitialized
+            }
         }
     }
     

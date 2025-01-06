@@ -83,16 +83,35 @@ class FireblocksManager {
         return Fireblocks.generatePassphraseId()
     }
     
+    func getURLForLogFiles() -> URL? {
+        return Fireblocks.getURLForLogFiles()
+    }
+    
     /*By default, workspaces are not enabled with EdDSA so you may remove MPC_EDDSA_ED25519 when calling generateMPCKeys
     Please ask your CSM or in the https://community.fireblocks.com/ to enable your workspace to support EdDSA if you wish to work with EdDSA chains.
      */
     func generateMpcKeys(_ delegate: FireblocksKeyCreationDelegate) async {
+        algoArray = [.MPC_ECDSA_SECP256K1, .MPC_EDDSA_ED25519]
+        await generateKeys(delegate)
+    }
+    
+    func generateECDSAKeys(_ delegate: FireblocksKeyCreationDelegate) async {
+        algoArray = [.MPC_ECDSA_SECP256K1]
+        await generateKeys(delegate)
+    }
+
+    func generateEDDSAKeys(_ delegate: FireblocksKeyCreationDelegate) async {
+        algoArray = [.MPC_EDDSA_ED25519]
+        await generateKeys(delegate)
+    }
+
+    private func generateKeys(_ delegate: FireblocksKeyCreationDelegate) async {
         do {
             let algorithms: Set<Algorithm> = Set(algoArray)
             let startDate = Date()
             let result = try await getSdkInstance()?.generateMPCKeys(algorithms: algorithms)
             print("Measure - generateMpcKeys \(Date().timeIntervalSince(startDate))")
-            let isGenerated = result?.filter({$0.keyStatus == .READY}).count == algoArray.count
+            let isGenerated = result != nil && result!.filter({$0.keyStatus == .READY}).count > 0
             AppLoggerManager.shared.logger()?.log("FireblocksManager, generateMpcKeys() isGenerated value: \(isGenerated).")
 
             if isGenerated {
@@ -106,7 +125,7 @@ class FireblocksManager {
             AppLoggerManager.shared.logger()?.log("FireblocksManager, generateMpcKeys() failed: \(error).")
         }
     }
-    
+
     func startPolling() {
         PollingManager.shared.createListener(deviceId: deviceId, instance: self, sessionManager: SessionManager.shared)
     }
@@ -135,14 +154,17 @@ class FireblocksManager {
     func addDevice(_ delegate: FireblocksKeyCreationDelegate, joinWalletHandler: FireblocksJoinWalletHandler) async {
         do {
             let startDate = Date()
-            let result = try await getSdkInstance()?.requestJoinExistingWallet(joinWalletHandler: joinWalletHandler)
+            guard let result = try await getSdkInstance()?.requestJoinExistingWallet(joinWalletHandler: joinWalletHandler) else {
+                delegate.isKeysGenerated(isGenerated: false, didJoin: true, error: nil)
+                return
+            }
             print("Measure - addDevice \(Date().timeIntervalSince(startDate))")
 
-            let isGenerated = result?.filter({$0.keyStatus == .READY}).count == algoArray.count
-            if isGenerated {
+            let didFail = result.filter({$0.keyStatus != .READY}).count > 0
+            if !didFail {
                 startPolling()
             }
-            delegate.isKeysGenerated(isGenerated: isGenerated, didJoin: true, error: nil)
+            delegate.isKeysGenerated(isGenerated: !didFail, didJoin: true, error: nil)
         } catch let err as FireblocksError {
             AppLoggerManager.shared.logger()?.log("FireblocksManager, addDevice() failed: \(err.description).")
             delegate.isKeysGenerated(isGenerated: false, didJoin: false, error: err.description)

@@ -30,14 +30,14 @@ struct AddDeviceQRView: View {
                                 HStack {
                                     Bullet(text: "1")
                                     Text(LocalizableStrings.launchOnExistingDevice)
-                                        .font(.subtitle1)
+                                        .font(.b1)
                                     Spacer()
                                 }
                                 VerticalSeparator()
                                 HStack {
                                     Bullet(text: "2")
                                     Text(LocalizableStrings.openSettingsMenu)
-                                        .font(.subtitle1)
+                                        .font(.b1)
                                     Image(uiImage: AssetsIcons.settings.getIcon())
                                     Spacer()
                                 }
@@ -45,14 +45,14 @@ struct AddDeviceQRView: View {
                                 HStack {
                                     Bullet(text: "3")
                                     Text(LocalizableStrings.tapAddNewDevice)
-                                        .font(.subtitle1)
+                                        .font(.b1)
                                     Spacer()
                                 }
                                 VerticalSeparator()
                                 HStack {
                                     Bullet(text: "4")
                                     Text(LocalizableStrings.scanTheQRCode)
-                                        .font(.subtitle1)
+                                        .font(.b1)
                                     Spacer()
                                 }
                             }
@@ -74,7 +74,7 @@ struct AddDeviceQRView: View {
             VStack {
                 Spacer()
                 Text("\(LocalizableStrings.qrCodeExpiresIn) \(viewModel.timeleft)")
-                    .font(.body3)
+                    .font(.b3)
                     .foregroundColor(AssetsColors.gray4.color())
             }
             .toolbar {
@@ -138,7 +138,7 @@ struct AddDeviceQRInnerView: View {
                 .padding(.bottom, 24)
             
             Text(LocalizableStrings.qrCodeLink)
-                .font(.subtitle1)
+                .font(.b1)
                 .padding(.top, 16)
             
             if let url = url {

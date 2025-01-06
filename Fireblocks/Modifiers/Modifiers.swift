@@ -18,20 +18,19 @@ struct AppFonts {
 enum FontStyleType: Equatable {
     case h1
     case h2
-    case subtitle1
-    case subtitle2
-    case subtitle3
-    case body1
-    case body2
-    case body3
-    case body4
+    case h3
+    case h4
+    case b1
+    case b2
+    case b3
+    case b4
     case custom(fontName: String, size: CGFloat, lineSpacing: CGFloat = 0)
     
     var fontName: String {
         switch self {
-        case .h1, .h2, .subtitle1, .subtitle2, .subtitle3:
+        case .h1, .h2, .h3, .h4:
             return AppFonts.defaultBold
-        case .body1, .body2, .body3, .body4:
+        case .b1, .b2, .b3, .b4:
             return AppFonts.defaultRegular
         case .custom(fontName: let fontName, _, _):
             return fontName
@@ -41,23 +40,21 @@ enum FontStyleType: Equatable {
     var size: CGFloat {
         switch self {
         case .h1:
-            return 24
+            return 32
         case .h2:
+            return 24
+        case .h3:
             return 20
-        case .subtitle1:
+        case .h4:
             return 16
-        case .subtitle2:
-            return 14
-        case .subtitle3:
-            return 12
-        case .body1:
+        case .b1:
             return 16
-        case .body2:
+        case .b2:
             return 14
-        case .body3:
+        case .b3:
             return 12
-        case .body4:
-            return 20
+        case .b4:
+            return 10
         case .custom(_, size: let size, _):
             return size
         }
@@ -92,59 +89,59 @@ struct H2: ViewModifier {
     }
 }
 
-struct Subtitle1: ViewModifier {
+struct H3: ViewModifier {
     func body(content: Content) -> some View {
         content
-            .font(.subtitle1)
+            .font(.h3)
+            .lineSpacing(8)
+            .padding(.vertical, 4)
+
+    }
+}
+
+struct H4: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .font(.h4)
+            .lineSpacing(8)
+            .padding(.vertical, 4)
+
+    }
+}
+
+
+
+struct B1: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .font(.b1)
             .lineSpacing(10)
             .padding(.vertical, 5)
 
     }
 }
 
-struct Subtitle2: ViewModifier {
+struct B2: ViewModifier {
     func body(content: Content) -> some View {
         content
-            .font(.subtitle2)
+            .font(.b2)
             .lineSpacing(6)
             .padding(.vertical, 3)
 
     }
 }
 
-struct Subtitle3: ViewModifier {
+struct B3: ViewModifier {
     func body(content: Content) -> some View {
         content
-            .font(.subtitle3)
-            .lineSpacing(6)
-            .padding(.vertical, 3)
-
+            .font(.b3)
     }
 }
 
-struct Body1: ViewModifier {
+struct B4: ViewModifier {
     func body(content: Content) -> some View {
         content
-            .font(.body1)
-            .lineSpacing(10)
-            .padding(.vertical, 5)
-
+            .font(.b4)
     }
 }
 
-struct Body2: ViewModifier {
-    func body(content: Content) -> some View {
-        content
-            .font(.body2)
-            .lineSpacing(6)
-            .padding(.vertical, 3)
-
-    }
-}
-
-struct Body3: ViewModifier {
-    func body(content: Content) -> some View {
-        content
-            .font(.body3)
-    }
-}

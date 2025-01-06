@@ -106,8 +106,8 @@ class AmountToSendViewModel {
         delegate?.amountAndSumChanged(amount: "\(assetAmountString) \(asset.symbol)", price: "$\(calculatedPrice)")
     }
     
-    func createTransaction() -> Transaction {
-        return Transaction(asset: asset,
+    func createTransaction() -> FBTransaction {
+        return FBTransaction(asset: asset,
                            amountToSend: assetAmount,
                            price: calculatedPrice)
     }

@@ -14,7 +14,7 @@ protocol SendToViewModelDelegate: AnyObject {
 class SendToViewModel {
     weak var delegate: SendToViewModelDelegate?
     var address: String?
-    var transaction: Transaction?
+    var transaction: FBTransaction?
     
     func getAmountToSendAsString() -> String {
         guard let transaction = transaction else { return "" }
@@ -39,7 +39,7 @@ class SendToViewModel {
         }
     }
     
-    func getTransaction() -> Transaction? {
+    func getTransaction() -> FBTransaction? {
         guard let address = address else { return nil }
         guard var transaction = transaction else { return nil }
         transaction.receiverAddress = address

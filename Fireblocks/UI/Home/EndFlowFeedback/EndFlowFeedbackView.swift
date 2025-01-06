@@ -35,7 +35,7 @@ struct EndFlowFeedbackView: View {
                 
                 if let subtitle = viewModel.subTitle {
                     Text(subtitle)
-                        .font(.body4)
+                        .font(.b1)
                 }
 
                 content
@@ -54,7 +54,7 @@ struct EndFlowFeedbackView: View {
                             }
                             if let title = viewModel.buttonTitle {
                                 Text(title)
-                                    .font(.body1)
+                                    .font(.b1)
                             }
                             Spacer()
                         }
@@ -75,7 +75,7 @@ struct EndFlowFeedbackView: View {
                     } label: {
                         HStack {
                             Text("Share Logs")
-                                .font(.body1)
+                                .font(.b1)
                         }
                         .padding(16)
                         .contentShape(Rectangle())

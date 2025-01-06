@@ -26,7 +26,7 @@ struct DeriveKeysView: View {
             
             VStack(spacing: 0) {
                 Text(viewModel.title)
-                    .font(.body1)
+                    .font(.b1)
                     .padding(.bottom, 8)
                     .padding(.horizontal, 16)
                 List {
