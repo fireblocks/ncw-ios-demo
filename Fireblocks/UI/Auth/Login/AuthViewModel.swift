@@ -53,23 +53,23 @@ final class AuthViewModel: ObservableObject {
     }
     
     func signInToFirebase(with result: FirebaseAuthDelegate?, user: String) {
-        signInTask = Task {
-            authRepository.isAddingDevice = loginMethod == .addDevice
-            guard let authUser = await authRepository.signIn(with: result, user: user, loginMethod: loginMethod) else {
-                await delegate?.isUserSignedIn(false)
-                await MainActor.run {
-                    isSignedIn = false
-                }
-
-                return
-            }
-            
-            let isSdkInitialized = FireblocksManager.shared.isInstanceInitialized(authUser: authUser)
-            await delegate?.isUserSignedIn(isSdkInitialized)
-            await MainActor.run {
-                isSignedIn = isSdkInitialized
-            }
-        }
+//        signInTask = Task {
+//            authRepository.isAddingDevice = loginMethod == .addDevice
+//            guard let authUser = await authRepository.signIn(with: result, user: user, loginMethod: loginMethod) else {
+//                await delegate?.isUserSignedIn(false)
+//                await MainActor.run {
+//                    isSignedIn = false
+//                }
+//
+//                return
+//            }
+//            
+//            let isSdkInitialized = FireblocksManager.shared.isInstanceInitialized(authUser: authUser)
+//            await delegate?.isUserSignedIn(isSdkInitialized)
+//            await MainActor.run {
+//                isSignedIn = isSdkInitialized
+//            }
+//        }
     }
     
     func setLoginMethod(loginMethod: LoginMethod) {

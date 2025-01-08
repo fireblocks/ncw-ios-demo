@@ -10,7 +10,7 @@ import GoogleSignIn
 import AuthenticationServices
 
 struct SignInView: View {
-    @StateObject var viewModel = ViewModel()
+    @StateObject var viewModel = SignInViewModel(fbManager: FireblocksManager.shared)
     @EnvironmentObject var coordinator: Coordinator
     @EnvironmentObject var loadingManager: LoadingManager
 
@@ -116,7 +116,7 @@ struct SignInView: View {
             }
         }
         .onAppear() {
-            viewModel.setup(authRepository: AuthRepository(), loadingManager: loadingManager)
+            viewModel.setup(authRepository: AuthRepository(), loadingManager: loadingManager, coordinator: coordinator)
         }
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {

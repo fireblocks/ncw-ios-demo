@@ -17,12 +17,19 @@ extension SignInView {
         private var loadingManager: LoadingManager!
         private let googleSignInManager = GoogleSignInManager()
         private let appleSignInManager = AppleSignInManager()
+        let fbManager: FireblocksManager
+        var coordinator: Coordinator?
 
         @Published var isConnected: Bool = false
         
-        func setup(authRepository: AuthRepository, loadingManager: LoadingManager) {
+        init(fbManager: FireblocksManager) {
+            self.fbManager = fbManager
+        }
+        
+        func setup(authRepository: AuthRepository, loadingManager: LoadingManager, coordinator: Coordinator) {
             self.authRepository = authRepository
             self.loadingManager = loadingManager
+            self.coordinator = coordinator
         }
         
         func signInWithGoogle() {
@@ -82,12 +89,21 @@ extension SignInView {
         private func signInToFirebase(with result: FirebaseAuthDelegate?, user: String) {
             Task {
                 self.isConnected = await self.authRepository.signInToFirebase(with: result, user: user)
+                if isConnected {
+                    await self.handleSuccessSignIn()
+                }
                 self.loadingManager.isLoading = false
             }
         }
-
+        
+        var userHasKeys: Bool {
+            return FireblocksManager.shared.isKeyInitialized(algorithm: .MPC_ECDSA_SECP256K1) || FireblocksManager.shared.isKeyInitialized(algorithm: .MPC_EDDSA_ED25519)
+        }
+        
+        func handleSuccessSignIn() async {
+            fatalError("handleSuccessSignIn should be implemented on child class")
+        }
     }
-    
-    
 }
+
 

@@ -53,20 +53,35 @@ final class MpcKeysViewModel {
     
     private func generateMpcFromSdk(_ delegate: FireblocksKeyCreationDelegate) {
         mpcKeyTask = Task {
-            await FireblocksManager.shared.generateMpcKeys(delegate)
+            let result = await FireblocksManager.shared.generateMpcKeys()
+            handleResult(result: result, delegate: delegate)
         }
     }
     
     private func generateEDDSAKeys(_ delegate: FireblocksKeyCreationDelegate) {
         mpcKeyTask = Task {
-            await FireblocksManager.shared.generateEDDSAKeys(delegate)
+            let result = await FireblocksManager.shared.generateEDDSAKeys()
+            handleResult(result: result, delegate: delegate)
+
         }
     }
     
     private func generateECDSAKeys(_ delegate: FireblocksKeyCreationDelegate) {
         mpcKeyTask = Task {
-            await FireblocksManager.shared.generateECDSAKeys(delegate)
+            let result = await FireblocksManager.shared.generateECDSAKeys()
+            handleResult(result: result, delegate: delegate)
         }
+    }
+    
+    private func handleResult(result: Set<KeyDescriptor>?, delegate: FireblocksKeyCreationDelegate) {
+        let isGenerated = result != nil && result!.filter({$0.keyStatus == .READY}).count > 0
+        AppLoggerManager.shared.logger()?.log("FireblocksManager, generateMpcKeys() isGenerated value: \(isGenerated).")
+
+        if isGenerated {
+            FireblocksManager.shared.startPolling()
+        }
+
+        delegate.isKeysGenerated(isGenerated: isGenerated, didJoin: false, error: nil)
     }
     
     func addDevice() {

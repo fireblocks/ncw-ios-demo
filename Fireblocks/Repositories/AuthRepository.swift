@@ -31,20 +31,15 @@ class AuthRepository  {
     }
     
     func signInToFirebase(with result: FirebaseAuthDelegate?, user: String) async -> Bool {
-        guard let _ = await signIn(with: result, user: user, loginMethod: .signIn) else {
-            return false
-        }
-        return true
+        return await signIn(with: result, user: user, loginMethod: .signIn)
     }
-
     
-    
-    
-    func signIn(with result: FirebaseAuthDelegate?, user: String, loginMethod: LoginMethod) async -> AuthUser? {
+    func signIn(with result: FirebaseAuthDelegate?, user: String, loginMethod: LoginMethod) async -> Bool {
         if await isSignInToFirebaseSucceed(with: result) {
-            return await getAuthUserFromServer(user: user, loginMethod: loginMethod)
+            return true
+//            return await getAuthUserFromServer(user: user, loginMethod: loginMethod)
         } else {
-            return nil
+            return false
         }
     }
     

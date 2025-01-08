@@ -15,36 +15,31 @@ import FireblocksSDK
 #endif
 
 private let logger = Logger(subsystem: "Fireblocks", category: "FireblocksManager")
-protocol FireblocksKeyCreationDelegate {
-    func isKeysGenerated(isGenerated: Bool, didJoin: Bool, error: String?)
-}
 
-class FireblocksManager {
-    
+class FireblocksManager: FireblocksManagerProtocol {
     static let shared = FireblocksManager()
     
-    private var deviceId: String = ""
-    private var walletId: String = ""
-    private var algoArray: [Algorithm] = [.MPC_ECDSA_SECP256K1, .MPC_EDDSA_ED25519]
-//    private var algoArray: [Algorithm] = [.MPC_EDDSA_ED25519]
+    var deviceId: String = ""
+    var walletId: String = ""
+    var algoArray: [Algorithm] = [.MPC_ECDSA_SECP256K1, .MPC_EDDSA_ED25519]
+    
+    var errorMessage: String? {
+        didSet {
+            if errorMessage != nil {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                    self.errorMessage = nil
+                }
+            }
+        }
+    }
+
     private var broadcast_counter: [String: Int] = [:]
     private var sendMPC_counter = 0
     private var didTimeout = 0
 
     private init() {
     }
-    
-    func getDeviceId() -> String {
-        return deviceId
-    }
-    
-    func getWalletId() -> String {
-        return walletId
-    }
-    
-    func isKeyInitialized(algorithm: Algorithm) -> Bool {
-        return getMpcKeys().filter({$0.algorithm == algorithm}).first?.keyStatus == .READY
-    }
+        
 
     func isInstanceInitialized(authUser: AuthUser?) -> Bool {
         guard let deviceId = authUser?.deviceId,
@@ -66,7 +61,7 @@ class FireblocksManager {
         }
     }
         
-    func getSdkInstance() -> Fireblocks? {
+    func getNCWInstance() -> Fireblocks? {
         do {
             return try Fireblocks.getInstance(deviceId: deviceId)
         } catch {
@@ -75,55 +70,77 @@ class FireblocksManager {
         }
     }
     
-    func generateDeviceId() -> String {
-        return Fireblocks.generateDeviceId()
+    func assignWallet() async -> String? {
+        do {
+            let result = try await SessionManager.shared.assign(deviceId:deviceId)
+            if let walletId = result.walletId {
+                return walletId
+            } else {
+                errorMessage = "Failed to create wallet"
+            }
+        } catch {
+            errorMessage = error.localizedDescription
+        }
+
+        return nil
+
     }
     
-    func generatePassphraseId() -> String {
-        return Fireblocks.generatePassphraseId()
+    func getLatestBackupState() async -> LatestBackupState  {
+        guard let email = getUserEmail() else {
+            errorMessage = "Failed to login. there is no signed in user"
+            return .error
+        }
+        
+        do {
+            if let deviceId = UsersLocalStorageManager.shared.lastDeviceId(email: email), !deviceId.isTrimmedEmpty {
+                self.deviceId = deviceId
+                try initializeFireblocksSDK()
+                return .exist
+            }
+            
+            let devices = try await SessionManager.shared.getDevices()
+            let device = devices?.devices.last
+            if device == nil || device!.deviceId.isEmptyOrNil || device!.walletId.isEmptyOrNil {
+                self.deviceId = generateDeviceId()
+//                UsersLocalStorageManager.shared.setLastDeviceId(deviceId: self.deviceId, email: email)
+                try initializeFireblocksSDK()
+                return .generate
+            } else {
+                let info = try await SessionManager.shared.getLatestBackupInfo(walletId: walletId)
+                if info.deviceId.isEmptyOrNil {
+                    errorMessage = "No available backup"
+
+                    return .error
+                } else {
+                    self.deviceId = generateDeviceId()
+                    try initializeFireblocksSDK()
+                    return .joinOrRecover
+
+                }
+            }
+        } catch {
+            errorMessage = error.localizedDescription
+        }
+        return .error
     }
-    
-    func getURLForLogFiles() -> URL? {
-        return Fireblocks.getURLForLogFiles()
-    }
-    
+
     /*By default, workspaces are not enabled with EdDSA so you may remove MPC_EDDSA_ED25519 when calling generateMPCKeys
     Please ask your CSM or in the https://community.fireblocks.com/ to enable your workspace to support EdDSA if you wish to work with EdDSA chains.
      */
-    func generateMpcKeys(_ delegate: FireblocksKeyCreationDelegate) async {
+    func generateMpcKeys() async -> Set<KeyDescriptor>? {
         algoArray = [.MPC_ECDSA_SECP256K1, .MPC_EDDSA_ED25519]
-        await generateKeys(delegate)
+        return await generateKeys()
     }
     
-    func generateECDSAKeys(_ delegate: FireblocksKeyCreationDelegate) async {
+    func generateECDSAKeys() async -> Set<KeyDescriptor>? {
         algoArray = [.MPC_ECDSA_SECP256K1]
-        await generateKeys(delegate)
+        return await generateKeys()
     }
-
-    func generateEDDSAKeys(_ delegate: FireblocksKeyCreationDelegate) async {
-        algoArray = [.MPC_EDDSA_ED25519]
-        await generateKeys(delegate)
-    }
-
-    private func generateKeys(_ delegate: FireblocksKeyCreationDelegate) async {
-        do {
-            let algorithms: Set<Algorithm> = Set(algoArray)
-            let startDate = Date()
-            let result = try await getSdkInstance()?.generateMPCKeys(algorithms: algorithms)
-            print("Measure - generateMpcKeys \(Date().timeIntervalSince(startDate))")
-            let isGenerated = result != nil && result!.filter({$0.keyStatus == .READY}).count > 0
-            AppLoggerManager.shared.logger()?.log("FireblocksManager, generateMpcKeys() isGenerated value: \(isGenerated).")
-
-            if isGenerated {
-                //We simulate a simple way to implement a Polling mechanism.
-                //During the integration it is ineeded to generate a mechanism for fetching and listening to incoming messages and transactions, which could be any implementation (e.g. polling, web-socket, push etc.)
-                startPolling()
-            }
-            
-            delegate.isKeysGenerated(isGenerated: isGenerated, didJoin: false, error: nil)
-        } catch {
-            AppLoggerManager.shared.logger()?.log("FireblocksManager, generateMpcKeys() failed: \(error).")
-        }
+    
+    func generateEDDSAKeys() async -> Set<KeyDescriptor>? {
+        algoArray = [.MPC_ECDSA_SECP256K1, .MPC_EDDSA_ED25519]
+        return await generateKeys()
     }
 
     func startPolling() {
@@ -133,7 +150,7 @@ class FireblocksManager {
     func signTransaction(transactionId: String) async -> Bool {
         do {
             let startDate = Date()
-            let result = try await getSdkInstance()?.signTransaction(txId: transactionId)
+            let result = try await getNCWInstance()?.signTransaction(txId: transactionId)
             print("Measure - signTransaction \(Date().timeIntervalSince(startDate))")
             print("RESULT: \(result?.transactionSignatureStatus.rawValue ?? "")")
             return result?.transactionSignatureStatus == .COMPLETED
@@ -147,14 +164,14 @@ class FireblocksManager {
     }
     
     func stopTransaction() {
-        getSdkInstance()?.stopSignTransaction()
+        getNCWInstance()?.stopSignTransaction()
     }
     
 
     func addDevice(_ delegate: FireblocksKeyCreationDelegate, joinWalletHandler: FireblocksJoinWalletHandler) async {
         do {
             let startDate = Date()
-            guard let result = try await getSdkInstance()?.requestJoinExistingWallet(joinWalletHandler: joinWalletHandler) else {
+            guard let result = try await getNCWInstance()?.requestJoinExistingWallet(joinWalletHandler: joinWalletHandler) else {
                 delegate.isKeysGenerated(isGenerated: false, didJoin: true, error: nil)
                 return
             }
@@ -179,26 +196,9 @@ class FireblocksManager {
         return try await instance.approveJoinWalletRequest(requestId: requestId)
     }
     
-    func getMpcKeys() -> [KeyDescriptor] {
-        return getSdkInstance()?.getKeysStatus() ?? []
-    }
-    
-    func getFullKey() async -> [String: Data]? {
-        guard getSdkInstance() != nil else {
-            return nil
-        }
         
-        var keysSet: Set<String> = []
-        let allKeys = getMpcKeys()
-        for mpcKey in allKeys {
-            keysSet.insert(mpcKey.keyId ?? "")
-        }
-            
-        return nil
-    }
-    
     func takeOver() async -> Set<FullKey>? {
-        guard let instance = getSdkInstance() else {
+        guard let instance = getNCWInstance() else {
             return nil
         }
         
@@ -211,7 +211,7 @@ class FireblocksManager {
     }
     
     func deriveAssetKey(privateKey: String, derivationParams: DerivationParams) async -> KeyData? {
-        guard let instance = getSdkInstance() else {
+        guard let instance = getNCWInstance() else {
             return nil
         }
         
@@ -225,7 +225,7 @@ class FireblocksManager {
 
     
     func recoverWallet(resolver: FireblocksPassphraseResolver) async -> Bool {
-        guard let instance = getSdkInstance() else {
+        guard let instance = getNCWInstance() else {
             return false
         }
         
@@ -241,26 +241,9 @@ class FireblocksManager {
         }
     }
     
-    func generatePassphrase() -> String {
-        return Fireblocks.generateRandomPassPhrase()
-    }
-    
-    func backupKeys(passphrase: String, passphraseId: String) async -> Set<KeyBackup>? {
-        guard let instance = getSdkInstance() else {
-            return nil
-        }
-        
-        do {
-            let keys = try await instance.backupKeys(passphrase: passphrase, passphraseId: passphraseId)
-            return keys
-        } catch {
-            AppLoggerManager.shared.logger()?.log("FireblocksManager, backupKeys(): \(error).")
-            return nil
-        }
-    }
     
     private func initializeFireblocksSDK() throws {
-        if getSdkInstance() == nil {
+        if getNCWInstance() == nil {
             let _ = try Fireblocks.initialize(
                 deviceId: deviceId,
                 messageHandlerDelegate: self,
@@ -274,18 +257,6 @@ class FireblocksManager {
         PollingManager.shared.removeListener(deviceId: deviceId)
     }
 
-    func stopJoinWallet() {
-        getSdkInstance()?.stopJoinWallet()
-    }
-    
-    private func isAllKeysBackedUp(_ keyBackupSet: Set<KeyBackup>) -> Bool {
-        for status in keyBackupSet {
-            if status.keyBackupStatus != .SUCCESS {
-                return false
-            }
-        }
-        return true
-    }
 }
 
 extension FireblocksManager: PollingListenerDelegate {

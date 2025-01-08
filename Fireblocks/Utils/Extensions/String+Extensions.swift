@@ -36,3 +36,11 @@ extension String {
     }
 
 }
+
+extension Optional where Wrapped == String {
+    var isEmptyOrNil: Bool {
+        if let text = self, !text.isEmpty { return false }
+        return true
+    }
+}
+

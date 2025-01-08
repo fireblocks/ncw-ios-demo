@@ -211,9 +211,9 @@
 		2B2B188C2D2A900500A2B39D /* LaunchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B188B2D2A900200A2B39D /* LaunchViewModel.swift */; };
 		2B2B188D2D2A900500A2B39D /* LaunchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B188B2D2A900200A2B39D /* LaunchViewModel.swift */; };
 		2B2B188E2D2A900500A2B39D /* LaunchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B188B2D2A900200A2B39D /* LaunchViewModel.swift */; };
-		2B2B18912D2A965500A2B39D /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B18902D2A965200A2B39D /* SignInViewModel.swift */; };
-		2B2B18922D2A965500A2B39D /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B18902D2A965200A2B39D /* SignInViewModel.swift */; };
-		2B2B18932D2A965500A2B39D /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B18902D2A965200A2B39D /* SignInViewModel.swift */; };
+		2B2B18912D2A965500A2B39D /* SignInViewModelBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B18902D2A965200A2B39D /* SignInViewModelBase.swift */; };
+		2B2B18922D2A965500A2B39D /* SignInViewModelBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B18902D2A965200A2B39D /* SignInViewModelBase.swift */; };
+		2B2B18932D2A965500A2B39D /* SignInViewModelBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B18902D2A965200A2B39D /* SignInViewModelBase.swift */; };
 		2B2B18952D2AC27F00A2B39D /* AppBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B18942D2AC27F00A2B39D /* AppBackgroundView.swift */; };
 		2B2B18962D2AC27F00A2B39D /* AppBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B18942D2AC27F00A2B39D /* AppBackgroundView.swift */; };
 		2B2B18972D2AC27F00A2B39D /* AppBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B18942D2AC27F00A2B39D /* AppBackgroundView.swift */; };
@@ -247,6 +247,226 @@
 		2B2B18C82D2BCD9900A2B39D /* CustomError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B18C72D2BCD9400A2B39D /* CustomError.swift */; };
 		2B2B18C92D2BCD9900A2B39D /* CustomError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B18C72D2BCD9400A2B39D /* CustomError.swift */; };
 		2B2B18CA2D2BCD9900A2B39D /* CustomError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B18C72D2BCD9400A2B39D /* CustomError.swift */; };
+		2B2B19B72D2C058E00A2B39D /* FireblocksManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B19B52D2C058500A2B39D /* FireblocksManagerProtocol.swift */; };
+		2B2B19B82D2C058E00A2B39D /* FireblocksManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B19B52D2C058500A2B39D /* FireblocksManagerProtocol.swift */; };
+		2B2B19B92D2C058E00A2B39D /* FireblocksManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B19B52D2C058500A2B39D /* FireblocksManagerProtocol.swift */; };
+		2B2B19D52D2D120E00A2B39D /* AssetHeaderUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86229D802A8B7FF20089F7DA /* AssetHeaderUIView.swift */; };
+		2B2B19D62D2D120E00A2B39D /* AppleSignInManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862E2AA22A543B86002FF774 /* AppleSignInManager.swift */; };
+		2B2B19D72D2D120E00A2B39D /* TransferStatusType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608293932A56BEF200B11839 /* TransferStatusType.swift */; };
+		2B2B19D82D2D120E00A2B39D /* UsersLocalStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B287E22A8903CF00DEA50C /* UsersLocalStorageManager.swift */; };
+		2B2B19DA2D2D120E00A2B39D /* AddDeviceHostingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558E962B48347D006212B2 /* AddDeviceHostingVC.swift */; };
+		2B2B19DB2D2D120E00A2B39D /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DA069E2A651C5200160ADC /* TabBarViewController.swift */; };
+		2B2B19DC2D2D120E00A2B39D /* BackupDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867828E92A696D7D0035787D /* BackupDetailsViewController.swift */; };
+		2B2B19DD2D2D120E00A2B39D /* CodableExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B94CFD02A9CE627003E7508 /* CodableExtension.swift */; };
+		2B2B19DE2D2D120E00A2B39D /* BackupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EB51312A66C08C00D2911A /* BackupViewController.swift */; };
+		2B2B19DF2D2D120E00A2B39D /* RedirectNewUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B174FE82B62446900BE63A8 /* RedirectNewUserView.swift */; };
+		2B2B19E02D2D120E00A2B39D /* DerivedAssetRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD34A7A2B98C129008406D5 /* DerivedAssetRow.swift */; };
+		2B2B19E12D2D120E00A2B39D /* ReceiveViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EECFA72A66BE6400F3891C /* ReceiveViewModel.swift */; };
+		2B2B19E22D2D120E00A2B39D /* SpinnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B18B12D2ACF4B00A2B39D /* SpinnerView.swift */; };
+		2B2B19E32D2D120E00A2B39D /* TakeoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E4A1652A6852CE00A2861D /* TakeoverViewController.swift */; };
+		2B2B19E42D2D120E00A2B39D /* BackupViewControllerStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862F430F2A6AC23600C594CA /* BackupViewControllerStrategy.swift */; };
+		2B2B19E52D2D120E00A2B39D /* AppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2D36152B2B205A00B04667 /* AppLogger.swift */; };
+		2B2B19E62D2D120E00A2B39D /* QRCodeScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DA06AF2A65204600160ADC /* QRCodeScannerViewController.swift */; };
+		2B2B19E72D2D120E00A2B39D /* AssetsIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602573292A39D76900A3C5D5 /* AssetsIcons.swift */; };
+		2B2B19E82D2D120E00A2B39D /* AuthProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862E2AA52A543B86002FF774 /* AuthProtocols.swift */; };
+		2B2B19E92D2D120E00A2B39D /* Bullet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC5837D2B6BD5DC005E6EEB /* Bullet.swift */; };
+		2B2B19EA2D2D120E00A2B39D /* AssetsColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602573272A39D6F000A3C5D5 /* AssetsColors.swift */; };
+		2B2B19EB2D2D120E00A2B39D /* SendToViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DA06B02A65204600160ADC /* SendToViewController.swift */; };
+		2B2B19EC2D2D120E00A2B39D /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A72252B45ADAA0011C398 /* Extensions.swift */; };
+		2B2B19ED2D2D120E00A2B39D /* LaunchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B188B2D2A900200A2B39D /* LaunchViewModel.swift */; };
+		2B2B19EE2D2D120E00A2B39D /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B67A372A6FF925007AC728 /* Int+Extension.swift */; };
+		2B2B19EF2D2D120E00A2B39D /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86346ACC2A6D0D2C0002FE34 /* ToastView.swift */; };
+		2B2B19F02D2D120E00A2B39D /* CodableAnyExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B94CFC92A9CE576003E7508 /* CodableAnyExtension.swift */; };
+		2B2B19F12D2D120E00A2B39D /* Asset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DA06542A645E1300160ADC /* Asset.swift */; };
+		2B2B19F22D2D120E00A2B39D /* FeeRateRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DA06852A645ED300160ADC /* FeeRateRepository.swift */; };
+		2B2B19F32D2D120E00A2B39D /* TransactionSentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B137B42A8B6A4C009A4ECB /* TransactionSentViewController.swift */; };
+		2B2B19F42D2D120E00A2B39D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B18822D2A786C00A2B39D /* Constants.swift */; };
+		2B2B19F52D2D120E00A2B39D /* ValidateRequestIdViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558E9A2B484A87006212B2 /* ValidateRequestIdViewModel.swift */; };
+		2B2B19F62D2D120E00A2B39D /* Fee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DA06552A645E1300160ADC /* Fee.swift */; };
+		2B2B19F72D2D120E00A2B39D /* BiometricsAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867828C52A696D170035787D /* BiometricsAuthentication.swift */; };
+		2B2B19F82D2D120E00A2B39D /* SendToViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DA06B12A65204600160ADC /* SendToViewModel.swift */; };
+		2B2B19F92D2D120E00A2B39D /* AppBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B18942D2AC27F00A2B39D /* AppBackgroundView.swift */; };
+		2B2B19FA2D2D120E00A2B39D /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EB512A2A66C08C00D2911A /* SettingsViewController.swift */; };
+		2B2B19FB2D2D120E00A2B39D /* BackupStatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866A73CA2A696A4B00E8E545 /* BackupStatusViewController.swift */; };
+		2B2B19FC2D2D120E00A2B39D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86859F542A384D8A0056E3C6 /* SceneDelegate.swift */; };
+		2B2B19FD2D2D120E00A2B39D /* TakeoverViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E4A1642A6852CE00A2861D /* TakeoverViewModel.swift */; };
+		2B2B19FE2D2D120E00A2B39D /* AmountToSendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DA06982A651AE000160ADC /* AmountToSendViewController.swift */; };
+		2B2B19FF2D2D120E00A2B39D /* AreYouSureBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86ED2BB22A64434500377F6C /* AreYouSureBottomSheet.swift */; };
+		2B2B1A002D2D120E00A2B39D /* RecoverWalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B18BA2D2AD9BD00A2B39D /* RecoverWalletViewModel.swift */; };
+		2B2B1A012D2D120E00A2B39D /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86ED2BA72A64430F00377F6C /* SettingsViewModel.swift */; };
+		2B2B1A022D2D120E00A2B39D /* GoogleDriveManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866A73D82A696AA200E8E545 /* GoogleDriveManager.swift */; };
+		2B2B1A032D2D120E00A2B39D /* EndFlowFeedbackViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF8EDB82B56676300046F0B /* EndFlowFeedbackViewModel.swift */; };
+		2B2B1A042D2D120E00A2B39D /* FeeRateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DA06892A645EF400160ADC /* FeeRateCell.swift */; };
+		2B2B1A052D2D120E00A2B39D /* EndFlowFeedbackHostingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF8EDBA2B566E3C00046F0B /* EndFlowFeedbackHostingVC.swift */; };
+		2B2B1A062D2D120E00A2B39D /* RecoverWalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B18B52D2AD9AF00A2B39D /* RecoverWalletView.swift */; };
+		2B2B1A072D2D120E00A2B39D /* DeriveKeysViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD34A762B98B995008406D5 /* DeriveKeysViewModel.swift */; };
+		2B2B1A082D2D120E00A2B39D /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862E2A9A2A543B41002FF774 /* AuthViewModel.swift */; };
+		2B2B1A092D2D120E00A2B39D /* FeeRateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DA06A72A651F7E00160ADC /* FeeRateViewModel.swift */; };
+		2B2B1A0A2D2D120E00A2B39D /* ApproveViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603903742A6D1F560060E026 /* ApproveViewModel.swift */; };
+		2B2B1A0B2D2D120E00A2B39D /* AppActionBotton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DA06962A651AA000160ADC /* AppActionBotton.swift */; };
+		2B2B1A0C2D2D120E00A2B39D /* AddAssetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3E6C0C2ACDAB0B000E91CF /* AddAssetsViewController.swift */; };
+		2B2B1A0D2D2D120E00A2B39D /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A721F2B45AAEB0011C398 /* Modifiers.swift */; };
+		2B2B1A0E2D2D120E00A2B39D /* AddAssetsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3E6C082ACD8CFD000E91CF /* AddAssetsViewModel.swift */; };
+		2B2B1A0F2D2D120E00A2B39D /* VersionBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7C479A2B32EC65001C804B /* VersionBanner.swift */; };
+		2B2B1A102D2D120E00A2B39D /* AssetListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DA065A2A645E2E00160ADC /* AssetListViewModel.swift */; };
+		2B2B1A112D2D120E00A2B39D /* SignInViewModelBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B18902D2A965200A2B39D /* SignInViewModelBase.swift */; };
+		2B2B1A122D2D120E00A2B39D /* AdvancedInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8668C2242A67109400575A6A /* AdvancedInfoViewModel.swift */; };
+		2B2B1A132D2D120E00A2B39D /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867828CB2A696D170035787D /* SessionManager.swift */; };
+		2B2B1A142D2D120E00A2B39D /* AssetViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DA06A22A651D9300160ADC /* AssetViewCell.swift */; };
+		2B2B1A152D2D120E00A2B39D /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862E2A9B2A543B41002FF774 /* AuthViewController.swift */; };
+		2B2B1A162D2D120E00A2B39D /* TransferDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60503F502A5FDCED00C2DAB8 /* TransferDetailsViewModel.swift */; };
+		2B2B1A172D2D120E00A2B39D /* AddDeviceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B18BE2D2ADF4400A2B39D /* AddDeviceView.swift */; };
+		2B2B1A182D2D120E00A2B39D /* AdvancedInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8668C2282A67109400575A6A /* AdvancedInfoViewController.swift */; };
+		2B2B1A192D2D120E00A2B39D /* PollingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B94CFFC2A9F3F03003E7508 /* PollingManager.swift */; };
+		2B2B1A1A2D2D120E00A2B39D /* AlertBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF8EDBD2B56758300046F0B /* AlertBannerView.swift */; };
+		2B2B1A1B2D2D120E00A2B39D /* BackupDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867828EB2A696D7D0035787D /* BackupDetailsViewModel.swift */; };
+		2B2B1A1C2D2D120E00A2B39D /* DeriveKeysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD34A782B98B9A2008406D5 /* DeriveKeysView.swift */; };
+		2B2B1A1D2D2D120E00A2B39D /* ICloudManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866A73D72A696AA200E8E545 /* ICloudManager.swift */; };
+		2B2B1A1E2D2D120E00A2B39D /* Transfer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608293B82A56E57A00B11839 /* Transfer.swift */; };
+		2B2B1A1F2D2D120E00A2B39D /* AuthUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B6E92F2A5E8AB800F35260 /* AuthUser.swift */; };
+		2B2B1A202D2D120E00A2B39D /* ChooseAssetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DA066F2A645E9A00160ADC /* ChooseAssetViewController.swift */; };
+		2B2B1A212D2D120E00A2B39D /* PrepareForScanHostingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558E982B483CB3006212B2 /* PrepareForScanHostingVC.swift */; };
+		2B2B1A222D2D120E00A2B39D /* FireblocksManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B19B52D2C058500A2B39D /* FireblocksManagerProtocol.swift */; };
+		2B2B1A232D2D120E00A2B39D /* JoinOrRecoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B189C2D2AC3E700A2B39D /* JoinOrRecoverView.swift */; };
+		2B2B1A242D2D120E00A2B39D /* NavigationContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B18AD2D2ACDCC00A2B39D /* NavigationContainerView.swift */; };
+		2B2B1A252D2D120E00A2B39D /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B187E2D2A76A700A2B39D /* LaunchView.swift */; };
+		2B2B1A262D2D120E00A2B39D /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867828D62A696D170035787D /* ActivityIndicator.swift */; };
+		2B2B1A282D2D120E00A2B39D /* AddDeviceQRViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A721A2B45A2250011C398 /* AddDeviceQRViewModel.swift */; };
+		2B2B1A292D2D120E00A2B39D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86859F522A384D8A0056E3C6 /* AppDelegate.swift */; };
+		2B2B1A2A2D2D120E00A2B39D /* AuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862E2A9F2A543B6D002FF774 /* AuthRepository.swift */; };
+		2B2B1A2B2D2D120E00A2B39D /* FBTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DA06562A645E1300160ADC /* FBTransaction.swift */; };
+		2B2B1A2C2D2D120E00A2B39D /* ReceiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EECFA52A66BE6400F3891C /* ReceiveViewController.swift */; };
+		2B2B1A2D2D2D120E00A2B39D /* ManuallyInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A997102A6EB60900A6B60B /* ManuallyInputViewController.swift */; };
+		2B2B1A2E2D2D120E00A2B39D /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867828CF2A696D170035787D /* UIButton+Extension.swift */; };
+		2B2B1A2F2D2D120E00A2B39D /* AmountToSendViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DA06642A645E9A00160ADC /* AmountToSendViewModel.swift */; };
+		2B2B1A302D2D120E00A2B39D /* FBFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A72212B45AB2D0011C398 /* FBFont.swift */; };
+		2B2B1A312D2D120E00A2B39D /* ExtraParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B94CFC42A9CDF62003E7508 /* ExtraParameters.swift */; };
+		2B2B1A322D2D120E00A2B39D /* VerticalSeparator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC5837F2B6BD5FF005E6EEB /* VerticalSeparator.swift */; };
+		2B2B1A332D2D120E00A2B39D /* RedirectNewUserHostingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B174FEC2B624EEA00BE63A8 /* RedirectNewUserHostingVC.swift */; };
+		2B2B1A342D2D120E00A2B39D /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EECFD92A69198B00F3891C /* AlertView.swift */; };
+		2B2B1A352D2D120E00A2B39D /* ApproveRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603903782A6D3F880060E026 /* ApproveRepository.swift */; };
+		2B2B1A362D2D120E00A2B39D /* SettingsOptionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EB51292A66C08C00D2911A /* SettingsOptionButton.swift */; };
+		2B2B1A372D2D120E00A2B39D /* EndFlowFeedbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF8EDB52B56673300046F0B /* EndFlowFeedbackView.swift */; };
+		2B2B1A382D2D120E00A2B39D /* ManuallyInputViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A997122A6EB60900A6B60B /* ManuallyInputViewModel.swift */; };
+		2B2B1A392D2D120E00A2B39D /* CustomBackButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B18A92D2AC5C300A2B39D /* CustomBackButtonView.swift */; };
+		2B2B1A3A2D2D120E00A2B39D /* TransferCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6082938F2A56BB1400B11839 /* TransferCell.swift */; };
+		2B2B1A3B2D2D120E00A2B39D /* Double+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867828D32A696D170035787D /* Double+Extension.swift */; };
+		2B2B1A3C2D2D120E00A2B39D /* PrepareForScanViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558E852B47044C006212B2 /* PrepareForScanViewModel.swift */; };
+		2B2B1A3D2D2D120E00A2B39D /* LocalizableStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C26BEB2A488ACD00884C47 /* LocalizableStrings.swift */; };
+		2B2B1A3E2D2D120E00A2B39D /* BackupProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866A73D02A696A7C00E8E545 /* BackupProvider.swift */; };
+		2B2B1A3F2D2D120E00A2B39D /* PollingListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B94CFFB2A9F3F03003E7508 /* PollingListener.swift */; };
+		2B2B1A402D2D120E00A2B39D /* PrepareForScanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558E872B4704BA006212B2 /* PrepareForScanView.swift */; };
+		2B2B1A412D2D120E00A2B39D /* Platform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558EA12B484BE1006212B2 /* Platform.swift */; };
+		2B2B1A422D2D120E00A2B39D /* GoogleSignInManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862E2AA32A543B86002FF774 /* GoogleSignInManager.swift */; };
+		2B2B1A432D2D120E00A2B39D /* EWManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19FD9D2CB3FA88007B3BCB /* EWManager.swift */; };
+		2B2B1A442D2D120E00A2B39D /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A72232B45ABB50011C398 /* Style.swift */; };
+		2B2B1A452D2D120E00A2B39D /* AssetListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6025732F2A39E7F600A3C5D5 /* AssetListViewController.swift */; };
+		2B2B1A462D2D120E00A2B39D /* AddDeviceQRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A721C2B45A8FF0011C398 /* AddDeviceQRView.swift */; };
+		2B2B1A472D2D120E00A2B39D /* TransfersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608293BA2A56F0AC00B11839 /* TransfersViewModel.swift */; };
+		2B2B1A482D2D120E00A2B39D /* BackupStatusViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3E6C022ACC0C40000E91CF /* BackupStatusViewModel.swift */; };
+		2B2B1A492D2D120E00A2B39D /* ChooseAssetRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EECF9F2A66BE3100F3891C /* ChooseAssetRepository.swift */; };
+		2B2B1A4A2D2D120E00A2B39D /* TransfersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6082938A2A56B85800B11839 /* TransfersViewController.swift */; };
+		2B2B1A4B2D2D120E00A2B39D /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD53A222B28735700756C4A /* Date+Extensions.swift */; };
+		2B2B1A4C2D2D120E00A2B39D /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867828D12A696D170035787D /* UIView+Extension.swift */; };
+		2B2B1A4D2D2D120E00A2B39D /* QRCodeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867828D82A696D170035787D /* QRCodeGenerator.swift */; };
+		2B2B1A4E2D2D120E00A2B39D /* AddAssetViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3E6C102ACE96AC000E91CF /* AddAssetViewCell.swift */; };
+		2B2B1A4F2D2D120E00A2B39D /* CustomError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B18C72D2BCD9400A2B39D /* CustomError.swift */; };
+		2B2B1A502D2D120E00A2B39D /* ValidateRequestIdTimeOutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF8EDBF2B569D3B00046F0B /* ValidateRequestIdTimeOutView.swift */; };
+		2B2B1A512D2D120E00A2B39D /* FBHostingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA53D3C2B46B348008C7B6C /* FBHostingViewController.swift */; };
+		2B2B1A522D2D120E00A2B39D /* BackupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866A73C72A696A3100E8E545 /* BackupViewModel.swift */; };
+		2B2B1A532D2D120E00A2B39D /* RedirectNewUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B174FEA2B62447900BE63A8 /* RedirectNewUserViewModel.swift */; };
+		2B2B1A542D2D120E00A2B39D /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B67A362A6FF925007AC728 /* String+Extensions.swift */; };
+		2B2B1A552D2D120E00A2B39D /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B137BB2A8BA264009A4ECB /* UIApplication+Extension.swift */; };
+		2B2B1A562D2D120E00A2B39D /* MpcKeyCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8668C2262A67109400575A6A /* MpcKeyCellView.swift */; };
+		2B2B1A572D2D120E00A2B39D /* JoinOrRecoverViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B18A12D2AC3F500A2B39D /* JoinOrRecoverViewModel.swift */; };
+		2B2B1A582D2D120E00A2B39D /* UIHostingBridgeNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558E832B47042D006212B2 /* UIHostingBridgeNotifications.swift */; };
+		2B2B1A592D2D120E00A2B39D /* ValidateRequestIdHostingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558E9F2B484ADC006212B2 /* ValidateRequestIdHostingVC.swift */; };
+		2B2B1A5A2D2D120E00A2B39D /* DeriveKeysHostingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD34A742B98B983008406D5 /* DeriveKeysHostingVC.swift */; };
+		2B2B1A5B2D2D120E00A2B39D /* ValidateRequestIdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558E9D2B484AC4006212B2 /* ValidateRequestIdView.swift */; };
+		2B2B1A5C2D2D120E00A2B39D /* TransactionSentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B137B32A8B6A4C009A4ECB /* TransactionSentViewModel.swift */; };
+		2B2B1A5D2D2D120E00A2B39D /* AssetListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DA065C2A645E4700160ADC /* AssetListRepository.swift */; };
+		2B2B1A5E2D2D120E00A2B39D /* FeeRateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DA06A82A651F7E00160ADC /* FeeRateViewController.swift */; };
+		2B2B1A5F2D2D120E00A2B39D /* DerivedKeyItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD34A7C2B99D265008406D5 /* DerivedKeyItem.swift */; };
+		2B2B1A602D2D120E00A2B39D /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B18862D2A8A0C00A2B39D /* SignInView.swift */; };
+		2B2B1A612D2D120E00A2B39D /* MpcKeysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869A71472A3885E800653C8F /* MpcKeysViewController.swift */; };
+		2B2B1A622D2D120E00A2B39D /* MpcKeysViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861BA20C2A5E901800A1BC1B /* MpcKeysViewModel.swift */; };
+		2B2B1A632D2D120E00A2B39D /* ApproveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603903722A6D1F560060E026 /* ApproveViewController.swift */; };
+		2B2B1A642D2D120E00A2B39D /* ChooseAssetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DA06712A645E9A00160ADC /* ChooseAssetViewModel.swift */; };
+		2B2B1A652D2D120E00A2B39D /* AddDeviceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B18C32D2ADF5000A2B39D /* AddDeviceViewModel.swift */; };
+		2B2B1A662D2D120E00A2B39D /* JoinRequestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B05C0692B4698BF004CF1CE /* JoinRequestData.swift */; };
+		2B2B1A672D2D120E00A2B39D /* KeyStorageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B287E12A8903CF00DEA50C /* KeyStorageProvider.swift */; };
+		2B2B1A682D2D120E00A2B39D /* ViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D77DBA2A6D254200D77B9F /* ViewController+Extensions.swift */; };
+		2B2B1A692D2D120E00A2B39D /* BackupRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866A73CE2A696A5E00E8E545 /* BackupRepository.swift */; };
+		2B2B1A6A2D2D120E00A2B39D /* CodableParsingExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B94CFC82A9CE576003E7508 /* CodableParsingExtension.swift */; };
+		2B2B1A6B2D2D120E00A2B39D /* ManuallyInputViewControllerStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F972202A6A936100C896B2 /* ManuallyInputViewControllerStrategy.swift */; };
+		2B2B1A6C2D2D120E00A2B39D /* AssetsImageMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EECF9D2A66BE2700F3891C /* AssetsImageMapper.swift */; };
+		2B2B1A6D2D2D120E00A2B39D /* TransferDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608293C22A5AD72400B11839 /* TransferDetailsViewController.swift */; };
+		2B2B1A6F2D2D120E00A2B39D /* NVActivityIndicatorViewExtended in Frameworks */ = {isa = PBXBuildFile; productRef = 2B2B19D02D2D120E00A2B39D /* NVActivityIndicatorViewExtended */; };
+		2B2B1A702D2D120E00A2B39D /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2B2B19CD2D2D120E00A2B39D /* GoogleSignInSwift */; };
+		2B2B1A712D2D120E00A2B39D /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2B2B19D32D2D120E00A2B39D /* SDWebImageMapKit */; };
+		2B2B1A722D2D120E00A2B39D /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 2B2B19CB2D2D120E00A2B39D /* GoogleSignIn */; };
+		2B2B1A732D2D120E00A2B39D /* FireblocksSDKDev.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BE16A5E2C202687003D8C12 /* FireblocksSDKDev.xcframework */; };
+		2B2B1A742D2D120E00A2B39D /* GoogleAPIClientForREST_DriveLabels in Frameworks */ = {isa = PBXBuildFile; productRef = 2B2B19CA2D2D120E00A2B39D /* GoogleAPIClientForREST_DriveLabels */; };
+		2B2B1A752D2D120E00A2B39D /* GoogleAPIClientForREST_DriveActivity in Frameworks */ = {isa = PBXBuildFile; productRef = 2B2B19C92D2D120E00A2B39D /* GoogleAPIClientForREST_DriveActivity */; };
+		2B2B1A762D2D120E00A2B39D /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 2B2B19D12D2D120E00A2B39D /* SDWebImage */; };
+		2B2B1A772D2D120E00A2B39D /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 2B2B19C42D2D120E00A2B39D /* FirebaseAuth */; };
+		2B2B1A782D2D120E00A2B39D /* NVActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = 2B2B19CE2D2D120E00A2B39D /* NVActivityIndicatorView */; };
+		2B2B1A792D2D120E00A2B39D /* FirebaseAuthCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 2B2B19C62D2D120E00A2B39D /* FirebaseAuthCombine-Community */; };
+		2B2B1A7A2D2D120E00A2B39D /* GoogleAPIClientForREST_Drive in Frameworks */ = {isa = PBXBuildFile; productRef = 2B2B19C72D2D120E00A2B39D /* GoogleAPIClientForREST_Drive */; };
+		2B2B1A7C2D2D120E00A2B39D /* AdvancedInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8668C2292A67109400575A6A /* AdvancedInfoViewController.xib */; };
+		2B2B1A7D2D2D120E00A2B39D /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 603B70DE2A810D6200796CEE /* Roboto-Regular.ttf */; };
+		2B2B1A7E2D2D120E00A2B39D /* ReceiveViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60EECFA62A66BE6400F3891C /* ReceiveViewController.xib */; };
+		2B2B1A7F2D2D120E00A2B39D /* Inter-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 603B71022A81371200796CEE /* Inter-Medium.ttf */; };
+		2B2B1A802D2D120E00A2B39D /* TransfersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6082938B2A56B85800B11839 /* TransfersViewController.xib */; };
+		2B2B1A812D2D120E00A2B39D /* ManuallyInputViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86A997112A6EB60900A6B60B /* ManuallyInputViewController.xib */; };
+		2B2B1A822D2D120E00A2B39D /* TransferDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 608293C32A5AD72400B11839 /* TransferDetailsViewController.xib */; };
+		2B2B1A832D2D120E00A2B39D /* QRCodeScannerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60DA06AE2A65204600160ADC /* QRCodeScannerViewController.xib */; };
+		2B2B1A842D2D120E00A2B39D /* AreYouSureBottomSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86ED2BB12A64434500377F6C /* AreYouSureBottomSheet.xib */; };
+		2B2B1A852D2D120E00A2B39D /* Inter-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 603B71082A8137AE00796CEE /* Inter-Bold.ttf */; };
+		2B2B1A862D2D120E00A2B39D /* BackupDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 867828EA2A696D7D0035787D /* BackupDetailsViewController.xib */; };
+		2B2B1A872D2D120E00A2B39D /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 603B70E22A810D6200796CEE /* Roboto-Medium.ttf */; };
+		2B2B1A882D2D120E00A2B39D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86859F5B2A384D8B0056E3C6 /* Assets.xcassets */; };
+		2B2B1A892D2D120E00A2B39D /* SendToViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60DA06B22A65204600160ADC /* SendToViewController.xib */; };
+		2B2B1A8A2D2D120E00A2B39D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 86DC6E9C2A39ECC000A0B313 /* Localizable.strings */; };
+		2B2B1A8B2D2D120E00A2B39D /* AssetViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60DA06A12A651D9300160ADC /* AssetViewCell.xib */; };
+		2B2B1A8C2D2D120E00A2B39D /* AssetListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 602573302A39E7F600A3C5D5 /* AssetListViewController.xib */; };
+		2B2B1A8D2D2D120E00A2B39D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B7C46DD2B32D638001C804B /* Preview Assets.xcassets */; };
+		2B2B1A8E2D2D120E00A2B39D /* Inter-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 603B71052A81379D00796CEE /* Inter-Regular.ttf */; };
+		2B2B1A8F2D2D120E00A2B39D /* AddAssetsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B3E6C0E2ACDAB97000E91CF /* AddAssetsViewController.xib */; };
+		2B2B1A902D2D120E00A2B39D /* AmountToSendViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60DA06662A645E9A00160ADC /* AmountToSendViewController.xib */; };
+		2B2B1A912D2D120E00A2B39D /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 603B70DB2A810D6200796CEE /* Roboto-Bold.ttf */; };
+		2B2B1A922D2D120E00A2B39D /* TransferCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 608293902A56BB1400B11839 /* TransferCell.xib */; };
+		2B2B1A932D2D120E00A2B39D /* FeeRateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60DA06A62A651F7E00160ADC /* FeeRateViewController.xib */; };
+		2B2B1A942D2D120E00A2B39D /* ApproveViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 603903732A6D1F560060E026 /* ApproveViewController.xib */; };
+		2B2B1A952D2D120E00A2B39D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86859F5D2A384D8B0056E3C6 /* LaunchScreen.storyboard */; };
+		2B2B1A962D2D120E00A2B39D /* FeeRateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60DA06882A645EF400160ADC /* FeeRateCell.xib */; };
+		2B2B1A972D2D120E00A2B39D /* BackupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86EB512C2A66C08C00D2911A /* BackupViewController.xib */; };
+		2B2B1A982D2D120E00A2B39D /* BackupStatusViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 866A73CB2A696A4B00E8E545 /* BackupStatusViewController.xib */; };
+		2B2B1A992D2D120E00A2B39D /* TakeoverViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86E4A1662A6852CE00A2861D /* TakeoverViewController.xib */; };
+		2B2B1A9A2D2D120E00A2B39D /* MpcKeysViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86EBAAB72A5C346E0085E76B /* MpcKeysViewController.xib */; };
+		2B2B1A9B2D2D120E00A2B39D /* MpcKeyCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8668C2272A67109400575A6A /* MpcKeyCellView.xib */; };
+		2B2B1A9C2D2D120E00A2B39D /* AddAssetViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B3E6C122ACE96D7000E91CF /* AddAssetViewCell.xib */; };
+		2B2B1A9D2D2D120E00A2B39D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86859F582A384D8A0056E3C6 /* Main.storyboard */; };
+		2B2B1A9E2D2D120E00A2B39D /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86ED2BAA2A64430F00377F6C /* SettingsViewController.xib */; };
+		2B2B1A9F2D2D120E00A2B39D /* AuthViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 862E2AA92A543C6C002FF774 /* AuthViewController.xib */; };
+		2B2B1AA02D2D120E00A2B39D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B7C46DA2B32D638001C804B /* Assets.xcassets */; };
+		2B2B1AA12D2D120E00A2B39D /* ChooseAssetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60DA06702A645E9A00160ADC /* ChooseAssetViewController.xib */; };
+		2B2B1AA32D2D120E00A2B39D /* TransactionSentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60B137B22A8B6A4C009A4ECB /* TransactionSentViewController.xib */; };
+		2B2B1AA52D2D120E00A2B39D /* FireblocksSDKDev.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2BE16A5E2C202687003D8C12 /* FireblocksSDKDev.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2B2B1AAB2D2D126000A2B39D /* FireblocksManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B19BB2D2C161800A2B39D /* FireblocksManager.swift */; };
+		2B2B1AAC2D2D12A100A2B39D /* EmbeddedWalletSDKDev.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B2B19C12D2C172E00A2B39D /* EmbeddedWalletSDKDev.xcframework */; };
+		2B2B1AAD2D2D12A100A2B39D /* EmbeddedWalletSDKDev.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2B2B19C12D2C172E00A2B39D /* EmbeddedWalletSDKDev.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2B2B1AAF2D2D307F00A2B39D /* LatestBackupState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B1AAE2D2D306E00A2B39D /* LatestBackupState.swift */; };
+		2B2B1AB72D2D4ED500A2B39D /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B1AB52D2D4ED500A2B39D /* SignInViewModel.swift */; };
+		2B2B1ABC2D2D4EF000A2B39D /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B1ABB2D2D4EEA00A2B39D /* SignInViewModel.swift */; };
+		2B2B1ABE2D2D4EF000A2B39D /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B1ABB2D2D4EEA00A2B39D /* SignInViewModel.swift */; };
+		2B2B1ABF2D2D4EF000A2B39D /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B1ABB2D2D4EEA00A2B39D /* SignInViewModel.swift */; };
+		2B2B1AC22D2D531100A2B39D /* EnvironmentConstantsRentblocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B1AC12D2D52ED00A2B39D /* EnvironmentConstantsRentblocks.swift */; };
+		2B2B1ACA2D2D556400A2B39D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2B2B1AC92D2D556400A2B39D /* GoogleService-Info.plist */; };
+		2B2B1ACC2D2D558F00A2B39D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2B2B1ACB2D2D558F00A2B39D /* GoogleService-Info.plist */; };
+		2B2B1ACF2D2D6D0A00A2B39D /* LatestBackupState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B1AAE2D2D306E00A2B39D /* LatestBackupState.swift */; };
+		2B2B1AD02D2D6D0A00A2B39D /* LatestBackupState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B1AAE2D2D306E00A2B39D /* LatestBackupState.swift */; };
+		2B2B1AD12D2D6D0A00A2B39D /* LatestBackupState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B1AAE2D2D306E00A2B39D /* LatestBackupState.swift */; };
 		2B2D36162B2B205A00B04667 /* AppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2D36152B2B205A00B04667 /* AppLogger.swift */; };
 		2B3E6C032ACC0C40000E91CF /* BackupStatusViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3E6C022ACC0C40000E91CF /* BackupStatusViewModel.swift */; };
 		2B3E6C092ACD8CFD000E91CF /* AddAssetsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3E6C082ACD8CFD000E91CF /* AddAssetsViewModel.swift */; };
@@ -455,7 +675,6 @@
 		2BAB68242B820E9C003592F1 /* AlertBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF8EDBD2B56758300046F0B /* AlertBannerView.swift */; };
 		2BAB68252B820E9C003592F1 /* Bullet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC5837D2B6BD5DC005E6EEB /* Bullet.swift */; };
 		2BAB68262B820E9C003592F1 /* VerticalSeparator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC5837F2B6BD5FF005E6EEB /* VerticalSeparator.swift */; };
-		2BAB68282B820FCE003592F1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2BAB68272B820FCE003592F1 /* GoogleService-Info.plist */; };
 		2BAB68292B820FE9003592F1 /* RedirectNewUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B174FE82B62446900BE63A8 /* RedirectNewUserView.swift */; };
 		2BAB682A2B820FE9003592F1 /* RedirectNewUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B174FEA2B62447900BE63A8 /* RedirectNewUserViewModel.swift */; };
 		2BAB682B2B820FE9003592F1 /* RedirectNewUserHostingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B174FEC2B624EEA00BE63A8 /* RedirectNewUserHostingVC.swift */; };
@@ -630,6 +849,18 @@
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2B2B1AA42D2D120E00A2B39D /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				2B2B1AAD2D2D12A100A2B39D /* EmbeddedWalletSDKDev.xcframework in Embed Frameworks */,
+				2B2B1AA52D2D120E00A2B39D /* FireblocksSDKDev.xcframework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2B7C46EA2B32D780001C804B /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -667,7 +898,7 @@
 		2B2B18822D2A786C00A2B39D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		2B2B18862D2A8A0C00A2B39D /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		2B2B188B2D2A900200A2B39D /* LaunchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewModel.swift; sourceTree = "<group>"; };
-		2B2B18902D2A965200A2B39D /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
+		2B2B18902D2A965200A2B39D /* SignInViewModelBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModelBase.swift; sourceTree = "<group>"; };
 		2B2B18942D2AC27F00A2B39D /* AppBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppBackgroundView.swift; sourceTree = "<group>"; };
 		2B2B189C2D2AC3E700A2B39D /* JoinOrRecoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinOrRecoverView.swift; sourceTree = "<group>"; };
 		2B2B18A12D2AC3F500A2B39D /* JoinOrRecoverViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinOrRecoverViewModel.swift; sourceTree = "<group>"; };
@@ -679,6 +910,17 @@
 		2B2B18BE2D2ADF4400A2B39D /* AddDeviceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDeviceView.swift; sourceTree = "<group>"; };
 		2B2B18C32D2ADF5000A2B39D /* AddDeviceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDeviceViewModel.swift; sourceTree = "<group>"; };
 		2B2B18C72D2BCD9400A2B39D /* CustomError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomError.swift; sourceTree = "<group>"; };
+		2B2B19B52D2C058500A2B39D /* FireblocksManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireblocksManagerProtocol.swift; sourceTree = "<group>"; };
+		2B2B19BB2D2C161800A2B39D /* FireblocksManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireblocksManager.swift; sourceTree = "<group>"; };
+		2B2B19C12D2C172E00A2B39D /* EmbeddedWalletSDKDev.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = EmbeddedWalletSDKDev.xcframework; path = "../ios-embedded-wallet-sdk/iOS-EmbeddedWalletSDKDev/EmbeddedWalletSDKDev.xcframework"; sourceTree = SOURCE_ROOT; };
+		2B2B1AA92D2D120E00A2B39D /* EW-dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EW-dev.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2B2B1AAA2D2D120E00A2B39D /* NCW-dev copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "NCW-dev copy-Info.plist"; path = "/Users/dudishani-gabay/projects/ncw-ios-demo-github/NCW-dev copy-Info.plist"; sourceTree = "<absolute>"; };
+		2B2B1AAE2D2D306E00A2B39D /* LatestBackupState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestBackupState.swift; sourceTree = "<group>"; };
+		2B2B1AB52D2D4ED500A2B39D /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
+		2B2B1ABB2D2D4EEA00A2B39D /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
+		2B2B1AC12D2D52ED00A2B39D /* EnvironmentConstantsRentblocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentConstantsRentblocks.swift; sourceTree = "<group>"; };
+		2B2B1AC92D2D556400A2B39D /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		2B2B1ACB2D2D558F00A2B39D /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2B2D36152B2B205A00B04667 /* AppLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLogger.swift; sourceTree = "<group>"; };
 		2B3E6C022ACC0C40000E91CF /* BackupStatusViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupStatusViewModel.swift; sourceTree = "<group>"; };
 		2B3E6C082ACD8CFD000E91CF /* AddAssetsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAssetsViewModel.swift; sourceTree = "<group>"; };
@@ -718,7 +960,6 @@
 		2B94CFFB2A9F3F03003E7508 /* PollingListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PollingListener.swift; sourceTree = "<group>"; };
 		2B94CFFC2A9F3F03003E7508 /* PollingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PollingManager.swift; sourceTree = "<group>"; };
 		2BA53D3C2B46B348008C7B6C /* FBHostingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBHostingViewController.swift; sourceTree = "<group>"; };
-		2BAB68272B820FCE003592F1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = "GoogleService-Info.plist"; path = "Fireblocks/dev/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		2BC5837D2B6BD5DC005E6EEB /* Bullet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bullet.swift; sourceTree = "<group>"; };
 		2BC5837F2B6BD5FF005E6EEB /* VerticalSeparator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalSeparator.swift; sourceTree = "<group>"; };
 		2BD34A742B98B983008406D5 /* DeriveKeysHostingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeriveKeysHostingVC.swift; sourceTree = "<group>"; };
@@ -889,6 +1130,26 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2B2B1A6E2D2D120E00A2B39D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2B2B1A6F2D2D120E00A2B39D /* NVActivityIndicatorViewExtended in Frameworks */,
+				2B2B1A702D2D120E00A2B39D /* GoogleSignInSwift in Frameworks */,
+				2B2B1A712D2D120E00A2B39D /* SDWebImageMapKit in Frameworks */,
+				2B2B1A722D2D120E00A2B39D /* GoogleSignIn in Frameworks */,
+				2B2B1A732D2D120E00A2B39D /* FireblocksSDKDev.xcframework in Frameworks */,
+				2B2B1A742D2D120E00A2B39D /* GoogleAPIClientForREST_DriveLabels in Frameworks */,
+				2B2B1A752D2D120E00A2B39D /* GoogleAPIClientForREST_DriveActivity in Frameworks */,
+				2B2B1A762D2D120E00A2B39D /* SDWebImage in Frameworks */,
+				2B2B1A772D2D120E00A2B39D /* FirebaseAuth in Frameworks */,
+				2B2B1A782D2D120E00A2B39D /* NVActivityIndicatorView in Frameworks */,
+				2B2B1A792D2D120E00A2B39D /* FirebaseAuthCombine-Community in Frameworks */,
+				2B2B1A7A2D2D120E00A2B39D /* GoogleAPIClientForREST_Drive in Frameworks */,
+				2B2B1AAC2D2D12A100A2B39D /* EmbeddedWalletSDKDev.xcframework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2B7C46D12B32D636001C804B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -943,12 +1204,14 @@
 			path = RedirectNewUser;
 			sourceTree = "<group>";
 		};
-		2B21D8BF2BC57053003ADD29 /* google-production */ = {
+		2B21D8BF2BC57053003ADD29 /* GoogleService */ = {
 			isa = PBXGroup;
 			children = (
-				2B21D8C02BC570AA003ADD29 /* GoogleService-Info.plist */,
+				2B2B1AC82D2D552900A2B39D /* dev */,
+				2B2B1AC72D2D551900A2B39D /* sandbox */,
+				2B2B1AC62D2D550A00A2B39D /* production */,
 			);
-			path = "google-production";
+			path = GoogleService;
 			sourceTree = "<group>";
 		};
 		2B2B188A2D2A8FDF00A2B39D /* LaunchView */ = {
@@ -964,7 +1227,9 @@
 			isa = PBXGroup;
 			children = (
 				2B2B18862D2A8A0C00A2B39D /* SignInView.swift */,
-				2B2B18902D2A965200A2B39D /* SignInViewModel.swift */,
+				2B2B18902D2A965200A2B39D /* SignInViewModelBase.swift */,
+				2B2B1AC02D2D4EFE00A2B39D /* NCW */,
+				2B2B1ABA2D2D4EDA00A2B39D /* EW */,
 			);
 			path = SignInView;
 			sourceTree = "<group>";
@@ -994,6 +1259,80 @@
 				2B2B18C32D2ADF5000A2B39D /* AddDeviceViewModel.swift */,
 			);
 			path = AddDeviceView;
+			sourceTree = "<group>";
+		};
+		2B2B19BA2D2C160900A2B39D /* NCW */ = {
+			isa = PBXGroup;
+			children = (
+				86EBAAB92A5C3D560085E76B /* FireblocksManager.swift */,
+			);
+			path = NCW;
+			sourceTree = "<group>";
+		};
+		2B2B19C02D2C162500A2B39D /* EW */ = {
+			isa = PBXGroup;
+			children = (
+				2B2B19BB2D2C161800A2B39D /* FireblocksManager.swift */,
+				2B2B1AAE2D2D306E00A2B39D /* LatestBackupState.swift */,
+			);
+			path = EW;
+			sourceTree = "<group>";
+		};
+		2B2B1ABA2D2D4EDA00A2B39D /* EW */ = {
+			isa = PBXGroup;
+			children = (
+				2B2B1AB52D2D4ED500A2B39D /* SignInViewModel.swift */,
+			);
+			path = EW;
+			sourceTree = "<group>";
+		};
+		2B2B1AC02D2D4EFE00A2B39D /* NCW */ = {
+			isa = PBXGroup;
+			children = (
+				2B2B1ABB2D2D4EEA00A2B39D /* SignInViewModel.swift */,
+			);
+			path = NCW;
+			sourceTree = "<group>";
+		};
+		2B2B1AC62D2D550A00A2B39D /* production */ = {
+			isa = PBXGroup;
+			children = (
+				2B21D8C02BC570AA003ADD29 /* GoogleService-Info.plist */,
+			);
+			path = production;
+			sourceTree = "<group>";
+		};
+		2B2B1AC72D2D551900A2B39D /* sandbox */ = {
+			isa = PBXGroup;
+			children = (
+				2BD785CA2B83703F00FEA796 /* GoogleService-Info.plist */,
+			);
+			path = sandbox;
+			sourceTree = "<group>";
+		};
+		2B2B1AC82D2D552900A2B39D /* dev */ = {
+			isa = PBXGroup;
+			children = (
+				2B2B1ACE2D2D55B700A2B39D /* EW */,
+				2B2B1ACD2D2D55AD00A2B39D /* NCW */,
+			);
+			path = dev;
+			sourceTree = "<group>";
+		};
+		2B2B1ACD2D2D55AD00A2B39D /* NCW */ = {
+			isa = PBXGroup;
+			children = (
+				2B2B1AC92D2D556400A2B39D /* GoogleService-Info.plist */,
+			);
+			path = NCW;
+			sourceTree = "<group>";
+		};
+		2B2B1ACE2D2D55B700A2B39D /* EW */ = {
+			isa = PBXGroup;
+			children = (
+				2B2B1ACB2D2D558F00A2B39D /* GoogleService-Info.plist */,
+			);
+			path = EW;
 			sourceTree = "<group>";
 		};
 		2B3E6C042ACD44A5000E91CF /* List */ = {
@@ -1099,28 +1438,6 @@
 			children = (
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		2B7C47902B32E0CF001C804B = {
-			isa = PBXGroup;
-			children = (
-			);
-			sourceTree = "<unknown>";
-		};
-		2B7C47962B32E12E001C804B /* dev */ = {
-			isa = PBXGroup;
-			children = (
-				2BAB68272B820FCE003592F1 /* GoogleService-Info.plist */,
-			);
-			path = dev;
-			sourceTree = "<unknown>";
-		};
-		2B7C47A12B32F077001C804B /* prod */ = {
-			isa = PBXGroup;
-			children = (
-				2BD785CA2B83703F00FEA796 /* GoogleService-Info.plist */,
-			);
-			path = prod;
 			sourceTree = "<group>";
 		};
 		2B8A984D2B67A99C00DA8A2E /* Logger */ = {
@@ -1438,13 +1755,15 @@
 		862E2AA12A543B86002FF774 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				2B2B19B52D2C058500A2B39D /* FireblocksManagerProtocol.swift */,
+				2B2B19C02D2C162500A2B39D /* EW */,
+				2B2B19BA2D2C160900A2B39D /* NCW */,
 				60B287E12A8903CF00DEA50C /* KeyStorageProvider.swift */,
 				60B287E22A8903CF00DEA50C /* UsersLocalStorageManager.swift */,
 				866A73D82A696AA200E8E545 /* GoogleDriveManager.swift */,
 				866A73D72A696AA200E8E545 /* ICloudManager.swift */,
 				862E2AA22A543B86002FF774 /* AppleSignInManager.swift */,
 				862E2AA32A543B86002FF774 /* GoogleSignInManager.swift */,
-				86EBAAB92A5C3D560085E76B /* FireblocksManager.swift */,
 				2B19FD9D2CB3FA88007B3BCB /* EWManager.swift */,
 			);
 			path = Managers;
@@ -1597,6 +1916,7 @@
 			isa = PBXGroup;
 			children = (
 				2BE16A5E2C202687003D8C12 /* FireblocksSDKDev.xcframework */,
+				2B2B19C12D2C172E00A2B39D /* EmbeddedWalletSDKDev.xcframework */,
 				2B769B9E2B1DFCC700557E97 /* NCW-sandboxRelease.entitlements */,
 				2B769B9D2B1DFCBA00557E97 /* NCW-sandboxDebug.entitlements */,
 				86859F512A384D8A0056E3C6 /* Fireblocks */,
@@ -1606,6 +1926,7 @@
 				86380C922A6E967A00BEFF3E /* Recovered References */,
 				2B7C46EB2B32D786001C804B /* Frameworks */,
 				2B21D8BC2BC56B5C003ADD29 /* NCW-sandbox copy-Info.plist */,
+				2B2B1AAA2D2D120E00A2B39D /* NCW-dev copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1615,6 +1936,7 @@
 				86859F4F2A384D8A0056E3C6 /* NCW-sandbox.app */,
 				2B7C46D42B32D636001C804B /* NCW-dev.app */,
 				2B21D8BB2BC56B5C003ADD29 /* NCW-production.app */,
+				2B2B1AA92D2D120E00A2B39D /* EW-dev.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1635,11 +1957,8 @@
 				86859F662A384E8E0056E3C6 /* UI */,
 				86859F5D2A384D8B0056E3C6 /* LaunchScreen.storyboard */,
 				86859F582A384D8A0056E3C6 /* Main.storyboard */,
-				2B21D8BF2BC57053003ADD29 /* google-production */,
-				2B7C47962B32E12E001C804B /* dev */,
-				2B7C47902B32E0CF001C804B,
+				2B21D8BF2BC57053003ADD29 /* GoogleService */,
 				86859F602A384D8B0056E3C6 /* Info.plist */,
-				2B7C47A12B32F077001C804B /* prod */,
 			);
 			path = Fireblocks;
 			sourceTree = "<group>";
@@ -1678,6 +1997,7 @@
 				86859F522A384D8A0056E3C6 /* AppDelegate.swift */,
 				86859F542A384D8A0056E3C6 /* SceneDelegate.swift */,
 				2B7C47982B32EC52001C804B /* EnvironmentConstantsDev.swift */,
+				2B2B1AC12D2D52ED00A2B39D /* EnvironmentConstantsRentblocks.swift */,
 				2B7C479A2B32EC65001C804B /* VersionBanner.swift */,
 			);
 			path = SupportingFiles;
@@ -1847,6 +2167,37 @@
 			productReference = 2B21D8BB2BC56B5C003ADD29 /* NCW-production.app */;
 			productType = "com.apple.product-type.application";
 		};
+		2B2B19C32D2D120E00A2B39D /* EW-dev */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2B2B1AA62D2D120E00A2B39D /* Build configuration list for PBXNativeTarget "EW-dev" */;
+			buildPhases = (
+				2B2B19D42D2D120E00A2B39D /* Sources */,
+				2B2B1A6E2D2D120E00A2B39D /* Frameworks */,
+				2B2B1A7B2D2D120E00A2B39D /* Resources */,
+				2B2B1AA42D2D120E00A2B39D /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "EW-dev";
+			packageProductDependencies = (
+				2B2B19C42D2D120E00A2B39D /* FirebaseAuth */,
+				2B2B19C62D2D120E00A2B39D /* FirebaseAuthCombine-Community */,
+				2B2B19C72D2D120E00A2B39D /* GoogleAPIClientForREST_Drive */,
+				2B2B19C92D2D120E00A2B39D /* GoogleAPIClientForREST_DriveActivity */,
+				2B2B19CA2D2D120E00A2B39D /* GoogleAPIClientForREST_DriveLabels */,
+				2B2B19CB2D2D120E00A2B39D /* GoogleSignIn */,
+				2B2B19CD2D2D120E00A2B39D /* GoogleSignInSwift */,
+				2B2B19CE2D2D120E00A2B39D /* NVActivityIndicatorView */,
+				2B2B19D02D2D120E00A2B39D /* NVActivityIndicatorViewExtended */,
+				2B2B19D12D2D120E00A2B39D /* SDWebImage */,
+				2B2B19D32D2D120E00A2B39D /* SDWebImageMapKit */,
+			);
+			productName = "NCW-dev";
+			productReference = 2B2B1AA92D2D120E00A2B39D /* EW-dev.app */;
+			productType = "com.apple.product-type.application";
+		};
 		2B7C46D32B32D636001C804B /* NCW-dev */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2B7C46DF2B32D638001C804B /* Build configuration list for PBXNativeTarget "NCW-dev" */;
@@ -1952,6 +2303,7 @@
 				86859F4E2A384D8A0056E3C6 /* NCW-sandbox */,
 				2B7C46D32B32D636001C804B /* NCW-dev */,
 				2B21D7E52BC56B5C003ADD29 /* NCW-production */,
+				2B2B19C32D2D120E00A2B39D /* EW-dev */,
 			);
 		};
 /* End PBXProject section */
@@ -2002,6 +2354,53 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2B2B1A7B2D2D120E00A2B39D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2B2B1A7C2D2D120E00A2B39D /* AdvancedInfoViewController.xib in Resources */,
+				2B2B1A7D2D2D120E00A2B39D /* Roboto-Regular.ttf in Resources */,
+				2B2B1A7E2D2D120E00A2B39D /* ReceiveViewController.xib in Resources */,
+				2B2B1A7F2D2D120E00A2B39D /* Inter-Medium.ttf in Resources */,
+				2B2B1A802D2D120E00A2B39D /* TransfersViewController.xib in Resources */,
+				2B2B1A812D2D120E00A2B39D /* ManuallyInputViewController.xib in Resources */,
+				2B2B1A822D2D120E00A2B39D /* TransferDetailsViewController.xib in Resources */,
+				2B2B1A832D2D120E00A2B39D /* QRCodeScannerViewController.xib in Resources */,
+				2B2B1A842D2D120E00A2B39D /* AreYouSureBottomSheet.xib in Resources */,
+				2B2B1A852D2D120E00A2B39D /* Inter-Bold.ttf in Resources */,
+				2B2B1A862D2D120E00A2B39D /* BackupDetailsViewController.xib in Resources */,
+				2B2B1A872D2D120E00A2B39D /* Roboto-Medium.ttf in Resources */,
+				2B2B1A882D2D120E00A2B39D /* Assets.xcassets in Resources */,
+				2B2B1A892D2D120E00A2B39D /* SendToViewController.xib in Resources */,
+				2B2B1A8A2D2D120E00A2B39D /* Localizable.strings in Resources */,
+				2B2B1A8B2D2D120E00A2B39D /* AssetViewCell.xib in Resources */,
+				2B2B1A8C2D2D120E00A2B39D /* AssetListViewController.xib in Resources */,
+				2B2B1ACC2D2D558F00A2B39D /* GoogleService-Info.plist in Resources */,
+				2B2B1A8D2D2D120E00A2B39D /* Preview Assets.xcassets in Resources */,
+				2B2B1A8E2D2D120E00A2B39D /* Inter-Regular.ttf in Resources */,
+				2B2B1A8F2D2D120E00A2B39D /* AddAssetsViewController.xib in Resources */,
+				2B2B1A902D2D120E00A2B39D /* AmountToSendViewController.xib in Resources */,
+				2B2B1A912D2D120E00A2B39D /* Roboto-Bold.ttf in Resources */,
+				2B2B1A922D2D120E00A2B39D /* TransferCell.xib in Resources */,
+				2B2B1A932D2D120E00A2B39D /* FeeRateViewController.xib in Resources */,
+				2B2B1A942D2D120E00A2B39D /* ApproveViewController.xib in Resources */,
+				2B2B1A952D2D120E00A2B39D /* LaunchScreen.storyboard in Resources */,
+				2B2B1A962D2D120E00A2B39D /* FeeRateCell.xib in Resources */,
+				2B2B1A972D2D120E00A2B39D /* BackupViewController.xib in Resources */,
+				2B2B1A982D2D120E00A2B39D /* BackupStatusViewController.xib in Resources */,
+				2B2B1A992D2D120E00A2B39D /* TakeoverViewController.xib in Resources */,
+				2B2B1A9A2D2D120E00A2B39D /* MpcKeysViewController.xib in Resources */,
+				2B2B1A9B2D2D120E00A2B39D /* MpcKeyCellView.xib in Resources */,
+				2B2B1A9C2D2D120E00A2B39D /* AddAssetViewCell.xib in Resources */,
+				2B2B1A9D2D2D120E00A2B39D /* Main.storyboard in Resources */,
+				2B2B1A9E2D2D120E00A2B39D /* SettingsViewController.xib in Resources */,
+				2B2B1A9F2D2D120E00A2B39D /* AuthViewController.xib in Resources */,
+				2B2B1AA02D2D120E00A2B39D /* Assets.xcassets in Resources */,
+				2B2B1AA12D2D120E00A2B39D /* ChooseAssetViewController.xib in Resources */,
+				2B2B1AA32D2D120E00A2B39D /* TransactionSentViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2B7C46D22B32D636001C804B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2023,6 +2422,7 @@
 				2B7C46FC2B32D8CC001C804B /* Localizable.strings in Resources */,
 				2B7C47742B32D9C9001C804B /* AssetViewCell.xib in Resources */,
 				2B7C47482B32D96E001C804B /* AssetListViewController.xib in Resources */,
+				2B2B1ACA2D2D556400A2B39D /* GoogleService-Info.plist in Resources */,
 				2B7C46DE2B32D638001C804B /* Preview Assets.xcassets in Resources */,
 				2B7C46EE2B32D8B3001C804B /* Inter-Regular.ttf in Resources */,
 				2B7C47472B32D96E001C804B /* AddAssetsViewController.xib in Resources */,
@@ -2044,7 +2444,6 @@
 				2B7C47292B32D964001C804B /* AuthViewController.xib in Resources */,
 				2B7C46DB2B32D638001C804B /* Assets.xcassets in Resources */,
 				2B7C47332B32D965001C804B /* ChooseAssetViewController.xib in Resources */,
-				2BAB68282B820FCE003592F1 /* GoogleService-Info.plist in Resources */,
 				2B7C472C2B32D965001C804B /* TransactionSentViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2141,6 +2540,7 @@
 				2B21D8182BC56B5C003ADD29 /* AppLogger.swift in Sources */,
 				2B21D8192BC56B5C003ADD29 /* BackupDetailsViewModel.swift in Sources */,
 				2B21D81A2BC56B5C003ADD29 /* FeeRateCell.swift in Sources */,
+				2B2B1AD12D2D6D0A00A2B39D /* LatestBackupState.swift in Sources */,
 				2B21D81B2BC56B5C003ADD29 /* Platform.swift in Sources */,
 				2B21D81C2BC56B5C003ADD29 /* QRCodeScannerViewController.swift in Sources */,
 				2B21D81D2BC56B5C003ADD29 /* JoinRequestData.swift in Sources */,
@@ -2160,6 +2560,7 @@
 				2B21D82B2BC56B5C003ADD29 /* FBHostingViewController.swift in Sources */,
 				2B2B18B72D2AD9AF00A2B39D /* RecoverWalletView.swift in Sources */,
 				2B21D82C2BC56B5C003ADD29 /* DeriveKeysViewModel.swift in Sources */,
+				2B2B19B92D2C058E00A2B39D /* FireblocksManagerProtocol.swift in Sources */,
 				2B21D82D2BC56B5C003ADD29 /* ReceiveViewModel.swift in Sources */,
 				2B21D82E2BC56B5C003ADD29 /* BackupProvider.swift in Sources */,
 				2B21D8012BC56B5C003ADD29 /* Fee.swift in Sources */,
@@ -2175,7 +2576,7 @@
 				2B21D8382BC56B5C003ADD29 /* RedirectNewUserViewModel.swift in Sources */,
 				2B21D8392BC56B5C003ADD29 /* UsersLocalStorageManager.swift in Sources */,
 				2B21D83A2BC56B5C003ADD29 /* SessionManager.swift in Sources */,
-				2B2B18922D2A965500A2B39D /* SignInViewModel.swift in Sources */,
+				2B2B18922D2A965500A2B39D /* SignInViewModelBase.swift in Sources */,
 				2B21D83B2BC56B5C003ADD29 /* EndFlowFeedbackView.swift in Sources */,
 				2B21D8312BC56B5C003ADD29 /* LocalizableStrings.swift in Sources */,
 				2B21D8352BC56B5C003ADD29 /* AssetsColors.swift in Sources */,
@@ -2224,6 +2625,7 @@
 				2B21D85E2BC56B5C003ADD29 /* AuthRepository.swift in Sources */,
 				2B21D85F2BC56B5C003ADD29 /* VersionBanner.swift in Sources */,
 				2B21D8602BC56B5C003ADD29 /* TakeoverViewModel.swift in Sources */,
+				2B2B1ABF2D2D4EF000A2B39D /* SignInViewModel.swift in Sources */,
 				2B21D8612BC56B5C003ADD29 /* RedirectNewUserHostingVC.swift in Sources */,
 				2B21D8622BC56B5C003ADD29 /* ValidateRequestIdHostingVC.swift in Sources */,
 				2B21D8632BC56B5C003ADD29 /* AssetListRepository.swift in Sources */,
@@ -2256,6 +2658,168 @@
 				2B21D87C2BC56B5C003ADD29 /* PollingManager.swift in Sources */,
 				2B21D87D2BC56B5C003ADD29 /* Bullet.swift in Sources */,
 				2B2B18A32D2AC40200A2B39D /* JoinOrRecoverViewModel.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2B2B19D42D2D120E00A2B39D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2B2B1AC22D2D531100A2B39D /* EnvironmentConstantsRentblocks.swift in Sources */,
+				2B2B19D52D2D120E00A2B39D /* AssetHeaderUIView.swift in Sources */,
+				2B2B1AAB2D2D126000A2B39D /* FireblocksManager.swift in Sources */,
+				2B2B19D62D2D120E00A2B39D /* AppleSignInManager.swift in Sources */,
+				2B2B19D72D2D120E00A2B39D /* TransferStatusType.swift in Sources */,
+				2B2B19D82D2D120E00A2B39D /* UsersLocalStorageManager.swift in Sources */,
+				2B2B19DA2D2D120E00A2B39D /* AddDeviceHostingVC.swift in Sources */,
+				2B2B19DB2D2D120E00A2B39D /* TabBarViewController.swift in Sources */,
+				2B2B19DC2D2D120E00A2B39D /* BackupDetailsViewController.swift in Sources */,
+				2B2B19DD2D2D120E00A2B39D /* CodableExtension.swift in Sources */,
+				2B2B19DE2D2D120E00A2B39D /* BackupViewController.swift in Sources */,
+				2B2B19DF2D2D120E00A2B39D /* RedirectNewUserView.swift in Sources */,
+				2B2B19E02D2D120E00A2B39D /* DerivedAssetRow.swift in Sources */,
+				2B2B19E12D2D120E00A2B39D /* ReceiveViewModel.swift in Sources */,
+				2B2B19E22D2D120E00A2B39D /* SpinnerView.swift in Sources */,
+				2B2B19E32D2D120E00A2B39D /* TakeoverViewController.swift in Sources */,
+				2B2B19E42D2D120E00A2B39D /* BackupViewControllerStrategy.swift in Sources */,
+				2B2B19E52D2D120E00A2B39D /* AppLogger.swift in Sources */,
+				2B2B19E62D2D120E00A2B39D /* QRCodeScannerViewController.swift in Sources */,
+				2B2B19E72D2D120E00A2B39D /* AssetsIcons.swift in Sources */,
+				2B2B19E82D2D120E00A2B39D /* AuthProtocols.swift in Sources */,
+				2B2B19E92D2D120E00A2B39D /* Bullet.swift in Sources */,
+				2B2B19EA2D2D120E00A2B39D /* AssetsColors.swift in Sources */,
+				2B2B19EB2D2D120E00A2B39D /* SendToViewController.swift in Sources */,
+				2B2B19EC2D2D120E00A2B39D /* Extensions.swift in Sources */,
+				2B2B19ED2D2D120E00A2B39D /* LaunchViewModel.swift in Sources */,
+				2B2B19EE2D2D120E00A2B39D /* Int+Extension.swift in Sources */,
+				2B2B19EF2D2D120E00A2B39D /* ToastView.swift in Sources */,
+				2B2B19F02D2D120E00A2B39D /* CodableAnyExtension.swift in Sources */,
+				2B2B19F12D2D120E00A2B39D /* Asset.swift in Sources */,
+				2B2B19F22D2D120E00A2B39D /* FeeRateRepository.swift in Sources */,
+				2B2B19F32D2D120E00A2B39D /* TransactionSentViewController.swift in Sources */,
+				2B2B19F42D2D120E00A2B39D /* Constants.swift in Sources */,
+				2B2B19F52D2D120E00A2B39D /* ValidateRequestIdViewModel.swift in Sources */,
+				2B2B19F62D2D120E00A2B39D /* Fee.swift in Sources */,
+				2B2B19F72D2D120E00A2B39D /* BiometricsAuthentication.swift in Sources */,
+				2B2B19F82D2D120E00A2B39D /* SendToViewModel.swift in Sources */,
+				2B2B19F92D2D120E00A2B39D /* AppBackgroundView.swift in Sources */,
+				2B2B19FA2D2D120E00A2B39D /* SettingsViewController.swift in Sources */,
+				2B2B19FB2D2D120E00A2B39D /* BackupStatusViewController.swift in Sources */,
+				2B2B19FC2D2D120E00A2B39D /* SceneDelegate.swift in Sources */,
+				2B2B19FD2D2D120E00A2B39D /* TakeoverViewModel.swift in Sources */,
+				2B2B19FE2D2D120E00A2B39D /* AmountToSendViewController.swift in Sources */,
+				2B2B19FF2D2D120E00A2B39D /* AreYouSureBottomSheet.swift in Sources */,
+				2B2B1A002D2D120E00A2B39D /* RecoverWalletViewModel.swift in Sources */,
+				2B2B1A012D2D120E00A2B39D /* SettingsViewModel.swift in Sources */,
+				2B2B1A022D2D120E00A2B39D /* GoogleDriveManager.swift in Sources */,
+				2B2B1A032D2D120E00A2B39D /* EndFlowFeedbackViewModel.swift in Sources */,
+				2B2B1A042D2D120E00A2B39D /* FeeRateCell.swift in Sources */,
+				2B2B1A052D2D120E00A2B39D /* EndFlowFeedbackHostingVC.swift in Sources */,
+				2B2B1A062D2D120E00A2B39D /* RecoverWalletView.swift in Sources */,
+				2B2B1A072D2D120E00A2B39D /* DeriveKeysViewModel.swift in Sources */,
+				2B2B1A082D2D120E00A2B39D /* AuthViewModel.swift in Sources */,
+				2B2B1A092D2D120E00A2B39D /* FeeRateViewModel.swift in Sources */,
+				2B2B1A0A2D2D120E00A2B39D /* ApproveViewModel.swift in Sources */,
+				2B2B1A0B2D2D120E00A2B39D /* AppActionBotton.swift in Sources */,
+				2B2B1A0C2D2D120E00A2B39D /* AddAssetsViewController.swift in Sources */,
+				2B2B1A0D2D2D120E00A2B39D /* Modifiers.swift in Sources */,
+				2B2B1A0E2D2D120E00A2B39D /* AddAssetsViewModel.swift in Sources */,
+				2B2B1A0F2D2D120E00A2B39D /* VersionBanner.swift in Sources */,
+				2B2B1A102D2D120E00A2B39D /* AssetListViewModel.swift in Sources */,
+				2B2B1A112D2D120E00A2B39D /* SignInViewModelBase.swift in Sources */,
+				2B2B1A122D2D120E00A2B39D /* AdvancedInfoViewModel.swift in Sources */,
+				2B2B1A132D2D120E00A2B39D /* SessionManager.swift in Sources */,
+				2B2B1A142D2D120E00A2B39D /* AssetViewCell.swift in Sources */,
+				2B2B1A152D2D120E00A2B39D /* AuthViewController.swift in Sources */,
+				2B2B1A162D2D120E00A2B39D /* TransferDetailsViewModel.swift in Sources */,
+				2B2B1A172D2D120E00A2B39D /* AddDeviceView.swift in Sources */,
+				2B2B1A182D2D120E00A2B39D /* AdvancedInfoViewController.swift in Sources */,
+				2B2B1A192D2D120E00A2B39D /* PollingManager.swift in Sources */,
+				2B2B1A1A2D2D120E00A2B39D /* AlertBannerView.swift in Sources */,
+				2B2B1A1B2D2D120E00A2B39D /* BackupDetailsViewModel.swift in Sources */,
+				2B2B1A1C2D2D120E00A2B39D /* DeriveKeysView.swift in Sources */,
+				2B2B1A1D2D2D120E00A2B39D /* ICloudManager.swift in Sources */,
+				2B2B1A1E2D2D120E00A2B39D /* Transfer.swift in Sources */,
+				2B2B1A1F2D2D120E00A2B39D /* AuthUser.swift in Sources */,
+				2B2B1A202D2D120E00A2B39D /* ChooseAssetViewController.swift in Sources */,
+				2B2B1A212D2D120E00A2B39D /* PrepareForScanHostingVC.swift in Sources */,
+				2B2B1A222D2D120E00A2B39D /* FireblocksManagerProtocol.swift in Sources */,
+				2B2B1A232D2D120E00A2B39D /* JoinOrRecoverView.swift in Sources */,
+				2B2B1A242D2D120E00A2B39D /* NavigationContainerView.swift in Sources */,
+				2B2B1A252D2D120E00A2B39D /* LaunchView.swift in Sources */,
+				2B2B1A262D2D120E00A2B39D /* ActivityIndicator.swift in Sources */,
+				2B2B1A282D2D120E00A2B39D /* AddDeviceQRViewModel.swift in Sources */,
+				2B2B1A292D2D120E00A2B39D /* AppDelegate.swift in Sources */,
+				2B2B1A2A2D2D120E00A2B39D /* AuthRepository.swift in Sources */,
+				2B2B1A2B2D2D120E00A2B39D /* FBTransaction.swift in Sources */,
+				2B2B1A2C2D2D120E00A2B39D /* ReceiveViewController.swift in Sources */,
+				2B2B1AAF2D2D307F00A2B39D /* LatestBackupState.swift in Sources */,
+				2B2B1A2D2D2D120E00A2B39D /* ManuallyInputViewController.swift in Sources */,
+				2B2B1A2E2D2D120E00A2B39D /* UIButton+Extension.swift in Sources */,
+				2B2B1A2F2D2D120E00A2B39D /* AmountToSendViewModel.swift in Sources */,
+				2B2B1A302D2D120E00A2B39D /* FBFont.swift in Sources */,
+				2B2B1A312D2D120E00A2B39D /* ExtraParameters.swift in Sources */,
+				2B2B1A322D2D120E00A2B39D /* VerticalSeparator.swift in Sources */,
+				2B2B1A332D2D120E00A2B39D /* RedirectNewUserHostingVC.swift in Sources */,
+				2B2B1A342D2D120E00A2B39D /* AlertView.swift in Sources */,
+				2B2B1A352D2D120E00A2B39D /* ApproveRepository.swift in Sources */,
+				2B2B1A362D2D120E00A2B39D /* SettingsOptionButton.swift in Sources */,
+				2B2B1A372D2D120E00A2B39D /* EndFlowFeedbackView.swift in Sources */,
+				2B2B1A382D2D120E00A2B39D /* ManuallyInputViewModel.swift in Sources */,
+				2B2B1A392D2D120E00A2B39D /* CustomBackButtonView.swift in Sources */,
+				2B2B1A3A2D2D120E00A2B39D /* TransferCell.swift in Sources */,
+				2B2B1A3B2D2D120E00A2B39D /* Double+Extension.swift in Sources */,
+				2B2B1A3C2D2D120E00A2B39D /* PrepareForScanViewModel.swift in Sources */,
+				2B2B1A3D2D2D120E00A2B39D /* LocalizableStrings.swift in Sources */,
+				2B2B1A3E2D2D120E00A2B39D /* BackupProvider.swift in Sources */,
+				2B2B1A3F2D2D120E00A2B39D /* PollingListener.swift in Sources */,
+				2B2B1A402D2D120E00A2B39D /* PrepareForScanView.swift in Sources */,
+				2B2B1A412D2D120E00A2B39D /* Platform.swift in Sources */,
+				2B2B1A422D2D120E00A2B39D /* GoogleSignInManager.swift in Sources */,
+				2B2B1A432D2D120E00A2B39D /* EWManager.swift in Sources */,
+				2B2B1A442D2D120E00A2B39D /* Style.swift in Sources */,
+				2B2B1A452D2D120E00A2B39D /* AssetListViewController.swift in Sources */,
+				2B2B1A462D2D120E00A2B39D /* AddDeviceQRView.swift in Sources */,
+				2B2B1A472D2D120E00A2B39D /* TransfersViewModel.swift in Sources */,
+				2B2B1A482D2D120E00A2B39D /* BackupStatusViewModel.swift in Sources */,
+				2B2B1A492D2D120E00A2B39D /* ChooseAssetRepository.swift in Sources */,
+				2B2B1A4A2D2D120E00A2B39D /* TransfersViewController.swift in Sources */,
+				2B2B1A4B2D2D120E00A2B39D /* Date+Extensions.swift in Sources */,
+				2B2B1A4C2D2D120E00A2B39D /* UIView+Extension.swift in Sources */,
+				2B2B1A4D2D2D120E00A2B39D /* QRCodeGenerator.swift in Sources */,
+				2B2B1A4E2D2D120E00A2B39D /* AddAssetViewCell.swift in Sources */,
+				2B2B1A4F2D2D120E00A2B39D /* CustomError.swift in Sources */,
+				2B2B1AB72D2D4ED500A2B39D /* SignInViewModel.swift in Sources */,
+				2B2B1A502D2D120E00A2B39D /* ValidateRequestIdTimeOutView.swift in Sources */,
+				2B2B1A512D2D120E00A2B39D /* FBHostingViewController.swift in Sources */,
+				2B2B1A522D2D120E00A2B39D /* BackupViewModel.swift in Sources */,
+				2B2B1A532D2D120E00A2B39D /* RedirectNewUserViewModel.swift in Sources */,
+				2B2B1A542D2D120E00A2B39D /* String+Extensions.swift in Sources */,
+				2B2B1A552D2D120E00A2B39D /* UIApplication+Extension.swift in Sources */,
+				2B2B1A562D2D120E00A2B39D /* MpcKeyCellView.swift in Sources */,
+				2B2B1A572D2D120E00A2B39D /* JoinOrRecoverViewModel.swift in Sources */,
+				2B2B1A582D2D120E00A2B39D /* UIHostingBridgeNotifications.swift in Sources */,
+				2B2B1A592D2D120E00A2B39D /* ValidateRequestIdHostingVC.swift in Sources */,
+				2B2B1A5A2D2D120E00A2B39D /* DeriveKeysHostingVC.swift in Sources */,
+				2B2B1A5B2D2D120E00A2B39D /* ValidateRequestIdView.swift in Sources */,
+				2B2B1A5C2D2D120E00A2B39D /* TransactionSentViewModel.swift in Sources */,
+				2B2B1A5D2D2D120E00A2B39D /* AssetListRepository.swift in Sources */,
+				2B2B1A5E2D2D120E00A2B39D /* FeeRateViewController.swift in Sources */,
+				2B2B1A5F2D2D120E00A2B39D /* DerivedKeyItem.swift in Sources */,
+				2B2B1A602D2D120E00A2B39D /* SignInView.swift in Sources */,
+				2B2B1A612D2D120E00A2B39D /* MpcKeysViewController.swift in Sources */,
+				2B2B1A622D2D120E00A2B39D /* MpcKeysViewModel.swift in Sources */,
+				2B2B1A632D2D120E00A2B39D /* ApproveViewController.swift in Sources */,
+				2B2B1A642D2D120E00A2B39D /* ChooseAssetViewModel.swift in Sources */,
+				2B2B1A652D2D120E00A2B39D /* AddDeviceViewModel.swift in Sources */,
+				2B2B1A662D2D120E00A2B39D /* JoinRequestData.swift in Sources */,
+				2B2B1A672D2D120E00A2B39D /* KeyStorageProvider.swift in Sources */,
+				2B2B1A682D2D120E00A2B39D /* ViewController+Extensions.swift in Sources */,
+				2B2B1A692D2D120E00A2B39D /* BackupRepository.swift in Sources */,
+				2B2B1A6A2D2D120E00A2B39D /* CodableParsingExtension.swift in Sources */,
+				2B2B1A6B2D2D120E00A2B39D /* ManuallyInputViewControllerStrategy.swift in Sources */,
+				2B2B1A6C2D2D120E00A2B39D /* AssetsImageMapper.swift in Sources */,
+				2B2B1A6D2D2D120E00A2B39D /* TransferDetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2323,7 +2887,7 @@
 				2B7C47452B32D96E001C804B /* AddAssetsViewModel.swift in Sources */,
 				2B7C479C2B32EC65001C804B /* VersionBanner.swift in Sources */,
 				2B7C47422B32D96E001C804B /* AssetListViewModel.swift in Sources */,
-				2B2B18932D2A965500A2B39D /* SignInViewModel.swift in Sources */,
+				2B2B18932D2A965500A2B39D /* SignInViewModelBase.swift in Sources */,
 				2B7C47562B32D98D001C804B /* AdvancedInfoViewModel.swift in Sources */,
 				2B7C47152B32D90C001C804B /* SessionManager.swift in Sources */,
 				2B7C476E2B32D9C9001C804B /* AssetViewCell.swift in Sources */,
@@ -2340,6 +2904,7 @@
 				2B7C46F82B32D8C4001C804B /* AuthUser.swift in Sources */,
 				2B7C47312B32D965001C804B /* ChooseAssetViewController.swift in Sources */,
 				2BAB680F2B820DC9003592F1 /* PrepareForScanHostingVC.swift in Sources */,
+				2B2B19B72D2C058E00A2B39D /* FireblocksManagerProtocol.swift in Sources */,
 				2B2B189E2D2AC3E700A2B39D /* JoinOrRecoverView.swift in Sources */,
 				2B2B18B02D2ACDCC00A2B39D /* NavigationContainerView.swift in Sources */,
 				2B2B187F2D2A76A700A2B39D /* LaunchView.swift in Sources */,
@@ -2356,6 +2921,7 @@
 				2BAB68212B820E89003592F1 /* FBFont.swift in Sources */,
 				2B7C46F52B32D8C4001C804B /* ExtraParameters.swift in Sources */,
 				2BAB68262B820E9C003592F1 /* VerticalSeparator.swift in Sources */,
+				2B2B1AD02D2D6D0A00A2B39D /* LatestBackupState.swift in Sources */,
 				2BAB682B2B820FE9003592F1 /* RedirectNewUserHostingVC.swift in Sources */,
 				2B7C476A2B32D9C9001C804B /* AlertView.swift in Sources */,
 				2B7C470B2B32D8FC001C804B /* ApproveRepository.swift in Sources */,
@@ -2385,6 +2951,7 @@
 				2B7C47222B32D922001C804B /* QRCodeGenerator.swift in Sources */,
 				2B7C47492B32D96E001C804B /* AddAssetViewCell.swift in Sources */,
 				2B2B18CA2D2BCD9900A2B39D /* CustomError.swift in Sources */,
+				2B2B1ABE2D2D4EF000A2B39D /* SignInViewModel.swift in Sources */,
 				2BAB68162B820E06003592F1 /* ValidateRequestIdTimeOutView.swift in Sources */,
 				2BAB68122B820DEB003592F1 /* FBHostingViewController.swift in Sources */,
 				2B7C47592B32D9A5001C804B /* BackupViewModel.swift in Sources */,
@@ -2462,6 +3029,7 @@
 				2B174FE92B62446900BE63A8 /* RedirectNewUserView.swift in Sources */,
 				2B2D36162B2B205A00B04667 /* AppLogger.swift in Sources */,
 				867828EE2A696D7D0035787D /* BackupDetailsViewModel.swift in Sources */,
+				2B2B1ACF2D2D6D0A00A2B39D /* LatestBackupState.swift in Sources */,
 				60DA068B2A645EF400160ADC /* FeeRateCell.swift in Sources */,
 				2B558EA22B484BE1006212B2 /* Platform.swift in Sources */,
 				60DA06B42A65204600160ADC /* QRCodeScannerViewController.swift in Sources */,
@@ -2481,6 +3049,7 @@
 				862E2AA72A543B86002FF774 /* GoogleSignInManager.swift in Sources */,
 				2B2B18B62D2AD9AF00A2B39D /* RecoverWalletView.swift in Sources */,
 				2BA53D3D2B46B348008C7B6C /* FBHostingViewController.swift in Sources */,
+				2B2B19B82D2C058E00A2B39D /* FireblocksManagerProtocol.swift in Sources */,
 				2BD34A772B98B995008406D5 /* DeriveKeysViewModel.swift in Sources */,
 				60EECFAA2A66BE6400F3891C /* ReceiveViewModel.swift in Sources */,
 				866A73D12A696A7C00E8E545 /* BackupProvider.swift in Sources */,
@@ -2496,7 +3065,7 @@
 				2B7A72262B45ADAA0011C398 /* Extensions.swift in Sources */,
 				2B174FEB2B62447900BE63A8 /* RedirectNewUserViewModel.swift in Sources */,
 				60B287E52A8903CF00DEA50C /* UsersLocalStorageManager.swift in Sources */,
-				2B2B18912D2A965500A2B39D /* SignInViewModel.swift in Sources */,
+				2B2B18912D2A965500A2B39D /* SignInViewModelBase.swift in Sources */,
 				867828DD2A696D170035787D /* SessionManager.swift in Sources */,
 				2BF8EDB62B56673300046F0B /* EndFlowFeedbackView.swift in Sources */,
 				86C26BEC2A488ACD00884C47 /* LocalizableStrings.swift in Sources */,
@@ -2545,6 +3114,7 @@
 				862E2AA02A543B6D002FF774 /* AuthRepository.swift in Sources */,
 				2B7C479B2B32EC65001C804B /* VersionBanner.swift in Sources */,
 				86E4A1672A6852CE00A2861D /* TakeoverViewModel.swift in Sources */,
+				2B2B1ABC2D2D4EF000A2B39D /* SignInViewModel.swift in Sources */,
 				2B174FED2B624EEA00BE63A8 /* RedirectNewUserHostingVC.swift in Sources */,
 				2B558EA02B484ADC006212B2 /* ValidateRequestIdHostingVC.swift in Sources */,
 				60DA065D2A645E4700160ADC /* AssetListRepository.swift in Sources */,
@@ -2687,6 +3257,86 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "NCW Demo App Appstore";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		2B2B1AA72D2D120E00A2B39D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconEWDev;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "NCW-dev/NCW-devDebug.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"NCW-dev/Preview Content\"";
+				DEVELOPMENT_TEAM = 2HS962GC9R;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "NCW-dev copy-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "EW-Dev";
+				INFOPLIST_KEY_NSCameraUsageDescription = "We need access to your camera to scan QR codes.";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "The app needs access to biometrics to secure sensitive data";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 2.9.1;
+				OTHER_SWIFT_FLAGS = "-DDEV";
+				PRODUCT_BUNDLE_IDENTIFIER = com.fireblocks.ew.demo.dev;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		2B2B1AA82D2D120E00A2B39D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconEWDev;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "NCW-dev/NCW-devRelease.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"NCW-dev/Preview Content\"";
+				DEVELOPMENT_TEAM = 2HS962GC9R;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "NCW-dev copy-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "EW-Dev";
+				INFOPLIST_KEY_NSCameraUsageDescription = "We need access to your camera to scan QR codes.";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "The app needs access to biometrics to secure sensitive data";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 2.9.1;
+				OTHER_SWIFT_FLAGS = "-DDEV";
+				PRODUCT_BUNDLE_IDENTIFIER = com.fireblocks.ew.demo.dev;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -2990,6 +3640,15 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		2B2B1AA62D2D120E00A2B39D /* Build configuration list for PBXNativeTarget "EW-dev" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2B2B1AA72D2D120E00A2B39D /* Debug */,
+				2B2B1AA82D2D120E00A2B39D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		2B7C46DF2B32D638001C804B /* Build configuration list for PBXNativeTarget "NCW-dev" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -3058,6 +3717,46 @@
 			requirement = {
 				branch = main;
 				kind = branch;
+			};
+		};
+		2B2B19C52D2D120E00A2B39D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.0.0;
+			};
+		};
+		2B2B19C82D2D120E00A2B39D /* XCRemoteSwiftPackageReference "google-api-objectivec-client-for-rest" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/google-api-objectivec-client-for-rest";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+		2B2B19CC2D2D120E00A2B39D /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
+		2B2B19CF2D2D120E00A2B39D /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ninjaprox/NVActivityIndicatorView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		2B2B19D22D2D120E00A2B39D /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
 			};
 		};
 		2BB18F1F2CCFD61100920DAB /* XCRemoteSwiftPackageReference "ncw-ios-sdk" */ = {
@@ -3165,6 +3864,61 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2B21D7F32BC56B5C003ADD29 /* XCRemoteSwiftPackageReference "google-api-objectivec-client-for-rest" */;
 			productName = GoogleAPIClientForREST_DriveLabels;
+		};
+		2B2B19C42D2D120E00A2B39D /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2B2B19C52D2D120E00A2B39D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		2B2B19C62D2D120E00A2B39D /* FirebaseAuthCombine-Community */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2B2B19C52D2D120E00A2B39D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseAuthCombine-Community";
+		};
+		2B2B19C72D2D120E00A2B39D /* GoogleAPIClientForREST_Drive */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2B2B19C82D2D120E00A2B39D /* XCRemoteSwiftPackageReference "google-api-objectivec-client-for-rest" */;
+			productName = GoogleAPIClientForREST_Drive;
+		};
+		2B2B19C92D2D120E00A2B39D /* GoogleAPIClientForREST_DriveActivity */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2B2B19C82D2D120E00A2B39D /* XCRemoteSwiftPackageReference "google-api-objectivec-client-for-rest" */;
+			productName = GoogleAPIClientForREST_DriveActivity;
+		};
+		2B2B19CA2D2D120E00A2B39D /* GoogleAPIClientForREST_DriveLabels */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2B2B19C82D2D120E00A2B39D /* XCRemoteSwiftPackageReference "google-api-objectivec-client-for-rest" */;
+			productName = GoogleAPIClientForREST_DriveLabels;
+		};
+		2B2B19CB2D2D120E00A2B39D /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2B2B19CC2D2D120E00A2B39D /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignIn;
+		};
+		2B2B19CD2D2D120E00A2B39D /* GoogleSignInSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2B2B19CC2D2D120E00A2B39D /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignInSwift;
+		};
+		2B2B19CE2D2D120E00A2B39D /* NVActivityIndicatorView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2B2B19CF2D2D120E00A2B39D /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */;
+			productName = NVActivityIndicatorView;
+		};
+		2B2B19D02D2D120E00A2B39D /* NVActivityIndicatorViewExtended */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2B2B19CF2D2D120E00A2B39D /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */;
+			productName = NVActivityIndicatorViewExtended;
+		};
+		2B2B19D12D2D120E00A2B39D /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2B2B19D22D2D120E00A2B39D /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
+		};
+		2B2B19D32D2D120E00A2B39D /* SDWebImageMapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2B2B19D22D2D120E00A2B39D /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImageMapKit;
 		};
 		2B7C47792B32DA77001C804B /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;

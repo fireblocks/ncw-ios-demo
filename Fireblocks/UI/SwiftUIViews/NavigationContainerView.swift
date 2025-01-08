@@ -32,6 +32,7 @@ struct NavigationContainerView<Content: View>: View {
                 case .signIn:
                     SpinnerViewContainer {
                         SignInView()
+                            .environmentObject(coordinator)
                     }
                 case .joinOrRecover:
                     SpinnerViewContainer {
