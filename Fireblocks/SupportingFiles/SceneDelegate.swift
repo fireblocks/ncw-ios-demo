@@ -26,6 +26,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let window = (scene as? UIWindowScene) else { return }
 //        loadRootViewController(window)
         loadLaunchViewController(window)
+        configNavigationBar()
     }
     
     private func loadLaunchViewController(_ windowScene: UIWindowScene) {
@@ -71,11 +72,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //        window.makeKeyAndVisible()
 //    }
     
-    private func configNavigationBar(){
+    private func configNavigationBar() {
         UINavigationBar.appearance().backIndicatorTransitionMaskImage = AssetsIcons.back.getIcon()
         UINavigationBar.appearance().backIndicatorImage = AssetsIcons.back.getIcon()
         UINavigationBar.appearance().tintColor = AssetsColors.white.getColor()
         UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffset(horizontal: -1000, vertical: 0), for: .default)
+
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {

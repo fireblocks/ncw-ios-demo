@@ -10,7 +10,7 @@ import CryptoKit
 import AuthenticationServices
 import FirebaseAuth
 
-class AppleSignInManager {
+class AppleSignInManager: ObservableObject {
     
     static var currentNonce: String?
     

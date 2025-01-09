@@ -133,14 +133,12 @@ class MpcKeysViewController: UIViewController {
             print("SettingsViewModel can't sign out with current user: \(error)")
         }
         if let window = view.window {
-            let rootViewController = UINavigationController()
-            let vc = AuthViewController()
-            rootViewController.pushViewController(vc, animated: true)
-            window.rootViewController = rootViewController
-        } else if let window = navigationController?.view.window {
-            let rootViewController = UINavigationController()
-            let vc = AuthViewController()
-            rootViewController.pushViewController(vc, animated: true)
+            let viewModel = LaunchView.ViewModel()
+            let rootViewController = UIHostingController(
+                rootView: NavigationContainerView() {
+                    LaunchView(viewModel: viewModel)
+                }
+            )
             window.rootViewController = rootViewController
         }
     }

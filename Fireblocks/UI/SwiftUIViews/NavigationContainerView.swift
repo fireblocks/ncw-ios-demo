@@ -10,7 +10,7 @@ import SwiftUI
 enum NavigationTypes: Hashable {
     case signIn
     case joinOrRecover
-    case recoverWallet
+    case recoverWallet(Bool)
     case addDevice
 }
 
@@ -19,28 +19,37 @@ class Coordinator: ObservableObject {
 }
 
 struct NavigationContainerView<Content: View>: View {
-    
     @StateObject var coordinator = Coordinator()
+    @StateObject var fireblocksManager = FireblocksManager.shared
+    @StateObject var googleSignInManager = GoogleSignInManager()
+    @StateObject var appleSignInManager = AppleSignInManager()
     @ViewBuilder var content: Content
     
     var body: some View {
         NavigationStack(path: $coordinator.path) {
             content
-            .environmentObject(coordinator)
+                .environmentObject(coordinator)
             .navigationDestination(for: NavigationTypes.self) { type in
                 switch type {
                 case .signIn:
                     SpinnerViewContainer {
                         SignInView()
                             .environmentObject(coordinator)
+                            .environmentObject(fireblocksManager)
+                            .environmentObject(googleSignInManager)
+                            .environmentObject(appleSignInManager)
                     }
                 case .joinOrRecover:
                     SpinnerViewContainer {
                         JoinOrRecoverView()
+                            .environmentObject(coordinator)
                     }
-                case .recoverWallet:
+                case .recoverWallet(let redirect):
                     SpinnerViewContainer {
-                        RecoverWalletView()
+                        RecoverWalletView(redirect: redirect)
+                            .environmentObject(coordinator)
+                            .environmentObject(fireblocksManager)
+                            .environmentObject(googleSignInManager)
                     }
                 case .addDevice:
                     SpinnerViewContainer {

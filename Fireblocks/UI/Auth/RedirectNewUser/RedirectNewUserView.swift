@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct RedirectNewUserView: View {
-    @Environment (\.dismiss) var dismiss
+    @Environment(\.dismiss) var dismiss
     @StateObject var viewModel: ViewModel
 
     init(viewModel: ViewModel) {
@@ -111,10 +111,6 @@ struct RedirectNewUserView: View {
     }
 }
 
-struct RedirectNewUserView_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationView {
-            RedirectNewUserView(viewModel: RedirectNewUserView.ViewModel())
-        }
-    }
+#Preview {
+    RedirectNewUserView(viewModel: RedirectNewUserView.ViewModel())
 }

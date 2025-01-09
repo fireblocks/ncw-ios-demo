@@ -8,8 +8,15 @@
 import SwiftUI
 
 struct RecoverWalletView: View {
+    @Environment(\.dismiss) var dismiss
     @EnvironmentObject var coordinator: Coordinator
     @EnvironmentObject var loadingManager: LoadingManager
+    @EnvironmentObject var fireblocksManager: FireblocksManager
+    @EnvironmentObject var googleSignInManager: GoogleSignInManager
+    @StateObject var viewModel: ViewModel
+    init(redirect: Bool) {
+        _viewModel = StateObject(wrappedValue: ViewModel(redirect: redirect))
+    }
     
     var body: some View {
         ZStack {
@@ -32,7 +39,7 @@ struct RecoverWalletView: View {
                         .padding(.bottom, 56)
                     
                     Button {
-                        print("apple")
+                        viewModel.recover()
                     } label: {
                         Label("Recover from Drive", image: "google_icon")
                             .frame(maxWidth: .infinity)
@@ -52,11 +59,19 @@ struct RecoverWalletView: View {
         }
         .navigationBarBackButtonHidden()
         .navigationBarItems(leading: CustomBackButtonView())
+        .onAppear() {
+            viewModel.setup(loadingManager: loadingManager, fireblocksManager: fireblocksManager, googleSignInManager: googleSignInManager)
+        }
+        .onChange(of: viewModel.dismiss) { newValue in
+            if newValue {
+                dismiss()
+            }
+        }
     }
 }
 
 #Preview {
     NavigationContainerView {
-        RecoverWalletView()
+        RecoverWalletView(redirect: false)
     }
 }

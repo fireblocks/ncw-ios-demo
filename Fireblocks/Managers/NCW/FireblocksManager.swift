@@ -16,7 +16,7 @@ import FireblocksSDK
 
 private let logger = Logger(subsystem: "Fireblocks", category: "FireblocksManager")
 
-class FireblocksManager: FireblocksManagerProtocol {
+class FireblocksManager: FireblocksManagerProtocol, ObservableObject {
     static let shared = FireblocksManager()
     
     var deviceId: String = ""
@@ -74,6 +74,7 @@ class FireblocksManager: FireblocksManagerProtocol {
         do {
             let result = try await SessionManager.shared.assign(deviceId:deviceId)
             if let walletId = result.walletId {
+                self.walletId = walletId
                 return walletId
             } else {
                 errorMessage = "Failed to create wallet"
@@ -103,17 +104,20 @@ class FireblocksManager: FireblocksManagerProtocol {
             let device = devices?.devices.last
             if device == nil || device!.deviceId.isEmptyOrNil || device!.walletId.isEmptyOrNil {
                 self.deviceId = generateDeviceId()
-//                UsersLocalStorageManager.shared.setLastDeviceId(deviceId: self.deviceId, email: email)
+                UsersLocalStorageManager.shared.setLastDeviceId(deviceId: self.deviceId, email: email)
                 try initializeFireblocksSDK()
                 return .generate
             } else {
+                self.walletId = device?.walletId ?? ""
+                self.deviceId = device?.deviceId ?? ""
                 let info = try await SessionManager.shared.getLatestBackupInfo(walletId: walletId)
                 if info.deviceId.isEmptyOrNil {
                     errorMessage = "No available backup"
 
                     return .error
                 } else {
-                    self.deviceId = generateDeviceId()
+//                    self.deviceId = generateDeviceId()
+//                    UsersLocalStorageManager.shared.setLastDeviceId(deviceId: self.deviceId, email: email)
                     try initializeFireblocksSDK()
                     return .joinOrRecover
 

@@ -220,9 +220,6 @@
 		2B2B189D2D2AC3E700A2B39D /* JoinOrRecoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B189C2D2AC3E700A2B39D /* JoinOrRecoverView.swift */; };
 		2B2B189E2D2AC3E700A2B39D /* JoinOrRecoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B189C2D2AC3E700A2B39D /* JoinOrRecoverView.swift */; };
 		2B2B189F2D2AC3E700A2B39D /* JoinOrRecoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B189C2D2AC3E700A2B39D /* JoinOrRecoverView.swift */; };
-		2B2B18A22D2AC40200A2B39D /* JoinOrRecoverViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B18A12D2AC3F500A2B39D /* JoinOrRecoverViewModel.swift */; };
-		2B2B18A32D2AC40200A2B39D /* JoinOrRecoverViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B18A12D2AC3F500A2B39D /* JoinOrRecoverViewModel.swift */; };
-		2B2B18A42D2AC40200A2B39D /* JoinOrRecoverViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B18A12D2AC3F500A2B39D /* JoinOrRecoverViewModel.swift */; };
 		2B2B18AA2D2AC5C300A2B39D /* CustomBackButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B18A92D2AC5C300A2B39D /* CustomBackButtonView.swift */; };
 		2B2B18AB2D2AC5C300A2B39D /* CustomBackButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B18A92D2AC5C300A2B39D /* CustomBackButtonView.swift */; };
 		2B2B18AC2D2AC5C300A2B39D /* CustomBackButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B18A92D2AC5C300A2B39D /* CustomBackButtonView.swift */; };
@@ -378,7 +375,6 @@
 		2B2B1A542D2D120E00A2B39D /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B67A362A6FF925007AC728 /* String+Extensions.swift */; };
 		2B2B1A552D2D120E00A2B39D /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B137BB2A8BA264009A4ECB /* UIApplication+Extension.swift */; };
 		2B2B1A562D2D120E00A2B39D /* MpcKeyCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8668C2262A67109400575A6A /* MpcKeyCellView.swift */; };
-		2B2B1A572D2D120E00A2B39D /* JoinOrRecoverViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B18A12D2AC3F500A2B39D /* JoinOrRecoverViewModel.swift */; };
 		2B2B1A582D2D120E00A2B39D /* UIHostingBridgeNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558E832B47042D006212B2 /* UIHostingBridgeNotifications.swift */; };
 		2B2B1A592D2D120E00A2B39D /* ValidateRequestIdHostingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558E9F2B484ADC006212B2 /* ValidateRequestIdHostingVC.swift */; };
 		2B2B1A5A2D2D120E00A2B39D /* DeriveKeysHostingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD34A742B98B983008406D5 /* DeriveKeysHostingVC.swift */; };
@@ -467,6 +463,10 @@
 		2B2B1ACF2D2D6D0A00A2B39D /* LatestBackupState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B1AAE2D2D306E00A2B39D /* LatestBackupState.swift */; };
 		2B2B1AD02D2D6D0A00A2B39D /* LatestBackupState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B1AAE2D2D306E00A2B39D /* LatestBackupState.swift */; };
 		2B2B1AD12D2D6D0A00A2B39D /* LatestBackupState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B1AAE2D2D306E00A2B39D /* LatestBackupState.swift */; };
+		2B2B1AD32D2E99CB00A2B39D /* RecoverManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B1AD22D2E99C500A2B39D /* RecoverManager.swift */; };
+		2B2B1AD42D2E99CB00A2B39D /* RecoverManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B1AD22D2E99C500A2B39D /* RecoverManager.swift */; };
+		2B2B1AD52D2E99CB00A2B39D /* RecoverManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B1AD22D2E99C500A2B39D /* RecoverManager.swift */; };
+		2B2B1AD62D2E99CB00A2B39D /* RecoverManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B1AD22D2E99C500A2B39D /* RecoverManager.swift */; };
 		2B2D36162B2B205A00B04667 /* AppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2D36152B2B205A00B04667 /* AppLogger.swift */; };
 		2B3E6C032ACC0C40000E91CF /* BackupStatusViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3E6C022ACC0C40000E91CF /* BackupStatusViewModel.swift */; };
 		2B3E6C092ACD8CFD000E91CF /* AddAssetsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3E6C082ACD8CFD000E91CF /* AddAssetsViewModel.swift */; };
@@ -901,7 +901,6 @@
 		2B2B18902D2A965200A2B39D /* SignInViewModelBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModelBase.swift; sourceTree = "<group>"; };
 		2B2B18942D2AC27F00A2B39D /* AppBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppBackgroundView.swift; sourceTree = "<group>"; };
 		2B2B189C2D2AC3E700A2B39D /* JoinOrRecoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinOrRecoverView.swift; sourceTree = "<group>"; };
-		2B2B18A12D2AC3F500A2B39D /* JoinOrRecoverViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinOrRecoverViewModel.swift; sourceTree = "<group>"; };
 		2B2B18A92D2AC5C300A2B39D /* CustomBackButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBackButtonView.swift; sourceTree = "<group>"; };
 		2B2B18AD2D2ACDCC00A2B39D /* NavigationContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationContainerView.swift; sourceTree = "<group>"; };
 		2B2B18B12D2ACF4B00A2B39D /* SpinnerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerView.swift; sourceTree = "<group>"; };
@@ -921,6 +920,7 @@
 		2B2B1AC12D2D52ED00A2B39D /* EnvironmentConstantsRentblocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentConstantsRentblocks.swift; sourceTree = "<group>"; };
 		2B2B1AC92D2D556400A2B39D /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2B2B1ACB2D2D558F00A2B39D /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		2B2B1AD22D2E99C500A2B39D /* RecoverManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverManager.swift; sourceTree = "<group>"; };
 		2B2D36152B2B205A00B04667 /* AppLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLogger.swift; sourceTree = "<group>"; };
 		2B3E6C022ACC0C40000E91CF /* BackupStatusViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupStatusViewModel.swift; sourceTree = "<group>"; };
 		2B3E6C082ACD8CFD000E91CF /* AddAssetsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAssetsViewModel.swift; sourceTree = "<group>"; };
@@ -1238,7 +1238,6 @@
 			isa = PBXGroup;
 			children = (
 				2B2B189C2D2AC3E700A2B39D /* JoinOrRecoverView.swift */,
-				2B2B18A12D2AC3F500A2B39D /* JoinOrRecoverViewModel.swift */,
 			);
 			path = JoinOrRecoverView;
 			sourceTree = "<group>";
@@ -1765,6 +1764,7 @@
 				862E2AA22A543B86002FF774 /* AppleSignInManager.swift */,
 				862E2AA32A543B86002FF774 /* GoogleSignInManager.swift */,
 				2B19FD9D2CB3FA88007B3BCB /* EWManager.swift */,
+				2B2B1AD22D2E99C500A2B39D /* RecoverManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -2511,6 +2511,7 @@
 				2B21D7FD2BC56B5C003ADD29 /* TransferDetailsViewModel.swift in Sources */,
 				2B21D7FF2BC56B5C003ADD29 /* SendToViewModel.swift in Sources */,
 				2B21D8002BC56B5C003ADD29 /* QRCodeGenerator.swift in Sources */,
+				2B2B1AD62D2E99CB00A2B39D /* RecoverManager.swift in Sources */,
 				2B21D8012BC56B5C003ADD29 /* Fee.swift in Sources */,
 				2B21D8022BC56B5C003ADD29 /* ApproveRepository.swift in Sources */,
 				2B21D8032BC56B5C003ADD29 /* AdvancedInfoViewModel.swift in Sources */,
@@ -2657,7 +2658,6 @@
 				2B21D87B2BC56B5C003ADD29 /* SettingsViewModel.swift in Sources */,
 				2B21D87C2BC56B5C003ADD29 /* PollingManager.swift in Sources */,
 				2B21D87D2BC56B5C003ADD29 /* Bullet.swift in Sources */,
-				2B2B18A32D2AC40200A2B39D /* JoinOrRecoverViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2781,6 +2781,7 @@
 				2B2B1A452D2D120E00A2B39D /* AssetListViewController.swift in Sources */,
 				2B2B1A462D2D120E00A2B39D /* AddDeviceQRView.swift in Sources */,
 				2B2B1A472D2D120E00A2B39D /* TransfersViewModel.swift in Sources */,
+				2B2B1AD32D2E99CB00A2B39D /* RecoverManager.swift in Sources */,
 				2B2B1A482D2D120E00A2B39D /* BackupStatusViewModel.swift in Sources */,
 				2B2B1A492D2D120E00A2B39D /* ChooseAssetRepository.swift in Sources */,
 				2B2B1A4A2D2D120E00A2B39D /* TransfersViewController.swift in Sources */,
@@ -2797,7 +2798,6 @@
 				2B2B1A542D2D120E00A2B39D /* String+Extensions.swift in Sources */,
 				2B2B1A552D2D120E00A2B39D /* UIApplication+Extension.swift in Sources */,
 				2B2B1A562D2D120E00A2B39D /* MpcKeyCellView.swift in Sources */,
-				2B2B1A572D2D120E00A2B39D /* JoinOrRecoverViewModel.swift in Sources */,
 				2B2B1A582D2D120E00A2B39D /* UIHostingBridgeNotifications.swift in Sources */,
 				2B2B1A592D2D120E00A2B39D /* ValidateRequestIdHostingVC.swift in Sources */,
 				2B2B1A5A2D2D120E00A2B39D /* DeriveKeysHostingVC.swift in Sources */,
@@ -2943,6 +2943,7 @@
 				2B7C47432B32D96E001C804B /* AssetListViewController.swift in Sources */,
 				2BAB68182B820E13003592F1 /* AddDeviceQRView.swift in Sources */,
 				2B7C474B2B32D979001C804B /* TransfersViewModel.swift in Sources */,
+				2B2B1AD42D2E99CB00A2B39D /* RecoverManager.swift in Sources */,
 				2B7C47662B32D9A5001C804B /* BackupStatusViewModel.swift in Sources */,
 				2B7C470E2B32D8FC001C804B /* ChooseAssetRepository.swift in Sources */,
 				2B7C474C2B32D979001C804B /* TransfersViewController.swift in Sources */,
@@ -2959,7 +2960,6 @@
 				2B7C47182B32D916001C804B /* String+Extensions.swift in Sources */,
 				2B7C471C2B32D916001C804B /* UIApplication+Extension.swift in Sources */,
 				2B7C47532B32D98D001C804B /* MpcKeyCellView.swift in Sources */,
-				2B2B18A42D2AC40200A2B39D /* JoinOrRecoverViewModel.swift in Sources */,
 				2BAB681B2B820E1E003592F1 /* UIHostingBridgeNotifications.swift in Sources */,
 				2BAB68172B820E06003592F1 /* ValidateRequestIdHostingVC.swift in Sources */,
 				2BEEF7C52BAC6EFD004AF6AB /* DeriveKeysHostingVC.swift in Sources */,
@@ -3000,6 +3000,7 @@
 				60503F512A5FDCED00C2DAB8 /* TransferDetailsViewModel.swift in Sources */,
 				86E8350D2A602D50003E98BE /* EnvironmentConstants.swift in Sources */,
 				60DA06B62A65204600160ADC /* SendToViewModel.swift in Sources */,
+				2B2B1AD52D2E99CB00A2B39D /* RecoverManager.swift in Sources */,
 				867828E72A696D170035787D /* QRCodeGenerator.swift in Sources */,
 				60DA06582A645E1300160ADC /* Fee.swift in Sources */,
 				603903792A6D3F880060E026 /* ApproveRepository.swift in Sources */,
@@ -3146,7 +3147,6 @@
 				86ED2BAC2A64430F00377F6C /* SettingsViewModel.swift in Sources */,
 				2B94CFFF2A9F3F03003E7508 /* PollingManager.swift in Sources */,
 				2BC5837E2B6BD5DC005E6EEB /* Bullet.swift in Sources */,
-				2B2B18A22D2AC40200A2B39D /* JoinOrRecoverViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

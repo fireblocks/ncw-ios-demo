@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct JoinOrRecoverView: View {
+    
     @EnvironmentObject var coordinator: Coordinator
     @EnvironmentObject var loadingManager: LoadingManager
-    
+
     var body: some View {
         ZStack {
             AppBackgroundView()
@@ -33,7 +34,7 @@ struct JoinOrRecoverView: View {
 
                     VStack(spacing: 24) {
                         Button {
-                            print("apple")
+                            coordinator.path.append(NavigationTypes.addDevice)
                         } label: {
                             Text("Join existing wallet")
                                 .frame(maxWidth: .infinity)
@@ -51,7 +52,7 @@ struct JoinOrRecoverView: View {
                             .font(.b2)
 
                         Button {
-                            print("apple")
+                            coordinator.path.append(NavigationTypes.recoverWallet(true))
                         } label: {
                             Text("Recover this wallet")
                                 .frame(maxWidth: .infinity)

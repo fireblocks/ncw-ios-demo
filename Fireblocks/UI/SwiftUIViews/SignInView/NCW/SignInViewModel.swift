@@ -9,18 +9,30 @@ import UIKit
 //NCW
 class SignInViewModel: SignInView.ViewModel {
     override func handleSuccessSignIn()  async {
-        let state = await fbManager.getLatestBackupState()
+        do {
+            let _ = try await SessionManager.shared.login()
+        } catch {
+            print(error.localizedDescription)
+            return
+        }
+
+        guard let state = await fireblocksManager?.getLatestBackupState() else {
+            print("Failed to getLatestBackupState")
+            return
+        }
+        
         guard let window = (UIApplication.shared.connectedScenes.first as? UIWindowScene)?.windows.first else {
             return
         }
 
-        if let _ = await fbManager.assignWallet() {
+        if let _ = await fireblocksManager?.assignWallet() {
             switch state {
             case .generate:
                 let vc = UINavigationController(rootViewController: MpcKeysViewController(isAddingDevice: false))
                 window.rootViewController = vc
             case .exist:
                 if userHasKeys {
+                    FireblocksManager.shared.startPolling()
                     let vc = UINavigationController(rootViewController: TabBarViewController())
                     window.rootViewController = vc
                 } else {

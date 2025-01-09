@@ -18,7 +18,7 @@ import EmbeddedWalletSDK
 
 private let logger = Logger(subsystem: "Fireblocks", category: "FireblocksManager")
 
-class FireblocksManager: FireblocksManagerProtocol {
+class FireblocksManager: FireblocksManagerProtocol, ObservableObject {
     func isInstanceInitialized(authUser: AuthUser?) -> Bool {
         return false
     }

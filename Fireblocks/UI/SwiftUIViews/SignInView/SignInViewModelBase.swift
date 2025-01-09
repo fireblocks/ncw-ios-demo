@@ -15,25 +15,24 @@ extension SignInView {
                      ASAuthorizationControllerPresentationContextProviding, ObservableObject {
         private var authRepository: AuthRepository!
         private var loadingManager: LoadingManager!
-        private let googleSignInManager = GoogleSignInManager()
-        private let appleSignInManager = AppleSignInManager()
-        let fbManager: FireblocksManager
+        var googleSignInManager: GoogleSignInManager?
+        var appleSignInManager: AppleSignInManager?
+        var fireblocksManager: FireblocksManager?
         var coordinator: Coordinator?
 
         @Published var isConnected: Bool = false
-        
-        init(fbManager: FireblocksManager) {
-            self.fbManager = fbManager
-        }
-        
-        func setup(authRepository: AuthRepository, loadingManager: LoadingManager, coordinator: Coordinator) {
+                
+        func setup(authRepository: AuthRepository, loadingManager: LoadingManager, coordinator: Coordinator, fireblocksManager: FireblocksManager, googleSignInManager: GoogleSignInManager, appleSignInManager: AppleSignInManager) {
             self.authRepository = authRepository
             self.loadingManager = loadingManager
             self.coordinator = coordinator
+            self.fireblocksManager = fireblocksManager
+            self.googleSignInManager = googleSignInManager
+            self.appleSignInManager = appleSignInManager
         }
         
         func signInWithGoogle() {
-            guard let gidSignInConfig = googleSignInManager.getGIDConfiguration() else {
+            guard let gidSignInConfig = googleSignInManager?.getGIDConfiguration() else {
                 print("Can't create GIDSignIn config for google request.")
                 return
             }
@@ -58,9 +57,12 @@ extension SignInView {
         }
         
         func signInWithApple() {
+            guard let request = appleSignInManager?.getAppleRequest() else {
+                return
+            }
             loadingManager.isLoading = true
             let authorizationController = ASAuthorizationController(
-                authorizationRequests: [appleSignInManager.getAppleRequest()]
+                authorizationRequests: [request]
             )
             authorizationController.delegate = self
             authorizationController.presentationContextProvider = self

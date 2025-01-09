@@ -10,30 +10,30 @@ import UIKit
 //EW
 class SignInViewModel: SignInView.ViewModel {
     override func handleSuccessSignIn() async {
-        if let _ = await fbManager.assignWallet() {
+        if let _ = await fireblocksManager.assignWallet() {
             
-//            let state = await fbManager.getLatestBackupState()
-//            guard let window = (UIApplication.shared.connectedScenes.first as? UIWindowScene)?.windows.first else {
-//                return
-//            }
-//
-//            switch state {
-//            case .generate:
-//                let vc = UINavigationController(rootViewController: MpcKeysViewController(isAddingDevice: false))
-//                window.rootViewController = vc
-//            case .exist:
-//                if userHasKeys {
-//                    let vc = UINavigationController(rootViewController: TabBarViewController())
-//                    window.rootViewController = vc
-//                } else {
-//                    let vc = UINavigationController(rootViewController: MpcKeysViewController(isAddingDevice: false))
-//                    window.rootViewController = vc
-//                }
-//            case .joinOrRecover:
-//                coordinator?.path.append(NavigationTypes.joinOrRecover)
-//            case .error:
-//                print("error")
-//            }
+            let state = await fireblocksManager.getLatestBackupState()
+            guard let window = (UIApplication.shared.connectedScenes.first as? UIWindowScene)?.windows.first else {
+                return
+            }
+
+            switch state {
+            case .generate:
+                let vc = UINavigationController(rootViewController: MpcKeysViewController(isAddingDevice: false))
+                window.rootViewController = vc
+            case .exist:
+                if userHasKeys {
+                    let vc = UINavigationController(rootViewController: TabBarViewController())
+                    window.rootViewController = vc
+                } else {
+                    let vc = UINavigationController(rootViewController: MpcKeysViewController(isAddingDevice: false))
+                    window.rootViewController = vc
+                }
+            case .joinOrRecover:
+                coordinator?.path.append(NavigationTypes.joinOrRecover)
+            case .error:
+                print("error")
+            }
         }
     }
 }

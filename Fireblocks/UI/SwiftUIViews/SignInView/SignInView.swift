@@ -10,9 +10,12 @@ import GoogleSignIn
 import AuthenticationServices
 
 struct SignInView: View {
-    @StateObject var viewModel = SignInViewModel(fbManager: FireblocksManager.shared)
+    @StateObject var viewModel = SignInViewModel()
     @EnvironmentObject var coordinator: Coordinator
     @EnvironmentObject var loadingManager: LoadingManager
+    @EnvironmentObject var fireblocksManager: FireblocksManager
+    @EnvironmentObject var googleSignInManager: GoogleSignInManager
+    @EnvironmentObject var appleSignInManager: AppleSignInManager
 
     @State var showMenu = false
 
@@ -116,7 +119,7 @@ struct SignInView: View {
             }
         }
         .onAppear() {
-            viewModel.setup(authRepository: AuthRepository(), loadingManager: loadingManager, coordinator: coordinator)
+            viewModel.setup(authRepository: AuthRepository(), loadingManager: loadingManager, coordinator: coordinator, fireblocksManager: fireblocksManager, googleSignInManager: googleSignInManager, appleSignInManager: appleSignInManager)
         }
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {

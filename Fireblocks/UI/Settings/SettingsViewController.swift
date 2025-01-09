@@ -153,8 +153,13 @@ class SettingsViewController: UIViewController {
     }
     
     private func navigateToRecoverViewController() {
-        let vc = BackupViewController()
-        vc.actionType = Recover(delegate: vc.self)
+        let rootView = SpinnerViewContainer() {
+            RecoverWalletView(redirect: false)
+                .environmentObject(FireblocksManager.shared)
+                .environmentObject(GoogleSignInManager())
+        }
+        let vc = UIHostingController(rootView: rootView)
+        vc.navigationItem.setHidesBackButton(true, animated: false)
         navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -198,9 +203,12 @@ class SettingsViewController: UIViewController {
     
     private func navigateToLogin() {
         if let window = view.window {
-            let rootViewController = UINavigationController()
-            let vc = AuthViewController()
-            rootViewController.pushViewController(vc, animated: true)
+            let viewModel = LaunchView.ViewModel()
+            let rootViewController = UIHostingController(
+                rootView: NavigationContainerView() {
+                    LaunchView(viewModel: viewModel)
+                }
+            )
             window.rootViewController = rootViewController
         }
     }

@@ -50,7 +50,7 @@ class BackupViewModel {
     var didComeFromGenerateKeys = false
     var recoverProvider: BackupProvider?
     
-    init(_ delegate: BackupDelegate, _ actionType: BackupViewControllerStrategy, _ resolveRecoverDelegate: ResolveRecoverDelegate){
+    init(_ delegate: BackupDelegate?, _ actionType: BackupViewControllerStrategy, _ resolveRecoverDelegate: ResolveRecoverDelegate?){
         self.delegate = delegate
         self.actionType = actionType
         self.resolveRecoverDelegate = resolveRecoverDelegate
