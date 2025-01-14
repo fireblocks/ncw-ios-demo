@@ -102,25 +102,7 @@ class MpcKeysViewController: UIViewController {
     }
     
     @objc func signOut() {
-        FireblocksManager.shared.stopPollingMessages()
-        do{
-            try Auth.auth().signOut()
-            TransfersViewModel.shared.signOut()
-            AssetListViewModel.shared.signOut()
-            FireblocksManager.shared.stopPollingMessages()
-            FireblocksManager.shared.stopJoinWallet()
-        }catch{
-            print("SettingsViewModel can't sign out with current user: \(error)")
-        }
-        if let window = view.window {
-            let viewModel = LaunchView.ViewModel()
-            let rootViewController = UIHostingController(
-                rootView: NavigationContainerView() {
-                    LaunchView(viewModel: viewModel)
-                }
-            )
-            window.rootViewController = rootViewController
-        }
+        FireblocksManager.shared.signOut()
     }
     
     @IBAction func navigateToSettings(_ sender: UIButton) {

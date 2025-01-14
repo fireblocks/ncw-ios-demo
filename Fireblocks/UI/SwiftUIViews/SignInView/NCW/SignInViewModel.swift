@@ -5,10 +5,11 @@
 //  Created by Dudi Shani-Gabay on 07/01/2025.
 //
 import UIKit
+import SwiftUI
 
 //NCW
 class SignInViewModel: SignInView.ViewModel {
-    override func handleSuccessSignIn()  async {
+    override func handleSuccessSignIn(isLaunch: Bool = false)  async {
         do {
             let _ = try await SessionManager.shared.login()
         } catch {
@@ -34,7 +35,7 @@ class SignInViewModel: SignInView.ViewModel {
         case .exist:
             if userHasKeys {
                 if let _ = await fireblocksManager?.assignWallet() {
-                    FireblocksManager.shared.startPolling()
+                    fireblocksManager?.startPolling()
                     let vc = UINavigationController(rootViewController: TabBarViewController())
                     window.rootViewController = vc
                 }
@@ -43,7 +44,18 @@ class SignInViewModel: SignInView.ViewModel {
                 window.rootViewController = vc
             }
         case .joinOrRecover:
-            coordinator?.path.append(NavigationTypes.joinOrRecover)
+            if isLaunch {
+                let view = NavigationContainerView {
+                    SpinnerViewContainer {
+                        JoinOrRecoverView(isLaunch: true)
+                    }
+                }
+
+                let vc = UIHostingController(rootView: view)
+                window.rootViewController = vc
+            } else {
+                coordinator?.path.append(NavigationTypes.joinOrRecover)
+            }
         case .error:
             print("error")
         }

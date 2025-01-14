@@ -21,14 +21,7 @@ class SettingsViewModel{
     }
     
     func signOutFromFirebase() {
-        do{
-            try Auth.auth().signOut()
-            TransfersViewModel.shared.signOut()
-            AssetListViewModel.shared.signOut()
-            FireblocksManager.shared.stopPollingMessages()
-        }catch{
-            print("SettingsViewModel can't sign out with current user: \(error)")
-        }
+        FireblocksManager.shared.signOut()
     }
     
     func getUrlOfProfilePicture() -> URL? {

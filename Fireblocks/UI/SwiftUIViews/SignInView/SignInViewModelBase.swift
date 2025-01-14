@@ -9,6 +9,11 @@ import Foundation
 import GoogleSignIn
 import AuthenticationServices
 
+enum AuthProvider: String {
+    case google
+    case apple
+}
+
 extension SignInView {
     
     class ViewModel: NSObject, ASAuthorizationControllerDelegate,
@@ -19,7 +24,8 @@ extension SignInView {
         var appleSignInManager: AppleSignInManager?
         var fireblocksManager: FireblocksManager?
         var coordinator: Coordinator?
-
+        var provider: AuthProvider?
+        
         @Published var isConnected: Bool = false
                 
         func setup(authRepository: AuthRepository, loadingManager: LoadingManager, coordinator: Coordinator, fireblocksManager: FireblocksManager, googleSignInManager: GoogleSignInManager, appleSignInManager: AppleSignInManager) {
@@ -49,6 +55,7 @@ extension SignInView {
                 }
                 self.loadingManager.isLoading = true
                 if let user = result?.user.userID {
+                    self.provider = .google
                     self.signInToFirebase(with: result, user: user)
                 } else {
                     self.loadingManager.isLoading = false
@@ -71,6 +78,7 @@ extension SignInView {
         
         func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
             if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
+                self.provider = .apple
                 signInToFirebase(with: authorization, user: appleIDCredential.user)
             }
         }
@@ -92,6 +100,9 @@ extension SignInView {
             Task {
                 self.isConnected = await self.authRepository.signInToFirebase(with: result, user: user)
                 if isConnected {
+                    if let provider {
+                        UsersLocalStorageManager.shared.setAuthProvider(value: provider.rawValue)
+                    }
                     await self.handleSuccessSignIn()
                 }
                 self.loadingManager.isLoading = false
@@ -102,7 +113,7 @@ extension SignInView {
             return FireblocksManager.shared.isKeyInitialized(algorithm: .MPC_ECDSA_SECP256K1) || FireblocksManager.shared.isKeyInitialized(algorithm: .MPC_EDDSA_ED25519)
         }
         
-        func handleSuccessSignIn() async {
+        func handleSuccessSignIn(isLaunch: Bool = false) async {
             fatalError("handleSuccessSignIn should be implemented on child class")
         }
     }

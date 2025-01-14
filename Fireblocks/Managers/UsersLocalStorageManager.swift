@@ -39,19 +39,30 @@ class UsersLocalStorageManager: ObservableObject {
     }
 
     func lastDeviceId(email: String) -> String? {
-        return UserDefaults.standard.string(forKey: "\(email)-deviceId")
+        return defaults.string(forKey: "\(email)-deviceId")
     }
 
     func setLastDeviceId(deviceId: String, email: String) {
-        UserDefaults.standard.set(deviceId, forKey: "\(email)-deviceId")
+        defaults.set(deviceId, forKey: "\(email)-deviceId")
     }
 
     func setAddDeviceTimer() {
-        UserDefaults.standard.set(Date().timeIntervalSince1970, forKey: "addDeviceStartTimer")
+        defaults.set(Date().timeIntervalSince1970, forKey: "addDeviceStartTimer")
     }
 
     func getAddDeviceTimer() -> Double? {
-        UserDefaults.standard.double(forKey: "addDeviceStartTimer")
+        defaults.double(forKey: "addDeviceStartTimer")
+    }
+    
+    func setAuthProvider(value: String) {
+        defaults.set(value, forKey: "authProvider")
     }
 
+    func getAuthProvider() -> String? {
+        defaults.string(forKey: "authProvider")
+    }
+    
+    func resetAuthProvider() {
+        defaults.removeObject(forKey: "authProvider")
+    }
 }

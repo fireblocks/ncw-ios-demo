@@ -31,6 +31,10 @@ struct NavigationContainerView<Content: View>: View {
         NavigationStack(path: $coordinator.path) {
             content
                 .environmentObject(coordinator)
+                .environmentObject(fireblocksManager)
+                .environmentObject(googleSignInManager)
+                .environmentObject(appleSignInManager)
+
             .navigationDestination(for: NavigationTypes.self) { type in
                 switch type {
                 case .signIn:

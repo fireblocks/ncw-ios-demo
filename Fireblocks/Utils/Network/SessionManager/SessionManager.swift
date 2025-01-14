@@ -314,7 +314,10 @@ class SessionManager: ObservableObject {
     private init() {}
     
     func sendRequest(url: URL, httpMethod: String = "POST", timeout: TimeInterval? = nil, numberOfRetries: Int = 2, message: String? = nil, body: Any? = nil, skipLogs: Bool = false) async throws -> (Data) {
-        let currentAccessToken: String = await AuthRepository.getUserIdToken()
+        guard let currentAccessToken = await AuthRepository.getUserIdToken() else {
+            throw SessionManager.error
+        }
+        
         var request = URLRequest(url: url)
         request.setValue(
             "Bearer \(currentAccessToken)",

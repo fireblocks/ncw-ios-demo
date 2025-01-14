@@ -25,52 +25,44 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let window = (scene as? UIWindowScene) else { return }
 //        loadRootViewController(window)
-        loadLaunchViewController(window)
+        Task {
+            await loadLaunchViewController(window)
+        }
         configNavigationBar()
     }
     
-    private func loadLaunchViewController(_ windowScene: UIWindowScene) {
+    private func loadLaunchViewController(_ windowScene: UIWindowScene) async {
         let window = UIWindow(windowScene: windowScene)
-        let viewModel = LaunchView.ViewModel()
-        let rootViewController = UIHostingController(
-            rootView: NavigationContainerView() {
-                LaunchView(viewModel: viewModel)
+        if let _ = UsersLocalStorageManager.shared.getAuthProvider() {
+            if await AuthRepository.getUserIdToken() != nil {
+                let viewModel = SignInViewModel()
+                viewModel.fireblocksManager = FireblocksManager.shared
+                await viewModel.handleSuccessSignIn(isLaunch: true)
+            } else {
+                let rootViewController = UIHostingController(
+                    rootView: NavigationContainerView() {
+                        SpinnerViewContainer {
+                            SignInView()
+                        }
+                    }
+                )
+                window.rootViewController = rootViewController
+                self.window = window
+                window.makeKeyAndVisible()
             }
-        )
-        window.rootViewController = rootViewController
-        self.window = window
-        window.makeKeyAndVisible()
-//        viewModel.$didTapLetsGo.receive(on: RunLoop.main)
-//            .sink { [weak self] value in
-//            if value {
-//                let rootViewController = UINavigationController()
-//                let vc = AuthViewController()
-//                rootViewController.isNavigationBarHidden = true
-//                
-//                self?.configNavigationBar()
-//                
-//                rootViewController.setViewControllers([vc], animated: true)
-//
-//                UIView.animate(withDuration: 0.3) {
-//                    window.rootViewController = rootViewController
-//                }
-//            }
-//        }.store(in: &cancellable)
-    }
+        } else {
+            let rootViewController = UIHostingController(
+                rootView: NavigationContainerView() {
+                    let viewModel = LaunchView.ViewModel()
+                    LaunchView(viewModel: viewModel)
+                }
+            )
+            window.rootViewController = rootViewController
+            self.window = window
+            window.makeKeyAndVisible()
+        }
 
-//    private func loadRootViewController(_ windowScene: UIWindowScene) {
-//        let window = UIWindow(windowScene: windowScene)
-//        let rootViewController = UINavigationController()
-//        let vc = AuthViewController()
-//        rootViewController.isNavigationBarHidden = true
-//        
-//        configNavigationBar()
-//        
-//        rootViewController.setViewControllers([vc], animated: true)
-//        window.rootViewController = rootViewController
-//        self.window = window
-//        window.makeKeyAndVisible()
-//    }
+    }
     
     private func configNavigationBar() {
         UINavigationBar.appearance().backIndicatorTransitionMaskImage = AssetsIcons.back.getIcon()

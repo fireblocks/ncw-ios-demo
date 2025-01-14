@@ -8,6 +8,9 @@
 import FirebaseAuth
 import Foundation
 import OSLog
+import SwiftUI
+import UIKit
+
 #if DEV
 import FireblocksDev
 #else
@@ -54,7 +57,7 @@ protocol FireblocksManagerProtocol {
     
     func recoverWallet(resolver: FireblocksPassphraseResolver) async -> Bool
     func backupKeys(passphrase: String, passphraseId: String) async -> Set<KeyBackup>?
-    
+    func signOut()
     
 }
 
@@ -144,5 +147,31 @@ extension FireblocksManagerProtocol {
         getNCWInstance()?.stopJoinWallet()
     }
 
+    func signOut() {
+        guard let window = (UIApplication.shared.connectedScenes.first as? UIWindowScene)?.windows.first else {
+            return
+        }
 
+        do{
+            try Auth.auth().signOut()
+            FireblocksManager.shared.stopPollingMessages()
+            TransfersViewModel.shared.signOut()
+            AssetListViewModel.shared.signOut()
+            FireblocksManager.shared.stopPollingMessages()
+            FireblocksManager.shared.stopJoinWallet()
+            UsersLocalStorageManager.shared.resetAuthProvider()
+        } catch{
+            print("Can't sign out with current user: \(error.localizedDescription)")
+            return
+        }
+        
+        let viewModel = LaunchView.ViewModel()
+        let rootViewController = UIHostingController(
+            rootView: NavigationContainerView() {
+                LaunchView(viewModel: viewModel)
+            }
+        )
+        window.rootViewController = rootViewController
+
+    }
 }

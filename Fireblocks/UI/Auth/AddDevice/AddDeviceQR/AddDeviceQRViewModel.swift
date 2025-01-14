@@ -111,27 +111,7 @@ class AddDeviceQRViewModel: ObservableObject {
             self.coordinator.path.append(NavigationTypes.joinOrRecover)
             self.coordinator.path.append(NavigationTypes.addDevice)
         }, rightToolbarItemIcon: AssetsIcons.close.rawValue, rightToolbarItemAction: {
-            FireblocksManager.shared.stopPollingMessages()
-            do{
-                try Auth.auth().signOut()
-                TransfersViewModel.shared.signOut()
-                AssetListViewModel.shared.signOut()
-                FireblocksManager.shared.stopPollingMessages()
-                FireblocksManager.shared.stopJoinWallet()
-            } catch {
-                print("SettingsViewModel can't sign out with current user: \(error)")
-            }
-            guard let window = (UIApplication.shared.connectedScenes.first as? UIWindowScene)?.windows.first else {
-                return
-            }
-
-            let viewModel = LaunchView.ViewModel()
-            let rootViewController = UIHostingController(
-                rootView: NavigationContainerView() {
-                    LaunchView(viewModel: viewModel)
-                }
-            )
-            window.rootViewController = rootViewController
+            FireblocksManager.shared.signOut()
         }, didFail: true)
         self.coordinator.path.append(NavigationTypes.feedback(vm))
     }

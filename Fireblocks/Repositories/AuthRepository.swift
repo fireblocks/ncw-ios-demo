@@ -41,12 +41,12 @@ class AuthRepository  {
         }
     }
     
-    static func getUserIdToken() async -> String {
+    static func getUserIdToken() async -> String? {
         do {
-            return try await Auth.auth().currentUser?.getIDToken() ?? ""
+            return try await Auth.auth().currentUser?.getIDToken()
         } catch {
             print("AuthRepository, getUserIdToken() throws exception: \(error)")
-            return ""
+            return nil
         }
     }
     
