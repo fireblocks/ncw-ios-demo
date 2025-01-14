@@ -20,6 +20,7 @@ class FireblocksManager: FireblocksManagerProtocol, ObservableObject {
     static let shared = FireblocksManager()
     
     var deviceId: String = ""
+    var latestBackupDeviceId: String = ""
     var walletId: String = ""
     var algoArray: [Algorithm] = [.MPC_ECDSA_SECP256K1, .MPC_EDDSA_ED25519]
     
@@ -109,16 +110,14 @@ class FireblocksManager: FireblocksManagerProtocol, ObservableObject {
                 return .generate
             } else {
                 self.walletId = device?.walletId ?? ""
-                self.deviceId = device?.deviceId ?? ""
                 let info = try await SessionManager.shared.getLatestBackupInfo(walletId: walletId)
                 if info.deviceId.isEmptyOrNil {
                     errorMessage = "No available backup"
 
                     return .error
                 } else {
-//                    self.deviceId = generateDeviceId()
-//                    UsersLocalStorageManager.shared.setLastDeviceId(deviceId: self.deviceId, email: email)
-                    try initializeFireblocksSDK()
+                    self.deviceId = info.deviceId!
+                    self.latestBackupDeviceId = info.deviceId!
                     return .joinOrRecover
 
                 }
@@ -181,11 +180,13 @@ class FireblocksManager: FireblocksManagerProtocol, ObservableObject {
             }
             print("Measure - addDevice \(Date().timeIntervalSince(startDate))")
 
-            let didFail = result.filter({$0.keyStatus != .READY}).count > 0
+            let didFail = result.filter({$0.keyStatus != .READY}).count > 0 || result.filter({$0.keyStatus == .READY}).count == 0
             if !didFail {
                 startPolling()
             }
+            
             delegate.isKeysGenerated(isGenerated: !didFail, didJoin: true, error: nil)
+
         } catch let err as FireblocksError {
             AppLoggerManager.shared.logger()?.log("FireblocksManager, addDevice() failed: \(err.description).")
             delegate.isKeysGenerated(isGenerated: false, didJoin: false, error: err.description)
@@ -246,7 +247,7 @@ class FireblocksManager: FireblocksManagerProtocol, ObservableObject {
     }
     
     
-    private func initializeFireblocksSDK() throws {
+    func initializeFireblocksSDK() throws {
         if getNCWInstance() == nil {
             let _ = try Fireblocks.initialize(
                 deviceId: deviceId,

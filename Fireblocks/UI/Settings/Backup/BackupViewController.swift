@@ -65,13 +65,9 @@ class BackupViewController: UIViewController{
 
     @IBAction func driveBackupTapped(_ sender: AppActionBotton) {
         showActivityIndicator()
-        if actionType is Recover {
-            recoverFromGoogleDrive()
-        } else {
-            Task {
-                let passphraseInfo = await viewModel.getPassphraseInfo(location: .GoogleDrive)
-                authenticateUser(passphraseId: passphraseInfo.passphraseId) { _ in
-                }
+        Task {
+            let passphraseInfo = await viewModel.getPassphraseInfo(location: .GoogleDrive)
+            authenticateUser(passphraseId: passphraseInfo.passphraseId) { _ in
             }
         }
     }

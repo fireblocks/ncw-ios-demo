@@ -10,7 +10,16 @@ import UIKit
 
 extension EndFlowFeedbackView {
     
-    class ViewModel: ObservableObject {
+    class ViewModel: ObservableObject, Hashable {
+        static func == (lhs: EndFlowFeedbackView.ViewModel, rhs: EndFlowFeedbackView.ViewModel) -> Bool {
+            return lhs.navigationBarTitle == rhs.navigationBarTitle
+        }
+        
+        func hash(into hasher: inout Hasher) {
+            hasher.combine(navigationBarTitle)
+        }
+
+        
         var icon: String?
         var title: String?
         var subTitle: String?

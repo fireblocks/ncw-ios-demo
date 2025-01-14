@@ -30,36 +30,54 @@ extension RecoverWalletView {
         init(redirect: Bool) {
             self.redirect = redirect
         }
+        
         func setup(loadingManager: LoadingManager, fireblocksManager: FireblocksManager, googleSignInManager: GoogleSignInManager) {
             self.loadingManager = loadingManager
             self.fireblocksManager = fireblocksManager
             self.googleSignInManager = googleSignInManager
+            if redirect {
+                fireblocksManager.deviceId = fireblocksManager.latestBackupDeviceId
+            }
         }
         
         func recover() {
-            loadingManager.isLoading = true
-            Task {
-                let result = await FireblocksManager.shared.recoverWallet(resolver: self)
-                await MainActor.run {
-                    loadingManager.isLoading = false
-                    if result, let deviceId = fireblocksManager?.deviceId, let email = fireblocksManager?.getUserEmail() {
-                        UsersLocalStorageManager.shared.setLastDeviceId(deviceId: deviceId, email: email)
-
-                        if redirect {
-                            guard let window = (UIApplication.shared.connectedScenes.first as? UIWindowScene)?.windows.first else {
-                                return
-                            }
+            do {
+                guard let fireblocksManager else {
+                    return
+                }
+                
+                if redirect, fireblocksManager.latestBackupDeviceId.isTrimmedEmpty {
+                    return
+                }
+                
+                try fireblocksManager.initializeFireblocksSDK()
+                loadingManager.isLoading = true
+                Task {
+                    let result = await fireblocksManager.recoverWallet(resolver: self)
+                    await MainActor.run {
+                        loadingManager.isLoading = false
+                        if result, let email = fireblocksManager.getUserEmail() {
+                            let deviceId = fireblocksManager.deviceId
+                            UsersLocalStorageManager.shared.setLastDeviceId(deviceId: deviceId, email: email)
                             
-                            FireblocksManager.shared.startPolling()
-                            let vc = UINavigationController(rootViewController: TabBarViewController())
-                            window.rootViewController = vc
+                            if redirect {
+                                guard let window = (UIApplication.shared.connectedScenes.first as? UIWindowScene)?.windows.first else {
+                                    return
+                                }
+                                
+                                fireblocksManager.startPolling()
+                                let vc = UINavigationController(rootViewController: TabBarViewController())
+                                window.rootViewController = vc
+                            } else {
+                                dismiss = true
+                            }
                         } else {
-                            dismiss = true
+                            
                         }
-                    } else {
-                        
                     }
                 }
+            } catch {
+                return
             }
         }
         

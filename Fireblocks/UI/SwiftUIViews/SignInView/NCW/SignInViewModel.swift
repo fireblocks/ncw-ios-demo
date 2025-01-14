@@ -25,26 +25,29 @@ class SignInViewModel: SignInView.ViewModel {
             return
         }
 
-        if let _ = await fireblocksManager?.assignWallet() {
-            switch state {
-            case .generate:
-                let vc = UINavigationController(rootViewController: MpcKeysViewController(isAddingDevice: false))
+        switch state {
+        case .generate:
+            if let _ = await fireblocksManager?.assignWallet() {
+                let vc = UINavigationController(rootViewController: MpcKeysViewController())
                 window.rootViewController = vc
-            case .exist:
-                if userHasKeys {
+            }
+        case .exist:
+            if userHasKeys {
+                if let _ = await fireblocksManager?.assignWallet() {
                     FireblocksManager.shared.startPolling()
                     let vc = UINavigationController(rootViewController: TabBarViewController())
                     window.rootViewController = vc
-                } else {
-                    let vc = UINavigationController(rootViewController: MpcKeysViewController(isAddingDevice: false))
-                    window.rootViewController = vc
                 }
-            case .joinOrRecover:
-                coordinator?.path.append(NavigationTypes.joinOrRecover)
-            case .error:
-                print("error")
+            } else {
+                let vc = UINavigationController(rootViewController: MpcKeysViewController())
+                window.rootViewController = vc
             }
+        case .joinOrRecover:
+            coordinator?.path.append(NavigationTypes.joinOrRecover)
+        case .error:
+            print("error")
         }
+
 
     }
 }

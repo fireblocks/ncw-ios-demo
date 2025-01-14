@@ -6,19 +6,24 @@
 //
 
 import Foundation
+import SwiftUI
+import FirebaseAuth
 
-protocol AddDeviceQRDelegate: AnyObject {
-    func didQRTimeExpired()
-}
+//protocol AddDeviceQRDelegate: AnyObject {
+//    func didQRTimeExpired()
+//}
 
-class AddDeviceQRViewModel: ObservableObject, UIHostingBridgeNotifications {
-    var didAppear: Bool = false
+class AddDeviceQRViewModel: ObservableObject {
+    private var loadingManager: LoadingManager!
+    private var coordinator: Coordinator!
+    var fireblocksManager: FireblocksManager?
+
     let requestId: String
     var email: String?
     var url: String?
     var expiredInterval: TimeInterval = 180.seconds
     var timer: Timer?
-    weak var delegate: AddDeviceQRDelegate?
+//    weak var delegate: AddDeviceQRDelegate?
     
     @Published var timeleft = ""
     @Published var isToolbarHidden = false
@@ -35,7 +40,7 @@ class AddDeviceQRViewModel: ObservableObject, UIHostingBridgeNotifications {
                     self.timer?.invalidate()
                     self.timer = nil
                     self.timeleft = ""
-                    self.delegate?.didQRTimeExpired()
+                    self.didQRTimeExpired()
                 } else {
                     self.timeleft = self.timeLeft()
                 }
@@ -48,6 +53,12 @@ class AddDeviceQRViewModel: ObservableObject, UIHostingBridgeNotifications {
 
     }
     
+    func setup(loadingManager: LoadingManager, coordinator: Coordinator, fireblocksManager: FireblocksManager) {
+        self.loadingManager = loadingManager
+        self.fireblocksManager = fireblocksManager
+        self.coordinator = coordinator
+    }
+
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
@@ -66,17 +77,13 @@ class AddDeviceQRViewModel: ObservableObject, UIHostingBridgeNotifications {
     @objc func onProvisionerFound() {
         self.timer?.invalidate()
         self.timer = nil
-        presentIndicator()
+        loadingManager.isLoading = true
     }
     
     @objc func onAddingDevice() {
         self.timer?.invalidate()
         self.timer = nil
-    }
-    
-    func presentIndicator() {
-        isToolbarHidden = true
-        showIndicator()
+        loadingManager.isLoading = false
     }
     
     func startTimer() {
@@ -96,4 +103,37 @@ class AddDeviceQRViewModel: ObservableObject, UIHostingBridgeNotifications {
         
         return "\(String(format: "%02d", minutes)):\(String(format: "%02d", seconds))"
     }
+    
+    func didQRTimeExpired() {
+        let vm = EndFlowFeedbackView.ViewModel(icon: AssetsIcons.errorImage.rawValue, title: LocalizableStrings.approveJoinWalletCanceled, subTitle: LocalizableStrings.addDeviceFailedSubtitle, buttonTitle: LocalizableStrings.tryAgain, actionButton:  {
+            self.coordinator.path = NavigationPath()
+            self.coordinator.path.append(NavigationTypes.signIn)
+            self.coordinator.path.append(NavigationTypes.joinOrRecover)
+            self.coordinator.path.append(NavigationTypes.addDevice)
+        }, rightToolbarItemIcon: AssetsIcons.close.rawValue, rightToolbarItemAction: {
+            FireblocksManager.shared.stopPollingMessages()
+            do{
+                try Auth.auth().signOut()
+                TransfersViewModel.shared.signOut()
+                AssetListViewModel.shared.signOut()
+                FireblocksManager.shared.stopPollingMessages()
+                FireblocksManager.shared.stopJoinWallet()
+            } catch {
+                print("SettingsViewModel can't sign out with current user: \(error)")
+            }
+            guard let window = (UIApplication.shared.connectedScenes.first as? UIWindowScene)?.windows.first else {
+                return
+            }
+
+            let viewModel = LaunchView.ViewModel()
+            let rootViewController = UIHostingController(
+                rootView: NavigationContainerView() {
+                    LaunchView(viewModel: viewModel)
+                }
+            )
+            window.rootViewController = rootViewController
+        }, didFail: true)
+        self.coordinator.path.append(NavigationTypes.feedback(vm))
+    }
+
 }

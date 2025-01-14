@@ -19,14 +19,14 @@ class SignInViewModel: SignInView.ViewModel {
 
             switch state {
             case .generate:
-                let vc = UINavigationController(rootViewController: MpcKeysViewController(isAddingDevice: false))
+                let vc = UINavigationController(rootViewController: MpcKeysViewController())
                 window.rootViewController = vc
             case .exist:
                 if userHasKeys {
                     let vc = UINavigationController(rootViewController: TabBarViewController())
                     window.rootViewController = vc
                 } else {
-                    let vc = UINavigationController(rootViewController: MpcKeysViewController(isAddingDevice: false))
+                    let vc = UINavigationController(rootViewController: MpcKeysViewController())
                     window.rootViewController = vc
                 }
             case .joinOrRecover:

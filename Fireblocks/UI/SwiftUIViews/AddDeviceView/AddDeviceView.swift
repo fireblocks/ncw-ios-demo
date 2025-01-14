@@ -10,6 +10,8 @@ import SwiftUI
 struct AddDeviceView: View {
     @EnvironmentObject var coordinator: Coordinator
     @EnvironmentObject var loadingManager: LoadingManager
+    @EnvironmentObject var fireblocksManager: FireblocksManager
+    @StateObject var viewModel = ViewModel()
     
     var body: some View {
         ZStack {
@@ -32,7 +34,7 @@ struct AddDeviceView: View {
                         .padding(.bottom, 56)
                     
                     Button {
-                        print("apple")
+                        viewModel.requestJoinWallet()
                     } label: {
                         Text("Continue")
                             .frame(maxWidth: .infinity)
@@ -58,6 +60,9 @@ struct AddDeviceView: View {
         }
         .navigationBarBackButtonHidden()
         .navigationBarItems(leading: CustomBackButtonView())
+        .onAppear() {
+            viewModel.setup(loadingManager: loadingManager, coordinator: coordinator, fireblocksManager: fireblocksManager)
+        }
     }
 }
 

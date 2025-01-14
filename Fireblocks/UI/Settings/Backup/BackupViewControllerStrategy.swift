@@ -42,26 +42,3 @@ struct Backup: BackupViewControllerStrategy {
         delegate?.backupToICloud(passphraseId: passphraseId)
     }
 }
-
-struct Recover: BackupViewControllerStrategy {
-    
-    let viewControllerTitle: String = LocalizableStrings.recoverWalletTitle
-    let explanation: String = LocalizableStrings.chooseRecoveryLocation
-    let googleTitle: String = LocalizableStrings.recoverFromDrive
-    let iCloudTitle: String = LocalizableStrings.recoverFromICloud
-    let tryAgainTitle: String = LocalizableStrings.tryAgain
-
-    private weak var delegate: BackupProviderDelegate?
-
-    init(delegate: BackupProviderDelegate) {
-        self.delegate = delegate
-    }
-    
-    func performDriveAction(_ gidUser: GIDGoogleUser, passphraseId: String, callback: @escaping (String) -> ()) {
-        delegate?.recoverFromGoogleDrive(gidUser, passphraseId: passphraseId, callback: callback)
-    }
-    
-    func performICloudAction(passphraseId: String) {
-        delegate?.recoverFromICLoud()
-    }
-}

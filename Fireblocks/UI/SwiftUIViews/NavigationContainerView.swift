@@ -12,6 +12,8 @@ enum NavigationTypes: Hashable {
     case joinOrRecover
     case recoverWallet(Bool)
     case addDevice
+    case addDeviceQR(String, String)
+    case feedback(EndFlowFeedbackView.ViewModel)
 }
 
 class Coordinator: ObservableObject {
@@ -54,9 +56,22 @@ struct NavigationContainerView<Content: View>: View {
                 case .addDevice:
                     SpinnerViewContainer {
                         AddDeviceView()
+                            .environmentObject(coordinator)
+                            .environmentObject(fireblocksManager)
                     }
-
+                case .addDeviceQR(let requestId, let email):
+                    SpinnerViewContainer {
+                        AddDeviceQRView(viewModel: AddDeviceQRViewModel(requestId: requestId, email: email))
+                            .environmentObject(coordinator)
+                            .environmentObject(fireblocksManager)
+                    }
+                case .feedback(let viewModel): 
+                    SpinnerViewContainer {
+                        EndFlowFeedbackView(viewModel: viewModel, content: nil)                     .environmentObject(coordinator)
+                            .environmentObject(fireblocksManager)
+                    }
                 }
+                
             }
         }
     }

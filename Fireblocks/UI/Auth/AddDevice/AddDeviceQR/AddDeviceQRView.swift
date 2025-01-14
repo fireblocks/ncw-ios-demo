@@ -10,6 +10,10 @@ import CoreImage.CIFilterBuiltins
 
 struct AddDeviceQRView: View {
     @Environment(\.dismiss) var dismiss
+    @EnvironmentObject var coordinator: Coordinator
+    @EnvironmentObject var loadingManager: LoadingManager
+    @EnvironmentObject var fireblocksManager: FireblocksManager
+
     @StateObject var viewModel: AddDeviceQRViewModel
     
     let context = CIContext()
@@ -58,8 +62,11 @@ struct AddDeviceQRView: View {
                             }
                             .padding(.bottom, 40)
                             
-                            AddDeviceQRInnerView(image: generateQRCode(from: viewModel.url, size: CGSize(width: 171.0, height: 171.0)), url: viewModel.url, action: viewModel.showToast)
-                            
+//                            AddDeviceQRInnerView(image: generateQRCode(from: viewModel.url, size: CGSize(width: 171.0, height: 171.0)), url: viewModel.url, action: viewModel.showToast)
+                            AddDeviceQRInnerView(image: generateQRCode(from: viewModel.url, size: CGSize(width: 171.0, height: 171.0)), url: viewModel.url) {
+                                print("show toast")
+                            }
+
                             Spacer()
                         }
                         .padding(.horizontal, 26)
@@ -91,12 +98,13 @@ struct AddDeviceQRView: View {
             }
         }
         .onAppear() {
-            viewModel.didInit()
+            viewModel.setup(loadingManager: loadingManager, coordinator: coordinator, fireblocksManager: fireblocksManager)
         }
         .navigationTitle(LocalizableStrings.addNewDeviceNavigationBar)
         .navigationBarTitleDisplayMode(.inline)
-        .navigationBarBackButtonHidden()
         .interactiveDismissDisabled()
+        .navigationBarBackButtonHidden()
+        .navigationBarItems(leading: CustomBackButtonView())
     }
     
     func generateQRCode(from url: String?, size: CGSize) -> Image {

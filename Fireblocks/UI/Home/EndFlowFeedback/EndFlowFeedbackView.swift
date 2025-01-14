@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct EndFlowFeedbackView: View {
+    @EnvironmentObject var coordinator: Coordinator
+    @EnvironmentObject var loadingManager: LoadingManager
+    @EnvironmentObject var fireblocksManager: FireblocksManager
+
     @StateObject var viewModel: ViewModel
     var content: AnyView?
 
