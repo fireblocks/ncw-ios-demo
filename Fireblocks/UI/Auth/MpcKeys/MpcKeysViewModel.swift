@@ -35,48 +35,36 @@ final class MpcKeysViewModel {
     }
     
     func generateMpcKeys() {
-        generateMpcFromSdk(self)
+        mpcKeyTask = Task {
+            let result = await FireblocksManager.shared.generateMpcKeys()
+            handleResult(result: result)
+        }
     }
     
     func generateEDDSAKeys() {
-        generateEDDSAKeys(self)
+        mpcKeyTask = Task {
+            let result = await FireblocksManager.shared.generateEDDSAKeys()
+            handleResult(result: result)
+            
+        }
     }
     
     func generateECDSAKeys() {
-        generateECDSAKeys(self)
-    }
-    
-    private func generateMpcFromSdk(_ delegate: FireblocksKeyCreationDelegate) {
-        mpcKeyTask = Task {
-            let result = await FireblocksManager.shared.generateMpcKeys()
-            handleResult(result: result, delegate: delegate)
-        }
-    }
-    
-    private func generateEDDSAKeys(_ delegate: FireblocksKeyCreationDelegate) {
-        mpcKeyTask = Task {
-            let result = await FireblocksManager.shared.generateEDDSAKeys()
-            handleResult(result: result, delegate: delegate)
-
-        }
-    }
-    
-    private func generateECDSAKeys(_ delegate: FireblocksKeyCreationDelegate) {
         mpcKeyTask = Task {
             let result = await FireblocksManager.shared.generateECDSAKeys()
-            handleResult(result: result, delegate: delegate)
+            handleResult(result: result)
         }
     }
     
-    private func handleResult(result: Set<KeyDescriptor>?, delegate: FireblocksKeyCreationDelegate) {
+    private func handleResult(result: Set<KeyDescriptor>?) {
         let isGenerated = result != nil && result!.filter({$0.keyStatus == .READY}).count > 0
         AppLoggerManager.shared.logger()?.log("FireblocksManager, generateMpcKeys() isGenerated value: \(isGenerated).")
-
+        
         if isGenerated {
             FireblocksManager.shared.startPolling()
         }
-
-        delegate.isKeysGenerated(isGenerated: isGenerated, didJoin: false, error: nil)
+        
+        isKeysGenerated(isGenerated: isGenerated, error: nil)
     }
     
     private func cancelTasks() {
@@ -91,19 +79,13 @@ final class MpcKeysViewModel {
         didSucceedGenerateKeys = true
         self.delegate?.configSuccessUI()
     }
-
-}
-
-//MARK: - FireblocksKeyCreationDelegate
-extension MpcKeysViewModel: FireblocksKeyCreationDelegate {
-    func isKeysGenerated(isGenerated: Bool, didJoin: Bool = false, error: String? = nil) {
-        if didJoin {
+    
+    func isKeysGenerated(isGenerated: Bool, error: String? = nil) {
+        if isGenerated {
+            self.createAssets()
         } else {
-            if isGenerated {
-                self.createAssets()
-            } else {
-                self.delegate?.showAlertMessage(message: error ?? LocalizableStrings.mpcKeysGenerationFailed)
-            }
+            self.delegate?.showAlertMessage(message: error ?? LocalizableStrings.mpcKeysGenerationFailed)
         }
     }
+    
 }

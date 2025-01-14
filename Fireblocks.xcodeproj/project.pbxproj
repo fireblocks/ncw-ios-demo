@@ -8,10 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2B05C06A2B4698BF004CF1CE /* JoinRequestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B05C0692B4698BF004CF1CE /* JoinRequestData.swift */; };
-		2B174FE92B62446900BE63A8 /* RedirectNewUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B174FE82B62446900BE63A8 /* RedirectNewUserView.swift */; };
-		2B174FEB2B62447900BE63A8 /* RedirectNewUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B174FEA2B62447900BE63A8 /* RedirectNewUserViewModel.swift */; };
-		2B174FED2B624EEA00BE63A8 /* RedirectNewUserHostingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B174FEC2B624EEA00BE63A8 /* RedirectNewUserHostingVC.swift */; };
-		2B19FD9E2CB3FA88007B3BCB /* EWManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19FD9D2CB3FA88007B3BCB /* EWManager.swift */; };
+		2B0FED982D365FAA00F637E6 /* AuthUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B6E92F2A5E8AB800F35260 /* AuthUser.swift */; };
 		2B21D7E42BC563F7003ADD29 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86859F522A384D8A0056E3C6 /* AppDelegate.swift */; };
 		2B21D7F72BC56B5C003ADD29 /* Asset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DA06542A645E1300160ADC /* Asset.swift */; };
 		2B21D7F82BC56B5C003ADD29 /* MpcKeysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869A71472A3885E800653C8F /* MpcKeysViewController.swift */; };
@@ -28,7 +25,6 @@
 		2B21D8042BC56B5C003ADD29 /* TakeoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E4A1652A6852CE00A2861D /* TakeoverViewController.swift */; };
 		2B21D8052BC56B5C003ADD29 /* AssetViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DA06A22A651D9300160ADC /* AssetViewCell.swift */; };
 		2B21D8062BC56B5C003ADD29 /* DerivedAssetRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD34A7A2B98C129008406D5 /* DerivedAssetRow.swift */; };
-		2B21D8072BC56B5C003ADD29 /* AddDeviceHostingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558E962B48347D006212B2 /* AddDeviceHostingVC.swift */; };
 		2B21D8082BC56B5C003ADD29 /* BackupRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866A73CE2A696A5E00E8E545 /* BackupRepository.swift */; };
 		2B21D8092BC56B5C003ADD29 /* AppActionBotton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DA06962A651AA000160ADC /* AppActionBotton.swift */; };
 		2B21D80A2BC56B5C003ADD29 /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B67A372A6FF925007AC728 /* Int+Extension.swift */; };
@@ -43,8 +39,6 @@
 		2B21D8132BC56B5C003ADD29 /* ValidateRequestIdTimeOutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF8EDBF2B569D3B00046F0B /* ValidateRequestIdTimeOutView.swift */; };
 		2B21D8142BC56B5C003ADD29 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86346ACC2A6D0D2C0002FE34 /* ToastView.swift */; };
 		2B21D8152BC56B5C003ADD29 /* BackupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866A73C72A696A3100E8E545 /* BackupViewModel.swift */; };
-		2B21D8162BC56B5C003ADD29 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862E2A9B2A543B41002FF774 /* AuthViewController.swift */; };
-		2B21D8172BC56B5C003ADD29 /* RedirectNewUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B174FE82B62446900BE63A8 /* RedirectNewUserView.swift */; };
 		2B21D8182BC56B5C003ADD29 /* AppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2D36152B2B205A00B04667 /* AppLogger.swift */; };
 		2B21D8192BC56B5C003ADD29 /* BackupDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867828EB2A696D7D0035787D /* BackupDetailsViewModel.swift */; };
 		2B21D81A2BC56B5C003ADD29 /* FeeRateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DA06892A645EF400160ADC /* FeeRateCell.swift */; };
@@ -55,7 +49,6 @@
 		2B21D81F2BC56B5C003ADD29 /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A721F2B45AAEB0011C398 /* Modifiers.swift */; };
 		2B21D8202BC56B5C003ADD29 /* UIHostingBridgeNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558E832B47042D006212B2 /* UIHostingBridgeNotifications.swift */; };
 		2B21D8212BC56B5C003ADD29 /* FeeRateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DA06A72A651F7E00160ADC /* FeeRateViewModel.swift */; };
-		2B21D8222BC56B5C003ADD29 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862E2A9A2A543B41002FF774 /* AuthViewModel.swift */; };
 		2B21D8232BC56B5C003ADD29 /* PrepareForScanViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558E852B47044C006212B2 /* PrepareForScanViewModel.swift */; };
 		2B21D8242BC56B5C003ADD29 /* SendToViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DA06B02A65204600160ADC /* SendToViewController.swift */; };
 		2B21D8252BC56B5C003ADD29 /* CodableAnyExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B94CFC92A9CE576003E7508 /* CodableAnyExtension.swift */; };
@@ -77,14 +70,12 @@
 		2B21D8352BC56B5C003ADD29 /* AssetsColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602573272A39D6F000A3C5D5 /* AssetsColors.swift */; };
 		2B21D8362BC56B5C003ADD29 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B67A362A6FF925007AC728 /* String+Extensions.swift */; };
 		2B21D8372BC56B5C003ADD29 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A72252B45ADAA0011C398 /* Extensions.swift */; };
-		2B21D8382BC56B5C003ADD29 /* RedirectNewUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B174FEA2B62447900BE63A8 /* RedirectNewUserViewModel.swift */; };
 		2B21D8392BC56B5C003ADD29 /* UsersLocalStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B287E22A8903CF00DEA50C /* UsersLocalStorageManager.swift */; };
 		2B21D83A2BC56B5C003ADD29 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867828CB2A696D170035787D /* SessionManager.swift */; };
 		2B21D83B2BC56B5C003ADD29 /* EndFlowFeedbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF8EDB52B56673300046F0B /* EndFlowFeedbackView.swift */; };
 		2B21D83C2BC56B5C003ADD29 /* TransferCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6082938F2A56BB1400B11839 /* TransferCell.swift */; };
 		2B21D83D2BC56B5C003ADD29 /* MpcKeysViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861BA20C2A5E901800A1BC1B /* MpcKeysViewModel.swift */; };
 		2B21D83E2BC56B5C003ADD29 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EECFD92A69198B00F3891C /* AlertView.swift */; };
-		2B21D83F2BC56B5C003ADD29 /* ManuallyInputViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A997122A6EB60900A6B60B /* ManuallyInputViewModel.swift */; };
 		2B21D8402BC56B5C003ADD29 /* AreYouSureBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86ED2BB22A64434500377F6C /* AreYouSureBottomSheet.swift */; };
 		2B21D8412BC56B5C003ADD29 /* FBTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DA06562A645E1300160ADC /* FBTransaction.swift */; };
 		2B21D8422BC56B5C003ADD29 /* EndFlowFeedbackViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF8EDB82B56676300046F0B /* EndFlowFeedbackViewModel.swift */; };
@@ -118,13 +109,10 @@
 		2B21D85E2BC56B5C003ADD29 /* AuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862E2A9F2A543B6D002FF774 /* AuthRepository.swift */; };
 		2B21D85F2BC56B5C003ADD29 /* VersionBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7C479A2B32EC65001C804B /* VersionBanner.swift */; };
 		2B21D8602BC56B5C003ADD29 /* TakeoverViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E4A1642A6852CE00A2861D /* TakeoverViewModel.swift */; };
-		2B21D8612BC56B5C003ADD29 /* RedirectNewUserHostingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B174FEC2B624EEA00BE63A8 /* RedirectNewUserHostingVC.swift */; };
 		2B21D8622BC56B5C003ADD29 /* ValidateRequestIdHostingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558E9F2B484ADC006212B2 /* ValidateRequestIdHostingVC.swift */; };
 		2B21D8632BC56B5C003ADD29 /* AssetListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DA065C2A645E4700160ADC /* AssetListRepository.swift */; };
 		2B21D8642BC56B5C003ADD29 /* AmountToSendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DA06982A651AE000160ADC /* AmountToSendViewController.swift */; };
 		2B21D8652BC56B5C003ADD29 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86859F542A384D8A0056E3C6 /* SceneDelegate.swift */; };
-		2B21D8662BC56B5C003ADD29 /* ManuallyInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A997102A6EB60900A6B60B /* ManuallyInputViewController.swift */; };
-		2B21D8672BC56B5C003ADD29 /* ManuallyInputViewControllerStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F972202A6A936100C896B2 /* ManuallyInputViewControllerStrategy.swift */; };
 		2B21D8682BC56B5C003ADD29 /* Transfer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608293B82A56E57A00B11839 /* Transfer.swift */; };
 		2B21D8692BC56B5C003ADD29 /* EndFlowFeedbackHostingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF8EDBA2B566E3C00046F0B /* EndFlowFeedbackHostingVC.swift */; };
 		2B21D86A2BC56B5C003ADD29 /* TransfersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6082938A2A56B85800B11839 /* TransfersViewController.swift */; };
@@ -164,7 +152,6 @@
 		2B21D8902BC56B5C003ADD29 /* MpcKeyCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8668C2272A67109400575A6A /* MpcKeyCellView.xib */; };
 		2B21D8912BC56B5C003ADD29 /* ChooseAssetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60DA06702A645E9A00160ADC /* ChooseAssetViewController.xib */; };
 		2B21D8922BC56B5C003ADD29 /* BackupDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 867828EA2A696D7D0035787D /* BackupDetailsViewController.xib */; };
-		2B21D8932BC56B5C003ADD29 /* AuthViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 862E2AA92A543C6C002FF774 /* AuthViewController.xib */; };
 		2B21D8942BC56B5C003ADD29 /* AssetViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60DA06A12A651D9300160ADC /* AssetViewCell.xib */; };
 		2B21D8952BC56B5C003ADD29 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 603B70DB2A810D6200796CEE /* Roboto-Bold.ttf */; };
 		2B21D8962BC56B5C003ADD29 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 86DC6E9C2A39ECC000A0B313 /* Localizable.strings */; };
@@ -180,7 +167,6 @@
 		2B21D8A12BC56B5C003ADD29 /* ReceiveViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60EECFA62A66BE6400F3891C /* ReceiveViewController.xib */; };
 		2B21D8A22BC56B5C003ADD29 /* QRCodeScannerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60DA06AE2A65204600160ADC /* QRCodeScannerViewController.xib */; };
 		2B21D8A32BC56B5C003ADD29 /* TakeoverViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86E4A1662A6852CE00A2861D /* TakeoverViewController.xib */; };
-		2B21D8A42BC56B5C003ADD29 /* ManuallyInputViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86A997112A6EB60900A6B60B /* ManuallyInputViewController.xib */; };
 		2B21D8A52BC56B5C003ADD29 /* Inter-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 603B71022A81371200796CEE /* Inter-Medium.ttf */; };
 		2B21D8A62BC56B5C003ADD29 /* BackupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86EB512C2A66C08C00D2911A /* BackupViewController.xib */; };
 		2B21D8A72BC56B5C003ADD29 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86859F5B2A384D8B0056E3C6 /* Assets.xcassets */; };
@@ -249,14 +235,11 @@
 		2B2B19B92D2C058E00A2B39D /* FireblocksManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B19B52D2C058500A2B39D /* FireblocksManagerProtocol.swift */; };
 		2B2B19D52D2D120E00A2B39D /* AssetHeaderUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86229D802A8B7FF20089F7DA /* AssetHeaderUIView.swift */; };
 		2B2B19D62D2D120E00A2B39D /* AppleSignInManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862E2AA22A543B86002FF774 /* AppleSignInManager.swift */; };
-		2B2B19D72D2D120E00A2B39D /* TransferStatusType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608293932A56BEF200B11839 /* TransferStatusType.swift */; };
 		2B2B19D82D2D120E00A2B39D /* UsersLocalStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B287E22A8903CF00DEA50C /* UsersLocalStorageManager.swift */; };
-		2B2B19DA2D2D120E00A2B39D /* AddDeviceHostingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558E962B48347D006212B2 /* AddDeviceHostingVC.swift */; };
 		2B2B19DB2D2D120E00A2B39D /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DA069E2A651C5200160ADC /* TabBarViewController.swift */; };
 		2B2B19DC2D2D120E00A2B39D /* BackupDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867828E92A696D7D0035787D /* BackupDetailsViewController.swift */; };
 		2B2B19DD2D2D120E00A2B39D /* CodableExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B94CFD02A9CE627003E7508 /* CodableExtension.swift */; };
 		2B2B19DE2D2D120E00A2B39D /* BackupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EB51312A66C08C00D2911A /* BackupViewController.swift */; };
-		2B2B19DF2D2D120E00A2B39D /* RedirectNewUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B174FE82B62446900BE63A8 /* RedirectNewUserView.swift */; };
 		2B2B19E02D2D120E00A2B39D /* DerivedAssetRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD34A7A2B98C129008406D5 /* DerivedAssetRow.swift */; };
 		2B2B19E12D2D120E00A2B39D /* ReceiveViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EECFA72A66BE6400F3891C /* ReceiveViewModel.swift */; };
 		2B2B19E22D2D120E00A2B39D /* SpinnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B18B12D2ACF4B00A2B39D /* SpinnerView.swift */; };
@@ -274,12 +257,10 @@
 		2B2B19EE2D2D120E00A2B39D /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B67A372A6FF925007AC728 /* Int+Extension.swift */; };
 		2B2B19EF2D2D120E00A2B39D /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86346ACC2A6D0D2C0002FE34 /* ToastView.swift */; };
 		2B2B19F02D2D120E00A2B39D /* CodableAnyExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B94CFC92A9CE576003E7508 /* CodableAnyExtension.swift */; };
-		2B2B19F12D2D120E00A2B39D /* Asset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DA06542A645E1300160ADC /* Asset.swift */; };
 		2B2B19F22D2D120E00A2B39D /* FeeRateRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DA06852A645ED300160ADC /* FeeRateRepository.swift */; };
 		2B2B19F32D2D120E00A2B39D /* TransactionSentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B137B42A8B6A4C009A4ECB /* TransactionSentViewController.swift */; };
 		2B2B19F42D2D120E00A2B39D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B18822D2A786C00A2B39D /* Constants.swift */; };
 		2B2B19F52D2D120E00A2B39D /* ValidateRequestIdViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558E9A2B484A87006212B2 /* ValidateRequestIdViewModel.swift */; };
-		2B2B19F62D2D120E00A2B39D /* Fee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DA06552A645E1300160ADC /* Fee.swift */; };
 		2B2B19F72D2D120E00A2B39D /* BiometricsAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867828C52A696D170035787D /* BiometricsAuthentication.swift */; };
 		2B2B19F82D2D120E00A2B39D /* SendToViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DA06B12A65204600160ADC /* SendToViewModel.swift */; };
 		2B2B19F92D2D120E00A2B39D /* AppBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B18942D2AC27F00A2B39D /* AppBackgroundView.swift */; };
@@ -297,7 +278,6 @@
 		2B2B1A052D2D120E00A2B39D /* EndFlowFeedbackHostingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF8EDBA2B566E3C00046F0B /* EndFlowFeedbackHostingVC.swift */; };
 		2B2B1A062D2D120E00A2B39D /* RecoverWalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B18B52D2AD9AF00A2B39D /* RecoverWalletView.swift */; };
 		2B2B1A072D2D120E00A2B39D /* DeriveKeysViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD34A762B98B995008406D5 /* DeriveKeysViewModel.swift */; };
-		2B2B1A082D2D120E00A2B39D /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862E2A9A2A543B41002FF774 /* AuthViewModel.swift */; };
 		2B2B1A092D2D120E00A2B39D /* FeeRateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DA06A72A651F7E00160ADC /* FeeRateViewModel.swift */; };
 		2B2B1A0A2D2D120E00A2B39D /* ApproveViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603903742A6D1F560060E026 /* ApproveViewModel.swift */; };
 		2B2B1A0B2D2D120E00A2B39D /* AppActionBotton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DA06962A651AA000160ADC /* AppActionBotton.swift */; };
@@ -310,7 +290,6 @@
 		2B2B1A122D2D120E00A2B39D /* AdvancedInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8668C2242A67109400575A6A /* AdvancedInfoViewModel.swift */; };
 		2B2B1A132D2D120E00A2B39D /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867828CB2A696D170035787D /* SessionManager.swift */; };
 		2B2B1A142D2D120E00A2B39D /* AssetViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DA06A22A651D9300160ADC /* AssetViewCell.swift */; };
-		2B2B1A152D2D120E00A2B39D /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862E2A9B2A543B41002FF774 /* AuthViewController.swift */; };
 		2B2B1A162D2D120E00A2B39D /* TransferDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60503F502A5FDCED00C2DAB8 /* TransferDetailsViewModel.swift */; };
 		2B2B1A172D2D120E00A2B39D /* AddDeviceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B18BE2D2ADF4400A2B39D /* AddDeviceView.swift */; };
 		2B2B1A182D2D120E00A2B39D /* AdvancedInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8668C2282A67109400575A6A /* AdvancedInfoViewController.swift */; };
@@ -319,8 +298,6 @@
 		2B2B1A1B2D2D120E00A2B39D /* BackupDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867828EB2A696D7D0035787D /* BackupDetailsViewModel.swift */; };
 		2B2B1A1C2D2D120E00A2B39D /* DeriveKeysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD34A782B98B9A2008406D5 /* DeriveKeysView.swift */; };
 		2B2B1A1D2D2D120E00A2B39D /* ICloudManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866A73D72A696AA200E8E545 /* ICloudManager.swift */; };
-		2B2B1A1E2D2D120E00A2B39D /* Transfer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608293B82A56E57A00B11839 /* Transfer.swift */; };
-		2B2B1A1F2D2D120E00A2B39D /* AuthUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B6E92F2A5E8AB800F35260 /* AuthUser.swift */; };
 		2B2B1A202D2D120E00A2B39D /* ChooseAssetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DA066F2A645E9A00160ADC /* ChooseAssetViewController.swift */; };
 		2B2B1A212D2D120E00A2B39D /* PrepareForScanHostingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558E982B483CB3006212B2 /* PrepareForScanHostingVC.swift */; };
 		2B2B1A222D2D120E00A2B39D /* FireblocksManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B19B52D2C058500A2B39D /* FireblocksManagerProtocol.swift */; };
@@ -331,20 +308,15 @@
 		2B2B1A282D2D120E00A2B39D /* AddDeviceQRViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A721A2B45A2250011C398 /* AddDeviceQRViewModel.swift */; };
 		2B2B1A292D2D120E00A2B39D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86859F522A384D8A0056E3C6 /* AppDelegate.swift */; };
 		2B2B1A2A2D2D120E00A2B39D /* AuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862E2A9F2A543B6D002FF774 /* AuthRepository.swift */; };
-		2B2B1A2B2D2D120E00A2B39D /* FBTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DA06562A645E1300160ADC /* FBTransaction.swift */; };
 		2B2B1A2C2D2D120E00A2B39D /* ReceiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EECFA52A66BE6400F3891C /* ReceiveViewController.swift */; };
-		2B2B1A2D2D2D120E00A2B39D /* ManuallyInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A997102A6EB60900A6B60B /* ManuallyInputViewController.swift */; };
 		2B2B1A2E2D2D120E00A2B39D /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867828CF2A696D170035787D /* UIButton+Extension.swift */; };
 		2B2B1A2F2D2D120E00A2B39D /* AmountToSendViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DA06642A645E9A00160ADC /* AmountToSendViewModel.swift */; };
 		2B2B1A302D2D120E00A2B39D /* FBFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A72212B45AB2D0011C398 /* FBFont.swift */; };
-		2B2B1A312D2D120E00A2B39D /* ExtraParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B94CFC42A9CDF62003E7508 /* ExtraParameters.swift */; };
 		2B2B1A322D2D120E00A2B39D /* VerticalSeparator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC5837F2B6BD5FF005E6EEB /* VerticalSeparator.swift */; };
-		2B2B1A332D2D120E00A2B39D /* RedirectNewUserHostingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B174FEC2B624EEA00BE63A8 /* RedirectNewUserHostingVC.swift */; };
 		2B2B1A342D2D120E00A2B39D /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EECFD92A69198B00F3891C /* AlertView.swift */; };
 		2B2B1A352D2D120E00A2B39D /* ApproveRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603903782A6D3F880060E026 /* ApproveRepository.swift */; };
 		2B2B1A362D2D120E00A2B39D /* SettingsOptionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EB51292A66C08C00D2911A /* SettingsOptionButton.swift */; };
 		2B2B1A372D2D120E00A2B39D /* EndFlowFeedbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF8EDB52B56673300046F0B /* EndFlowFeedbackView.swift */; };
-		2B2B1A382D2D120E00A2B39D /* ManuallyInputViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A997122A6EB60900A6B60B /* ManuallyInputViewModel.swift */; };
 		2B2B1A392D2D120E00A2B39D /* CustomBackButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B18A92D2AC5C300A2B39D /* CustomBackButtonView.swift */; };
 		2B2B1A3A2D2D120E00A2B39D /* TransferCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6082938F2A56BB1400B11839 /* TransferCell.swift */; };
 		2B2B1A3B2D2D120E00A2B39D /* Double+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867828D32A696D170035787D /* Double+Extension.swift */; };
@@ -355,7 +327,6 @@
 		2B2B1A402D2D120E00A2B39D /* PrepareForScanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558E872B4704BA006212B2 /* PrepareForScanView.swift */; };
 		2B2B1A412D2D120E00A2B39D /* Platform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558EA12B484BE1006212B2 /* Platform.swift */; };
 		2B2B1A422D2D120E00A2B39D /* GoogleSignInManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862E2AA32A543B86002FF774 /* GoogleSignInManager.swift */; };
-		2B2B1A432D2D120E00A2B39D /* EWManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19FD9D2CB3FA88007B3BCB /* EWManager.swift */; };
 		2B2B1A442D2D120E00A2B39D /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A72232B45ABB50011C398 /* Style.swift */; };
 		2B2B1A452D2D120E00A2B39D /* AssetListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6025732F2A39E7F600A3C5D5 /* AssetListViewController.swift */; };
 		2B2B1A462D2D120E00A2B39D /* AddDeviceQRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A721C2B45A8FF0011C398 /* AddDeviceQRView.swift */; };
@@ -371,7 +342,6 @@
 		2B2B1A502D2D120E00A2B39D /* ValidateRequestIdTimeOutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF8EDBF2B569D3B00046F0B /* ValidateRequestIdTimeOutView.swift */; };
 		2B2B1A512D2D120E00A2B39D /* FBHostingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA53D3C2B46B348008C7B6C /* FBHostingViewController.swift */; };
 		2B2B1A522D2D120E00A2B39D /* BackupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866A73C72A696A3100E8E545 /* BackupViewModel.swift */; };
-		2B2B1A532D2D120E00A2B39D /* RedirectNewUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B174FEA2B62447900BE63A8 /* RedirectNewUserViewModel.swift */; };
 		2B2B1A542D2D120E00A2B39D /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B67A362A6FF925007AC728 /* String+Extensions.swift */; };
 		2B2B1A552D2D120E00A2B39D /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B137BB2A8BA264009A4ECB /* UIApplication+Extension.swift */; };
 		2B2B1A562D2D120E00A2B39D /* MpcKeyCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8668C2262A67109400575A6A /* MpcKeyCellView.swift */; };
@@ -394,7 +364,6 @@
 		2B2B1A682D2D120E00A2B39D /* ViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D77DBA2A6D254200D77B9F /* ViewController+Extensions.swift */; };
 		2B2B1A692D2D120E00A2B39D /* BackupRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866A73CE2A696A5E00E8E545 /* BackupRepository.swift */; };
 		2B2B1A6A2D2D120E00A2B39D /* CodableParsingExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B94CFC82A9CE576003E7508 /* CodableParsingExtension.swift */; };
-		2B2B1A6B2D2D120E00A2B39D /* ManuallyInputViewControllerStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F972202A6A936100C896B2 /* ManuallyInputViewControllerStrategy.swift */; };
 		2B2B1A6C2D2D120E00A2B39D /* AssetsImageMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EECF9D2A66BE2700F3891C /* AssetsImageMapper.swift */; };
 		2B2B1A6D2D2D120E00A2B39D /* TransferDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608293C22A5AD72400B11839 /* TransferDetailsViewController.swift */; };
 		2B2B1A6F2D2D120E00A2B39D /* NVActivityIndicatorViewExtended in Frameworks */ = {isa = PBXBuildFile; productRef = 2B2B19D02D2D120E00A2B39D /* NVActivityIndicatorViewExtended */; };
@@ -414,7 +383,6 @@
 		2B2B1A7E2D2D120E00A2B39D /* ReceiveViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60EECFA62A66BE6400F3891C /* ReceiveViewController.xib */; };
 		2B2B1A7F2D2D120E00A2B39D /* Inter-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 603B71022A81371200796CEE /* Inter-Medium.ttf */; };
 		2B2B1A802D2D120E00A2B39D /* TransfersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6082938B2A56B85800B11839 /* TransfersViewController.xib */; };
-		2B2B1A812D2D120E00A2B39D /* ManuallyInputViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86A997112A6EB60900A6B60B /* ManuallyInputViewController.xib */; };
 		2B2B1A822D2D120E00A2B39D /* TransferDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 608293C32A5AD72400B11839 /* TransferDetailsViewController.xib */; };
 		2B2B1A832D2D120E00A2B39D /* QRCodeScannerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60DA06AE2A65204600160ADC /* QRCodeScannerViewController.xib */; };
 		2B2B1A842D2D120E00A2B39D /* AreYouSureBottomSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86ED2BB12A64434500377F6C /* AreYouSureBottomSheet.xib */; };
@@ -444,7 +412,6 @@
 		2B2B1A9C2D2D120E00A2B39D /* AddAssetViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B3E6C122ACE96D7000E91CF /* AddAssetViewCell.xib */; };
 		2B2B1A9D2D2D120E00A2B39D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86859F582A384D8A0056E3C6 /* Main.storyboard */; };
 		2B2B1A9E2D2D120E00A2B39D /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86ED2BAA2A64430F00377F6C /* SettingsViewController.xib */; };
-		2B2B1A9F2D2D120E00A2B39D /* AuthViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 862E2AA92A543C6C002FF774 /* AuthViewController.xib */; };
 		2B2B1AA02D2D120E00A2B39D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B7C46DA2B32D638001C804B /* Assets.xcassets */; };
 		2B2B1AA12D2D120E00A2B39D /* ChooseAssetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60DA06702A645E9A00160ADC /* ChooseAssetViewController.xib */; };
 		2B2B1AA32D2D120E00A2B39D /* TransactionSentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60B137B22A8B6A4C009A4ECB /* TransactionSentViewController.xib */; };
@@ -477,7 +444,6 @@
 		2B558E842B47042D006212B2 /* UIHostingBridgeNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558E832B47042D006212B2 /* UIHostingBridgeNotifications.swift */; };
 		2B558E862B47044C006212B2 /* PrepareForScanViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558E852B47044C006212B2 /* PrepareForScanViewModel.swift */; };
 		2B558E882B4704BA006212B2 /* PrepareForScanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558E872B4704BA006212B2 /* PrepareForScanView.swift */; };
-		2B558E972B48347D006212B2 /* AddDeviceHostingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558E962B48347D006212B2 /* AddDeviceHostingVC.swift */; };
 		2B558E992B483CB3006212B2 /* PrepareForScanHostingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558E982B483CB3006212B2 /* PrepareForScanHostingVC.swift */; };
 		2B558E9B2B484A87006212B2 /* ValidateRequestIdViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558E9A2B484A87006212B2 /* ValidateRequestIdViewModel.swift */; };
 		2B558E9E2B484AC4006212B2 /* ValidateRequestIdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558E9D2B484AC4006212B2 /* ValidateRequestIdView.swift */; };
@@ -550,11 +516,9 @@
 		2B7C47262B32D964001C804B /* SendToViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DA06B02A65204600160ADC /* SendToViewController.swift */; };
 		2B7C47272B32D964001C804B /* SendToViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DA06B12A65204600160ADC /* SendToViewModel.swift */; };
 		2B7C47282B32D964001C804B /* FeeRateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DA06A82A651F7E00160ADC /* FeeRateViewController.swift */; };
-		2B7C47292B32D964001C804B /* AuthViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 862E2AA92A543C6C002FF774 /* AuthViewController.xib */; };
 		2B7C472A2B32D965001C804B /* FeeRateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60DA06A62A651F7E00160ADC /* FeeRateViewController.xib */; };
 		2B7C472B2B32D965001C804B /* ReceiveViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60EECFA62A66BE6400F3891C /* ReceiveViewController.xib */; };
 		2B7C472C2B32D965001C804B /* TransactionSentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60B137B22A8B6A4C009A4ECB /* TransactionSentViewController.xib */; };
-		2B7C472D2B32D965001C804B /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862E2A9B2A543B41002FF774 /* AuthViewController.swift */; };
 		2B7C472E2B32D965001C804B /* ApproveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603903722A6D1F560060E026 /* ApproveViewController.swift */; };
 		2B7C472F2B32D965001C804B /* MpcKeysViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86EBAAB72A5C346E0085E76B /* MpcKeysViewController.xib */; };
 		2B7C47302B32D965001C804B /* FeeRateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DA06A72A651F7E00160ADC /* FeeRateViewModel.swift */; };
@@ -564,7 +528,6 @@
 		2B7C47342B32D965001C804B /* QRCodeScannerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60DA06AE2A65204600160ADC /* QRCodeScannerViewController.xib */; };
 		2B7C47352B32D965001C804B /* ApproveViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 603903732A6D1F560060E026 /* ApproveViewController.xib */; };
 		2B7C47362B32D965001C804B /* SendToViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60DA06B22A65204600160ADC /* SendToViewController.xib */; };
-		2B7C47372B32D965001C804B /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862E2A9A2A543B41002FF774 /* AuthViewModel.swift */; };
 		2B7C47382B32D965001C804B /* QRCodeScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DA06AF2A65204600160ADC /* QRCodeScannerViewController.swift */; };
 		2B7C47392B32D965001C804B /* MpcKeysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869A71472A3885E800653C8F /* MpcKeysViewController.swift */; };
 		2B7C473A2B32D965001C804B /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DA069E2A651C5200160ADC /* TabBarViewController.swift */; };
@@ -597,7 +560,6 @@
 		2B7C47552B32D98D001C804B /* AdvancedInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8668C2292A67109400575A6A /* AdvancedInfoViewController.xib */; };
 		2B7C47562B32D98D001C804B /* AdvancedInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8668C2242A67109400575A6A /* AdvancedInfoViewModel.swift */; };
 		2B7C47572B32D98D001C804B /* AdvancedInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8668C2282A67109400575A6A /* AdvancedInfoViewController.swift */; };
-		2B7C47582B32D9A5001C804B /* ManuallyInputViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86A997112A6EB60900A6B60B /* ManuallyInputViewController.xib */; };
 		2B7C47592B32D9A5001C804B /* BackupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866A73C72A696A3100E8E545 /* BackupViewModel.swift */; };
 		2B7C475A2B32D9A5001C804B /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86ED2BA72A64430F00377F6C /* SettingsViewModel.swift */; };
 		2B7C475B2B32D9A5001C804B /* BackupDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 867828EA2A696D7D0035787D /* BackupDetailsViewController.xib */; };
@@ -607,13 +569,10 @@
 		2B7C475F2B32D9A5001C804B /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86ED2BAA2A64430F00377F6C /* SettingsViewController.xib */; };
 		2B7C47602B32D9A5001C804B /* BackupDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867828E92A696D7D0035787D /* BackupDetailsViewController.swift */; };
 		2B7C47612B32D9A5001C804B /* BackupDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867828EB2A696D7D0035787D /* BackupDetailsViewModel.swift */; };
-		2B7C47622B32D9A5001C804B /* ManuallyInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A997102A6EB60900A6B60B /* ManuallyInputViewController.swift */; };
 		2B7C47632B32D9A5001C804B /* BackupViewControllerStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862F430F2A6AC23600C594CA /* BackupViewControllerStrategy.swift */; };
-		2B7C47642B32D9A5001C804B /* ManuallyInputViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A997122A6EB60900A6B60B /* ManuallyInputViewModel.swift */; };
 		2B7C47652B32D9A5001C804B /* BackupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86EB512C2A66C08C00D2911A /* BackupViewController.xib */; };
 		2B7C47662B32D9A5001C804B /* BackupStatusViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3E6C022ACC0C40000E91CF /* BackupStatusViewModel.swift */; };
 		2B7C47672B32D9A5001C804B /* BackupStatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866A73CA2A696A4B00E8E545 /* BackupStatusViewController.swift */; };
-		2B7C47682B32D9A5001C804B /* ManuallyInputViewControllerStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F972202A6A936100C896B2 /* ManuallyInputViewControllerStrategy.swift */; };
 		2B7C47692B32D9A5001C804B /* SettingsOptionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EB51292A66C08C00D2911A /* SettingsOptionButton.swift */; };
 		2B7C476A2B32D9C9001C804B /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EECFD92A69198B00F3891C /* AlertView.swift */; };
 		2B7C476B2B32D9C9001C804B /* TransferCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6082938F2A56BB1400B11839 /* TransferCell.swift */; };
@@ -655,7 +614,6 @@
 		2BAB68102B820DD1003592F1 /* PrepareForScanViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558E852B47044C006212B2 /* PrepareForScanViewModel.swift */; };
 		2BAB68112B820DDD003592F1 /* PrepareForScanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558E872B4704BA006212B2 /* PrepareForScanView.swift */; };
 		2BAB68122B820DEB003592F1 /* FBHostingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA53D3C2B46B348008C7B6C /* FBHostingViewController.swift */; };
-		2BAB68132B820DF9003592F1 /* AddDeviceHostingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558E962B48347D006212B2 /* AddDeviceHostingVC.swift */; };
 		2BAB68142B820DFF003592F1 /* ValidateRequestIdViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558E9A2B484A87006212B2 /* ValidateRequestIdViewModel.swift */; };
 		2BAB68152B820E06003592F1 /* ValidateRequestIdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558E9D2B484AC4006212B2 /* ValidateRequestIdView.swift */; };
 		2BAB68162B820E06003592F1 /* ValidateRequestIdTimeOutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF8EDBF2B569D3B00046F0B /* ValidateRequestIdTimeOutView.swift */; };
@@ -675,9 +633,6 @@
 		2BAB68242B820E9C003592F1 /* AlertBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF8EDBD2B56758300046F0B /* AlertBannerView.swift */; };
 		2BAB68252B820E9C003592F1 /* Bullet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC5837D2B6BD5DC005E6EEB /* Bullet.swift */; };
 		2BAB68262B820E9C003592F1 /* VerticalSeparator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC5837F2B6BD5FF005E6EEB /* VerticalSeparator.swift */; };
-		2BAB68292B820FE9003592F1 /* RedirectNewUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B174FE82B62446900BE63A8 /* RedirectNewUserView.swift */; };
-		2BAB682A2B820FE9003592F1 /* RedirectNewUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B174FEA2B62447900BE63A8 /* RedirectNewUserViewModel.swift */; };
-		2BAB682B2B820FE9003592F1 /* RedirectNewUserHostingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B174FEC2B624EEA00BE63A8 /* RedirectNewUserHostingVC.swift */; };
 		2BB18F212CCFD61100920DAB /* FireblocksSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 2BB18F202CCFD61100920DAB /* FireblocksSDK */; };
 		2BC5837E2B6BD5DC005E6EEB /* Bullet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC5837D2B6BD5DC005E6EEB /* Bullet.swift */; };
 		2BC583802B6BD5FF005E6EEB /* VerticalSeparator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC5837F2B6BD5FF005E6EEB /* VerticalSeparator.swift */; };
@@ -764,13 +719,10 @@
 		60EECFDA2A69198B00F3891C /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EECFD92A69198B00F3891C /* AlertView.swift */; };
 		861BA20D2A5E901800A1BC1B /* MpcKeysViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861BA20C2A5E901800A1BC1B /* MpcKeysViewModel.swift */; };
 		86229D812A8B7FF20089F7DA /* AssetHeaderUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86229D802A8B7FF20089F7DA /* AssetHeaderUIView.swift */; };
-		862E2A9C2A543B41002FF774 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862E2A9A2A543B41002FF774 /* AuthViewModel.swift */; };
-		862E2A9D2A543B41002FF774 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862E2A9B2A543B41002FF774 /* AuthViewController.swift */; };
 		862E2AA02A543B6D002FF774 /* AuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862E2A9F2A543B6D002FF774 /* AuthRepository.swift */; };
 		862E2AA62A543B86002FF774 /* AppleSignInManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862E2AA22A543B86002FF774 /* AppleSignInManager.swift */; };
 		862E2AA72A543B86002FF774 /* GoogleSignInManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862E2AA32A543B86002FF774 /* GoogleSignInManager.swift */; };
 		862E2AA82A543B86002FF774 /* AuthProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862E2AA52A543B86002FF774 /* AuthProtocols.swift */; };
-		862E2AAA2A543C6C002FF774 /* AuthViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 862E2AA92A543C6C002FF774 /* AuthViewController.xib */; };
 		862F43102A6AC23600C594CA /* BackupViewControllerStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862F430F2A6AC23600C594CA /* BackupViewControllerStrategy.swift */; };
 		86346ACD2A6D0D2C0002FE34 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86346ACC2A6D0D2C0002FE34 /* ToastView.swift */; };
 		8668C22A2A67109400575A6A /* AdvancedInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8668C2242A67109400575A6A /* AdvancedInfoViewModel.swift */; };
@@ -806,9 +758,6 @@
 		869A713E2A385D5300653C8F /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 869A713D2A385D5300653C8F /* GoogleSignIn */; };
 		869A71402A385D5300653C8F /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 869A713F2A385D5300653C8F /* GoogleSignInSwift */; };
 		869A71482A3885E800653C8F /* MpcKeysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869A71472A3885E800653C8F /* MpcKeysViewController.swift */; };
-		86A997132A6EB60900A6B60B /* ManuallyInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A997102A6EB60900A6B60B /* ManuallyInputViewController.swift */; };
-		86A997142A6EB60900A6B60B /* ManuallyInputViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86A997112A6EB60900A6B60B /* ManuallyInputViewController.xib */; };
-		86A997152A6EB60900A6B60B /* ManuallyInputViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A997122A6EB60900A6B60B /* ManuallyInputViewModel.swift */; };
 		86A9971A2A6FAD0B00A6B60B /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 86A997192A6FAD0A00A6B60B /* SDWebImage */; };
 		86A9971C2A6FAD0B00A6B60B /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 86A9971B2A6FAD0B00A6B60B /* SDWebImageMapKit */; };
 		86AF7C4D2A430BF70026DF15 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
@@ -835,7 +784,6 @@
 		86ED2BAE2A64430F00377F6C /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86ED2BAA2A64430F00377F6C /* SettingsViewController.xib */; };
 		86ED2BB32A64434500377F6C /* AreYouSureBottomSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86ED2BB12A64434500377F6C /* AreYouSureBottomSheet.xib */; };
 		86ED2BB42A64434500377F6C /* AreYouSureBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86ED2BB22A64434500377F6C /* AreYouSureBottomSheet.swift */; };
-		86F972212A6A936100C896B2 /* ManuallyInputViewControllerStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F972202A6A936100C896B2 /* ManuallyInputViewControllerStrategy.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -886,10 +834,6 @@
 
 /* Begin PBXFileReference section */
 		2B05C0692B4698BF004CF1CE /* JoinRequestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinRequestData.swift; sourceTree = "<group>"; };
-		2B174FE82B62446900BE63A8 /* RedirectNewUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedirectNewUserView.swift; sourceTree = "<group>"; };
-		2B174FEA2B62447900BE63A8 /* RedirectNewUserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedirectNewUserViewModel.swift; sourceTree = "<group>"; };
-		2B174FEC2B624EEA00BE63A8 /* RedirectNewUserHostingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedirectNewUserHostingVC.swift; sourceTree = "<group>"; };
-		2B19FD9D2CB3FA88007B3BCB /* EWManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EWManager.swift; sourceTree = "<group>"; };
 		2B21D8BB2BC56B5C003ADD29 /* NCW-production.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NCW-production.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B21D8BC2BC56B5C003ADD29 /* NCW-sandbox copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "NCW-sandbox copy-Info.plist"; path = "/Users/dudishani-gabay/projects/ncw-ios-demo-github/NCW-sandbox copy-Info.plist"; sourceTree = "<absolute>"; };
 		2B21D8BD2BC56BAA003ADD29 /* EnvironmentConstantsProd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentConstantsProd.swift; sourceTree = "<group>"; };
@@ -931,7 +875,6 @@
 		2B558E832B47042D006212B2 /* UIHostingBridgeNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHostingBridgeNotifications.swift; sourceTree = "<group>"; };
 		2B558E852B47044C006212B2 /* PrepareForScanViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareForScanViewModel.swift; sourceTree = "<group>"; };
 		2B558E872B4704BA006212B2 /* PrepareForScanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareForScanView.swift; sourceTree = "<group>"; };
-		2B558E962B48347D006212B2 /* AddDeviceHostingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDeviceHostingVC.swift; sourceTree = "<group>"; };
 		2B558E982B483CB3006212B2 /* PrepareForScanHostingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareForScanHostingVC.swift; sourceTree = "<group>"; };
 		2B558E9A2B484A87006212B2 /* ValidateRequestIdViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateRequestIdViewModel.swift; sourceTree = "<group>"; };
 		2B558E9D2B484AC4006212B2 /* ValidateRequestIdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateRequestIdView.swift; sourceTree = "<group>"; };
@@ -1042,13 +985,10 @@
 		60EECFD92A69198B00F3891C /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		861BA20C2A5E901800A1BC1B /* MpcKeysViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MpcKeysViewModel.swift; sourceTree = "<group>"; };
 		86229D802A8B7FF20089F7DA /* AssetHeaderUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetHeaderUIView.swift; sourceTree = "<group>"; };
-		862E2A9A2A543B41002FF774 /* AuthViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
-		862E2A9B2A543B41002FF774 /* AuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		862E2A9F2A543B6D002FF774 /* AuthRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthRepository.swift; sourceTree = "<group>"; };
 		862E2AA22A543B86002FF774 /* AppleSignInManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppleSignInManager.swift; sourceTree = "<group>"; };
 		862E2AA32A543B86002FF774 /* GoogleSignInManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleSignInManager.swift; sourceTree = "<group>"; };
 		862E2AA52A543B86002FF774 /* AuthProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthProtocols.swift; sourceTree = "<group>"; };
-		862E2AA92A543C6C002FF774 /* AuthViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AuthViewController.xib; sourceTree = "<group>"; };
 		862F430F2A6AC23600C594CA /* BackupViewControllerStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupViewControllerStrategy.swift; sourceTree = "<group>"; };
 		86346ACC2A6D0D2C0002FE34 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		8668C2242A67109400575A6A /* AdvancedInfoViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdvancedInfoViewModel.swift; sourceTree = "<group>"; };
@@ -1082,9 +1022,6 @@
 		86859F602A384D8B0056E3C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		869A71472A3885E800653C8F /* MpcKeysViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MpcKeysViewController.swift; sourceTree = "<group>"; };
 		869A714B2A388C5F00653C8F /* ViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Extensions.swift"; sourceTree = "<group>"; };
-		86A997102A6EB60900A6B60B /* ManuallyInputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManuallyInputViewController.swift; sourceTree = "<group>"; };
-		86A997112A6EB60900A6B60B /* ManuallyInputViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ManuallyInputViewController.xib; sourceTree = "<group>"; };
-		86A997122A6EB60900A6B60B /* ManuallyInputViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManuallyInputViewModel.swift; sourceTree = "<group>"; };
 		86B67A362A6FF925007AC728 /* String+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		86B67A372A6FF925007AC728 /* Int+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
 		86B6E92F2A5E8AB800F35260 /* AuthUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthUser.swift; sourceTree = "<group>"; };
@@ -1105,7 +1042,6 @@
 		86ED2BAA2A64430F00377F6C /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
 		86ED2BB12A64434500377F6C /* AreYouSureBottomSheet.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AreYouSureBottomSheet.xib; sourceTree = "<group>"; };
 		86ED2BB22A64434500377F6C /* AreYouSureBottomSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AreYouSureBottomSheet.swift; sourceTree = "<group>"; };
-		86F972202A6A936100C896B2 /* ManuallyInputViewControllerStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManuallyInputViewControllerStrategy.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1194,14 +1130,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2B174FE72B62444500BE63A8 /* RedirectNewUser */ = {
+		2B0FED992D365FD100F637E6 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				2B174FE82B62446900BE63A8 /* RedirectNewUserView.swift */,
-				2B174FEA2B62447900BE63A8 /* RedirectNewUserViewModel.swift */,
-				2B174FEC2B624EEA00BE63A8 /* RedirectNewUserHostingVC.swift */,
+				60DA06542A645E1300160ADC /* Asset.swift */,
+				60DA06552A645E1300160ADC /* Fee.swift */,
+				60DA06562A645E1300160ADC /* FBTransaction.swift */,
+				608293932A56BEF200B11839 /* TransferStatusType.swift */,
+				608293B82A56E57A00B11839 /* Transfer.swift */,
+				2B94CFC42A9CDF62003E7508 /* ExtraParameters.swift */,
 			);
-			path = RedirectNewUser;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		2B21D8BF2BC57053003ADD29 /* GoogleService */ = {
@@ -1263,6 +1202,7 @@
 		2B2B19BA2D2C160900A2B39D /* NCW */ = {
 			isa = PBXGroup;
 			children = (
+				2B0FED992D365FD100F637E6 /* Models */,
 				86EBAAB92A5C3D560085E76B /* FireblocksManager.swift */,
 			);
 			path = NCW;
@@ -1371,7 +1311,6 @@
 			children = (
 				2B7A721A2B45A2250011C398 /* AddDeviceQRViewModel.swift */,
 				2B7A721C2B45A8FF0011C398 /* AddDeviceQRView.swift */,
-				2B558E962B48347D006212B2 /* AddDeviceHostingVC.swift */,
 			);
 			path = AddDeviceQR;
 			sourceTree = "<group>";
@@ -1763,7 +1702,6 @@
 				866A73D72A696AA200E8E545 /* ICloudManager.swift */,
 				862E2AA22A543B86002FF774 /* AppleSignInManager.swift */,
 				862E2AA32A543B86002FF774 /* GoogleSignInManager.swift */,
-				2B19FD9D2CB3FA88007B3BCB /* EWManager.swift */,
 				2B2B1AD22D2E99C500A2B39D /* RecoverManager.swift */,
 			);
 			path = Managers;
@@ -1979,8 +1917,6 @@
 		86859F672A384E920056E3C6 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
-				2B174FE72B62444500BE63A8 /* RedirectNewUser */,
-				869A71462A38859F00653C8F /* Login */,
 				869A71452A38857100653C8F /* MpcKeys */,
 				2B7A72172B45A0DF0011C398 /* AddDevice */,
 			);
@@ -2013,26 +1949,10 @@
 			path = MpcKeys;
 			sourceTree = "<group>";
 		};
-		869A71462A38859F00653C8F /* Login */ = {
-			isa = PBXGroup;
-			children = (
-				862E2A9A2A543B41002FF774 /* AuthViewModel.swift */,
-				862E2A9B2A543B41002FF774 /* AuthViewController.swift */,
-				862E2AA92A543C6C002FF774 /* AuthViewController.xib */,
-			);
-			path = Login;
-			sourceTree = "<group>";
-		};
 		86B6E92E2A5E8AAB00F35260 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				60DA06542A645E1300160ADC /* Asset.swift */,
-				60DA06552A645E1300160ADC /* Fee.swift */,
-				60DA06562A645E1300160ADC /* FBTransaction.swift */,
 				86B6E92F2A5E8AB800F35260 /* AuthUser.swift */,
-				608293932A56BEF200B11839 /* TransferStatusType.swift */,
-				608293B82A56E57A00B11839 /* Transfer.swift */,
-				2B94CFC42A9CDF62003E7508 /* ExtraParameters.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2089,7 +2009,6 @@
 			isa = PBXGroup;
 			children = (
 				867828E82A696D7D0035787D /* BackupDetails */,
-				86EB512D2A66C08C00D2911A /* ManuallyBackup */,
 				866A73C92A696A4B00E8E545 /* BackupStatus */,
 				86EB512C2A66C08C00D2911A /* BackupViewController.xib */,
 				866A73C72A696A3100E8E545 /* BackupViewModel.swift */,
@@ -2097,17 +2016,6 @@
 				862F430F2A6AC23600C594CA /* BackupViewControllerStrategy.swift */,
 			);
 			path = Backup;
-			sourceTree = "<group>";
-		};
-		86EB512D2A66C08C00D2911A /* ManuallyBackup */ = {
-			isa = PBXGroup;
-			children = (
-				86A997112A6EB60900A6B60B /* ManuallyInputViewController.xib */,
-				86F972202A6A936100C896B2 /* ManuallyInputViewControllerStrategy.swift */,
-				86A997102A6EB60900A6B60B /* ManuallyInputViewController.swift */,
-				86A997122A6EB60900A6B60B /* ManuallyInputViewModel.swift */,
-			);
-			path = ManuallyBackup;
 			sourceTree = "<group>";
 		};
 		86ED2BA62A64430F00377F6C /* Settings */ = {
@@ -2317,7 +2225,6 @@
 				2B21D8902BC56B5C003ADD29 /* MpcKeyCellView.xib in Resources */,
 				2B21D8912BC56B5C003ADD29 /* ChooseAssetViewController.xib in Resources */,
 				2B21D8922BC56B5C003ADD29 /* BackupDetailsViewController.xib in Resources */,
-				2B21D8932BC56B5C003ADD29 /* AuthViewController.xib in Resources */,
 				2B21D8942BC56B5C003ADD29 /* AssetViewCell.xib in Resources */,
 				2B21D8952BC56B5C003ADD29 /* Roboto-Bold.ttf in Resources */,
 				2B21D8962BC56B5C003ADD29 /* Localizable.strings in Resources */,
@@ -2333,7 +2240,6 @@
 				2B21D8A12BC56B5C003ADD29 /* ReceiveViewController.xib in Resources */,
 				2B21D8A22BC56B5C003ADD29 /* QRCodeScannerViewController.xib in Resources */,
 				2B21D8A32BC56B5C003ADD29 /* TakeoverViewController.xib in Resources */,
-				2B21D8A42BC56B5C003ADD29 /* ManuallyInputViewController.xib in Resources */,
 				2B21D8A52BC56B5C003ADD29 /* Inter-Medium.ttf in Resources */,
 				2B21D8A62BC56B5C003ADD29 /* BackupViewController.xib in Resources */,
 				2B21D8A72BC56B5C003ADD29 /* Assets.xcassets in Resources */,
@@ -2363,7 +2269,6 @@
 				2B2B1A7E2D2D120E00A2B39D /* ReceiveViewController.xib in Resources */,
 				2B2B1A7F2D2D120E00A2B39D /* Inter-Medium.ttf in Resources */,
 				2B2B1A802D2D120E00A2B39D /* TransfersViewController.xib in Resources */,
-				2B2B1A812D2D120E00A2B39D /* ManuallyInputViewController.xib in Resources */,
 				2B2B1A822D2D120E00A2B39D /* TransferDetailsViewController.xib in Resources */,
 				2B2B1A832D2D120E00A2B39D /* QRCodeScannerViewController.xib in Resources */,
 				2B2B1A842D2D120E00A2B39D /* AreYouSureBottomSheet.xib in Resources */,
@@ -2394,7 +2299,6 @@
 				2B2B1A9C2D2D120E00A2B39D /* AddAssetViewCell.xib in Resources */,
 				2B2B1A9D2D2D120E00A2B39D /* Main.storyboard in Resources */,
 				2B2B1A9E2D2D120E00A2B39D /* SettingsViewController.xib in Resources */,
-				2B2B1A9F2D2D120E00A2B39D /* AuthViewController.xib in Resources */,
 				2B2B1AA02D2D120E00A2B39D /* Assets.xcassets in Resources */,
 				2B2B1AA12D2D120E00A2B39D /* ChooseAssetViewController.xib in Resources */,
 				2B2B1AA32D2D120E00A2B39D /* TransactionSentViewController.xib in Resources */,
@@ -2410,7 +2314,6 @@
 				2B7C472B2B32D965001C804B /* ReceiveViewController.xib in Resources */,
 				2B7C46EF2B32D8B3001C804B /* Inter-Medium.ttf in Resources */,
 				2B7C474A2B32D979001C804B /* TransfersViewController.xib in Resources */,
-				2B7C47582B32D9A5001C804B /* ManuallyInputViewController.xib in Resources */,
 				2B7C474D2B32D97E001C804B /* TransferDetailsViewController.xib in Resources */,
 				2B7C47342B32D965001C804B /* QRCodeScannerViewController.xib in Resources */,
 				2B7C47732B32D9C9001C804B /* AreYouSureBottomSheet.xib in Resources */,
@@ -2441,7 +2344,6 @@
 				2B7C47462B32D96E001C804B /* AddAssetViewCell.xib in Resources */,
 				2B7C47772B32D9DC001C804B /* Main.storyboard in Resources */,
 				2B7C475F2B32D9A5001C804B /* SettingsViewController.xib in Resources */,
-				2B7C47292B32D964001C804B /* AuthViewController.xib in Resources */,
 				2B7C46DB2B32D638001C804B /* Assets.xcassets in Resources */,
 				2B7C47332B32D965001C804B /* ChooseAssetViewController.xib in Resources */,
 				2B7C472C2B32D965001C804B /* TransactionSentViewController.xib in Resources */,
@@ -2456,7 +2358,6 @@
 				8668C22C2A67109400575A6A /* MpcKeyCellView.xib in Resources */,
 				60DA067E2A645E9A00160ADC /* ChooseAssetViewController.xib in Resources */,
 				867828ED2A696D7D0035787D /* BackupDetailsViewController.xib in Resources */,
-				862E2AAA2A543C6C002FF774 /* AuthViewController.xib in Resources */,
 				60DA06A32A651D9300160ADC /* AssetViewCell.xib in Resources */,
 				603B70EB2A810D6200796CEE /* Roboto-Bold.ttf in Resources */,
 				86DC6E9D2A39ECC000A0B313 /* Localizable.strings in Resources */,
@@ -2473,7 +2374,6 @@
 				60EECFA92A66BE6400F3891C /* ReceiveViewController.xib in Resources */,
 				60DA06B32A65204600160ADC /* QRCodeScannerViewController.xib in Resources */,
 				86E4A1692A6852CE00A2861D /* TakeoverViewController.xib in Resources */,
-				86A997142A6EB60900A6B60B /* ManuallyInputViewController.xib in Resources */,
 				603B71032A81371200796CEE /* Inter-Medium.ttf in Resources */,
 				86EB51342A66C08C00D2911A /* BackupViewController.xib in Resources */,
 				86859F5C2A384D8B0056E3C6 /* Assets.xcassets in Resources */,
@@ -2519,7 +2419,6 @@
 				2B2B189F2D2AC3E700A2B39D /* JoinOrRecoverView.swift in Sources */,
 				2B21D8052BC56B5C003ADD29 /* AssetViewCell.swift in Sources */,
 				2B21D8062BC56B5C003ADD29 /* DerivedAssetRow.swift in Sources */,
-				2B21D8072BC56B5C003ADD29 /* AddDeviceHostingVC.swift in Sources */,
 				2B21D8082BC56B5C003ADD29 /* BackupRepository.swift in Sources */,
 				2B21D8092BC56B5C003ADD29 /* AppActionBotton.swift in Sources */,
 				2B21D80A2BC56B5C003ADD29 /* Int+Extension.swift in Sources */,
@@ -2536,8 +2435,6 @@
 				2B21D8132BC56B5C003ADD29 /* ValidateRequestIdTimeOutView.swift in Sources */,
 				2B21D8142BC56B5C003ADD29 /* ToastView.swift in Sources */,
 				2B21D8152BC56B5C003ADD29 /* BackupViewModel.swift in Sources */,
-				2B21D8162BC56B5C003ADD29 /* AuthViewController.swift in Sources */,
-				2B21D8172BC56B5C003ADD29 /* RedirectNewUserView.swift in Sources */,
 				2B21D8182BC56B5C003ADD29 /* AppLogger.swift in Sources */,
 				2B21D8192BC56B5C003ADD29 /* BackupDetailsViewModel.swift in Sources */,
 				2B21D81A2BC56B5C003ADD29 /* FeeRateCell.swift in Sources */,
@@ -2549,7 +2446,6 @@
 				2B21D81F2BC56B5C003ADD29 /* Modifiers.swift in Sources */,
 				2B21D8202BC56B5C003ADD29 /* UIHostingBridgeNotifications.swift in Sources */,
 				2B21D8212BC56B5C003ADD29 /* FeeRateViewModel.swift in Sources */,
-				2B21D8222BC56B5C003ADD29 /* AuthViewModel.swift in Sources */,
 				2B21D8232BC56B5C003ADD29 /* PrepareForScanViewModel.swift in Sources */,
 				2B21D8242BC56B5C003ADD29 /* SendToViewController.swift in Sources */,
 				2B21D8252BC56B5C003ADD29 /* CodableAnyExtension.swift in Sources */,
@@ -2574,7 +2470,6 @@
 				2B21D8352BC56B5C003ADD29 /* AssetsColors.swift in Sources */,
 				2B21D8362BC56B5C003ADD29 /* String+Extensions.swift in Sources */,
 				2B21D8372BC56B5C003ADD29 /* Extensions.swift in Sources */,
-				2B21D8382BC56B5C003ADD29 /* RedirectNewUserViewModel.swift in Sources */,
 				2B21D8392BC56B5C003ADD29 /* UsersLocalStorageManager.swift in Sources */,
 				2B21D83A2BC56B5C003ADD29 /* SessionManager.swift in Sources */,
 				2B2B18922D2A965500A2B39D /* SignInViewModelBase.swift in Sources */,
@@ -2586,7 +2481,6 @@
 				2B21D83C2BC56B5C003ADD29 /* TransferCell.swift in Sources */,
 				2B21D83D2BC56B5C003ADD29 /* MpcKeysViewModel.swift in Sources */,
 				2B21D83E2BC56B5C003ADD29 /* AlertView.swift in Sources */,
-				2B21D83F2BC56B5C003ADD29 /* ManuallyInputViewModel.swift in Sources */,
 				2B21D8402BC56B5C003ADD29 /* AreYouSureBottomSheet.swift in Sources */,
 				2B21D8412BC56B5C003ADD29 /* FBTransaction.swift in Sources */,
 				2B21D8422BC56B5C003ADD29 /* EndFlowFeedbackViewModel.swift in Sources */,
@@ -2627,13 +2521,10 @@
 				2B21D85F2BC56B5C003ADD29 /* VersionBanner.swift in Sources */,
 				2B21D8602BC56B5C003ADD29 /* TakeoverViewModel.swift in Sources */,
 				2B2B1ABF2D2D4EF000A2B39D /* SignInViewModel.swift in Sources */,
-				2B21D8612BC56B5C003ADD29 /* RedirectNewUserHostingVC.swift in Sources */,
 				2B21D8622BC56B5C003ADD29 /* ValidateRequestIdHostingVC.swift in Sources */,
 				2B21D8632BC56B5C003ADD29 /* AssetListRepository.swift in Sources */,
 				2B21D8642BC56B5C003ADD29 /* AmountToSendViewController.swift in Sources */,
 				2B21D8652BC56B5C003ADD29 /* SceneDelegate.swift in Sources */,
-				2B21D8662BC56B5C003ADD29 /* ManuallyInputViewController.swift in Sources */,
-				2B21D8672BC56B5C003ADD29 /* ManuallyInputViewControllerStrategy.swift in Sources */,
 				2B21D8682BC56B5C003ADD29 /* Transfer.swift in Sources */,
 				2B21D8692BC56B5C003ADD29 /* EndFlowFeedbackHostingVC.swift in Sources */,
 				2B21D86A2BC56B5C003ADD29 /* TransfersViewController.swift in Sources */,
@@ -2669,14 +2560,11 @@
 				2B2B19D52D2D120E00A2B39D /* AssetHeaderUIView.swift in Sources */,
 				2B2B1AAB2D2D126000A2B39D /* FireblocksManager.swift in Sources */,
 				2B2B19D62D2D120E00A2B39D /* AppleSignInManager.swift in Sources */,
-				2B2B19D72D2D120E00A2B39D /* TransferStatusType.swift in Sources */,
 				2B2B19D82D2D120E00A2B39D /* UsersLocalStorageManager.swift in Sources */,
-				2B2B19DA2D2D120E00A2B39D /* AddDeviceHostingVC.swift in Sources */,
 				2B2B19DB2D2D120E00A2B39D /* TabBarViewController.swift in Sources */,
 				2B2B19DC2D2D120E00A2B39D /* BackupDetailsViewController.swift in Sources */,
 				2B2B19DD2D2D120E00A2B39D /* CodableExtension.swift in Sources */,
 				2B2B19DE2D2D120E00A2B39D /* BackupViewController.swift in Sources */,
-				2B2B19DF2D2D120E00A2B39D /* RedirectNewUserView.swift in Sources */,
 				2B2B19E02D2D120E00A2B39D /* DerivedAssetRow.swift in Sources */,
 				2B2B19E12D2D120E00A2B39D /* ReceiveViewModel.swift in Sources */,
 				2B2B19E22D2D120E00A2B39D /* SpinnerView.swift in Sources */,
@@ -2694,12 +2582,10 @@
 				2B2B19EE2D2D120E00A2B39D /* Int+Extension.swift in Sources */,
 				2B2B19EF2D2D120E00A2B39D /* ToastView.swift in Sources */,
 				2B2B19F02D2D120E00A2B39D /* CodableAnyExtension.swift in Sources */,
-				2B2B19F12D2D120E00A2B39D /* Asset.swift in Sources */,
 				2B2B19F22D2D120E00A2B39D /* FeeRateRepository.swift in Sources */,
 				2B2B19F32D2D120E00A2B39D /* TransactionSentViewController.swift in Sources */,
 				2B2B19F42D2D120E00A2B39D /* Constants.swift in Sources */,
 				2B2B19F52D2D120E00A2B39D /* ValidateRequestIdViewModel.swift in Sources */,
-				2B2B19F62D2D120E00A2B39D /* Fee.swift in Sources */,
 				2B2B19F72D2D120E00A2B39D /* BiometricsAuthentication.swift in Sources */,
 				2B2B19F82D2D120E00A2B39D /* SendToViewModel.swift in Sources */,
 				2B2B19F92D2D120E00A2B39D /* AppBackgroundView.swift in Sources */,
@@ -2717,7 +2603,6 @@
 				2B2B1A052D2D120E00A2B39D /* EndFlowFeedbackHostingVC.swift in Sources */,
 				2B2B1A062D2D120E00A2B39D /* RecoverWalletView.swift in Sources */,
 				2B2B1A072D2D120E00A2B39D /* DeriveKeysViewModel.swift in Sources */,
-				2B2B1A082D2D120E00A2B39D /* AuthViewModel.swift in Sources */,
 				2B2B1A092D2D120E00A2B39D /* FeeRateViewModel.swift in Sources */,
 				2B2B1A0A2D2D120E00A2B39D /* ApproveViewModel.swift in Sources */,
 				2B2B1A0B2D2D120E00A2B39D /* AppActionBotton.swift in Sources */,
@@ -2730,7 +2615,6 @@
 				2B2B1A122D2D120E00A2B39D /* AdvancedInfoViewModel.swift in Sources */,
 				2B2B1A132D2D120E00A2B39D /* SessionManager.swift in Sources */,
 				2B2B1A142D2D120E00A2B39D /* AssetViewCell.swift in Sources */,
-				2B2B1A152D2D120E00A2B39D /* AuthViewController.swift in Sources */,
 				2B2B1A162D2D120E00A2B39D /* TransferDetailsViewModel.swift in Sources */,
 				2B2B1A172D2D120E00A2B39D /* AddDeviceView.swift in Sources */,
 				2B2B1A182D2D120E00A2B39D /* AdvancedInfoViewController.swift in Sources */,
@@ -2739,8 +2623,6 @@
 				2B2B1A1B2D2D120E00A2B39D /* BackupDetailsViewModel.swift in Sources */,
 				2B2B1A1C2D2D120E00A2B39D /* DeriveKeysView.swift in Sources */,
 				2B2B1A1D2D2D120E00A2B39D /* ICloudManager.swift in Sources */,
-				2B2B1A1E2D2D120E00A2B39D /* Transfer.swift in Sources */,
-				2B2B1A1F2D2D120E00A2B39D /* AuthUser.swift in Sources */,
 				2B2B1A202D2D120E00A2B39D /* ChooseAssetViewController.swift in Sources */,
 				2B2B1A212D2D120E00A2B39D /* PrepareForScanHostingVC.swift in Sources */,
 				2B2B1A222D2D120E00A2B39D /* FireblocksManagerProtocol.swift in Sources */,
@@ -2751,23 +2633,19 @@
 				2B2B1A282D2D120E00A2B39D /* AddDeviceQRViewModel.swift in Sources */,
 				2B2B1A292D2D120E00A2B39D /* AppDelegate.swift in Sources */,
 				2B2B1A2A2D2D120E00A2B39D /* AuthRepository.swift in Sources */,
-				2B2B1A2B2D2D120E00A2B39D /* FBTransaction.swift in Sources */,
 				2B2B1A2C2D2D120E00A2B39D /* ReceiveViewController.swift in Sources */,
 				2B2B1AAF2D2D307F00A2B39D /* LatestBackupState.swift in Sources */,
-				2B2B1A2D2D2D120E00A2B39D /* ManuallyInputViewController.swift in Sources */,
 				2B2B1A2E2D2D120E00A2B39D /* UIButton+Extension.swift in Sources */,
 				2B2B1A2F2D2D120E00A2B39D /* AmountToSendViewModel.swift in Sources */,
 				2B2B1A302D2D120E00A2B39D /* FBFont.swift in Sources */,
-				2B2B1A312D2D120E00A2B39D /* ExtraParameters.swift in Sources */,
 				2B2B1A322D2D120E00A2B39D /* VerticalSeparator.swift in Sources */,
-				2B2B1A332D2D120E00A2B39D /* RedirectNewUserHostingVC.swift in Sources */,
 				2B2B1A342D2D120E00A2B39D /* AlertView.swift in Sources */,
 				2B2B1A352D2D120E00A2B39D /* ApproveRepository.swift in Sources */,
 				2B2B1A362D2D120E00A2B39D /* SettingsOptionButton.swift in Sources */,
 				2B2B1A372D2D120E00A2B39D /* EndFlowFeedbackView.swift in Sources */,
-				2B2B1A382D2D120E00A2B39D /* ManuallyInputViewModel.swift in Sources */,
 				2B2B1A392D2D120E00A2B39D /* CustomBackButtonView.swift in Sources */,
 				2B2B1A3A2D2D120E00A2B39D /* TransferCell.swift in Sources */,
+				2B0FED982D365FAA00F637E6 /* AuthUser.swift in Sources */,
 				2B2B1A3B2D2D120E00A2B39D /* Double+Extension.swift in Sources */,
 				2B2B1A3C2D2D120E00A2B39D /* PrepareForScanViewModel.swift in Sources */,
 				2B2B1A3D2D2D120E00A2B39D /* LocalizableStrings.swift in Sources */,
@@ -2776,7 +2654,6 @@
 				2B2B1A402D2D120E00A2B39D /* PrepareForScanView.swift in Sources */,
 				2B2B1A412D2D120E00A2B39D /* Platform.swift in Sources */,
 				2B2B1A422D2D120E00A2B39D /* GoogleSignInManager.swift in Sources */,
-				2B2B1A432D2D120E00A2B39D /* EWManager.swift in Sources */,
 				2B2B1A442D2D120E00A2B39D /* Style.swift in Sources */,
 				2B2B1A452D2D120E00A2B39D /* AssetListViewController.swift in Sources */,
 				2B2B1A462D2D120E00A2B39D /* AddDeviceQRView.swift in Sources */,
@@ -2794,7 +2671,6 @@
 				2B2B1A502D2D120E00A2B39D /* ValidateRequestIdTimeOutView.swift in Sources */,
 				2B2B1A512D2D120E00A2B39D /* FBHostingViewController.swift in Sources */,
 				2B2B1A522D2D120E00A2B39D /* BackupViewModel.swift in Sources */,
-				2B2B1A532D2D120E00A2B39D /* RedirectNewUserViewModel.swift in Sources */,
 				2B2B1A542D2D120E00A2B39D /* String+Extensions.swift in Sources */,
 				2B2B1A552D2D120E00A2B39D /* UIApplication+Extension.swift in Sources */,
 				2B2B1A562D2D120E00A2B39D /* MpcKeyCellView.swift in Sources */,
@@ -2817,7 +2693,6 @@
 				2B2B1A682D2D120E00A2B39D /* ViewController+Extensions.swift in Sources */,
 				2B2B1A692D2D120E00A2B39D /* BackupRepository.swift in Sources */,
 				2B2B1A6A2D2D120E00A2B39D /* CodableParsingExtension.swift in Sources */,
-				2B2B1A6B2D2D120E00A2B39D /* ManuallyInputViewControllerStrategy.swift in Sources */,
 				2B2B1A6C2D2D120E00A2B39D /* AssetsImageMapper.swift in Sources */,
 				2B2B1A6D2D2D120E00A2B39D /* TransferDetailsViewController.swift in Sources */,
 			);
@@ -2832,12 +2707,10 @@
 				2B7C46FB2B32D8C4001C804B /* TransferStatusType.swift in Sources */,
 				2B7C47082B32D8F3001C804B /* UsersLocalStorageManager.swift in Sources */,
 				2B7C47032B32D8F3001C804B /* FireblocksManager.swift in Sources */,
-				2BAB68132B820DF9003592F1 /* AddDeviceHostingVC.swift in Sources */,
 				2B7C473A2B32D965001C804B /* TabBarViewController.swift in Sources */,
 				2B7C47602B32D9A5001C804B /* BackupDetailsViewController.swift in Sources */,
 				2B7C471E2B32D916001C804B /* CodableExtension.swift in Sources */,
 				2B7C475C2B32D9A5001C804B /* BackupViewController.swift in Sources */,
-				2BAB68292B820FE9003592F1 /* RedirectNewUserView.swift in Sources */,
 				2BEEF7C72BAC6F11004AF6AB /* DerivedAssetRow.swift in Sources */,
 				2B7C473E2B32D965001C804B /* ReceiveViewModel.swift in Sources */,
 				2B2B18B32D2ACF4B00A2B39D /* SpinnerView.swift in Sources */,
@@ -2878,7 +2751,6 @@
 				2BAB681D2B820E42003592F1 /* EndFlowFeedbackHostingVC.swift in Sources */,
 				2B2B18B82D2AD9AF00A2B39D /* RecoverWalletView.swift in Sources */,
 				2BEEF7C62BAC6F11004AF6AB /* DeriveKeysViewModel.swift in Sources */,
-				2B7C47372B32D965001C804B /* AuthViewModel.swift in Sources */,
 				2B7C47302B32D965001C804B /* FeeRateViewModel.swift in Sources */,
 				2B7C47252B32D964001C804B /* ApproveViewModel.swift in Sources */,
 				2B7C47702B32D9C9001C804B /* AppActionBotton.swift in Sources */,
@@ -2891,7 +2763,6 @@
 				2B7C47562B32D98D001C804B /* AdvancedInfoViewModel.swift in Sources */,
 				2B7C47152B32D90C001C804B /* SessionManager.swift in Sources */,
 				2B7C476E2B32D9C9001C804B /* AssetViewCell.swift in Sources */,
-				2B7C472D2B32D965001C804B /* AuthViewController.swift in Sources */,
 				2B7C474F2B32D97E001C804B /* TransferDetailsViewModel.swift in Sources */,
 				2B2B18C12D2ADF4400A2B39D /* AddDeviceView.swift in Sources */,
 				2B7C47572B32D98D001C804B /* AdvancedInfoViewController.swift in Sources */,
@@ -2915,19 +2786,16 @@
 				2B7C470D2B32D8FC001C804B /* AuthRepository.swift in Sources */,
 				2B7C46FA2B32D8C4001C804B /* FBTransaction.swift in Sources */,
 				2B7C47322B32D965001C804B /* ReceiveViewController.swift in Sources */,
-				2B7C47622B32D9A5001C804B /* ManuallyInputViewController.swift in Sources */,
 				2B7C471F2B32D916001C804B /* UIButton+Extension.swift in Sources */,
 				2B7C47412B32D965001C804B /* AmountToSendViewModel.swift in Sources */,
 				2BAB68212B820E89003592F1 /* FBFont.swift in Sources */,
 				2B7C46F52B32D8C4001C804B /* ExtraParameters.swift in Sources */,
 				2BAB68262B820E9C003592F1 /* VerticalSeparator.swift in Sources */,
 				2B2B1AD02D2D6D0A00A2B39D /* LatestBackupState.swift in Sources */,
-				2BAB682B2B820FE9003592F1 /* RedirectNewUserHostingVC.swift in Sources */,
 				2B7C476A2B32D9C9001C804B /* AlertView.swift in Sources */,
 				2B7C470B2B32D8FC001C804B /* ApproveRepository.swift in Sources */,
 				2B7C47692B32D9A5001C804B /* SettingsOptionButton.swift in Sources */,
 				2BAB681F2B820E48003592F1 /* EndFlowFeedbackView.swift in Sources */,
-				2B7C47642B32D9A5001C804B /* ManuallyInputViewModel.swift in Sources */,
 				2B2B18AB2D2AC5C300A2B39D /* CustomBackButtonView.swift in Sources */,
 				2B7C476B2B32D9C9001C804B /* TransferCell.swift in Sources */,
 				2B7C471B2B32D916001C804B /* Double+Extension.swift in Sources */,
@@ -2938,7 +2806,6 @@
 				2BAB68112B820DDD003592F1 /* PrepareForScanView.swift in Sources */,
 				2BAB681C2B820E21003592F1 /* Platform.swift in Sources */,
 				2B7C47072B32D8F3001C804B /* GoogleSignInManager.swift in Sources */,
-				2B19FD9E2CB3FA88007B3BCB /* EWManager.swift in Sources */,
 				2BAB68222B820E89003592F1 /* Style.swift in Sources */,
 				2B7C47432B32D96E001C804B /* AssetListViewController.swift in Sources */,
 				2BAB68182B820E13003592F1 /* AddDeviceQRView.swift in Sources */,
@@ -2956,7 +2823,6 @@
 				2BAB68162B820E06003592F1 /* ValidateRequestIdTimeOutView.swift in Sources */,
 				2BAB68122B820DEB003592F1 /* FBHostingViewController.swift in Sources */,
 				2B7C47592B32D9A5001C804B /* BackupViewModel.swift in Sources */,
-				2BAB682A2B820FE9003592F1 /* RedirectNewUserViewModel.swift in Sources */,
 				2B7C47182B32D916001C804B /* String+Extensions.swift in Sources */,
 				2B7C471C2B32D916001C804B /* UIApplication+Extension.swift in Sources */,
 				2B7C47532B32D98D001C804B /* MpcKeyCellView.swift in Sources */,
@@ -2979,7 +2845,6 @@
 				2B7C471A2B32D916001C804B /* ViewController+Extensions.swift in Sources */,
 				2B7C470F2B32D8FC001C804B /* BackupRepository.swift in Sources */,
 				2B7C47192B32D916001C804B /* CodableParsingExtension.swift in Sources */,
-				2B7C47682B32D9A5001C804B /* ManuallyInputViewControllerStrategy.swift in Sources */,
 				2B7C470C2B32D8FC001C804B /* AssetsImageMapper.swift in Sources */,
 				2B7C474E2B32D97E001C804B /* TransferDetailsViewController.swift in Sources */,
 			);
@@ -3009,7 +2874,6 @@
 				86E4A1682A6852CE00A2861D /* TakeoverViewController.swift in Sources */,
 				60DA06A42A651D9300160ADC /* AssetViewCell.swift in Sources */,
 				2BD34A7B2B98C129008406D5 /* DerivedAssetRow.swift in Sources */,
-				2B558E972B48347D006212B2 /* AddDeviceHostingVC.swift in Sources */,
 				866A73CF2A696A5E00E8E545 /* BackupRepository.swift in Sources */,
 				60DA06972A651AA000160ADC /* AppActionBotton.swift in Sources */,
 				86B67A392A6FF925007AC728 /* Int+Extension.swift in Sources */,
@@ -3026,8 +2890,6 @@
 				2BF8EDC02B569D3B00046F0B /* ValidateRequestIdTimeOutView.swift in Sources */,
 				86346ACD2A6D0D2C0002FE34 /* ToastView.swift in Sources */,
 				866A73C82A696A3100E8E545 /* BackupViewModel.swift in Sources */,
-				862E2A9D2A543B41002FF774 /* AuthViewController.swift in Sources */,
-				2B174FE92B62446900BE63A8 /* RedirectNewUserView.swift in Sources */,
 				2B2D36162B2B205A00B04667 /* AppLogger.swift in Sources */,
 				867828EE2A696D7D0035787D /* BackupDetailsViewModel.swift in Sources */,
 				2B2B1ACF2D2D6D0A00A2B39D /* LatestBackupState.swift in Sources */,
@@ -3039,7 +2901,6 @@
 				2B7A72202B45AAEB0011C398 /* Modifiers.swift in Sources */,
 				2B558E842B47042D006212B2 /* UIHostingBridgeNotifications.swift in Sources */,
 				60DA06AA2A651F7E00160ADC /* FeeRateViewModel.swift in Sources */,
-				862E2A9C2A543B41002FF774 /* AuthViewModel.swift in Sources */,
 				2B558E862B47044C006212B2 /* PrepareForScanViewModel.swift in Sources */,
 				60DA06B52A65204600160ADC /* SendToViewController.swift in Sources */,
 				2B94CFCC2A9CE576003E7508 /* CodableAnyExtension.swift in Sources */,
@@ -3064,7 +2925,6 @@
 				602573282A39D6F000A3C5D5 /* AssetsColors.swift in Sources */,
 				86B67A382A6FF925007AC728 /* String+Extensions.swift in Sources */,
 				2B7A72262B45ADAA0011C398 /* Extensions.swift in Sources */,
-				2B174FEB2B62447900BE63A8 /* RedirectNewUserViewModel.swift in Sources */,
 				60B287E52A8903CF00DEA50C /* UsersLocalStorageManager.swift in Sources */,
 				2B2B18912D2A965500A2B39D /* SignInViewModelBase.swift in Sources */,
 				867828DD2A696D170035787D /* SessionManager.swift in Sources */,
@@ -3076,7 +2936,6 @@
 				608293912A56BB1400B11839 /* TransferCell.swift in Sources */,
 				861BA20D2A5E901800A1BC1B /* MpcKeysViewModel.swift in Sources */,
 				60EECFDA2A69198B00F3891C /* AlertView.swift in Sources */,
-				86A997152A6EB60900A6B60B /* ManuallyInputViewModel.swift in Sources */,
 				86ED2BB42A64434500377F6C /* AreYouSureBottomSheet.swift in Sources */,
 				60DA06592A645E1300160ADC /* FBTransaction.swift in Sources */,
 				2BF8EDB92B56676300046F0B /* EndFlowFeedbackViewModel.swift in Sources */,
@@ -3116,13 +2975,10 @@
 				2B7C479B2B32EC65001C804B /* VersionBanner.swift in Sources */,
 				86E4A1672A6852CE00A2861D /* TakeoverViewModel.swift in Sources */,
 				2B2B1ABC2D2D4EF000A2B39D /* SignInViewModel.swift in Sources */,
-				2B174FED2B624EEA00BE63A8 /* RedirectNewUserHostingVC.swift in Sources */,
 				2B558EA02B484ADC006212B2 /* ValidateRequestIdHostingVC.swift in Sources */,
 				60DA065D2A645E4700160ADC /* AssetListRepository.swift in Sources */,
 				60DA06992A651AE000160ADC /* AmountToSendViewController.swift in Sources */,
 				86859F552A384D8A0056E3C6 /* SceneDelegate.swift in Sources */,
-				86A997132A6EB60900A6B60B /* ManuallyInputViewController.swift in Sources */,
-				86F972212A6A936100C896B2 /* ManuallyInputViewControllerStrategy.swift in Sources */,
 				608293B92A56E57A00B11839 /* Transfer.swift in Sources */,
 				2BF8EDBB2B566E3C00046F0B /* EndFlowFeedbackHostingVC.swift in Sources */,
 				6082938C2A56B85800B11839 /* TransfersViewController.swift in Sources */,

@@ -54,24 +54,16 @@ class MpcKeysViewController: UIViewController {
         footerButtonHC.constant = 0
         footerButtonTC.constant = 0
 
-//        if viewModel.isAddingDevice {
-//            self.navigationItem.title = ""
-//            headerImageView.image = AssetsIcons.addDeviceImage.getIcon()
-//            headerLabel.text = LocalizableStrings.mpcKeysAddDeviceTitle
-//            generateMpcKeysButton.config(title: LocalizableStrings.continueTitle, style: .Primary)
-//            setNavigationControllerRightButton(icon: AssetsIcons.close, action: #selector(signOut))
-//        } else {
-            self.navigationItem.title = LocalizableStrings.generateMPCKeys
-            headerImageView.image = AssetsIcons.generateKeyImage.getIcon()
-            headerLabel.text = LocalizableStrings.mpcKeysGenertaeTitle
-            generateMpcKeysButton.config(title: LocalizableStrings.generateKeysButtonTitle, style: .Primary)
-            generateECDSAButton.config(title: "Generate EcDSA Key", style: .Primary)
-            generateEDDSAButton.config(title: "Generate EDDSA Key", style: .Primary)
-            footerButton.config(title: LocalizableStrings.illDoThisLater, style: .Transparent)
-            setNavigationControllerRightButton(icon: AssetsIcons.settings, action: #selector(navigateToSettings))
-            generateECDSAButton.isHidden = false
-            generateEDDSAButton.isHidden = false
-//        }
+        self.navigationItem.title = LocalizableStrings.generateMPCKeys
+        headerImageView.image = AssetsIcons.generateKeyImage.getIcon()
+        headerLabel.text = LocalizableStrings.mpcKeysGenertaeTitle
+        generateMpcKeysButton.config(title: LocalizableStrings.generateKeysButtonTitle, style: .Primary)
+        generateECDSAButton.config(title: "Generate EcDSA Key", style: .Primary)
+        generateEDDSAButton.config(title: "Generate EDDSA Key", style: .Primary)
+        footerButton.config(title: LocalizableStrings.illDoThisLater, style: .Transparent)
+        setNavigationControllerRightButton(icon: AssetsIcons.settings, action: #selector(navigateToSettings))
+        generateECDSAButton.isHidden = false
+        generateEDDSAButton.isHidden = false
     }
     
     @IBAction func generateMpcKey(_ sender: AppActionBotton) {

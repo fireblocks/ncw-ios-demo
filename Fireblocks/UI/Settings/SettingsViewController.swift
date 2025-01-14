@@ -26,6 +26,7 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var exportPrivateKeyButton: SettingsOptionButton!
     @IBOutlet weak var advancedInfoButton: SettingsOptionButton!
     @IBOutlet weak var addNewDeviceButton: SettingsOptionButton!
+    @IBOutlet weak var generateKeysButton: SettingsOptionButton!
     @IBOutlet weak var shareLogsButton: SettingsOptionButton!
     @IBOutlet weak var versionLabel: UILabel!
     @IBOutlet weak var versionLabelContainer: UIView!
@@ -78,6 +79,11 @@ class SettingsViewController: UIViewController {
             title: LocalizableStrings.shareLogs,
             icon: AssetsIcons.shareLogs
         )
+        generateKeysButton.setData(
+            title: LocalizableStrings.generateKeys,
+            icon: AssetsIcons.key
+        )
+
     }
     
     @objc func handleCloseTap() {
@@ -138,6 +144,19 @@ class SettingsViewController: UIViewController {
     @IBAction func shareLogsTapped(_ sender: SettingsOptionButton) {
         self.createLogFile()
     }
+    
+    @IBAction func generateKeysTapped(_ sender: SettingsOptionButton) {
+        guard let window = (UIApplication.shared.connectedScenes.first as? UIWindowScene)?.windows.first else {
+            return
+        }
+        
+        let vc = UINavigationController(rootViewController: MpcKeysViewController())
+        UIView.animate(withDuration: 0.3) {
+            window.rootViewController = vc
+        }
+
+    }
+
     
     @IBAction func signOutTapped(_ button: UIButton) {
         showConfirmationBottomSheet()

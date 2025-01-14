@@ -14,10 +14,6 @@ import FireblocksDev
 import FireblocksSDK
 #endif
 
-protocol FireblocksKeyCreationDelegate {
-    func isKeysGenerated(isGenerated: Bool, didJoin: Bool, error: String?)
-}
-
 protocol FireblocksManagerProtocol {
     var algoArray: [Algorithm] { get set }
     var deviceId: String { get }
@@ -48,7 +44,7 @@ protocol FireblocksManagerProtocol {
     func signTransaction(transactionId: String) async -> Bool
     func stopTransaction()
     
-    func addDevice(_ delegate: FireblocksKeyCreationDelegate, joinWalletHandler: FireblocksJoinWalletHandler) async
+    func addDevice(joinWalletHandler: FireblocksJoinWalletHandler) async -> Bool
     func approveJoinWallet(requestId: String) async throws -> Set<JoinWalletDescriptor>
     func stopJoinWallet()
     
@@ -64,7 +60,9 @@ protocol FireblocksManagerProtocol {
 
 extension FireblocksManagerProtocol {
     func generateDeviceId() -> String {
-        return Fireblocks.generateDeviceId()
+        let deviceId = Fireblocks.generateDeviceId()
+        AppLoggerManager.shared.loggers[deviceId] = AppLogger(deviceId: deviceId)
+        return deviceId
     }
 
     func generatePassphraseId() -> String {

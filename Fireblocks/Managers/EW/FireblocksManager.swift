@@ -106,7 +106,9 @@ class FireblocksManager: FireblocksManagerProtocol, ObservableObject {
         return nil
     }
     
-    func addDevice(_ delegate: FireblocksKeyCreationDelegate, joinWalletHandler: FireblocksJoinWalletHandler) async {}
+    func addDevice(joinWalletHandler: FireblocksJoinWalletHandler) async -> Bool {
+        return true
+    }
 
     func getInstance() -> EmbeddedWallet? {
         guard let authClientId else {

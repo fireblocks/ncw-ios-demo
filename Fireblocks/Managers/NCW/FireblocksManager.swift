@@ -97,6 +97,7 @@ class FireblocksManager: FireblocksManagerProtocol, ObservableObject {
         do {
             if let deviceId = UsersLocalStorageManager.shared.lastDeviceId(email: email), !deviceId.isTrimmedEmpty {
                 self.deviceId = deviceId
+                AppLoggerManager.shared.loggers[deviceId] = AppLogger(deviceId: deviceId)
                 try initializeFireblocksSDK()
                 return .exist
             }
@@ -113,10 +114,10 @@ class FireblocksManager: FireblocksManagerProtocol, ObservableObject {
                 let info = try await SessionManager.shared.getLatestBackupInfo(walletId: walletId)
                 if info.deviceId.isEmptyOrNil {
                     errorMessage = "No available backup"
-
                     return .error
                 } else {
                     self.deviceId = info.deviceId!
+                    AppLoggerManager.shared.loggers[deviceId] = AppLogger(deviceId: deviceId)
                     self.latestBackupDeviceId = info.deviceId!
                     return .joinOrRecover
 
@@ -171,12 +172,11 @@ class FireblocksManager: FireblocksManagerProtocol, ObservableObject {
     }
     
 
-    func addDevice(_ delegate: FireblocksKeyCreationDelegate, joinWalletHandler: FireblocksJoinWalletHandler) async {
+    func addDevice(joinWalletHandler: FireblocksJoinWalletHandler) async -> Bool {
         do {
             let startDate = Date()
             guard let result = try await getNCWInstance()?.requestJoinExistingWallet(joinWalletHandler: joinWalletHandler) else {
-                delegate.isKeysGenerated(isGenerated: false, didJoin: true, error: nil)
-                return
+                return false
             }
             print("Measure - addDevice \(Date().timeIntervalSince(startDate))")
 
@@ -185,14 +185,14 @@ class FireblocksManager: FireblocksManagerProtocol, ObservableObject {
                 startPolling()
             }
             
-            delegate.isKeysGenerated(isGenerated: !didFail, didJoin: true, error: nil)
+            return !didFail
 
-        } catch let err as FireblocksError {
-            AppLoggerManager.shared.logger()?.log("FireblocksManager, addDevice() failed: \(err.description).")
-            delegate.isKeysGenerated(isGenerated: false, didJoin: false, error: err.description)
+        } catch let error as FireblocksError {
+            AppLoggerManager.shared.logger()?.log("FireblocksManager, addDevice() failed: \(error.description).")
+            return false
         } catch {
             AppLoggerManager.shared.logger()?.log("FireblocksManager, addDevice() failed: \(error.localizedDescription).")
-            delegate.isKeysGenerated(isGenerated: false, didJoin: false, error: error.localizedDescription)
+            return false
         }
     }
     
