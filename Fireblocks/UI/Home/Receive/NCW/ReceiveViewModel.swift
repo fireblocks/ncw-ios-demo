@@ -8,9 +8,9 @@
 import Foundation
 
 class ReceiveViewModel {
-    var asset: Asset!
+    var asset: AssetSummary!
     
     func getAssetAddress() -> String {
-        return asset.address ?? ""
+        return asset.address?.address ?? ""
     }
 }

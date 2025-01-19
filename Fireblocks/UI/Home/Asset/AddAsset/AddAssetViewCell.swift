@@ -6,6 +6,12 @@
 //
 
 import UIKit
+import SDWebImage
+#if DEV
+import EmbeddedWalletSDKDev
+#else
+import EmbeddedWalletSDK
+#endif
 
 class AddAssetViewCell: UITableViewCell {
 
@@ -52,15 +58,17 @@ class AddAssetViewCell: UITableViewCell {
 
     }
     
-    func configAssetView(asset: Asset, isBlockchainHidden: Bool = false) {
+    func configAssetView(asset: AssetSummary, isBlockchainHidden: Bool = false) {
         if let iconURL = asset.iconUrl {
             assetImage.sd_setImage(with: URL(string: iconURL), placeholderImage: asset.image)
         } else {
             assetImage.image = asset.image
         }
         
-        imageBackground.backgroundColor = isBackgroundTransparent(asset: asset) ? .white : .clear
+        imageBackground.backgroundColor = isBackgroundTransparent(asset: asset.asset) ? .white : .clear
 
+        guard let asset = asset.asset else { return }
+        
         assetName.text = asset.name
         assetAbbreviation.text = asset.symbol
         assetBlockchainBadge.text = asset.blockchain
@@ -68,8 +76,8 @@ class AddAssetViewCell: UITableViewCell {
         assetBlockchainBadgeBackground.isHidden = isBlockchainHidden
     }
 
-    private func isBackgroundTransparent(asset: Asset) -> Bool {
-        if asset.symbol.lowercased().hasPrefix("algo") { return true }
+    private func isBackgroundTransparent(asset: Asset?) -> Bool {
+        if let symbol =  asset?.symbol, symbol.lowercased().hasPrefix("algo") { return true }
         
         return false
     }

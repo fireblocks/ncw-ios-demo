@@ -46,7 +46,7 @@ extension ChooseAssetViewController: UITableViewDelegate, UITableViewDataSource 
         }
         
         let asset = viewModel.getAssetFor(index: indexPath.row)
-        cell.configCellWith(asset: asset, isBlockchainHidden: true)
+        cell.configCellWith(asset: AssetSummary(asset: asset), isBlockchainHidden: true)
         
         return cell
     }

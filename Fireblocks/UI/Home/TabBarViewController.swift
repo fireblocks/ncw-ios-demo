@@ -32,8 +32,10 @@ class TabBarViewController: UITabBarController {
 //MARK: - FUNCTIONS
     private func initSubviewControllers(){
         typealias TabBarItem = (viewController: UIViewController, image: UIImage, name: String)
-        let viewControllers: [TabBarItem] = [ (AssetListViewController(), AssetsIcons.wallet.getIcon(), "Assets"),
-                                              (TransfersViewController(), AssetsIcons.transfer.getIcon(), "Transfers")]
+        let viewControllers: [TabBarItem] = [
+            (AssetListViewController(), AssetsIcons.wallet.getIcon(), "Assets")
+//            (TransfersViewController(), AssetsIcons.transfer.getIcon(), "Transfers")
+        ]
         
         setupNavButtons()
         for (index,item) in viewControllers.enumerated() {
@@ -54,9 +56,9 @@ class TabBarViewController: UITabBarController {
     }
     
     @objc func settingsTapped(){
-        let vc = SettingsViewController()
-        vc.hidesBottomBarWhenPushed = true
-        navigationController?.pushViewController(vc, animated: true)
+//        let vc = SettingsViewController()
+//        vc.hidesBottomBarWhenPushed = true
+//        navigationController?.pushViewController(vc, animated: true)
     }
 
     private func configTabBarView(){

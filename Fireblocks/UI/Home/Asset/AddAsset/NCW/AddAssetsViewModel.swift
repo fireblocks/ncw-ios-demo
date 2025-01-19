@@ -8,17 +8,7 @@
 import Foundation
 import UIKit
 
-struct AssetToAdd {
-    var asset: Asset
-    var isSelected = false
-}
 
-protocol AddAssetsDelegate: AnyObject {
-    func didLoadAssets()
-    func failedToLoadAssets()
-    func reloadData()
-    func didAddAssets(addedAssets: [Asset], failedAssets: [Asset])
-}
 
 class AddAssetsViewModel: ObservableObject {
     private let deviceId: String

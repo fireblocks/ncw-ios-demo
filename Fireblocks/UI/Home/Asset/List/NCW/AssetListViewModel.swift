@@ -8,13 +8,6 @@
 import Foundation
 import Combine
 
-protocol AssetListViewModelDelegate: AnyObject {
-    func refreshData()
-    func refreshSection(section: Int)
-    func gotError()
-    func navigateToNextScreen(with asset: Asset)
-}
-
 class AssetListViewModel {
     weak var delegate: AssetListViewModelDelegate?
     private var assetsSummary: [AssetSummary] = []

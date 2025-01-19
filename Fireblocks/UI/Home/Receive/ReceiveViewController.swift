@@ -41,9 +41,9 @@ class ReceiveViewController: UIViewController {
         } else {
             assetImage.image = viewModel.asset.image
         }
-        assetName.text = viewModel.asset.name
-        assetBlockchainName.text = viewModel.asset.blockchain
-        assetAddressTitle.text = "\(viewModel.asset.symbol) address"
+        assetName.text = viewModel.asset.asset?.name
+        assetBlockchainName.text = viewModel.asset.asset?.blockchain
+        assetAddressTitle.text = "\(viewModel.asset.asset?.symbol ?? "") address"
         assetAddress.text = viewModel.getAssetAddress()
         
         qrCodeImage.image = getQRCodeImage()

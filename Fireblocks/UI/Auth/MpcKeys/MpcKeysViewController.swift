@@ -106,9 +106,9 @@ class MpcKeysViewController: UIViewController {
     }
     
     @IBAction func navigateToSettings(_ sender: UIButton) {
-        let vc = SettingsViewController()
-        vc.isDisableAdvancedFeatures = true
-        navigationController?.pushViewController(vc, animated: true)
+//        let vc = SettingsViewController()
+//        vc.isDisableAdvancedFeatures = true
+//        navigationController?.pushViewController(vc, animated: true)
     }
     
     //Footer Button

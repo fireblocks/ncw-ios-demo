@@ -8,6 +8,11 @@
 import UIKit
 import NVActivityIndicatorView
 import SwiftUI
+#if DEV
+import EmbeddedWalletSDKDev
+#else
+import EmbeddedWalletSDK
+#endif
 
 class AssetListViewController: UIViewController {
     
@@ -75,17 +80,17 @@ class AssetListViewController: UIViewController {
     }
     
     @IBAction func settingsTapped(_ sender: UIButton){
-        let vc = SettingsViewController()
-        vc.hidesBottomBarWhenPushed = true
-        navigationController?.pushViewController(vc, animated: true)
+//        let vc = SettingsViewController()
+//        vc.hidesBottomBarWhenPushed = true
+//        navigationController?.pushViewController(vc, animated: true)
     }
     
     private func navigateToChooseAssetScreen(flowType: ChooseAssetFlowType) {
-        let vc = ChooseAssetViewController(nibName: ChooseAssetViewController.identifier, bundle: nil)
-        vc.viewModel.assets = self.viewModel.getAssets()
-        vc.viewModel.chooseAssetFlowType = flowType
-        vc.hidesBottomBarWhenPushed = true
-        self.navigationController?.pushViewController(vc, animated: true)
+//        let vc = ChooseAssetViewController(nibName: ChooseAssetViewController.identifier, bundle: nil)
+//        vc.viewModel.assets = self.viewModel.getAssets()
+//        vc.viewModel.chooseAssetFlowType = flowType
+//        vc.hidesBottomBarWhenPushed = true
+//        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @objc func refreshAssets(){
@@ -206,7 +211,7 @@ extension AssetListViewController: AssetListViewModelDelegate {
     }
     
     @MainActor
-    func navigateToNextScreen(with asset: Asset){
+    func navigateToNextScreen(with asset: AssetSummary){
         switch viewModel.chooseAssetFlowType {
         case .send:
             let vc = AmountToSendViewController(nibName: "AmountToSendViewController", bundle: nil)

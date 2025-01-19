@@ -8,6 +8,9 @@
 import FirebaseAuth
 import Foundation
 import OSLog
+import UIKit
+import SwiftUI
+
 #if DEV
 import FireblocksDev
 #else
@@ -277,7 +280,34 @@ extension FireblocksManager: PollingListenerDelegate {
         AppLoggerManager.shared.logger()?.log("\(error ?? "")")
     }
     
-    
+    func signOut() {
+        guard let window = (UIApplication.shared.connectedScenes.first as? UIWindowScene)?.windows.first else {
+            return
+        }
+
+        do{
+            try Auth.auth().signOut()
+            FireblocksManager.shared.stopPollingMessages()
+            TransfersViewModel.shared.signOut()
+            AssetListViewModel.shared.signOut()
+            FireblocksManager.shared.stopPollingMessages()
+            FireblocksManager.shared.stopJoinWallet()
+            UsersLocalStorageManager.shared.resetAuthProvider()
+        } catch{
+            print("Can't sign out with current user: \(error.localizedDescription)")
+            return
+        }
+        
+        let viewModel = LaunchView.ViewModel()
+        let rootViewController = UIHostingController(
+            rootView: NavigationContainerView() {
+                LaunchView(viewModel: viewModel)
+            }
+        )
+        window.rootViewController = rootViewController
+
+    }
+
 }
 
 extension FireblocksManager: MessageHandlerDelegate {

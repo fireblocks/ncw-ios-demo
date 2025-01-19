@@ -6,6 +6,11 @@
 //
 
 import UIKit
+#if DEV
+import EmbeddedWalletSDKDev
+#else
+import EmbeddedWalletSDK
+#endif
 
 protocol AssetViewCellDelegate: AnyObject {
     func didTapSend(index: Int)
@@ -48,14 +53,14 @@ class AssetViewCell: AddAssetViewCell {
         assetBlockchainBadgeBackground.layer.cornerRadius = assetBlockchainBadgeBackground.frame.height / 2
     }
     
-    func configCellWith(asset: Asset, section: Int, isBlockchainHidden: Bool = false) {
+    func configCellWith(asset: AssetSummary, section: Int, isBlockchainHidden: Bool = false) {
         sendButton.tag = section
         receiveButton.tag = section
         
         configCellWith(asset: asset, isBlockchainHidden: isBlockchainHidden)
     }
     
-    func configTransparentCellWith(asset: Asset, isBlockchainHidden: Bool = false) {
+    func configTransparentCellWith(asset: AssetSummary, isBlockchainHidden: Bool = false) {
         assetContainerView.backgroundColor = .clear
         buttonsContainerView.backgroundColor = .clear
         
@@ -63,13 +68,13 @@ class AssetViewCell: AddAssetViewCell {
     }
     
 
-    func configCellWith(asset: Asset, isBlockchainHidden: Bool = false) {
+    func configCellWith(asset: AssetSummary, isBlockchainHidden: Bool = false) {
         configAssetView(asset: asset, isBlockchainHidden: isBlockchainHidden)
 
-        if let price = asset.price {
+        if let total = asset.balance?.total, let price = Double(total) {
             assetValue.text = "$\(price.formatFractions(fractionDigits: 2))"
         }
-        if let balance = asset.balance {
+        if let balance = asset.balance?.total {
             assetTokenAmount.text = "\(balance)"
         }
         

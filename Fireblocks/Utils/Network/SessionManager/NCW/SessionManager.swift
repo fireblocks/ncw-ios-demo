@@ -26,9 +26,6 @@ struct AssignResponse: Codable {
     var walletId: String?
 }
 
-struct JoinWalletResponse: Codable {
-    var walletId: String?
-}
 
 struct MessageResponse: Codable {
     var id: Int?
@@ -178,25 +175,9 @@ struct AmountInfo: Codable {
     var amountUSD: String?
 }
 
-struct BackupInfo: Codable {
-    var deviceId: String?
-    var location: BackupProvider?
-    var createdAt: Int?
-}
 
-struct PassphraseInfo: Codable {
-    let passphraseId: String
-    let location: BackupProvider
-}
 
-struct PassphraseInfoBody: Codable {
-    let passphraseId: String
-    let location: String
-}
 
-struct PassphraseInfos: Codable {
-    let passphrases: [PassphraseInfo]
-}
 
 class SessionManager: ObservableObject {
     var isLoggedIn = false

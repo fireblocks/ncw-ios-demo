@@ -35,8 +35,9 @@ class AmountToSendViewController: UIViewController {
     
     private func configView(){
         errorMessage.isHidden = true
-        amountInput.text = "0 \(viewModel.getAsset().symbol)"
-        
+        if let symbol = viewModel.getAsset().asset?.symbol {
+            amountInput.text = "0 \(symbol)"
+        }
         for key in numberPadKeys {
             key.layer.cornerRadius = 16
         }
@@ -94,10 +95,10 @@ class AmountToSendViewController: UIViewController {
     }
     
     private func navigateToAddReceiverScreen(){
-        let vc = SendToViewController(nibName: "SendToViewController", bundle: nil)
-        vc.viewModel.transaction = viewModel.createTransaction()
-        vc.hidesBottomBarWhenPushed = true
-        self.navigationController?.pushViewController(vc, animated: true)
+//        let vc = SendToViewController(nibName: "SendToViewController", bundle: nil)
+//        vc.viewModel.transaction = viewModel.createTransaction()
+//        vc.hidesBottomBarWhenPushed = true
+//        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 

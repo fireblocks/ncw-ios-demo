@@ -8,19 +8,6 @@
 import Foundation
 import UIKit.UIImage
 
-struct AssetSummary: Codable, Identifiable, Hashable {
-    var asset: Asset?
-    var address: AssetAddress?
-    var balance: AssetBalance?
-    
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(id)
-    }
-
-    var id: String {
-        return asset?.id ?? ""
-    }
-}
 
 struct Asset: Codable, Identifiable, Hashable {
     static func == (lhs: Asset, rhs: Asset) -> Bool {
@@ -51,14 +38,8 @@ struct Asset: Codable, Identifiable, Hashable {
     var balance: Double?
     var price: Double?
     var address: String?
-    var iconUrl: String?
     var algorithm: String?
-    var isExpanded: Bool? = false
     
-    var image: UIImage {
-        let assetImage = AssetsImageMapper().getIconForAsset(id)
-        return assetImage
-    }
     
 }
 

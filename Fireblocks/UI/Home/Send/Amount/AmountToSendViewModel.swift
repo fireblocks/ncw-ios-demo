@@ -6,6 +6,11 @@
 //
 
 import Foundation
+#if DEV
+import EmbeddedWalletSDKDev
+#else
+import EmbeddedWalletSDK
+#endif
 
 protocol AmountToSendViewModelDelegate: AnyObject {
     func amountAndSumChanged(amount: String, price: String)
@@ -16,7 +21,7 @@ class AmountToSendViewModel {
     
 //MARK: - PROPERTIES
     weak var delegate: AmountToSendViewModelDelegate?
-    var asset: Asset!
+    var asset: AssetSummary!
     private var assetAmount: Double {
         get {
             return Double(assetAmountString) ?? 0
@@ -70,7 +75,7 @@ class AmountToSendViewModel {
     }
     
     func setMaxAmount(){
-        if let balance = asset.balance {
+        if let balance = asset.balance?.total {
             assetAmountString = "\(balance)"
         }
         isDecimalEntered = true
@@ -79,36 +84,36 @@ class AmountToSendViewModel {
         checkAmountIsValid()
     }
     
-    func getAsset() -> Asset {
+    func getAsset() -> AssetSummary {
         return asset
     }
     
     private func calculatePrice(){
-        if let rate = asset.rate {
-            calculatedPrice = (assetAmount * rate).formatFractions(fractionDigits: 2)
-        }
+//        if let rate = asset.asset {
+//            calculatedPrice = (assetAmount * rate).formatFractions(fractionDigits: 2)
+//        }
         updateUI()
     }
     
     private func checkAmountIsValid(){
-        if let balance = asset.balance {
+        if let total = asset.balance?.total, let balance = Double(total) {
             let isValid = assetAmount <= balance && assetAmount != 0
             updateUIIsAmountValid(isValid: isValid)
         }
     }
     
     private func updateUIIsAmountValid(isValid: Bool){
-        let errorMessage = isValid ? nil : "You have \(asset.balance ?? 0.0) \(asset.symbol) available."
+        let errorMessage = isValid ? nil : "You have \(asset.balance?.total ?? "0.0") \(asset.asset?.symbol ?? "") available."
         delegate?.isAmountInputValid(isValid: isValid, errorMessage: errorMessage)
     }
     
     private func updateUI(){
-        delegate?.amountAndSumChanged(amount: "\(assetAmountString) \(asset.symbol)", price: "$\(calculatedPrice)")
+        delegate?.amountAndSumChanged(amount: "\(assetAmountString) \(asset.asset?.symbol ?? "")", price: "$\(calculatedPrice)")
     }
     
-    func createTransaction() -> FBTransaction {
-        return FBTransaction(asset: asset,
-                           amountToSend: assetAmount,
-                           price: calculatedPrice)
-    }
+//    func createTransaction() -> FBTransaction {
+//        return FBTransaction(asset: asset,
+//                           amountToSend: assetAmount,
+//                           price: calculatedPrice)
+//    }
 }

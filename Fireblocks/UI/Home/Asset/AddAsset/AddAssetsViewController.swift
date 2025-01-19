@@ -8,10 +8,12 @@
 import Foundation
 import UIKit
 import Combine
+#if DEV
+import EmbeddedWalletSDKDev
+#else
+import EmbeddedWalletSDK
+#endif
 
-protocol AddAssetsViewControllerDelegate: AnyObject {
-    func dismissAddAssets(addedAssets: [Asset], failedAssets: [Asset])
-}
 
 class AddAssetsViewController: UIViewController {
 
@@ -129,25 +131,33 @@ extension AddAssetsViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension AddAssetsViewController: AddAssetsDelegate {
     func reloadData() {
-        self.tableView.reloadData()
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
     
     func failedToLoadAssets() {
-        showAlertView(message: "Failed to load assets from server. Please try again.")
+        DispatchQueue.main.async {
+            self.showAlertView(message: "Failed to load assets from server. Please try again.")
+        }
     }
     
     func didLoadAssets() {
-        hideActivityIndicator()
-        self.tableView.reloadData()
-        searchBar.isUserInteractionEnabled = true
+        DispatchQueue.main.async {
+            self.hideActivityIndicator()
+            self.tableView.reloadData()
+            self.searchBar.isUserInteractionEnabled = true
+        }
     }
        
     func didAddAssets(addedAssets: [Asset], failedAssets: [Asset]) {
-        hideActivityIndicator()
-        failedAssets.forEach { asset in
-            print("Failed to load asset: \(asset.symbol)")
+        DispatchQueue.main.async {
+            self.hideActivityIndicator()
+            failedAssets.forEach { asset in
+                print("Failed to load asset: \(asset.symbol)")
+            }
+            self.delegate?.dismissAddAssets(addedAssets: addedAssets, failedAssets: failedAssets)
         }
-        self.delegate?.dismissAddAssets(addedAssets: addedAssets, failedAssets: failedAssets)
     }
 }
 
@@ -155,7 +165,6 @@ extension AddAssetsViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         viewModel.searchDidChange(searchText: searchText)
         noResultsView.isHidden = viewModel.getAssetsCount() > 0
-
     }
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {

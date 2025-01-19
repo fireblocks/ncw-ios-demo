@@ -22,6 +22,7 @@ protocol FireblocksManagerProtocol {
     var deviceId: String { get }
     var walletId: String { get }
     var errorMessage: String? { get }
+    var latestBackupDeviceId: String { get }
     
     func generateDeviceId() -> String
     func generatePassphraseId() -> String
@@ -33,6 +34,7 @@ protocol FireblocksManagerProtocol {
     func generateMpcKeys() async -> Set<KeyDescriptor>?
     func generateECDSAKeys() async -> Set<KeyDescriptor>?
     func generateEDDSAKeys() async -> Set<KeyDescriptor>?
+    func initializeFireblocksSDK() throws
     func getNCWInstance() -> Fireblocks?
     func getMpcKeys() -> [KeyDescriptor]
     func getFullKey() async -> [String: Data]?
@@ -147,31 +149,4 @@ extension FireblocksManagerProtocol {
         getNCWInstance()?.stopJoinWallet()
     }
 
-    func signOut() {
-        guard let window = (UIApplication.shared.connectedScenes.first as? UIWindowScene)?.windows.first else {
-            return
-        }
-
-        do{
-            try Auth.auth().signOut()
-            FireblocksManager.shared.stopPollingMessages()
-            TransfersViewModel.shared.signOut()
-            AssetListViewModel.shared.signOut()
-            FireblocksManager.shared.stopPollingMessages()
-            FireblocksManager.shared.stopJoinWallet()
-            UsersLocalStorageManager.shared.resetAuthProvider()
-        } catch{
-            print("Can't sign out with current user: \(error.localizedDescription)")
-            return
-        }
-        
-        let viewModel = LaunchView.ViewModel()
-        let rootViewController = UIHostingController(
-            rootView: NavigationContainerView() {
-                LaunchView(viewModel: viewModel)
-            }
-        )
-        window.rootViewController = rootViewController
-
-    }
 }

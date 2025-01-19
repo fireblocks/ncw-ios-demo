@@ -19,6 +19,8 @@ import EmbeddedWalletSDK
 private let logger = Logger(subsystem: "Fireblocks", category: "FireblocksManager")
 
 class FireblocksManager: FireblocksManagerProtocol, ObservableObject {
+    var latestBackupDeviceId: String = ""
+    
     func isInstanceInitialized(authUser: AuthUser?) -> Bool {
         return false
     }
@@ -72,7 +74,7 @@ class FireblocksManager: FireblocksManagerProtocol, ObservableObject {
     var authClientId: String?
     var options: EmbeddedWalletOptions?
     var keyStorageDelegate: KeyStorageProvider?
-
+    var ewManager = EWManager()
 
     func generateMpcKeys() async -> Set<KeyDescriptor>? {
         algoArray = [.MPC_ECDSA_SECP256K1, .MPC_EDDSA_ED25519]
@@ -89,6 +91,10 @@ class FireblocksManager: FireblocksManagerProtocol, ObservableObject {
         return await generateKeys()
     }
 
+    func initializeFireblocksSDK() throws {
+        
+    }
+    
     func getNCWInstance() -> Fireblocks? {
         guard !deviceId.isEmpty else {
             errorMessage = "Unknown Device Id"
@@ -152,8 +158,8 @@ class FireblocksManager: FireblocksManagerProtocol, ObservableObject {
         guard let instance = getInstance() else { return nil }
 
         do {
-            let result = await instance.assignWallet()
-            if let walletId = try result.get().walletId {
+            let result = try await instance.assignWallet()
+            if let walletId = result.walletId {
                 self.walletId = walletId
                 return walletId
             }
@@ -176,7 +182,7 @@ class FireblocksManager: FireblocksManagerProtocol, ObservableObject {
                 return initializeCore() == nil ? .error : .exist
             }
             
-            if let keys = try await instance.getLatestBackup().get().keys {
+            if let keys = try await instance.getLatestBackup().keys {
                 if let _ = keys.first?.deviceId {
                     self.deviceId = generateDeviceId()
                     return initializeCore() == nil ? .error : .joinOrRecover
@@ -186,23 +192,32 @@ class FireblocksManager: FireblocksManagerProtocol, ObservableObject {
             } else {
                 errorMessage = "Couldn't sign in. There is no existing wallet"
             }
-        } catch {
+        } catch let error as EmbeddedWalletException{
             if error.code == 404 {
                 self.deviceId = generateDeviceId()
                 UsersLocalStorageManager.shared.setLastDeviceId(deviceId: self.deviceId, email: email)
                 return initializeCore() == nil ? .error : .generate
             }
             errorMessage = error.localizedDescription
+        } catch {
+            errorMessage = error.localizedDescription
         }
         return .error
+    }
+    
+    func signOut() {
+        
     }
 }
 
 //MARK - AuthTokenRetriever -
 extension FireblocksManager: AuthTokenRetriever {
     func getAuthToken() async -> Result<String, any Error> {
-        let token = await AuthRepository.getUserIdToken()
-        return .success(token)
+        if let token = await AuthRepository.getUserIdToken() {
+            return .success(token)
+        } else {
+            return .failure(CustomError.genericError("Failed to get user token"))
+        }
     }
 }
 

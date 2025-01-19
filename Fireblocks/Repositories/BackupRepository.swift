@@ -12,6 +12,7 @@ import GoogleSignIn
 private typealias UserCredentials = (email: String, walletId: String, deviceId: String)
 
 final public class BackupRepository {
+    var backupInfo: BackupInfo?
     
     func getBackupInfo() async -> BackupInfo? {
         let walletId = FireblocksManager.shared.getWalletId()
