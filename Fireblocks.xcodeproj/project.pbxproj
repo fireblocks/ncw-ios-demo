@@ -1001,7 +1001,8 @@
 			children = (
 				2BAB68272B820FCE003592F1 /* GoogleService-Info.plist */,
 			);
-			path = dev;
+			name = dev;
+			path = Fireblocks/dev;
 			sourceTree = "<unknown>";
 		};
 		2B7C47A12B32F077001C804B /* prod */ = {
@@ -2462,7 +2463,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.8.2;
+				MARKETING_VERSION = 2.9.1;
 				OTHER_SWIFT_FLAGS = "-DEC2 -DPROD";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fireblocks.ncw.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2509,7 +2510,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.8.2;
+				MARKETING_VERSION = 2.9.1;
 				OTHER_SWIFT_FLAGS = "-DEC2 -DPROD";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fireblocks.ncw.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2551,7 +2552,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.8.2;
+				MARKETING_VERSION = 2.9.1;
 				OTHER_SWIFT_FLAGS = "-DDEV";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fireblocks.ncw.demo.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2591,7 +2592,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.8.2;
+				MARKETING_VERSION = 2.9.1;
 				OTHER_SWIFT_FLAGS = "-DDEV";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fireblocks.ncw.demo.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2748,7 +2749,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.8.2;
+				MARKETING_VERSION = 2.9.1;
 				OTHER_SWIFT_FLAGS = "-DEC2 -DPROD";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fireblocks.ncw.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2792,7 +2793,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.8.2;
+				MARKETING_VERSION = 2.9.1;
 				OTHER_SWIFT_FLAGS = "-DEC2 -DPROD";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fireblocks.ncw.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2892,8 +2893,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/fireblocks/ncw-ios-sdk.git";
 			requirement = {
-				kind = exactVersion;
-				version = 2.8.2;
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.8.2;
 			};
 		};
 		866A73C02A696A0F00E8E545 /* XCRemoteSwiftPackageReference "google-api-objectivec-client-for-rest" */ = {
