@@ -404,6 +404,9 @@
 		2B3E6C0F2ACDAB97000E91CF /* AddAssetsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B3E6C0E2ACDAB97000E91CF /* AddAssetsViewController.xib */; };
 		2B3E6C112ACE96AC000E91CF /* AddAssetViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3E6C102ACE96AC000E91CF /* AddAssetViewCell.swift */; };
 		2B3E6C132ACE96D7000E91CF /* AddAssetViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B3E6C122ACE96D7000E91CF /* AddAssetViewCell.xib */; };
+		2B54D6C42D426B1D001C135D /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EB512A2A66C08C00D2911A /* SettingsViewController.swift */; };
+		2B54D6C52D426B49001C135D /* TakeoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E4A1652A6852CE00A2861D /* TakeoverViewController.swift */; };
+		2B54D6C62D426B6C001C135D /* DeriveKeysHostingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD34A742B98B983008406D5 /* DeriveKeysHostingVC.swift */; };
 		2B558E842B47042D006212B2 /* UIHostingBridgeNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558E832B47042D006212B2 /* UIHostingBridgeNotifications.swift */; };
 		2B558E862B47044C006212B2 /* PrepareForScanViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558E852B47044C006212B2 /* PrepareForScanViewModel.swift */; };
 		2B558E882B4704BA006212B2 /* PrepareForScanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558E872B4704BA006212B2 /* PrepareForScanView.swift */; };
@@ -2712,6 +2715,7 @@
 				2B2B19EF2D2D120E00A2B39D /* ToastView.swift in Sources */,
 				2B2B19F02D2D120E00A2B39D /* CodableAnyExtension.swift in Sources */,
 				2B2B19F42D2D120E00A2B39D /* Constants.swift in Sources */,
+				2B54D6C62D426B6C001C135D /* DeriveKeysHostingVC.swift in Sources */,
 				2B2B19F52D2D120E00A2B39D /* ValidateRequestIdViewModel.swift in Sources */,
 				2B83E24E2D37E8EE003B1397 /* SessionManager.swift in Sources */,
 				2B2B19F72D2D120E00A2B39D /* BiometricsAuthentication.swift in Sources */,
@@ -2742,6 +2746,7 @@
 				2B2B1A1A2D2D120E00A2B39D /* AlertBannerView.swift in Sources */,
 				2B2B1A1D2D2D120E00A2B39D /* ICloudManager.swift in Sources */,
 				2B83E2572D37F107003B1397 /* BackupViewControllerStrategy.swift in Sources */,
+				2B54D6C52D426B49001C135D /* TakeoverViewController.swift in Sources */,
 				2B2B1A212D2D120E00A2B39D /* PrepareForScanHostingVC.swift in Sources */,
 				2B2B1A222D2D120E00A2B39D /* FireblocksManagerProtocol.swift in Sources */,
 				2B2B1A232D2D120E00A2B39D /* JoinOrRecoverView.swift in Sources */,
@@ -2773,6 +2778,7 @@
 				2B2B1A422D2D120E00A2B39D /* GoogleSignInManager.swift in Sources */,
 				2B2B1A442D2D120E00A2B39D /* Style.swift in Sources */,
 				2B2B1A462D2D120E00A2B39D /* AddDeviceQRView.swift in Sources */,
+				2B54D6C42D426B1D001C135D /* SettingsViewController.swift in Sources */,
 				2B2B1AD32D2E99CB00A2B39D /* RecoverManager.swift in Sources */,
 				2B0FEDB12D37D7A000F637E6 /* ReceiveViewModel.swift in Sources */,
 				2B83E27B2D38D1A6003B1397 /* AddAssetsViewController.swift in Sources */,
@@ -3194,7 +3200,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.8.2;
+				MARKETING_VERSION = 2.9.1;
 				OTHER_SWIFT_FLAGS = "-DEC2 -DPROD";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fireblocks.ncw.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3241,7 +3247,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.8.2;
+				MARKETING_VERSION = 2.9.1;
 				OTHER_SWIFT_FLAGS = "-DEC2 -DPROD";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fireblocks.ncw.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3560,7 +3566,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.9.0;
+				MARKETING_VERSION = 2.9.1;
 				OTHER_SWIFT_FLAGS = "-DEC2 -DPROD";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fireblocks.ncw.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3604,7 +3610,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.9.0;
+				MARKETING_VERSION = 2.9.1;
 				OTHER_SWIFT_FLAGS = "-DEC2 -DPROD";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fireblocks.ncw.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3754,7 +3760,7 @@
 			repositoryURL = "https://github.com/fireblocks/ncw-ios-sdk.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 2.3.6;
+				minimumVersion = 2.8.2;
 			};
 		};
 		866A73C02A696A0F00E8E545 /* XCRemoteSwiftPackageReference "google-api-objectivec-client-for-rest" */ = {
