@@ -5,10 +5,12 @@
 //  Created by Dudi Shani-Gabay on 16/01/2025.
 //
 
-#if DEV
-import EmbeddedWalletSDKDev
-#else
-import EmbeddedWalletSDK
+#if EW
+    #if DEV
+    import EmbeddedWalletSDKDev
+    #else
+    import EmbeddedWalletSDK
+    #endif
 #endif
 
 protocol AddAssetsDelegate: AnyObject {

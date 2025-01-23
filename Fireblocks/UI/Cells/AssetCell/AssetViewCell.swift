@@ -6,11 +6,6 @@
 //
 
 import UIKit
-#if DEV
-import EmbeddedWalletSDKDev
-#else
-import EmbeddedWalletSDK
-#endif
 
 protocol AssetViewCellDelegate: AnyObject {
     func didTapSend(index: Int)

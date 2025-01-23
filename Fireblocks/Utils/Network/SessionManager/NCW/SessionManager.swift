@@ -530,10 +530,10 @@ extension SessionManager {
         }
     }
     
-    func getAssetAddress(deviceId: String, assetId: String) async throws -> AssetAddress {
+    func getAssetAddress(deviceId: String, assetId: String) async throws -> AddressDetails {
         if let url = URL(string: FBURL.getAssetAddress(deviceId, assetId).url) {
             let data = try await sendRequest(url: url, httpMethod: "GET", timeout: FBURL.getAssetAddress(deviceId, assetId).timeout, numberOfRetries: 0)
-            let address: AssetAddress = try JSONDecoder().decode(AssetAddress.self, from: data)
+            let address: AddressDetails = try JSONDecoder().decode(AddressDetails.self, from: data)
             return address
         } else {
             throw SessionManager.error

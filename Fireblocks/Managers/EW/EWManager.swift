@@ -20,8 +20,8 @@ class EWManager: Hashable {
     }
 
     
-    let authClientId = "6303105e-38ac-4a21-8909-2b1f7f205fd1"
-    let options = EmbeddedWalletOptions(env: .RENTBLOCKS, logLevel: .info, logToConsole: true, logNetwork: true, eventHandlerDelegate: nil, reporting: .init(enabled: true))
+    let authClientId = "1fcfe7cf-60b4-4111-b844-af607455ff76"
+    let options = EmbeddedWalletOptions(env: .DEV9, logLevel: .info, logToConsole: true, logNetwork: true, eventHandlerDelegate: nil, reporting: .init(enabled: true))
     var keyStorageDelegate: KeyStorageProvider?
     var walletId: String?
     var deviceId: String?

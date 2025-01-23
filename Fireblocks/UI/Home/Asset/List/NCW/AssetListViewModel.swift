@@ -50,7 +50,7 @@ class AssetListViewModel {
                     var tempAssets: [Asset] = []
                     for asset in newAssets {
                         var newAsset = asset
-                        newAsset.isExpanded = self.assets.first(where: {$0 == newAsset})?.isExpanded ?? false
+//                        newAsset.isExpanded = self.assets.first(where: {$0 == newAsset})?.isExpanded ?? false
                         tempAssets.append(newAsset)
                     }
                     self.assets = tempAssets
@@ -69,9 +69,9 @@ class AssetListViewModel {
         }
     }
     
-    func toggleAssetExpanded(asset: Asset, section: Int) {
-        if let index = assets.firstIndex(where: {$0 == asset}) {
-            assets[index].isExpanded?.toggle()
+    func toggleAssetExpanded(asset: AssetSummary, section: Int) {
+        if let index = assetsSummary.firstIndex(where: {$0 == asset}) {
+            assetsSummary[index].isExpanded?.toggle()
             delegate?.refreshSection(section: section)
         }
     }
@@ -95,8 +95,8 @@ class AssetListViewModel {
         return assetsSummary
     }
     
-    func getAssets() -> [Asset] {
-        assets.sorted(by: {$0.name < $1.name})
+    func getAssets() -> [AssetSummary] {
+        assetsSummary.filter({$0.asset != nil}).sorted(by: {$0.asset!.name < $1.asset!.name})
     }
     
     func getAssetsCount() -> Int {

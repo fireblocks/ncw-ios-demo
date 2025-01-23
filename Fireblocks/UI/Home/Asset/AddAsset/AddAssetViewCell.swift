@@ -7,10 +7,13 @@
 
 import UIKit
 import SDWebImage
-#if DEV
-import EmbeddedWalletSDKDev
-#else
-import EmbeddedWalletSDK
+
+#if EW
+    #if DEV
+    import EmbeddedWalletSDKDev
+    #else
+    import EmbeddedWalletSDK
+    #endif
 #endif
 
 class AddAssetViewCell: UITableViewCell {

@@ -8,10 +8,13 @@
 import UIKit
 import NVActivityIndicatorView
 import SwiftUI
-#if DEV
-import EmbeddedWalletSDKDev
-#else
-import EmbeddedWalletSDK
+
+#if EW
+    #if DEV
+    import EmbeddedWalletSDKDev
+    #else
+    import EmbeddedWalletSDK
+    #endif
 #endif
 
 class AssetListViewController: UIViewController {

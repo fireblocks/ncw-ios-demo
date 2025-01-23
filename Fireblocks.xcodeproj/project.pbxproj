@@ -3284,7 +3284,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 2.9.1;
-				OTHER_SWIFT_FLAGS = "-DDEV";
+				OTHER_SWIFT_FLAGS = "-DDEV -DEW";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fireblocks.ew.demo.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -3324,7 +3324,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 2.9.1;
-				OTHER_SWIFT_FLAGS = "-DDEV";
+				OTHER_SWIFT_FLAGS = "-DDEV -DEW";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fireblocks.ew.demo.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

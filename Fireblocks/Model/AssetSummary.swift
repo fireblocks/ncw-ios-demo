@@ -6,10 +6,12 @@
 //
 
 import UIKit
-#if DEV
-import EmbeddedWalletSDKDev
-#else
-import EmbeddedWalletSDK
+#if EW
+    #if DEV
+    import EmbeddedWalletSDKDev
+    #else
+    import EmbeddedWalletSDK
+    #endif
 #endif
 
 struct AssetSummary: Codable, Identifiable, Hashable {

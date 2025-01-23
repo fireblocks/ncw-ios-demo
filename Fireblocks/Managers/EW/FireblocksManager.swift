@@ -153,8 +153,8 @@ class FireblocksManager: FireblocksManagerProtocol, ObservableObject {
     }
 
     func assignWallet() async -> String? {
-        self.authClientId = "6303105e-38ac-4a21-8909-2b1f7f205fd1"
-        self.options = EmbeddedWalletOptions(env: .RENTBLOCKS, logLevel: .info, logToConsole: true, logNetwork: true, eventHandlerDelegate: nil, reporting: .init(enabled: true))
+        self.authClientId = "1fcfe7cf-60b4-4111-b844-af607455ff76"
+        self.options = EmbeddedWalletOptions(env: .DEV9, logLevel: .info, logToConsole: true, logNetwork: true, eventHandlerDelegate: nil, reporting: .init(enabled: true))
         guard let instance = getInstance() else { return nil }
 
         do {

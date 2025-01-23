@@ -8,10 +8,12 @@
 import Foundation
 import UIKit
 import Combine
-#if DEV
-import EmbeddedWalletSDKDev
-#else
-import EmbeddedWalletSDK
+#if EW
+    #if DEV
+    import EmbeddedWalletSDKDev
+    #else
+    import EmbeddedWalletSDK
+    #endif
 #endif
 
 

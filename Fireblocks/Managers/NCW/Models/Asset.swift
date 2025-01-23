@@ -58,7 +58,7 @@ struct AssetBalance: Codable, Hashable {
 
 }
 
-struct AssetAddress: Codable, Hashable {
+struct AddressDetails: Codable, Hashable {
     var address: String
     var accountId: String?
     var accountName: String?

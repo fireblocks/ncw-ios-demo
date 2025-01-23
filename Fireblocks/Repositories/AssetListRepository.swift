@@ -28,7 +28,7 @@ class AssetListRepository {
         return balance
     }
     
-    func getAddress(assetId: String) async throws -> AssetAddress {
+    func getAddress(assetId: String) async throws -> AddressDetails {
         let deviceId = FireblocksManager.shared.getDeviceId()
         let address = try await SessionManager.shared.getAssetAddress(deviceId: deviceId, assetId: assetId)
         return address

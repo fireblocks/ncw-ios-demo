@@ -6,11 +6,6 @@
 //
 
 import Foundation
-#if DEV
-import EmbeddedWalletSDKDev
-#else
-import EmbeddedWalletSDK
-#endif
 
 protocol AmountToSendViewModelDelegate: AnyObject {
     func amountAndSumChanged(amount: String, price: String)
