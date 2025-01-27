@@ -26,7 +26,7 @@ class FireblocksManager: FireblocksManagerProtocol, ObservableObject {
     }
     
     func stopPollingMessages() {
-        
+        PollingManager.shared.stopPolling()
     }
     
     func signTransaction(transactionId: String) async -> Bool {
@@ -58,7 +58,7 @@ class FireblocksManager: FireblocksManagerProtocol, ObservableObject {
     var authClientId: String?
     var options: EmbeddedWalletOptions?
     var keyStorageDelegate: KeyStorageProvider?
-    var ewManager = EWManager()
+    var ewManager = EWManager.shared
 
     func generateMpcKeys() async -> Set<KeyDescriptor>? {
         algoArray = [.MPC_ECDSA_SECP256K1, .MPC_EDDSA_ED25519]
@@ -123,6 +123,10 @@ class FireblocksManager: FireblocksManagerProtocol, ObservableObject {
         self.keyStorageDelegate = KeyStorageProvider(deviceId: deviceId)
         if let keyStorageDelegate {
             guard let instance = getInstance() else { return nil }
+            if let ncwInstance = getNCWInstance() {
+                return ncwInstance
+            }
+
             do {
                 return try instance.initializeCore(deviceId: deviceId, keyStorage: keyStorageDelegate)
             } catch {
@@ -190,6 +194,13 @@ class FireblocksManager: FireblocksManagerProtocol, ObservableObject {
     func signOut() {
         
     }
+    
+    func startPolling() {
+        Task {
+            await PollingManager.shared.startPolling(accountId: 0, order: .DESC)
+        }
+    }
+
 }
 
 //MARK - AuthTokenRetriever -

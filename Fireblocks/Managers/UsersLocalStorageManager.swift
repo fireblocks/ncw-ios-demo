@@ -7,6 +7,49 @@
 
 import Foundation
 
+class Preference<T> {
+    let group: String
+    let key: String
+    lazy var groupAlias: String = {
+        "\(key)_\(group)"
+    }()
+
+    let defaultValue: T?
+
+    func value() -> T? {
+        return defaultValue
+    }
+
+    func set(_ value: T) {}
+
+    init(group: String, key: String, defaultValue: T? = nil) {
+        self.group = group
+        self.key = key
+        self.defaultValue = defaultValue
+    }
+}
+
+final class CodablePreference<T: Codable>: Preference<T> {
+    let defaults: UserDefaults
+
+    override func value() -> T? {
+        return T.fromData(defaults.data(forKey: groupAlias)) ?? defaultValue
+    }
+
+    override func set(_ value: T) {
+        let data = value.toData()
+        if let data {
+            defaults.set(data, forKey: groupAlias)
+        }
+    }
+
+
+    init(defaults: UserDefaults, group: String, key: String, defaultValue: T? = nil) {
+        self.defaults = defaults
+        super.init(group: group, key: key, defaultValue: defaultValue)
+    }
+}
+
 class UsersLocalStorageManager: ObservableObject {
     let defaults = UserDefaults.standard
 
@@ -41,4 +84,9 @@ class UsersLocalStorageManager: ObservableObject {
     func resetAuthProvider() {
         defaults.removeObject(forKey: "authProvider")
     }
+    
+    lazy var approvedTransactions: CodablePreference<[String]> = {
+        CodablePreference<[String]>(defaults: defaults, group: "", key: "approvedTransactions", defaultValue: [])
+    }()
+
 }

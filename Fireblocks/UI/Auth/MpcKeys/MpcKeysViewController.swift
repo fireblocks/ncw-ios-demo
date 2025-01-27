@@ -159,7 +159,6 @@ extension MpcKeysViewController: MpcKeysViewModelDelegate {
             guard let self = self else { return }
             self.hideActivityIndicator()
             
-            //TODO - text is needed
             self.navigationItem.title = LocalizableStrings.didGenerateMPCKeysSuccessTitle
             self.headerImageView.image = UIImage(named: "generateSuccess")
             

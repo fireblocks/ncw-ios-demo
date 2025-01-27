@@ -2,49 +2,18 @@
 //  TransfersViewModel.swift
 //  Fireblocks
 //
-//  Created by Fireblocks Ltd. on 06/07/2023.
+//  Created by Dudi Shani-Gabay on 27/01/2025.
 //
 
-import Foundation
-import UIKit.UIImage
+import Combine
 
-enum NotificationType {
-    case notification
-    case error
-    
-    func getImage() -> UIImage {
-        switch self {
-        case .notification:
-            return AssetsIcons.transferImage.getIcon()
-        case .error:
-            return AssetsIcons.errorImage.getIcon()
-        }
-    }
-    
-    func getMessage() -> String {
-        switch self {
-        case .notification:
-            return "You don’t have any transfers yet."
-        case .error:
-            return "failed to load transactions,\n please try to refresh."
-        }
-    }
-    
-    func isRefreshButtonNeeded() -> Bool {
-        switch self {
-        case .notification:
-            return false
-        case .error:
-            return true
-        }
-    }
-}
-
-protocol TransfersViewModelDelegate: AnyObject {
-    func transfersUpdated()
-    func showNotification(type: NotificationType)
-}
-
+#if EW
+    #if DEV
+    import EmbeddedWalletSDKDev
+    #else
+    import EmbeddedWalletSDK
+    #endif
+#endif
 
 final class TransfersViewModel: ObservableObject {
     
@@ -54,8 +23,12 @@ final class TransfersViewModel: ObservableObject {
     weak var delegate: TransfersViewModelDelegate?
     private var task: Task<Void, Never>?
     private var didRequestAlltransactions = false
+    private var cancellable = Set<AnyCancellable>()
+    private let pollingManager = PollingManager.shared
+    
     deinit {
         task?.cancel()
+        cancellable.removeAll()
     }
     
     func signOut() {
@@ -66,14 +39,23 @@ final class TransfersViewModel: ObservableObject {
         return transfers.filter({$0.lastUpdated != nil}).sorted(by: {$0.lastUpdated! > $1.lastUpdated!})
     }
     
+    func listenToTransferChanges() {
+        pollingManager.$transactions.receive(on: RunLoop.main)
+            .sink { [weak self] transactions in
+                if let self {
+                    self.handleTransactions(transactions: transactions)
+                }
+            }.store(in: &cancellable)
+    }
+
     func handleTransactions(transactions: [TransactionResponse]) {
         var didChange = false
         if transfers.isEmpty {
-            transfers = transactions.map({$0.toTransferInfo()})
+            transfers = transactions.map({TransferInfo.toTransferInfo(response: $0)})
             didChange = true
         } else {
             for transaction in transactions {
-                let transferInfo = transaction.toTransferInfo()
+                let transferInfo = TransferInfo.toTransferInfo(response: transaction)
                 if let index = transfers.firstIndex(where: {$0.transactionID == transferInfo.transactionID}) {
                     if transfers[index].lastUpdated != transferInfo.lastUpdated {
                         transfers[index] = transferInfo
@@ -125,7 +107,7 @@ final class TransfersViewModel: ObservableObject {
     }
     
     func updateStatusWhenApproved(index: Int) {
-        transfers[index].status = .Confirming
+        transfers[index].status = .confirming
         updateUI()
     }
 }

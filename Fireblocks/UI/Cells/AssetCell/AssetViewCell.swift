@@ -73,7 +73,7 @@ class AssetViewCell: AddAssetViewCell {
             assetTokenAmount.text = "\(balance)"
         }
         
-        if let isExpanded = asset.isExpanded, isExpanded {
+        if asset.isExpanded {
             buttonsContainerViewHC.constant = 80
         } else {
             buttonsContainerViewHC.constant = 0

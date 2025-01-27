@@ -18,7 +18,7 @@ class SendToViewModel {
     
     func getAmountToSendAsString() -> String {
         guard let transaction = transaction else { return "" }
-        return String(transaction.amountToSend) + " \(transaction.asset.symbol)"
+        return String(transaction.amountToSend) + " \(transaction.asset.asset?.symbol ?? "")"
     }
     
     func getPriceAsString() -> String {
@@ -47,7 +47,7 @@ class SendToViewModel {
         return transaction
     }
 
-    func getAsset() -> Asset? {
+    func getAsset() -> AssetSummary? {
         guard let transaction = transaction else { return nil }
         return transaction.asset
     }

@@ -75,7 +75,7 @@ extension FeeRateViewController: UITableViewDataSource {
         }
         
         let fee = viewModel.getFees()[indexPath.row]
-        let assetName = viewModel.transaction?.asset.symbol ?? ""
+        let assetName = viewModel.transaction?.asset.asset?.symbol ?? ""
         cell.configCell(with: fee, assetName: assetName)
         let selectedFeeIndex = viewModel.getSelectedIndex()
         

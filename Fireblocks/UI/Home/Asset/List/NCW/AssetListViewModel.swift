@@ -45,11 +45,15 @@ class AssetListViewModel {
             do {
                 let assetResponse = try await repository.getAssets()
                 DispatchQueue.main.async {
-                    self.assetsSummary = assetResponse.map({$0.value})
+                    var tempSummary = assetResponse.map({$0.value})
+                    for index in 0..<tempSummary.count {
+                        tempSummary[index].isExpanded = self.assetsSummary.first(where: {$0 == tempSummary[index]})?.isExpanded ?? false
+                    }
+                    self.assetsSummary = tempSummary
                     let newAssets = self.assetsSummary.filter({$0.asset != nil}).map({$0.asset!})
                     var tempAssets: [Asset] = []
                     for asset in newAssets {
-                        var newAsset = asset
+                        let newAsset = asset
 //                        newAsset.isExpanded = self.assets.first(where: {$0 == newAsset})?.isExpanded ?? false
                         tempAssets.append(newAsset)
                     }
@@ -71,7 +75,7 @@ class AssetListViewModel {
     
     func toggleAssetExpanded(asset: AssetSummary, section: Int) {
         if let index = assetsSummary.firstIndex(where: {$0 == asset}) {
-            assetsSummary[index].isExpanded?.toggle()
+            assetsSummary[index].isExpanded.toggle()
             delegate?.refreshSection(section: section)
         }
     }

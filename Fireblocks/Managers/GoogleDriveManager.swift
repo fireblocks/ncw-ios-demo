@@ -31,7 +31,7 @@ final class GoogleDriveManager {
         self.passphrase = passphrase
         let service = GTLRDriveService()
         service.authorizer = gidUser.fetcherAuthorizer
-        
+        service.shouldFetchNextPages = true
         return await withCheckedContinuation { continuation in
             service.executeQuery(getUploadQuery(passphraseId: passphraseId)) { ticket, file, error in
                 continuation.resume(returning: error == nil )
@@ -41,6 +41,7 @@ final class GoogleDriveManager {
     
     func recoverFromDrive(gidUser: GIDGoogleUser, passphraseId: String) async -> String? {
         let service = GTLRDriveService()
+        service.shouldFetchNextPages = true
         service.authorizer = gidUser.fetcherAuthorizer
         let googleDriveFileId = await getGoogleDriveFileId(service: service, passphraseId: passphraseId)
         let passPhrase = await getPassPhrase(service: service, fileID: googleDriveFileId)

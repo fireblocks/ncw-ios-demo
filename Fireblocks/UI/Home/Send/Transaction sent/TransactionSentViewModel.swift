@@ -21,7 +21,7 @@ final class TransactionSentViewModel {
     
 //MARK: - FUNCTIONS
     func getAmount() -> String {
-        return "\(transaction.amountToSend) \(transaction.asset.symbol)"
+        return "\(transaction.amountToSend) \(transaction.asset.asset?.symbol ?? "")"
     }
     
     func getAmountPrice() -> String {
@@ -33,7 +33,7 @@ final class TransactionSentViewModel {
     }
     
     func getTitle() -> String {
-        return "Sending \(transaction.asset.symbol)"
+        return "Sending \(transaction.asset.asset?.symbol ?? "")"
     }
     
     func fetchTransfers() {

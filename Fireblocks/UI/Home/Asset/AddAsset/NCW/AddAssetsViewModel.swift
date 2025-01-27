@@ -27,8 +27,8 @@ class AddAssetsViewModel: ObservableObject {
             do {
                 let response = try await SessionManager.shared.getSupportedAssets(deviceId: deviceId)
                 DispatchQueue.main.async {
-                    self.assets = response.map({AssetToAdd(asset: $0)})
-                    self.searchResults = response.map({AssetToAdd(asset: $0)})
+                    self.assets = response.map({AssetToAdd(asset: AssetSummary(asset: $0))})
+                    self.searchResults = response.map({AssetToAdd(asset: AssetSummary(asset: $0))})
                     self.delegate?.didLoadAssets()
                 }
             } catch {
@@ -74,17 +74,21 @@ class AddAssetsViewModel: ObservableObject {
         Task {
             for asset in assets.filter({$0.isSelected}).map({$0.asset}) {
                 do {
-                    if let result = try await SessionManager.shared.createAsset(deviceId: deviceId, assetId: asset.id), let data = result.data(using: .utf8) {
-                        if let error = try? JSONDecoder().decode(ErrorResponse.self, from: data) {
-                            failedAssets.append(asset)
+                    if let asset = asset.asset {
+                        if let result = try await SessionManager.shared.createAsset(deviceId: deviceId, assetId: asset.id), let data = result.data(using: .utf8) {
+                            if let error = try? JSONDecoder().decode(ErrorResponse.self, from: data) {
+                                failedAssets.append(asset)
+                            } else {
+                                addedAssets.append(asset)
+                            }
                         } else {
-                            addedAssets.append(asset)
+                            failedAssets.append(asset)
                         }
-                    } else {
-                        failedAssets.append(asset)
                     }
                 } catch {
-                    failedAssets.append(asset)
+                    if let asset = asset.asset {
+                        failedAssets.append(asset)
+                    }
                 }
             }
             DispatchQueue.main.async {
@@ -98,7 +102,7 @@ class AddAssetsViewModel: ObservableObject {
         if searchText.isEmpty {
             searchResults = assets
         } else {
-            searchResults = assets.filter({$0.asset.name.localizedStandardContains(searchText) || $0.asset.symbol.localizedStandardContains(searchText)})
+            searchResults = assets.filter({$0.asset.asset != nil}).filter({$0.asset.asset!.name.localizedStandardContains(searchText) || $0.asset.asset!.symbol.localizedStandardContains(searchText) })
         }
         
         self.delegate?.reloadData()

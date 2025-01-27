@@ -45,7 +45,7 @@ final class ApproveViewModel {
     }
     
     func getAmount() -> String {
-        return "\(transaction.amountToSend) \(transaction.asset.symbol)"
+        return "\(transaction.amountToSend) \(transaction.asset.asset?.symbol ?? "")"
     }
     
     func getAmountPrice() -> String {
@@ -57,25 +57,29 @@ final class ApproveViewModel {
     }
     func getFeeAmount() -> String {
         guard let fee = transaction.fee?.fee else { return "" }
-        return "\(fee) \(transaction.asset.symbol)"
+        return "\(fee) \(transaction.asset.asset?.symbol ?? "")"
     }
     
     func getTotalAmount() -> String {
         if let fee = transaction.getFee() {
             let totalAmount = transaction.amountToSend + fee
-            return "\(totalAmount) \(transaction.asset.symbol)"
+            return "\(totalAmount) \(transaction.asset.asset?.symbol ?? "")"
         }
         
         return ""
     }
     
     func getTotalAmountPrice() -> String {
-        if let fee = transaction.getFee(), let rate = transaction.asset.rate {
+        //TODO - get rate EW
+        #if EW
+        #else
+        if let fee = transaction.getFee(), let rate = transaction.asset.asset?.rate {
             let totalAmount = transaction.amountToSend + fee
             let totalPrice = totalAmount * rate
             
             return "$\(totalPrice.formatFractions(fractionDigits: 2))"
         }
+        #endif
         
         return ""
     }

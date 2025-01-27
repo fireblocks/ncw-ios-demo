@@ -8,7 +8,7 @@ import Foundation
 
 class SessionManager: ObservableObject {
     var isLoggedIn = false
-    var ewManager = EWManager()
+    var ewManager = EWManager.shared
     
     enum FBURL {
         case joinWallet(String)

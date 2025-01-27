@@ -6,9 +6,16 @@
 //
 
 import Foundation
+#if EW
+    #if DEV
+    import EmbeddedWalletSDKDev
+    #else
+    import EmbeddedWalletSDK
+    #endif
+#endif
 
 struct FBTransaction {
-    let asset: Asset
+    let asset: AssetSummary
     let amountToSend: Double
     let price: Double
     var receiverAddress: String?

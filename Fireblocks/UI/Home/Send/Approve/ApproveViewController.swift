@@ -54,8 +54,8 @@ class ApproveViewController: UIViewController {
         stopButton.config(title: "Stop", image: buttonImage, style: .Secondary)
         statusBackground.layer.cornerRadius = 6
         statusLabel.text = viewModel.transferInfo?.status.rawValue
-        statusLabel.textColor = viewModel.transferInfo?.status.color
-        statusBackground.addBorder(color: viewModel.transferInfo?.status.color ?? UIColor.clear, width: 0.5)
+        statusLabel.textColor = viewModel.transferInfo?.color
+        statusBackground.addBorder(color: viewModel.transferInfo?.color ?? UIColor.clear, width: 0.5)
         txId.text = viewModel.transferInfo?.transactionID
     }
     

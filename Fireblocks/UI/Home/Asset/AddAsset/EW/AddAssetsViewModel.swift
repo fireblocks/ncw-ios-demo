@@ -21,7 +21,7 @@ class AddAssetsViewModel: ObservableObject {
     private var failedAssets: [Asset] = []
 
     weak var delegate: AddAssetsDelegate?
-    var ewManager = EWManager()
+    var ewManager = EWManager.shared
     
     init(deviceId: String) {
         self.deviceId = deviceId

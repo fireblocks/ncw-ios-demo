@@ -58,7 +58,7 @@ class AssetListViewModel {
     private var task: Task<Void, Never>?
     var cancellable = Set<AnyCancellable>()
     var chooseAssetFlowType: ChooseAssetFlowType = .send
-    var ewManager = EWManager()
+    var ewManager = EWManager.shared
     let accountId = 0
     static let shared = AssetListViewModel()
 

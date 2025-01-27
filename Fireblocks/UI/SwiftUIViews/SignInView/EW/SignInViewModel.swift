@@ -25,6 +25,7 @@ class SignInViewModel: SignInView.ViewModel {
                 window.rootViewController = vc
             case .exist:
                 if userHasKeys {
+                    fireblocksManager?.startPolling()
                     let vc = UINavigationController(rootViewController: TabBarViewController())
                     window.rootViewController = vc
                 } else {

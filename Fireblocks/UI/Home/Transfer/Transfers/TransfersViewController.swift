@@ -7,6 +7,14 @@
 
 import UIKit
 
+#if EW
+    #if DEV
+    import EmbeddedWalletSDKDev
+    #else
+    import EmbeddedWalletSDK
+    #endif
+#endif
+
 class TransfersViewController: UIViewController {
 
 //MARK: - PROPERTIES
@@ -29,6 +37,8 @@ class TransfersViewController: UIViewController {
         super.viewDidLoad()
         viewModel.delegate = self
         notificationView.isHidden = true
+        viewModel.listenToTransferChanges()
+
     }
     
     override func viewWillAppear(_ animated: Bool) {

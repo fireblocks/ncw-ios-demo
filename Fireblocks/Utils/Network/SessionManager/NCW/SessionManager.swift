@@ -55,7 +55,7 @@ struct PostTransactionParams: Encodable {
 
 struct CreateTransactionResponse: Decodable {
     let id: String
-    let status: TransferStatusType
+    let status: Status
 }
 
 enum SigningStatus : String, Codable {
@@ -89,8 +89,8 @@ struct TransactionResponse: Codable, Identifiable, Hashable, Equatable {
     
     
     let id: String
-    var status: TransferStatusType?
-    private let createdAt: Int?
+    var status: Status?
+    let createdAt: Int?
     let lastUpdated: TimeInterval?
     let details: TransactionDetails
     
@@ -103,9 +103,9 @@ struct TransactionResponse: Codable, Identifiable, Hashable, Equatable {
     
     func toTransferInfo() -> TransferInfo {
         
-        var statusType: TransferStatusType = .Unknown
+        var statusType: Status = .unknown
         if let status = details.status {
-            statusType = TransferStatusType(rawValue: status.rawValue) ?? .Unknown
+            statusType = Status(rawValue: status.rawValue) ?? .unknown
         }
         
         let image = AssetsImageMapper().getIconForAsset(details.assetId ?? "")
@@ -129,7 +129,6 @@ struct TransactionResponse: Codable, Identifiable, Hashable, Equatable {
                             receiverWalletID: details.destination?.walletId ?? "",
                             image: image)
     }
-    
 }
 
 struct TransactionDetails: Codable {
@@ -138,7 +137,7 @@ struct TransactionDetails: Codable {
     var amount: Double = 0
     var source: Source?
     var destination: Destination?
-    var status: TransferStatusType?
+    var status: Status?
     var txHash: String?
     var assetId: String?
     var amountUSD: Double?

@@ -127,7 +127,7 @@ final class FeeRateViewModel {
     }
     
     private func listenToTransactionStatusChanges() {
-        let failedStatus: [TransferStatusType] = [.Failed, .Blocked, .Cancelled, .Rejected]
+        let failedStatus: [Status] = [.failed, .blocked, .cancelled, .rejected]
         TransfersViewModel.shared.$transfers.receive(on: RunLoop.main)
             .sink { [weak self] transfers in
                 print("TRANSFER_ADDED - new transfer status: \(transfers)")
@@ -135,7 +135,7 @@ final class FeeRateViewModel {
                     if let transactionID = self.transactionID, let transaction = transfers.first(where: {$0.transactionID == transactionID}) {
                         print("TRANSFER_ADDED - new transfer status: \(transaction.status.rawValue)")
                         let status = transaction.status
-                        if status == .PendingSignature, !self.didPresented {
+                        if status == .pendingSignature, !self.didPresented {
                             self.didPresented = true
                             self.delegate?.isTransactionCreated(isCreated: true)
                         } else if failedStatus.contains(status) {

@@ -33,8 +33,8 @@ class TabBarViewController: UITabBarController {
     private func initSubviewControllers(){
         typealias TabBarItem = (viewController: UIViewController, image: UIImage, name: String)
         let viewControllers: [TabBarItem] = [
-            (AssetListViewController(), AssetsIcons.wallet.getIcon(), "Assets")
-//            (TransfersViewController(), AssetsIcons.transfer.getIcon(), "Transfers")
+            (AssetListViewController(), AssetsIcons.wallet.getIcon(), "Assets"),
+            (TransfersViewController(), AssetsIcons.transfer.getIcon(), "Transfers")
         ]
         
         setupNavButtons()

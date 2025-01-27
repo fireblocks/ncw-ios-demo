@@ -7,6 +7,12 @@
 
 import UIKit
 
+protocol TransferDetailsViewModelDelegate: AnyObject {
+    func transferDidUpdate()
+    func transactionStatusChanged(isApproved: Bool)
+    func transactionCancelStatusChanged(isCanceled: Bool)
+}
+
 class TransferDetailsViewController: UIViewController {
     
     @IBOutlet weak var titleView: UIView!
@@ -40,6 +46,13 @@ class TransferDetailsViewController: UIViewController {
         super.init (nibName: "TransferDetailsViewController", bundle: nil)
     }
 
+    deinit {
+        #if EW
+        viewModel.pollingManagerTxId.stopPolling()
+        #endif
+        print("DEINIT: TransferDetailsViewController")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         copyAddress.setTitle("", for: .normal)
@@ -64,8 +77,8 @@ class TransferDetailsViewController: UIViewController {
             amount.text = "\(transfer.amount) \(transfer.assetSymbol)"
             price.text = "$\(transfer.price)"
             statusLabel.text = transfer.status.rawValue
-            statusLabel.textColor = transfer.status.color
-            statusBackground.addBorder(color: transfer.status.color, width: 0.5)
+            statusLabel.textColor = transfer.color
+            statusBackground.addBorder(color: transfer.color, width: 0.5)
             creationDate.text = transfer.creationDate
             receiverAddressTitle.text = transfer.getReceiverTitle(walletId: FireblocksManager.shared.getWalletId())
             receiverAddress.text = transfer.getReceiverAddress(walletId: FireblocksManager.shared.getWalletId())
@@ -87,7 +100,7 @@ class TransferDetailsViewController: UIViewController {
     }
     
     @objc func handleCancelTap() {
-        if let status = viewModel.transferInfo?.status, status == .PendingSignature {
+        if let status = viewModel.transferInfo?.status, status == .pendingSignature {
             showBottomSheet()
         } else {
             self.navigationController?.popToRootViewController(animated: true)
@@ -96,7 +109,9 @@ class TransferDetailsViewController: UIViewController {
     
     @IBAction func approveTapped(_ sender: AppActionBotton) {
         showActivityIndicator()
-        viewModel.approveTransaction()
+        Task {
+            await viewModel.approveTransaction()
+        }
     }
     
     private func showBottomSheet(){
@@ -206,8 +221,10 @@ extension TransferDetailsViewController: TransferDetailsViewModelDelegate {
 //MARK: - UserActionDelegate
 extension TransferDetailsViewController: UserActionDelegate {
     func confirmButtonClicked() {
-        viewModel.cancelTransaction()
         showActivityIndicator()
+        Task {
+            await viewModel.cancelTransaction()
+        }
     }
 }
 

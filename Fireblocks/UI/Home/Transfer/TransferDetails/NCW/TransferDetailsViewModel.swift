@@ -8,12 +8,6 @@
 import Foundation
 import Combine
 
-protocol TransferDetailsViewModelDelegate: AnyObject {
-    func transferDidUpdate()
-    func transactionStatusChanged(isApproved: Bool)
-    func transactionCancelStatusChanged(isCanceled: Bool)
-}
-
 class TransferDetailsViewModel {
     var transferInfo: TransferInfo?
     let repository = ApproveRepository()
@@ -23,11 +17,11 @@ class TransferDetailsViewModel {
     private var cancellable = Set<AnyCancellable>()
 
     var isPending: Bool {
-        return transferInfo?.status == .PendingSignature
+        return transferInfo?.status == .pendingSignature
     }
     
     var isCompleted: Bool {
-        return transferInfo?.status == .Completed
+        return transferInfo?.status == .completed
     }
 
 
@@ -53,23 +47,19 @@ class TransferDetailsViewModel {
             }.store(in: &cancellable)
     }
     
-    func approveTransaction() {
+    func approveTransaction() async {
         guard let transactionId = transferInfo?.transactionID else { return }
-        Task {
-            let isApproved = await repository.approveTransaction(transactionId: transactionId)
-            self.delegate?.transactionStatusChanged(isApproved: isApproved)
-        }
+        let isApproved = await repository.approveTransaction(transactionId: transactionId)
+        self.delegate?.transactionStatusChanged(isApproved: isApproved)
     }
     
-    func cancelTransaction() {
+    func cancelTransaction() async {
         guard let transactionId = transferInfo?.transactionID, let assetId = transferInfo?.assetId else { return }
-        Task {
-            do {
-                let isCanceled = try await repository.cancelTransaction(assetId: assetId, txId: transactionId)
-                self.delegate?.transactionCancelStatusChanged(isCanceled: isCanceled)
-            } catch {
-                self.delegate?.transactionCancelStatusChanged(isCanceled: false)
-            }
+        do {
+            let isCanceled = try await repository.cancelTransaction(assetId: assetId, txId: transactionId)
+            self.delegate?.transactionCancelStatusChanged(isCanceled: isCanceled)
+        } catch {
+            self.delegate?.transactionCancelStatusChanged(isCanceled: false)
         }
     }
 

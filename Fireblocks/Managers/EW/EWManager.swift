@@ -19,6 +19,8 @@ class EWManager: Hashable {
         hasher.combine(authClientId)
     }
 
+    static let shared = EWManager()
+    private init(){}
     
     let authClientId = "1fcfe7cf-60b4-4111-b844-af607455ff76"
     let options = EmbeddedWalletOptions(env: .DEV9, logLevel: .info, logToConsole: true, logNetwork: true, eventHandlerDelegate: nil, reporting: .init(enabled: true))

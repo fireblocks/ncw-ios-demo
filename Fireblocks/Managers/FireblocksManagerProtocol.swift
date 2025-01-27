@@ -128,9 +128,7 @@ extension FireblocksManagerProtocol {
             return nil
         }
     }
-    
-    func startPolling() {}
-    
+        
     func backupKeys(passphrase: String, passphraseId: String) async -> Set<KeyBackup>? {
         guard let instance = getNCWInstance() else {
             return nil
