@@ -48,23 +48,26 @@ struct DeriveKeysView: View {
                             if algorithm != Algorithm.MPC_EDDSA_ED25519.rawValue {
                                 if let items = viewModel.items[algorithm] {
                                     ForEach(items, id: \.assetSummary) { item in
-                                        if let asset = item.assetSummary.asset, let privateKey = item.privateKey {
-                                            Section {
-                                                AssetCell(privateKey: item.keyData?.data ?? "", copyTextTitle: asset.name, copiedText: $viewModel.copiedText) {
-                                                    DerivedAssetRow(asset: asset)
-                                                }
-                                                
-                                                if let wif = item.wif {
-                                                    AssetCell(privateKey: wif, copyTextTitle: asset.name, copiedText: $viewModel.copiedText) {
-                                                        HStack {
-                                                            Text("WIF")
-                                                                .foregroundStyle(.secondary)
-                                                            Spacer()
+                                        if let privateKey = item.privateKey {
+                                            let asset = item.assetSummary
+                                            if let name = asset.asset?.name {
+                                                Section {
+                                                    AssetCell(privateKey: item.keyData?.data ?? "", copyTextTitle: name, copiedText: $viewModel.copiedText) {
+                                                        DerivedAssetRow(asset: asset)
+                                                    }
+                                                    
+                                                    if let wif = item.wif {
+                                                        AssetCell(privateKey: wif, copyTextTitle: name, copiedText: $viewModel.copiedText) {
+                                                            HStack {
+                                                                Text("WIF")
+                                                                    .foregroundStyle(.secondary)
+                                                                Spacer()
+                                                            }
                                                         }
                                                     }
                                                 }
+                                                .listRowSeparator(.hidden)
                                             }
-                                            .listRowSeparator(.hidden)
 
                                         }
                                     }

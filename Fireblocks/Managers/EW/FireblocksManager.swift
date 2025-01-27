@@ -37,22 +37,6 @@ class FireblocksManager: FireblocksManagerProtocol, ObservableObject {
         
     }
     
-    func approveJoinWallet(requestId: String) async throws -> Set<FireblocksDev.JoinWalletDescriptor> {
-        return Set()
-    }
-    
-    func takeOver() async -> Set<FireblocksDev.FullKey>? {
-        return nil
-    }
-    
-    func deriveAssetKey(privateKey: String, derivationParams: FireblocksDev.DerivationParams) async -> FireblocksDev.KeyData? {
-        return nil
-    }
-    
-    func recoverWallet(resolver: any FireblocksDev.FireblocksPassphraseResolver) async -> Bool {
-        return false
-    }
-        
     static let shared = FireblocksManager()
         
     var deviceId: String = ""
@@ -92,7 +76,9 @@ class FireblocksManager: FireblocksManagerProtocol, ObservableObject {
     }
 
     func initializeFireblocksSDK() throws {
-        
+        if getNCWInstance() == nil {
+            let _ = initializeCore()
+        }
     }
     
     func getNCWInstance() -> Fireblocks? {
@@ -112,10 +98,6 @@ class FireblocksManager: FireblocksManagerProtocol, ObservableObject {
         return nil
     }
     
-    func addDevice(joinWalletHandler: FireblocksJoinWalletHandler) async -> Bool {
-        return true
-    }
-
     func getInstance() -> EmbeddedWallet? {
         guard let authClientId else {
             errorMessage = "Unknown authClientId"

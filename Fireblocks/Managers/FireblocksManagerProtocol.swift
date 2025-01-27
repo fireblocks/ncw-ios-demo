@@ -21,7 +21,7 @@ protocol FireblocksManagerProtocol {
     var algoArray: [Algorithm] { get set }
     var deviceId: String { get }
     var walletId: String { get }
-    var errorMessage: String? { get }
+    var errorMessage: String? { get set }
     var latestBackupDeviceId: String { get }
     
     func generateDeviceId() -> String
@@ -147,6 +147,83 @@ extension FireblocksManagerProtocol {
     
     func stopJoinWallet() {
         getNCWInstance()?.stopJoinWallet()
+    }
+
+    func takeOver() async -> Set<FullKey>? {
+        guard let instance = getNCWInstance() else {
+            return nil
+        }
+        
+        do {
+            return try await instance.takeover()
+        } catch {
+            AppLoggerManager.shared.logger()?.log("FireblocksManager, Takeover() can't takeover keys: \(error).")
+            return nil
+        }
+    }
+    
+    func deriveAssetKey(privateKey: String, derivationParams: DerivationParams) async -> KeyData? {
+        guard let instance = getNCWInstance() else {
+            return nil
+        }
+        
+        do {
+            return try await instance.deriveAssetKey(extendedPrivateKey: privateKey, bip44DerivationParams: derivationParams)
+        } catch {
+            AppLoggerManager.shared.logger()?.log("FireblocksManager, deriveAssetKey failed: \(error).")
+            return nil
+        }
+    }
+
+    
+    func recoverWallet(resolver: FireblocksPassphraseResolver) async -> Bool {
+        guard let instance = getNCWInstance() else {
+            return false
+        }
+        
+        do {
+            let keySet = try await instance.recoverKeys(passphraseResolver: resolver)
+            if keySet.isEmpty { return false }
+            if keySet.first(where: {$0.keyRecoveryStatus == .ERROR}) != nil  { return false }
+            startPolling()
+            return true
+        } catch {
+            AppLoggerManager.shared.logger()?.log("FireblocksManager, recoverWallet() can't recover wallet: \(error).")
+            return false
+        }
+    }
+    
+    func approveJoinWallet(requestId: String) async throws -> Set<JoinWalletDescriptor> {
+        guard getNCWInstance() != nil else {
+            return Set()
+        }
+
+        let instance = try Fireblocks.getInstance(deviceId: deviceId)
+        return try await instance.approveJoinWalletRequest(requestId: requestId)
+    }
+
+    func addDevice(joinWalletHandler: FireblocksJoinWalletHandler) async -> Bool {
+        do {
+            let startDate = Date()
+            guard let result = try await getNCWInstance()?.requestJoinExistingWallet(joinWalletHandler: joinWalletHandler) else {
+                return false
+            }
+            print("Measure - addDevice \(Date().timeIntervalSince(startDate))")
+
+            let didFail = result.filter({$0.keyStatus != .READY}).count > 0 || result.filter({$0.keyStatus == .READY}).count == 0
+            if !didFail {
+                startPolling()
+            }
+            
+            return !didFail
+
+        } catch let error as FireblocksError {
+            AppLoggerManager.shared.logger()?.log("FireblocksManager, addDevice() failed: \(error.description).")
+            return false
+        } catch {
+            AppLoggerManager.shared.logger()?.log("FireblocksManager, addDevice() failed: \(error.localizedDescription).")
+            return false
+        }
     }
 
 }

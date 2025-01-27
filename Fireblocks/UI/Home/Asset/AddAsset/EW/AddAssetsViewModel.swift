@@ -91,7 +91,7 @@ class AddAssetsViewModel: ObservableObject {
         if searchText.isEmpty {
             searchResults = assets
         } else {
-            searchResults = assets.filter({$0.asset.asset?.name?.localizedStandardContains(searchText) != nil || $0.asset.asset?.symbol?.localizedStandardContains(searchText) != nil})
+            searchResults = assets.filter({$0.asset.asset != nil && $0.asset.asset!.name != nil && $0.asset.asset!.symbol != nil}).filter({$0.asset.asset!.name!.localizedStandardContains(searchText) || $0.asset.asset!.symbol!.localizedStandardContains(searchText) })
         }
         
         self.delegate?.reloadData()

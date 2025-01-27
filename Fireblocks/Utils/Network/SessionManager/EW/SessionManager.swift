@@ -110,15 +110,8 @@ extension SessionManager {
         return NSError(domain: "Networking", code: code, userInfo: [NSLocalizedDescriptionKey : "Networking Error"])
     }
     
-    func joinWallet(deviceId: String, walletId: String) async throws -> JoinWalletResponse {
-        let body = ["walletId": walletId]
-        if let url = URL(string: FBURL.joinWallet(deviceId).url) {
-            let data = try await sendRequest(url: url, numberOfRetries: 5, body: body)
-            let value = try JSONDecoder().decode(JoinWalletResponse.self, from: data)
-            return value
-        } else {
-            throw SessionManager.error
-        }
+    func joinWallet(deviceId: String, walletId: String) async throws -> Bool? {
+        return true
     }
 
     func getLatestBackupInfo(walletId: String, deviceId: String? = nil) async throws -> BackupInfo {

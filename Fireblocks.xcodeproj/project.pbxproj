@@ -407,6 +407,9 @@
 		2B54D6C42D426B1D001C135D /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EB512A2A66C08C00D2911A /* SettingsViewController.swift */; };
 		2B54D6C52D426B49001C135D /* TakeoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E4A1652A6852CE00A2861D /* TakeoverViewController.swift */; };
 		2B54D6C62D426B6C001C135D /* DeriveKeysHostingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD34A742B98B983008406D5 /* DeriveKeysHostingVC.swift */; };
+		2B54D6CC2D426C51001C135D /* DerivedKeyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B54D6C82D426C45001C135D /* DerivedKeyViewModel.swift */; };
+		2B54D6CF2D426CA7001C135D /* DeriveKeysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD34A782B98B9A2008406D5 /* DeriveKeysView.swift */; };
+		2B54D6D02D426D77001C135D /* DerivedAssetRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD34A7A2B98C129008406D5 /* DerivedAssetRow.swift */; };
 		2B558E842B47042D006212B2 /* UIHostingBridgeNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558E832B47042D006212B2 /* UIHostingBridgeNotifications.swift */; };
 		2B558E862B47044C006212B2 /* PrepareForScanViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558E852B47044C006212B2 /* PrepareForScanViewModel.swift */; };
 		2B558E882B4704BA006212B2 /* PrepareForScanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558E872B4704BA006212B2 /* PrepareForScanView.swift */; };
@@ -898,6 +901,7 @@
 		2B3E6C0E2ACDAB97000E91CF /* AddAssetsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddAssetsViewController.xib; sourceTree = "<group>"; };
 		2B3E6C102ACE96AC000E91CF /* AddAssetViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAssetViewCell.swift; sourceTree = "<group>"; };
 		2B3E6C122ACE96D7000E91CF /* AddAssetViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddAssetViewCell.xib; sourceTree = "<group>"; };
+		2B54D6C82D426C45001C135D /* DerivedKeyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DerivedKeyViewModel.swift; sourceTree = "<group>"; };
 		2B558E832B47042D006212B2 /* UIHostingBridgeNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHostingBridgeNotifications.swift; sourceTree = "<group>"; };
 		2B558E852B47044C006212B2 /* PrepareForScanViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareForScanViewModel.swift; sourceTree = "<group>"; };
 		2B558E872B4704BA006212B2 /* PrepareForScanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareForScanView.swift; sourceTree = "<group>"; };
@@ -1372,6 +1376,22 @@
 			path = AddAsset;
 			sourceTree = "<group>";
 		};
+		2B54D6C72D426C1E001C135D /* NCW */ = {
+			isa = PBXGroup;
+			children = (
+				2BD34A762B98B995008406D5 /* DeriveKeysViewModel.swift */,
+			);
+			path = NCW;
+			sourceTree = "<group>";
+		};
+		2B54D6CD2D426C56001C135D /* EW */ = {
+			isa = PBXGroup;
+			children = (
+				2B54D6C82D426C45001C135D /* DerivedKeyViewModel.swift */,
+			);
+			path = EW;
+			sourceTree = "<group>";
+		};
 		2B558E812B470037006212B2 /* PrepareForScan */ = {
 			isa = PBXGroup;
 			children = (
@@ -1524,11 +1544,12 @@
 		2BD34A732B98B940008406D5 /* DeriveKeys */ = {
 			isa = PBXGroup;
 			children = (
+				2B54D6CD2D426C56001C135D /* EW */,
 				2BD34A742B98B983008406D5 /* DeriveKeysHostingVC.swift */,
-				2BD34A762B98B995008406D5 /* DeriveKeysViewModel.swift */,
 				2BD34A782B98B9A2008406D5 /* DeriveKeysView.swift */,
 				2BD34A7A2B98C129008406D5 /* DerivedAssetRow.swift */,
 				2BD34A7C2B99D265008406D5 /* DerivedKeyItem.swift */,
+				2B54D6C72D426C1E001C135D /* NCW */,
 			);
 			path = DeriveKeys;
 			sourceTree = "<group>";
@@ -2691,6 +2712,8 @@
 				2B2B1AC22D2D531100A2B39D /* EnvironmentConstantsRentblocks.swift in Sources */,
 				2B2B19D52D2D120E00A2B39D /* AssetHeaderUIView.swift in Sources */,
 				2B2B1AAB2D2D126000A2B39D /* FireblocksManager.swift in Sources */,
+				2B54D6CF2D426CA7001C135D /* DeriveKeysView.swift in Sources */,
+				2B54D6D02D426D77001C135D /* DerivedAssetRow.swift in Sources */,
 				2B2B19D62D2D120E00A2B39D /* AppleSignInManager.swift in Sources */,
 				2B2B19D82D2D120E00A2B39D /* UsersLocalStorageManager.swift in Sources */,
 				2B2B19DB2D2D120E00A2B39D /* TabBarViewController.swift in Sources */,
@@ -2801,6 +2824,7 @@
 				2B2B1A562D2D120E00A2B39D /* MpcKeyCellView.swift in Sources */,
 				2B2B1A582D2D120E00A2B39D /* UIHostingBridgeNotifications.swift in Sources */,
 				2B2B1A592D2D120E00A2B39D /* ValidateRequestIdHostingVC.swift in Sources */,
+				2B54D6CC2D426C51001C135D /* DerivedKeyViewModel.swift in Sources */,
 				2B2B1A5B2D2D120E00A2B39D /* ValidateRequestIdView.swift in Sources */,
 				2B2B1A5F2D2D120E00A2B39D /* DerivedKeyItem.swift in Sources */,
 				2B2B1A602D2D120E00A2B39D /* SignInView.swift in Sources */,

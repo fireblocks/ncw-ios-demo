@@ -83,9 +83,9 @@ class AssetListViewController: UIViewController {
     }
     
     @IBAction func settingsTapped(_ sender: UIButton){
-//        let vc = SettingsViewController()
-//        vc.hidesBottomBarWhenPushed = true
-//        navigationController?.pushViewController(vc, animated: true)
+        let vc = SettingsViewController()
+        vc.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     private func navigateToChooseAssetScreen(flowType: ChooseAssetFlowType) {

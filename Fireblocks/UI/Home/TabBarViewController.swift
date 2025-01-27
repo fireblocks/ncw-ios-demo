@@ -56,9 +56,9 @@ class TabBarViewController: UITabBarController {
     }
     
     @objc func settingsTapped(){
-//        let vc = SettingsViewController()
-//        vc.hidesBottomBarWhenPushed = true
-//        navigationController?.pushViewController(vc, animated: true)
+        let vc = SettingsViewController()
+        vc.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(vc, animated: true)
     }
 
     private func configTabBarView(){
