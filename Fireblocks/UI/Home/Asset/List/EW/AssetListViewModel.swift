@@ -150,7 +150,7 @@ class AssetListViewModel {
 
     func toggleAssetExpanded(asset: AssetSummary, section: Int) {
         if let index = assetsSummary.firstIndex(where: {$0 == asset}) {
-            assetsSummary[index].isExpanded?.toggle()
+            assetsSummary[index].isExpanded.toggle()
             delegate?.refreshSection(section: section)
         }
     }
@@ -170,12 +170,12 @@ class AssetListViewModel {
     func getBalance() -> String {
         var balanceSum: Double = 0.0
         assetsSummary.filter({$0.balance != nil}).map({$0.balance!}).forEach { balance in
-            if let total = balance.total, let price = Double(total) {
-                balanceSum += price
+            if let assetId = balance.id, let total = balance.total, let price = Double(total) {
+                balanceSum += CryptoCurrencyManager.shared.getPrice(assetId: assetId, amount: price)
             }
         }
         
-        return "$\(balanceSum.formatFractions())"
+        return "$\(balanceSum.formatFractions(fractionDigits: 2))"
     }
     
     func getIsButtonsEnabled() -> Bool {

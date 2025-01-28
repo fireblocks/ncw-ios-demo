@@ -46,11 +46,6 @@ struct AssetSummary: Codable, Identifiable, Hashable {
         self.asset = try? container.decode(Asset.self, forKey: .asset)
         self.address = try? container.decode(AddressDetails.self, forKey: .address)
         self.balance = try? container.decode(AssetBalance.self, forKey: .balance)
-//        do {
-//            self.isExpanded = try container.decode(Bool.self, forKey: .isExpanded)
-//        } catch {
-//            self.isExpanded = false
-//        }
         self.iconUrl = try? container.decode(String.self, forKey: .iconUrl)
 
     }

@@ -66,9 +66,15 @@ class AssetViewCell: AddAssetViewCell {
     func configCellWith(asset: AssetSummary, isBlockchainHidden: Bool = false) {
         configAssetView(asset: asset, isBlockchainHidden: isBlockchainHidden)
 
-        if let total = asset.balance?.total, let price = Double(total) {
-            assetValue.text = "$\(price.formatFractions(fractionDigits: 2))"
+        #if EW
+        if let assetId = asset.asset?.id, let total = asset.balance?.total, let price = Double(total) {
+            assetValue.text = CryptoCurrencyManager.shared.getTotalPrice(assetId: assetId, amount: price)
         }
+        #else
+        if let rate = asset.asset?.rate,let total = asset.balance?.total, let price = Double(total) {
+            assetValue.text = "$\((price * rate).formatFractions(fractionDigits: 2))"
+        }
+        #endif
         if let balance = asset.balance?.total {
             assetTokenAmount.text = "\(balance)"
         }

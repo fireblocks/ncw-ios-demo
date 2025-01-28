@@ -6,8 +6,19 @@
 //
 
 import Foundation
-import EmbeddedWalletSDKDev
+
+#if EW
+    #if DEV
+    import EmbeddedWalletSDKDev
+    #else
+    import EmbeddedWalletSDK
+    #endif
+#endif
+#if DEV
 import FireblocksDev
+#else
+import FireblocksSDK
+#endif
 
 @Observable
 class EWManager: Hashable {
@@ -315,7 +326,7 @@ class EWManager: Hashable {
         return nil
     }
     
-    func estimateOneTimeAddressTransaction(accountId: Int, assetId: String, destAddress: String, amount: String, feeLevel: FeeLevel) async -> EmbeddedWalletSDKDev.EstimatedTransactionFeeResponse? {
+    func estimateOneTimeAddressTransaction(accountId: Int, assetId: String, destAddress: String, amount: String, feeLevel: FeeLevel) async -> EstimatedTransactionFeeResponse? {
         do {
             let instance = try EmbeddedWallet(authClientId: authClientId, authTokenRetriever: self, options: options)
             let request = TransactionRequest(

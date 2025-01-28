@@ -33,7 +33,7 @@ struct MessageResponse: Codable {
 }
 
 struct EstimatedFeeResponse: Codable {
-    var fee: FeeResponse?
+    var fee: EstimatedTransactionFeeResponse?
 }
 
 struct SuccessValue: Codable {
@@ -44,14 +44,7 @@ struct ErrorResponse: Codable {
     var error: String
 }
 
-struct PostTransactionParams: Encodable {
-    let assetId: String
-    let destAddress: String
-    let accountId: String = "0"
-    let amount: String
-    let note: String
-    let feeLevel: String? //LOW, MEDIUM, HIGH
-}
+
 
 struct CreateTransactionResponse: Decodable {
     let id: String

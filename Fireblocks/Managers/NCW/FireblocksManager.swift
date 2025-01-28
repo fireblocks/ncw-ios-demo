@@ -45,25 +45,25 @@ class FireblocksManager: FireblocksManagerProtocol, ObservableObject {
     }
         
 
-    func isInstanceInitialized(authUser: AuthUser?) -> Bool {
-        guard let deviceId = authUser?.deviceId,
-              let walletId = authUser?.walletId
-        else {
-            AppLoggerManager.shared.logger()?.log("FireblocksManager, initInstance() failed: user credentials is nil")
-            return false
-        }
-        
-        self.deviceId = deviceId
-        self.walletId = walletId
-        
-        do {
-            try initializeFireblocksSDK()
-            return true
-        } catch {
-            AppLoggerManager.shared.logger()?.log("FireblocksManager, initInstance() throws exc: \(error).")
-            return false
-        }
-    }
+//    func isInstanceInitialized(authUser: AuthUser?) -> Bool {
+//        guard let deviceId = authUser?.deviceId,
+//              let walletId = authUser?.walletId
+//        else {
+//            AppLoggerManager.shared.logger()?.log("FireblocksManager, initInstance() failed: user credentials is nil")
+//            return false
+//        }
+//        
+//        self.deviceId = deviceId
+//        self.walletId = walletId
+//        
+//        do {
+//            try initializeFireblocksSDK()
+//            return true
+//        } catch {
+//            AppLoggerManager.shared.logger()?.log("FireblocksManager, initInstance() throws exc: \(error).")
+//            return false
+//        }
+//    }
         
     func getNCWInstance() -> Fireblocks? {
         do {
@@ -154,27 +154,7 @@ class FireblocksManager: FireblocksManagerProtocol, ObservableObject {
     func startPolling() {
         PollingManager.shared.createListener(deviceId: deviceId, instance: self, sessionManager: SessionManager.shared)
     }
-    
-    func signTransaction(transactionId: String) async -> Bool {
-        do {
-            let startDate = Date()
-            let result = try await getNCWInstance()?.signTransaction(txId: transactionId)
-            print("Measure - signTransaction \(Date().timeIntervalSince(startDate))")
-            print("RESULT: \(result?.transactionSignatureStatus.rawValue ?? "")")
-            return result?.transactionSignatureStatus == .COMPLETED
-        } catch let err as FireblocksError {
-            AppLoggerManager.shared.logger()?.log("FireblocksManager, signTransaction() failed: \(err.description).")
-            return false
-        } catch {
-            AppLoggerManager.shared.logger()?.log("FireblocksManager, signTransaction() failed: \(error.localizedDescription).")
-            return false
-        }
-    }
-    
-    func stopTransaction() {
-        getNCWInstance()?.stopSignTransaction()
-    }
-            
+                
     func initializeFireblocksSDK() throws {
         if getNCWInstance() == nil {
             let _ = try Fireblocks.initialize(

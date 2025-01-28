@@ -34,7 +34,7 @@ struct Asset: Codable, Identifiable, Hashable {
     var networkProtocol = ""
     var baseAsset = ""
     var rate: Double? = 1.0
-    var fee: FeeResponse?
+    var fee: EstimatedTransactionFeeResponse?
     var balance: Double?
     var price: Double?
     var address: String?

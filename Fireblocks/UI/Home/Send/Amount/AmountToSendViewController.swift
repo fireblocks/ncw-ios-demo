@@ -95,10 +95,10 @@ class AmountToSendViewController: UIViewController {
     }
     
     private func navigateToAddReceiverScreen(){
-//        let vc = SendToViewController(nibName: "SendToViewController", bundle: nil)
-//        vc.viewModel.transaction = viewModel.createTransaction()
-//        vc.hidesBottomBarWhenPushed = true
-//        self.navigationController?.pushViewController(vc, animated: true)
+        let vc = SendToViewController(nibName: "SendToViewController", bundle: nil)
+        vc.viewModel.transaction = viewModel.createTransaction()
+        vc.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 

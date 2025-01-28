@@ -21,20 +21,12 @@ private let logger = Logger(subsystem: "Fireblocks", category: "FireblocksManage
 class FireblocksManager: FireblocksManagerProtocol, ObservableObject {
     var latestBackupDeviceId: String = ""
     
-    func isInstanceInitialized(authUser: AuthUser?) -> Bool {
-        return false
-    }
+//    func isInstanceInitialized(authUser: AuthUser?) -> Bool {
+//        return false
+//    }
     
     func stopPollingMessages() {
         PollingManager.shared.stopPolling()
-    }
-    
-    func signTransaction(transactionId: String) async -> Bool {
-        return false
-    }
-    
-    func stopTransaction() {
-        
     }
     
     static let shared = FireblocksManager()

@@ -70,8 +70,18 @@ final class ApproveViewModel {
     }
     
     func getTotalAmountPrice() -> String {
-        //TODO - get rate EW
         #if EW
+        var totalAmount = transaction.amountToSend
+        if let fee = transaction.getFee() {
+            totalAmount += fee
+        }
+        
+        if let assetId = transaction.asset.asset?.id {
+            return CryptoCurrencyManager.shared.getTotalPrice(assetId: assetId, amount: totalAmount)
+        }
+        
+        return "$\(totalAmount.formatFractions(fractionDigits: 2))"
+
         #else
         if let fee = transaction.getFee(), let rate = transaction.asset.asset?.rate {
             let totalAmount = transaction.amountToSend + fee
@@ -79,9 +89,9 @@ final class ApproveViewModel {
             
             return "$\(totalPrice.formatFractions(fractionDigits: 2))"
         }
+        return "$\(transaction.amountToSend.formatFractions(fractionDigits: 2))"
+
         #endif
-        
-        return ""
     }
     
     func approveTransaction() {

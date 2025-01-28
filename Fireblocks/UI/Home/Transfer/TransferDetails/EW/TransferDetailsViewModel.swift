@@ -99,14 +99,11 @@ class TransferDetailsViewModel {
     }
     
     func approveTransaction() async  {
-        if let core = ewManager.getCore(), let txId = transferInfo?.transactionID {
-            do {
-                let isApproved = try await core.signTransaction(txId: txId).transactionSignatureStatus == .COMPLETED
+        if let txId = transferInfo?.transactionID {
+            if await FireblocksManager.shared.signTransaction(transactionId: txId) {
                 var approvedTransactions = UsersLocalStorageManager.shared.approvedTransactions.value() ?? []
                 approvedTransactions.append(txId)
                 UsersLocalStorageManager.shared.approvedTransactions.set(approvedTransactions)
-            } catch {
-                ewManager.errorMessage = error.localizedDescription
             }
         }
     }

@@ -40,7 +40,7 @@ protocol FireblocksManagerProtocol {
     func getFullKey() async -> [String: Data]?
     func generateKeys() async -> Set<KeyDescriptor>?
     func isKeyInitialized(algorithm: Algorithm) -> Bool
-    func isInstanceInitialized(authUser: AuthUser?) -> Bool
+//    func isInstanceInitialized(authUser: AuthUser?) -> Bool
     func getUserEmail() -> String?
     func assignWallet() async -> String?
     
@@ -222,6 +222,26 @@ extension FireblocksManagerProtocol {
             AppLoggerManager.shared.logger()?.log("FireblocksManager, addDevice() failed: \(error.localizedDescription).")
             return false
         }
+    }
+
+    func signTransaction(transactionId: String) async -> Bool {
+        do {
+            let startDate = Date()
+            let result = try await getNCWInstance()?.signTransaction(txId: transactionId)
+            print("Measure - signTransaction \(Date().timeIntervalSince(startDate))")
+            print("RESULT: \(result?.transactionSignatureStatus.rawValue ?? "")")
+            return result?.transactionSignatureStatus == .COMPLETED
+        } catch let err as FireblocksError {
+            AppLoggerManager.shared.logger()?.log("FireblocksManager, signTransaction() failed: \(err.description).")
+            return false
+        } catch {
+            AppLoggerManager.shared.logger()?.log("FireblocksManager, signTransaction() failed: \(error.localizedDescription).")
+            return false
+        }
+    }
+    
+    func stopTransaction() {
+        getNCWInstance()?.stopSignTransaction()
     }
 
 }

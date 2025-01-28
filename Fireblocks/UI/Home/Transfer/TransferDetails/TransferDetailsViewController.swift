@@ -111,6 +111,7 @@ class TransferDetailsViewController: UIViewController {
         showActivityIndicator()
         Task {
             await viewModel.approveTransaction()
+            hideActivityIndicator()
         }
     }
     

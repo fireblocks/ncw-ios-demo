@@ -19,6 +19,10 @@ extension View {
 }
 
 class GenericDecoder {
+    static func decode<T: Codable>(data: Data) throws -> T? {
+        return try JSONDecoder().decode(T.self, from: data)
+    }
+
     static func decode<T: Codable>(dictionary: Any?) -> T? {
        guard let dictionary = dictionary as? [String: Any] else { return nil }
        var result: T?

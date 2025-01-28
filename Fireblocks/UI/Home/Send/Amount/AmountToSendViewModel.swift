@@ -73,7 +73,11 @@ class AmountToSendViewModel {
         if let balance = asset.balance?.total {
             assetAmountString = "\(balance)"
         }
-        isDecimalEntered = true
+        if assetAmountString.contains(".") {
+            isDecimalEntered = true
+        } else {
+            isDecimalEntered = false
+        }
         
         calculatePrice()
         checkAmountIsValid()
@@ -84,9 +88,15 @@ class AmountToSendViewModel {
     }
     
     private func calculatePrice(){
-//        if let rate = asset.asset {
-//            calculatedPrice = (assetAmount * rate).formatFractions(fractionDigits: 2)
-//        }
+        #if EW
+        if let assetId = asset.asset?.id {
+            calculatedPrice = CryptoCurrencyManager.shared.getPrice(assetId: assetId, amount: assetAmount).formatFractions(fractionDigits: 2)
+        }
+        #else
+        if let rate = asset.asset?.rate {
+            calculatedPrice = (assetAmount * rate).formatFractions(fractionDigits: 2)
+        }
+        #endif
         updateUI()
     }
     
@@ -106,9 +116,9 @@ class AmountToSendViewModel {
         delegate?.amountAndSumChanged(amount: "\(assetAmountString) \(asset.asset?.symbol ?? "")", price: "$\(calculatedPrice)")
     }
     
-//    func createTransaction() -> FBTransaction {
-//        return FBTransaction(asset: asset,
-//                           amountToSend: assetAmount,
-//                           price: calculatedPrice)
-//    }
+    func createTransaction() -> FBTransaction {
+        return FBTransaction(asset: asset,
+                           amountToSend: assetAmount,
+                           price: calculatedPrice)
+    }
 }

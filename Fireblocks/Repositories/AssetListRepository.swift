@@ -7,10 +7,7 @@
 
 import Foundation
 
-enum AssetError: Error {
-    case failedToGetFee(assetId: String)
-    case failedToCreateTransaction(assetId: String)
-}
+
 
 class AssetListRepository {
     lazy var walletID = FireblocksManager.shared.getWalletId()

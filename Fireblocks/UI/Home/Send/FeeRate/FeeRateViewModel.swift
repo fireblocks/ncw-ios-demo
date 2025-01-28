@@ -7,6 +7,13 @@
 
 import Foundation
 import Combine
+#if EW
+    #if DEV
+    import EmbeddedWalletSDKDev
+    #else
+    import EmbeddedWalletSDK
+    #endif
+#endif
 
 protocol FeeRateViewModelDelegate: AnyObject {
     func refreshData()
