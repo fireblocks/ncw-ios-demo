@@ -16,7 +16,7 @@ struct AddDeviceView: View {
     var body: some View {
         ZStack {
             AppBackgroundView()
-            VStack {
+            VStack(spacing: 16) {
                 Image(.addDevice)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
@@ -26,12 +26,12 @@ struct AddDeviceView: View {
                         .font(.h1)
                         .frame(maxWidth: .infinity, alignment: .center)
                         .multilineTextAlignment(.center)
-                        .padding(.bottom, 24)
+                        .padding(.bottom, 16)
                     Text("To keep your assets safe, this device must be added to your wallet.")
                         .foregroundStyle(.secondary)
                         .multilineTextAlignment(.center)
                         .font(.b1)
-                        .padding(.bottom, 56)
+                        .padding(.bottom, 40)
                     
                     Button {
                         viewModel.requestJoinWallet()
@@ -68,6 +68,11 @@ struct AddDeviceView: View {
 
 #Preview {
     NavigationContainerView {
-        AddDeviceView()
+        SpinnerViewContainer {
+            AddDeviceView()
+                .environmentObject(FireblocksManager.shared)
+                .environmentObject(GoogleSignInManager())
+                .environmentObject(AppleSignInManager())
+        }
     }
 }

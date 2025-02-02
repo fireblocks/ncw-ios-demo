@@ -76,22 +76,6 @@ class EWManager: Hashable {
     }
     
     //MARK: - EmbeddedWalletAccountsProtocol -
-    func assignWallet() async -> String? {
-        do {
-            errorMessage = nil
-            let instance = try EmbeddedWallet(authClientId: authClientId, authTokenRetriever: self, options: options)
-            let result = try await instance.assignWallet()
-            walletId = result.walletId
-            return walletId
-        } catch let error as EmbeddedWalletException {
-            errorMessage = error.description
-        } catch {
-            errorMessage = error.localizedDescription
-        }
-            
-        return nil
-        
-    }
     
     func createAccount() async -> Int? {
         do {
@@ -149,6 +133,21 @@ class EWManager: Hashable {
             
         return nil
     }
+    
+    func getDevice(deviceId: String) async -> Device? {
+        do {
+            errorMessage = nil
+            let instance = try EmbeddedWallet(authClientId: authClientId, authTokenRetriever: self, options: options)
+            return try await instance.getDevice(deviceId: deviceId)
+        } catch let error as EmbeddedWalletException {
+            errorMessage = error.description
+        } catch {
+            errorMessage = error.localizedDescription
+        }
+            
+        return nil
+    }
+
     
     //MARK: - EmbeddedWalletAssetsProtocol -
 

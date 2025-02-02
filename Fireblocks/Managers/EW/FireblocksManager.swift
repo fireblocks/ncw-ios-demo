@@ -147,6 +147,15 @@ class FireblocksManager: FireblocksManagerProtocol, ObservableObject {
         return nil
     }
     
+    func getDevice() async -> Device? {
+        guard !deviceId.isEmpty else {
+            errorMessage = "Failed to get device. deviceId is empty"
+            return nil
+        }
+        
+        return await ewManager.getDevice(deviceId: deviceId)
+    }
+    
     func getLatestBackupState() async -> LatestBackupState  {
         guard let instance = getInstance() else { return .error }
         guard let email = getUserEmail() else {
@@ -161,8 +170,9 @@ class FireblocksManager: FireblocksManagerProtocol, ObservableObject {
             }
             
             if let keys = try await instance.getLatestBackup().keys {
-                if let _ = keys.first?.deviceId {
+                if let latestBackupDeviceId = keys.first?.deviceId {
                     self.deviceId = generateDeviceId()
+                    self.latestBackupDeviceId = latestBackupDeviceId
                     return initializeCore() == nil ? .error : .joinOrRecover
                 } else {
                     errorMessage = "Couldn't sign in. There is no existing wallet"

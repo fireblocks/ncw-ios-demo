@@ -46,7 +46,7 @@ extension RecoverWalletView {
                     return
                 }
                 
-                if redirect, fireblocksManager.latestBackupDeviceId.isTrimmedEmpty {
+                if fireblocksManager.latestBackupDeviceId.isTrimmedEmpty {
                     return
                 }
                 

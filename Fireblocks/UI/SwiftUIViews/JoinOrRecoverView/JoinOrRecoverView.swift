@@ -16,22 +16,21 @@ struct JoinOrRecoverView: View {
     var body: some View {
         ZStack {
             AppBackgroundView()
-            VStack {
+            VStack(spacing: 16) {
                 Image("joinOrRecover")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-
                 VStack {
                     Text("Join or recover?")
                         .font(.h1)
                         .frame(maxWidth: .infinity, alignment: .center)
                         .multilineTextAlignment(.center)
-                        .padding(.bottom, 24)
+                        .padding(.bottom, 16)
                     Text("Add this device to your existing wallet or recover your wallet with this device.")
                         .foregroundStyle(.secondary)
                         .multilineTextAlignment(.center)
                         .font(.b1)
-                        .padding(.bottom, 56)
+                        .padding(.bottom, 40)
 
                     VStack(spacing: 24) {
                         Button {
@@ -91,6 +90,8 @@ struct JoinOrRecoverView: View {
 
 #Preview {
     NavigationContainerView {
-        JoinOrRecoverView(isLaunch: false)
+        SpinnerViewContainer {
+            JoinOrRecoverView(isLaunch: false)
+        }
     }
 }

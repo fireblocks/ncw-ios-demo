@@ -21,36 +21,34 @@ struct LaunchView: View {
             AppBackgroundView()
             
             VStack {
-                VStack(spacing: 40) {
-                    Spacer()
+                VStack(spacing: 0) {
                     Text("Securely store, send, and receive digital assets on the go.")
                         .font(.h1)
                         .frame(maxWidth: .infinity, alignment: .center)
                         .multilineTextAlignment(.center)
+                        .padding(.top, 40)
                     Button {
                         coordinator.path.append(NavigationTypes.signIn)
                     } label: {
                         Image("letsGo")
                     }
-                    .padding(.bottom, 40)
+                    .padding(.vertical, 40)
                 }
-                .frame(maxHeight: .infinity)
-                VStack {
-                    Image(.launchIllustration)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .opacity(0.7)
-                    Spacer()
-                    Text(Bundle.main.versionLabel)
-                        .font(.b4)
-                        .foregroundStyle(.secondary)
-                        .frame(alignment: .center)
-                        .padding(8)
-                        .background(.thinMaterial, in: .capsule)
-                }
-                .frame(maxHeight: .infinity)
+                .padding(.horizontal)
+                Spacer()
+                Image(.launchIllustration)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .opacity(0.7)
+                Spacer()
+                Text(Bundle.main.versionLabel)
+                    .font(.b4)
+                    .foregroundStyle(.secondary)
+                    .frame(alignment: .center)
+                    .padding(8)
+                    .background(.thinMaterial, in: .capsule)
+
             }
-            .padding(.horizontal)
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     HStack {

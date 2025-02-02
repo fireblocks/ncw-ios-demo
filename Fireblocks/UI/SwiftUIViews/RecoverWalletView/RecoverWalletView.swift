@@ -21,7 +21,7 @@ struct RecoverWalletView: View {
     var body: some View {
         ZStack {
             AppBackgroundView()
-            VStack {
+            VStack(spacing: 16) {
                 Image(.recoverWallet)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
@@ -31,12 +31,12 @@ struct RecoverWalletView: View {
                         .font(.h1)
                         .frame(maxWidth: .infinity, alignment: .center)
                         .multilineTextAlignment(.center)
-                        .padding(.bottom, 24)
+                        .padding(.bottom, 16)
                     Text("Recover keys from where you last saved them.")
                         .foregroundStyle(.secondary)
                         .multilineTextAlignment(.center)
                         .font(.b1)
-                        .padding(.bottom, 56)
+                        .padding(.bottom, 40)
                     
                     Button {
                         viewModel.recover()
@@ -72,6 +72,13 @@ struct RecoverWalletView: View {
 
 #Preview {
     NavigationContainerView {
-        RecoverWalletView(redirect: false)
+        SpinnerViewContainer {
+            RecoverWalletView(redirect: false)
+                .environmentObject(FireblocksManager.shared)
+                .environmentObject(GoogleSignInManager())
+                .environmentObject(AppleSignInManager())
+
+        }
     }
 }
+

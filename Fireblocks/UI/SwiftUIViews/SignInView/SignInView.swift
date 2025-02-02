@@ -24,14 +24,14 @@ struct SignInView: View {
             AppBackgroundView()
 
             VStack {
-                VStack(spacing: 40) {
+                VStack {
                     Text("Sign in to your account")
                         .font(.h1)
                         .frame(maxWidth: .infinity, alignment: .center)
                         .multilineTextAlignment(.center)
                 }
-                .padding(.top, 68)
-                .padding(.bottom, 40)
+                .padding(.top, 72)
+                .padding(.bottom, 80)
 
                 VStack(spacing: 24) {
                     Button {
@@ -97,7 +97,7 @@ struct SignInView: View {
                         Button {
                             print("trashMenu")
                         } label: {
-                            Label("Regenerate wallet (delete+create) ", image: "trashMenu")
+                            Label("Clear and create a new wallet", image: "trashMenu")
                                 .frame(maxWidth: .infinity, alignment: .leading)
                                 .padding()
                             
@@ -152,7 +152,12 @@ struct SignInView: View {
 }
 
 #Preview {
-    NavigationView {
-        SignInView()
+    NavigationContainerView {
+        SpinnerViewContainer {
+            SignInView()
+                .environmentObject(FireblocksManager.shared)
+                .environmentObject(GoogleSignInManager())
+                .environmentObject(AppleSignInManager())
+        }
     }
 }
