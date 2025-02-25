@@ -61,7 +61,13 @@ class BackupViewController: UIViewController{
         showActivityIndicator()
         Task {
             let passphraseInfo = await viewModel.getPassphraseInfo(location: .GoogleDrive)
-            authenticateUser(passphraseId: passphraseInfo.passphraseId) { _ in
+            if let gidUser = await viewModel.gidUser() {
+                actionType.performDriveAction(gidUser, passphraseId: passphraseInfo.passphraseId) { _ in
+                    
+                }
+            } else {
+                authenticateUser(passphraseId: passphraseInfo.passphraseId) { _ in
+                }
             }
         }
     }
@@ -81,7 +87,7 @@ class BackupViewController: UIViewController{
     @IBAction func goBackTapped(_ sender: UIButton) {
         navigationController?.popViewController(animated: true)
     }
-    
+        
     private func authenticateUser(passphraseId: String, callback: @escaping (String) -> ()) {
         guard let gidConfig = viewModel.getGidConfiguration() else {
             print("❌ BackupViewController, gidConfig is nil.")

@@ -28,7 +28,7 @@ class PollingManager: ObservableObject {
     func startPolling(accountId: Int, order: Order) async {
         guard !isActive else { return }
         isActive = true
-        await pollTransactions(accountId: accountId, order: order)
+//        await pollTransactions(accountId: accountId, order: order)
     }
     
     func stopPolling() {

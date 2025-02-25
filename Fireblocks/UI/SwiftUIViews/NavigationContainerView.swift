@@ -6,14 +6,28 @@
 //
 
 import SwiftUI
+import EmbeddedWalletSDKDev
 
 enum NavigationTypes: Hashable {
-    case signIn
+    case signIn(SignInView.ViewModel)
     case joinOrRecover
     case recoverWallet(Bool)
     case addDevice
     case addDeviceQR(String, String)
     case feedback(EndFlowFeedbackView.ViewModel)
+    case backup(Bool)
+    case takeover
+    case joinDevice
+    case settings
+    case info
+    
+    #if EW
+    case createConnection(Int)
+    case submitConnection(CreateWeb3ConnectionResponse)
+    case connectionDetails(Web3Connection, Bool)
+//    case scanQR(any QRCodeScannerViewControllerDelegate)
+    case NFTToken(String)
+    #endif
 }
 
 class Coordinator: ObservableObject {
@@ -25,21 +39,45 @@ struct NavigationContainerView<Content: View>: View {
     @StateObject var fireblocksManager = FireblocksManager.shared
     @StateObject var googleSignInManager = GoogleSignInManager()
     @StateObject var appleSignInManager = AppleSignInManager()
+    #if EW
+    @State var ewManager: EWManager
+    let isPreview: Bool
+    
+    init(coordinator: Coordinator = Coordinator(), fireblocksManager: FireblocksManager = FireblocksManager.shared, googleSignInManager: GoogleSignInManager = GoogleSignInManager(), appleSignInManager: AppleSignInManager = AppleSignInManager(), isPreview: Bool = false, @ViewBuilder content: @escaping () -> Content) {
+        _coordinator = StateObject(wrappedValue: coordinator)
+        _fireblocksManager = StateObject(wrappedValue: fireblocksManager)
+        _googleSignInManager = StateObject(wrappedValue: googleSignInManager)
+        _appleSignInManager = StateObject(wrappedValue: appleSignInManager)
+        _ewManager = State(initialValue: EWManager(isPreview: isPreview))
+        self.isPreview = isPreview
+        self.content = content()
+    }
+//
+//    init(isPreview: Bool = false) {
+//        _ewManager = State(initialValue: isPreview ? EWManager(isPreview: true) : EWManager.shared)
+//    }
+//#else
+    #endif
+    
     @ViewBuilder var content: Content
     
     var body: some View {
         NavigationStack(path: $coordinator.path) {
             content
+                .toolbarBackground(AssetsColors.background.color(), for: .navigationBar)
                 .environmentObject(coordinator)
                 .environmentObject(fireblocksManager)
                 .environmentObject(googleSignInManager)
                 .environmentObject(appleSignInManager)
-
+            #if EW
+                .environment(ewManager)
+            #endif
             .navigationDestination(for: NavigationTypes.self) { type in
                 switch type {
-                case .signIn:
+                case .signIn(let viewModel):
                     SpinnerViewContainer {
                         SignInView()
+                            .environmentObject(viewModel)
                             .environmentObject(coordinator)
                             .environmentObject(fireblocksManager)
                             .environmentObject(googleSignInManager)
@@ -74,8 +112,54 @@ struct NavigationContainerView<Content: View>: View {
                         EndFlowFeedbackView(viewModel: viewModel, content: nil)                     .environmentObject(coordinator)
                             .environmentObject(fireblocksManager)
                     }
+                case .backup(let redirect):
+                    SpinnerViewContainer {
+                        BackupWalletView(redirect: redirect)
+                            .environmentObject(coordinator)
+                            .environmentObject(fireblocksManager)
+                            .environmentObject(googleSignInManager)
+
+                    }
+                case .takeover:
+                    TakeoverViewControllerRep()
+                case .joinDevice:
+                    PrepareForScanHostingVCRep()
+                case .info:
+                    AdvancedInfoViewControllerRep()
+                case .settings:
+                    SpinnerViewContainer {
+                        SettingsView()
+                            .environmentObject(coordinator)
+                    }
+                #if EW
+                case .createConnection(let accountId):
+                    SpinnerViewContainer {
+                        EWWeb3ConnectionURI(accountId: accountId)
+                            .environmentObject(coordinator)
+                            .environment(ewManager)
+                    }
+                case .submitConnection(let response):
+                    SpinnerViewContainer {
+                        EWWeb3ConnectionSubmitView(response: response)
+                            .environmentObject(coordinator)
+                            .environment(ewManager)
+                    }
+                case .connectionDetails(let connection, let canRemove):
+                    SpinnerViewContainer {
+                        EWWeb3ConnectionDetailsView(connection: connection, canRemove: canRemove)
+                            .environmentObject(coordinator)
+                            .environment(ewManager)
+                    }
+//                case .scanQR(let delegate):
+//                    GenericController(uiViewType: QRCodeScannerViewController(delegate: delegate)
+//                    )
+                case .NFTToken(let id):
+                    SpinnerViewContainer {
+                        EWNFTDetailsView(id: id)
+                            .environmentObject(coordinator)
+                    }
+                #endif
                 }
-                
             }
         }
     }

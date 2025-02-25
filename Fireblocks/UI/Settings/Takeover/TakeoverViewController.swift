@@ -6,11 +6,21 @@
 //
 
 import UIKit
+import SwiftUI
 #if DEV
 import FireblocksDev
 #else
 import FireblocksSDK
 #endif
+
+struct TakeoverViewControllerRep: UIViewControllerRepresentable {
+    func makeUIViewController(context: Context) -> TakeoverViewController {
+        return TakeoverViewController()
+    }
+
+    func updateUIViewController(_ uiViewController: TakeoverViewController, context: Context) {
+    }
+}
 
 class TakeoverViewController: UIViewController {
 

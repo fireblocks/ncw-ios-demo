@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -13,15 +12,12 @@
         <array key="Roboto-Bold.ttf">
             <string>Roboto-Bold</string>
         </array>
-        <array key="Roboto-Medium.ttf">
-            <string>Roboto-Medium</string>
-        </array>
         <array key="Roboto-Regular.ttf">
             <string>Roboto-Regular</string>
         </array>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AmountToSendViewController" customModule="Fireblocks___Dev__ngrok_" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AmountToSendViewController" customModule="EW_dev" customModuleProvider="target">
             <connections>
                 <outlet property="amountInput" destination="AHO-1f-2rA" id="xf8-pr-8PM"/>
                 <outlet property="amountPrice" destination="PTN-Pw-dxA" id="j6Q-OC-CMw"/>
@@ -77,24 +73,24 @@
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 BTC" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AHO-1f-2rA" userLabel="Amount">
-                    <rect key="frame" x="24" y="251" width="342" height="54"/>
-                    <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="46"/>
+                    <rect key="frame" x="24" y="251" width="342" height="55"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="46"/>
                     <color key="textColor" name="white"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$0.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PTN-Pw-dxA" userLabel="AmountPrice">
-                    <rect key="frame" x="24" y="313" width="342" height="16.666666666666686"/>
+                    <rect key="frame" x="24" y="314" width="342" height="16.666666666666686"/>
                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
                     <color key="textColor" name="gray_4"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error message" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3GI-rz-Lqw" userLabel="ErrorMessage">
-                    <rect key="frame" x="24" y="337.66666666666669" width="342" height="16.666666666666686"/>
+                    <rect key="frame" x="24" y="338.66666666666669" width="342" height="16.666666666666686"/>
                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
                     <color key="textColor" name="alert"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="htg-as-KHu" userLabel="Continue" customClass="AppActionBotton" customModule="Fireblocks___Dev__ngrok_" customModuleProvider="target">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="htg-as-KHu" userLabel="Continue" customClass="AppActionBotton" customModule="EW_dev" customModuleProvider="target">
                     <rect key="frame" x="16" y="752" width="358" height="50"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
@@ -105,13 +101,13 @@
                     </connections>
                 </view>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="fcg-0k-Ana" userLabel="NumberPad">
-                    <rect key="frame" x="16" y="429.66666666666674" width="358" height="297.33333333333326"/>
+                    <rect key="frame" x="16" y="430.66666666666674" width="358" height="296.33333333333326"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="n1I-w5-Q3p">
-                            <rect key="frame" x="4" y="0.0" width="350" height="68.333333333333329"/>
+                            <rect key="frame" x="4" y="0.0" width="350" height="68"/>
                             <subviews>
                                 <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h7k-cf-JHC" userLabel="1">
-                                    <rect key="frame" x="0.0" y="0.0" width="112" height="68.333333333333329"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="112" height="68"/>
                                     <color key="backgroundColor" name="gray_1"/>
                                     <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="24"/>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -123,7 +119,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hsw-1N-LcU" userLabel="2">
-                                    <rect key="frame" x="119" y="0.0" width="112" height="68.333333333333329"/>
+                                    <rect key="frame" x="119" y="0.0" width="112" height="68"/>
                                     <color key="backgroundColor" name="gray_1"/>
                                     <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="24"/>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -135,7 +131,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e5i-64-xic" userLabel="3">
-                                    <rect key="frame" x="238" y="0.0" width="112" height="68.333333333333329"/>
+                                    <rect key="frame" x="238" y="0.0" width="112" height="68"/>
                                     <color key="backgroundColor" name="gray_1"/>
                                     <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="24"/>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -158,7 +154,7 @@
                             </constraints>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="fQz-6M-a6s">
-                            <rect key="frame" x="4" y="76.333333333333314" width="350" height="68.333333333333314"/>
+                            <rect key="frame" x="4" y="76" width="350" height="68.333333333333314"/>
                             <subviews>
                                 <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9lQ-gV-KVn" userLabel="4">
                                     <rect key="frame" x="0.0" y="0.0" width="112" height="68.333333333333329"/>
@@ -208,10 +204,10 @@
                             </constraints>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="YTb-lg-hil">
-                            <rect key="frame" x="4" y="152.66666666666669" width="350" height="68.333333333333314"/>
+                            <rect key="frame" x="4" y="152.33333333333331" width="350" height="68"/>
                             <subviews>
                                 <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sEZ-qc-wUr" userLabel="7">
-                                    <rect key="frame" x="0.0" y="0.0" width="112" height="68.333333333333329"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="112" height="68"/>
                                     <color key="backgroundColor" name="gray_1"/>
                                     <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="24"/>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -223,7 +219,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V6Z-LW-ahI" userLabel="8">
-                                    <rect key="frame" x="119" y="0.0" width="112" height="68.333333333333329"/>
+                                    <rect key="frame" x="119" y="0.0" width="112" height="68"/>
                                     <color key="backgroundColor" name="gray_1"/>
                                     <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="24"/>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -235,7 +231,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" tag="9" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OKs-mv-PBx" userLabel="9">
-                                    <rect key="frame" x="238" y="0.0" width="112" height="68.333333333333329"/>
+                                    <rect key="frame" x="238" y="0.0" width="112" height="68"/>
                                     <color key="backgroundColor" name="gray_1"/>
                                     <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="24"/>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -258,10 +254,10 @@
                             </constraints>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="2qL-R7-E7h">
-                            <rect key="frame" x="4" y="228.99999999999997" width="350" height="68.333333333333343"/>
+                            <rect key="frame" x="4" y="228.33333333333331" width="350" height="68"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gW1-Hv-Uqi" userLabel=".">
-                                    <rect key="frame" x="0.0" y="0.0" width="112" height="68.333333333333329"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="112" height="68"/>
                                     <color key="backgroundColor" name="gray_1"/>
                                     <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="24"/>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -273,7 +269,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vZh-he-fEo" userLabel="0">
-                                    <rect key="frame" x="119" y="0.0" width="112" height="68.333333333333329"/>
+                                    <rect key="frame" x="119" y="0.0" width="112" height="68"/>
                                     <color key="backgroundColor" name="gray_1"/>
                                     <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="24"/>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -285,7 +281,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U3x-lV-QfU" userLabel="←">
-                                    <rect key="frame" x="238" y="0.0" width="112" height="68.333333333333329"/>
+                                    <rect key="frame" x="238" y="0.0" width="112" height="68"/>
                                     <color key="backgroundColor" name="gray_1"/>
                                     <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="24"/>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -352,13 +348,13 @@
     </objects>
     <resources>
         <namedColor name="alert">
-            <color red="0.94099998474121094" green="0.32199999690055847" blue="0.32199999690055847" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94117647058823528" green="0.32156862745098042" blue="0.32156862745098042" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="black">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="gray_1">
-            <color red="0.097999997437000275" green="0.10599999874830246" blue="0.12200000137090683" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.090000003576278687" green="0.090000003576278687" blue="0.090000003576278687" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="gray_4">
             <color red="0.62699997425079346" green="0.62699997425079346" blue="0.62699997425079346" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

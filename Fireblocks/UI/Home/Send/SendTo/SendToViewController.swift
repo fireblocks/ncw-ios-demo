@@ -70,8 +70,7 @@ class SendToViewController: UIViewController {
     }
     
     @objc private func handleScanQRCodeTap(_ gesture: UITapGestureRecognizer) {
-        let vc = QRCodeScannerViewController(nibName: "QRCodeScannerViewController", bundle: nil)
-        vc.delegate = self
+        let vc = QRCodeScannerViewController(delegate: self)
         vc.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(vc, animated: true)
     }

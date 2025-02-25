@@ -84,7 +84,7 @@ struct JoinOrRecoverView: View {
         }
 
         .navigationBarBackButtonHidden()
-        .navigationBarItems(leading: isLaunch ? nil : CustomBackButtonView())
+//        .navigationBarItems(leading: isLaunch ? nil : CustomBackButtonView())
     }
 }
 

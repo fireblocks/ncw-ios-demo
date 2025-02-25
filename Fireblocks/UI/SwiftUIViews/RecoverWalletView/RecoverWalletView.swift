@@ -62,7 +62,7 @@ struct RecoverWalletView: View {
         .onAppear() {
             viewModel.setup(loadingManager: loadingManager, fireblocksManager: fireblocksManager, googleSignInManager: googleSignInManager)
         }
-        .onChange(of: viewModel.dismiss) { newValue in
+        .onChange(of: viewModel.dismiss) { _, newValue in
             if newValue {
                 dismiss()
             }

@@ -12,6 +12,7 @@ enum AssetsIcons: String {
     case appleIcon = "apple_icon"
     case arrowRight = "arrow_right"
     case back = "back"
+    case backButton = "backButton"
     case backup = "backup"
     case checkMark = "check_mark"
     case close = "close"

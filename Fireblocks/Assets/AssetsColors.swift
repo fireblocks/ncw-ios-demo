@@ -26,6 +26,7 @@ enum AssetsColors: String{
     case tapBlue = "tap_blue"
     case warning = "warning"
     case white = "white"
+    case background = "background"
 }
     
 extension AssetsColors {

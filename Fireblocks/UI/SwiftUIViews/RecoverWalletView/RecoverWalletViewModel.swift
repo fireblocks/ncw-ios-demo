@@ -23,6 +23,8 @@ extension RecoverWalletView {
         var fireblocksManager: FireblocksManager?
         let googleDriveManager = GoogleDriveManager()
         let redirect: Bool
+        var gidUser: GIDGoogleUser?
+        
         @Published var dismiss: Bool = false
         
         @Published var isSucceeded: Bool = false
@@ -40,6 +42,7 @@ extension RecoverWalletView {
             }
         }
         
+        @MainActor
         func recover() {
             do {
                 guard let fireblocksManager else {
@@ -49,13 +52,14 @@ extension RecoverWalletView {
                 if fireblocksManager.latestBackupDeviceId.isTrimmedEmpty {
                     return
                 }
-                
+                                
                 try fireblocksManager.initializeFireblocksSDK()
-                loadingManager.isLoading = true
+                self.loadingManager.setLoading(value: true)
                 Task {
+                    self.gidUser = await gidUser()
                     let result = await fireblocksManager.recoverWallet(resolver: self)
                     await MainActor.run {
-                        loadingManager.isLoading = false
+                        self.loadingManager.setLoading(value: false)
                         if result, let email = fireblocksManager.getUserEmail() {
                             let deviceId = fireblocksManager.deviceId
                             UsersLocalStorageManager.shared.setLastDeviceId(deviceId: deviceId, email: email)
@@ -81,10 +85,27 @@ extension RecoverWalletView {
             }
         }
         
+        func gidUser() async -> GIDGoogleUser? {
+            if let _ = UsersLocalStorageManager.shared.getAuthProvider() {
+                if await AuthRepository.getUserIdToken() != nil {
+                    return try? await GIDSignIn.sharedInstance.restorePreviousSignIn()
+                }
+            }
+            
+            return nil
+        }
+
         func resolve(passphraseId: String, callback: @escaping (String) -> ()) {
-            DispatchQueue.main.async {
-                self.authenticateUser(passphraseId: passphraseId) { passphrase in
+            if let gidUser = self.gidUser {
+                Task {
+                    let passphrase = await self.googleDriveManager.recoverFromDrive(gidUser: gidUser, passphraseId: passphraseId)
                     callback(passphrase ?? "")
+                }
+            } else {
+                DispatchQueue.main.async {
+                    self.authenticateUser(passphraseId: passphraseId) { passphrase in
+                        callback(passphrase ?? "")
+                    }
                 }
             }
         }

@@ -16,6 +16,7 @@ final public class BackupRepository {
     
     func getBackupInfo() async -> BackupInfo? {
         let walletId = FireblocksManager.shared.getWalletId()
+        let deviceId = FireblocksManager.shared.getDeviceId()
         let info = try? await SessionManager.shared.getLatestBackupInfo(walletId: walletId)
         return info
     }

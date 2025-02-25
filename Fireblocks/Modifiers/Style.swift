@@ -9,9 +9,9 @@ import UIKit
 
 struct Style {
     struct FontName {
-        static let medium = "Roboto-Medium"
-        static let regular = "Roboto-Regular"
-        static let bold = "Roboto-Bold"
+        static let medium = "Figtree-Regular"
+        static let regular = "Figtree-Regular"
+        static let bold = "Figtree-Bold"
     }
 
     struct TextStyle {

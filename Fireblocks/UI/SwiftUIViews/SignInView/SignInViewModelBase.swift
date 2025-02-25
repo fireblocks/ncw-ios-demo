@@ -7,7 +7,9 @@
 
 import Foundation
 import GoogleSignIn
+import GoogleAPIClientForREST_Drive
 import AuthenticationServices
+import SwiftUI
 
 enum AuthProvider: String {
     case google
@@ -27,6 +29,7 @@ extension SignInView {
         var provider: AuthProvider?
         
         @Published var isConnected: Bool = false
+        @Published var launchView: (any View)?
                 
         func setup(authRepository: AuthRepository, loadingManager: LoadingManager, coordinator: Coordinator, fireblocksManager: FireblocksManager, googleSignInManager: GoogleSignInManager, appleSignInManager: AppleSignInManager) {
             self.authRepository = authRepository
@@ -48,17 +51,21 @@ extension SignInView {
             }
 
             GIDSignIn.sharedInstance.configuration = gidSignInConfig
-            GIDSignIn.sharedInstance.signIn(withPresenting: presentingViewController) { [unowned self] result, error in
+            GIDSignIn.sharedInstance.signIn(
+                withPresenting: presentingViewController,
+                hint: nil,
+                additionalScopes: [kGTLRAuthScopeDriveFile, kGTLRAuthScopeDriveAppdata]
+            ) { [unowned self] result, error in
                 guard error == nil else {
                     print("Sign in failed with: \(String(describing: error?.localizedDescription)).")
                     return
                 }
-                self.loadingManager.isLoading = true
+                self.loadingManager.setLoading(value: true)
                 if let user = result?.user.userID {
                     self.provider = .google
                     self.signInToFirebase(with: result, user: user)
                 } else {
-                    self.loadingManager.isLoading = false
+                    self.loadingManager.setLoading(value: false)
                 }
             }
         }
@@ -67,7 +74,7 @@ extension SignInView {
             guard let request = appleSignInManager?.getAppleRequest() else {
                 return
             }
-            loadingManager.isLoading = true
+            self.loadingManager.setLoading(value: true)
             let authorizationController = ASAuthorizationController(
                 authorizationRequests: [request]
             )
@@ -84,7 +91,7 @@ extension SignInView {
         }
         
         func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
-            loadingManager.isLoading = false
+            self.loadingManager.setLoading(value: false)
             print("Sign in with Apple errored: \(error)")
         }
         

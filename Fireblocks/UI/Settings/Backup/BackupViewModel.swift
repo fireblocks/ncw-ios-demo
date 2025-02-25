@@ -108,6 +108,17 @@ class BackupViewModel {
         return googleDriveScope
     }
     
+    func gidUser() async -> GIDGoogleUser? {
+        if let _ = UsersLocalStorageManager.shared.getAuthProvider() {
+            if await AuthRepository.getUserIdToken() != nil {
+                return try? await GIDSignIn.sharedInstance.restorePreviousSignIn()
+            }
+        }
+        
+        return nil
+    }
+
+    
     func backupToGoogleDrive(_ gidUser: GIDGoogleUser, passphraseId: String) {
         task = Task {
             let result = await repository.backupToGoogleDrive(gidUser: gidUser, passphraseId: passphraseId)

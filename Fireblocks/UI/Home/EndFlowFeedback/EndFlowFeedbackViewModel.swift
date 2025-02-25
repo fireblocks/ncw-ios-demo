@@ -19,7 +19,6 @@ extension EndFlowFeedbackView {
             hasher.combine(navigationBarTitle)
         }
 
-        
         var icon: String?
         var title: String?
         var subTitle: String?

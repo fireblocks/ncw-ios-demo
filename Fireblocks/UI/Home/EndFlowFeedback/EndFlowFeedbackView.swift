@@ -22,28 +22,27 @@ struct EndFlowFeedbackView: View {
     
     var body: some View {
         ZStack {
-            Color.black
-                .edgesIgnoringSafeArea(.all)
+            AppBackgroundView()
             VStack(spacing: 0) {
-                if let icon = viewModel.icon {
-                    Image(icon)
-                        .padding(.top, 12)
-                        .padding(.bottom, 24)
-                }
-                
+                Image(viewModel.didFail ? .feedbackFailure : .feedbackSuccess)
+                    .padding(.top, 12)
+                    .padding(.bottom, 24)
+
                 if let title = viewModel.title {
                     Text(title)
                         .font(.h2)
-                        .padding(.bottom, 4)
+                        .padding(.bottom, 16)
                 }
                 
                 if let subtitle = viewModel.subTitle {
                     Text(subtitle)
                         .font(.b1)
+                        .foregroundStyle(.secondary)
                 }
 
                 content
                     .padding(.top, 32)
+                    .foregroundStyle(.secondary)
 
                 Spacer()
                 
@@ -63,14 +62,14 @@ struct EndFlowFeedbackView: View {
                             Spacer()
                         }
                         .padding(16)
-                        .contentShape(Rectangle())
+                        .contentShape(.rect)
                         
                     }
                     .buttonStyle(.plain)
                     .frame(maxWidth: .infinity)
-                    .background(AssetsColors.primaryBlue.color())
-                    .cornerRadius(16)
-                    
+                    .background(.thinMaterial, in: .capsule)
+                    .contentShape(.rect)
+
                 }
                 
                 if viewModel.didFail {
@@ -80,16 +79,18 @@ struct EndFlowFeedbackView: View {
                         HStack {
                             Text("Share Logs")
                                 .font(.b1)
+                                .frame(maxWidth: .infinity)
                         }
                         .padding(16)
-                        .contentShape(Rectangle())
+                        .contentShape(.rect)
                         
                     }
                     .buttonStyle(.borderless)
-                    .frame(maxWidth: .infinity)
-                    .foregroundStyle(AssetsColors.primaryBlue.color())
+                    .foregroundStyle(.secondary)
                     .cornerRadius(16)
                     .padding(.top)
+                    .contentShape(.rect)
+
                 }
 
             }
@@ -97,19 +98,24 @@ struct EndFlowFeedbackView: View {
 
         }
         .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
+            ToolbarItem(placement: .topBarTrailing) {
                 Button {
                     (viewModel.rightToolbarItemAction ?? {})()
                 } label: {
                     Image(viewModel.rightToolbarItemIcon ?? "")
                 }
                 .opacity(viewModel.rightToolbarItemAction != nil ? 1 : 0)
-                .tint(.white)
+                .tint(.secondary)
+            }
+            ToolbarItem(placement: .principal) {
+                Text(viewModel.navigationBarTitle)
+                    .foregroundStyle(.secondary)
             }
         }
-        .navigationTitle(viewModel.navigationBarTitle)
+//        .navigationTitle(viewModel.navigationBarTitle)
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden()
+        .navigationBarItems(leading: CustomBackButtonView())
         .interactiveDismissDisabled()
 
     }
@@ -132,7 +138,8 @@ struct EndFlowFeedbackView_Previews: PreviewProvider {
                 rightToolbarItemIcon: "close",
                 rightToolbarItemAction: {
                     print("close")
-                }
+                },
+                didFail: true
             ), content: AnyView(ValidateRequestIdTimeOutView()))
         }
     }

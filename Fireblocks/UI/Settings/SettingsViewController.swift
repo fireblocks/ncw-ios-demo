@@ -150,7 +150,14 @@ class SettingsViewController: UIViewController {
             return
         }
         
-        let vc = UINavigationController(rootViewController: MpcKeysViewController())
+        let view = NavigationContainerView {
+            SpinnerViewContainer {
+                GenerateKeysView()
+            }
+        }
+
+        let vc = UIHostingController(rootView: view)
+
         UIView.animate(withDuration: 0.3) {
             window.rootViewController = vc
         }
@@ -166,8 +173,14 @@ class SettingsViewController: UIViewController {
         if isDisableAdvancedFeatures {
             return
         }
-        let vc = BackupViewController()
-        vc.actionType = Backup(delegate: vc.self)
+        
+        let rootView = SpinnerViewContainer() {
+            BackupWalletView(redirect: true)
+                .environmentObject(FireblocksManager.shared)
+                .environmentObject(GoogleSignInManager())
+        }
+        let vc = UIHostingController(rootView: rootView)
+        vc.navigationItem.setHidesBackButton(true, animated: false)
         navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -222,10 +235,10 @@ class SettingsViewController: UIViewController {
     
     private func navigateToLogin() {
         if let window = view.window {
-            let viewModel = LaunchView.ViewModel()
             let rootViewController = UIHostingController(
                 rootView: NavigationContainerView() {
-                    LaunchView(viewModel: viewModel)
+                    LaunchView()
+                        .environmentObject(SignInViewModel.shared)
                 }
             )
             window.rootViewController = rootViewController

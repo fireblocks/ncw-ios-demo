@@ -6,6 +6,17 @@
 //
 
 import UIKit
+import SwiftUI
+
+struct AdvancedInfoViewControllerRep: UIViewControllerRepresentable {
+    func makeUIViewController(context: Context) -> AdvancedInfoViewController {
+        return AdvancedInfoViewController()
+    }
+
+    func updateUIViewController(_ uiViewController: AdvancedInfoViewController, context: Context) {
+    }
+}
+
 
 class AdvancedInfoViewController: UIViewController {
     

@@ -10,9 +10,9 @@ import UIKit
 import SwiftUI
 
 struct AppFonts {
-    static let defaultRegular = "Roboto-Regular"
-    static let defaultMedium = "Roboto-Bold"
-    static let defaultBold = "Roboto-Bold"
+    static let defaultRegular = "Figtree-Regular"
+    static let defaultMedium = "Figtree-Regular"
+    static let defaultBold = "Figtree-Bold"
 }
 
 enum FontStyleType: Equatable {
@@ -28,9 +28,9 @@ enum FontStyleType: Equatable {
     
     var fontName: String {
         switch self {
-        case .h1, .h2, .h3, .h4:
+        case .h1, .h2, .h3, .h4, .b3:
             return AppFonts.defaultBold
-        case .b1, .b2, .b3, .b4:
+        case .b1, .b2, .b4:
             return AppFonts.defaultRegular
         case .custom(fontName: let fontName, _, _):
             return fontName
@@ -54,7 +54,7 @@ enum FontStyleType: Equatable {
         case .b3:
             return 12
         case .b4:
-            return 10
+            return 12
         case .custom(_, size: let size, _):
             return size
         }
@@ -70,78 +70,80 @@ enum FontStyleType: Equatable {
 }
 
 
-struct H1: ViewModifier {
-    func body(content: Content) -> some View {
-        content
-            .font(.h1)
-            .lineSpacing(10)
-            .padding(.vertical, 5)
-    }
-}
+//struct H1: ViewModifier {
+//    func body(content: Content) -> some View {
+//        content
+//            .font(.h1)
+//            .lineSpacing(10)
+//            .padding(.vertical, 5)
+//    }
+//}
+//
+//struct H2: ViewModifier {
+//    func body(content: Content) -> some View {
+//        content
+//            .font(.h2)
+//            .lineSpacing(8)
+//            .padding(.vertical, 4)
+//
+//    }
+//}
+//
+//struct H3: ViewModifier {
+//    func body(content: Content) -> some View {
+//        content
+//            .font(.h3)
+//            .lineSpacing(8)
+//            .padding(.vertical, 4)
+//
+//    }
+//}
+//
+//struct H4: ViewModifier {
+//    func body(content: Content) -> some View {
+//        content
+//            .font(.h4)
+//            .lineSpacing(8)
+//            .padding(.vertical, 4)
+//
+//    }
+//}
+//
+//
+//
+//struct B1: ViewModifier {
+//    func body(content: Content) -> some View {
+//        content
+//            .font(.b1)
+//            .lineSpacing(10)
+//            .padding(.vertical, 5)
+//
+//    }
+//}
+//
+//struct B2: ViewModifier {
+//    func body(content: Content) -> some View {
+//        content
+//            .font(.b2)
+//            .lineSpacing(6)
+//            .padding(.vertical, 3)
+//
+//    }
+//}
+//
+//struct B3: ViewModifier {
+//    func body(content: Content) -> some View {
+//        content
+//            .font(.b3)
+//    }
+//}
+//
+//struct B4: ViewModifier {
+//    func body(content: Content) -> some View {
+//        content
+//            .font(.b4)
+//    }
+//}
 
-struct H2: ViewModifier {
-    func body(content: Content) -> some View {
-        content
-            .font(.h2)
-            .lineSpacing(8)
-            .padding(.vertical, 4)
 
-    }
-}
-
-struct H3: ViewModifier {
-    func body(content: Content) -> some View {
-        content
-            .font(.h3)
-            .lineSpacing(8)
-            .padding(.vertical, 4)
-
-    }
-}
-
-struct H4: ViewModifier {
-    func body(content: Content) -> some View {
-        content
-            .font(.h4)
-            .lineSpacing(8)
-            .padding(.vertical, 4)
-
-    }
-}
-
-
-
-struct B1: ViewModifier {
-    func body(content: Content) -> some View {
-        content
-            .font(.b1)
-            .lineSpacing(10)
-            .padding(.vertical, 5)
-
-    }
-}
-
-struct B2: ViewModifier {
-    func body(content: Content) -> some View {
-        content
-            .font(.b2)
-            .lineSpacing(6)
-            .padding(.vertical, 3)
-
-    }
-}
-
-struct B3: ViewModifier {
-    func body(content: Content) -> some View {
-        content
-            .font(.b3)
-    }
-}
-
-struct B4: ViewModifier {
-    func body(content: Content) -> some View {
-        content
-            .font(.b4)
-    }
-}
 

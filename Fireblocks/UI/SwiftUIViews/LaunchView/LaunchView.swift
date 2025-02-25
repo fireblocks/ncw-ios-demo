@@ -9,13 +9,9 @@ import SwiftUI
 import UIKit
 
 struct LaunchView: View {
-    @StateObject var viewModel: ViewModel
+    @EnvironmentObject var viewModel: SignInViewModel
     @EnvironmentObject var coordinator: Coordinator
-    
-    init(viewModel: ViewModel) {
-        _viewModel = StateObject(wrappedValue: viewModel)
-    }
-        
+            
     var body: some View {
         ZStack {
             AppBackgroundView()
@@ -28,7 +24,7 @@ struct LaunchView: View {
                         .multilineTextAlignment(.center)
                         .padding(.top, 40)
                     Button {
-                        coordinator.path.append(NavigationTypes.signIn)
+                        coordinator.path.append(NavigationTypes.signIn(viewModel))
                     } label: {
                         Image("letsGo")
                     }
@@ -51,12 +47,12 @@ struct LaunchView: View {
             }
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
-                    HStack {
-                        Image("navigationBar")
-                        Text(Constants.navigationTitle)
-                            .font(.h2)
-                    }
+                    NavigationBarLeftHeader()
                 }
+            }
+            
+            if let view = viewModel.launchView {
+                AnyView(view)
             }
         }
     }
@@ -64,6 +60,7 @@ struct LaunchView: View {
 
 #Preview {
     NavigationContainerView {
-        LaunchView(viewModel: LaunchView.ViewModel())
+        LaunchView()
+            .environmentObject(SignInViewModel.shared)
     }
 }

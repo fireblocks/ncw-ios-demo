@@ -12,6 +12,15 @@ protocol PrepareForScanDelegate: AnyObject {
     func scanQR()
 }
 
+struct PrepareForScanHostingVCRep: UIViewControllerRepresentable {
+    func makeUIViewController(context: Context) -> PrepareForScanHostingVC {
+        return PrepareForScanHostingVC()
+    }
+
+    func updateUIViewController(_ uiViewController: PrepareForScanHostingVC, context: Context) {
+    }
+}
+
 class PrepareForScanHostingVC: FBHostingViewController {
     let viewModel: PrepareForScanViewModel
     init() {
@@ -43,8 +52,7 @@ extension PrepareForScanHostingVC: QRCodeScannerViewControllerDelegate {
 
 extension PrepareForScanHostingVC: PrepareForScanDelegate {
     func scanQR() {
-        let vc = QRCodeScannerViewController(nibName: "QRCodeScannerViewController", bundle: nil)
-        vc.delegate = self
+        let vc = QRCodeScannerViewController(delegate: self)
         vc.modalPresentationStyle = .fullScreen
         self.navigationController?.pushViewController(vc, animated: true)
     }

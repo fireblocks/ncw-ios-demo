@@ -6,35 +6,49 @@
 //
 
 import UIKit
+import SwiftUI
 
 //EW
 class SignInViewModel: SignInView.ViewModel {
+    static let shared = SignInViewModel()
+
     override func handleSuccessSignIn(isLaunch: Bool = false) async {
         if let _ = await fireblocksManager?.assignWallet() {
 //            UsersLocalStorageManager.shared.setDidSignIn(value: true)
             guard let state = await fireblocksManager?.getLatestBackupState() else {
                 return
             }
-            guard let window = (UIApplication.shared.connectedScenes.first as? UIWindowScene)?.windows.first else {
-                return
-            }
 
             switch state {
             case .generate:
-                let vc = UINavigationController(rootViewController: MpcKeysViewController())
-                window.rootViewController = vc
+                self.launchView = NavigationContainerView {
+                    SpinnerViewContainer {
+                        GenerateKeysView()
+                    }
+                }
             case .exist:
                 if userHasKeys {
                     fireblocksManager?.startPolling()
-//                    let device = await fireblocksManager?.getDevice()
-                    let vc = UINavigationController(rootViewController: TabBarViewController())
-                    window.rootViewController = vc
+                    self.launchView = NavigationContainerView {
+                        SpinnerViewContainer {
+                            TabBarView()
+                        }
+                    }
                 } else {
-                    let vc = UINavigationController(rootViewController: MpcKeysViewController())
-                    window.rootViewController = vc
+                    self.launchView = NavigationContainerView {
+                        SpinnerViewContainer {
+                            GenerateKeysView()
+                        }
+                    }
                 }
             case .joinOrRecover:
-                coordinator?.path.append(NavigationTypes.joinOrRecover)
+                self.launchView = NavigationContainerView {
+                    SpinnerViewContainer {
+                        JoinOrRecoverView()
+                    }
+                }
+
+//                coordinator?.path.append(NavigationTypes.joinOrRecover)
             case .error:
                 print("error")
             }

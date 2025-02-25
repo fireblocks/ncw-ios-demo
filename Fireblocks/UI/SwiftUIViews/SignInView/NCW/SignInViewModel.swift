@@ -9,6 +9,8 @@ import SwiftUI
 
 //NCW
 class SignInViewModel: SignInView.ViewModel {
+    static let shared = SignInViewModel()
+
     override func handleSuccessSignIn(isLaunch: Bool = false)  async {
         do {
             let _ = try await SessionManager.shared.login()
@@ -29,7 +31,13 @@ class SignInViewModel: SignInView.ViewModel {
         switch state {
         case .generate:
             if let _ = await fireblocksManager?.assignWallet() {
-                let vc = UINavigationController(rootViewController: MpcKeysViewController())
+                let view = NavigationContainerView {
+                    SpinnerViewContainer {
+                        GenerateKeysView()
+                    }
+                }
+
+                let vc = UIHostingController(rootView: view)
                 window.rootViewController = vc
             }
         case .exist:
@@ -40,7 +48,13 @@ class SignInViewModel: SignInView.ViewModel {
                     window.rootViewController = vc
                 }
             } else {
-                let vc = UINavigationController(rootViewController: MpcKeysViewController())
+                let view = NavigationContainerView {
+                    SpinnerViewContainer {
+                        GenerateKeysView()
+                    }
+                }
+
+                let vc = UIHostingController(rootView: view)
                 window.rootViewController = vc
             }
         case .joinOrRecover:

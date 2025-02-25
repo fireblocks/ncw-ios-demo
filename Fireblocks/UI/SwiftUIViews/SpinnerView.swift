@@ -9,6 +9,11 @@ import SwiftUI
 
 class LoadingManager: ObservableObject {
     @Published var isLoading: Bool = false
+    
+    @MainActor
+    func setLoading(value: Bool) {
+        self.isLoading = value
+    }
 }
 
 struct SpinnerView: View {

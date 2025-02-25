@@ -74,16 +74,18 @@ class AddDeviceQRViewModel: ObservableObject {
         return encoded
     }
     
+    @MainActor
     @objc func onProvisionerFound() {
         self.timer?.invalidate()
         self.timer = nil
-        loadingManager.isLoading = true
+        self.loadingManager.setLoading(value: true)
     }
     
+    @MainActor
     @objc func onAddingDevice() {
         self.timer?.invalidate()
         self.timer = nil
-        loadingManager.isLoading = false
+        self.loadingManager.setLoading(value: false)
     }
     
     func startTimer() {
@@ -107,7 +109,7 @@ class AddDeviceQRViewModel: ObservableObject {
     func didQRTimeExpired() {
         let vm = EndFlowFeedbackView.ViewModel(icon: AssetsIcons.errorImage.rawValue, title: LocalizableStrings.approveJoinWalletCanceled, subTitle: LocalizableStrings.addDeviceFailedSubtitle, buttonTitle: LocalizableStrings.tryAgain, actionButton:  {
             self.coordinator.path = NavigationPath()
-            self.coordinator.path.append(NavigationTypes.signIn)
+            self.coordinator.path.append(NavigationTypes.signIn(SignInViewModel.shared))
             self.coordinator.path.append(NavigationTypes.joinOrRecover)
             self.coordinator.path.append(NavigationTypes.addDevice)
         }, rightToolbarItemIcon: AssetsIcons.close.rawValue, rightToolbarItemAction: {

@@ -10,7 +10,7 @@ import GoogleSignIn
 import AuthenticationServices
 
 struct SignInView: View {
-    @StateObject var viewModel = SignInViewModel()
+    @EnvironmentObject var viewModel: SignInViewModel
     @EnvironmentObject var coordinator: Coordinator
     @EnvironmentObject var loadingManager: LoadingManager
     @EnvironmentObject var fireblocksManager: FireblocksManager

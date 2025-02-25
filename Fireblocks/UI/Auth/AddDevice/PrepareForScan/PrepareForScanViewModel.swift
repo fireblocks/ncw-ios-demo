@@ -12,7 +12,7 @@ class PrepareForScanViewModel: ObservableObject, UIHostingBridgeNotifications {
     @Published var requestId: String = ""
     @Published var error: String?
 
-    weak var delegate: QRCodeScannerViewControllerDelegate?
+    weak var delegate: (any QRCodeScannerViewControllerDelegate)?
     weak var prepareDelegate: PrepareForScanDelegate?
 
     func sendRequestId() {

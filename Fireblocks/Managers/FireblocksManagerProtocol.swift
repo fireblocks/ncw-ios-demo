@@ -243,5 +243,37 @@ extension FireblocksManagerProtocol {
     func stopTransaction() {
         getNCWInstance()?.stopSignTransaction()
     }
+    
+    func signOut() {
+//        guard let window = (UIApplication.shared.connectedScenes.first as? UIWindowScene)?.windows.first else {
+//            return
+//        }
+
+        do{
+            try Auth.auth().signOut()
+            FireblocksManager.shared.stopPollingMessages()
+            TransfersViewModel.shared.signOut()
+            AssetListViewModel.shared.signOut()
+            FireblocksManager.shared.stopJoinWallet()
+            SignInViewModel.shared.launchView = nil
+            UsersLocalStorageManager.shared.resetAuthProvider()
+            FireblocksManager.shared.deviceId = ""
+            FireblocksManager.shared.walletId = ""
+            FireblocksManager.shared.latestBackupDeviceId = ""
+        } catch{
+            print("Can't sign out with current user: \(error.localizedDescription)")
+            return
+        }
+        
+//        let rootViewController = UIHostingController(
+//            rootView: NavigationContainerView() {
+//                LaunchView()
+//                    .environmentObject(SignInViewModel.shared)
+//            }
+//        )
+//        window.rootViewController = rootViewController
+
+    }
+
 
 }

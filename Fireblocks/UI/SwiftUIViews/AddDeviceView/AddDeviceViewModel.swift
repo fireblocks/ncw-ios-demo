@@ -26,11 +26,12 @@ extension AddDeviceView {
             self.coordinator = coordinator
         }
         
+        @MainActor
         func requestJoinWallet() {
             guard let fireblocksManager else { return }
             fireblocksManager.deviceId = fireblocksManager.generateDeviceId()
             
-            loadingManager.isLoading = true
+            self.loadingManager.setLoading(value: true)
             Task {
                 do {
                     let _ = try await SessionManager.shared.joinWallet(deviceId: fireblocksManager.deviceId, walletId: fireblocksManager.walletId)
@@ -39,12 +40,12 @@ extension AddDeviceView {
                     let addDeviceResult = await fireblocksManager.addDevice(joinWalletHandler: self)
                     await MainActor.run {
                         self.isKeysGenerated(isGenerated: addDeviceResult)
-                        self.loadingManager.isLoading = false
+                        self.loadingManager.setLoading(value: false)
                     }
                 } catch {
                     await MainActor.run {
                         self.isKeysGenerated(isGenerated: false)
-                        self.loadingManager.isLoading = false
+                        self.loadingManager.setLoading(value: false)
                     }
                 }
             }
@@ -61,7 +62,7 @@ extension AddDeviceView {
                     return
                 }
                 
-                self.loadingManager.isLoading = false
+                self.loadingManager.setLoading(value: false)
                 self.coordinator.path.append(NavigationTypes.addDeviceQR(requestId, email))
             }
         }
@@ -74,7 +75,7 @@ extension AddDeviceView {
         
         @MainActor
         func onAddingDevice(success: Bool) {
-            self.loadingManager.isLoading = false
+            self.loadingManager.setLoading(value: false)
             NotificationCenter.default.post(name: Notification.Name("onAddingDevice"), object: nil, userInfo: nil)
             if success {
                 guard let deviceId = self.fireblocksManager?.deviceId, let email = self.fireblocksManager?.getUserEmail() else {

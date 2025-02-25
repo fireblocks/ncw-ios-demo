@@ -23,19 +23,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        guard let window = (scene as? UIWindowScene) else { return }
-//        loadRootViewController(window)
-        Task {
-            await loadLaunchViewController(window)
-        }
-        configNavigationBar()
+//        guard let window = (scene as? UIWindowScene) else { return }
+////        loadRootViewController(window)
+//        Task {
+//            await loadLaunchViewController(window)
+//        }
+//        configNavigationBar()
     }
     
     private func loadLaunchViewController(_ windowScene: UIWindowScene) async {
         let window = UIWindow(windowScene: windowScene)
         if let _ = UsersLocalStorageManager.shared.getAuthProvider() {
             if await AuthRepository.getUserIdToken() != nil {
-                let viewModel = SignInViewModel()
+                let viewModel = SignInViewModel.shared
                 viewModel.fireblocksManager = FireblocksManager.shared
                 await viewModel.handleSuccessSignIn(isLaunch: true)
             } else {
@@ -53,8 +53,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         } else {
             let rootViewController = UIHostingController(
                 rootView: NavigationContainerView() {
-                    let viewModel = LaunchView.ViewModel()
-                    LaunchView(viewModel: viewModel)
+                    LaunchView()
                 }
             )
             window.rootViewController = rootViewController
@@ -65,9 +64,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     private func configNavigationBar() {
+        UINavigationBar.appearance().tintColor = .white
         UINavigationBar.appearance().backIndicatorTransitionMaskImage = AssetsIcons.back.getIcon()
         UINavigationBar.appearance().backIndicatorImage = AssetsIcons.back.getIcon()
-        UINavigationBar.appearance().tintColor = AssetsColors.white.getColor()
         UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffset(horizontal: -1000, vertical: 0), for: .default)
 
     }

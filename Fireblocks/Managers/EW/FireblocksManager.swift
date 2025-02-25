@@ -30,7 +30,8 @@ class FireblocksManager: FireblocksManagerProtocol, ObservableObject {
     }
     
     static let shared = FireblocksManager()
-        
+    private init(){}
+    
     var deviceId: String = ""
     var walletId: String = ""
     var algoArray: [Algorithm] = [.MPC_ECDSA_SECP256K1, .MPC_EDDSA_ED25519]
@@ -96,14 +97,7 @@ class FireblocksManager: FireblocksManagerProtocol, ObservableObject {
             return nil
         }
 
-        do {
-            let instance = try EmbeddedWallet(authClientId: authClientId, authTokenRetriever: self, options: options)
-            return instance
-        } catch {
-            errorMessage = error.localizedDescription
-        }
-            
-        return nil
+        return ewManager.initialize()
     }
     
     func initializeCore() -> Fireblocks? {
@@ -166,6 +160,8 @@ class FireblocksManager: FireblocksManagerProtocol, ObservableObject {
         do {
             if let deviceId = UsersLocalStorageManager.shared.lastDeviceId(email: email), !deviceId.isTrimmedEmpty {
                 self.deviceId = deviceId
+                AppLoggerManager.shared.loggers[deviceId] = AppLogger(deviceId: deviceId)
+                self.latestBackupDeviceId = deviceId
                 return initializeCore() == nil ? .error : .exist
             }
             
@@ -181,7 +177,7 @@ class FireblocksManager: FireblocksManagerProtocol, ObservableObject {
                 errorMessage = "Couldn't sign in. There is no existing wallet"
             }
         } catch let error as EmbeddedWalletException{
-            if error.code == 404 {
+            if let httpStatusCode = error.httpStatusCode, httpStatusCode == 404 {
                 self.deviceId = generateDeviceId()
                 UsersLocalStorageManager.shared.setLastDeviceId(deviceId: self.deviceId, email: email)
                 return initializeCore() == nil ? .error : .generate
@@ -192,17 +188,32 @@ class FireblocksManager: FireblocksManagerProtocol, ObservableObject {
         }
         return .error
     }
-    
-    func signOut() {
         
-    }
-    
     func startPolling() {
         Task {
             await PollingManager.shared.startPolling(accountId: 0, order: .DESC)
         }
     }
 
+    func signOut() {
+        do{
+            try Auth.auth().signOut()
+            stopPollingMessages()
+            TransfersViewModel.shared.signOut()
+            AssetListViewModel.shared.signOut()
+            stopJoinWallet()
+            UsersLocalStorageManager.shared.resetAuthProvider()
+            deviceId = ""
+            walletId = ""
+            latestBackupDeviceId = ""
+            ewManager.instance = nil
+            SignInViewModel.shared.launchView = nil
+        } catch{
+            print("Can't sign out with current user: \(error.localizedDescription)")
+            return
+        }
+
+    }
 }
 
 //MARK - AuthTokenRetriever -

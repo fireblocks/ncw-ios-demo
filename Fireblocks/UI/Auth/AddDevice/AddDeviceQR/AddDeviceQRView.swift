@@ -177,6 +177,10 @@ struct AddDeviceQRInnerView: View {
 
 struct AddDeviceQRView_Previews: PreviewProvider {
     static var previews: some View {
-        AddDeviceQRView(viewModel: AddDeviceQRViewModel(requestId: "XXXXXX", email: "aaa@bbb.cc"))
+        NavigationContainerView {
+            SpinnerViewContainer {
+                AddDeviceQRView(viewModel: AddDeviceQRViewModel(requestId: "XXXXXX", email: "aaa@bbb.cc"))
+            }
+        }
     }
 }
