@@ -41,6 +41,7 @@
 		<string>Inter-Bold.ttf</string>
 		<string>Figtree-Regular.ttf</string>
 		<string>Figtree-Bold.ttf</string>
+		<string>Figtree-Medium.ttf</string>
 	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>

@@ -36,7 +36,7 @@ class AssetHeaderUIView: UIView {
     private let balanceLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: "Figtree-Bold", size: 32)
+        label.font = UIFont(name: "Figtree-Medium", size: 32)
         label.textColor = AssetsColors.white.getColor()
         return label
     }()

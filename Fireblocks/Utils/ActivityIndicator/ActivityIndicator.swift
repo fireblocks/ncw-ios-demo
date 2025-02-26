@@ -26,7 +26,7 @@ class ActivityIndicator {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
         label.textAlignment = .center
-        label.font = UIFont(name: "Figtree-Regular", size: 16)
+        label.font = UIFont(name: "Figtree-Medium", size: 16)
         return label
     }()
     

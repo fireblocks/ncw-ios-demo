@@ -193,15 +193,6 @@
 		2B21D8B42BC56B5C003ADD29 /* AddAssetViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B3E6C122ACE96D7000E91CF /* AddAssetViewCell.xib */; };
 		2B21D8BE2BC56BAA003ADD29 /* EnvironmentConstantsProd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B21D8BD2BC56BAA003ADD29 /* EnvironmentConstantsProd.swift */; };
 		2B21D8C12BC570AA003ADD29 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2B21D8C02BC570AA003ADD29 /* GoogleService-Info.plist */; };
-		2B223F9C2D673EAE002285B9 /* EWNFTsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B223F952D673EAE002285B9 /* EWNFTsViewModel.swift */; };
-		2B223F9F2D673EAE002285B9 /* EWNFTDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B223F932D673EAE002285B9 /* EWNFTDetailsView.swift */; };
-		2B223FA12D673EAE002285B9 /* EWNFTsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B223F942D673EAE002285B9 /* EWNFTsView.swift */; };
-		2B223FA32D673EAE002285B9 /* EWNFTsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B223F952D673EAE002285B9 /* EWNFTsViewModel.swift */; };
-		2B223FA62D673EAE002285B9 /* EWNFTDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B223F932D673EAE002285B9 /* EWNFTDetailsView.swift */; };
-		2B223FA82D673EAE002285B9 /* EWNFTsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B223F942D673EAE002285B9 /* EWNFTsView.swift */; };
-		2B223FAA2D673EAE002285B9 /* EWNFTsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B223F952D673EAE002285B9 /* EWNFTsViewModel.swift */; };
-		2B223FAD2D673EAE002285B9 /* EWNFTDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B223F932D673EAE002285B9 /* EWNFTDetailsView.swift */; };
-		2B223FAF2D673EAE002285B9 /* EWNFTsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B223F942D673EAE002285B9 /* EWNFTsView.swift */; };
 		2B223FB12D673EAE002285B9 /* EWNFTsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B223F952D673EAE002285B9 /* EWNFTsViewModel.swift */; };
 		2B223FB22D673EAE002285B9 /* EWWeb3ConnectionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B223F982D673EAE002285B9 /* EWWeb3ConnectionsViewModel.swift */; };
 		2B223FB32D673EAE002285B9 /* EWWeb3ConnectionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B223F972D673EAE002285B9 /* EWWeb3ConnectionsView.swift */; };
@@ -213,9 +204,6 @@
 		2B223FBA2D67405B002285B9 /* BottomBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B223FB82D674055002285B9 /* BottomBanner.swift */; };
 		2B223FBB2D67405B002285B9 /* BottomBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B223FB82D674055002285B9 /* BottomBanner.swift */; };
 		2B223FBC2D67405B002285B9 /* BottomBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B223FB82D674055002285B9 /* BottomBanner.swift */; };
-		2B223FBE2D6741F8002285B9 /* EWNFTDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B223FBD2D6741F8002285B9 /* EWNFTDetailsViewModel.swift */; };
-		2B223FBF2D6741F8002285B9 /* EWNFTDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B223FBD2D6741F8002285B9 /* EWNFTDetailsViewModel.swift */; };
-		2B223FC02D6741F8002285B9 /* EWNFTDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B223FBD2D6741F8002285B9 /* EWNFTDetailsViewModel.swift */; };
 		2B223FC12D6741F8002285B9 /* EWNFTDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B223FBD2D6741F8002285B9 /* EWNFTDetailsViewModel.swift */; };
 		2B223FC62D67698A002285B9 /* EWManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B223FC52D676984002285B9 /* EWManagerMock.swift */; };
 		2B2303852D6C6C6200260CD9 /* E3WebConnectionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2303842D6C6C6200260CD9 /* E3WebConnectionRow.swift */; };
@@ -794,6 +782,12 @@
 		2BD34A7B2B98C129008406D5 /* DerivedAssetRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD34A7A2B98C129008406D5 /* DerivedAssetRow.swift */; };
 		2BD34A7D2B99D265008406D5 /* DerivedKeyItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD34A7C2B99D265008406D5 /* DerivedKeyItem.swift */; };
 		2BD53A232B28735700756C4A /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD53A222B28735700756C4A /* Date+Extensions.swift */; };
+		2BD5D0DF2D6DFADF0025A9A8 /* Figtree-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2BD5D0DE2D6DFADF0025A9A8 /* Figtree-Medium.ttf */; };
+		2BD5D0E02D6DFADF0025A9A8 /* Figtree-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2BD5D0DE2D6DFADF0025A9A8 /* Figtree-Medium.ttf */; };
+		2BD5D0E12D6DFADF0025A9A8 /* Figtree-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2BD5D0DE2D6DFADF0025A9A8 /* Figtree-Medium.ttf */; };
+		2BD5D0E22D6DFADF0025A9A8 /* Figtree-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2BD5D0DE2D6DFADF0025A9A8 /* Figtree-Medium.ttf */; };
+		2BD5D0E52D6F4B6A0025A9A8 /* EWNFTCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5D0E32D6F4B6A0025A9A8 /* EWNFTCard.swift */; };
+		2BD5D0E92D6F4DFA0025A9A8 /* EWNFTCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5D0E82D6F4DF30025A9A8 /* EWNFTCardViewModel.swift */; };
 		2BD785CB2B83703F00FEA796 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2BD785CA2B83703F00FEA796 /* GoogleService-Info.plist */; };
 		2BEEF7C52BAC6EFD004AF6AB /* DeriveKeysHostingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD34A742B98B983008406D5 /* DeriveKeysHostingVC.swift */; };
 		2BEEF7C62BAC6F11004AF6AB /* DeriveKeysViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD34A762B98B995008406D5 /* DeriveKeysViewModel.swift */; };
@@ -1129,6 +1123,9 @@
 		2BD34A7A2B98C129008406D5 /* DerivedAssetRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DerivedAssetRow.swift; sourceTree = "<group>"; };
 		2BD34A7C2B99D265008406D5 /* DerivedKeyItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DerivedKeyItem.swift; sourceTree = "<group>"; };
 		2BD53A222B28735700756C4A /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
+		2BD5D0DE2D6DFADF0025A9A8 /* Figtree-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Figtree-Medium.ttf"; sourceTree = "<group>"; };
+		2BD5D0E32D6F4B6A0025A9A8 /* EWNFTCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EWNFTCard.swift; sourceTree = "<group>"; };
+		2BD5D0E82D6F4DF30025A9A8 /* EWNFTCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EWNFTCardViewModel.swift; sourceTree = "<group>"; };
 		2BD785CA2B83703F00FEA796 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2BE16A5E2C202687003D8C12 /* FireblocksSDKDev.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FireblocksSDKDev.xcframework; path = "../fireblocks-ios-sdk/iOS-FireblocksSDKDev/FireblocksSDKDev.xcframework"; sourceTree = "<group>"; };
 		2BF477E02D37DBBD000C9553 /* BackupData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupData.swift; sourceTree = "<group>"; };
@@ -1413,8 +1410,8 @@
 			children = (
 				2B223F932D673EAE002285B9 /* EWNFTDetailsView.swift */,
 				2B223FBD2D6741F8002285B9 /* EWNFTDetailsViewModel.swift */,
-				2B223F942D673EAE002285B9 /* EWNFTsView.swift */,
-				2B223F952D673EAE002285B9 /* EWNFTsViewModel.swift */,
+				2BD5D0EB2D6F53C30025A9A8 /* EWNFTsView */,
+				2BD5D0EA2D6F53720025A9A8 /* EWNFTRow */,
 			);
 			path = EWNFTsView;
 			sourceTree = "<group>";
@@ -1472,6 +1469,7 @@
 		2B2303962D6DD76E00260CD9 /* Figtree */ = {
 			isa = PBXGroup;
 			children = (
+				2BD5D0DE2D6DFADF0025A9A8 /* Figtree-Medium.ttf */,
 				2B2303A12D6DDA1500260CD9 /* Figtree-Bold.ttf */,
 				2B2303A22D6DDA1500260CD9 /* Figtree-Regular.ttf */,
 			);
@@ -1893,6 +1891,24 @@
 				2BD34A7C2B99D265008406D5 /* DerivedKeyItem.swift */,
 			);
 			path = DeriveKeys;
+			sourceTree = "<group>";
+		};
+		2BD5D0EA2D6F53720025A9A8 /* EWNFTRow */ = {
+			isa = PBXGroup;
+			children = (
+				2BD5D0E32D6F4B6A0025A9A8 /* EWNFTCard.swift */,
+				2BD5D0E82D6F4DF30025A9A8 /* EWNFTCardViewModel.swift */,
+			);
+			path = EWNFTRow;
+			sourceTree = "<group>";
+		};
+		2BD5D0EB2D6F53C30025A9A8 /* EWNFTsView */ = {
+			isa = PBXGroup;
+			children = (
+				2B223F942D673EAE002285B9 /* EWNFTsView.swift */,
+				2B223F952D673EAE002285B9 /* EWNFTsViewModel.swift */,
+			);
+			path = EWNFTsView;
 			sourceTree = "<group>";
 		};
 		2BF8EDB72B56673E00046F0B /* EndFlowFeedback */ = {
@@ -2718,6 +2734,7 @@
 				2B21D8952BC56B5C003ADD29 /* Roboto-Bold.ttf in Resources */,
 				2B21D8962BC56B5C003ADD29 /* Localizable.strings in Resources */,
 				2B21D8972BC56B5C003ADD29 /* ApproveViewController.xib in Resources */,
+				2BD5D0E12D6DFADF0025A9A8 /* Figtree-Medium.ttf in Resources */,
 				2B21D8982BC56B5C003ADD29 /* LaunchScreen.storyboard in Resources */,
 				2B21D8992BC56B5C003ADD29 /* TransferCell.xib in Resources */,
 				2B21D89B2BC56B5C003ADD29 /* TransferDetailsViewController.xib in Resources */,
@@ -2788,6 +2805,7 @@
 				2B2B1A9C2D2D120E00A2B39D /* AddAssetViewCell.xib in Resources */,
 				2B2B1A9D2D2D120E00A2B39D /* Main.storyboard in Resources */,
 				2B2B1A9E2D2D120E00A2B39D /* SettingsViewController.xib in Resources */,
+				2BD5D0DF2D6DFADF0025A9A8 /* Figtree-Medium.ttf in Resources */,
 				2B2303A52D6DDA1500260CD9 /* Figtree-Bold.ttf in Resources */,
 				2B2303A62D6DDA1500260CD9 /* Figtree-Regular.ttf in Resources */,
 				2B2B1AA02D2D120E00A2B39D /* Assets.xcassets in Resources */,
@@ -2834,6 +2852,7 @@
 				2B7C47462B32D96E001C804B /* AddAssetViewCell.xib in Resources */,
 				2B7C47772B32D9DC001C804B /* Main.storyboard in Resources */,
 				2B7C475F2B32D9A5001C804B /* SettingsViewController.xib in Resources */,
+				2BD5D0E22D6DFADF0025A9A8 /* Figtree-Medium.ttf in Resources */,
 				2B2303A32D6DDA1500260CD9 /* Figtree-Bold.ttf in Resources */,
 				2B2303A42D6DDA1500260CD9 /* Figtree-Regular.ttf in Resources */,
 				2B7C46DB2B32D638001C804B /* Assets.xcassets in Resources */,
@@ -2854,6 +2873,7 @@
 				603B70EB2A810D6200796CEE /* Roboto-Bold.ttf in Resources */,
 				86DC6E9D2A39ECC000A0B313 /* Localizable.strings in Resources */,
 				603903762A6D1F560060E026 /* ApproveViewController.xib in Resources */,
+				2BD5D0E02D6DFADF0025A9A8 /* Figtree-Medium.ttf in Resources */,
 				86859F5F2A384D8B0056E3C6 /* LaunchScreen.storyboard in Resources */,
 				608293922A56BB1400B11839 /* TransferCell.xib in Resources */,
 				2BD785CB2B83703F00FEA796 /* GoogleService-Info.plist in Resources */,
@@ -2932,9 +2952,6 @@
 				2B2B18AA2D2AC5C300A2B39D /* CustomBackButtonView.swift in Sources */,
 				2B21D80E2BC56B5C003ADD29 /* ActivityIndicator.swift in Sources */,
 				2B21D80F2BC56B5C003ADD29 /* BackupViewControllerStrategy.swift in Sources */,
-				2B223FAA2D673EAE002285B9 /* EWNFTsViewModel.swift in Sources */,
-				2B223FAD2D673EAE002285B9 /* EWNFTDetailsView.swift in Sources */,
-				2B223FAF2D673EAE002285B9 /* EWNFTsView.swift in Sources */,
 				2B21D8102BC56B5C003ADD29 /* Date+Extensions.swift in Sources */,
 				2B21D8112BC56B5C003ADD29 /* AssetsImageMapper.swift in Sources */,
 				2B21D8122BC56B5C003ADD29 /* ICloudManager.swift in Sources */,
@@ -2980,7 +2997,6 @@
 				2B21D8342BC56B5C003ADD29 /* AddDeviceQRViewModel.swift in Sources */,
 				2B83E25C2D37F164003B1397 /* BackupInfo.swift in Sources */,
 				2B21D8352BC56B5C003ADD29 /* AssetsColors.swift in Sources */,
-				2B223FC02D6741F8002285B9 /* EWNFTDetailsViewModel.swift in Sources */,
 				2B21D8362BC56B5C003ADD29 /* String+Extensions.swift in Sources */,
 				2B21D8372BC56B5C003ADD29 /* Extensions.swift in Sources */,
 				2B21D8392BC56B5C003ADD29 /* UsersLocalStorageManager.swift in Sources */,
@@ -3181,6 +3197,7 @@
 				2B2303892D6CBC2900260CD9 /* EWWeb3ConnectionSubmitViewModel.swift in Sources */,
 				2B23038F2D6CBDA700260CD9 /* EWWeb3ConnectionDetailsView.swift in Sources */,
 				2B2B1A232D2D120E00A2B39D /* JoinOrRecoverView.swift in Sources */,
+				2BD5D0E92D6F4DFA0025A9A8 /* EWNFTCardViewModel.swift in Sources */,
 				2B95395E2D54B45300816DB7 /* GenerateKeysViewModel.swift in Sources */,
 				2B83E2642D37F507003B1397 /* BackupRepository.swift in Sources */,
 				2B2B1A242D2D120E00A2B39D /* NavigationContainerView.swift in Sources */,
@@ -3195,6 +3212,7 @@
 				2B2B1A2E2D2D120E00A2B39D /* UIButton+Extension.swift in Sources */,
 				2B87CB182D47D2D600448A2A /* Fee.swift in Sources */,
 				2B2B1A302D2D120E00A2B39D /* FBFont.swift in Sources */,
+				2BD5D0E52D6F4B6A0025A9A8 /* EWNFTCard.swift in Sources */,
 				2B9539592D54A0A700816DB7 /* GenerateKeysView.swift in Sources */,
 				2B2B1A322D2D120E00A2B39D /* VerticalSeparator.swift in Sources */,
 				2B2B1A342D2D120E00A2B39D /* AlertView.swift in Sources */,
@@ -3284,10 +3302,6 @@
 				2B7C475C2B32D9A5001C804B /* BackupViewController.swift in Sources */,
 				2B83E26C2D38033F003B1397 /* PassphraseInfoBody.swift in Sources */,
 				2BEEF7C72BAC6F11004AF6AB /* DerivedAssetRow.swift in Sources */,
-				2B223FA32D673EAE002285B9 /* EWNFTsViewModel.swift in Sources */,
-				2B223FA62D673EAE002285B9 /* EWNFTDetailsView.swift in Sources */,
-				2B223FBF2D6741F8002285B9 /* EWNFTDetailsViewModel.swift in Sources */,
-				2B223FA82D673EAE002285B9 /* EWNFTsView.swift in Sources */,
 				2B7C473E2B32D965001C804B /* ReceiveViewModel.swift in Sources */,
 				2B2B18B32D2ACF4B00A2B39D /* SpinnerView.swift in Sources */,
 				2B7C47512B32D985001C804B /* TakeoverViewController.swift in Sources */,
@@ -3497,9 +3511,6 @@
 				2B2B18AC2D2AC5C300A2B39D /* CustomBackButtonView.swift in Sources */,
 				60DA06862A645ED300160ADC /* FeeRateRepository.swift in Sources */,
 				867828E62A696D170035787D /* ActivityIndicator.swift in Sources */,
-				2B223F9C2D673EAE002285B9 /* EWNFTsViewModel.swift in Sources */,
-				2B223F9F2D673EAE002285B9 /* EWNFTDetailsView.swift in Sources */,
-				2B223FA12D673EAE002285B9 /* EWNFTsView.swift in Sources */,
 				862F43102A6AC23600C594CA /* BackupViewControllerStrategy.swift in Sources */,
 				2BD53A232B28735700756C4A /* Date+Extensions.swift in Sources */,
 				60EECF9E2A66BE2700F3891C /* AssetsImageMapper.swift in Sources */,
@@ -3545,7 +3556,6 @@
 				2B7A72222B45AB2D0011C398 /* FBFont.swift in Sources */,
 				2B83E25B2D37F164003B1397 /* BackupInfo.swift in Sources */,
 				2B7A721B2B45A2250011C398 /* AddDeviceQRViewModel.swift in Sources */,
-				2B223FBE2D6741F8002285B9 /* EWNFTDetailsViewModel.swift in Sources */,
 				602573282A39D6F000A3C5D5 /* AssetsColors.swift in Sources */,
 				86B67A382A6FF925007AC728 /* String+Extensions.swift in Sources */,
 				2B7A72262B45ADAA0011C398 /* Extensions.swift in Sources */,

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import FirebaseAuth
 import Combine
 #if DEV
 import EmbeddedWalletSDKDev
@@ -104,9 +105,8 @@ class AssetListViewModel {
                             return (balance, addresses)
                         }
                     }
-                    delegate?.refreshData()
-
                 }
+                delegate?.refreshData()
             } else {
                 delegate?.refreshData()
             }
@@ -136,14 +136,16 @@ class AssetListViewModel {
             return []
         }
         
-//        if let assetAddresses = storageManager.assetAddresses.value() {
-//            if let addresses = assetAddresses[accountId]?[assetId] {
-//                return addresses
-//            }
-//        }
+        guard let _ = Auth.auth().currentUser?.email else {
+            return []
+        }
+
+        if let addresses = UsersLocalStorageManager.shared.getAddressDetails(accountId: accountId, assetId: assetId) {
+            return addresses
+        }
 
         let addresses = await ewManager.fetchAllAccountAssetAddresses(assetId: assetId, accountId: accountId)
-//        storageManager.assetAddresses.set([accountId: [assetId: addresses]])
+        UsersLocalStorageManager.shared.setAddressDetails(accountId: accountId, assetId: assetId, addressDetails: addresses)
         return addresses
 
     }

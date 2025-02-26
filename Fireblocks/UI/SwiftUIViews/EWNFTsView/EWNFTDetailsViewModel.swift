@@ -25,28 +25,32 @@ extension EWNFTDetailsView {
         
         func setup(loadingManager: LoadingManager) {
             self.loadingManager = loadingManager
-            Task {
-                await getNFT()
-            }
+            getNFT()
         }
 
-        func getNFT() async {
+        func getNFT() {
             self.loadingManager.isLoading = true
-            self.token = await self.ewManager.getNFT(id: id)
-            if let imageURL = token?.media?.first?.url, let url = URL(string: imageURL) {
-                if let data = try? Data(contentsOf: url) {
-                    if let uiimage = UIImage(data: data) {
-                        self.uiimage = uiimage
-                        self.image = Image(uiImage: uiimage)
+            Task {
+                self.token = await self.ewManager.getNFT(id: id)
+                if let imageURL = token?.media?.first?.url, let url = URL(string: imageURL) {
+                    if let uiimage = try? await SessionManager.shared.loadImage(url: url) {
+                        await MainActor.run {
+                            self.uiimage = uiimage
+                            self.image = Image(uiImage: uiimage)
+                            if self.image == nil {
+                                self.image = Image("globe")
+                            }
+                            
+                            self.loadingManager.isLoading = false
+                        }
+                    } else {
+                        await self.loadingManager.setLoading(value: false)
                     }
+                } else {
+                    await self.loadingManager.setLoading(value: false)
                 }
+                
             }
-            
-            if self.image == nil {
-                self.image = Image("globe")
-            }
-
-            self.loadingManager.isLoading = false
         }
         
     }

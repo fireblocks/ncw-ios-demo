@@ -97,7 +97,7 @@ struct EWWeb3ConnectionSubmitView: View {
 }
 
 #Preview {
-    NavigationContainerView(isPreview: true) {
+    NavigationContainerView(mockManager: EWManagerMock()) {
         SpinnerViewContainer {
             EWWeb3ConnectionSubmitView(response: EWManagerMock().getItem(type: CreateWeb3ConnectionResponse.self, item: Mocks.Connections.connection)!)
         }

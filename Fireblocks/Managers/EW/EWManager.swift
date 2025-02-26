@@ -44,9 +44,10 @@ class EWManager: Hashable, EWManagerAPIProtocol {
     }
 
     static let shared: EWManager = EWManager()
+    var mockManager: EWManagerMock?
     
-    init(isPreview: Bool = false) {
-        self.isPreview = isPreview
+    init(mockManager: EWManagerMock? = nil) {
+        self.mockManager = mockManager
         self.instance = initialize()
     }
     
@@ -57,13 +58,19 @@ class EWManager: Hashable, EWManagerAPIProtocol {
 //    var walletId: String?
 //    var deviceId: String?
 
-    let isPreview: Bool
-    var errorMessage: String? {
-        didSet {
-            if errorMessage != nil {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-                    self.errorMessage = nil
-                }
+    var errorMessage: String?
+    
+    @MainActor
+    func setErrorMessage(_ message: String?) {
+        errorMessage = message
+        presentErrorMessage()
+    }
+    
+    @MainActor
+    func presentErrorMessage() {
+        if errorMessage != nil {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                self.errorMessage = nil
             }
         }
     }
@@ -552,8 +559,8 @@ class EWManager: Hashable, EWManagerAPIProtocol {
     //MARK: - Web3Connections -
     
     func getConnections(allPages: Bool = true, pageCursor: String? = nil, order: Order? = nil, filter: String? = nil, sort: Web3ConnectionSort? = nil, pageSize: Int? = nil) async -> PaginatedResponse<Web3Connection>? {
-        if isPreview {
-            return await EWManagerMock().getConnections(allPages: allPages, pageCursor: pageCursor, order: order, filter: filter, sort: sort, pageSize: pageSize)
+        if let mockManager {
+            return await mockManager.getConnections(allPages: allPages, pageCursor: pageCursor, order: order, filter: filter, sort: sort, pageSize: pageSize)
         }
         
         do {
@@ -572,10 +579,9 @@ class EWManager: Hashable, EWManagerAPIProtocol {
     }
     
     func createConnection(feeLevel: Web3ConnectionFeeLevel, uri: String, ncwAccountId: Int, chainIds: [String]? = nil) async -> CreateWeb3ConnectionResponse? {
-        if isPreview {
-            return await EWManagerMock().createConnection(feeLevel: feeLevel, uri: uri, ncwAccountId: ncwAccountId, chainIds: chainIds)
+        if let mockManager {
+            return await mockManager.createConnection(feeLevel: feeLevel, uri: uri, ncwAccountId: ncwAccountId, chainIds: chainIds)
         }
-        
 
         do {
             if let instance = initialize() {
@@ -594,8 +600,8 @@ class EWManager: Hashable, EWManagerAPIProtocol {
     }
 
     func submitConnection(id: String, approve: Bool) async -> String? {
-        if isPreview {
-            return await EWManagerMock().submitConnection(id: id, approve: approve)
+        if let mockManager {
+            return await mockManager.submitConnection(id: id, approve: approve)
         }
         
         do {
@@ -614,8 +620,8 @@ class EWManager: Hashable, EWManagerAPIProtocol {
     }
 
     func removeConnection(id: String) async -> String? {
-        if isPreview {
-            return await EWManagerMock().removeConnection(id: id)
+        if let mockManager {
+            return await mockManager.removeConnection(id: id)
         }
         
         do {
@@ -663,6 +669,10 @@ class EWManager: Hashable, EWManagerAPIProtocol {
         search: String? = nil,
         spam: TokensSpam? = nil
     ) async -> PaginatedResponse<TokenOwnershipResponse>? {
+        if let mockManager {
+            return await mockManager.getOwnedNFTs()
+        }
+
         do {
             if let instance = initialize() {
                 let result = try await instance.getOwnedNFTs(blockchainDescriptor: blockchainDescriptor, ncwAccountIds: ncwAccountIds, ids: ids, collectionIds: collectionIds, allPages: allPages, pageCursor: pageCursor, pageSize: pageSize, sort: sort, order: order, status: status, search: search, spam: spam)

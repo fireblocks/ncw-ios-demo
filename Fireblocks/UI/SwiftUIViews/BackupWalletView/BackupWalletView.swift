@@ -22,7 +22,7 @@ struct BackupWalletView: View {
         ZStack {
             AppBackgroundView()
             VStack(spacing: 16) {
-                Image(.recoverWallet)
+                Image(.createBackup)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
 

@@ -13,8 +13,67 @@ import EmbeddedWalletSDK
 #endif
 
 //@Observable
-class EWManagerMock {
-    func getConnections(allPages: Bool = true, pageCursor: String? = nil, order: Order? = nil, filter: String? = nil, sort: Web3ConnectionSort? = nil, pageSize: Int? = nil) async -> PaginatedResponse<Web3Connection>? {
+class EWManagerMock: EWManager {
+    @MainActor
+    override func presentErrorMessage() {
+        
+    }
+    
+    //MARK: - NFT -
+    override func getNFT(id: String) async -> TokenResponse? {
+        return nil
+    }
+    
+    override func getOwnedNFTs(
+        allPages: Bool = true,
+        blockchainDescriptor: BlockchainDescriptor? = nil,
+        ncwAccountIds: [String]? = nil,
+        ids: [String]? = nil,
+        collectionIds: [String]? = nil,
+        pageCursor: String? = nil,
+        pageSize: Int? = nil,
+        sort: [GetOwnershipTokensSort]? = nil,
+        order: Order? = nil,
+        status: TokensStatus? = nil,
+        search: String? = nil,
+        spam: TokensSpam? = nil
+    ) async -> PaginatedResponse<TokenOwnershipResponse>? {
+        if let data = Mocks.NFT.getOwnedResponse.data(using: .utf8) {
+            if let nfts: PaginatedResponse<TokenOwnershipResponse> = try? GenericDecoder.decode(data: data) {
+                return nfts
+            }
+        }
+
+        return nil
+    }
+
+    override func listOwnedCollections(
+        allPages: Bool = true,
+        pageCursor: String? = nil,
+        pageSize: Int? = nil,
+        sort: [ListOwnedTokensSort]? = nil,
+        order: Order? = nil,
+        status: TokensStatus? = nil,
+        search: String? = nil
+    ) async -> PaginatedResponse<TokenOwnershipResponse>? {
+        return nil
+    }
+
+    override func listOwnedAssets(
+        allPages: Bool = true,
+        pageCursor: String? = nil,
+        pageSize: Int? = nil,
+        sort: [ListOwnedTokensSort]? = nil,
+        order: Order? = nil,
+        status: TokensStatus? = nil,
+        search: String? = nil,
+        spam: TokensSpam? = nil
+    ) async -> PaginatedResponse<TokenOwnershipResponse>? {
+        return nil
+    }
+
+    //MARK: - Web3 -
+    override func getConnections(allPages: Bool = true, pageCursor: String? = nil, order: Order? = nil, filter: String? = nil, sort: Web3ConnectionSort? = nil, pageSize: Int? = nil) async -> PaginatedResponse<Web3Connection>? {
 
         if let data = Mocks.Connections.getResponse.data(using: .utf8) {
             if let asset: PaginatedResponse<Web3Connection> = try? GenericDecoder.decode(data: data) {
@@ -24,7 +83,7 @@ class EWManagerMock {
         return nil
     }
     
-    func createConnection(feeLevel: Web3ConnectionFeeLevel, uri: String, ncwAccountId: Int, chainIds: [String]? = nil) async -> CreateWeb3ConnectionResponse? {
+    override func createConnection(feeLevel: Web3ConnectionFeeLevel, uri: String, ncwAccountId: Int, chainIds: [String]? = nil) async -> CreateWeb3ConnectionResponse? {
         if let data = Mocks.Connections.create.data(using: .utf8) {
             if let asset: CreateWeb3ConnectionResponse = try? GenericDecoder.decode(data: data) {
                 return asset
@@ -34,11 +93,11 @@ class EWManagerMock {
         return nil
     }
     
-    func submitConnection(id: String, approve: Bool) async -> String? {
+    override func submitConnection(id: String, approve: Bool) async -> String? {
         return "true"
     }
 
-    func removeConnection(id: String) async -> String? {
+    override func removeConnection(id: String) async -> String? {
         return "true"
     }
     
@@ -434,7 +493,7 @@ struct Mocks {
     
     struct Connections {
         static let connection = #"""
-            {"id":"f05314fc02e98b846072d9381dd8a8e4e237999155971e088649281bc957c697","userId":"e414094b-07dc-4eb9-9873-7e723c8dda86","sessionMetadata":{"appUrl":"https://react-app.walletconnect.com","appName":"React App","appDescription":"App to test WalletConnect network","appIcon":"https://react-app.walletconnect.com/assets/eip155-1.png"},"feeLevel":"MEDIUM","ncwId":"280b3ca9-0b5d-81b9-ae17-c2c096f79608","ncwAccountId":0,"chainIds":[],"connectionType":"WalletConnect","connectionMethod":"API","creationDate":"2025-02-23T14:30:57.151Z"}
+            {"id":"f05314fc02e98b846072d9381dd8a8e4e237999155971e088649281bc957c697","userId":"e414094b-07dc-4eb9-9873-7e723c8dda86","sessionMetadata":{"appUrl":"https://react-app.walletconnect.com","appName":"React App","appDescription":"App to test WalletConnect network","appIcon":"https://react-app.walletconnect.com/assets/eip155-1.png"},"feeLevel":"MEDIUM","ncwId":"280b3ca9-0b5d-81b9-ae17-c2c096f79608","ncwAccountId":0,"chainIds":["ETH_TEST3", "ETH_TEST4", "ETH_TEST5", "ETH_TEST6"],"connectionType":"WalletConnect","connectionMethod":"API","creationDate":"2025-02-23T14:30:57.151Z"}
         """#
         
         static let getResponse = #"""
@@ -445,6 +504,16 @@ struct Mocks {
         {"id":"76363abdcd8f3aab934d8d4ebe071c7342a11f359469732b34866653ca8049e6","sessionMetadata":{"appUrl":"https://react-app.walletconnect.com","appName":"React App","appDescription":"App to test WalletConnect network","appId":"1b7cc750f7c211f322425db166e386de4468cab5127d0a5a9c21ef3a637af853"},"urlScanResult":null}
         """#
         
+    }
+    
+    struct NFT {
+        static let item = #"""
+                {"id":"NFT-76d6a0303b659820730af093a219f4d41104439d","tokenId":"1","standard":"ERC1155","blockchainDescriptor":"ETH_TEST5","description":"My first NFT","name":"sword","metadataURI":"ipfs://bafybeicggreal6tnx2yenqowb3jymz5v5m27b2otnsqmsprlsoz3xb2coy/1","cachedMetadataURI":"https://stage-static.fireblocks.io/dev9/nft/13790832ed882da18185ac6e8849ac08/metadata.json","media":[{"url":"https://stage-static.fireblocks.io/dev9/nft/media/aXBmczovL2JhZnliZWloamNuYXFrd3lucG9kaW5taW54dXdiZ3VucWNxYnNlMmxwb2kzazJibnIyempneXhyaHV1LzE","contentType":"IMAGE"}],"collection":{"id":"0xBE8a64377DBE41221E86f474A8D7F8C28af2f83C","name":"ofir#1","symbol":"O"},"balance":"1","ownershipStartTime":1740572226,"ownershipLastUpdateTime":1740572226,"ncwId":"3a846d67-fd82-8716-9a9b-aa5d37e227c1","ncwAccountId":"0","status":"LISTED"}
+        """#
+        
+        static let getOwnedResponse = #"""
+        {"data":[{"id":"NFT-76d6a0303b659820730af093a219f4d41104439d","tokenId":"1","standard":"ERC1155","blockchainDescriptor":"ETH_TEST5","description":"My first NFT","name":"sword1","metadataURI":"ipfs://bafybeicggreal6tnx2yenqowb3jymz5v5m27b2otnsqmsprlsoz3xb2coy/1","cachedMetadataURI":"https://stage-static.fireblocks.io/dev9/nft/13790832ed882da18185ac6e8849ac08/metadata.json","media":[{"url":"https://stage-static.fireblocks.io/dev9/nft/media/aXBmczovL2JhZnliZWloamNuYXFrd3lucG9kaW5taW54dXdiZ3VucWNxYnNlMmxwb2kzazJibnIyempneXhyaHV1LzE","contentType":"IMAGE"}],"collection":{"id":"0xBE8a64377DBE41221E86f474A8D7F8C28af2f83C","name":"ofir#1","symbol":"O"},"balance":"1","ownershipStartTime":1740572225,"ownershipLastUpdateTime":1740572226,"ncwId":"3a846d67-fd82-8716-9a9b-aa5d37e227c1","ncwAccountId":"0","status":"LISTED"},{"id":"NFT-76d6a0303b659820730af093a219f4d41104439d","tokenId":"1","standard":"ERC1155","blockchainDescriptor":"ETH_TEST5","description":"My first NFT","name":"sword2","metadataURI":"ipfs://bafybeicggreal6tnx2yenqowb3jymz5v5m27b2otnsqmsprlsoz3xb2coy/1","cachedMetadataURI":"https://stage-static.fireblocks.io/dev9/nft/13790832ed882da18185ac6e8849ac08/metadata.json","media":[{"url":"https://stage-static.fireblocks.io/dev9/nft/media/aXBmczovL2JhZnliZWloamNuYXFrd3lucG9kaW5taW54dXdiZ3VucWNxYnNlMmxwb2kzazJibnIyempneXhyaHV1LzE","contentType":"IMAGE"}],"collection":{"id":"0xBE8a64377DBE41221E86f474A8D7F8C28af2f83C","name":"ofir#1","symbol":"O"},"balance":"1","ownershipStartTime":1740572226,"ownershipLastUpdateTime":1740572226,"ncwId":"3a846d67-fd82-8716-9a9b-aa5d37e227c1","ncwAccountId":"0","status":"LISTED"},{"id":"NFT-76d6a0303b659820730af093a219f4d41104439d","tokenId":"1","standard":"ERC1155","blockchainDescriptor":"ETH_TEST5","description":"My first NFT","name":"sword3","metadataURI":"ipfs://bafybeicggreal6tnx2yenqowb3jymz5v5m27b2otnsqmsprlsoz3xb2coy/1","cachedMetadataURI":"https://stage-static.fireblocks.io/dev9/nft/13790832ed882da18185ac6e8849ac08/metadata.json","media":[{"url":"https://stage-static.fireblocks.io/dev9/nft/media/aXBmczovL2JhZnliZWloamNuYXFrd3lucG9kaW5taW54dXdiZ3VucWNxYnNlMmxwb2kzazJibnIyempneXhyaHV1LzE","contentType":"IMAGE"}],"collection":{"id":"0xBE8a64377DBE41221E86f474A8D7F8C28af2f83C","name":"ofir#1","symbol":"O"},"balance":"1","ownershipStartTime":1740572227,"ownershipLastUpdateTime":1740572226,"ncwId":"3a846d67-fd82-8716-9a9b-aa5d37e227c1","ncwAccountId":"0","status":"LISTED"}],"paging":{"next":"MjAyNS0wMi0yNiAxMjoxNzowNi4yNzQgKzAwOjAw:MTY0"}}
+        """#
     }
     
 }

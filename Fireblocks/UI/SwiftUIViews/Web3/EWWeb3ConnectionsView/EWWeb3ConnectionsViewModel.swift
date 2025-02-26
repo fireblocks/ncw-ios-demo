@@ -29,13 +29,13 @@ extension EWWeb3ConnectionsView {
                 didLoad = true
                 self.loadingManager = loadingManager
                 self.ewManager = ewManager
+                self.loadingManager.isLoading = true
             }
             
             fetchAllConnections()
         }
 
         func fetchAllConnections() {
-            self.loadingManager.isLoading = true
             Task {
                 let connections = await self.ewManager?.getConnections()?.data ?? []
                 await MainActor.run {

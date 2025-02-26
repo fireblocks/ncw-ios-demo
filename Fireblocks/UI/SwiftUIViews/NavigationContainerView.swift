@@ -20,6 +20,7 @@ enum NavigationTypes: Hashable {
     case joinDevice
     case settings
     case info
+    case generateKeys
     
     #if EW
     case createConnection(Int)
@@ -41,15 +42,15 @@ struct NavigationContainerView<Content: View>: View {
     @StateObject var appleSignInManager = AppleSignInManager()
     #if EW
     @State var ewManager: EWManager
-    let isPreview: Bool
+    var mockManager: EWManagerMock?
     
-    init(coordinator: Coordinator = Coordinator(), fireblocksManager: FireblocksManager = FireblocksManager.shared, googleSignInManager: GoogleSignInManager = GoogleSignInManager(), appleSignInManager: AppleSignInManager = AppleSignInManager(), isPreview: Bool = false, @ViewBuilder content: @escaping () -> Content) {
+    init(coordinator: Coordinator = Coordinator(), fireblocksManager: FireblocksManager = FireblocksManager.shared, googleSignInManager: GoogleSignInManager = GoogleSignInManager(), appleSignInManager: AppleSignInManager = AppleSignInManager(), mockManager: EWManagerMock? = nil, @ViewBuilder content: @escaping () -> Content) {
         _coordinator = StateObject(wrappedValue: coordinator)
         _fireblocksManager = StateObject(wrappedValue: fireblocksManager)
         _googleSignInManager = StateObject(wrappedValue: googleSignInManager)
         _appleSignInManager = StateObject(wrappedValue: appleSignInManager)
-        _ewManager = State(initialValue: EWManager(isPreview: isPreview))
-        self.isPreview = isPreview
+        _ewManager = State(initialValue: EWManager(mockManager: mockManager))
+        self.mockManager = mockManager
         self.content = content()
     }
 //
@@ -118,6 +119,13 @@ struct NavigationContainerView<Content: View>: View {
                             .environmentObject(coordinator)
                             .environmentObject(fireblocksManager)
                             .environmentObject(googleSignInManager)
+
+                    }
+                case .generateKeys:
+                    SpinnerViewContainer {
+                        GenerateKeysView()
+                            .environmentObject(fireblocksManager)
+                            .environmentObject(coordinator)
 
                     }
                 case .takeover:

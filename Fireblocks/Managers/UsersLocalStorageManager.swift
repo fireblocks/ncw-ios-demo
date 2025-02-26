@@ -6,6 +6,15 @@
 //
 
 import Foundation
+import FirebaseAuth
+
+#if EW
+    #if DEV
+    import EmbeddedWalletSDKDev
+    #else
+    import EmbeddedWalletSDK
+    #endif
+#endif
 
 class Preference<T> {
     let group: String
@@ -22,8 +31,8 @@ class Preference<T> {
 
     func set(_ value: T) {}
 
-    init(group: String, key: String, defaultValue: T? = nil) {
-        self.group = group
+    init(group: String?, key: String, defaultValue: T? = nil) {
+        self.group = group ?? ""
         self.key = key
         self.defaultValue = defaultValue
     }
@@ -44,7 +53,7 @@ final class CodablePreference<T: Codable>: Preference<T> {
     }
 
 
-    init(defaults: UserDefaults, group: String, key: String, defaultValue: T? = nil) {
+    init(defaults: UserDefaults, group: String?, key: String, defaultValue: T? = nil) {
         self.defaults = defaults
         super.init(group: group, key: key, defaultValue: defaultValue)
     }
@@ -89,4 +98,20 @@ class UsersLocalStorageManager: ObservableObject {
         CodablePreference<[String]>(defaults: defaults, group: "", key: "approvedTransactions", defaultValue: [])
     }()
 
+    private lazy var assetsAddresses: CodablePreference<[Int: [String: [AddressDetails]]]> = {
+        CodablePreference<[Int: [String: [AddressDetails]]]>(defaults: defaults, group: Auth.auth().currentUser?.email, key: "assetsAddresses", defaultValue: [:])
+    }()
+    
+    func getAddressDetails(accountId: Int, assetId: String) -> [AddressDetails]? {
+        return assetsAddresses.value()?[accountId]?[assetId]
+    }
+    
+    func setAddressDetails(accountId: Int, assetId: String, addressDetails: [AddressDetails]) {
+        var dictionary = assetsAddresses.value() ?? [:]
+        if dictionary[accountId] == nil {
+            dictionary[accountId] = [:]
+        }
+        dictionary[accountId]?[assetId] = addressDetails
+        assetsAddresses.set(dictionary)
+    }
 }

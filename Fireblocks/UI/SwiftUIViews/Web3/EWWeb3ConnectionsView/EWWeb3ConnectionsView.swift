@@ -57,6 +57,7 @@ struct EWWeb3ConnectionsView: View {
                 }
                 .listSectionSpacing(.compact)
                 .refreshable {
+                    loadingManager.isLoading = true
                     viewModel.fetchAllConnections()
                 }
 
@@ -79,7 +80,7 @@ struct EWWeb3ConnectionsView: View {
 }
 
 #Preview {
-    NavigationContainerView(isPreview: true) {
+    NavigationContainerView(mockManager: EWManagerMock()) {
         SpinnerViewContainer {
             EWWeb3ConnectionsView(accountId: 0)
         }

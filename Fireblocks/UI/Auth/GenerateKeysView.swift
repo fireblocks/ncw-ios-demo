@@ -83,15 +83,9 @@ struct GenerateKeysView: View {
             }
         }
         .navigationBarBackButtonHidden()
-//        .navigationBarItems(leading: CustomBackButtonView())
         .onAppear() {
             viewModel.setup(loadingManager: loadingManager, fireblocksManager: fireblocksManager, coordinator: coordinator)
         }
-//        .onChange(of: viewModel.dismiss) { _, newValue in
-//            if newValue {
-//                dismiss()
-//            }
-//        }
     }
 }
 

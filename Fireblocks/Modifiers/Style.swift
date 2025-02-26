@@ -9,7 +9,7 @@ import UIKit
 
 struct Style {
     struct FontName {
-        static let medium = "Figtree-Regular"
+        static let medium = "Figtree-Medium"
         static let regular = "Figtree-Regular"
         static let bold = "Figtree-Bold"
     }

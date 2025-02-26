@@ -85,14 +85,13 @@ extension AddDeviceView {
                 UsersLocalStorageManager.shared.setLastDeviceId(deviceId: deviceId, email: email)
                 
                 let vm = EndFlowFeedbackView.ViewModel(icon: AssetsIcons.addDeviceSucceeded.rawValue, title: LocalizableStrings.addDeviceAdded, buttonTitle: LocalizableStrings.goHome, actionButton:  {
-                    guard let window = (UIApplication.shared.connectedScenes.first as? UIWindowScene)?.windows.first else {
-                        return
-                    }
-                    
                     
                     self.fireblocksManager?.startPolling()
-                    let vc = UINavigationController(rootViewController: TabBarViewController())
-                    window.rootViewController = vc
+                    SignInViewModel.shared.launchView = NavigationContainerView {
+                        SpinnerViewContainer {
+                            TabBarView()
+                        }
+                    }
                 }, didFail: false)
                 
                 self.coordinator.path.append(NavigationTypes.feedback(vm))

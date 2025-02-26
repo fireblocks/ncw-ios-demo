@@ -47,22 +47,7 @@ class SettingsViewModel: ObservableObject {
         #if DEV
         self.settingsWalletActions.append(
             SettingsData(icon: "settingsExport", title: "Generate keys", subtitle: nil, action: {
-                guard let window = (UIApplication.shared.connectedScenes.first as? UIWindowScene)?.windows.first else {
-                    return
-                }
-                
-                let view = NavigationContainerView {
-                    SpinnerViewContainer {
-                        GenerateKeysView()
-                    }
-                }
-
-                let vc = UIHostingController(rootView: view)
-
-                UIView.animate(withDuration: 0.3) {
-                    window.rootViewController = vc
-                }
-
+                self.coordinator.path.append(NavigationTypes.generateKeys)
             })
         )
         #endif
@@ -86,7 +71,7 @@ class SettingsViewModel: ObservableObject {
                 self.appLogoURL = appLogoURL
                 self.isShareLogsPresented = true
             }),
-            SettingsData(icon: "settingsSignOut", title: "sign out", subtitle: nil, action: {
+            SettingsData(icon: "settingsSignOut", title: "Sign out", subtitle: nil, action: {
                 self.signOutFromFirebase()
             })
         ]

@@ -50,7 +50,9 @@ extension BackupWalletView {
                     self.loadingManager.setLoading(value: false)
                     let viewModel: EndFlowFeedbackView.ViewModel
                     if result {
-                        viewModel = EndFlowFeedbackView.ViewModel(icon: nil, title: "Recovery key backed up", subTitle: "Your recovery key was successfully completed and backed up.", navigationBarTitle: "Create key backup", buttonIcon: nil, buttonTitle: "Go home", actionButton: { self.coordinator.path = NavigationPath() }, rightToolbarItemIcon: nil, rightToolbarItemAction: nil, didFail: false)
+                        viewModel = EndFlowFeedbackView.ViewModel(icon: nil, title: "Recovery key backed up", subTitle: "Your recovery key was successfully completed and backed up.", navigationBarTitle: "Create key backup", buttonIcon: nil, buttonTitle: "Go home", actionButton: {
+                            self.coordinator.path = NavigationPath()
+                        }, rightToolbarItemIcon: nil, rightToolbarItemAction: nil, didFail: false)
                     } else {
                         viewModel = EndFlowFeedbackView.ViewModel(icon: nil, title: "Recovery key backed up", subTitle: "Your recovery key was failed to backup.", navigationBarTitle: "Create key backup", buttonIcon: nil, buttonTitle: "Go home", actionButton: { self.coordinator.path = NavigationPath() }, rightToolbarItemIcon: nil, rightToolbarItemAction: nil, didFail: true)
                     }

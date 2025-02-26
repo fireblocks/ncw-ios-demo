@@ -22,7 +22,8 @@ struct EWWeb3ConnectionDetailsView: View {
         ZStack {
             AppBackgroundView()
             VStack {
-                EWWeb3ConnectionDetailsHeader(metadata: viewModel.connection.sessionMetadata, isConnected: true)
+                EWWeb3ConnectionDetailsHeader(connection: viewModel.connection, metadata: viewModel.connection.sessionMetadata, isConnected: true)
+                    .environment(ewManager)
                 Spacer()
                 BottomBanner(text: viewModel.ewManager?.errorMessage)
                     .animation(.default, value: viewModel.ewManager?.errorMessage)
@@ -70,7 +71,7 @@ struct EWWeb3ConnectionDetailsView: View {
 }
 
 #Preview("remove true") {
-    NavigationContainerView(isPreview: true) {
+    NavigationContainerView(mockManager: EWManagerMock()) {
         SpinnerViewContainer {
             EWWeb3ConnectionDetailsView(connection: EWManagerMock().getItem(type: Web3Connection.self, item: Mocks.Connections.connection)!, canRemove: true)
         }
@@ -78,7 +79,7 @@ struct EWWeb3ConnectionDetailsView: View {
 }
 
 #Preview("remove false") {
-    NavigationContainerView(isPreview: true) {
+    NavigationContainerView(mockManager: EWManagerMock()) {
         SpinnerViewContainer {
             EWWeb3ConnectionDetailsView(connection: EWManagerMock().getItem(type: Web3Connection.self, item: Mocks.Connections.connection)!, canRemove: false)
         }

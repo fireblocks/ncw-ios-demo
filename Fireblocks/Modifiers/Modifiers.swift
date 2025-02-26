@@ -11,7 +11,7 @@ import SwiftUI
 
 struct AppFonts {
     static let defaultRegular = "Figtree-Regular"
-    static let defaultMedium = "Figtree-Regular"
+    static let defaultMedium = "Figtree-Medium"
     static let defaultBold = "Figtree-Bold"
 }
 
@@ -29,7 +29,7 @@ enum FontStyleType: Equatable {
     var fontName: String {
         switch self {
         case .h1, .h2, .h3, .h4, .b3:
-            return AppFonts.defaultBold
+            return AppFonts.defaultMedium
         case .b1, .b2, .b4:
             return AppFonts.defaultRegular
         case .custom(fontName: let fontName, _, _):

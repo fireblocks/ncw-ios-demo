@@ -65,13 +65,12 @@ extension RecoverWalletView {
                             UsersLocalStorageManager.shared.setLastDeviceId(deviceId: deviceId, email: email)
                             
                             if redirect {
-                                guard let window = (UIApplication.shared.connectedScenes.first as? UIWindowScene)?.windows.first else {
-                                    return
-                                }
-                                
                                 fireblocksManager.startPolling()
-                                let vc = UINavigationController(rootViewController: TabBarViewController())
-                                window.rootViewController = vc
+                                SignInViewModel.shared.launchView = NavigationContainerView {
+                                    SpinnerViewContainer {
+                                        TabBarView()
+                                    }
+                                }
                             } else {
                                 dismiss = true
                             }

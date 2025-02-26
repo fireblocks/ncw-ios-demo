@@ -1,8 +1,8 @@
 //
-//  E3WebConnectionRowViewModel.swift
+//  EWNFTCardViewModel.swift
 //  Fireblocks
 //
-//  Created by Dudi Shani-Gabay on 25/02/2025.
+//  Created by Dudi Shani-Gabay on 26/02/2025.
 //
 
 import SwiftUI
@@ -12,18 +12,20 @@ import EmbeddedWalletSDKDev
 import EmbeddedWalletSDK
 #endif
 
-extension E3WebConnectionRow {
+extension EWNFTCard {
     @Observable
     class ViewModel {
+        var uiimage: UIImage?
         var image: Image?
-        let connection: Web3Connection
-        init(connection: Web3Connection) {
-            self.connection = connection
+        let token: TokenOwnershipResponse
+        init(token: TokenOwnershipResponse) {
+            self.token = token
             
-            if let imageURL = connection.sessionMetadata?.appIcon, let url = URL(string: imageURL) {
+            if let imageURL = token.media?.first?.url, let url = URL(string: imageURL) {
                 Task {
                     if let uiimage = try? await SessionManager.shared.loadImage(url: url) {
                         await MainActor.run {
+                            self.uiimage = uiimage
                             self.image = Image(uiImage: uiimage)
                         }
                     }

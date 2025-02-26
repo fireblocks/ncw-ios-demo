@@ -5,6 +5,7 @@
 //  Created by Dudi Shani-Gabay on 15/01/2025.
 //
 import Foundation
+import UIKit
 
 class SessionManager: ObservableObject {
     var isLoggedIn = false
@@ -32,6 +33,27 @@ class SessionManager: ObservableObject {
     static let shared = SessionManager()
     
     private init() {}
+    
+    func loadImage(url: URL) async throws -> UIImage {
+        var request = URLRequest(url: url)
+        let session = URLSession.shared
+        let (data, response) = try await session.data(for: request)
+        if let statusCode = (response as? HTTPURLResponse)?.statusCode {
+            if statusCode >= 200, statusCode <= 299 {
+                if let image = UIImage(data: data) {
+                    return image
+                }
+                throw SessionManager.error
+            } else {
+                print("SessionManager Error statusCode: \(statusCode)")
+                throw SessionManager.error
+            }
+        } else {
+            print("SessionManager Error")
+            throw SessionManager.error
+        }
+
+    }
     
     func sendRequest(url: URL, httpMethod: String = "POST", timeout: TimeInterval? = nil, numberOfRetries: Int = 2, message: String? = nil, body: Any? = nil, skipLogs: Bool = false) async throws -> (Data) {
         guard let currentAccessToken = await AuthRepository.getUserIdToken() else {

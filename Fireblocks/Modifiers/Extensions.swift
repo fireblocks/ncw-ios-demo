@@ -65,6 +65,16 @@ extension Text {
 
 }
 
+extension String {
+    func iso8601Date() -> String? {
+        let dateFormatter = DateFormatter()
+
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
+
+        let updatedAt = dateFormatter.date(from: self) // "Jun 5, 2016, 4:56 PM"
+        return updatedAt?.mediumFormat()
+    }
+}
 //extension EnvironmentValues {
 //    @Entry var ewManager: EWManagerProtocol = EWManager.shared
 //}

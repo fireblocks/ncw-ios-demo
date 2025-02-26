@@ -84,7 +84,7 @@ class TabBarViewController: UITabBarController {
         let normalColor = AssetsColors.gray4.getColor()
         let selectedColor = AssetsColors.white.getColor()
         let imageTintColor = AssetsColors.alert.getColor()
-        let font = UIFont(name: "Figtree-Regular", size: 14) ?? UIFont.systemFont(ofSize: 14)
+        let font = UIFont(name: "Figtree-Medium", size: 14) ?? UIFont.systemFont(ofSize: 14)
         let normalTextAttributes: [NSAttributedString.Key: Any] = [
             .foregroundColor: normalColor,
             .font: font

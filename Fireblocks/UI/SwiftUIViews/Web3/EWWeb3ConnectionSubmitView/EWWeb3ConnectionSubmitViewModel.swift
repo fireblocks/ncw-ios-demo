@@ -21,12 +21,10 @@ extension EWWeb3ConnectionSubmitView {
             self.response = response
             if let imageURL = response.sessionMetadata?.appIcon, let url = URL(string: imageURL) {
                 Task {
-                    if let data = try? Data(contentsOf: url) {
-                        if let uiimage = UIImage(data: data) {
-                            await MainActor.run {
-                                self.uiimage = uiimage
-                                self.image = Image(uiImage: uiimage)
-                            }
+                    if let uiimage = try? await SessionManager.shared.loadImage(url: url) {
+                        await MainActor.run {
+                            self.uiimage = uiimage
+                            self.image = Image(uiImage: uiimage)
                         }
                     }
                 }

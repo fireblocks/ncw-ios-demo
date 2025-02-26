@@ -140,7 +140,7 @@ struct EWWeb3ConnectionURI: View {
 }
 
 #Preview {
-    NavigationContainerView(isPreview: true) {
+    NavigationContainerView(mockManager: EWManagerMock()) {
         SpinnerViewContainer {
             EWWeb3ConnectionURI(accountId: 0)
         }
