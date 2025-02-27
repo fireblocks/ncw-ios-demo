@@ -11,65 +11,193 @@ import EmbeddedWalletSDKDev
 struct EWNFTDetailsView: View {
     @EnvironmentObject var coordinator: Coordinator
     @EnvironmentObject var loadingManager: LoadingManager
+    @Environment(EWManager.self) var ewManager
     @State var viewModel: ViewModel
     
-    init(id: String) {
-        _viewModel = State(initialValue: ViewModel(id: id))
+    init(token: TokenOwnershipResponse) {
+        _viewModel = State(initialValue: ViewModel(token: token))
     }
 
     var body: some View {
-        VStack {
+        ZStack {
+            AppBackgroundView()
             List {
-                if viewModel.token != nil {
-                    VStack(spacing: 0) {
-                        HStack {
-                            Spacer()
-                            if let image = viewModel.image {
-                                image.resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .padding(.top, 16)
-                            }
-                            Spacer()
+                VStack(spacing: 0) {
+                    HStack {
+                        Spacer()
+                        if let image = viewModel.image {
+                            image.resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .padding(.top, 16)
                         }
-                        .frame(height: 185)
-                        .background(viewModel.uiimage?.averageColor ?? Color.clear)
                         Spacer()
                     }
-                    .background(.thinMaterial, in: .rect)
-                    .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
-                } else {
-                    ContentUnavailableView("Loading NFT", systemImage: "bitcoinsign.circle", description: Text(""))
-                        .listRowBackground(Color.clear)
-                    
+                    .frame(height: 185)
+                    .background(viewModel.uiimage?.averageColor ?? Color.clear)
+                    Spacer()
+                    HStack {
+                        name
+                        Spacer()
+                        tokenId
+                    }
+                    .padding()
+                    Divider()
+                    Group {
+                        dateAcquired
+                        collection
+                        blockchain
+                        standard
+                        balance
+                        contactAddress
+                        nftId
+                    }
+                    .padding()
                 }
-
+                .background(AssetsColors.gray2.color(), in: .rect)
+                .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
             }
-            .refreshable {
-                await viewModel.getNFT()
-            }
-            
-            Spacer()
-            Button("Transfer NFT") {
-                print("transfer")
-            }
-            .buttonStyle(.borderedProminent)
-
-            BottomBanner(text: viewModel.ewManager.errorMessage)
-                .animation(.default, value: viewModel.ewManager.errorMessage)
-            
         }
+        .safeAreaInset(edge: .bottom, content: {
+            VStack(spacing: 8) {
+                BottomBanner(text: viewModel.ewManager?.errorMessage)
+                    .animation(.default, value: viewModel.ewManager?.errorMessage)
+                Button {
+                    coordinator.path.append(NavigationTypes.transferNFT(viewModel.token))
+                } label: {
+                    Text("Transfer NFT")
+                        .frame(maxWidth: .infinity, alignment: .center)
+                        .padding(8)
+                }
+                .buttonStyle(.borderedProminent)
+                .tint(AssetsColors.gray2.color())
+                .background(AssetsColors.gray2.color(), in: .capsule)
+                .clipShape(.capsule)
+                .contentShape(.rect)
+
+            }
+            .padding()
+            .background()
+        })
         .onAppear() {
-            viewModel.setup(loadingManager: loadingManager)
+            viewModel.setup(loadingManager: loadingManager, ewManager: ewManager)
         }
-        .animation(.default, value: viewModel.ewManager.errorMessage)
         .navigationTitle("NFT Details")
+        .navigationBarTitleDisplayMode(.inline)
+        .contentMargins(.top, 16)
+
     }
+    
+    @ViewBuilder
+    private var name: some View {
+        if let name = viewModel.token.name?.capitalized {
+            Text(name)
+        }
+    }
+
+    @ViewBuilder
+    private var tokenId: some View {
+        if let tokenId = viewModel.token.tokenId {
+            Text(tokenId)
+        }
+    }
+
+    @ViewBuilder
+    private var standard: some View {
+        if let value = viewModel.token.standard {
+            TitleValueRow(title: "Standard", value: value)
+        }
+    }
+
+    @ViewBuilder
+    private var balance: some View {
+        if let value = viewModel.token.balance {
+            TitleValueRow(title: "Balance", value: value)
+        }
+    }
+
+    @ViewBuilder
+    private var dateAcquired: some View {
+        if let ownershipStartTime = viewModel.token.ownershipStartTime {
+            TitleValueRow(title: "Date Acquired", value: Date(timeIntervalSince1970: TimeInterval(ownershipStartTime)).format())
+        }
+    }
+
+    @ViewBuilder
+    private var collection: some View {
+        if let collection = viewModel.token.collection?.name {
+            TitleValueRow(title: "Collection", value: collection)
+        }
+    }
+
+    @ViewBuilder
+    private var blockchain: some View {
+        if let blockchain = viewModel.token.blockchainDescriptor?.rawValue {
+            TitleValueRow(title: "Blockchain", value: blockchain)
+        }
+    }
+
+    @ViewBuilder
+    private var contactAddress: some View {
+        if let value = viewModel.token.collection?.id {
+            VStack(spacing: 8) {
+                Text("Contact address")
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .foregroundStyle(.secondary)
+                    .font(.b2)
+                HStack {
+                    Text(value)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .multilineTextAlignment(.leading)
+                        .font(.b2)
+                    Spacer()
+                    Button {
+                        viewModel.ewManager?.errorMessage = "Copied!"
+                        UIPasteboard.general.string = value
+                    } label: {
+                        Image(uiImage: AssetsIcons.copy.getIcon())
+                    }
+                    .tint(.white)
+
+
+                }
+            }
+        }
+    }
+
+    @ViewBuilder
+    private var nftId: some View {
+        if let value = viewModel.token.id {
+            VStack(spacing: 8) {
+                Text("Id")
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .foregroundStyle(.secondary)
+                    .font(.b2)
+                HStack {
+                    Text(value)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .multilineTextAlignment(.leading)
+                        .font(.b2)
+                    Spacer()
+                    Button {
+                        viewModel.ewManager?.errorMessage = "Copied!"
+                        UIPasteboard.general.string = value
+                    } label: {
+                        Image(uiImage: AssetsIcons.copy.getIcon())
+                    }
+                    .tint(.white)
+
+
+                }
+            }
+        }
+    }
+
 }
 
 #Preview {
-    NavigationContainerView {
+    NavigationContainerView(mockManager: EWManagerMock()) {
         SpinnerViewContainer {
-            EWNFTDetailsView(id: "xxx")
+            EWNFTDetailsView(token: EWManagerMock().getItem(type: TokenOwnershipResponse.self, item: Mocks.NFT.item)!)
         }
     }
 }

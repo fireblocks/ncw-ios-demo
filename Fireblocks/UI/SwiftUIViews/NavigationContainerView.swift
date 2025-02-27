@@ -27,7 +27,9 @@ enum NavigationTypes: Hashable {
     case submitConnection(CreateWeb3ConnectionResponse)
     case connectionDetails(Web3Connection, Bool)
 //    case scanQR(any QRCodeScannerViewControllerDelegate)
-    case NFTToken(String)
+    case NFTToken(TokenOwnershipResponse)
+    case transferNFT(TokenOwnershipResponse)
+    case nftFee(TokenOwnershipResponse, String)
     #endif
 }
 
@@ -161,10 +163,26 @@ struct NavigationContainerView<Content: View>: View {
 //                case .scanQR(let delegate):
 //                    GenericController(uiViewType: QRCodeScannerViewController(delegate: delegate)
 //                    )
-                case .NFTToken(let id):
+                case .transferNFT(let token):
                     SpinnerViewContainer {
-                        EWNFTDetailsView(id: id)
+                        EWTransferNFTView(token: token)
                             .environmentObject(coordinator)
+                            .environment(ewManager)
+
+                    }
+                case .nftFee(let token, let address):
+                    SpinnerViewContainer {
+                        EWNFTFeeView(token: token, address: address)
+                            .environmentObject(coordinator)
+                            .environment(ewManager)
+
+                    }
+                case .NFTToken(let token):
+                    SpinnerViewContainer {
+                        EWNFTDetailsView(token: token)
+                            .environmentObject(coordinator)
+                            .environment(ewManager)
+
                     }
                 #endif
                 }

@@ -58,7 +58,15 @@ class EWManager: Hashable, EWManagerAPIProtocol {
 //    var walletId: String?
 //    var deviceId: String?
 
-    var errorMessage: String?
+    var errorMessage: String? {
+        didSet {
+            if errorMessage != nil {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                    self.errorMessage = nil
+                }
+            }
+        }
+    }
     
     @MainActor
     func setErrorMessage(_ message: String?) {
@@ -641,6 +649,10 @@ class EWManager: Hashable, EWManagerAPIProtocol {
     //MARK: - NFTs -
 
     func getNFT(id: String) async -> TokenResponse? {
+        if let mockManager {
+            return await mockManager.getNFT(id: id)
+        }
+
         do {
             if let instance = initialize() {
                 let result = try await instance.getNFT(id: id)

@@ -21,6 +21,12 @@ class EWManagerMock: EWManager {
     
     //MARK: - NFT -
     override func getNFT(id: String) async -> TokenResponse? {
+        if let data = Mocks.NFT.tokenResponse.data(using: .utf8) {
+            if let nfts: TokenResponse = try? GenericDecoder.decode(data: data) {
+                return nfts
+            }
+        }
+
         return nil
     }
     
@@ -507,6 +513,10 @@ struct Mocks {
     }
     
     struct NFT {
+        static let tokenResponse = #"""
+            {"id":"NFT-a9c23ab5fc740d2390775d784a2620ea67e2edb1","tokenId":"3","standard":"ERC1155","blockchainDescriptor":"ETH_TEST5","description":"","name":"NFT3","metadataURI":"ipfs://bafybeifpp6wo6xbdk5kpancfx3o3bwakjyezib6wkq4xsx2kjsq7vibxpy/3","cachedMetadataURI":"https://stage-static.fireblocks.io/dev9/nft/0cb48b464be3a65550005b818e9496bb/metadata.json","media":[{"url":"https://stage-static.fireblocks.io/dev9/nft/media/aXBmczovL2JhZnliZWlkbzU0YmdscjVvMm5raHlicjdqb2Zmb2N3bmYybWYydWpod3lyc3h2dzQ1d2l0ZW5rd2txLzM","contentType":"IMAGE"}],"collection":{"id":"0xCA4c9b2f9267beAA90E130aAD95e4e8993FA81b6","name":"My Collection","symbol":"MC"}}
+        """#
+
         static let item = #"""
                 {"id":"NFT-76d6a0303b659820730af093a219f4d41104439d","tokenId":"1","standard":"ERC1155","blockchainDescriptor":"ETH_TEST5","description":"My first NFT","name":"sword","metadataURI":"ipfs://bafybeicggreal6tnx2yenqowb3jymz5v5m27b2otnsqmsprlsoz3xb2coy/1","cachedMetadataURI":"https://stage-static.fireblocks.io/dev9/nft/13790832ed882da18185ac6e8849ac08/metadata.json","media":[{"url":"https://stage-static.fireblocks.io/dev9/nft/media/aXBmczovL2JhZnliZWloamNuYXFrd3lucG9kaW5taW54dXdiZ3VucWNxYnNlMmxwb2kzazJibnIyempneXhyaHV1LzE","contentType":"IMAGE"}],"collection":{"id":"0xBE8a64377DBE41221E86f474A8D7F8C28af2f83C","name":"ofir#1","symbol":"O"},"balance":"1","ownershipStartTime":1740572226,"ownershipLastUpdateTime":1740572226,"ncwId":"3a846d67-fd82-8716-9a9b-aa5d37e227c1","ncwAccountId":"0","status":"LISTED"}
         """#

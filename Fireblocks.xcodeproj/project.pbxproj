@@ -788,6 +788,14 @@
 		2BD5D0E22D6DFADF0025A9A8 /* Figtree-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2BD5D0DE2D6DFADF0025A9A8 /* Figtree-Medium.ttf */; };
 		2BD5D0E52D6F4B6A0025A9A8 /* EWNFTCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5D0E32D6F4B6A0025A9A8 /* EWNFTCard.swift */; };
 		2BD5D0E92D6F4DFA0025A9A8 /* EWNFTCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5D0E82D6F4DF30025A9A8 /* EWNFTCardViewModel.swift */; };
+		2BD5D0ED2D706C490025A9A8 /* TitleValueRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5D0EC2D706C490025A9A8 /* TitleValueRow.swift */; };
+		2BD5D0EE2D706C490025A9A8 /* TitleValueRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5D0EC2D706C490025A9A8 /* TitleValueRow.swift */; };
+		2BD5D0EF2D706C490025A9A8 /* TitleValueRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5D0EC2D706C490025A9A8 /* TitleValueRow.swift */; };
+		2BD5D0F02D706C490025A9A8 /* TitleValueRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5D0EC2D706C490025A9A8 /* TitleValueRow.swift */; };
+		2BD5D0F22D7076820025A9A8 /* EWTransferNFTView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5D0F12D7076820025A9A8 /* EWTransferNFTView.swift */; };
+		2BD5D0F52D7076EF0025A9A8 /* EWTransferNFTViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5D0F42D7076EB0025A9A8 /* EWTransferNFTViewModel.swift */; };
+		2BD5D0F72D707E400025A9A8 /* EWNFTFeeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5D0F62D707E310025A9A8 /* EWNFTFeeView.swift */; };
+		2BD5D0F92D707E600025A9A8 /* EWNFTFeeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5D0F82D707E5D0025A9A8 /* EWNFTFeeViewModel.swift */; };
 		2BD785CB2B83703F00FEA796 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2BD785CA2B83703F00FEA796 /* GoogleService-Info.plist */; };
 		2BEEF7C52BAC6EFD004AF6AB /* DeriveKeysHostingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD34A742B98B983008406D5 /* DeriveKeysHostingVC.swift */; };
 		2BEEF7C62BAC6F11004AF6AB /* DeriveKeysViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD34A762B98B995008406D5 /* DeriveKeysViewModel.swift */; };
@@ -1126,6 +1134,11 @@
 		2BD5D0DE2D6DFADF0025A9A8 /* Figtree-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Figtree-Medium.ttf"; sourceTree = "<group>"; };
 		2BD5D0E32D6F4B6A0025A9A8 /* EWNFTCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EWNFTCard.swift; sourceTree = "<group>"; };
 		2BD5D0E82D6F4DF30025A9A8 /* EWNFTCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EWNFTCardViewModel.swift; sourceTree = "<group>"; };
+		2BD5D0EC2D706C490025A9A8 /* TitleValueRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleValueRow.swift; sourceTree = "<group>"; };
+		2BD5D0F12D7076820025A9A8 /* EWTransferNFTView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EWTransferNFTView.swift; sourceTree = "<group>"; };
+		2BD5D0F42D7076EB0025A9A8 /* EWTransferNFTViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EWTransferNFTViewModel.swift; sourceTree = "<group>"; };
+		2BD5D0F62D707E310025A9A8 /* EWNFTFeeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EWNFTFeeView.swift; sourceTree = "<group>"; };
+		2BD5D0F82D707E5D0025A9A8 /* EWNFTFeeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EWNFTFeeViewModel.swift; sourceTree = "<group>"; };
 		2BD785CA2B83703F00FEA796 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2BE16A5E2C202687003D8C12 /* FireblocksSDKDev.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FireblocksSDKDev.xcframework; path = "../fireblocks-ios-sdk/iOS-FireblocksSDKDev/FireblocksSDKDev.xcframework"; sourceTree = "<group>"; };
 		2BF477E02D37DBBD000C9553 /* BackupData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupData.swift; sourceTree = "<group>"; };
@@ -1412,6 +1425,8 @@
 				2B223FBD2D6741F8002285B9 /* EWNFTDetailsViewModel.swift */,
 				2BD5D0EB2D6F53C30025A9A8 /* EWNFTsView */,
 				2BD5D0EA2D6F53720025A9A8 /* EWNFTRow */,
+				2BD5D0F32D70768A0025A9A8 /* EWTransferNFTView */,
+				2BD5D0FA2D70855F0025A9A8 /* EWNFTFeeView */,
 			);
 			path = EWNFTsView;
 			sourceTree = "<group>";
@@ -1911,6 +1926,24 @@
 			path = EWNFTsView;
 			sourceTree = "<group>";
 		};
+		2BD5D0F32D70768A0025A9A8 /* EWTransferNFTView */ = {
+			isa = PBXGroup;
+			children = (
+				2BD5D0F12D7076820025A9A8 /* EWTransferNFTView.swift */,
+				2BD5D0F42D7076EB0025A9A8 /* EWTransferNFTViewModel.swift */,
+			);
+			path = EWTransferNFTView;
+			sourceTree = "<group>";
+		};
+		2BD5D0FA2D70855F0025A9A8 /* EWNFTFeeView */ = {
+			isa = PBXGroup;
+			children = (
+				2BD5D0F62D707E310025A9A8 /* EWNFTFeeView.swift */,
+				2BD5D0F82D707E5D0025A9A8 /* EWNFTFeeViewModel.swift */,
+			);
+			path = EWNFTFeeView;
+			sourceTree = "<group>";
+		};
 		2BF8EDB72B56673E00046F0B /* EndFlowFeedback */ = {
 			isa = PBXGroup;
 			children = (
@@ -1927,6 +1960,12 @@
 				2B223F962D673EAE002285B9 /* EWNFTsView */,
 				2B223F9B2D673EAE002285B9 /* Web3 */,
 				2BCFE11E2D5A2116006BE227 /* SettingsView */,
+				2B2B188A2D2A8FDF00A2B39D /* LaunchView */,
+				2B2B188F2D2A964700A2B39D /* SignInView */,
+				2B2B18A02D2AC3EE00A2B39D /* JoinOrRecoverView */,
+				2BCFE1132D54F2A3006BE227 /* BackupWalletView */,
+				2B2B18B92D2AD9B500A2B39D /* RecoverWalletView */,
+				2B2B18C22D2ADF4900A2B39D /* AddDeviceView */,
 				2B2B18A92D2AC5C300A2B39D /* CustomBackButtonView.swift */,
 				2B2B18AD2D2ACDCC00A2B39D /* NavigationContainerView.swift */,
 				2B2B18B12D2ACF4B00A2B39D /* SpinnerView.swift */,
@@ -1935,12 +1974,7 @@
 				2BC5837D2B6BD5DC005E6EEB /* Bullet.swift */,
 				2BC5837F2B6BD5FF005E6EEB /* VerticalSeparator.swift */,
 				2B223FB82D674055002285B9 /* BottomBanner.swift */,
-				2B2B188A2D2A8FDF00A2B39D /* LaunchView */,
-				2B2B188F2D2A964700A2B39D /* SignInView */,
-				2B2B18A02D2AC3EE00A2B39D /* JoinOrRecoverView */,
-				2BCFE1132D54F2A3006BE227 /* BackupWalletView */,
-				2B2B18B92D2AD9B500A2B39D /* RecoverWalletView */,
-				2B2B18C22D2ADF4900A2B39D /* AddDeviceView */,
+				2BD5D0EC2D706C490025A9A8 /* TitleValueRow.swift */,
 			);
 			path = SwiftUIViews;
 			sourceTree = "<group>";
@@ -3046,6 +3080,7 @@
 				2B21D8522BC56B5C003ADD29 /* ExtraParameters.swift in Sources */,
 				2B21D8532BC56B5C003ADD29 /* UIButton+Extension.swift in Sources */,
 				2B21D8542BC56B5C003ADD29 /* CodableExtension.swift in Sources */,
+				2BD5D0EF2D706C490025A9A8 /* TitleValueRow.swift in Sources */,
 				2B21D8552BC56B5C003ADD29 /* PrepareForScanView.swift in Sources */,
 				2B21D8562BC56B5C003ADD29 /* AssetsIcons.swift in Sources */,
 				2B21D8572BC56B5C003ADD29 /* BackupStatusViewController.swift in Sources */,
@@ -3119,6 +3154,7 @@
 				2B87CAEC2D47AC8700448A2A /* NotificationType.swift in Sources */,
 				2B0FEDA12D3796F000F637E6 /* AssetListViewModel.swift in Sources */,
 				2B87CB132D47D12A00448A2A /* ApproveRepository.swift in Sources */,
+				2BD5D0F52D7076EF0025A9A8 /* EWTransferNFTViewModel.swift in Sources */,
 				2B87CADE2D47A66400448A2A /* TransfersViewController.swift in Sources */,
 				2B2B19E52D2D120E00A2B39D /* AppLogger.swift in Sources */,
 				2B2B19E62D2D120E00A2B39D /* QRCodeScannerViewController.swift in Sources */,
@@ -3147,6 +3183,7 @@
 				2B2B19F52D2D120E00A2B39D /* ValidateRequestIdViewModel.swift in Sources */,
 				2B83E24E2D37E8EE003B1397 /* SessionManager.swift in Sources */,
 				2BCFE1112D54F29B006BE227 /* BackupWalletView.swift in Sources */,
+				2BD5D0F02D706C490025A9A8 /* TitleValueRow.swift in Sources */,
 				2B87CB102D47D0A000448A2A /* ApproveViewModel.swift in Sources */,
 				2B2B19F72D2D120E00A2B39D /* BiometricsAuthentication.swift in Sources */,
 				2B2B19F92D2D120E00A2B39D /* AppBackgroundView.swift in Sources */,
@@ -3177,6 +3214,7 @@
 				2B87CAC72D477CAD00448A2A /* TransferCell.swift in Sources */,
 				2B2B1A112D2D120E00A2B39D /* SignInViewModelBase.swift in Sources */,
 				2B2B1A122D2D120E00A2B39D /* AdvancedInfoViewModel.swift in Sources */,
+				2BD5D0F72D707E400025A9A8 /* EWNFTFeeView.swift in Sources */,
 				2BCFE1182D54F377006BE227 /* BackupWalletViewModel.swift in Sources */,
 				2B87CAF52D47C88200448A2A /* FeeRateViewController.swift in Sources */,
 				2B2B1A172D2D120E00A2B39D /* AddDeviceView.swift in Sources */,
@@ -3275,11 +3313,13 @@
 				2B2B1A5B2D2D120E00A2B39D /* ValidateRequestIdView.swift in Sources */,
 				2B87CADA2D4797AD00448A2A /* TransferDetailsViewController.swift in Sources */,
 				2B87CAFC2D47C96C00448A2A /* PostTransactionParams.swift in Sources */,
+				2BD5D0F92D707E600025A9A8 /* EWNFTFeeViewModel.swift in Sources */,
 				2B2B1A5F2D2D120E00A2B39D /* DerivedKeyItem.swift in Sources */,
 				2B2B1A602D2D120E00A2B39D /* SignInView.swift in Sources */,
 				2B83E2892D3D19A7003B1397 /* AmountToSendViewController.swift in Sources */,
 				2B2B1A662D2D120E00A2B39D /* JoinRequestData.swift in Sources */,
 				2B2B1A672D2D120E00A2B39D /* KeyStorageProvider.swift in Sources */,
+				2BD5D0F22D7076820025A9A8 /* EWTransferNFTView.swift in Sources */,
 				2B2B1A682D2D120E00A2B39D /* ViewController+Extensions.swift in Sources */,
 				2B2B1A6A2D2D120E00A2B39D /* CodableParsingExtension.swift in Sources */,
 				2B2B1A6C2D2D120E00A2B39D /* AssetsImageMapper.swift in Sources */,
@@ -3455,6 +3495,7 @@
 				2BEEF7C92BAC6F11004AF6AB /* DerivedKeyItem.swift in Sources */,
 				2B2B18892D2A8A0C00A2B39D /* SignInView.swift in Sources */,
 				2B7C472E2B32D965001C804B /* ApproveViewController.swift in Sources */,
+				2BD5D0ED2D706C490025A9A8 /* TitleValueRow.swift in Sources */,
 				2B7C473F2B32D965001C804B /* ChooseAssetViewModel.swift in Sources */,
 				2BCF87932D37DE6C00A46521 /* ChooseAssetFlowType.swift in Sources */,
 				2B2B18C42D2ADF5300A2B39D /* AddDeviceViewModel.swift in Sources */,
@@ -3605,6 +3646,7 @@
 				2B94CFC52A9CDF62003E7508 /* ExtraParameters.swift in Sources */,
 				867828E02A696D170035787D /* UIButton+Extension.swift in Sources */,
 				2B94CFD32A9CE627003E7508 /* CodableExtension.swift in Sources */,
+				2BD5D0EE2D706C490025A9A8 /* TitleValueRow.swift in Sources */,
 				2B558E882B4704BA006212B2 /* PrepareForScanView.swift in Sources */,
 				6025732A2A39D76900A3C5D5 /* AssetsIcons.swift in Sources */,
 				866A73CC2A696A4B00E8E545 /* BackupStatusViewController.swift in Sources */,

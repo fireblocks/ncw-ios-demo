@@ -82,9 +82,7 @@ struct EWNFTsView: View {
                         EWNFTCard(token: token, isRow: true)
                             .contentShape(Rectangle())
                             .onTapGesture {
-                                if let id = token.id {
-                                    coordinator.path.append(NavigationTypes.NFTToken(id))
-                                }
+                                coordinator.path.append(NavigationTypes.NFTToken(token))
                             }
                     }
                 }
@@ -108,9 +106,7 @@ struct EWNFTsView: View {
                     EWNFTCard(token: token, isRow: false)
                         .contentShape(Rectangle())
                         .onTapGesture {
-                            if let id = token.id {
-                                coordinator.path.append(NavigationTypes.NFTToken(id))
-                            }
+                            coordinator.path.append(NavigationTypes.NFTToken(token))
                         }
                 }
             }
