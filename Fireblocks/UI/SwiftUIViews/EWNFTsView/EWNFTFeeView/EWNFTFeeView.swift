@@ -20,47 +20,49 @@ struct EWNFTFeeView: View {
     @Environment(EWManager.self) var ewManager
     @State var viewModel: ViewModel
     
-    init(token: TokenOwnershipResponse, address: String) {
-        _viewModel = State(initialValue: ViewModel(token: token, address: address))
+    init(dataModel: NFTDataModel) {
+        _viewModel = State(initialValue: ViewModel(dataModel: dataModel))
     }
 
     var body: some View {
         ZStack {
             AppBackgroundView()
-            List {
-                Section {
-                    VStack(spacing: 0) {
-                        EWNFTCard(token: viewModel.token, isRow: true)
-                            .padding()
-                    }
-                }
-                .background(AssetsColors.gray2.color(), in: .rect)
-                .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
-                
-                Section {
-                    VStack {
-                        Text("Select fee speed")
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .font(.b2)
-                        ForEach(FeeLevel.allCases, id: \.self) { fee in
-                            Text(viewModel.speed(level: fee))
-                                .frame(maxWidth: .infinity, alignment: .leading)
+            if let token = viewModel.dataModel.token {
+                List {
+                    Section {
+                        VStack(spacing: 0) {
+                            EWNFTCard(token: token, isRow: true)
                                 .padding()
-                                .contentShape(.rect())
-                                .background(fee == viewModel.feeLevel ? AssetsColors.gray2.color()  : Color.clear, in: .rect(cornerRadius: 8))
-                                .foregroundStyle(fee == viewModel.feeLevel ? .white : .secondary)
-                                .onTapGesture {
-                                    viewModel.feeLevel = fee
-                                }
-
                         }
-                        
                     }
-                    .padding()
+                    .background(AssetsColors.gray2.color(), in: .rect)
+                    .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+                    
+                    Section {
+                        VStack {
+                            Text("Select fee speed")
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .font(.b2)
+                            ForEach(FeeLevel.allCases, id: \.self) { fee in
+                                Text(viewModel.speed(level: fee))
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                    .padding()
+                                    .contentShape(.rect())
+                                    .background(fee == viewModel.dataModel.feeLevel ? AssetsColors.gray2.color()  : Color.clear, in: .rect(cornerRadius: 8))
+                                    .foregroundStyle(fee == viewModel.dataModel.feeLevel ? .white : .secondary)
+                                    .onTapGesture {
+                                        viewModel.dataModel.feeLevel = fee
+                                    }
+                                
+                            }
+                            
+                        }
+                        .padding()
+                    }
+                    .background(AssetsColors.gray1.color(), in: .rect)
+                    .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+                    
                 }
-                .background(AssetsColors.gray1.color(), in: .rect)
-                .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
-
             }
         }
         .safeAreaInset(edge: .bottom, content: {
@@ -68,6 +70,7 @@ struct EWNFTFeeView: View {
                 BottomBanner(text: viewModel.ewManager?.errorMessage)
                     .animation(.default, value: viewModel.ewManager?.errorMessage)
                 Button {
+                    viewModel.createTransaction()
                 } label: {
                     Text("Create transaction")
                         .frame(maxWidth: .infinity, alignment: .center)
@@ -86,7 +89,7 @@ struct EWNFTFeeView: View {
         .onAppear() {
             viewModel.setup(loadingManager: loadingManager, ewManager: ewManager, coordinator: coordinator)
         }
-        .animation(.default, value: viewModel.feeLevel)
+        .animation(.default, value: viewModel.dataModel.feeLevel)
         .navigationTitle("NFT Transfer")
         .navigationBarTitleDisplayMode(.inline)
         .contentMargins(.top, 16)
@@ -97,7 +100,7 @@ struct EWNFTFeeView: View {
 #Preview {
     NavigationContainerView(mockManager: EWManagerMock()) {
         SpinnerViewContainer {
-            EWNFTFeeView(token: EWManagerMock().getItem(type: TokenOwnershipResponse.self, item: Mocks.NFT.item)!, address: "XXXXXXX")
+            EWNFTFeeView(dataModel: NFTDataModel.mock())
         }
     }
 }

@@ -16,8 +16,12 @@
 
 class PollingManagerTxId: ObservableObject {
     var txId: String?
-    var ewManager = EWManager.shared
+    var ewManager: EWManager
     @Published var response: TransactionResponse?
+    
+    init(ewManager: EWManager) {
+        self.ewManager = ewManager
+    }
     
     func startPolling(txId: String) async {
         if self.txId != nil { return }

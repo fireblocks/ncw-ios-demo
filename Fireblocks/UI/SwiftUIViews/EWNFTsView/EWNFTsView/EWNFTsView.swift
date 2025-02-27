@@ -24,7 +24,7 @@ struct EWNFTsView: View {
         ZStack {
             AppBackgroundView()
             
-            if viewModel.tokens.isEmpty {
+            if viewModel.dataModel.tokens.isEmpty {
                 ContentUnavailableView("NFTs", systemImage: "magnifyingglass", description: Text("No NFTs found on your wallet"))
                     .listRowBackground(Color.clear)
             }
@@ -64,9 +64,9 @@ struct EWNFTsView: View {
         .navigationTitle("NFTs")
         .navigationBarTitleDisplayMode(.inline)
         .onAppear() {
-            viewModel.setup(loadingManager: loadingManager, ewManager: ewManager)
+            viewModel.setup(loadingManager: loadingManager, ewManager: ewManager, coordinator: coordinator)
         }
-        .animation(.default, value: viewModel.tokens)
+        .animation(.default, value: viewModel.dataModel.tokens)
         .animation(.default, value: viewModel.selectedSortingOption)
         .animation(.default, value: viewModel.selectedViewOption)
         .animation(.default, value: viewModel.ewManager?.errorMessage)
@@ -82,7 +82,8 @@ struct EWNFTsView: View {
                         EWNFTCard(token: token, isRow: true)
                             .contentShape(Rectangle())
                             .onTapGesture {
-                                coordinator.path.append(NavigationTypes.NFTToken(token))
+                                viewModel.dataModel.token = token
+                                viewModel.proceedToDetails()
                             }
                     }
                 }
@@ -106,7 +107,8 @@ struct EWNFTsView: View {
                     EWNFTCard(token: token, isRow: false)
                         .contentShape(Rectangle())
                         .onTapGesture {
-                            coordinator.path.append(NavigationTypes.NFTToken(token))
+                            viewModel.dataModel.token = token
+                            viewModel.proceedToDetails()
                         }
                 }
             }

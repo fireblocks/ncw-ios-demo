@@ -19,6 +19,17 @@ class EWManagerMock: EWManager {
         
     }
     
+    override func createOneTimeAddressTransaction(accountId: Int, assetId: String, destAddress: String, amount: String, feeLevel: FeeLevel) async -> CreateTransactionResponse? {
+        if let data = Mocks.Transaction.createTransactionResponse.data(using: .utf8) {
+            if let transaction: CreateTransactionResponse = try? GenericDecoder.decode(data: data) {
+                return transaction
+            }
+        }
+        
+        return nil
+
+    }
+    
     //MARK: - NFT -
     override func getNFT(id: String) async -> TokenResponse? {
         if let data = Mocks.NFT.tokenResponse.data(using: .utf8) {
@@ -107,6 +118,11 @@ class EWManagerMock: EWManager {
         return "true"
     }
     
+    override func getTransactionById(txId: String) async -> TransactionResponse? {
+        return Mocks.Transaction.getResponse()
+    }
+
+    
     func getItem<T: Codable>(type: T.Type, item: String) -> T? {
         if let data = item.data(using: .utf8) {
             if let result: T =  try? GenericDecoder.decode(data: data) {
@@ -148,9 +164,6 @@ class EWManagerMock1: EWManager {
         return []
     }
     
-    override func getTransactionById(txId: String) async -> TransactionResponse? {
-        return Mocks.Transaction.getResponse()
-    }
     
     override func fetchAllSupportedAssets() async -> [Asset] {
         if let data = Mocks.Asset.response.data(using: .utf8) {
@@ -484,6 +497,8 @@ struct Mocks {
         static let response = #"""
         {"id":"faa40b60-e950-460d-a6d2-ca2611a87e44","createdAt":1735128255934,"lastUpdated":1735128259368,"assetId":"XRP_TEST","source":{"id":"0","type":"END_USER_WALLET","name":"","subType":"","walletId":"483fafe8-1ce4-4899-050d-44d746a1d7b4"},"destination":{"id":"0","type":"VAULT_ACCOUNT","name":"Default","subType":""},"amount":1,"fee":-1,"networkFee":-1,"netAmount":-1,"sourceAddress":"","destinationAddress":"","destinationAddressDescription":"","destinationTag":"","status":"PENDING_SIGNATURE","txHash":"","subStatus":"","signedBy":[],"createdBy":"43306d09-0250-4287-b928-1ef38c9e12ec","rejectedBy":"","amountUSD":null,"addressType":"","note":"","exchangeTxId":"","requestedAmount":1,"feeCurrency":"XRP_TEST","operation":"TRANSFER","amountInfo":{"amount":"1","requestedAmount":"1"},"feeInfo":{},"destinations":[],"blockInfo":{},"signedMessages":[],"assetType":"BASE_ASSET"}
         """#
+        
+        static let createTransactionResponse = #"{"id":"2afd63d1-fac2-431d-b1b7-971ab3d886c8","status":"SUBMITTED"}"#
         struct Get {
             static let missingDirection = #"{"errorCode":"UNKNOWN","errorMessage":"incoming or outgoing must be specified"}"#
             static let responseIncoming = #"""

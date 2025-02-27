@@ -437,6 +437,13 @@
 		2B558E9E2B484AC4006212B2 /* ValidateRequestIdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558E9D2B484AC4006212B2 /* ValidateRequestIdView.swift */; };
 		2B558EA02B484ADC006212B2 /* ValidateRequestIdHostingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558E9F2B484ADC006212B2 /* ValidateRequestIdHostingVC.swift */; };
 		2B558EA22B484BE1006212B2 /* Platform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558EA12B484BE1006212B2 /* Platform.swift */; };
+		2B5F46B42D709D9500B23371 /* NFTDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5F46B32D709D9000B23371 /* NFTDataModel.swift */; };
+		2B5F46B52D709D9500B23371 /* NFTDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5F46B32D709D9000B23371 /* NFTDataModel.swift */; };
+		2B5F46B62D709D9500B23371 /* NFTDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5F46B32D709D9000B23371 /* NFTDataModel.swift */; };
+		2B5F46B72D709D9500B23371 /* NFTDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5F46B32D709D9000B23371 /* NFTDataModel.swift */; };
+		2B5F46BA2D70A5CA00B23371 /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5F46B92D70A5C600B23371 /* CacheManager.swift */; };
+		2B5F46BC2D70AE1F00B23371 /* EWNFTPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5F46BB2D70AE1F00B23371 /* EWNFTPreviewView.swift */; };
+		2B5F46BF2D70AE7600B23371 /* EWNFTPreviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5F46BE2D70AE7300B23371 /* EWNFTPreviewViewModel.swift */; };
 		2B7A721B2B45A2250011C398 /* AddDeviceQRViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A721A2B45A2250011C398 /* AddDeviceQRViewModel.swift */; };
 		2B7A721D2B45A8FF0011C398 /* AddDeviceQRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A721C2B45A8FF0011C398 /* AddDeviceQRView.swift */; };
 		2B7A72202B45AAEB0011C398 /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A721F2B45AAEB0011C398 /* Modifiers.swift */; };
@@ -1062,6 +1069,10 @@
 		2B558E9D2B484AC4006212B2 /* ValidateRequestIdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateRequestIdView.swift; sourceTree = "<group>"; };
 		2B558E9F2B484ADC006212B2 /* ValidateRequestIdHostingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateRequestIdHostingVC.swift; sourceTree = "<group>"; };
 		2B558EA12B484BE1006212B2 /* Platform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Platform.swift; sourceTree = "<group>"; };
+		2B5F46B32D709D9000B23371 /* NFTDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTDataModel.swift; sourceTree = "<group>"; };
+		2B5F46B92D70A5C600B23371 /* CacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
+		2B5F46BB2D70AE1F00B23371 /* EWNFTPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EWNFTPreviewView.swift; sourceTree = "<group>"; };
+		2B5F46BE2D70AE7300B23371 /* EWNFTPreviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EWNFTPreviewViewModel.swift; sourceTree = "<group>"; };
 		2B769B9D2B1DFCBA00557E97 /* NCW-sandboxDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "NCW-sandboxDebug.entitlements"; sourceTree = "<group>"; };
 		2B769B9E2B1DFCC700557E97 /* NCW-sandboxRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "NCW-sandboxRelease.entitlements"; sourceTree = "<group>"; };
 		2B7A721A2B45A2250011C398 /* AddDeviceQRViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDeviceQRViewModel.swift; sourceTree = "<group>"; };
@@ -1421,12 +1432,12 @@
 		2B223F962D673EAE002285B9 /* EWNFTsView */ = {
 			isa = PBXGroup;
 			children = (
-				2B223F932D673EAE002285B9 /* EWNFTDetailsView.swift */,
-				2B223FBD2D6741F8002285B9 /* EWNFTDetailsViewModel.swift */,
+				2B5F46B82D70A4E900B23371 /* EWNFTDetailsView */,
 				2BD5D0EB2D6F53C30025A9A8 /* EWNFTsView */,
 				2BD5D0EA2D6F53720025A9A8 /* EWNFTRow */,
 				2BD5D0F32D70768A0025A9A8 /* EWTransferNFTView */,
 				2BD5D0FA2D70855F0025A9A8 /* EWNFTFeeView */,
+				2B5F46BD2D70AE2800B23371 /* EWNFTPreviewView */,
 			);
 			path = EWNFTsView;
 			sourceTree = "<group>";
@@ -1690,6 +1701,24 @@
 			path = ValidateRequestId;
 			sourceTree = "<group>";
 		};
+		2B5F46B82D70A4E900B23371 /* EWNFTDetailsView */ = {
+			isa = PBXGroup;
+			children = (
+				2B223F932D673EAE002285B9 /* EWNFTDetailsView.swift */,
+				2B223FBD2D6741F8002285B9 /* EWNFTDetailsViewModel.swift */,
+			);
+			path = EWNFTDetailsView;
+			sourceTree = "<group>";
+		};
+		2B5F46BD2D70AE2800B23371 /* EWNFTPreviewView */ = {
+			isa = PBXGroup;
+			children = (
+				2B5F46BB2D70AE1F00B23371 /* EWNFTPreviewView.swift */,
+				2B5F46BE2D70AE7300B23371 /* EWNFTPreviewViewModel.swift */,
+			);
+			path = EWNFTPreviewView;
+			sourceTree = "<group>";
+		};
 		2B7A72172B45A0DF0011C398 /* AddDevice */ = {
 			isa = PBXGroup;
 			children = (
@@ -1754,6 +1783,7 @@
 			isa = PBXGroup;
 			children = (
 				2B83E24A2D37E895003B1397 /* SessionManager.swift */,
+				2B5F46B92D70A5C600B23371 /* CacheManager.swift */,
 			);
 			path = EW;
 			sourceTree = "<group>";
@@ -1957,6 +1987,7 @@
 		2BF8EDBC2B56756700046F0B /* SwiftUIViews */ = {
 			isa = PBXGroup;
 			children = (
+				2B5F46B32D709D9000B23371 /* NFTDataModel.swift */,
 				2B223F962D673EAE002285B9 /* EWNFTsView */,
 				2B223F9B2D673EAE002285B9 /* Web3 */,
 				2BCFE11E2D5A2116006BE227 /* SettingsView */,
@@ -2962,6 +2993,7 @@
 				2BF477E12D37DBBD000C9553 /* BackupData.swift in Sources */,
 				2B2B1AD62D2E99CB00A2B39D /* RecoverManager.swift in Sources */,
 				2B21D8012BC56B5C003ADD29 /* FeeManager.swift in Sources */,
+				2B5F46B72D709D9500B23371 /* NFTDataModel.swift in Sources */,
 				2B21D8022BC56B5C003ADD29 /* ApproveRepository.swift in Sources */,
 				2BCFE1152D54F377006BE227 /* BackupWalletViewModel.swift in Sources */,
 				2B21D8032BC56B5C003ADD29 /* AdvancedInfoViewModel.swift in Sources */,
@@ -3184,6 +3216,7 @@
 				2B83E24E2D37E8EE003B1397 /* SessionManager.swift in Sources */,
 				2BCFE1112D54F29B006BE227 /* BackupWalletView.swift in Sources */,
 				2BD5D0F02D706C490025A9A8 /* TitleValueRow.swift in Sources */,
+				2B5F46BC2D70AE1F00B23371 /* EWNFTPreviewView.swift in Sources */,
 				2B87CB102D47D0A000448A2A /* ApproveViewModel.swift in Sources */,
 				2B2B19F72D2D120E00A2B39D /* BiometricsAuthentication.swift in Sources */,
 				2B2B19F92D2D120E00A2B39D /* AppBackgroundView.swift in Sources */,
@@ -3219,6 +3252,7 @@
 				2B87CAF52D47C88200448A2A /* FeeRateViewController.swift in Sources */,
 				2B2B1A172D2D120E00A2B39D /* AddDeviceView.swift in Sources */,
 				2B2B1A182D2D120E00A2B39D /* AdvancedInfoViewController.swift in Sources */,
+				2B5F46BF2D70AE7600B23371 /* EWNFTPreviewViewModel.swift in Sources */,
 				2B223FB12D673EAE002285B9 /* EWNFTsViewModel.swift in Sources */,
 				2B223FB22D673EAE002285B9 /* EWWeb3ConnectionsViewModel.swift in Sources */,
 				2B223FB32D673EAE002285B9 /* EWWeb3ConnectionsView.swift in Sources */,
@@ -3237,6 +3271,7 @@
 				2B2B1A232D2D120E00A2B39D /* JoinOrRecoverView.swift in Sources */,
 				2BD5D0E92D6F4DFA0025A9A8 /* EWNFTCardViewModel.swift in Sources */,
 				2B95395E2D54B45300816DB7 /* GenerateKeysViewModel.swift in Sources */,
+				2B5F46BA2D70A5CA00B23371 /* CacheManager.swift in Sources */,
 				2B83E2642D37F507003B1397 /* BackupRepository.swift in Sources */,
 				2B2B1A242D2D120E00A2B39D /* NavigationContainerView.swift in Sources */,
 				2B2B1A252D2D120E00A2B39D /* LaunchView.swift in Sources */,
@@ -3323,6 +3358,7 @@
 				2B2B1A682D2D120E00A2B39D /* ViewController+Extensions.swift in Sources */,
 				2B2B1A6A2D2D120E00A2B39D /* CodableParsingExtension.swift in Sources */,
 				2B2B1A6C2D2D120E00A2B39D /* AssetsImageMapper.swift in Sources */,
+				2B5F46B62D709D9500B23371 /* NFTDataModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3506,6 +3542,7 @@
 				2B7C47192B32D916001C804B /* CodableParsingExtension.swift in Sources */,
 				2B7C470C2B32D8FC001C804B /* AssetsImageMapper.swift in Sources */,
 				2B7C474E2B32D97E001C804B /* TransferDetailsViewController.swift in Sources */,
+				2B5F46B52D709D9500B23371 /* NFTDataModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3528,6 +3565,7 @@
 				2BF477E32D37DBBD000C9553 /* BackupData.swift in Sources */,
 				2B2B1AD52D2E99CB00A2B39D /* RecoverManager.swift in Sources */,
 				867828E72A696D170035787D /* QRCodeGenerator.swift in Sources */,
+				2B5F46B42D709D9500B23371 /* NFTDataModel.swift in Sources */,
 				60DA06582A645E1300160ADC /* FeeManager.swift in Sources */,
 				2BCFE1172D54F377006BE227 /* BackupWalletViewModel.swift in Sources */,
 				603903792A6D3F880060E026 /* ApproveRepository.swift in Sources */,

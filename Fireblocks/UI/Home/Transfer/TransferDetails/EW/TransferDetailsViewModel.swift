@@ -18,7 +18,7 @@ import Combine
 
 class TransferDetailsViewModel {
     var ewManager: EWManager = EWManager.shared
-    var pollingManagerTxId = PollingManagerTxId()
+    var pollingManagerTxId = PollingManagerTxId(ewManager: EWManager.shared)
     var didLoad = false
     
     var transferInfo: TransferInfo?

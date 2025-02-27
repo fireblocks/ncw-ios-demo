@@ -20,61 +20,63 @@ struct EWTransferNFTView: View {
     @Environment(EWManager.self) var ewManager
     @State var viewModel: ViewModel
     
-    init(token: TokenOwnershipResponse) {
-        _viewModel = State(initialValue: ViewModel(token: token))
+    init(dataModel: NFTDataModel) {
+        _viewModel = State(initialValue: ViewModel(dataModel: dataModel))
     }
 
     var body: some View {
         ZStack {
             AppBackgroundView()
-            List {
-                Section {
-                    VStack(spacing: 0) {
-                        EWNFTCard(token: viewModel.token, isRow: true)
-                            .padding()
+            if let token = viewModel.dataModel.token {
+                List {
+                    Section {
+                        VStack(spacing: 0) {
+                            EWNFTCard(token: token, isRow: true)
+                                .padding()
+                        }
                     }
-                }
-                .background(AssetsColors.gray2.color(), in: .rect)
-                .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
-                
-                Section {
-                    VStack {
-                        Text("Scan or enter a receiving address ")
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .font(.b2)
-
-                        HStack(spacing: 16) {
-                            ZStack {
-                                RoundedRectangle(cornerRadius: 8)
-                                    .fill(AssetsColors.gray2.color())
-                                    .frame(height: 42)
-                                    .overlay {
-                                        Text("Enter address")
-                                            .font(.b4)
-                                            .foregroundStyle(.secondary)
-                                            .frame(maxWidth: .infinity, alignment: .leading)
-                                            .opacity(viewModel.address.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? 1 : 0)
-                                            .padding(.horizontal, 8)
-                                        
-                                    }
-                                TextField("", text: $viewModel.address)
-                                    .font(.b2)
-                                    .textFieldStyle(.plain)
-                                    .padding(.horizontal, 8)
+                    .background(AssetsColors.gray2.color(), in: .rect)
+                    .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+                    
+                    Section {
+                        VStack {
+                            Text("Scan or enter a receiving address ")
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .font(.b2)
+                            
+                            HStack(spacing: 16) {
+                                ZStack {
+                                    RoundedRectangle(cornerRadius: 8)
+                                        .fill(AssetsColors.gray2.color())
+                                        .frame(height: 42)
+                                        .overlay {
+                                            Text("Enter address")
+                                                .font(.b4)
+                                                .foregroundStyle(.secondary)
+                                                .frame(maxWidth: .infinity, alignment: .leading)
+                                                .opacity(viewModel.dataModel.address.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? 1 : 0)
+                                                .padding(.horizontal, 8)
+                                            
+                                        }
+                                    TextField("", text: $viewModel.dataModel.address)
+                                        .font(.b2)
+                                        .textFieldStyle(.plain)
+                                        .padding(.horizontal, 8)
+                                }
+                                Button {
+                                    viewModel.presentQRCodeScanner()
+                                } label: {
+                                    Image(.scanQrCode)
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(height: 20)
+                                        .padding(8)
+                                    
+                                }
+                                .buttonStyle(.borderedProminent)
+                                .tint(AssetsColors.gray2.color())
+                                .contentShape(.rect)
                             }
-                            Button {
-                                viewModel.presentQRCodeScanner()
-                            } label: {
-                                Image(.scanQrCode)
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(height: 20)
-                                    .padding(8)
-
-                            }
-                            .buttonStyle(.borderedProminent)
-                            .tint(AssetsColors.gray2.color())
-                            .contentShape(.rect)
                         }
                     }
                 }
@@ -96,7 +98,7 @@ struct EWTransferNFTView: View {
                 .background(AssetsColors.gray2.color(), in: .capsule)
                 .clipShape(.capsule)
                 .contentShape(.rect)
-                .disabled(viewModel.address.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+                .disabled(viewModel.dataModel.address.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
 
             }
             .padding()
@@ -105,7 +107,7 @@ struct EWTransferNFTView: View {
         .onAppear() {
             viewModel.setup(loadingManager: loadingManager, ewManager: ewManager, coordinator: coordinator)
         }
-        .animation(.default, value: viewModel.address)
+        .animation(.default, value: viewModel.dataModel.address)
         .navigationTitle("NFT Transfer")
         .navigationBarTitleDisplayMode(.inline)
         .contentMargins(.top, 16)
@@ -134,7 +136,7 @@ struct EWTransferNFTView: View {
 #Preview {
     NavigationContainerView(mockManager: EWManagerMock()) {
         SpinnerViewContainer {
-            EWTransferNFTView(token: EWManagerMock().getItem(type: TokenOwnershipResponse.self, item: Mocks.NFT.item)!)
+            EWTransferNFTView(dataModel: NFTDataModel.mock())
         }
     }
 }

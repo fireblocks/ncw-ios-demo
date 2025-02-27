@@ -340,6 +340,10 @@ class EWManager: Hashable, EWManagerAPIProtocol {
     }
     
     func getTransactionById(txId: String) async -> EmbeddedWalletSDKDev.TransactionResponse? {
+        if let mockManager {
+            return await mockManager.getTransactionById(txId: txId)
+        }
+
         do {
             errorMessage = nil
             if let instance = initialize() {
@@ -397,6 +401,10 @@ class EWManager: Hashable, EWManagerAPIProtocol {
     }
 
     func createOneTimeAddressTransaction(accountId: Int, assetId: String, destAddress: String, amount: String, feeLevel: FeeLevel) async -> EmbeddedWalletSDKDev.CreateTransactionResponse? {
+        if let mockManager {
+            return await mockManager.createOneTimeAddressTransaction(accountId: accountId, assetId: assetId, destAddress: destAddress, amount: amount, feeLevel: feeLevel)
+        }
+
         do {
             if let instance = initialize() {
                 let request = TransactionRequest(

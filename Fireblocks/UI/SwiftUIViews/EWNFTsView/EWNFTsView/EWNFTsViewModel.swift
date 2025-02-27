@@ -22,18 +22,21 @@ enum SortingDateOptions: String, CaseIterable {
 extension EWNFTsView {
     @Observable
     class ViewModel {
+        var coordinator: Coordinator!
         var ewManager: EWManager!
         var loadingManager: LoadingManager!
-        var tokens: [TokenOwnershipResponse] = []
         var didLoad = false
         var selectedViewOption: ViewAsOptions = .List
         var selectedSortingOption: SortingDateOptions = .ASC
 
-        func setup(loadingManager: LoadingManager, ewManager: EWManager) {
+        var dataModel = NFTDataModel()
+
+        func setup(loadingManager: LoadingManager, ewManager: EWManager, coordinator: Coordinator) {
             if !didLoad {
                 didLoad = true
                 self.loadingManager = loadingManager
                 self.ewManager = ewManager
+                self.coordinator = coordinator
                 self.loadingManager.isLoading = true
             }
 
@@ -43,17 +46,22 @@ extension EWNFTsView {
         }
 
         func fetchAllTokens() async {
-            self.tokens = await self.ewManager?.getOwnedNFTs()?.data ?? []
+            self.dataModel.tokens = await self.ewManager?.getOwnedNFTs()?.data ?? []
             await self.loadingManager.setLoading(value: false)
         }
         
         func sortedTokens() -> [TokenOwnershipResponse] {
             switch selectedSortingOption {
             case .ASC:
-                return tokens.sorted(by: { $0.ownershipStartTime ?? 0 < $1.ownershipStartTime ?? 0 })
+                return dataModel.tokens.sorted(by: { $0.ownershipStartTime ?? 0 < $1.ownershipStartTime ?? 0 })
             case .DESC:
-                return tokens.sorted(by: { $0.ownershipStartTime ?? 0 > $1.ownershipStartTime ?? 0 })
+                return dataModel.tokens.sorted(by: { $0.ownershipStartTime ?? 0 > $1.ownershipStartTime ?? 0 })
             }
+        }
+        
+        func proceedToDetails() {
+            coordinator.path.append(NavigationTypes.NFTToken(dataModel))
+
         }
         
     }

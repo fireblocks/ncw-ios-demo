@@ -14,8 +14,8 @@ struct EWNFTDetailsView: View {
     @Environment(EWManager.self) var ewManager
     @State var viewModel: ViewModel
     
-    init(token: TokenOwnershipResponse) {
-        _viewModel = State(initialValue: ViewModel(token: token))
+    init(dataModel: NFTDataModel) {
+        _viewModel = State(initialValue: ViewModel(dataModel: dataModel))
     }
 
     var body: some View {
@@ -62,7 +62,7 @@ struct EWNFTDetailsView: View {
                 BottomBanner(text: viewModel.ewManager?.errorMessage)
                     .animation(.default, value: viewModel.ewManager?.errorMessage)
                 Button {
-                    coordinator.path.append(NavigationTypes.transferNFT(viewModel.token))
+                    viewModel.proceedToTransfer()
                 } label: {
                     Text("Transfer NFT")
                         .frame(maxWidth: .infinity, alignment: .center)
@@ -79,7 +79,7 @@ struct EWNFTDetailsView: View {
             .background()
         })
         .onAppear() {
-            viewModel.setup(loadingManager: loadingManager, ewManager: ewManager)
+            viewModel.setup(loadingManager: loadingManager, ewManager: ewManager, coordinator: coordinator)
         }
         .navigationTitle("NFT Details")
         .navigationBarTitleDisplayMode(.inline)
@@ -89,56 +89,56 @@ struct EWNFTDetailsView: View {
     
     @ViewBuilder
     private var name: some View {
-        if let name = viewModel.token.name?.capitalized {
+        if let name = viewModel.dataModel.token?.name?.capitalized {
             Text(name)
         }
     }
 
     @ViewBuilder
     private var tokenId: some View {
-        if let tokenId = viewModel.token.tokenId {
+        if let tokenId = viewModel.dataModel.token?.tokenId {
             Text(tokenId)
         }
     }
 
     @ViewBuilder
     private var standard: some View {
-        if let value = viewModel.token.standard {
+        if let value = viewModel.dataModel.token?.standard {
             TitleValueRow(title: "Standard", value: value)
         }
     }
 
     @ViewBuilder
     private var balance: some View {
-        if let value = viewModel.token.balance {
+        if let value = viewModel.dataModel.token?.balance {
             TitleValueRow(title: "Balance", value: value)
         }
     }
 
     @ViewBuilder
     private var dateAcquired: some View {
-        if let ownershipStartTime = viewModel.token.ownershipStartTime {
+        if let ownershipStartTime = viewModel.dataModel.token?.ownershipStartTime {
             TitleValueRow(title: "Date Acquired", value: Date(timeIntervalSince1970: TimeInterval(ownershipStartTime)).format())
         }
     }
 
     @ViewBuilder
     private var collection: some View {
-        if let collection = viewModel.token.collection?.name {
+        if let collection = viewModel.dataModel.token?.collection?.name {
             TitleValueRow(title: "Collection", value: collection)
         }
     }
 
     @ViewBuilder
     private var blockchain: some View {
-        if let blockchain = viewModel.token.blockchainDescriptor?.rawValue {
+        if let blockchain = viewModel.dataModel.token?.blockchainDescriptor?.rawValue {
             TitleValueRow(title: "Blockchain", value: blockchain)
         }
     }
 
     @ViewBuilder
     private var contactAddress: some View {
-        if let value = viewModel.token.collection?.id {
+        if let value = viewModel.dataModel.token?.collection?.id {
             VStack(spacing: 8) {
                 Text("Contact address")
                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -166,7 +166,7 @@ struct EWNFTDetailsView: View {
 
     @ViewBuilder
     private var nftId: some View {
-        if let value = viewModel.token.id {
+        if let value = viewModel.dataModel.token?.id {
             VStack(spacing: 8) {
                 Text("Id")
                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -197,7 +197,7 @@ struct EWNFTDetailsView: View {
 #Preview {
     NavigationContainerView(mockManager: EWManagerMock()) {
         SpinnerViewContainer {
-            EWNFTDetailsView(token: EWManagerMock().getItem(type: TokenOwnershipResponse.self, item: Mocks.NFT.item)!)
+            EWNFTDetailsView(dataModel: NFTDataModel.mock())
         }
     }
 }

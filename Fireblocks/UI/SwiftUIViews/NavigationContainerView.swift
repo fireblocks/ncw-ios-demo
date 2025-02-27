@@ -27,9 +27,10 @@ enum NavigationTypes: Hashable {
     case submitConnection(CreateWeb3ConnectionResponse)
     case connectionDetails(Web3Connection, Bool)
 //    case scanQR(any QRCodeScannerViewControllerDelegate)
-    case NFTToken(TokenOwnershipResponse)
-    case transferNFT(TokenOwnershipResponse)
-    case nftFee(TokenOwnershipResponse, String)
+    case NFTToken(NFTDataModel)
+    case transferNFT(NFTDataModel)
+    case nftFee(NFTDataModel)
+    case nftPreview(NFTDataModel)
     #endif
 }
 
@@ -163,23 +164,30 @@ struct NavigationContainerView<Content: View>: View {
 //                case .scanQR(let delegate):
 //                    GenericController(uiViewType: QRCodeScannerViewController(delegate: delegate)
 //                    )
-                case .transferNFT(let token):
+                case .transferNFT(let dataModel):
                     SpinnerViewContainer {
-                        EWTransferNFTView(token: token)
+                        EWTransferNFTView(dataModel: dataModel)
                             .environmentObject(coordinator)
                             .environment(ewManager)
 
                     }
-                case .nftFee(let token, let address):
+                case .nftFee(let dataModel):
                     SpinnerViewContainer {
-                        EWNFTFeeView(token: token, address: address)
+                        EWNFTFeeView(dataModel: dataModel)
                             .environmentObject(coordinator)
                             .environment(ewManager)
 
                     }
-                case .NFTToken(let token):
+                case .nftPreview(let dataModel):
                     SpinnerViewContainer {
-                        EWNFTDetailsView(token: token)
+                        EWNFTPreviewView(dataModel: dataModel)
+                            .environmentObject(coordinator)
+                            .environment(ewManager)
+
+                    }
+                case .NFTToken(let dataModel):
+                    SpinnerViewContainer {
+                        EWNFTDetailsView(dataModel: dataModel)
                             .environmentObject(coordinator)
                             .environment(ewManager)
 
