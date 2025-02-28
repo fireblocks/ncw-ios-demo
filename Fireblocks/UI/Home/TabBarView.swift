@@ -54,9 +54,6 @@ struct TabBarView: View {
         })
         .animation(.default, value: selectedIndex)
         .toolbar {
-//            ToolbarItem(placement: .topBarLeading) {
-//                NavigationBarLeftHeader()
-//            }
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
                     coordinator.path.append(NavigationTypes.settings)
@@ -102,6 +99,10 @@ struct TabBarView: View {
 
 }
 
-#Preview {
-    TabBarView()
-}
+//#Preview {
+//    NavigationContainerView(mockManager: EWManagerMock()) {
+//        SpinnerViewContainer {
+//            TabBarView()
+//        }
+//    }
+//}

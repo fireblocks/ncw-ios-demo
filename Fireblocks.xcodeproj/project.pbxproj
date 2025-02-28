@@ -209,10 +209,7 @@
 		2B2303852D6C6C6200260CD9 /* E3WebConnectionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2303842D6C6C6200260CD9 /* E3WebConnectionRow.swift */; };
 		2B2303872D6CB4FE00260CD9 /* EWWeb3ConnectionSubmitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2303862D6CB4FE00260CD9 /* EWWeb3ConnectionSubmitView.swift */; };
 		2B2303892D6CBC2900260CD9 /* EWWeb3ConnectionSubmitViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2303882D6CBC2600260CD9 /* EWWeb3ConnectionSubmitViewModel.swift */; };
-		2B23038F2D6CBDA700260CD9 /* EWWeb3ConnectionDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B23038E2D6CBD9B00260CD9 /* EWWeb3ConnectionDetailsView.swift */; };
-		2B2303912D6CBDEC00260CD9 /* EWWeb3ConnectionDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2303902D6CBDE000260CD9 /* EWWeb3ConnectionDetailsViewModel.swift */; };
 		2B2303932D6DC72C00260CD9 /* E3WebConnectionRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2303922D6DC72600260CD9 /* E3WebConnectionRowViewModel.swift */; };
-		2B2303952D6DCFE400260CD9 /* EWWeb3ConnectionDetailsHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2303942D6DCFE400260CD9 /* EWWeb3ConnectionDetailsHeader.swift */; };
 		2B2303A32D6DDA1500260CD9 /* Figtree-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2B2303A12D6DDA1500260CD9 /* Figtree-Bold.ttf */; };
 		2B2303A42D6DDA1500260CD9 /* Figtree-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2B2303A22D6DDA1500260CD9 /* Figtree-Regular.ttf */; };
 		2B2303A52D6DDA1500260CD9 /* Figtree-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2B2303A12D6DDA1500260CD9 /* Figtree-Bold.ttf */; };
@@ -444,6 +441,9 @@
 		2B5F46BA2D70A5CA00B23371 /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5F46B92D70A5C600B23371 /* CacheManager.swift */; };
 		2B5F46BC2D70AE1F00B23371 /* EWNFTPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5F46BB2D70AE1F00B23371 /* EWNFTPreviewView.swift */; };
 		2B5F46BF2D70AE7600B23371 /* EWNFTPreviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5F46BE2D70AE7300B23371 /* EWNFTPreviewViewModel.swift */; };
+		2B5F46C52D718F8B00B23371 /* EWWeb3ConnectionDetailsHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5F46C12D718F8B00B23371 /* EWWeb3ConnectionDetailsHeader.swift */; };
+		2B5F46C62D718F8B00B23371 /* EWWeb3ConnectionDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5F46C32D718F8B00B23371 /* EWWeb3ConnectionDetailsViewModel.swift */; };
+		2B5F46C72D718F8B00B23371 /* EWWeb3ConnectionDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5F46C22D718F8B00B23371 /* EWWeb3ConnectionDetailsView.swift */; };
 		2B7A721B2B45A2250011C398 /* AddDeviceQRViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A721A2B45A2250011C398 /* AddDeviceQRViewModel.swift */; };
 		2B7A721D2B45A8FF0011C398 /* AddDeviceQRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A721C2B45A8FF0011C398 /* AddDeviceQRView.swift */; };
 		2B7A72202B45AAEB0011C398 /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A721F2B45AAEB0011C398 /* Modifiers.swift */; };
@@ -804,6 +804,7 @@
 		2BD5D0F72D707E400025A9A8 /* EWNFTFeeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5D0F62D707E310025A9A8 /* EWNFTFeeView.swift */; };
 		2BD5D0F92D707E600025A9A8 /* EWNFTFeeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5D0F82D707E5D0025A9A8 /* EWNFTFeeViewModel.swift */; };
 		2BD785CB2B83703F00FEA796 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2BD785CA2B83703F00FEA796 /* GoogleService-Info.plist */; };
+		2BEB9BA62D71A4F700699AC1 /* Web3DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5F46C82D718FA900B23371 /* Web3DataModel.swift */; };
 		2BEEF7C52BAC6EFD004AF6AB /* DeriveKeysHostingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD34A742B98B983008406D5 /* DeriveKeysHostingVC.swift */; };
 		2BEEF7C62BAC6F11004AF6AB /* DeriveKeysViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD34A762B98B995008406D5 /* DeriveKeysViewModel.swift */; };
 		2BEEF7C72BAC6F11004AF6AB /* DerivedAssetRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD34A7A2B98C129008406D5 /* DerivedAssetRow.swift */; };
@@ -1020,10 +1021,7 @@
 		2B2303842D6C6C6200260CD9 /* E3WebConnectionRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = E3WebConnectionRow.swift; sourceTree = "<group>"; };
 		2B2303862D6CB4FE00260CD9 /* EWWeb3ConnectionSubmitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EWWeb3ConnectionSubmitView.swift; sourceTree = "<group>"; };
 		2B2303882D6CBC2600260CD9 /* EWWeb3ConnectionSubmitViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EWWeb3ConnectionSubmitViewModel.swift; sourceTree = "<group>"; };
-		2B23038E2D6CBD9B00260CD9 /* EWWeb3ConnectionDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EWWeb3ConnectionDetailsView.swift; sourceTree = "<group>"; };
-		2B2303902D6CBDE000260CD9 /* EWWeb3ConnectionDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EWWeb3ConnectionDetailsViewModel.swift; sourceTree = "<group>"; };
 		2B2303922D6DC72600260CD9 /* E3WebConnectionRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = E3WebConnectionRowViewModel.swift; sourceTree = "<group>"; };
-		2B2303942D6DCFE400260CD9 /* EWWeb3ConnectionDetailsHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EWWeb3ConnectionDetailsHeader.swift; sourceTree = "<group>"; };
 		2B2303A12D6DDA1500260CD9 /* Figtree-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Figtree-Bold.ttf"; sourceTree = "<group>"; };
 		2B2303A22D6DDA1500260CD9 /* Figtree-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Figtree-Regular.ttf"; sourceTree = "<group>"; };
 		2B2B187E2D2A76A700A2B39D /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
@@ -1073,6 +1071,10 @@
 		2B5F46B92D70A5C600B23371 /* CacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
 		2B5F46BB2D70AE1F00B23371 /* EWNFTPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EWNFTPreviewView.swift; sourceTree = "<group>"; };
 		2B5F46BE2D70AE7300B23371 /* EWNFTPreviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EWNFTPreviewViewModel.swift; sourceTree = "<group>"; };
+		2B5F46C12D718F8B00B23371 /* EWWeb3ConnectionDetailsHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EWWeb3ConnectionDetailsHeader.swift; sourceTree = "<group>"; };
+		2B5F46C22D718F8B00B23371 /* EWWeb3ConnectionDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EWWeb3ConnectionDetailsView.swift; sourceTree = "<group>"; };
+		2B5F46C32D718F8B00B23371 /* EWWeb3ConnectionDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EWWeb3ConnectionDetailsViewModel.swift; sourceTree = "<group>"; };
+		2B5F46C82D718FA900B23371 /* Web3DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Web3DataModel.swift; sourceTree = "<group>"; };
 		2B769B9D2B1DFCBA00557E97 /* NCW-sandboxDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "NCW-sandboxDebug.entitlements"; sourceTree = "<group>"; };
 		2B769B9E2B1DFCC700557E97 /* NCW-sandboxRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "NCW-sandboxRelease.entitlements"; sourceTree = "<group>"; };
 		2B7A721A2B45A2250011C398 /* AddDeviceQRViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDeviceQRViewModel.swift; sourceTree = "<group>"; };
@@ -1432,6 +1434,7 @@
 		2B223F962D673EAE002285B9 /* EWNFTsView */ = {
 			isa = PBXGroup;
 			children = (
+				2B5F46B32D709D9000B23371 /* NFTDataModel.swift */,
 				2B5F46B82D70A4E900B23371 /* EWNFTDetailsView */,
 				2BD5D0EB2D6F53C30025A9A8 /* EWNFTsView */,
 				2BD5D0EA2D6F53720025A9A8 /* EWNFTRow */,
@@ -1445,9 +1448,8 @@
 		2B223F9B2D673EAE002285B9 /* Web3 */ = {
 			isa = PBXGroup;
 			children = (
-				2B23038E2D6CBD9B00260CD9 /* EWWeb3ConnectionDetailsView.swift */,
-				2B2303902D6CBDE000260CD9 /* EWWeb3ConnectionDetailsViewModel.swift */,
-				2B2303942D6DCFE400260CD9 /* EWWeb3ConnectionDetailsHeader.swift */,
+				2B5F46C82D718FA900B23371 /* Web3DataModel.swift */,
+				2B5F46C42D718F8B00B23371 /* EWWeb3ConnectionDetailsView */,
 				2B23038D2D6CBD7900260CD9 /* EWWeb3ConnectionsView */,
 				2B23038C2D6CBD6000260CD9 /* E3WebConnectionRow */,
 				2B23038B2D6CBD4900260CD9 /* EWWeb3ConnectionURI */,
@@ -1719,6 +1721,16 @@
 			path = EWNFTPreviewView;
 			sourceTree = "<group>";
 		};
+		2B5F46C42D718F8B00B23371 /* EWWeb3ConnectionDetailsView */ = {
+			isa = PBXGroup;
+			children = (
+				2B5F46C12D718F8B00B23371 /* EWWeb3ConnectionDetailsHeader.swift */,
+				2B5F46C22D718F8B00B23371 /* EWWeb3ConnectionDetailsView.swift */,
+				2B5F46C32D718F8B00B23371 /* EWWeb3ConnectionDetailsViewModel.swift */,
+			);
+			path = EWWeb3ConnectionDetailsView;
+			sourceTree = "<group>";
+		};
 		2B7A72172B45A0DF0011C398 /* AddDevice */ = {
 			isa = PBXGroup;
 			children = (
@@ -1987,7 +1999,6 @@
 		2BF8EDBC2B56756700046F0B /* SwiftUIViews */ = {
 			isa = PBXGroup;
 			children = (
-				2B5F46B32D709D9000B23371 /* NFTDataModel.swift */,
 				2B223F962D673EAE002285B9 /* EWNFTsView */,
 				2B223F9B2D673EAE002285B9 /* Web3 */,
 				2BCFE11E2D5A2116006BE227 /* SettingsView */,
@@ -3190,7 +3201,6 @@
 				2B87CADE2D47A66400448A2A /* TransfersViewController.swift in Sources */,
 				2B2B19E52D2D120E00A2B39D /* AppLogger.swift in Sources */,
 				2B2B19E62D2D120E00A2B39D /* QRCodeScannerViewController.swift in Sources */,
-				2B2303952D6DCFE400260CD9 /* EWWeb3ConnectionDetailsHeader.swift in Sources */,
 				2B2B19E72D2D120E00A2B39D /* AssetsIcons.swift in Sources */,
 				2B83E2632D37F4E6003B1397 /* PassphraseInfo.swift in Sources */,
 				2B0FED9D2D37968B00F637E6 /* EWManager.swift in Sources */,
@@ -3199,6 +3209,7 @@
 				2BCFE1352D5B7C46006BE227 /* TabBarView.swift in Sources */,
 				2B87CADC2D47A5B800448A2A /* TransactionSentViewModel.swift in Sources */,
 				2B83E2872D38D21D003B1397 /* AddAssetsDelegate.swift in Sources */,
+				2BEB9BA62D71A4F700699AC1 /* Web3DataModel.swift in Sources */,
 				2B87CAF72D47C8C900448A2A /* FeeRateViewModel.swift in Sources */,
 				2B2B19E92D2D120E00A2B39D /* Bullet.swift in Sources */,
 				2B2B19EA2D2D120E00A2B39D /* AssetsColors.swift in Sources */,
@@ -3262,12 +3273,14 @@
 				2B223FB72D673EAE002285B9 /* EWWeb3ConnectionURIModel.swift in Sources */,
 				2B2B1A1A2D2D120E00A2B39D /* AlertBannerView.swift in Sources */,
 				2B2B1A1D2D2D120E00A2B39D /* ICloudManager.swift in Sources */,
+				2B5F46C52D718F8B00B23371 /* EWWeb3ConnectionDetailsHeader.swift in Sources */,
+				2B5F46C62D718F8B00B23371 /* EWWeb3ConnectionDetailsViewModel.swift in Sources */,
+				2B5F46C72D718F8B00B23371 /* EWWeb3ConnectionDetailsView.swift in Sources */,
 				2B83E2572D37F107003B1397 /* BackupViewControllerStrategy.swift in Sources */,
 				2B54D6C52D426B49001C135D /* TakeoverViewController.swift in Sources */,
 				2B2B1A212D2D120E00A2B39D /* PrepareForScanHostingVC.swift in Sources */,
 				2B2B1A222D2D120E00A2B39D /* FireblocksManagerProtocol.swift in Sources */,
 				2B2303892D6CBC2900260CD9 /* EWWeb3ConnectionSubmitViewModel.swift in Sources */,
-				2B23038F2D6CBDA700260CD9 /* EWWeb3ConnectionDetailsView.swift in Sources */,
 				2B2B1A232D2D120E00A2B39D /* JoinOrRecoverView.swift in Sources */,
 				2BD5D0E92D6F4DFA0025A9A8 /* EWNFTCardViewModel.swift in Sources */,
 				2B95395E2D54B45300816DB7 /* GenerateKeysViewModel.swift in Sources */,
@@ -3316,7 +3329,6 @@
 				2B83E27B2D38D1A6003B1397 /* AddAssetsViewController.swift in Sources */,
 				2B87CB1D2D47D2E600448A2A /* FeeRateType.swift in Sources */,
 				2B87CB032D47CA2D00448A2A /* EstimatedFeeRequestBody.swift in Sources */,
-				2B2303912D6CBDEC00260CD9 /* EWWeb3ConnectionDetailsViewModel.swift in Sources */,
 				2B2B1A482D2D120E00A2B39D /* BackupStatusViewModel.swift in Sources */,
 				2B83E25E2D37F16C003B1397 /* BackupInfo.swift in Sources */,
 				2B2B1A4B2D2D120E00A2B39D /* Date+Extensions.swift in Sources */,

@@ -31,7 +31,7 @@ struct EWWeb3ConnectionsView: View {
                             .foregroundStyle(.white)
                         Spacer()
                         Button {
-                            coordinator.path.append(NavigationTypes.createConnection(viewModel.accountId))
+                            coordinator.path.append(NavigationTypes.createConnection(viewModel.dataModel))
                         } label: {
                             Image(.plus)
                         }
@@ -42,13 +42,14 @@ struct EWWeb3ConnectionsView: View {
                     .listRowBackground(Color.clear)
                     .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
 
-                        if viewModel.connections.count > 0 {
-                            ForEach(self.viewModel.connections, id: \.id) { connection in
+                    if viewModel.dataModel.connections.count > 0 {
+                            ForEach(self.viewModel.dataModel.connections, id: \.id) { connection in
                                 Section {
                                     E3WebConnectionRow(connection: connection)
                                     .contentShape(.rect)
                                     .onTapGesture(perform: {
-                                        coordinator.path.append(NavigationTypes.connectionDetails(connection, true))
+                                        viewModel.dataModel.connection = connection
+                                        coordinator.path.append(NavigationTypes.connectionDetails(viewModel.dataModel))
                                     })
                                 }
                             }
@@ -74,7 +75,7 @@ struct EWWeb3ConnectionsView: View {
             viewModel.setup(ewManager: ewManager, loadingManager: loadingManager)
         }
         .animation(.default, value: viewModel.ewManager?.errorMessage)
-        .animation(.default, value: viewModel.connections)
+        .animation(.default, value: viewModel.dataModel.connections)
         .tint(.white)
     }
 }

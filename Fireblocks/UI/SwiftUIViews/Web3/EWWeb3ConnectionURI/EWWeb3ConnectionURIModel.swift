@@ -14,13 +14,11 @@ extension EWWeb3ConnectionURI {
         var coordinator: Coordinator!
         var loadingManager: LoadingManager!
         var ewManager: EWManager!
-        var uri: String = ""
-        var response: CreateWeb3ConnectionResponse?
+        var dataModel: Web3DataModel
         var isQRPresented = false
-        private var accountId: Int
         
-        init(accountId: Int) {
-            self.accountId = accountId
+        init(dataModel: Web3DataModel) {
+            self.dataModel = dataModel
         }
 
         func setup(ewManager: EWManager, loadingManager: LoadingManager, coordinator: Coordinator) {
@@ -34,13 +32,13 @@ extension EWWeb3ConnectionURI {
         }
         
         func createConnection() {
-            if !uri.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+            if !dataModel.uri.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
                 self.loadingManager.isLoading = true
                 Task {
-                    let response = await self.ewManager?.createConnection(feeLevel: .medium, uri: uri, ncwAccountId: accountId)
+                    dataModel.response = await self.ewManager?.createConnection(feeLevel: .medium, uri: dataModel.uri, ncwAccountId: dataModel.accountId)
                     await MainActor.run {
-                        if response != nil {
-                            self.coordinator.path.append(NavigationTypes.submitConnection(response!))
+                        if dataModel.response != nil {
+                            self.coordinator.path.append(NavigationTypes.submitConnection(dataModel))
                         }
                         self.loadingManager.isLoading = false
                     }
@@ -50,16 +48,16 @@ extension EWWeb3ConnectionURI {
     
         //MARK: QRCodeScannerViewControllerDelegate -
         static func == (lhs: EWWeb3ConnectionURI.ViewModel, rhs: EWWeb3ConnectionURI.ViewModel) -> Bool {
-            lhs.uri == rhs.uri
+            lhs.dataModel.uri == rhs.dataModel.uri
         }
         
         func hash(into hasher: inout Hasher) {
-            hasher.combine(uri)
+            hasher.combine(dataModel.uri)
         }
 
         func gotAddress(address: String) {
             isQRPresented = false
-            uri = address
+            dataModel.uri = address
             createConnection()
         }
 

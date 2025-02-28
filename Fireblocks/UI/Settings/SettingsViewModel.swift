@@ -10,13 +10,14 @@ import FirebaseAuth
 import UIKit
 import SwiftUI
 
-class SettingsViewModel: ObservableObject {
-    @Environment(\.dismiss) var dismiss
+@Observable
+class SettingsViewModel {
     var coordinator: Coordinator!
     
     var settingsWalletActions: [SettingsData] = []
     var settingsGeneralActions: [SettingsData] = []
-    @Published var isShareLogsPresented = false
+    var isShareLogsPresented = false
+    
     var appLogoURL: URL?
     var fireblocksLogsURL: URL?
     
@@ -91,7 +92,7 @@ class SettingsViewModel: ObservableObject {
     
     func signOutFromFirebase() {
         FireblocksManager.shared.signOut()
-        dismiss()
+        coordinator.path = NavigationPath()
     }
     
     func getUrlOfProfilePicture() -> URL? {

@@ -15,47 +15,49 @@ struct EWWeb3ConnectionSubmitView: View {
     @Environment(EWManager.self) var ewManager
     @State var viewModel: ViewModel
     
-    init(response: CreateWeb3ConnectionResponse) {
-        _viewModel = State(initialValue: ViewModel(response: response))
+    init(dataModel: Web3DataModel) {
+        _viewModel = State(initialValue: ViewModel(dataModel: dataModel))
     }
     
     var body: some View {
         ZStack {
             AppBackgroundView()
-            VStack {
-                EWWeb3ConnectionDetailsHeader(metadata: viewModel.response.sessionMetadata, isConnected: false)
-
-                Spacer()
-                BottomBanner(text: viewModel.ewManager?.errorMessage)
-                    .animation(.default, value: viewModel.ewManager?.errorMessage)
-                
-                Button {
-                    viewModel.submitConnection(approve: true)
-                } label: {
-                    Text("Connect")
-                        .frame(maxWidth: .infinity, alignment: .center)
-                        .padding(8)
+            if let response = viewModel.dataModel.response {
+                VStack {
+                    EWWeb3ConnectionDetailsHeader(metadata: response.sessionMetadata, isConnected: false)
+                    
+                    Spacer()
+                    BottomBanner(text: viewModel.ewManager?.errorMessage)
+                        .animation(.default, value: viewModel.ewManager?.errorMessage)
+                    
+                    Button {
+                        viewModel.submitConnection(approve: true)
+                    } label: {
+                        Text("Connect")
+                            .frame(maxWidth: .infinity, alignment: .center)
+                            .padding(8)
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .tint(AssetsColors.gray2.color())
+                    .background(AssetsColors.gray2.color(), in: .capsule)
+                    .clipShape(.capsule)
+                    .contentShape(.rect)
+                    
+                    Button {
+                        viewModel.submitConnection(approve: false)
+                    } label: {
+                        Text("Discard")
+                            .frame(maxWidth: .infinity, alignment: .center)
+                            .padding(8)
+                    }
+                    .tint(.secondary)
+                    .background(.clear, in: .capsule)
+                    .clipShape(.capsule)
+                    .contentShape(.rect)
                 }
-                .buttonStyle(.borderedProminent)
-                .tint(AssetsColors.gray2.color())
-                .background(AssetsColors.gray2.color(), in: .capsule)
-                .clipShape(.capsule)
-                .contentShape(.rect)
-                
-                Button {
-                    viewModel.submitConnection(approve: false)
-                } label: {
-                    Text("Discard")
-                        .frame(maxWidth: .infinity, alignment: .center)
-                        .padding(8)
-                }
-                .tint(.secondary)
-                .background(.clear, in: .capsule)
-                .clipShape(.capsule)
-                .contentShape(.rect)
+                .padding()
             }
-            .padding()
-
+            
             VStack {
                 Group {
                     if let image = viewModel.image {
@@ -99,7 +101,7 @@ struct EWWeb3ConnectionSubmitView: View {
 #Preview {
     NavigationContainerView(mockManager: EWManagerMock()) {
         SpinnerViewContainer {
-            EWWeb3ConnectionSubmitView(response: EWManagerMock().getItem(type: CreateWeb3ConnectionResponse.self, item: Mocks.Connections.connection)!)
+            EWWeb3ConnectionSubmitView(dataModel: Web3DataModel.mock())
         }
     }
 }

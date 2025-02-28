@@ -10,13 +10,12 @@ import SwiftUI
 struct SettingsView: View {
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var coordinator: Coordinator
-    @EnvironmentObject var loadingManager: LoadingManager
     @EnvironmentObject var fireblocksManager: FireblocksManager
     @EnvironmentObject var googleSignInManager: GoogleSignInManager
-    @StateObject var viewModel: SettingsViewModel
+    @State var viewModel: SettingsViewModel
     
     init(vm: SettingsViewModel = SettingsViewModel()) {
-        _viewModel = StateObject(wrappedValue: vm)
+        _viewModel = State(initialValue: vm)
     }
 
     var body: some View {
@@ -79,9 +78,6 @@ struct SettingsView: View {
         }
         .navigationBarBackButtonHidden()
         .navigationBarItems(leading: CustomBackButtonView())
-        .onChange(of: viewModel.isShareLogsPresented) { oldValue, newValue in
-            print(newValue)
-        }
     }
 }
 
@@ -121,13 +117,10 @@ extension SettingsView {
 
 #Preview {
     NavigationContainerView {
-        SpinnerViewContainer {
-            SettingsView(vm: SettingsViewModelMock())
-                .environmentObject(FireblocksManager.shared)
-                .environmentObject(GoogleSignInManager())
-                .environmentObject(AppleSignInManager())
-
-        }
+        SettingsView(vm: SettingsViewModelMock())
+            .environmentObject(FireblocksManager.shared)
+            .environmentObject(GoogleSignInManager())
+            .environmentObject(AppleSignInManager())
     }
 }
 

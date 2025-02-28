@@ -15,8 +15,8 @@ struct EWWeb3ConnectionURI: View {
     @Environment(EWManager.self) var ewManager
     @State var viewModel: ViewModel
 
-    init(accountId: Int) {
-        _viewModel = State(initialValue: ViewModel(accountId: accountId))
+    init(dataModel: Web3DataModel) {
+        _viewModel = State(initialValue: ViewModel(dataModel: dataModel))
     }
 
     var body: some View {
@@ -75,11 +75,11 @@ struct EWWeb3ConnectionURI: View {
                                         .font(.b4)
                                         .foregroundStyle(.secondary)
                                         .frame(maxWidth: .infinity, alignment: .leading)
-                                        .opacity(viewModel.uri.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? 1 : 0)
+                                        .opacity(viewModel.dataModel.uri.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? 1 : 0)
                                         .padding(.horizontal, 8)
 
                                 }
-                            TextField("", text: $viewModel.uri)
+                            TextField("", text: $viewModel.dataModel.uri)
                                 .font(.b2)
                                 .textFieldStyle(.plain)
                                 .padding(.horizontal, 8)
@@ -104,7 +104,7 @@ struct EWWeb3ConnectionURI: View {
                 .tint(AssetsColors.gray2.color())
                 .background(AssetsColors.gray2.color(), in: .capsule)
                 .clipShape(.capsule)
-                .foregroundStyle(viewModel.uri.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? .secondary : .primary)
+                .foregroundStyle(viewModel.dataModel.uri.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? .secondary : .primary)
                 .contentShape(.rect)
             }
             .padding()
@@ -135,14 +135,14 @@ struct EWWeb3ConnectionURI: View {
             }
         })
         .animation(.default, value: viewModel.ewManager?.errorMessage)
-        .animation(.default, value: viewModel.uri)
+        .animation(.default, value: viewModel.dataModel.uri)
     }
 }
 
 #Preview {
     NavigationContainerView(mockManager: EWManagerMock()) {
         SpinnerViewContainer {
-            EWWeb3ConnectionURI(accountId: 0)
+            EWWeb3ConnectionURI(dataModel: Web3DataModel.mock())
         }
     }
 }

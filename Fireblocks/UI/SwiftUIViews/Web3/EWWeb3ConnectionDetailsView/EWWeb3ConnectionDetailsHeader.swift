@@ -26,7 +26,7 @@ struct EWWeb3ConnectionDetailsHeader: View {
                         if let appName = metadata?.appName {
                             HStack(spacing: 8) {
                                 Spacer()
-                                Text("Connect to \(appName)")
+                                Text("\(appName.capitalized) Connection")
                                     .font(.h4)
                                     .multilineTextAlignment(.center)
                                 if isConnected {

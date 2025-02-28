@@ -13,12 +13,10 @@ extension EWWeb3ConnectionDetailsView {
         var coordinator: Coordinator!
         var loadingManager: LoadingManager!
         var ewManager: EWManager!
-        let connection: Web3Connection
-        let canRemove: Bool
+        var dataModel: Web3DataModel
         
-        init(connection: Web3Connection, canRemove: Bool) {
-            self.connection = connection
-            self.canRemove = canRemove
+        init(dataModel: Web3DataModel) {
+            self.dataModel = dataModel
         }
         
         func setup(ewManager: EWManager, loadingManager: LoadingManager, coordinator: Coordinator) {
@@ -28,7 +26,7 @@ extension EWWeb3ConnectionDetailsView {
         }
         
         func removeConnection() {
-            if let id = connection.id {
+            if let id = dataModel.connection?.id {
                 self.loadingManager.isLoading = true
                 Task {
                     let didRemove = await self.ewManager?.removeConnection(id: id)

@@ -13,15 +13,13 @@ extension EWWeb3ConnectionsView {
     class ViewModel {
         var loadingManager: LoadingManager!
         var ewManager: EWManager!
-        var connections: [Web3Connection] = []
         var didLoad = false
-        var response: PaginatedResponse<Web3Connection>?
-        
+        var dataModel = Web3DataModel()
+
         var isAddConnectionPresented = false
-        var accountId: Int
-        
+           
         init(accountId: Int) {
-            self.accountId = accountId
+            dataModel.accountId = accountId
         }
         
         func setup(ewManager: EWManager, loadingManager: LoadingManager) {
@@ -39,7 +37,7 @@ extension EWWeb3ConnectionsView {
             Task {
                 let connections = await self.ewManager?.getConnections()?.data ?? []
                 await MainActor.run {
-                    self.connections = connections
+                    self.dataModel.connections = connections
                     self.loadingManager.isLoading = false
                 }
             }

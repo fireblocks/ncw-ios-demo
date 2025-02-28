@@ -14,12 +14,12 @@ extension EWWeb3ConnectionSubmitView {
         var coordinator: Coordinator!
         var loadingManager: LoadingManager!
         var ewManager: EWManager!
-        var response: CreateWeb3ConnectionResponse
+        var dataModel: Web3DataModel
         var uiimage: UIImage?
         var image: Image?
-        init(response: CreateWeb3ConnectionResponse) {
-            self.response = response
-            if let imageURL = response.sessionMetadata?.appIcon, let url = URL(string: imageURL) {
+        init(dataModel: Web3DataModel) {
+            self.dataModel = dataModel
+            if let imageURL = dataModel.response?.sessionMetadata?.appIcon, let url = URL(string: imageURL) {
                 Task {
                     if let uiimage = try? await SessionManager.shared.loadImage(url: url) {
                         await MainActor.run {
@@ -39,7 +39,7 @@ extension EWWeb3ConnectionSubmitView {
         }
         
         func discard() {
-            if let id = response.id {
+            if let id = dataModel.response?.id {
                 Task {
                     let _ = await self.ewManager?.submitConnection(id: id, approve: false)
                 }
@@ -48,7 +48,7 @@ extension EWWeb3ConnectionSubmitView {
         }
         
         func submitConnection(approve: Bool) {
-            if let id = response.id {
+            if let id = dataModel.response?.id {
                 self.loadingManager.isLoading = true
                 Task {
                     let didSubmitConnection = await self.ewManager?.submitConnection(id: id, approve: approve)

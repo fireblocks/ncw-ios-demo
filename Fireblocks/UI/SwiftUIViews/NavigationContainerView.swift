@@ -23,9 +23,9 @@ enum NavigationTypes: Hashable {
     case generateKeys
     
     #if EW
-    case createConnection(Int)
-    case submitConnection(CreateWeb3ConnectionResponse)
-    case connectionDetails(Web3Connection, Bool)
+    case createConnection(Web3DataModel)
+    case submitConnection(Web3DataModel)
+    case connectionDetails(Web3DataModel)
 //    case scanQR(any QRCodeScannerViewControllerDelegate)
     case NFTToken(NFTDataModel)
     case transferNFT(NFTDataModel)
@@ -138,26 +138,24 @@ struct NavigationContainerView<Content: View>: View {
                 case .info:
                     AdvancedInfoViewControllerRep()
                 case .settings:
-                    SpinnerViewContainer {
-                        SettingsView()
-                            .environmentObject(coordinator)
-                    }
+                    SettingsView()
+                        .environmentObject(coordinator)
                 #if EW
-                case .createConnection(let accountId):
+                case .createConnection(let dataModel):
                     SpinnerViewContainer {
-                        EWWeb3ConnectionURI(accountId: accountId)
+                        EWWeb3ConnectionURI(dataModel: dataModel)
                             .environmentObject(coordinator)
                             .environment(ewManager)
                     }
-                case .submitConnection(let response):
+                case .submitConnection(let dataModel):
                     SpinnerViewContainer {
-                        EWWeb3ConnectionSubmitView(response: response)
+                        EWWeb3ConnectionSubmitView(dataModel: dataModel)
                             .environmentObject(coordinator)
                             .environment(ewManager)
                     }
-                case .connectionDetails(let connection, let canRemove):
+                case .connectionDetails(let dataModel):
                     SpinnerViewContainer {
-                        EWWeb3ConnectionDetailsView(connection: connection, canRemove: canRemove)
+                        EWWeb3ConnectionDetailsView(dataModel: dataModel)
                             .environmentObject(coordinator)
                             .environment(ewManager)
                     }

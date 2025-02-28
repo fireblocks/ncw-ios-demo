@@ -93,8 +93,8 @@ class EWManagerMock: EWManager {
     override func getConnections(allPages: Bool = true, pageCursor: String? = nil, order: Order? = nil, filter: String? = nil, sort: Web3ConnectionSort? = nil, pageSize: Int? = nil) async -> PaginatedResponse<Web3Connection>? {
 
         if let data = Mocks.Connections.getResponse.data(using: .utf8) {
-            if let asset: PaginatedResponse<Web3Connection> = try? GenericDecoder.decode(data: data) {
-                return asset
+            if let connections: PaginatedResponse<Web3Connection> = try? GenericDecoder.decode(data: data) {
+                return connections
             }
         }
         return nil
