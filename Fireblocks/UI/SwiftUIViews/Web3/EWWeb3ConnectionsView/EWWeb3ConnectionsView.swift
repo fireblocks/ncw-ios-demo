@@ -61,6 +61,7 @@ struct EWWeb3ConnectionsView: View {
                     loadingManager.isLoading = true
                     viewModel.fetchAllConnections()
                 }
+                .contentMargins(.top, 16)
 
                 Spacer()
                 BottomBanner(text: viewModel.ewManager?.errorMessage)

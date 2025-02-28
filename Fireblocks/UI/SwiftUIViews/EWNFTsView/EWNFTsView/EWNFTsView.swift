@@ -49,7 +49,8 @@ struct EWNFTsView: View {
 
                 }
                 .padding(.horizontal)
-                
+                .padding(.top, 16)
+
                 if viewModel.selectedViewOption == .List {
                     list
                 } else {
@@ -92,6 +93,7 @@ struct EWNFTsView: View {
         .listSectionSpacing(.compact)
         .scrollContentBackground(.hidden)
         .refreshable {
+            self.loadingManager.isLoading = true
             await viewModel.fetchAllTokens()
         }
         .listStyle(.insetGrouped)

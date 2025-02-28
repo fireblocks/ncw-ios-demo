@@ -7,50 +7,72 @@
 
 import SwiftUI
 
+enum TabIndex: Int, CaseIterable {
+    case Assets = 0
+    case Transfers = 1
+    #if EW
+    case NFTs = 2
+    case Web3 = 3
+    #endif
+    
+    var title: String {
+        switch self {
+        case .Assets:
+            return "Assets"
+        case .Transfers:
+            return "Transfers"
+        case .NFTs:
+            return "NFTs"
+        case .Web3:
+            return "Web3"
+        }
+    }
+    
+    var navigationTitle: String {
+        switch self {
+        case .Assets:
+            return "Assets"
+        case .Transfers:
+            return "Transfers"
+        case .NFTs:
+            return "NFTs"
+        case .Web3:
+            return "WeWeb3 connectionsb3"
+        }
+    }
+
+}
+
 struct TabBarView: View {
     @EnvironmentObject var coordinator: Coordinator
 
-    @State var selectedIndex = 0
-    #if EW
-    let tabs = ["Assets", "Transfers", "NFTs", "Web3"]
-    #else
-    let tabs = ["Assets", "Transfers"]
-    #endif
+    @State var selectedIndex = TabIndex.Assets
 
     var body: some View {
-        TabView(selection: $selectedIndex) {
-            GenericController(uiViewType: AssetListViewController())
-                .tabItem {
-                    getTabItem(tag: 0, title: "Assets")
-                }
-                .tag(0)
-            GenericController(uiViewType: TransfersViewController())
-                .tabItem {
-                    getTabItem(tag: 1, title: "Transfers")
-                }
-                .tag(1)
-            #if EW
-            EWNFTsView()
-            .tabItem {
-                getTabItem(tag: 2, title: "NFTs")
+        VStack(spacing: 0) {
+            switch selectedIndex {
+            case .Assets:
+                AssetListView()
+            case .Transfers:
+                GenericController(uiViewType: TransfersViewController())
+#if EW
+            case .NFTs:
+                EWNFTsView()
+            case .Web3:
+                EWWeb3ConnectionsView(accountId: 0)
+#endif
             }
-            .tag(2)
-            EWWeb3ConnectionsView(accountId: 0)
-            .tabItem {
-                getTabItem(tag: 3, title: "Web3")
-            }
-            .tag(3)
-            #endif
         }
+        .safeAreaPadding(0)
         .safeAreaInset(edge: .bottom, content: {
             HStack(spacing: 8) {
-                ForEach(tabs.indices) { index in
-                    getTabItem(tag: index, title: tabs[index])
+                ForEach(TabIndex.allCases, id: \.self) { index in
+                    getTabItem(tag: index.rawValue, title: index.title)
                 }
             }
-            .frame(height: 64)
             .padding(.horizontal, 8)
-            .background(Color.black)
+            .padding(.vertical)
+            .background(AssetsColors.gray1.color())
         })
         .animation(.default, value: selectedIndex)
         .toolbar {
@@ -63,25 +85,11 @@ struct TabBarView: View {
                 .tint(.white)
             }
         }
-        .navigationTitle(getHeader(tag: selectedIndex))
+        .navigationTitle(selectedIndex.navigationTitle)
         .navigationBarTitleDisplayMode(.inline)
+        .toolbarBackground(.visible, for: .navigationBar)
     }
-    
-    func getHeader(tag: Int) -> String {
-        switch tag {
-        case 0:
-            return "Assets"
-        case 1:
-            return "Transfers"
-        case 2:
-            return "NFTs"
-        case 3:
-            return "Web3 connections"
-        default:
-            return ""
-        }
-    }
-    
+        
     @ViewBuilder
     func getTabItem(tag: Int, title: String) -> some View {
         Text(title)
@@ -89,11 +97,11 @@ struct TabBarView: View {
             .foregroundStyle(.white)
             .padding()
             .frame(maxWidth: .infinity)
-            .background(tag == selectedIndex ? AnyShapeStyle(.thinMaterial) : AnyShapeStyle(Color.clear))
+            .background(tag == selectedIndex.rawValue ? AnyShapeStyle(AssetsColors.gray2.color()) : AnyShapeStyle(Color.clear))
             .clipShape(.rect(cornerRadius: 8))
             .contentShape(.rect)
             .onTapGesture {
-                selectedIndex = tag
+                selectedIndex = TabIndex(rawValue: tag) ?? .Assets
             }
     }
 

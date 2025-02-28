@@ -16,7 +16,7 @@ import UIKit
 
 struct AssetSummary: Codable, Identifiable, Hashable {
     static func == (lhs: AssetSummary, rhs: AssetSummary) -> Bool {
-        lhs.asset?.id == rhs.asset?.id
+        lhs.asset?.id == rhs.asset?.id && lhs.isExpanded == rhs.isExpanded
     }
     
     var asset: Asset?

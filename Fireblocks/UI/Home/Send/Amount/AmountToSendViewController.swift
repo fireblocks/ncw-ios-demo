@@ -24,7 +24,16 @@ class AmountToSendViewController: UIViewController {
     
     var viewModel = AmountToSendViewModel()
     
+    init(asset: AssetSummary) {
+        super.init(nibName: "AmountToSendViewController", bundle: nil)
+        self.viewModel.asset = asset
+        self.viewModel.asset.isExpanded = false
+    }
     
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+
 //MARK: - LIFECYCLE Functions
     override func viewDidLoad() {
         super.viewDidLoad()

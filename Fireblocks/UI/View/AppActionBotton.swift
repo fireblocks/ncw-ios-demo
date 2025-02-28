@@ -20,9 +20,9 @@ enum ButtonStyle {
                  disabledTitleColor: UIColor) {
         switch self {
         case .Primary:
-            return (AssetsColors.primaryBlue.getColor(),
-                    AssetsColors.tapBlue.getColor(),
-                    AssetsColors.darkerBlue.getColor(),
+            return (AssetsColors.gray2.getColor(),
+                    AssetsColors.gray2.getColor(),
+                    AssetsColors.gray2.getColor(),
                     AssetsColors.white.getColor(),
                     AssetsColors.gray3.getColor())
         case .Secondary:
@@ -38,9 +38,9 @@ enum ButtonStyle {
                     AssetsColors.lightBlue.getColor(),
                     AssetsColors.gray3.getColor())
         case .Disabled:
-            return (AssetsColors.primaryBlue.getColor(),
-                    AssetsColors.tapBlue.getColor(),
-                    AssetsColors.darkerBlue.getColor(),
+            return (AssetsColors.gray2.getColor(),
+                    AssetsColors.gray2.getColor(),
+                    AssetsColors.gray2.getColor(),
                     AssetsColors.white.getColor(),
                     AssetsColors.gray3.getColor())
         }

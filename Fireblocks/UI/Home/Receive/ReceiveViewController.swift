@@ -23,6 +23,15 @@ class ReceiveViewController: UIViewController {
     
     let viewModel = ReceiveViewModel()
 
+    init(asset: AssetSummary) {
+        super.init(nibName: "ReceiveViewController", bundle: nil)
+        self.viewModel.asset = asset
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         configView()

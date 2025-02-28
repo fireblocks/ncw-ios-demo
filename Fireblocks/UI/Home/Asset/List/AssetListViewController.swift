@@ -217,15 +217,11 @@ extension AssetListViewController: AssetListViewModelDelegate {
     func navigateToNextScreen(with asset: AssetSummary){
         switch viewModel.chooseAssetFlowType {
         case .send:
-            let vc = AmountToSendViewController(nibName: "AmountToSendViewController", bundle: nil)
-            vc.viewModel.asset = asset
-            vc.viewModel.asset.isExpanded = false
+            let vc = AmountToSendViewController(asset: asset)
             vc.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(vc, animated: true)
         case .receive:
-            let vc = ReceiveViewController(nibName: "ReceiveViewController", bundle: nil)
-            vc.viewModel.asset = asset
-            vc.viewModel.asset.isExpanded = false
+            let vc = ReceiveViewController(asset: asset)
             vc.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(vc, animated: true)
         }

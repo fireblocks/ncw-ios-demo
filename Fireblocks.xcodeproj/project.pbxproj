@@ -805,6 +805,14 @@
 		2BD5D0F92D707E600025A9A8 /* EWNFTFeeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5D0F82D707E5D0025A9A8 /* EWNFTFeeViewModel.swift */; };
 		2BD785CB2B83703F00FEA796 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2BD785CA2B83703F00FEA796 /* GoogleService-Info.plist */; };
 		2BEB9BA62D71A4F700699AC1 /* Web3DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5F46C82D718FA900B23371 /* Web3DataModel.swift */; };
+		2BEB9BA82D71BBF300699AC1 /* AssetListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEB9BA72D71BBED00699AC1 /* AssetListView.swift */; };
+		2BEB9BA92D71BBF300699AC1 /* AssetListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEB9BA72D71BBED00699AC1 /* AssetListView.swift */; };
+		2BEB9BAA2D71BBF300699AC1 /* AssetListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEB9BA72D71BBED00699AC1 /* AssetListView.swift */; };
+		2BEB9BAB2D71BBF300699AC1 /* AssetListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEB9BA72D71BBED00699AC1 /* AssetListView.swift */; };
+		2BEB9BAD2D71BF9300699AC1 /* AssetRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEB9BAC2D71BF8100699AC1 /* AssetRow.swift */; };
+		2BEB9BAE2D71BF9300699AC1 /* AssetRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEB9BAC2D71BF8100699AC1 /* AssetRow.swift */; };
+		2BEB9BAF2D71BF9300699AC1 /* AssetRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEB9BAC2D71BF8100699AC1 /* AssetRow.swift */; };
+		2BEB9BB02D71BF9300699AC1 /* AssetRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEB9BAC2D71BF8100699AC1 /* AssetRow.swift */; };
 		2BEEF7C52BAC6EFD004AF6AB /* DeriveKeysHostingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD34A742B98B983008406D5 /* DeriveKeysHostingVC.swift */; };
 		2BEEF7C62BAC6F11004AF6AB /* DeriveKeysViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD34A762B98B995008406D5 /* DeriveKeysViewModel.swift */; };
 		2BEEF7C72BAC6F11004AF6AB /* DerivedAssetRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD34A7A2B98C129008406D5 /* DerivedAssetRow.swift */; };
@@ -1154,6 +1162,8 @@
 		2BD5D0F82D707E5D0025A9A8 /* EWNFTFeeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EWNFTFeeViewModel.swift; sourceTree = "<group>"; };
 		2BD785CA2B83703F00FEA796 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2BE16A5E2C202687003D8C12 /* FireblocksSDKDev.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FireblocksSDKDev.xcframework; path = "../fireblocks-ios-sdk/iOS-FireblocksSDKDev/FireblocksSDKDev.xcframework"; sourceTree = "<group>"; };
+		2BEB9BA72D71BBED00699AC1 /* AssetListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetListView.swift; sourceTree = "<group>"; };
+		2BEB9BAC2D71BF8100699AC1 /* AssetRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetRow.swift; sourceTree = "<group>"; };
 		2BF477E02D37DBBD000C9553 /* BackupData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupData.swift; sourceTree = "<group>"; };
 		2BF477E52D37DC29000C9553 /* UsersLocalStorageManager+NCW.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UsersLocalStorageManager+NCW.swift"; sourceTree = "<group>"; };
 		2BF8EDB52B56673300046F0B /* EndFlowFeedbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndFlowFeedbackView.swift; sourceTree = "<group>"; };
@@ -1999,6 +2009,8 @@
 		2BF8EDBC2B56756700046F0B /* SwiftUIViews */ = {
 			isa = PBXGroup;
 			children = (
+				2BEB9BA72D71BBED00699AC1 /* AssetListView.swift */,
+				2BEB9BAC2D71BF8100699AC1 /* AssetRow.swift */,
 				2B223F962D673EAE002285B9 /* EWNFTsView */,
 				2B223F9B2D673EAE002285B9 /* Web3 */,
 				2BCFE11E2D5A2116006BE227 /* SettingsView */,
@@ -2999,6 +3011,7 @@
 				2B21D7FC2BC56B5C003ADD29 /* Status.swift in Sources */,
 				2B87CB242D47D31D00448A2A /* TransactionFee.swift in Sources */,
 				2B21D7FD2BC56B5C003ADD29 /* TransferDetailsViewModel.swift in Sources */,
+				2BEB9BAD2D71BF9300699AC1 /* AssetRow.swift in Sources */,
 				2B21D7FF2BC56B5C003ADD29 /* SendToViewModel.swift in Sources */,
 				2B21D8002BC56B5C003ADD29 /* QRCodeGenerator.swift in Sources */,
 				2BF477E12D37DBBD000C9553 /* BackupData.swift in Sources */,
@@ -3040,6 +3053,7 @@
 				2B21D81A2BC56B5C003ADD29 /* FeeRateCell.swift in Sources */,
 				2B2B1AD12D2D6D0A00A2B39D /* LatestBackupState.swift in Sources */,
 				2B21D81B2BC56B5C003ADD29 /* Platform.swift in Sources */,
+				2BEB9BAA2D71BBF300699AC1 /* AssetListView.swift in Sources */,
 				2B21D81C2BC56B5C003ADD29 /* QRCodeScannerViewController.swift in Sources */,
 				2B21D81D2BC56B5C003ADD29 /* JoinRequestData.swift in Sources */,
 				2B21D81E2BC56B5C003ADD29 /* TabBarViewController.swift in Sources */,
@@ -3186,6 +3200,7 @@
 				2B87CAF42D47C86900448A2A /* SendToViewModel.swift in Sources */,
 				2B54D6CF2D426CA7001C135D /* DeriveKeysView.swift in Sources */,
 				2B54D6D02D426D77001C135D /* DerivedAssetRow.swift in Sources */,
+				2BEB9BAE2D71BF9300699AC1 /* AssetRow.swift in Sources */,
 				2B87CACA2D478AD900448A2A /* TransferDetailsViewModel.swift in Sources */,
 				2B2B19D62D2D120E00A2B39D /* AppleSignInManager.swift in Sources */,
 				2B2B19D82D2D120E00A2B39D /* UsersLocalStorageManager.swift in Sources */,
@@ -3267,6 +3282,7 @@
 				2B223FB12D673EAE002285B9 /* EWNFTsViewModel.swift in Sources */,
 				2B223FB22D673EAE002285B9 /* EWWeb3ConnectionsViewModel.swift in Sources */,
 				2B223FB32D673EAE002285B9 /* EWWeb3ConnectionsView.swift in Sources */,
+				2BEB9BA92D71BBF300699AC1 /* AssetListView.swift in Sources */,
 				2B223FB42D673EAE002285B9 /* EWNFTDetailsView.swift in Sources */,
 				2B223FB52D673EAE002285B9 /* EWWeb3ConnectionURI.swift in Sources */,
 				2B223FB62D673EAE002285B9 /* EWNFTsView.swift in Sources */,
@@ -3399,6 +3415,7 @@
 				2B7C47382B32D965001C804B /* QRCodeScannerViewController.swift in Sources */,
 				2B7C46FE2B32D8D1001C804B /* AssetsIcons.swift in Sources */,
 				2B7C470A2B32D8F7001C804B /* AuthProtocols.swift in Sources */,
+				2BEB9BB02D71BF9300699AC1 /* AssetRow.swift in Sources */,
 				2BAB68252B820E9C003592F1 /* Bullet.swift in Sources */,
 				2B87CB002D47CA2000448A2A /* EstimatedFeeRequestBody.swift in Sources */,
 				2B7C46FF2B32D8D1001C804B /* AssetsColors.swift in Sources */,
@@ -3491,6 +3508,7 @@
 				2B87CAE92D47AC7F00448A2A /* NotificationType.swift in Sources */,
 				2B95395D2D54B45300816DB7 /* GenerateKeysViewModel.swift in Sources */,
 				2B87CB252D47D31D00448A2A /* TransactionFee.swift in Sources */,
+				2BEB9BA82D71BBF300699AC1 /* AssetListView.swift in Sources */,
 				2B7C470B2B32D8FC001C804B /* ApproveRepository.swift in Sources */,
 				2B7C47692B32D9A5001C804B /* SettingsOptionButton.swift in Sources */,
 				2B223FBB2D67405B002285B9 /* BottomBanner.swift in Sources */,
@@ -3572,6 +3590,7 @@
 				608293942A56BEF200B11839 /* Status.swift in Sources */,
 				2B87CB262D47D31D00448A2A /* TransactionFee.swift in Sources */,
 				60503F512A5FDCED00C2DAB8 /* TransferDetailsViewModel.swift in Sources */,
+				2BEB9BAF2D71BF9300699AC1 /* AssetRow.swift in Sources */,
 				86E8350D2A602D50003E98BE /* EnvironmentConstants.swift in Sources */,
 				60DA06B62A65204600160ADC /* SendToViewModel.swift in Sources */,
 				2BF477E32D37DBBD000C9553 /* BackupData.swift in Sources */,
@@ -3613,6 +3632,7 @@
 				867828EE2A696D7D0035787D /* BackupDetailsViewModel.swift in Sources */,
 				2B2B1ACF2D2D6D0A00A2B39D /* LatestBackupState.swift in Sources */,
 				60DA068B2A645EF400160ADC /* FeeRateCell.swift in Sources */,
+				2BEB9BAB2D71BBF300699AC1 /* AssetListView.swift in Sources */,
 				2B558EA22B484BE1006212B2 /* Platform.swift in Sources */,
 				60DA06B42A65204600160ADC /* QRCodeScannerViewController.swift in Sources */,
 				2B05C06A2B4698BF004CF1CE /* JoinRequestData.swift in Sources */,

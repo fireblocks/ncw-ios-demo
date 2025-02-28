@@ -10,7 +10,7 @@ import SwiftUI
 struct BottomBanner: View {
     var text: String?
     var body: some View {
-        VStack {
+        VStack(spacing: 0) {
             Text(text ?? "")
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .multilineTextAlignment(.leading)
@@ -19,7 +19,7 @@ struct BottomBanner: View {
                 .opacity(text != nil ? 1 : 0)
         }
         .frame(height: text == nil ? 0 : nil)
-
+        .clipped()
     }
 }
 

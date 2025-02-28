@@ -52,18 +52,35 @@ class AssetsSequence: AsyncSequence {
     typealias Element = Asset
 }
 
+@Observable
 class AssetListViewModel {
+    var ewManager: EWManager!
+    var loadingManager: LoadingManager!
+    var coordinator: Coordinator!
+    var didLoad = false
+    var addAssetPresented = false
+    
     weak var delegate: AssetListViewModelDelegate?
-    private var assetsSummary: [AssetSummary] = []
-//    private var assets: [Asset] = []
+    var assetsSummary: [AssetSummary] = []
     private var task: Task<Void, Never>?
     var cancellable = Set<AnyCancellable>()
     var chooseAssetFlowType: ChooseAssetFlowType = .send
-    var ewManager = EWManager.shared
     let accountId = 0
     static let shared = AssetListViewModel()
 
     private init() {}
+    
+    func setup(ewManager: EWManager, loadingManager: LoadingManager, coordinator: Coordinator) {
+        if !didLoad {
+            didLoad = true
+            self.ewManager = ewManager
+            self.loadingManager = loadingManager
+            self.coordinator = coordinator
+            self.loadingManager?.isLoading = true
+        }
+        
+        fetchAssets()
+    }
     
     func signOut() {
         assetsSummary.removeAll()
@@ -86,8 +103,8 @@ class AssetListViewModel {
 
     func fetchAssets() {
         Task {
-            let assets = await ewManager.fetchAllAccountAssets(accountId: accountId)
-            if assets.count > 0 {
+            let assets = await ewManager?.fetchAllAccountAssets(accountId: accountId)
+            if let assets, assets.count > 0 {
                 let assetsSequence = AssetsSequence(assets: assets)
                 for try await asset in assetsSequence {
                     await withTaskGroup(of: (EmbeddedWalletSDKDev.AssetBalance?, [EmbeddedWalletSDKDev.AddressDetails]).self) { [weak self] group in
@@ -106,9 +123,9 @@ class AssetListViewModel {
                         }
                     }
                 }
-                delegate?.refreshData()
+                await self.loadingManager?.setLoading(value: false)
             } else {
-                delegate?.refreshData()
+                await self.loadingManager?.setLoading(value: false)
             }
         }
     }
@@ -150,10 +167,9 @@ class AssetListViewModel {
 
     }
 
-    func toggleAssetExpanded(asset: AssetSummary, section: Int) {
+    func toggleAssetExpanded(asset: AssetSummary, section: Int = 0) {
         if let index = assetsSummary.firstIndex(where: {$0 == asset}) {
             assetsSummary[index].isExpanded.toggle()
-            delegate?.refreshSection(section: section)
         }
     }
     
@@ -206,3 +222,23 @@ class AssetListViewModel {
 
     
 }
+
+extension AssetListViewModel: AddAssetsViewControllerDelegate {
+    func dismissAddAssets(addedAssets: [Asset], failedAssets: [Asset]) {
+        self.addAssetPresented = false
+        if failedAssets.count > 0 {
+//            let prefix = failedAssets.count > 1 ? "The following assets were" : "The following asset was"
+//            var assets: String = ""
+//            failedAssets.forEach { asset in
+//                assets += " \(asset.symbol),"
+//            }
+//            assets.removeLast()
+//            self.showAlertView(message: "\(prefix) not added: \(assets).\nPlease try again\n")
+        }
+        if addedAssets.count > 0 {
+            loadingManager.isLoading = true
+            fetchAssets()
+        }
+    }
+}
+

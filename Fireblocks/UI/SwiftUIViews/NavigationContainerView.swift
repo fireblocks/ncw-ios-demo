@@ -21,7 +21,8 @@ enum NavigationTypes: Hashable {
     case settings
     case info
     case generateKeys
-    
+    case genericController(UIViewController, String)
+
     #if EW
     case createConnection(Web3DataModel)
     case submitConnection(Web3DataModel)
@@ -76,6 +77,7 @@ struct NavigationContainerView<Content: View>: View {
             #if EW
                 .environment(ewManager)
             #endif
+            
             .navigationDestination(for: NavigationTypes.self) { type in
                 switch type {
                 case .signIn(let viewModel):
@@ -140,6 +142,18 @@ struct NavigationContainerView<Content: View>: View {
                 case .settings:
                     SettingsView()
                         .environmentObject(coordinator)
+                case .genericController(let controller, let title):
+                    GenericController(uiViewType: controller)
+                        .navigationTitle(title)
+                        .navigationBarTitleDisplayMode(.inline)
+                        .tint(.white)
+                        .navigationBarBackButtonHidden()
+                        .toolbar {
+                            ToolbarItem(placement: .topBarLeading) {
+                                CustomBackButtonView()
+                            }
+                        }
+
                 #if EW
                 case .createConnection(let dataModel):
                     SpinnerViewContainer {
