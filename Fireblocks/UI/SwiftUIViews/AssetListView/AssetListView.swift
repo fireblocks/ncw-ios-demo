@@ -6,7 +6,13 @@
 //
 
 import SwiftUI
-import EmbeddedWalletSDKDev
+#if EW
+    #if DEV
+    import EmbeddedWalletSDKDev
+    #else
+    import EmbeddedWalletSDK
+    #endif
+#endif
 
 struct AssetListView: View {
     @EnvironmentObject var coordinator: Coordinator
@@ -16,7 +22,8 @@ struct AssetListView: View {
     #endif
     
     @State var viewModel = AssetListViewModel.shared
-
+    @State var selectedAsset: AssetSummary?
+    
     var body: some View {
         ZStack {
             AppBackgroundView()
@@ -25,14 +32,7 @@ struct AssetListView: View {
                 ContentUnavailableView("Assets", systemImage: "magnifyingglass", description: Text("No assets found on your wallet"))
                     .listRowBackground(Color.clear)
             }
-            
-            VStack(spacing: 0) {
-                list
-                Spacer()
-                BottomBanner(text: viewModel.ewManager?.errorMessage)
-                    .animation(.default, value: viewModel.ewManager?.errorMessage)
-                
-            }
+            list
         }
         .navigationTitle("Assets")
         .navigationBarTitleDisplayMode(.inline)
@@ -63,20 +63,15 @@ struct AssetListView: View {
         .contentMargins(.top, 16)
         .sheet(isPresented: $viewModel.addAssetPresented) {
             NavigationContainerView {
-                GenericController(uiViewType: AddAssetsViewController(devideId: FireblocksManager.shared.getDeviceId(), delegate: viewModel))
-                    .navigationTitle("Select Asset")
-                    .navigationBarTitleDisplayMode(.inline)
-                    .tint(.white)
-                    .toolbar {
-                        ToolbarItem(placement: .topBarTrailing) {
-                            Button {
-                                viewModel.addAssetPresented = false
-                            } label: {
-                                Image(.close)
-                                    .tint(.white)
-                            }
-                        }
-                    }
+                SpinnerViewContainer {
+                    AddAssetView(selectedAsset: $selectedAsset)
+                }
+            }
+        }
+        .onChange(of: selectedAsset) { oldValue, newValue in
+            if newValue != nil {
+                viewModel.fetchAssets()
+                selectedAsset = nil
             }
         }
     }

@@ -64,8 +64,8 @@ struct EWWeb3ConnectionsView: View {
                 .contentMargins(.top, 16)
 
                 Spacer()
-                BottomBanner(text: viewModel.ewManager?.errorMessage)
-                    .animation(.default, value: viewModel.ewManager?.errorMessage)
+//                BottomBanner(message: viewModel.ewManager?.errorMessage)
+//                    .animation(.default, value: viewModel.ewManager?.errorMessage)
                 
             }
 

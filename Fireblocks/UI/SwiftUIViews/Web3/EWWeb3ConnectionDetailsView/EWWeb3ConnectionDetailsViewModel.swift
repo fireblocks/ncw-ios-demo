@@ -29,13 +29,19 @@ extension EWWeb3ConnectionDetailsView {
             if let id = dataModel.connection?.id {
                 self.loadingManager.isLoading = true
                 Task {
-                    let didRemove = await self.ewManager?.removeConnection(id: id)
-                    await MainActor.run {
-                        if didRemove != nil {
-                            coordinator.path = NavigationPath()
+                    do {
+                        let didRemove = try await self.ewManager?.removeConnection(id: id)
+                        await MainActor.run {
+                            if didRemove != nil {
+                                coordinator.path = NavigationPath()
+                            }
+                            self.loadingManager.isLoading = false
                         }
-                        self.loadingManager.isLoading = false
+                    } catch {
+                        await self.loadingManager.setAlertMessage(error: error)
                     }
+                    await self.loadingManager.setLoading(value: false)
+
                 }
             }
         }

@@ -29,7 +29,7 @@ extension EWWeb3ConnectionSubmitView {
                     }
                 }
             }
-
+            
         }
         
         func setup(ewManager: EWManager, loadingManager: LoadingManager, coordinator: Coordinator) {
@@ -41,7 +41,7 @@ extension EWWeb3ConnectionSubmitView {
         func discard() {
             if let id = dataModel.response?.id {
                 Task {
-                    let _ = await self.ewManager?.submitConnection(id: id, approve: false)
+                    let _ = try? await self.ewManager?.submitConnection(id: id, approve: false)
                 }
                 coordinator.path = NavigationPath()
             }
@@ -51,24 +51,30 @@ extension EWWeb3ConnectionSubmitView {
             if let id = dataModel.response?.id {
                 self.loadingManager.isLoading = true
                 Task {
-                    let didSubmitConnection = await self.ewManager?.submitConnection(id: id, approve: approve)
-                    if didSubmitConnection != nil {
-                        if approve {
-                            let connections = await self.ewManager.getConnections()
-                            if let _ = connections?.data?.first(where: {$0.id == id}) {
+                    do {
+                        let didSubmitConnection = try await self.ewManager?.submitConnection(id: id, approve: approve)
+                        if didSubmitConnection != nil {
+                            if approve {
+                                let connections = try await self.ewManager.getConnections()
+                                if let _ = connections.data?.first(where: {$0.id == id}) {
+                                    await MainActor.run {
+                                        coordinator.path = NavigationPath()
+                                    }
+                                }
+                            } else {
                                 await MainActor.run {
                                     coordinator.path = NavigationPath()
                                 }
                             }
-                        } else {
-                            await MainActor.run {
-                                coordinator.path = NavigationPath()
-                            }
                         }
+                        await MainActor.run {
+                            self.loadingManager.isLoading = false
+                        }
+                    } catch {
+                        await self.loadingManager.setAlertMessage(error: error)
+                        await self.loadingManager.setLoading(value: false)
                     }
-                    await MainActor.run {
-                        self.loadingManager.isLoading = false
-                    }
+                    
                 }
             }
         }

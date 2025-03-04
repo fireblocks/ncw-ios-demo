@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 import UIKit.UIImage
 #if EW
     #if DEV
@@ -44,6 +45,10 @@ struct TransferInfo {
         default:
             return (AssetsColors.white.getColor())
         }
+    }
+    
+    func getColor() -> Color {
+        return Color(uiColor: color)
     }
     
     var getStatusString: String {
@@ -136,8 +141,8 @@ struct TransferInfo {
         return transactionHash.isEmpty
     }
     
-    func toTransaction() -> FBTransaction? {
-        if let asset = AssetListViewModel.shared.getAsset(by: assetId) {
+    func toTransaction(assetListViewModel: AssetListViewModel) -> FBTransaction? {
+        if let asset = assetListViewModel.getAsset(by: assetId) {
             return FBTransaction(asset: AssetSummary(asset: asset), amountToSend: amount, price: price, receiverAddress: receiverAddress, txId: transactionID, isTransferred: true, transferFee: fee)
         }
         return nil

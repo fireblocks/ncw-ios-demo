@@ -35,11 +35,16 @@ extension EWWeb3ConnectionsView {
 
         func fetchAllConnections() {
             Task {
-                let connections = await self.ewManager?.getConnections()?.data ?? []
-                await MainActor.run {
-                    self.dataModel.connections = connections
-                    self.loadingManager.isLoading = false
+                do {
+                    let connections = try await self.ewManager?.getConnections().data ?? []
+                    await MainActor.run {
+                        self.dataModel.connections = connections
+                        self.loadingManager.isLoading = false
+                    }
+                } catch {
+                    await self.loadingManager.setAlertMessage(error: error)
                 }
+                await self.loadingManager.setLoading(value: false)
             }
         }
         
@@ -47,11 +52,17 @@ extension EWWeb3ConnectionsView {
             if let id {
                 self.loadingManager.isLoading = true
                 Task {
-                    if let _ = await self.ewManager?.removeConnection(id: id) {
-                        fetchAllConnections()
-                    } else {
+                    do {
+                        if let _ = try await self.ewManager?.removeConnection(id: id) {
+                            fetchAllConnections()
+                        } else {
+                            await self.loadingManager.setLoading(value: false)
+                        }
+                    } catch {
+                        await self.loadingManager.setAlertMessage(error: error)
                         await self.loadingManager.setLoading(value: false)
                     }
+
                 }
             }
         }

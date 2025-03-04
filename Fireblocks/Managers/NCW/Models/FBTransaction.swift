@@ -14,10 +14,18 @@ import Foundation
     #endif
 #endif
 
-struct FBTransaction {
-    let asset: AssetSummary
-    let amountToSend: Double
-    let price: Double
+struct FBTransaction: Equatable, Hashable {
+    static func == (lhs: FBTransaction, rhs: FBTransaction) -> Bool {
+        lhs.txId == rhs.txId
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(txId)
+    }
+
+    var asset: AssetSummary = AssetSummary()
+    var amountToSend: Double = 0
+    var price: Double = 0
     var receiverAddress: String?
     var fee: Fee?
     var txId: String?

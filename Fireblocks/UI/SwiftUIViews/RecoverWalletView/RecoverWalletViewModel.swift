@@ -67,9 +67,7 @@ extension RecoverWalletView {
                             if redirect {
                                 fireblocksManager.startPolling()
                                 SignInViewModel.shared.launchView = NavigationContainerView {
-                                    SpinnerViewContainer {
-                                        TabBarView()
-                                    }
+                                    TabBarView()
                                 }
                             } else {
                                 dismiss = true

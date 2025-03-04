@@ -97,7 +97,7 @@ class FireblocksManager: FireblocksManagerProtocol, ObservableObject {
             return nil
         }
 
-        return ewManager.initialize()
+        return try? ewManager.initialize()
     }
     
     func initializeCore() -> Fireblocks? {
@@ -147,7 +147,7 @@ class FireblocksManager: FireblocksManagerProtocol, ObservableObject {
             return nil
         }
         
-        return await ewManager.getDevice(deviceId: deviceId)
+        return try? await ewManager.getDevice(deviceId: deviceId)
     }
     
     func getLatestBackupState() async -> LatestBackupState  {

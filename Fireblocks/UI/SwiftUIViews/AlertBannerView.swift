@@ -9,24 +9,26 @@ import SwiftUI
 
 struct AlertBannerView: View {
     var icon: String = AssetsIcons.error.rawValue
-    let message: String
+    let message: String?
     
     var body: some View {
-        HStack(spacing: 16) {
-            Image(icon)
-            Text(message)
-                .multilineTextAlignment(.leading)
-                .foregroundColor(AssetsColors.white.color())
-            Spacer()
+        VStack {
+            HStack(spacing: 16) {
+                Image(icon)
+                Text(message ?? "")
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .multilineTextAlignment(.leading)
+                    .foregroundColor(AssetsColors.white.color())
+            }
+            .padding()
+            .foregroundColor(AssetsColors.alert.color())
+            .background(AssetsColors.alert.color().opacity(0.2), in: .rect(cornerRadius: 16))
+            .overlay(
+                RoundedRectangle(cornerRadius: 16)
+                    .stroke(AssetsColors.alert.color(), lineWidth: 1)
+            )
         }
-        .foregroundColor(AssetsColors.alert.color())
-        .padding(16)
-        .background(AssetsColors.alert.color().opacity(0.2))
-        .cornerRadius(16)
-        .overlay(
-            RoundedRectangle(cornerRadius: 16)
-                .stroke(AssetsColors.alert.color(), lineWidth: 1)
-        )
+        .padding()
 
     }
 }

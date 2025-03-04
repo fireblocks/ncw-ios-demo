@@ -19,26 +19,26 @@ class EWManagerMock: EWManager {
         
     }
     
-    override func createOneTimeAddressTransaction(accountId: Int, assetId: String, destAddress: String, amount: String, feeLevel: FeeLevel) async -> CreateTransactionResponse? {
+    override func createOneTimeAddressTransaction(accountId: Int, assetId: String, destAddress: String, amount: String, feeLevel: FeeLevel) async throws-> CreateTransactionResponse {
         if let data = Mocks.Transaction.createTransactionResponse.data(using: .utf8) {
-            if let transaction: CreateTransactionResponse = try? GenericDecoder.decode(data: data) {
+            if let transaction: CreateTransactionResponse = try GenericDecoder.decode(data: data) {
                 return transaction
             }
         }
         
-        return nil
+        throw NSError()
 
     }
     
     //MARK: - NFT -
-    override func getNFT(id: String) async -> TokenResponse? {
+    override func getNFT(id: String) async throws -> TokenResponse? {
         if let data = Mocks.NFT.tokenResponse.data(using: .utf8) {
-            if let nfts: TokenResponse = try? GenericDecoder.decode(data: data) {
+            if let nfts: TokenResponse = try GenericDecoder.decode(data: data) {
                 return nfts
             }
         }
 
-        return nil
+        throw NSError()
     }
     
     override func getOwnedNFTs(
@@ -54,14 +54,14 @@ class EWManagerMock: EWManager {
         status: TokensStatus? = nil,
         search: String? = nil,
         spam: TokensSpam? = nil
-    ) async -> PaginatedResponse<TokenOwnershipResponse>? {
+    ) async throws -> PaginatedResponse<TokenOwnershipResponse> {
         if let data = Mocks.NFT.getOwnedResponse.data(using: .utf8) {
             if let nfts: PaginatedResponse<TokenOwnershipResponse> = try? GenericDecoder.decode(data: data) {
                 return nfts
             }
         }
 
-        return nil
+        throw NSError()
     }
 
     override func listOwnedCollections(
@@ -72,8 +72,8 @@ class EWManagerMock: EWManager {
         order: Order? = nil,
         status: TokensStatus? = nil,
         search: String? = nil
-    ) async -> PaginatedResponse<TokenOwnershipResponse>? {
-        return nil
+    ) async throws -> PaginatedResponse<TokenOwnershipResponse> {
+        throw NSError()
     }
 
     override func listOwnedAssets(
@@ -85,40 +85,41 @@ class EWManagerMock: EWManager {
         status: TokensStatus? = nil,
         search: String? = nil,
         spam: TokensSpam? = nil
-    ) async -> PaginatedResponse<TokenOwnershipResponse>? {
-        return nil
+    ) async throws -> PaginatedResponse<TokenOwnershipResponse> {
+        throw NSError()
     }
 
     //MARK: - Web3 -
-    override func getConnections(allPages: Bool = true, pageCursor: String? = nil, order: Order? = nil, filter: String? = nil, sort: Web3ConnectionSort? = nil, pageSize: Int? = nil) async -> PaginatedResponse<Web3Connection>? {
+    override func getConnections(allPages: Bool = true, pageCursor: String? = nil, order: Order? = nil, filter: String? = nil, sort: Web3ConnectionSort? = nil, pageSize: Int? = nil) async throws -> PaginatedResponse<Web3Connection> {
 
         if let data = Mocks.Connections.getResponse.data(using: .utf8) {
-            if let connections: PaginatedResponse<Web3Connection> = try? GenericDecoder.decode(data: data) {
+            if let connections: PaginatedResponse<Web3Connection> = try GenericDecoder.decode(data: data) {
                 return connections
             }
         }
-        return nil
+        
+        throw NSError()
     }
     
-    override func createConnection(feeLevel: Web3ConnectionFeeLevel, uri: String, ncwAccountId: Int, chainIds: [String]? = nil) async -> CreateWeb3ConnectionResponse? {
+    override func createConnection(feeLevel: Web3ConnectionFeeLevel, uri: String, ncwAccountId: Int, chainIds: [String]? = nil) async throws -> CreateWeb3ConnectionResponse {
         if let data = Mocks.Connections.create.data(using: .utf8) {
-            if let asset: CreateWeb3ConnectionResponse = try? GenericDecoder.decode(data: data) {
+            if let asset: CreateWeb3ConnectionResponse = try GenericDecoder.decode(data: data) {
                 return asset
             }
         }
         
-        return nil
+        throw NSError()
     }
     
-    override func submitConnection(id: String, approve: Bool) async -> String? {
+    override func submitConnection(id: String, approve: Bool) async throws -> String {
         return "true"
     }
 
-    override func removeConnection(id: String) async -> String? {
+    override func removeConnection(id: String) async throws -> String {
         return "true"
     }
     
-    override func getTransactionById(txId: String) async -> TransactionResponse? {
+    override func getTransactionById(txId: String) async throws -> TransactionResponse {
         return Mocks.Transaction.getResponse()
     }
 
@@ -174,13 +175,13 @@ class EWManagerMock1: EWManager {
         return []
     }
     
-    override func getAssetBalance(assetId: String, accountId: Int) async -> AssetBalance? {
+    override func getAssetBalance(assetId: String, accountId: Int) async throws -> AssetBalance {
         if let data = Mocks.GetAssetBalance.response.data(using: .utf8) {
-            if let asset: AssetBalance = try? GenericDecoder.decode(data: data) {
+            if let asset: AssetBalance = try GenericDecoder.decode(data: data) {
                 return asset
             }
         }
-        return nil
+        throw NSError()
     }
     
     override func fetchAllAccountAssetAddresses(assetId: String, accountId: Int) async -> [AddressDetails] {
@@ -192,17 +193,18 @@ class EWManagerMock1: EWManager {
         return []
     }
     
-    override func getConnections(allPages: Bool = true, pageCursor: String? = nil, order: Order? = nil, filter: String? = nil, sort: Web3ConnectionSort? = nil, pageSize: Int? = nil) async -> PaginatedResponse<Web3Connection>? {
+    override func getConnections(allPages: Bool = true, pageCursor: String? = nil, order: Order? = nil, filter: String? = nil, sort: Web3ConnectionSort? = nil, pageSize: Int? = nil) async throws -> PaginatedResponse<Web3Connection> {
 
         if let data = Mocks.Connections.getResponse.data(using: .utf8) {
-            if let asset: PaginatedResponse<Web3Connection> = try? GenericDecoder.decode(data: data) {
+            if let asset: PaginatedResponse<Web3Connection> = try GenericDecoder.decode(data: data) {
                 return asset
             }
         }
-        return nil
+        
+        throw NSError()
     }
     
-    override func removeConnection(id: String) async -> String? {
+    override func removeConnection(id: String) async throws -> String {
         return "true"
     }
     
@@ -232,6 +234,21 @@ class EWManagerMockNoAssets: EWManagerMock1 {
     }
 }
 
+class AssetListViewModelMock: AssetListViewModel {
+    override func getAsset(by assetId: String) -> Asset? {
+        return Mocks.Asset.getAsset()
+
+    }
+    
+    override func getAssetSummary() -> [AssetSummary] {
+        return [AssetSummary(asset: Mocks.Asset.getAsset())]
+    }
+
+    override func fetchAssets() {
+        self.assetsSummary = [AssetSummary(asset: Mocks.Asset.getAsset())]
+    }
+}
+
 struct Mocks {
     struct Account {
         static let response = """
@@ -250,7 +267,7 @@ struct Mocks {
         
         static let response = """
         {
-          "id": "string",
+          "id": "\(Constants.ETH_TEST5)",
           "symbol": "\(Constants.ETH_TEST5)",
           "name": "\(Constants.ETH_TEST5)",
           "decimals": 0,
@@ -488,14 +505,24 @@ struct Mocks {
 
         }
         
+        static func getResponse_ETH_TEST5() -> TransactionResponse {
+            let data = Mocks.Transaction.response_ETH_TEST5.data(using: .utf8)
+            let response: TransactionResponse = try! GenericDecoder.decode(data: data!)!
+            return response
+        }
+        
         static func getResponse() -> TransactionResponse {
             let data = Mocks.Transaction.response.data(using: .utf8)
             let response: TransactionResponse = try! GenericDecoder.decode(data: data!)!
             return response
         }
         
+        static let response_ETH_TEST5 = #"""
+        {"id":"9fd15c0c-8eed-449f-9ffd-937c03e79854","assetId":"ETH_TEST5","source":{"id":"0","type":"END_USER_WALLET","name":"","subType":"","walletId":"280b3ca9-0b5d-81b9-ae17-c2c096f79608"},"destination":{"id":null,"type":"ONE_TIME_ADDRESS","name":"N/A","subType":""},"requestedAmount":0.0001,"amount":0.0001,"netAmount":-1,"amountUSD":0.21,"fee":-1,"networkFee":-1,"createdAt":1741073733403,"lastUpdated":1741073733403,"status":"SUBMITTED","txHash":"","subStatus":"","sourceAddress":"","destinationAddress":"0xd27429aB6c46aFA34f09b7831882c180D55831E2","destinationAddressDescription":"","destinationTag":"","signedBy":[],"createdBy":"e414094b-07dc-4eb9-9873-7e723c8dda86","rejectedBy":"","addressType":"","note":"","exchangeTxId":"","feeCurrency":"ETH_TEST5","operation":"TRANSFER","amountInfo":{"amount":"0.0001","requestedAmount":"0.0001","amountUSD":"0.21"},"feeInfo":{},"signedMessages":[],"destinations":[],"blockInfo":{},"assetType":"BASE_ASSET"}
+        """#
+
         static let response = #"""
-        {"id":"faa40b60-e950-460d-a6d2-ca2611a87e44","createdAt":1735128255934,"lastUpdated":1735128259368,"assetId":"XRP_TEST","source":{"id":"0","type":"END_USER_WALLET","name":"","subType":"","walletId":"483fafe8-1ce4-4899-050d-44d746a1d7b4"},"destination":{"id":"0","type":"VAULT_ACCOUNT","name":"Default","subType":""},"amount":1,"fee":-1,"networkFee":-1,"netAmount":-1,"sourceAddress":"","destinationAddress":"","destinationAddressDescription":"","destinationTag":"","status":"PENDING_SIGNATURE","txHash":"","subStatus":"","signedBy":[],"createdBy":"43306d09-0250-4287-b928-1ef38c9e12ec","rejectedBy":"","amountUSD":null,"addressType":"","note":"","exchangeTxId":"","requestedAmount":1,"feeCurrency":"XRP_TEST","operation":"TRANSFER","amountInfo":{"amount":"1","requestedAmount":"1"},"feeInfo":{},"destinations":[],"blockInfo":{},"signedMessages":[],"assetType":"BASE_ASSET"}
+        {"id":"9fd15c0c-8eed-449f-9ffd-937c03e79854","assetId":"ETH_TEST5","source":{"id":"0","type":"END_USER_WALLET","name":"","subType":"","walletId":"280b3ca9-0b5d-81b9-ae17-c2c096f79608"},"destination":{"id":null,"type":"ONE_TIME_ADDRESS","name":"N/A","subType":""},"requestedAmount":0.0001,"amount":0.0001,"netAmount":-1,"amountUSD":0.21,"fee":-1,"networkFee":-1,"createdAt":1741073733403,"lastUpdated":1741073733403,"status":"SUBMITTED","txHash":"","subStatus":"","sourceAddress":"","destinationAddress":"0xd27429aB6c46aFA34f09b7831882c180D55831E2","destinationAddressDescription":"","destinationTag":"","signedBy":[],"createdBy":"e414094b-07dc-4eb9-9873-7e723c8dda86","rejectedBy":"","addressType":"","note":"","exchangeTxId":"","feeCurrency":"ETH_TEST5","operation":"TRANSFER","amountInfo":{"amount":"0.0001","requestedAmount":"0.0001","amountUSD":"0.21"},"feeInfo":{},"signedMessages":[],"destinations":[],"blockInfo":{},"assetType":"BASE_ASSET"}
         """#
         
         static let createTransactionResponse = #"{"id":"2afd63d1-fac2-431d-b1b7-971ab3d886c8","status":"SUBMITTED"}"#

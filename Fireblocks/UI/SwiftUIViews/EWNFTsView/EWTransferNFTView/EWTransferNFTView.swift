@@ -84,8 +84,8 @@ struct EWTransferNFTView: View {
         }
         .safeAreaInset(edge: .bottom, content: {
             VStack(spacing: 8) {
-                BottomBanner(text: viewModel.ewManager?.errorMessage)
-                    .animation(.default, value: viewModel.ewManager?.errorMessage)
+//                BottomBanner(message: viewModel.ewManager?.errorMessage)
+//                    .animation(.default, value: viewModel.ewManager?.errorMessage)
                 Button {
                     viewModel.proceedToFee()
                 } label: {

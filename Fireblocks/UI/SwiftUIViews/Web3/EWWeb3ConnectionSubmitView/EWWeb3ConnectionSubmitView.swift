@@ -27,8 +27,8 @@ struct EWWeb3ConnectionSubmitView: View {
                     EWWeb3ConnectionDetailsHeader(metadata: response.sessionMetadata, isConnected: false)
                     
                     Spacer()
-                    BottomBanner(text: viewModel.ewManager?.errorMessage)
-                        .animation(.default, value: viewModel.ewManager?.errorMessage)
+//                    BottomBanner(message: viewModel.ewManager?.errorMessage)
+//                        .animation(.default, value: viewModel.ewManager?.errorMessage)
                     
                     Button {
                         viewModel.submitConnection(approve: true)

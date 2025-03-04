@@ -21,20 +21,20 @@ import FireblocksSDK
 #endif
 
 
-protocol EWManagerAPIProtocol {
-    func getConnections(allPages: Bool, pageCursor: String?, order: Order?, filter: String?, sort: Web3ConnectionSort?, pageSize: Int?) async -> PaginatedResponse<Web3Connection>?
-    func createConnection(feeLevel: Web3ConnectionFeeLevel, uri: String, ncwAccountId: Int, chainIds: [String]?) async -> CreateWeb3ConnectionResponse?
-    func submitConnection(id: String, approve: Bool) async -> String?
-    func removeConnection(id: String) async -> String?
-}
-
-extension EWManagerAPIProtocol {
-    func getConnections(allPages: Bool = true, pageCursor: String? = nil, order: Order? = nil, filter: String? = nil, sort: Web3ConnectionSort? = nil, pageSize: Int? = nil) async -> PaginatedResponse<Web3Connection>? { return nil }
-    func createConnection(feeLevel: Web3ConnectionFeeLevel, uri: String, ncwAccountId: Int, chainIds: [String]? = nil) async -> CreateWeb3ConnectionResponse? { return nil }
-}
+//protocol EWManagerAPIProtocol {
+//    func getConnections(allPages: Bool, pageCursor: String?, order: Order?, filter: String?, sort: Web3ConnectionSort?, pageSize: Int?) async throws -> PaginatedResponse<Web3Connection>
+//    func createConnection(feeLevel: Web3ConnectionFeeLevel, uri: String, ncwAccountId: Int, chainIds: [String]?) async throws -> CreateWeb3ConnectionResponse
+//    func submitConnection(id: String, approve: Bool) async throws -> String
+//    func removeConnection(id: String) async throws -> String
+//}
+//
+//extension EWManagerAPIProtocol {
+//    func getConnections(allPages: Bool = true, pageCursor: String? = nil, order: Order? = nil, filter: String? = nil, sort: Web3ConnectionSort? = nil, pageSize: Int? = nil) async -> PaginatedResponse<Web3Connection>? { return nil }
+//    func createConnection(feeLevel: Web3ConnectionFeeLevel, uri: String, ncwAccountId: Int, chainIds: [String]? = nil) async -> CreateWeb3ConnectionResponse? { return nil }
+//}
 
 @Observable
-class EWManager: Hashable, EWManagerAPIProtocol {
+class EWManager: Hashable {
     static func == (lhs: EWManager, rhs: EWManager) -> Bool {
         return lhs.authClientId == rhs.authClientId
     }
@@ -48,7 +48,7 @@ class EWManager: Hashable, EWManagerAPIProtocol {
     
     init(mockManager: EWManagerMock? = nil) {
         self.mockManager = mockManager
-        self.instance = initialize()
+        self.instance = try? initialize()
     }
     
     var instance: EmbeddedWallet?
@@ -83,25 +83,16 @@ class EWManager: Hashable, EWManagerAPIProtocol {
         }
     }
     
-    func initialize() -> EmbeddedWallet? {
+    func initialize() throws -> EmbeddedWallet {
         guard instance == nil else {
-            return instance
+            return instance!
         }
         
-        do {
-            let instance = try EmbeddedWallet(authClientId: authClientId, authTokenRetriever: self, options: options)
-            return instance
-        } catch let error as EmbeddedWalletException {
-            errorMessage = error.description
-        } catch {
-            errorMessage = error.localizedDescription
-        }
-            
-        return nil
+        return try EmbeddedWallet(authClientId: authClientId, authTokenRetriever: self, options: options)
     }
     
     func getURLForLogFiles() -> URL? {
-        if let instance = initialize() {
+        if let instance = try? initialize() {
             return instance.getURLForLogFiles()
         }
 
@@ -110,569 +101,263 @@ class EWManager: Hashable, EWManagerAPIProtocol {
     
     //MARK: - EmbeddedWalletAccountsProtocol -
     
-    func createAccount() async -> Int? {
-        do {
-            errorMessage = nil
-            if let instance = initialize() {
-                return try await instance.createAccount().accountId
-            }
-        } catch let error as EmbeddedWalletException {
-            errorMessage = error.description
-        } catch {
-            errorMessage = error.localizedDescription
-        }
-            
-        return nil
-        
+    func createAccount() async throws -> Int? {
+        let instance = try initialize()
+        return try await instance.createAccount().accountId
     }
 
-    func fetchAllAccounts() async -> [Account] {
-        do {
-            errorMessage = nil
-            if let instance = initialize() {
-                return try await instance.getAccounts().data ?? []
-            }
-        } catch let error as EmbeddedWalletException {
-            errorMessage = error.description
-        } catch {
-            errorMessage = error.localizedDescription
-        }
-            
-        return []
+    func fetchAllAccounts() async throws -> [Account] {
+        let instance = try initialize()
+        return try await instance.getAccounts().data ?? []
     }
     
-    func fetchAllAccountsWithPagination(pageCursor: String?, pageSize: Int?, order: Order) async -> PaginatedResponse<Account>? {
-        do {
-            errorMessage = nil
-            if let instance = initialize() {
-                return try await instance.getAccounts(allPages: false, pageCursor: pageCursor, pageSize: pageSize, order: order)
-            }
-        } catch let error as EmbeddedWalletException {
-            errorMessage = error.description
-        } catch {
-            errorMessage = error.localizedDescription
-        }
-            
-        return nil
+    func fetchAllAccountsWithPagination(pageCursor: String?, pageSize: Int?, order: Order) async throws -> PaginatedResponse<Account>? {
+        let instance = try initialize()
+        return try await instance.getAccounts(allPages: false, pageCursor: pageCursor, pageSize: pageSize, order: order)
     }
     
-    func getLatestBackup() async -> LatestBackupResponse? {
-        do {
-            errorMessage = nil
-            if let instance = initialize() {
-                return try await instance.getLatestBackup()
-            }
-        } catch let error as EmbeddedWalletException {
-            errorMessage = error.description
-        } catch {
-            errorMessage = error.localizedDescription
-        }
-            
-        return nil
+    func getLatestBackup() async throws -> LatestBackupResponse {
+        let instance = try initialize()
+        return try await instance.getLatestBackup()
     }
     
-    func getDevice(deviceId: String) async -> Device? {
-        do {
-            errorMessage = nil
-            if let instance = initialize() {
-                return try await instance.getDevice(deviceId: deviceId)
-            }
-        } catch let error as EmbeddedWalletException {
-            errorMessage = error.description
-        } catch {
-            errorMessage = error.localizedDescription
-        }
-            
-        return nil
+    func getDevice(deviceId: String) async throws -> Device {
+        let instance = try initialize()
+        return try await instance.getDevice(deviceId: deviceId)
     }
 
     
     //MARK: - EmbeddedWalletAssetsProtocol -
 
-    func addAsset(assetId: String, accountId: Int) async -> EmbeddedWalletSDKDev.AddressDetails? {
-        do {
-            errorMessage = nil
-            if let instance = initialize() {
-                return try await instance.addAsset(accountId: accountId, assetId: assetId)
-            }
-        } catch let error as EmbeddedWalletException {
-            errorMessage = error.description
-        } catch {
-            errorMessage = error.localizedDescription
-        }
-            
-        return nil
+    func addAsset(assetId: String, accountId: Int) async throws -> EmbeddedWalletSDKDev.AddressDetails {
+        let instance = try initialize()
+        return try await instance.addAsset(accountId: accountId, assetId: assetId)
     }
     
-    func getAsset(assetId: String, accountId: Int) async -> EmbeddedWalletSDKDev.Asset? {
-        do {
-            errorMessage = nil
-            if let instance = initialize() {
-                return try await instance.getAsset(accountId: accountId, assetId: assetId)
-            }
-        } catch let error as EmbeddedWalletException {
-            errorMessage = error.description
-        } catch {
-            errorMessage = error.localizedDescription
-        }
-            
-        return nil
+    func getAsset(assetId: String, accountId: Int) async throws -> EmbeddedWalletSDKDev.Asset {
+        let instance = try initialize()
+        return try await instance.getAsset(accountId: accountId, assetId: assetId)
     }
 
-    func getAssetBalance(assetId: String, accountId: Int) async -> EmbeddedWalletSDKDev.AssetBalance? {
-        do {
-            errorMessage = nil
-            if let instance = initialize() {
-                return try await instance.getBalance(accountId: accountId, assetId: assetId)
-            }
-        } catch let error as EmbeddedWalletException {
-            errorMessage = error.description
-        } catch {
-            errorMessage = error.localizedDescription
-        }
-            
-        return nil
+    func getAssetBalance(assetId: String, accountId: Int) async throws -> EmbeddedWalletSDKDev.AssetBalance {
+        let instance = try initialize()
+        return try await instance.getBalance(accountId: accountId, assetId: assetId)
     }
 
-    func fetchAllAccountAssets(accountId: Int) async -> [EmbeddedWalletSDKDev.Asset] {
-        do {
-            errorMessage = nil
-            if let instance = initialize() {
-                return try await instance.getAssets(accountId: accountId).data ?? []
-            }
-        } catch let error as EmbeddedWalletException {
-            errorMessage = error.description
-        } catch {
-            errorMessage = error.localizedDescription
-        }
-            
-        return []
+    func fetchAllAccountAssets(accountId: Int) async throws -> [EmbeddedWalletSDKDev.Asset] {
+        let instance = try initialize()
+        return try await instance.getAssets(accountId: accountId).data ?? []
     }
     
-    func fetchAccountAssetsWithPagination(accountId: Int, pageCursor: String?, pageSize: Int?, order: Order) async -> PaginatedResponse<EmbeddedWalletSDKDev.Asset>? {
-        do {
-            errorMessage = nil
-            if let instance = initialize() {
-                return try await instance.getAssets(accountId: accountId, allPages: false, pageCursor: pageCursor, pageSize: pageSize, order: order)
-            }
-        } catch let error as EmbeddedWalletException {
-            errorMessage = error.description
-        } catch {
-            errorMessage = error.localizedDescription
-        }
-            
-        return nil
+    func fetchAccountAssetsWithPagination(accountId: Int, pageCursor: String?, pageSize: Int?, order: Order) async throws -> PaginatedResponse<EmbeddedWalletSDKDev.Asset> {
+        let instance = try initialize()
+        return try await instance.getAssets(accountId: accountId, allPages: false, pageCursor: pageCursor, pageSize: pageSize, order: order)
     }
 
-    func fetchAllAccountAssetAddresses(assetId: String, accountId: Int) async -> [EmbeddedWalletSDKDev.AddressDetails] {
-        do {
-            errorMessage = nil
-            if let instance = initialize() {
-                return try await instance.getAddresses(accountId: accountId, assetId: assetId).data ?? []
-            }
-        } catch let error as EmbeddedWalletException {
-            errorMessage = error.description
-        } catch {
-            errorMessage = error.localizedDescription
-        }
-            
-        return []
+    func fetchAllAccountAssetAddresses(assetId: String, accountId: Int) async throws -> [EmbeddedWalletSDKDev.AddressDetails] {
+        let instance = try initialize()
+        return try await instance.getAddresses(accountId: accountId, assetId: assetId).data ?? []
     }
     
-    func fetchAccountAssetAddressesWithPagination(assetId: String, accountId: Int, pageCursor: String?, pageSize: Int?, order: Order) async -> PaginatedResponse<EmbeddedWalletSDKDev.AddressDetails>? {
-        do {
-            errorMessage = nil
-            if let instance = initialize() {
-                return try await instance.getAddresses(accountId: accountId, assetId: assetId, allPages: false, pageCursor: pageCursor, pageSize: pageSize, order: order)
-            }
-        } catch let error as EmbeddedWalletException {
-            errorMessage = error.description
-        } catch {
-            errorMessage = error.localizedDescription
-        }
-            
-        return nil
+    func fetchAccountAssetAddressesWithPagination(assetId: String, accountId: Int, pageCursor: String?, pageSize: Int?, order: Order) async throws -> PaginatedResponse<EmbeddedWalletSDKDev.AddressDetails> {
+        let instance = try initialize()
+        return try await instance.getAddresses(accountId: accountId, assetId: assetId, allPages: false, pageCursor: pageCursor, pageSize: pageSize, order: order)
     }
 
-    func fetchAllSupportedAssets() async -> [EmbeddedWalletSDKDev.Asset] {
-        do {
-            errorMessage = nil
-            if let instance = initialize() {
-                return try await instance.getSupportedAssets().data ?? []
-            }
-        } catch let error as EmbeddedWalletException {
-            errorMessage = error.description
-        } catch {
-            errorMessage = error.localizedDescription
-        }
-            
-        return []
+    func fetchAllSupportedAssets() async throws -> [EmbeddedWalletSDKDev.Asset] {
+        let instance = try initialize()
+        return try await instance.getSupportedAssets().data ?? []
     }
     
-    func fetchSupportedAssetsWithPagination(pageCursor: String?, pageSize: Int?, order: Order) async -> PaginatedResponse<EmbeddedWalletSDKDev.Asset>? {
-        do {
-            errorMessage = nil
-            if let instance = initialize() {
-                return try await instance.getSupportedAssets(allPages: false, pageCursor: pageCursor, pageSize: pageSize, order: order)
-            }
-        } catch let error as EmbeddedWalletException {
-            errorMessage = error.description
-        } catch {
-            errorMessage = error.localizedDescription
-        }
-            
-        return nil
+    func fetchSupportedAssetsWithPagination(pageCursor: String?, pageSize: Int?, order: Order) async throws -> PaginatedResponse<EmbeddedWalletSDKDev.Asset> {
+        let instance = try initialize()
+        return try await instance.getSupportedAssets(allPages: false, pageCursor: pageCursor, pageSize: pageSize, order: order)
     }
     
-    func getTransactions(after: String? = nil, pageCursor: String?, order: Order, incoming: Bool? = nil, sourceId: String? = nil, outgoing: Bool? = nil, destId: String? = nil) async -> PaginatedResponse<EmbeddedWalletSDKDev.TransactionResponse>? {
-        do {
-            errorMessage = nil
-            if let instance = initialize() {
-                return try await instance.getTransactions(after: after, incoming: incoming, outgoing: outgoing, sourceId: sourceId, destId: destId, pageCursor: pageCursor)
-            }
-        } catch let error as EmbeddedWalletException {
-            errorMessage = error.description
-        } catch {
-            errorMessage = error.localizedDescription
-        }
-            
-        return nil
+    func getTransactions(after: String? = nil, pageCursor: String?, order: Order, incoming: Bool? = nil, sourceId: String? = nil, outgoing: Bool? = nil, destId: String? = nil) async throws -> PaginatedResponse<EmbeddedWalletSDKDev.TransactionResponse> {
+        let instance = try initialize()
+        return try await instance.getTransactions(after: after, incoming: incoming, outgoing: outgoing, sourceId: sourceId, destId: destId, pageCursor: pageCursor)
     }
     
-    func getTransactionById(txId: String) async -> EmbeddedWalletSDKDev.TransactionResponse? {
+    func getTransactionById(txId: String) async throws-> EmbeddedWalletSDKDev.TransactionResponse {
         if let mockManager {
-            return await mockManager.getTransactionById(txId: txId)
+            return try await mockManager.getTransactionById(txId: txId)
         }
-
-        do {
-            errorMessage = nil
-            if let instance = initialize() {
-                return try await instance.getTransaction(txId: txId)
-            }
-        } catch let error as EmbeddedWalletException {
-            errorMessage = error.description
-        } catch {
-            errorMessage = error.localizedDescription
-        }
-            
-        return nil
+        let instance = try initialize()
+        return try await instance.getTransaction(txId: txId)
     }
     
-    func createTypedMessageTransaction(accountId: Int, asset: String) async -> EmbeddedWalletSDKDev.CreateTransactionResponse? {
-        do {
-            errorMessage = nil
-            if let instance = initialize() {
-                
-                guard let content = getTypedDataJson() else { return nil }
-                let message = UnsignedRawMessage(content: content, type: "EIP712")
-                let rawMessageData = RawMessageData(messages: [message])
-                let extraParameters = ExtraParameters(rawMessageData: rawMessageData)
-                
-                return try await instance.createTransaction(transactionRequest: TransactionRequest(operation: .typedMessage, assetId: asset, source: SourceTransferPeerPath(id: "\(accountId)"), extraParameters: extraParameters))
-            }
-        } catch let error as EmbeddedWalletException {
-            errorMessage = error.description
-        } catch {
-            errorMessage = error.localizedDescription
-        }
-            
-        return nil
+    func createTypedMessageTransaction(accountId: Int, asset: String) async throws -> EmbeddedWalletSDKDev.CreateTransactionResponse {
+        let instance = try initialize()
+        let content = try getTypedDataJson()
+        let message = UnsignedRawMessage(content: content, type: "EIP712")
+        let rawMessageData = RawMessageData(messages: [message])
+        let extraParameters = ExtraParameters(rawMessageData: rawMessageData)
+        
+        return try await instance.createTransaction(transactionRequest: TransactionRequest(operation: .typedMessage, assetId: asset, source: SourceTransferPeerPath(id: "\(accountId)"), extraParameters: extraParameters))
     }
     
-    func estimateOneTimeAddressTransaction(accountId: Int, assetId: String, destAddress: String, amount: String, feeLevel: FeeLevel) async -> EstimatedTransactionFeeResponse? {
-        do {
-            if let instance = initialize() {
-                let request = TransactionRequest(
-                    assetId: assetId,
-                    source: SourceTransferPeerPath(id: String(accountId)),
-                    destination: DestinationTransferPeerPath(type: .oneTimeAddress, oneTimeAddress: OneTimeAddress(address: destAddress)),
-                    amount: amount,
-                    feeLevel: feeLevel
-                )
-                return try await instance.estimateTransactionFee(transactionRequest: request)
-            }
-        } catch let error as EmbeddedWalletException {
-            errorMessage = error.description
-        } catch {
-            errorMessage = error.localizedDescription
-        }
-            
-        return nil
+    func estimateOneTimeAddressTransaction(accountId: Int, assetId: String, destAddress: String, amount: String, feeLevel: FeeLevel) async throws -> EstimatedTransactionFeeResponse {
+        let instance = try initialize()
+        let request = TransactionRequest(
+            assetId: assetId,
+            source: SourceTransferPeerPath(id: String(accountId)),
+            destination: DestinationTransferPeerPath(type: .oneTimeAddress, oneTimeAddress: OneTimeAddress(address: destAddress)),
+            amount: amount,
+            feeLevel: feeLevel
+        )
+        return try await instance.estimateTransactionFee(transactionRequest: request)
     }
 
-    func createOneTimeAddressTransaction(accountId: Int, assetId: String, destAddress: String, amount: String, feeLevel: FeeLevel) async -> EmbeddedWalletSDKDev.CreateTransactionResponse? {
+    func createOneTimeAddressTransaction(accountId: Int, assetId: String, destAddress: String, amount: String, feeLevel: FeeLevel) async throws -> EmbeddedWalletSDKDev.CreateTransactionResponse {
         if let mockManager {
-            return await mockManager.createOneTimeAddressTransaction(accountId: accountId, assetId: assetId, destAddress: destAddress, amount: amount, feeLevel: feeLevel)
+            return try await mockManager.createOneTimeAddressTransaction(accountId: accountId, assetId: assetId, destAddress: destAddress, amount: amount, feeLevel: feeLevel)
         }
 
-        do {
-            if let instance = initialize() {
-                let request = TransactionRequest(
-                    assetId: assetId,
-                    source: SourceTransferPeerPath(id: String(accountId)),
-                    destination: DestinationTransferPeerPath(type: .oneTimeAddress, oneTimeAddress: OneTimeAddress(address: destAddress)),
-                    amount: amount,
-                    feeLevel: feeLevel
-                )
-                return try await instance.createTransaction(transactionRequest: request)
-            }
-        } catch let error as EmbeddedWalletException {
-            errorMessage = error.description
-        } catch {
-            errorMessage = error.localizedDescription
-        }
-            
-        return nil
+        let instance = try initialize()
+        let request = TransactionRequest(
+            assetId: assetId,
+            source: SourceTransferPeerPath(id: String(accountId)),
+            destination: DestinationTransferPeerPath(type: .oneTimeAddress, oneTimeAddress: OneTimeAddress(address: destAddress)),
+            amount: amount,
+            feeLevel: feeLevel
+        )
+        return try await instance.createTransaction(transactionRequest: request)
     }
     
-    func estimateEndUserWalletTransaction(accountId: Int, assetId: String, destWalletId: String, destinationAccountId: Int, amount: String, feeLevel: FeeLevel) async -> EmbeddedWalletSDKDev.EstimatedTransactionFeeResponse? {
-        do {
-            if let instance = initialize() {
-                let request = TransactionRequest(
-                    assetId: assetId,
-                    source: SourceTransferPeerPath(id: String(accountId)),
-                    destination: DestinationTransferPeerPath(type: .endUserWallet, id: String(destinationAccountId), walletId: destWalletId),
-                    amount: amount,
-                    feeLevel: feeLevel
-                )
-                return try await instance.estimateTransactionFee(transactionRequest: request)
-            }
-        } catch let error as EmbeddedWalletException {
-            errorMessage = error.description
-        } catch {
-            errorMessage = error.localizedDescription
-        }
-            
-        return nil
+    func estimateEndUserWalletTransaction(accountId: Int, assetId: String, destWalletId: String, destinationAccountId: Int, amount: String, feeLevel: FeeLevel) async throws -> EmbeddedWalletSDKDev.EstimatedTransactionFeeResponse {
+        let instance = try initialize()
+        let request = TransactionRequest(
+            assetId: assetId,
+            source: SourceTransferPeerPath(id: String(accountId)),
+            destination: DestinationTransferPeerPath(type: .endUserWallet, id: String(destinationAccountId), walletId: destWalletId),
+            amount: amount,
+            feeLevel: feeLevel
+        )
+        return try await instance.estimateTransactionFee(transactionRequest: request)
     }
 
-    func createEndUserWalletTransaction(accountId: Int, assetId: String, destWalletId: String, destinationAccountId: Int, amount: String, feeLevel: FeeLevel) async -> EmbeddedWalletSDKDev.CreateTransactionResponse? {
-        do {
-            if let instance = initialize() {
-                let request = TransactionRequest(
-                    assetId: assetId,
-                    source: SourceTransferPeerPath(id: String(accountId)),
-                    destination: DestinationTransferPeerPath(type: .endUserWallet, id: String(destinationAccountId), walletId: destWalletId),
-                    amount: amount,
-                    feeLevel: feeLevel
-                )
-                return try await instance.createTransaction(transactionRequest: request)
-            }
-        } catch let error as EmbeddedWalletException {
-            errorMessage = error.description
-        } catch {
-            errorMessage = error.localizedDescription
-        }
-            
-        return nil
+    func createEndUserWalletTransaction(accountId: Int, assetId: String, destWalletId: String, destinationAccountId: Int, amount: String, feeLevel: FeeLevel) async throws -> EmbeddedWalletSDKDev.CreateTransactionResponse {
+        let instance = try initialize()
+        let request = TransactionRequest(
+            assetId: assetId,
+            source: SourceTransferPeerPath(id: String(accountId)),
+            destination: DestinationTransferPeerPath(type: .endUserWallet, id: String(destinationAccountId), walletId: destWalletId),
+            amount: amount,
+            feeLevel: feeLevel
+        )
+        return try await instance.createTransaction(transactionRequest: request)
     }
 
-    func estimateVaultTransaction(accountId: Int, assetId: String, vaultAccountId: String, amount: String, feeLevel: FeeLevel) async -> EmbeddedWalletSDKDev.EstimatedTransactionFeeResponse? {
-        do {
-            if let instance = initialize() {
-                let request = TransactionRequest(
-                    assetId: assetId,
-                    source: SourceTransferPeerPath(id: String(accountId)),
-                    destination: DestinationTransferPeerPath(type: .vaultAccount, id: String(vaultAccountId)),
-                    amount: amount,
-                    feeLevel: feeLevel
-                )
-                return try await instance.estimateTransactionFee(transactionRequest: request)
-            }
-        } catch let error as EmbeddedWalletException {
-            errorMessage = error.description
-        } catch {
-            errorMessage = error.localizedDescription
-        }
-            
-        return nil
+    func estimateVaultTransaction(accountId: Int, assetId: String, vaultAccountId: String, amount: String, feeLevel: FeeLevel) async throws -> EmbeddedWalletSDKDev.EstimatedTransactionFeeResponse {
+        let instance = try initialize()
+        let request = TransactionRequest(
+            assetId: assetId,
+            source: SourceTransferPeerPath(id: String(accountId)),
+            destination: DestinationTransferPeerPath(type: .vaultAccount, id: String(vaultAccountId)),
+            amount: amount,
+            feeLevel: feeLevel
+        )
+        return try await instance.estimateTransactionFee(transactionRequest: request)
     }
 
     
-    func createVaultTransaction(accountId: Int, assetId: String, vaultAccountId: String, amount: String, feeLevel: FeeLevel) async -> EmbeddedWalletSDKDev.CreateTransactionResponse? {
-        do {
-            if let instance = initialize() {
-                let request = TransactionRequest(
-                    assetId: assetId,
-                    source: SourceTransferPeerPath(id: String(accountId)),
-                    destination: DestinationTransferPeerPath(type: .vaultAccount, id: String(vaultAccountId)),
-                    amount: amount,
-                    feeLevel: feeLevel
-                )
-                return try await instance.createTransaction(transactionRequest: request)
-            }
-        } catch let error as EmbeddedWalletException {
-            errorMessage = error.description
-        } catch {
-            errorMessage = error.localizedDescription
-        }
-            
-        return nil
+    func createVaultTransaction(accountId: Int, assetId: String, vaultAccountId: String, amount: String, feeLevel: FeeLevel) async throws -> EmbeddedWalletSDKDev.CreateTransactionResponse {
+        let instance = try initialize()
+        let request = TransactionRequest(
+            assetId: assetId,
+            source: SourceTransferPeerPath(id: String(accountId)),
+            destination: DestinationTransferPeerPath(type: .vaultAccount, id: String(vaultAccountId)),
+            amount: amount,
+            feeLevel: feeLevel
+        )
+        return try await instance.createTransaction(transactionRequest: request)
     }
 
-    func estimateContractCallTransaction(accountId: Int, assetId: String, contractCallData: String, amount: String, feeLevel: FeeLevel) async -> EmbeddedWalletSDKDev.EstimatedTransactionFeeResponse? {
-        do {
-            if let instance = initialize() {
-                let request = TransactionRequest(
-                    operation: .contractCall,
-                    note: "Created by iOS unit tests - contract call",
-                    assetId: assetId,
-                    source: SourceTransferPeerPath(id: String(accountId)),
-                    destination: DestinationTransferPeerPath(type: .oneTimeAddress, oneTimeAddress: OneTimeAddress(address: "0x68b3465833fb72a70ecdf485e0e4c7bd8665fc45")),
-                    amount: amount,
-                    extraParameters: ExtraParameters(contractCallData: contractCallData)
-                )
-                return try await instance.estimateTransactionFee(transactionRequest: request)
-            }
-        } catch let error as EmbeddedWalletException {
-            errorMessage = error.description
-        } catch {
-            errorMessage = error.localizedDescription
-        }
-            
-        return nil
+    func estimateContractCallTransaction(accountId: Int, assetId: String, contractCallData: String, amount: String, feeLevel: FeeLevel) async throws -> EmbeddedWalletSDKDev.EstimatedTransactionFeeResponse {
+        let instance = try initialize()
+        let request = TransactionRequest(
+            operation: .contractCall,
+            note: "Created by iOS unit tests - contract call",
+            assetId: assetId,
+            source: SourceTransferPeerPath(id: String(accountId)),
+            destination: DestinationTransferPeerPath(type: .oneTimeAddress, oneTimeAddress: OneTimeAddress(address: "0x68b3465833fb72a70ecdf485e0e4c7bd8665fc45")),
+            amount: amount,
+            extraParameters: ExtraParameters(contractCallData: contractCallData)
+        )
+        return try await instance.estimateTransactionFee(transactionRequest: request)
     }
 
-    func createContractCallTransaction(accountId: Int, assetId: String, contractCallData: String, amount: String, feeLevel: FeeLevel) async -> EmbeddedWalletSDKDev.CreateTransactionResponse? {
-        do {
-            if let instance = initialize() {
-                let request = TransactionRequest(
-                    operation: .contractCall,
-                    note: "Created by iOS unit tests - contract call",
-                    assetId: assetId,
-                    source: SourceTransferPeerPath(id: String(accountId)),
-                    destination: DestinationTransferPeerPath(type: .oneTimeAddress, oneTimeAddress: OneTimeAddress(address: "0x68b3465833fb72a70ecdf485e0e4c7bd8665fc45")),
-                    amount: amount,
-                    extraParameters: ExtraParameters(contractCallData: contractCallData)
-                )
-                return try await instance.createTransaction(transactionRequest: request)
-            }
-        } catch let error as EmbeddedWalletException {
-            errorMessage = error.description
-        } catch {
-            errorMessage = error.localizedDescription
-        }
-            
-        return nil
-
+    func createContractCallTransaction(accountId: Int, assetId: String, contractCallData: String, amount: String, feeLevel: FeeLevel) async throws -> EmbeddedWalletSDKDev.CreateTransactionResponse {
+        let instance = try initialize()
+        let request = TransactionRequest(
+            operation: .contractCall,
+            note: "Created by iOS unit tests - contract call",
+            assetId: assetId,
+            source: SourceTransferPeerPath(id: String(accountId)),
+            destination: DestinationTransferPeerPath(type: .oneTimeAddress, oneTimeAddress: OneTimeAddress(address: "0x68b3465833fb72a70ecdf485e0e4c7bd8665fc45")),
+            amount: amount,
+            extraParameters: ExtraParameters(contractCallData: contractCallData)
+        )
+        return try await instance.createTransaction(transactionRequest: request)
     }
 
-    func cancelTransaction(txId: String) async -> EmbeddedWalletSDKDev.SuccessResponse? {
-        do {
-            errorMessage = nil
-            if let instance = initialize() {
-                return try await instance.cancelTransaction(txId: txId)
-            }
-        } catch let error as EmbeddedWalletException {
-            errorMessage = error.description
-        } catch {
-            errorMessage = error.localizedDescription
-        }
-            
-        return nil
+    func cancelTransaction(txId: String) async throws -> EmbeddedWalletSDKDev.SuccessResponse {
+        let instance = try initialize()
+        return try await instance.cancelTransaction(txId: txId)
     }
     
     //MARK: - Web3Connections -
     
-    func getConnections(allPages: Bool = true, pageCursor: String? = nil, order: Order? = nil, filter: String? = nil, sort: Web3ConnectionSort? = nil, pageSize: Int? = nil) async -> PaginatedResponse<Web3Connection>? {
+    func getConnections(allPages: Bool = true, pageCursor: String? = nil, order: Order? = nil, filter: String? = nil, sort: Web3ConnectionSort? = nil, pageSize: Int? = nil) async throws -> PaginatedResponse<Web3Connection> {
         if let mockManager {
-            return await mockManager.getConnections(allPages: allPages, pageCursor: pageCursor, order: order, filter: filter, sort: sort, pageSize: pageSize)
+            return try await mockManager.getConnections(allPages: allPages, pageCursor: pageCursor, order: order, filter: filter, sort: sort, pageSize: pageSize)
         }
         
-        do {
-            if let instance = initialize() {
-                let result = try await instance.getWeb3Connections(allPages: allPages, pageCursor: pageCursor, pageSize: pageSize, order: order, filter: filter, sort: sort)
-                return result
-            }
-        } catch let error as EmbeddedWalletException {
-            errorMessage = error.description
-        } catch {
-            errorMessage = error.localizedDescription
-        }
-            
-        return nil
-
+        let instance = try initialize()
+        let result = try await instance.getWeb3Connections(allPages: allPages, pageCursor: pageCursor, pageSize: pageSize, order: order, filter: filter, sort: sort)
+        return result
     }
     
-    func createConnection(feeLevel: Web3ConnectionFeeLevel, uri: String, ncwAccountId: Int, chainIds: [String]? = nil) async -> CreateWeb3ConnectionResponse? {
+    func createConnection(feeLevel: Web3ConnectionFeeLevel, uri: String, ncwAccountId: Int, chainIds: [String]? = nil) async throws -> CreateWeb3ConnectionResponse {
         if let mockManager {
-            return await mockManager.createConnection(feeLevel: feeLevel, uri: uri, ncwAccountId: ncwAccountId, chainIds: chainIds)
+            return try await mockManager.createConnection(feeLevel: feeLevel, uri: uri, ncwAccountId: ncwAccountId, chainIds: chainIds)
         }
 
-        do {
-            if let instance = initialize() {
-                let request = Web3ConnectionRequest(feeLevel: feeLevel, uri: uri, ncwAccountId: ncwAccountId, chainIds: chainIds)
-                
-                let result = try await instance.createWeb3Connection(body: request)
-                return result
-            }
-        } catch let error as EmbeddedWalletException {
-            errorMessage = error.description
-        } catch {
-            errorMessage = error.localizedDescription
-        }
-            
-        return nil
+        let instance = try initialize()
+        let request = Web3ConnectionRequest(feeLevel: feeLevel, uri: uri, ncwAccountId: ncwAccountId, chainIds: chainIds)
+        
+        return try await instance.createWeb3Connection(body: request)
     }
 
-    func submitConnection(id: String, approve: Bool) async -> String? {
+    func submitConnection(id: String, approve: Bool) async throws -> String {
         if let mockManager {
-            return await mockManager.submitConnection(id: id, approve: approve)
+            return try await mockManager.submitConnection(id: id, approve: approve)
         }
         
-        do {
-            if let instance = initialize() {
-                let request = RespondToConnectionRequest(approve: approve)
-                let result = try await instance.submitWeb3Connection(id: id, payload: request)
-                return result
-            }
-        } catch let error as EmbeddedWalletException {
-            errorMessage = error.description
-        } catch {
-            errorMessage = error.localizedDescription
-        }
-            
-        return nil
+        let instance = try initialize()
+        let request = RespondToConnectionRequest(approve: approve)
+        return try await instance.submitWeb3Connection(id: id, payload: request)
     }
 
-    func removeConnection(id: String) async -> String? {
+    func removeConnection(id: String) async throws -> String {
         if let mockManager {
-            return await mockManager.removeConnection(id: id)
+            return try await mockManager.removeConnection(id: id)
         }
         
-        do {
-            if let instance = initialize() {
-                let result = try await instance.removeWeb3Connection(id: id)
-                return result
-            }
-        } catch let error as EmbeddedWalletException {
-            errorMessage = error.description
-        } catch {
-            errorMessage = error.localizedDescription
-        }
-            
-        return nil
+        let instance = try initialize()
+        return try await instance.removeWeb3Connection(id: id)
     }
 
     //MARK: - NFTs -
 
-    func getNFT(id: String) async -> TokenResponse? {
+    func getNFT(id: String) async throws -> TokenResponse? {
         if let mockManager {
-            return await mockManager.getNFT(id: id)
+            return try await mockManager.getNFT(id: id)
         }
 
-        do {
-            if let instance = initialize() {
-                let result = try await instance.getNFT(id: id)
-                return result
-            }
-        } catch let error as EmbeddedWalletException {
-            errorMessage = error.description
-        } catch {
-            errorMessage = error.localizedDescription
-        }
-            
-        return nil
+        let instance = try initialize()
+        return try await instance.getNFT(id: id)
     }
     
     func getOwnedNFTs(
@@ -688,23 +373,13 @@ class EWManager: Hashable, EWManagerAPIProtocol {
         status: TokensStatus? = nil,
         search: String? = nil,
         spam: TokensSpam? = nil
-    ) async -> PaginatedResponse<TokenOwnershipResponse>? {
+    ) async throws -> PaginatedResponse<TokenOwnershipResponse> {
         if let mockManager {
-            return await mockManager.getOwnedNFTs()
+            return try await mockManager.getOwnedNFTs()
         }
 
-        do {
-            if let instance = initialize() {
-                let result = try await instance.getOwnedNFTs(blockchainDescriptor: blockchainDescriptor, ncwAccountIds: ncwAccountIds, ids: ids, collectionIds: collectionIds, allPages: allPages, pageCursor: pageCursor, pageSize: pageSize, sort: sort, order: order, status: status, search: search, spam: spam)
-                return result
-            }
-        } catch let error as EmbeddedWalletException {
-            errorMessage = error.description
-        } catch {
-            errorMessage = error.localizedDescription
-        }
-            
-        return nil
+        let instance = try initialize()
+        return try await instance.getOwnedNFTs(blockchainDescriptor: blockchainDescriptor, ncwAccountIds: ncwAccountIds, ids: ids, collectionIds: collectionIds, allPages: allPages, pageCursor: pageCursor, pageSize: pageSize, sort: sort, order: order, status: status, search: search, spam: spam)
     }
 
     func listOwnedCollections(
@@ -715,18 +390,9 @@ class EWManager: Hashable, EWManagerAPIProtocol {
         order: Order? = nil,
         status: TokensStatus? = nil,
         search: String? = nil
-    ) async -> PaginatedResponse<TokenOwnershipResponse>? {
-        do {
-            if let instance = initialize() {            let result = try await instance.listOwnedCollections(allPages: allPages, pageCursor: pageCursor, pageSize: pageSize, sort: sort, order: order, status: status, search: search)
-                return result
-            }
-        } catch let error as EmbeddedWalletException {
-            errorMessage = error.description
-        } catch {
-            errorMessage = error.localizedDescription
-        }
-            
-        return nil
+    ) async throws -> PaginatedResponse<TokenOwnershipResponse> {
+        let instance = try initialize()
+        return try await instance.listOwnedCollections(allPages: allPages, pageCursor: pageCursor, pageSize: pageSize, sort: sort, order: order, status: status, search: search)
     }
 
     func listOwnedAssets(
@@ -738,18 +404,9 @@ class EWManager: Hashable, EWManagerAPIProtocol {
         status: TokensStatus? = nil,
         search: String? = nil,
         spam: TokensSpam? = nil
-    ) async -> PaginatedResponse<TokenOwnershipResponse>? {
-        do {
-            if let instance = initialize() {            let result = try await instance.listOwnedAssets(allPages: allPages, pageCursor: pageCursor, pageSize: pageSize, sort: sort, order: order, status: status, search: search, spam: spam)
-                return result
-            }
-        } catch let error as EmbeddedWalletException {
-            errorMessage = error.description
-        } catch {
-            errorMessage = error.localizedDescription
-        }
-            
-        return nil
+    ) async throws -> PaginatedResponse<TokenOwnershipResponse> {
+        let instance = try initialize()
+        return try await instance.listOwnedAssets(allPages: allPages, pageCursor: pageCursor, pageSize: pageSize, sort: sort, order: order, status: status, search: search, spam: spam)
     }
 
 
@@ -768,80 +425,31 @@ extension EWManager: AuthTokenRetriever {
 
 //MARK - Core -
 extension EWManager {
-    func initializeCore() -> Fireblocks? {
-//        guard let deviceId = FireblocksManager.shared.deviceId else {
-//            errorMessage = "Unknown Device Id"
-//            return nil
-//        }
+    func initializeCore() throws -> Fireblocks {
         let deviceId = FireblocksManager.shared.deviceId
         self.keyStorageDelegate = KeyStorageProvider(deviceId: deviceId)
         if let keyStorageDelegate {
-            do {
-                if let instance = initialize() {
-                    return try instance.initializeCore(deviceId: deviceId, keyStorage: keyStorageDelegate)
-                }
-            } catch let error as EmbeddedWalletException {
-                errorMessage = error.description
-            } catch {
-                errorMessage = error.localizedDescription
-            }
+            let instance = try initialize()
+            return try instance.initializeCore(deviceId: deviceId, keyStorage: keyStorageDelegate)
         }
-            
-        return nil
+        
+        throw NSError()
 
     }
     
-    func getCore() -> Fireblocks? {
-//        guard let deviceId else {
-//            errorMessage = "Unknown Device Id"
-//            return nil
-//        }
-
+    func getCore() throws -> Fireblocks {
         let deviceId = FireblocksManager.shared.deviceId
-
-        do {
-            return try Fireblocks.getInstance(deviceId: deviceId)
-        } catch let error as FireblocksError {
-            errorMessage = error.description
-        } catch {
-            errorMessage = error.localizedDescription
-        }
-
-        return nil
+        return try Fireblocks.getInstance(deviceId: deviceId)
     }
 
-    func generateKeys(algorithms: Set<Algorithm>) async -> Set<KeyDescriptor>? {
-        guard let instance = getCore() else {
-            return nil
-        }
-
-        do {
-            let keys = try await instance.generateMPCKeys(algorithms: algorithms)
-            return keys
-        } catch let error as EmbeddedWalletException {
-            errorMessage = error.description
-        } catch {
-            errorMessage = error.localizedDescription
-        }
-        
-        return nil
+    func generateKeys(algorithms: Set<Algorithm>) async throws -> Set<KeyDescriptor> {
+        let instance = try getCore()
+        return try await instance.generateMPCKeys(algorithms: algorithms)
     }
     
-    func backupKeys() async -> Set<KeyBackup>? {
-        guard let instance = getCore() else {
-            return nil
-        }
-
-        do {
-            let backupKeys = try await instance.backupKeys(passphrase: "passphrase", passphraseId: "62EB34DA-444A-4103-A0FD-80496F2D707C")
-            return backupKeys
-        } catch let error as EmbeddedWalletException {
-            errorMessage = error.description
-        } catch {
-            errorMessage = error.localizedDescription
-        }
-        
-        return nil
+    func backupKeys() async throws -> Set<KeyBackup> {
+        let instance = try getCore()
+        return try await instance.backupKeys(passphrase: "passphrase", passphraseId: "62EB34DA-444A-4103-A0FD-80496F2D707C")
     }
 
 }
@@ -879,17 +487,12 @@ extension EWManager {
         let allowed: Bool
     }
 
-    func getTypedDataJson() -> String? {
+    func getTypedDataJson() throws -> String {
         let typedData = buildTypedData()
         let encoder = JSONEncoder()
         encoder.outputFormatting = [.withoutEscapingSlashes, .prettyPrinted]
-        do {
-            let data = try encoder.encode(typedData)
-            return String(data: data, encoding: .utf8)
-        } catch {
-            print("Error encoding TypedData: \(error)")
-            return nil
-        }
+        let data = try encoder.encode(typedData)
+        return String(data: data, encoding: .utf8) ?? ""
     }
 
     func buildTypedData(chainId: Int = 42,

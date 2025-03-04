@@ -48,7 +48,7 @@ class AddAssetsViewController: UIViewController {
 
     init(devideId: String, delegate: AddAssetsViewControllerDelegate?) {
         self.delegate = delegate
-        self.viewModel = AddAssetsViewModel(deviceId: devideId)
+        self.viewModel = AddAssetsViewModel()
         super.init (nibName: "AddAssetsViewController", bundle: nil)
         
     }
@@ -57,7 +57,6 @@ class AddAssetsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         showActivityIndicator(isBackgroundEnabled: false)
-        viewModel.delegate = self
         searchBar.searchTextField.backgroundColor = UIColor(named: "searchBar")
         searchBar.searchTextField.returnKeyType = .done
         searchBar.isUserInteractionEnabled = false
@@ -120,8 +119,8 @@ extension AddAssetsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let cell = tableView.cellForRow(at: indexPath) as? AddAssetViewCell {
-            viewModel.didSelect(indexPath: indexPath)
             let asset = viewModel.getAssets()[indexPath.row]
+            viewModel.didSelect(asset: asset)
             cell.configCellWith(assetToAdd: asset)
             addAssetButton.config(title: "Add Asset", image: UIImage(named: "plus"), style: viewModel.getSelectedCount() == 0 ? .Disabled : .Primary)
             addAssetButton.isEnabled = viewModel.getSelectedCount() > 0
@@ -165,7 +164,7 @@ extension AddAssetsViewController: AddAssetsDelegate {
 
 extension AddAssetsViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        viewModel.searchDidChange(searchText: searchText)
+        viewModel.searchDidChange()
         noResultsView.isHidden = viewModel.getAssetsCount() > 0
     }
     

@@ -45,8 +45,50 @@ extension EWNFTPreviewView {
             }
         }
         
+        func approveTransaction() {
+            if let transactionID = self.dataModel.transaction?.id {
+                self.loadingManager.isLoading = true
+                Task {
+                    do {
+                        let result = try await self.ewManager.getCore().signTransaction(txId: transactionID)
+                        if result.transactionSignatureStatus == .ERROR || result.transactionSignatureStatus == .TIMEOUT {
+                            await self.loadingManager.setAlertMessage(error: CustomError.genericError("Failed to sign transaction"))
+                            await self.loadingManager.setLoading(value: false)
+                        } else {
+                            await MainActor.run {
+                                self.coordinator.path = NavigationPath()
+                                self.loadingManager.isLoading = false
+                            }
+                        }
+                    } catch {
+                        await self.loadingManager.setLoading(value: false)
+                        await self.loadingManager.setAlertMessage(error: error)
+                    }
+                }
+            }
+        }
+        
         func cancelTransaction() {
-            
+            if let transactionID = self.dataModel.transaction?.id {
+                self.loadingManager.isLoading = true
+                Task {
+                    do {
+                        let result = try await ewManager.cancelTransaction(txId: transactionID)
+                        if let success = result.success, success {
+                            await MainActor.run {
+                                self.coordinator.path = NavigationPath()
+                            }
+                        } else {
+                            await self.loadingManager.setAlertMessage(error: CustomError.genericError("Failed to cancel transaction"))
+                        }
+                        await self.loadingManager.setLoading(value: false)
+
+                    } catch {
+                        await self.loadingManager.setLoading(value: false)
+                        await self.loadingManager.setAlertMessage(error: error)
+                    }
+                }
+            }
         }
 
         private func listenToTransferChanges() {

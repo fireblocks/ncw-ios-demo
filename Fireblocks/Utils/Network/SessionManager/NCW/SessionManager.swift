@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 #if DEV
 import FireblocksDev
 #else
@@ -590,5 +591,31 @@ extension SessionManager {
         }
     }
     
+    func loadImage(url: URL) async throws -> UIImage {
+        if let image = CacheManager.shared.getImage(url: url) {
+            return image
+        }
+        
+        let request = URLRequest(url: url)
+        let session = URLSession.shared
+        let (data, response) = try await session.data(for: request)
+        if let statusCode = (response as? HTTPURLResponse)?.statusCode {
+            if statusCode >= 200, statusCode <= 299 {
+                if let image = UIImage(data: data) {
+                    CacheManager.shared.addImage(url: url, image: image)
+                    return image
+                }
+                throw SessionManager.error
+            } else {
+                print("SessionManager Error statusCode: \(statusCode)")
+                throw SessionManager.error
+            }
+        } else {
+            print("SessionManager Error")
+            throw SessionManager.error
+        }
+
+    }
+
     
 }

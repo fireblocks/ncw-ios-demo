@@ -26,8 +26,8 @@ struct EWWeb3ConnectionDetailsView: View {
                     EWWeb3ConnectionDetailsHeader(connection: connection, metadata: connection.sessionMetadata, isConnected: true)
                         .environment(ewManager)
                     Spacer()
-                    BottomBanner(text: viewModel.ewManager?.errorMessage)
-                        .animation(.default, value: viewModel.ewManager?.errorMessage)
+//                    BottomBanner(message: viewModel.ewManager?.errorMessage)
+//                        .animation(.default, value: viewModel.ewManager?.errorMessage)
                     Button {
                         viewModel.removeConnection()
                     } label: {

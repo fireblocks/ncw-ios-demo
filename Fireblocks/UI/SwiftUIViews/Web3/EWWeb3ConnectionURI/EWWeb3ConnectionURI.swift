@@ -88,8 +88,8 @@ struct EWWeb3ConnectionURI: View {
                 }
                 
                 Spacer()
-                BottomBanner(text: viewModel.ewManager?.errorMessage)
-                    .animation(.default, value: viewModel.ewManager?.errorMessage)
+//                BottomBanner(message: viewModel.ewManager?.errorMessage)
+//                    .animation(.default, value: viewModel.ewManager?.errorMessage)
 
                 Text("Please enter address or scan QR")
                     .font(.b4)

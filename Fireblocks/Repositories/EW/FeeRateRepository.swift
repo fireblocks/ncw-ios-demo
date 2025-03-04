@@ -15,29 +15,23 @@ import Foundation
 #endif
 
 class FeeRateRepository {
+    let ewManager: EWManager
+    init(ewManager: EWManager) {
+        self.ewManager = ewManager
+    }
+    
     func getFeeRates(for assetId: String, amount: String, address: String, feeLevel: FeeRateType? = nil) async throws -> [Fee] {
-        let ewManager = EWManager.shared
-        let response = await ewManager.estimateOneTimeAddressTransaction(accountId: 0, assetId: assetId, destAddress: address, amount: amount, feeLevel: .LOW)
-        if let response {
-            return FeeManager.calcFee(feeResponse: response)
-        }
-        
-        throw AssetError.failedToGetFee(assetId: assetId)
+        let response = try await ewManager.estimateOneTimeAddressTransaction(accountId: 0, assetId: assetId, destAddress: address, amount: amount, feeLevel: .LOW)
+        return FeeManager.calcFee(feeResponse: response)
     }
     
     func createTransaction(assetId: String, transactionParams: PostTransactionParams) async throws -> CreateTransactionResponse {
-        let ewManager = EWManager.shared
         var feeLevel = FeeLevel.LOW
         if let level = transactionParams.feeLevel {
             feeLevel = FeeLevel(rawValue: level) ?? .LOW
         }
-        let response = await ewManager.createOneTimeAddressTransaction(accountId: 0, assetId: transactionParams.assetId, destAddress: transactionParams.destAddress, amount: transactionParams.amount, feeLevel: feeLevel)
-
-        if let response {
-            return response
-        }
-
-        throw AssetError.failedToCreateTransaction(assetId: assetId)
+        let response = try await ewManager.createOneTimeAddressTransaction(accountId: 0, assetId: transactionParams.assetId, destAddress: transactionParams.destAddress, amount: transactionParams.amount, feeLevel: feeLevel)
+        return response
     }
     
 }

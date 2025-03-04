@@ -58,5 +58,4 @@ struct AssetSummary: Codable, Identifiable, Hashable {
         let assetImage = AssetsImageMapper().getIconForAsset(id)
         return assetImage
     }
-
 }

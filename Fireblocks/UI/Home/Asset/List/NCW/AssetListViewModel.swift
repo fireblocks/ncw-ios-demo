@@ -8,9 +8,10 @@
 import Foundation
 import Combine
 
+@Observable
 class AssetListViewModel {
     weak var delegate: AssetListViewModelDelegate?
-    private var assetsSummary: [AssetSummary] = []
+    var assetsSummary: [AssetSummary] = []
     private var assets: [Asset] = []
     private let repository = AssetListRepository()
     private var task: Task<Void, Never>?

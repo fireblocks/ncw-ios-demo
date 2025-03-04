@@ -13,25 +13,32 @@ import EmbeddedWalletSDKDev
 import EmbeddedWalletSDK
 #endif
 
-class AddAssetsViewModel: ObservableObject {
-    private let deviceId: String
+@Observable
+class AddAssetsViewModel {
+    var ewManager: EWManager!
+    var loadingManager: LoadingManager!
+
     private var assets: [AssetToAdd] = []
-    private var searchResults: [AssetToAdd] = []
-    private var addedAssets: [Asset] = []
-    private var failedAssets: [Asset] = []
+    var searchResults: [AssetToAdd] = []
+    var selectedAsset: AssetToAdd?
+    var searchText = ""
 
-    weak var delegate: AddAssetsDelegate?
-    var ewManager = EWManager.shared
-    
-    init(deviceId: String) {
-        self.deviceId = deviceId
-        
-
+    func setup(ewManager: EWManager, loadingManager: LoadingManager) {
+        self.ewManager = ewManager
+        self.loadingManager = loadingManager
         Task {
-            let response = await ewManager.fetchAllSupportedAssets()
-            self.assets = response.map({AssetToAdd(asset: AssetSummary(asset: $0))})
-            self.searchResults = response.map({AssetToAdd(asset: AssetSummary(asset: $0))})
-            self.delegate?.didLoadAssets()
+            await self.loadingManager.setLoading(value: true)
+            do {
+                let response = try await self.ewManager?.fetchAllSupportedAssets()
+                await MainActor.run {
+                    self.assets = response?.map({AssetToAdd(asset: $0)}) ?? []
+                    self.searchResults = response?.map({AssetToAdd(asset: $0)}) ?? []
+                    self.loadingManager.isLoading = false
+                }
+            } catch {
+                await self.loadingManager.setAlertMessage(error: error)
+                await self.loadingManager.setLoading(value: false)
+            }
         }
     }
         
@@ -39,17 +46,16 @@ class AddAssetsViewModel: ObservableObject {
         return searchResults.count
     }
     
-    func getAssets() -> [AssetToAdd] {
-        return searchResults
-    }
-    
     func getSelectedCount() -> Int {
         return assets.filter({$0.isSelected}).count
     }
-    
-    func didSelect(indexPath: IndexPath) {
-        //TBD - can be removed when switch to multi selection
-        if !searchResults[indexPath.row].isSelected {
+
+    func getAssets() -> [AssetToAdd] {
+        return searchResults
+    }
+        
+    func didSelect(asset: AssetToAdd) {
+        if !asset.isSelected {
             if let index = searchResults.firstIndex(where: {$0.isSelected}) {
                 searchResults[index].isSelected = false
             }
@@ -57,44 +63,45 @@ class AddAssetsViewModel: ObservableObject {
                 assets[index].isSelected = false
             }
         }
-        //
         
-        searchResults[indexPath.row].isSelected.toggle()
-        if let index = assets.firstIndex(where: {$0.asset == searchResults[indexPath.row].asset}) {
-            assets[index].isSelected.toggle()
+        if let index = searchResults.firstIndex(where: {$0 == asset}) {
+            searchResults[index].isSelected.toggle()
+            if let index = assets.firstIndex(where: {$0 == asset}) {
+                assets[index].isSelected.toggle()
+            }
         }
-        delegate?.reloadData()
     }
     
     func createAsset() {
+        self.loadingManager.isLoading = true
         Task {
-            let accounts = await ewManager.fetchAllAccounts()
-            if accounts.count == 0 {
-                let _ = await ewManager.createAccount()
-            }
-            
-            for assetSummary in assets.filter({$0.isSelected}).map({$0.asset}) {
-                if let asset = assetSummary.asset {
-                    if let _ = await ewManager.addAsset(assetId: assetSummary.id, accountId: 0) {
-                        addedAssets.append(asset)
-                    } else {
-                        failedAssets.append(asset)
-                    }
+            do {
+                let accounts = try await ewManager?.fetchAllAccounts()
+                if accounts?.count == 0 {
+                    let _ = try await ewManager.createAccount()
                 }
+                
+                if let assetToAdd = assets.filter({$0.isSelected}).first {
+                    if let _ = try await ewManager?.addAsset(assetId: assetToAdd.asset.id, accountId: 0) {
+                        await MainActor.run {
+                            selectedAsset = assetToAdd
+                        }
+                    }
+                    await self.loadingManager.setLoading(value: false)
+                }
+            } catch {
+                await self.loadingManager.setAlertMessage(error: error)
+                await self.loadingManager.setLoading(value: false)
             }
-            self.delegate?.didAddAssets(addedAssets: self.addedAssets, failedAssets: self.failedAssets)
         }
-
     }
     
-    func searchDidChange(searchText: String) {
+    func searchDidChange() {
         if searchText.isEmpty {
             searchResults = assets
         } else {
             searchResults = assets.filter({$0.asset.asset != nil && $0.asset.asset!.name != nil && $0.asset.asset!.symbol != nil}).filter({$0.asset.asset!.name!.localizedStandardContains(searchText) || $0.asset.asset!.symbol!.localizedStandardContains(searchText) })
         }
-        
-        self.delegate?.reloadData()
     }
 
 }

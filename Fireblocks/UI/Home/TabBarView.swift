@@ -10,10 +10,10 @@ import SwiftUI
 enum TabIndex: Int, CaseIterable {
     case Assets = 0
     case Transfers = 1
-    #if EW
+#if EW
     case NFTs = 2
     case Web3 = 3
-    #endif
+#endif
     
     var title: String {
         switch self {
@@ -40,40 +40,65 @@ enum TabIndex: Int, CaseIterable {
             return "WeWeb3 connectionsb3"
         }
     }
-
+    
 }
 
 struct TabBarView: View {
     @EnvironmentObject var coordinator: Coordinator
-
+    
     @State var selectedIndex = TabIndex.Assets
-
+    
     var body: some View {
-        VStack(spacing: 0) {
-            switch selectedIndex {
-            case .Assets:
-                AssetListView()
-            case .Transfers:
-                GenericController(uiViewType: TransfersViewController())
+        ZStack {
+            TabView(selection: $selectedIndex) {
+                SpinnerViewContainer {
+                    AssetListView()
+                }
+                .tabItem {
+                    getTabItem(.Assets)
+                }
+                .tag(TabIndex.Assets)
+                
+                SpinnerViewContainer {
+                    GenericController(uiViewType: TransfersViewController())
+                }
+                .tabItem {
+                    getTabItem(.Transfers)
+                }
+                .tag(TabIndex.Transfers)
+                
 #if EW
-            case .NFTs:
-                EWNFTsView()
-            case .Web3:
-                EWWeb3ConnectionsView(accountId: 0)
+                SpinnerViewContainer {
+                    EWNFTsView()
+                }
+                .tabItem {
+                    getTabItem(.NFTs)
+                }
+                .tag(TabIndex.NFTs)
+                
+                SpinnerViewContainer {
+                    EWWeb3ConnectionsView(accountId: 0)
+                }
+                .tabItem {
+                    getTabItem(.Web3)
+                }
+                .tag(TabIndex.Web3)
+                
 #endif
             }
-        }
-        .safeAreaPadding(0)
-        .safeAreaInset(edge: .bottom, content: {
-            HStack(spacing: 8) {
-                ForEach(TabIndex.allCases, id: \.self) { index in
-                    getTabItem(tag: index.rawValue, title: index.title)
+            
+            VStack {
+                Spacer()
+                HStack(spacing: 8) {
+                    ForEach(TabIndex.allCases, id: \.self) { index in
+                        getTabItem(index)
+                    }
                 }
+                .padding(.horizontal)
+                .padding(.top)
+                .background(Color(.background))
             }
-            .padding(.horizontal, 8)
-            .padding(.vertical)
-            .background(AssetsColors.gray1.color())
-        })
+        }
         .animation(.default, value: selectedIndex)
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
@@ -89,22 +114,22 @@ struct TabBarView: View {
         .navigationBarTitleDisplayMode(.inline)
         .toolbarBackground(.visible, for: .navigationBar)
     }
-        
+    
     @ViewBuilder
-    func getTabItem(tag: Int, title: String) -> some View {
-        Text(title)
+    func getTabItem(_ tabIndex: TabIndex) -> some View {
+        Text(tabIndex.title)
             .font(.caption)
             .foregroundStyle(.white)
             .padding()
             .frame(maxWidth: .infinity)
-            .background(tag == selectedIndex.rawValue ? AnyShapeStyle(AssetsColors.gray2.color()) : AnyShapeStyle(Color.clear))
+            .background(tabIndex == selectedIndex ? AnyShapeStyle(AssetsColors.gray2.color()) : AnyShapeStyle(Color.clear))
             .clipShape(.rect(cornerRadius: 8))
             .contentShape(.rect)
             .onTapGesture {
-                selectedIndex = TabIndex(rawValue: tag) ?? .Assets
+                selectedIndex = tabIndex
             }
     }
-
+    
 }
 
 //#Preview {

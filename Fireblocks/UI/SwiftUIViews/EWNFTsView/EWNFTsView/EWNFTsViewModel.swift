@@ -46,7 +46,11 @@ extension EWNFTsView {
         }
 
         func fetchAllTokens() async {
-            self.dataModel.tokens = await self.ewManager?.getOwnedNFTs()?.data ?? []
+            do {
+                self.dataModel.tokens = try await self.ewManager?.getOwnedNFTs().data ?? []
+            } catch {
+                await self.loadingManager.setAlertMessage(error: error)
+            }
             await self.loadingManager.setLoading(value: false)
         }
         

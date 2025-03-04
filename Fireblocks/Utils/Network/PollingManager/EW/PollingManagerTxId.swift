@@ -23,10 +23,12 @@ class PollingManagerTxId: ObservableObject {
         self.ewManager = ewManager
     }
     
-    func startPolling(txId: String) async {
+    func startPolling(txId: String) {
         if self.txId != nil { return }
         self.txId = txId
-        await pollTransaction(txId: txId)
+        Task {
+            await pollTransaction(txId: txId)
+        }
     }
     
     func stopPolling() {
@@ -35,11 +37,11 @@ class PollingManagerTxId: ObservableObject {
     
     func pollTransaction(txId: String, poll: Bool = true) async {
         if self.txId == nil { return }
-        self.response = await ewManager.getTransactionById(txId: txId)
+        self.response = try? await ewManager.getTransactionById(txId: txId)
         
         if poll {
             do {
-                try await Task.sleep(nanoseconds: 1 * 3_000_000_000)
+                try await Task.sleep(for: .seconds(3))
                 await pollTransaction(txId: txId, poll: poll)
             } catch {
                 print(error.localizedDescription)

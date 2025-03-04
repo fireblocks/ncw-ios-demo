@@ -7,8 +7,7 @@
 
 import UIKit
 
-class AmountToSendViewController: UIViewController {
-    
+class AmountToSendViewController: UIViewController, SwiftUIEnvironmentBridge {
 //MARK: - PROPERTIES
     @IBOutlet weak var assetView: UIView!
     @IBOutlet weak var maxButton: UIButton!{
@@ -22,17 +21,29 @@ class AmountToSendViewController: UIViewController {
     @IBOutlet var numberPadKeys: [UIButton]!
     @IBOutlet weak var continueButton: AppActionBotton!
     
-    var viewModel = AmountToSendViewModel()
+    var viewModel: AmountToSendViewModel
     
     init(asset: AssetSummary) {
+        self.viewModel = AmountToSendViewModel(asset: asset)
         super.init(nibName: "AmountToSendViewController", bundle: nil)
-        self.viewModel.asset = asset
-        self.viewModel.asset.isExpanded = false
     }
     
     required init?(coder aDecoder: NSCoder) {
+        self.viewModel = AmountToSendViewModel()
         super.init(coder: aDecoder)
     }
+    
+    #if EW
+    func setEnvironment(loadingManager: LoadingManager, coordinator: Coordinator, ewManager: EWManager) {
+        viewModel.loadingManager = loadingManager
+        viewModel.coordinator = coordinator
+    }
+    #else
+    func setEnvironment(loadingManager: LoadingManager, coordinator: Coordinator) {
+        viewModel.loadingManager = loadingManager
+        viewModel.coordinator = coordinator
+    }
+    #endif
 
 //MARK: - LIFECYCLE Functions
     override func viewDidLoad() {
@@ -44,6 +55,7 @@ class AmountToSendViewController: UIViewController {
     
     private func configView(){
         errorMessage.isHidden = true
+        amountInput.numberOfLines = 2
         if let symbol = viewModel.getAsset().asset?.symbol {
             amountInput.text = "0 \(symbol)"
         }
@@ -70,9 +82,6 @@ class AmountToSendViewController: UIViewController {
     }
     
     private func configButtons(){
-        navigationItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "close"), style: .plain, target: self, action: #selector(handleCloseTap))]
-        self.navigationItem.title = "Amount"
-
         continueButton.config(title: "Continue", style: .Primary)
         continueButton.isEnabled = false
     }
@@ -103,11 +112,9 @@ class AmountToSendViewController: UIViewController {
         navigateToAddReceiverScreen()
     }
     
-    private func navigateToAddReceiverScreen(){
-        let vc = SendToViewController(nibName: "SendToViewController", bundle: nil)
-        vc.viewModel.transaction = viewModel.createTransaction()
-        vc.hidesBottomBarWhenPushed = true
-        self.navigationController?.pushViewController(vc, animated: true)
+    private func navigateToAddReceiverScreen() {
+        let transaction = viewModel.createTransaction()
+        viewModel.coordinator?.path.append(NavigationTypes.genericController(SendToViewController(transaction: transaction), "Receiving Address"))
     }
 }
 

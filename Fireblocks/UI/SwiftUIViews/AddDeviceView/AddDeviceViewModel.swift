@@ -88,9 +88,7 @@ extension AddDeviceView {
                     
                     self.fireblocksManager?.startPolling()
                     SignInViewModel.shared.launchView = NavigationContainerView {
-                        SpinnerViewContainer {
-                            TabBarView()
-                        }
+                        TabBarView()
                     }
                 }, didFail: false)
                 

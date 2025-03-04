@@ -56,10 +56,6 @@ struct EWNFTsView: View {
                 } else {
                     gallery
                 }
-                Spacer()
-                BottomBanner(text: viewModel.ewManager?.errorMessage)
-                    .animation(.default, value: viewModel.ewManager?.errorMessage)
-                
             }
         }
         .navigationTitle("NFTs")

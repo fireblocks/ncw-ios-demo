@@ -47,6 +47,7 @@ extension EWNFTDetailsView {
                             }
                             
                             self.loadingManager.isLoading = false
+
                         }
                     } else {
                         await self.loadingManager.setLoading(value: false)

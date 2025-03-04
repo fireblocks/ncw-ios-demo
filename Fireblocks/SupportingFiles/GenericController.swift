@@ -9,6 +9,12 @@ import UIKit
 import SwiftUI
 
 struct GenericController<T: UIViewController>: UIViewControllerRepresentable, Hashable {
+    @EnvironmentObject var loadingManager: LoadingManager
+    @EnvironmentObject var coordinator: Coordinator
+    #if EW
+    @Environment(EWManager.self) var ewManager
+    #endif
+
     static func == (lhs: GenericController<T>, rhs: GenericController<T>) -> Bool {
         return lhs.id == rhs.id
     }
@@ -21,6 +27,14 @@ struct GenericController<T: UIViewController>: UIViewControllerRepresentable, Ha
     let uiViewType: T
     var configuration: ((T) -> ())? = nil
     func makeUIViewController(context: Context) -> UIViewController {
+        if uiViewType is SwiftUIEnvironmentBridge {
+            #if EW
+            (uiViewType as! SwiftUIEnvironmentBridge).setEnvironment(loadingManager: loadingManager, coordinator: coordinator, ewManager: ewManager)
+            #else
+            (uiViewType as! SwiftUIEnvironmentBridge).setEnvironment(loadingManager: loadingManager, coordinator: coordinator)
+            #endif
+        }
+
         return uiViewType
     }
     

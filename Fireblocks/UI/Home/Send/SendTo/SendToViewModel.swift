@@ -12,17 +12,22 @@ protocol SendToViewModelDelegate: AnyObject {
 }
 
 class SendToViewModel {
+    var coordinator: Coordinator?
+    var loadingManager: LoadingManager?
+
     weak var delegate: SendToViewModelDelegate?
     var address: String?
-    var transaction: FBTransaction?
+    var transaction: FBTransaction
+    
+    init(transaction: FBTransaction = FBTransaction()) {
+        self.transaction = transaction
+    }
     
     func getAmountToSendAsString() -> String {
-        guard let transaction = transaction else { return "" }
         return String(transaction.amountToSend) + " \(transaction.asset.asset?.symbol ?? "")"
     }
     
     func getPriceAsString() -> String {
-        guard let transaction = transaction else { return "" }
         return String(transaction.price.formatFractions(fractionDigits: 6))
     }
     
@@ -41,14 +46,12 @@ class SendToViewModel {
     
     func getTransaction() -> FBTransaction? {
         guard let address = address else { return nil }
-        guard var transaction = transaction else { return nil }
         transaction.receiverAddress = address
         
         return transaction
     }
 
     func getAsset() -> AssetSummary? {
-        guard let transaction = transaction else { return nil }
         return transaction.asset
     }
 }

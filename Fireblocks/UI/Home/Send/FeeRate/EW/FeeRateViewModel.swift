@@ -2,35 +2,51 @@
 //  FeeRateViewModel.swift
 //  Fireblocks
 //
-//  Created by Fireblocks Ltd. on 05/07/2023.
+//  Created by Dudi Shani-Gabay on 03/03/2025.
 //
 
 import Foundation
 import Combine
-#if EW
-    #if DEV
-    import EmbeddedWalletSDKDev
-    #else
-    import EmbeddedWalletSDK
-    #endif
+#if DEV
+import EmbeddedWalletSDKDev
+#else
+import EmbeddedWalletSDK
 #endif
 
-protocol FeeRateViewModelDelegate: AnyObject {
-    func refreshData()
-    func isTransactionCreated(isCreated: Bool)
-}
-
 final class FeeRateViewModel {
+    var coordinator: Coordinator?
+    var loadingManager: LoadingManager?
+    var ewManager: EWManager?
+    var pollingManagerTxId: PollingManagerTxId?
+
     //MARK: - PROPERTIES
-    var transaction: FBTransaction?
+    var transaction: FBTransaction
     private var fees: [Fee] = []
     private var selectedFeeIndex: Int = 0
-    private let repository = FeeRateRepository()
+    private var repository: FeeRateRepository?
     private var tasks: [Task<Void, Never>]?
     weak var delegate: FeeRateViewModelDelegate?
     private var transactionID: String?
     private var didPresented = false
     private var cancellable = Set<AnyCancellable>()
+    var didLoad = false
+    
+    init(transaction: FBTransaction = FBTransaction()) {
+        self.transaction = transaction
+    }
+    
+    func setup(loadingManager: LoadingManager, coordinator: Coordinator, ewManager: EWManager) {
+        if !didLoad {
+            didLoad = true
+            self.loadingManager = loadingManager
+            self.ewManager = ewManager
+            self.coordinator = coordinator
+            self.repository = FeeRateRepository(ewManager: ewManager)
+            self.pollingManagerTxId = PollingManagerTxId(ewManager: ewManager)
+            fetchFeeRates()
+        }
+
+    }
     
     //MARK: - FUNCTIONS
     deinit {
@@ -40,23 +56,25 @@ final class FeeRateViewModel {
     
     func isContinueButtonEnabled() -> Bool {
         if fees.count == 0 { return false }
-        if selectedFeeIndex == nil { return false }
         
         return true
     }
     
     func fetchFeeRates(){
-        guard let transaction = transaction else { return }
+        guard let repository else { return }
         guard let destAddress = transaction.receiverAddress else { return }
         let assetId = transaction.asset.id
         let amount = transaction.amountToSend
         
         Task {
             do {
+                await self.loadingManager?.setLoading(value: true)
                 fees = try await repository.getFeeRates(for: assetId, amount: "\(amount)", address: destAddress)
+                await self.loadingManager?.setLoading(value: false)
                 delegate?.refreshData()
             } catch let error {
-                print(error)
+                await self.loadingManager?.setLoading(value: false)
+                await self.loadingManager?.setAlertMessage(error: error)
                 delegate?.isTransactionCreated(isCreated: false)
             }
         }
@@ -79,7 +97,7 @@ final class FeeRateViewModel {
     }
     
     func getTransaction() -> FBTransaction? {
-        if var transaction = transaction, let txId = transactionID {
+        if let txId = transactionID {
             if fees.count > selectedFeeIndex {
                 transaction.fee = fees[selectedFeeIndex]
             } else {
@@ -93,12 +111,7 @@ final class FeeRateViewModel {
     }
     
     func createTransaction(){
-        guard let transaction = transaction else {
-            print("❌ Transaction nil")
-            return
-        }
-        
-        guard let senderAddress = transaction.asset.address else {
+        guard transaction.asset.address != nil else {
             print("❌ senderAddress nil")
             return
         }
@@ -113,7 +126,11 @@ final class FeeRateViewModel {
             return
         }
         
-        listenToTransactionStatusChanges()
+        guard let repository else {
+            print("❌ repository nil")
+            return
+        }
+        
         
         let transactionParams = PostTransactionParams(assetId: transaction.asset.id, destAddress: receiverAddress,
                                                       amount: "\(transaction.amountToSend)",
@@ -124,9 +141,10 @@ final class FeeRateViewModel {
             do {
                 let response = try await repository.createTransaction(assetId: transaction.asset.id, transactionParams: transactionParams)
                 self.transactionID = response.id
-                print("TRANSFER_ADDED - RESPONSE: \(response)")
+                listenToTransactionStatusChanges()
             } catch let error {
-                print(error.localizedDescription)
+                await self.loadingManager?.setAlertMessage(error: error)
+                self.delegate?.isTransactionCreated(isCreated: false)
             }
         }
         
@@ -134,23 +152,21 @@ final class FeeRateViewModel {
     }
     
     private func listenToTransactionStatusChanges() {
-        let failedStatus: [Status] = [.failed, .blocked, .cancelled, .rejected]
-        TransfersViewModel.shared.$transfers.receive(on: RunLoop.main)
-            .sink { [weak self] transfers in
-                print("TRANSFER_ADDED - new transfer status: \(transfers)")
-                if let self {
-                    if let transactionID = self.transactionID, let transaction = transfers.first(where: {$0.transactionID == transactionID}) {
-                        print("TRANSFER_ADDED - new transfer status: \(transaction.status.rawValue)")
-                        let status = transaction.status
-                        if status == .pendingSignature, !self.didPresented {
-                            self.didPresented = true
+        if let transactionID = self.transactionID {
+            let failedStatus: [Status] = [.failed, .blocked, .cancelled, .rejected]
+            pollingManagerTxId?.startPolling(txId: transactionID)
+
+            pollingManagerTxId?.$response.receive(on: RunLoop.main)
+                .sink { [weak self] response in
+                    if let self, let response {
+                        if transactionID == response.id {
                             self.delegate?.isTransactionCreated(isCreated: true)
-                        } else if failedStatus.contains(status) {
-                            self.delegate?.isTransactionCreated(isCreated: false)
+                            self.pollingManagerTxId?.stopPolling()
                         }
                     }
-                }
-            }.store(in: &cancellable)
+                }.store(in: &cancellable)
+
+        }
     }
     
 }

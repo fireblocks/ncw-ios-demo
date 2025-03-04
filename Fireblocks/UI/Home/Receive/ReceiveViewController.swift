@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ReceiveViewController: UIViewController {
+class ReceiveViewController: UIViewController, SwiftUIEnvironmentBridge {
     
     @IBOutlet weak var pageTitle: UILabel!
     @IBOutlet weak var assetImage: UIImageView!
@@ -21,25 +21,34 @@ class ReceiveViewController: UIViewController {
     @IBOutlet weak var assetAddress: UILabel!
     @IBOutlet weak var copyButton: UIButton!
     
-    let viewModel = ReceiveViewModel()
+    let viewModel: ReceiveViewModel
+    
+    #if EW
+    func setEnvironment(loadingManager: LoadingManager, coordinator: Coordinator, ewManager: EWManager) {
+        viewModel.loadingManager = loadingManager
+    }
+    #else
+    func setEnvironment(loadingManager: LoadingManager, coordinator: Coordinator) {
+        viewModel.loadingManager = loadingManager
+    }
+    #endif
 
     init(asset: AssetSummary) {
+        self.viewModel = ReceiveViewModel(asset: asset)
         super.init(nibName: "ReceiveViewController", bundle: nil)
-        self.viewModel.asset = asset
     }
     
     required init?(coder aDecoder: NSCoder) {
+        self.viewModel = ReceiveViewModel()
         super.init(coder: aDecoder)
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configView()
     }
     
     private func configView() {
-        navigationItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "close"), style: .plain, target: self, action: #selector(handleCloseTap))]
-        self.navigationItem.title = "Receive"
         assetBlockchainNameBackground.layer.cornerRadius = assetBlockchainNameBackground.bounds.height / 2
         qrCodeBackground.layer.cornerRadius = 16
         addressBackground.layer.cornerRadius = 16
@@ -58,22 +67,17 @@ class ReceiveViewController: UIViewController {
         qrCodeImage.image = getQRCodeImage()
     }
         
-    @objc func handleCloseTap() {
-        navigationController?.popToRootViewController(animated: true)
-    }
-    
     @IBAction func copyAddressTapped(_ sender: UIButton) {
         guard let copiedString = assetAddress.text else {
-            showToast("Copy failed")
+            viewModel.loadingManager?.toastMessage = "Asset not defined - Copy failed"
             return
         }
         
         UIPasteboard.general.string = copiedString
-        showToast()
+        viewModel.loadingManager?.toastMessage = "Copied"
     }
     
     func getQRCodeImage() -> UIImage {
-        
         let qrCodeImage = QRCodeGenerator().getQRCodeUIImage(from: viewModel.getAssetAddress()) ?? UIImage()
         return qrCodeImage
     }

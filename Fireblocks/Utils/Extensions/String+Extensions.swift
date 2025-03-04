@@ -34,6 +34,10 @@ extension String {
     var isTrimmedEmpty: Bool {
         return self.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
     }
+    
+    var toDouble: Double? {
+        return Double(self)
+    }
 
 }
 

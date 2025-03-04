@@ -78,3 +78,4 @@ extension String {
 //extension EnvironmentValues {
 //    @Entry var ewManager: EWManagerProtocol = EWManager.shared
 //}
+

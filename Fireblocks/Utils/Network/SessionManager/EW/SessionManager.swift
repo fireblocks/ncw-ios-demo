@@ -142,7 +142,7 @@ extension SessionManager {
     }
 
     func getLatestBackupInfo(walletId: String, deviceId: String? = nil) async throws -> BackupInfo {
-        if let deviceId, let response = await ewManager.getLatestBackup() {
+        if let deviceId, let response = try? await ewManager.getLatestBackup() {
             if let key = response.keys?.first(where: {$0.deviceId == deviceId}) {
                 return BackupInfo(passphraseId: response.passphraseId, deviceId: key.deviceId, location: .GoogleDrive, createdAt: response.createdAt)
             }

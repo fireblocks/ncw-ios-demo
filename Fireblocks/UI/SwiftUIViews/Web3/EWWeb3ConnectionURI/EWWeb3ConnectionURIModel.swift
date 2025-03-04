@@ -35,13 +35,18 @@ extension EWWeb3ConnectionURI {
             if !dataModel.uri.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
                 self.loadingManager.isLoading = true
                 Task {
-                    dataModel.response = await self.ewManager?.createConnection(feeLevel: .medium, uri: dataModel.uri, ncwAccountId: dataModel.accountId)
-                    await MainActor.run {
-                        if dataModel.response != nil {
-                            self.coordinator.path.append(NavigationTypes.submitConnection(dataModel))
+                    do {
+                        dataModel.response = try await self.ewManager?.createConnection(feeLevel: .medium, uri: dataModel.uri, ncwAccountId: dataModel.accountId)
+                        await MainActor.run {
+                            if dataModel.response != nil {
+                                self.coordinator.path.append(NavigationTypes.submitConnection(dataModel))
+                            }
+                            self.loadingManager.isLoading = false
                         }
-                        self.loadingManager.isLoading = false
+                    } catch {
+                        await self.loadingManager.setAlertMessage(error: error)
                     }
+                    await self.loadingManager.setLoading(value: false)
                 }
             }
         }

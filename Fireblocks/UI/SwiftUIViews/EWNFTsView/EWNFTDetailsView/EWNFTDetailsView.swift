@@ -21,46 +21,48 @@ struct EWNFTDetailsView: View {
     var body: some View {
         ZStack {
             AppBackgroundView()
-            List {
-                VStack(spacing: 0) {
-                    HStack {
-                        Spacer()
-                        if let image = viewModel.image {
-                            image.resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .padding(.top, 16)
+            VStack(spacing: 0) {
+                List {
+                    VStack(spacing: 0) {
+                        HStack {
+                            Spacer()
+                            if let image = viewModel.image {
+                                image.resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .padding(.top, 16)
+                            }
+                            Spacer()
                         }
+                        .frame(height: 185)
+                        .background(viewModel.uiimage?.averageColor ?? Color.clear)
                         Spacer()
+                        HStack {
+                            name
+                            Spacer()
+                            tokenId
+                        }
+                        .padding()
+                        Divider()
+                        Group {
+                            dateAcquired
+                            collection
+                            blockchain
+                            standard
+                            balance
+                            contactAddress
+                            nftId
+                        }
+                        .padding()
                     }
-                    .frame(height: 185)
-                    .background(viewModel.uiimage?.averageColor ?? Color.clear)
-                    Spacer()
-                    HStack {
-                        name
-                        Spacer()
-                        tokenId
-                    }
-                    .padding()
-                    Divider()
-                    Group {
-                        dateAcquired
-                        collection
-                        blockchain
-                        standard
-                        balance
-                        contactAddress
-                        nftId
-                    }
-                    .padding()
+//                    .background(AssetsColors.gray2.color(), in: .rect)
+                    .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
                 }
-                .background(AssetsColors.gray2.color(), in: .rect)
-                .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+                .scrollContentBackground(.hidden)
             }
+            .background(Color.clear)
         }
         .safeAreaInset(edge: .bottom, content: {
             VStack(spacing: 8) {
-                BottomBanner(text: viewModel.ewManager?.errorMessage)
-                    .animation(.default, value: viewModel.ewManager?.errorMessage)
                 Button {
                     viewModel.proceedToTransfer()
                 } label: {
@@ -150,14 +152,13 @@ struct EWNFTDetailsView: View {
                         .multilineTextAlignment(.leading)
                         .font(.b2)
                     Spacer()
-                    Button {
-                        viewModel.ewManager?.errorMessage = "Copied!"
-                        UIPasteboard.general.string = value
-                    } label: {
-                        Image(uiImage: AssetsIcons.copy.getIcon())
-                    }
-                    .tint(.white)
+                    Image(uiImage: AssetsIcons.copy.getIcon())
 
+                }
+                .contentShape(.rect)
+                .onTapGesture {
+                    loadingManager.toastMessage = "Copied!"
+                    UIPasteboard.general.string = value
 
                 }
             }
@@ -178,15 +179,12 @@ struct EWNFTDetailsView: View {
                         .multilineTextAlignment(.leading)
                         .font(.b2)
                     Spacer()
-                    Button {
-                        viewModel.ewManager?.errorMessage = "Copied!"
-                        UIPasteboard.general.string = value
-                    } label: {
-                        Image(uiImage: AssetsIcons.copy.getIcon())
-                    }
-                    .tint(.white)
-
-
+                    Image(uiImage: AssetsIcons.copy.getIcon())
+                }
+                .contentShape(.rect)
+                .onTapGesture {
+                    loadingManager.toastMessage = "Copied!"
+                    UIPasteboard.general.string = value
                 }
             }
         }

@@ -6,7 +6,59 @@
 //
 
 import SwiftUI
-import EmbeddedWalletSDKDev
+#if EW
+    #if DEV
+    import EmbeddedWalletSDKDev
+    #else
+    import EmbeddedWalletSDK
+    #endif
+#endif
+
+//struct ToolbarItemData: Identifiable, Hashable, Equatable {
+//    static func == (lhs: ToolbarItemData, rhs: ToolbarItemData) -> Bool {
+//        lhs.id == rhs.id
+//    }
+//    
+//    func hash(into hasher: inout Hasher) {
+//        hasher.combine(id)
+//    }
+//
+//    var id = UUID().uuidString
+//    var action: () -> ()
+//    var icon: String
+//}
+//
+//struct HomeToolbar: ToolbarContent {
+//    var leading: ToolbarItemData?
+//    var trailing: ToolbarItemData?
+//    
+//    var body: some ToolbarContent {
+//        if leading == nil, trailing == nil {
+//            ToolbarItem(placement: .topBarLeading) {
+//                CustomBackButtonView()
+//            }
+//        } else {
+//            if let leading {
+//                ToolbarItem(placement: .topBarLeading) {
+//                    Button {
+//                        leading.action()
+//                    } label: {
+//                        Image(leading.icon)
+//                    }
+//                }
+//            }
+//            if let trailing {
+//                ToolbarItem(placement: .topBarTrailing) {
+//                    Button {
+//                        trailing.action()
+//                    } label: {
+//                        Image(trailing.icon)
+//                    }
+//                }
+//            }
+//        }
+//    }
+//}
 
 enum NavigationTypes: Hashable {
     case signIn(SignInView.ViewModel)
@@ -22,7 +74,8 @@ enum NavigationTypes: Hashable {
     case info
     case generateKeys
     case genericController(UIViewController, String)
-
+    case approveTransaction(FBTransaction)
+    
     #if EW
     case createConnection(Web3DataModel)
     case submitConnection(Web3DataModel)
@@ -32,6 +85,22 @@ enum NavigationTypes: Hashable {
     case transferNFT(NFTDataModel)
     case nftFee(NFTDataModel)
     case nftPreview(NFTDataModel)
+    #endif
+}
+
+protocol SwiftUIEnvironmentBridge: AnyObject {
+    #if EW
+    func setEnvironment(loadingManager: LoadingManager, coordinator: Coordinator, ewManager: EWManager)
+    #else
+    func setEnvironment(loadingManager: LoadingManager, coordinator: Coordinator)
+    #endif
+}
+
+extension SwiftUIEnvironmentBridge {
+    #if EW
+    func setEnvironment(loadingManager: LoadingManager, coordinator: Coordinator, ewManager: EWManager) {}
+    #else
+    func setEnvironment(loadingManager: LoadingManager, coordinator: Coordinator) {}
     #endif
 }
 
@@ -77,7 +146,6 @@ struct NavigationContainerView<Content: View>: View {
             #if EW
                 .environment(ewManager)
             #endif
-            
             .navigationDestination(for: NavigationTypes.self) { type in
                 switch type {
                 case .signIn(let viewModel):
@@ -143,17 +211,30 @@ struct NavigationContainerView<Content: View>: View {
                     SettingsView()
                         .environmentObject(coordinator)
                 case .genericController(let controller, let title):
-                    GenericController(uiViewType: controller)
-                        .navigationTitle(title)
-                        .navigationBarTitleDisplayMode(.inline)
-                        .tint(.white)
-                        .navigationBarBackButtonHidden()
-                        .toolbar {
-                            ToolbarItem(placement: .topBarLeading) {
-                                CustomBackButtonView()
+                    SpinnerViewContainer {
+                        GenericController(uiViewType: controller)
+                            .environmentObject(coordinator)
+                        #if EW
+                            .environment(ewManager)
+                        #endif
+                            .navigationTitle(title)
+                            .navigationBarTitleDisplayMode(.inline)
+                            .tint(.white)
+                            .navigationBarBackButtonHidden()
+                            .toolbar {
+                                ToolbarItem(placement: .topBarLeading) {
+                                    CustomBackButtonView()
+                                }
                             }
-                        }
-
+                    }
+                case .approveTransaction(let transaction):
+                    SpinnerViewContainer {
+                        ApproveTransactionView(transaction: transaction)
+                            .environmentObject(coordinator)
+                            #if EW
+                            .environment(ewManager)
+                            #endif
+                    }
                 #if EW
                 case .createConnection(let dataModel):
                     SpinnerViewContainer {
@@ -212,7 +293,7 @@ struct NavigationContainerView<Content: View>: View {
 }
 
 #Preview {
-    NavigationContainerView() {
+    NavigationContainerView {
         Text("Hello")
     }
 }

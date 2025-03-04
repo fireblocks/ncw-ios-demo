@@ -15,8 +15,11 @@ protocol AmountToSendViewModelDelegate: AnyObject {
 class AmountToSendViewModel {
     
 //MARK: - PROPERTIES
+    var coordinator: Coordinator?
+    var loadingManager: LoadingManager?
+    
     weak var delegate: AmountToSendViewModelDelegate?
-    var asset: AssetSummary!
+    var asset: AssetSummary
     private var assetAmount: Double {
         get {
             return Double(assetAmountString) ?? 0
@@ -25,6 +28,11 @@ class AmountToSendViewModel {
     private var assetAmountString: String = "0"
     private var calculatedPrice: Double = 0
     private var isDecimalEntered = false
+    
+    init(asset: AssetSummary = AssetSummary()) {
+        self.asset = asset
+        self.asset.isExpanded = false
+    }
     
 //MARK: - Functions
     func addDote(){
@@ -90,7 +98,7 @@ class AmountToSendViewModel {
     private func calculatePrice(){
         #if EW
         if let assetId = asset.asset?.id {
-            calculatedPrice = CryptoCurrencyManager.shared.getPrice(assetId: assetId, amount: assetAmount).formatFractions(fractionDigits: 2)
+            calculatedPrice = CryptoCurrencyManager.shared.getPrice(assetId: assetId, amount: assetAmount).formatFractions(fractionDigits: 5)
         }
         #else
         if let rate = asset.asset?.rate {

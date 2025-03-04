@@ -58,13 +58,11 @@ extension ChooseAssetViewController: UITableViewDelegate, UITableViewDataSource 
     private func navigateToNextScreen(with asset: Asset) {
         switch viewModel.chooseAssetFlowType {
         case .send:
-            let vc = AmountToSendViewController(nibName: "AmountToSendViewController", bundle: nil)
-            vc.viewModel.asset = AssetSummary(asset: asset)
+            let vc = AmountToSendViewController(asset: AssetSummary(asset: asset))
             vc.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(vc, animated: true)
         case .receive:
-            let vc = ReceiveViewController(nibName: "ReceiveViewController", bundle: nil)
-            vc.viewModel.asset = AssetSummary(asset: asset)
+            let vc = ReceiveViewController(asset: AssetSummary(asset: asset))
             vc.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(vc, animated: true)
         } 

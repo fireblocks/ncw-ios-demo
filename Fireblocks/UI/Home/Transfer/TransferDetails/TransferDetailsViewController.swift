@@ -129,7 +129,7 @@ class TransferDetailsViewController: UIViewController {
     }
 
     private func navigateToTransactionSent(){
-        if let transaction = viewModel.transferInfo?.toTransaction() {
+        if let transaction = viewModel.transferInfo?.toTransaction(assetListViewModel: AssetListViewModel.shared) {
             let vc = TransactionSentViewController(nibName: "TransactionSentViewController", bundle: nil)
             vc.viewModel.transaction = transaction
             self.navigationController?.pushViewController(vc, animated: true)

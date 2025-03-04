@@ -115,8 +115,8 @@ class TransferDetailsViewModel {
             return
         }
 
-        let isCanceled = await self.ewManager.cancelTransaction(txId: txId)?.success == true
-        self.delegate?.transactionCancelStatusChanged(isCanceled: isCanceled)
+        let isCanceled = try? await self.ewManager.cancelTransaction(txId: txId).success == true
+        self.delegate?.transactionCancelStatusChanged(isCanceled: isCanceled ?? false)
 
     }
 

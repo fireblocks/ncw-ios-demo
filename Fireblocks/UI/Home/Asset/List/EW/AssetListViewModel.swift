@@ -68,7 +68,7 @@ class AssetListViewModel {
     let accountId = 0
     static let shared = AssetListViewModel()
 
-    private init() {}
+    init() {}
     
     func setup(ewManager: EWManager, loadingManager: LoadingManager, coordinator: Coordinator) {
         if !didLoad {
@@ -77,9 +77,10 @@ class AssetListViewModel {
             self.loadingManager = loadingManager
             self.coordinator = coordinator
             self.loadingManager?.isLoading = true
+            
+            fetchAssets()
         }
         
-        fetchAssets()
     }
     
     func signOut() {
@@ -103,30 +104,34 @@ class AssetListViewModel {
 
     func fetchAssets() {
         Task {
-            let assets = await ewManager?.fetchAllAccountAssets(accountId: accountId)
-            if let assets, assets.count > 0 {
-                let assetsSequence = AssetsSequence(assets: assets)
-                for try await asset in assetsSequence {
-                    await withTaskGroup(of: (EmbeddedWalletSDKDev.AssetBalance?, [EmbeddedWalletSDKDev.AddressDetails]).self) { [weak self] group in
-                        guard let self else { return }
-                        group.addTask{
-                            let balance = await self.getAssetBalance(asset: asset)
-                            let addresses = await self.getAddresses(asset: asset)
-                            if let index = self.assetsSummary.firstIndex(where: {$0.asset == asset}) {
-                                self.assetsSummary[index].asset = asset
-                                self.assetsSummary[index].address = addresses.first
-                                self.assetsSummary[index].balance = balance
-                            } else {
-                                self.assetsSummary.append(AssetSummary(asset: asset, address: addresses.first, balance: balance))
+            do {
+                let assets = try await ewManager?.fetchAllAccountAssets(accountId: accountId)
+                if let assets, assets.count > 0 {
+                    let assetsSequence = AssetsSequence(assets: assets)
+                    for try await asset in assetsSequence {
+                        await withTaskGroup(of: (EmbeddedWalletSDKDev.AssetBalance?, [EmbeddedWalletSDKDev.AddressDetails]).self) { [weak self] group in
+                            guard let self else { return }
+                            group.addTask{
+                                let balance = await self.getAssetBalance(asset: asset)
+                                let addresses = await self.getAddresses(asset: asset)
+                                if let index = self.assetsSummary.firstIndex(where: {$0.asset == asset}) {
+                                    self.assetsSummary[index].asset = asset
+                                    self.assetsSummary[index].address = addresses.first
+                                    self.assetsSummary[index].balance = balance
+                                } else {
+                                    self.assetsSummary.append(AssetSummary(asset: asset, address: addresses.first, balance: balance))
+                                }
+                                await self.loadingManager?.setLoading(value: false)
+                                return (balance, addresses)
                             }
-                            return (balance, addresses)
                         }
                     }
                 }
-                await self.loadingManager?.setLoading(value: false)
-            } else {
-                await self.loadingManager?.setLoading(value: false)
+            } catch {
+                await self.loadingManager.setAlertMessage(error: error)
             }
+            await self.loadingManager?.setLoading(value: false)
+
         }
     }
     
@@ -144,7 +149,12 @@ class AssetListViewModel {
         guard let assetId = asset.id else {
             return nil
         }
-        return await ewManager.getAssetBalance(assetId: assetId, accountId: accountId)
+        do {
+            return try await ewManager.getAssetBalance(assetId: assetId, accountId: accountId)
+        } catch {
+            await self.loadingManager.setAlertMessage(error: error)
+            return nil
+        }
 
     }
     
@@ -161,10 +171,14 @@ class AssetListViewModel {
             return addresses
         }
 
-        let addresses = await ewManager.fetchAllAccountAssetAddresses(assetId: assetId, accountId: accountId)
-        UsersLocalStorageManager.shared.setAddressDetails(accountId: accountId, assetId: assetId, addressDetails: addresses)
-        return addresses
-
+        do {
+            let addresses = try await ewManager.fetchAllAccountAssetAddresses(assetId: assetId, accountId: accountId)
+            UsersLocalStorageManager.shared.setAddressDetails(accountId: accountId, assetId: assetId, addressDetails: addresses)
+            return addresses
+        } catch {
+            await self.loadingManager.setAlertMessage(error: error)
+            return []
+        }
     }
 
     func toggleAssetExpanded(asset: AssetSummary, section: Int = 0) {

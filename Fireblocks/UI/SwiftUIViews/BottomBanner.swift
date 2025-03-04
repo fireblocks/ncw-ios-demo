@@ -8,24 +8,28 @@
 import SwiftUI
 
 struct BottomBanner: View {
-    var text: String?
+    var message: String?
     var body: some View {
-        VStack(spacing: 0) {
-            Text(text ?? "")
+        HStack {
+            Text(message ?? "")
+                .padding()
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .multilineTextAlignment(.leading)
-                .padding()
-                .background(.thinMaterial, in: .rect(cornerRadius: 8))
-                .opacity(text != nil ? 1 : 0)
+                .foregroundColor(AssetsColors.white.color())
+                .background(Color.black.opacity(0.3))
+                .overlay(
+                    RoundedRectangle(cornerRadius: 16)
+                        .stroke(AssetsColors.white.color(), lineWidth: 1)
+                )
+
         }
-        .frame(height: text == nil ? 0 : nil)
-        .clipped()
+        .padding()
+        .background(Color.clear)
     }
 }
 
 #Preview {
     VStack {
-        BottomBanner(text: "Hello, world")
-        BottomBanner()
+        BottomBanner(message: "Hello, world")
     }
 }

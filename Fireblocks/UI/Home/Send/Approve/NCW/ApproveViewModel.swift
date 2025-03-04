@@ -8,20 +8,22 @@
 import Foundation
 import Combine
 
-protocol ApproveViewModelDelegate: AnyObject {
-    func transactionStatusChanged(isApproved: Bool)
-    func cancelTransactionStatusChanged(isCanceled: Bool)
-    func hideIndicator()
-}
-
+@Observable
 final class ApproveViewModel {
-    var transaction: FBTransaction!
+    var coordinator: Coordinator?
+    var loadingManager: LoadingManager?
+
+    var transaction: FBTransaction
     let repository = ApproveRepository()
     weak var delegate: ApproveViewModelDelegate?
     
     var transferInfo: TransferInfo?
     weak var transferDelegate: TransferDetailsViewModelDelegate?
     private var cancellable = Set<AnyCancellable>()
+
+    init(transaction: FBTransaction = FBTransaction()) {
+        self.transaction = transaction
+    }
 
     func setDelegate(delegate: TransferDetailsViewModelDelegate?) {
         self.transferDelegate = delegate

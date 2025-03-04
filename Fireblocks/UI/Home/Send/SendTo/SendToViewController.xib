@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -18,7 +17,7 @@
         </array>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SendToViewController" customModule="Fireblocks___Dev__ngrok_" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SendToViewController" customModule="EW_dev" customModuleProvider="target">
             <connections>
                 <outlet property="addressTextField" destination="IZI-IO-d0y" id="Tng-rg-QWC"/>
                 <outlet property="amountToSend" destination="AHO-1f-2rA" id="qpw-yi-wVB"/>
@@ -71,7 +70,7 @@
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="scan_qr_code" translatesAutoresizingMaskIntoConstraints="NO" id="bGd-MN-8nm" userLabel="scanQRCode">
                             <rect key="frame" x="317" y="13.333333333333314" width="25" height="25"/>
-                            <color key="tintColor" name="light_blue"/>
+                            <color key="tintColor" name="white"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="25" id="Ber-TM-Z2z"/>
                                 <constraint firstAttribute="width" constant="25" id="EeJ-q5-nOh"/>
@@ -105,7 +104,7 @@
                         <constraint firstItem="bGd-MN-8nm" firstAttribute="centerY" secondItem="Cov-OM-58p" secondAttribute="centerY" id="pSg-5S-jdo"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="htg-as-KHu" userLabel="ContinueButton" customClass="AppActionBotton" customModule="Fireblocks___Dev__ngrok_" customModuleProvider="target">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="htg-as-KHu" userLabel="ContinueButton" customClass="AppActionBotton" customModule="EW_dev" customModuleProvider="target">
                     <rect key="frame" x="16" y="752" width="358" height="50"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
@@ -144,13 +143,10 @@
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="gray_1">
-            <color red="0.097999997437000275" green="0.10599999874830246" blue="0.12200000137090683" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.086274509803921567" green="0.086274509803921567" blue="0.086274509803921567" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="gray_4">
             <color red="0.62699997425079346" green="0.62699997425079346" blue="0.62699997425079346" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="light_blue">
-            <color red="0.0" green="0.45899999141693115" blue="0.94900000095367432" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="white">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

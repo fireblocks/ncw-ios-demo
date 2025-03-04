@@ -75,7 +75,7 @@ class AssetViewCell: AddAssetViewCell {
             assetValue.text = "$\((price * rate).formatFractions(fractionDigits: 2))"
         }
         #endif
-        if let balance = asset.balance?.total {
+        if let balance = asset.balance?.total?.toDouble?.formatFractions() {
             assetTokenAmount.text = "\(balance)"
         }
         

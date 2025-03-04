@@ -30,9 +30,7 @@ class SignInViewModel: SignInView.ViewModel {
                 if userHasKeys {
                     fireblocksManager?.startPolling()
                     self.launchView = NavigationContainerView {
-                        SpinnerViewContainer {
-                            TabBarView()
-                        }
+                        TabBarView()
                     }
                 } else {
                     self.launchView = NavigationContainerView {

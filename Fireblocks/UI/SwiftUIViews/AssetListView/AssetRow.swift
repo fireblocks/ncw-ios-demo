@@ -6,7 +6,13 @@
 //
 
 import SwiftUI
-import EmbeddedWalletSDKDev
+#if EW
+    #if DEV
+    import EmbeddedWalletSDKDev
+    #else
+    import EmbeddedWalletSDK
+    #endif
+#endif
 
 @Observable
 class AssetRowViewModel {
@@ -86,7 +92,7 @@ struct AssetRow: View {
                 HStack {
                     Text(asset.asset?.name ?? "")
                     Spacer()
-                    Text(asset.balance?.total ?? "0")
+                    Text(asset.balance?.total?.toDouble?.formatFractions().formatted() ?? "")
                 }
                 .font(.b1)
                 HStack(spacing: 4) {
@@ -148,6 +154,16 @@ struct AssetRow: View {
             .buttonStyle(.borderedProminent)
             .contentShape(.rect)
             .tint(AssetsColors.gray2.color())
+        }
+        .swipeActions {
+            Button {
+                if let value = asset.address?.address {
+                    UIPasteboard.general.string = value
+                }
+            } label: {
+                Label("Copy Address", systemImage: "doc.on.doc")
+            }
+            .tint(.orange)
         }
     }
 }

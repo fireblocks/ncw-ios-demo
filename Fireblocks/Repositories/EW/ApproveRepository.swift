@@ -15,7 +15,10 @@ import Foundation
 #endif
 
 class ApproveRepository {
-    let ewManager = EWManager.shared
+    let ewManager: EWManager
+    init(ewManager: EWManager, fireBlocksManager: FireblocksManager) {
+        self.ewManager = ewManager
+    }
 
     func approveTransaction(transactionId: String) async -> Bool {
         return await FireblocksManager.shared.signTransaction(transactionId: transactionId)
@@ -26,6 +29,6 @@ class ApproveRepository {
     }
     
     func cancelTransaction(assetId: String, txId: String) async throws -> Bool {
-        return await self.ewManager.cancelTransaction(txId: txId)?.success == true
+        return try await self.ewManager.cancelTransaction(txId: txId).success == true
     }
 }

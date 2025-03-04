@@ -65,9 +65,8 @@ struct EWNFTPreviewView: View {
         }
         .safeAreaInset(edge: .bottom, content: {
             VStack(spacing: 8) {
-                BottomBanner(text: viewModel.ewManager?.errorMessage)
-                    .animation(.default, value: viewModel.ewManager?.errorMessage)
                 Button {
+                    viewModel.approveTransaction()
                 } label: {
                     Label("Approve", systemImage: "checkmark")
                         .frame(maxWidth: .infinity, alignment: .center)
@@ -89,7 +88,7 @@ struct EWNFTPreviewView: View {
         .toolbar(content: {
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
-                    
+                    viewModel.cancelTransaction()
                 } label: {
                     Image(.close)
                         .tint(.white)
