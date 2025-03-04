@@ -17,6 +17,8 @@ import SwiftUI
 struct AddAssetView: View {
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var loadingManager: LoadingManager
+    @EnvironmentObject var fireblocksManager: FireblocksManager
+
     #if EW
     @Environment(EWManager.self) var ewManager
     #endif
@@ -96,7 +98,11 @@ struct AddAssetView: View {
         .animation(.default, value: viewModel.getSelectedCount())
         .animation(.default, value: viewModel.searchResults)
         .onAppear() {
+            #if EW
             viewModel.setup(ewManager: ewManager, loadingManager: loadingManager)
+            #else
+            viewModel.setup(loadingManager: loadingManager, deviceId: fireblocksManager.deviceId)
+            #endif
         }
         .onChange(of: viewModel.selectedAsset) { oldValue, newValue in
             if let asset = newValue?.asset {

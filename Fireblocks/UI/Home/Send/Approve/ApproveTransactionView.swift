@@ -17,6 +17,7 @@ import SwiftUI
 struct ApproveTransactionView: View {
     @EnvironmentObject var coordinator: Coordinator
     @EnvironmentObject var loadingManager: LoadingManager
+    @EnvironmentObject var fireblocksManager: FireblocksManager
     #if EW
     @Environment(EWManager.self) var ewManager
     #endif
@@ -80,9 +81,9 @@ struct ApproveTransactionView: View {
 //        })
         .onAppear() {
             #if EW
-            viewModel.setup(coordinator: coordinator, loadingManager: loadingManager, ewManager: ewManager)
+            viewModel.setup(coordinator: coordinator, loadingManager: loadingManager, ewManager: ewManager, fireblocksManager: fireblocksManager)
             #else
-            viewModel.setup(loadingManager: loadingManager, coordinator: coordinator)
+            viewModel.setup(coordinator: coordinator, loadingManager: loadingManager, fireblocksManager: fireblocksManager)
             #endif
         }
         .toolbar(content: {
@@ -240,17 +241,19 @@ struct ApproveTransactionView: View {
 }
 
 #Preview {
+    #if EW
     NavigationContainerView(mockManager: EWManagerMock()) {
         SpinnerViewContainer {
             ApproveTransactionView(transaction: TransferInfo.toTransferInfo(response: Mocks.Transaction.getResponse_ETH_TEST5()).toTransaction(assetListViewModel: AssetListViewModelMock())!)
-//
-//            VStack {
-//                Text(TransferInfo.toTransferInfo(response: Mocks.Transaction.getResponse_ETH_TEST5()).assetId ?? "XXX")
-//                Text(AssetListViewModelMock().getAssetSummary().first?.asset?.id ?? "XXX")
-//                Text(TransferInfo.toTransferInfo(response: Mocks.Transaction.getResponse_ETH_TEST5()).toTransaction(assetListViewModel: AssetListViewModelMock())?.txId ?? "XXX")
-//            }
         }
     }
+    #else
+//    NavigationContainerView() {
+//        SpinnerViewContainer {
+//            ApproveTransactionView(transaction: TransferInfo.toTransferInfo(response: Mocks.Transaction.getResponse_ETH_TEST5()).toTransaction(assetListViewModel: AssetListViewModelMock())!)
+//        }
+//    }
+    #endif
 }
 
 

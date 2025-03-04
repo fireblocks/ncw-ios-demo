@@ -11,10 +11,6 @@
 		2B0FED982D365FAA00F637E6 /* AuthUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B6E92F2A5E8AB800F35260 /* AuthUser.swift */; };
 		2B0FED9D2D37968B00F637E6 /* EWManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0FED9C2D37968B00F637E6 /* EWManager.swift */; };
 		2B0FEDA12D3796F000F637E6 /* AssetListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0FED9F2D3796E700F637E6 /* AssetListViewModel.swift */; };
-		2B0FEDA62D37972500F637E6 /* AssetListViewModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0FEDA52D37972500F637E6 /* AssetListViewModelDelegate.swift */; };
-		2B0FEDA72D37973100F637E6 /* AssetListViewModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0FEDA52D37972500F637E6 /* AssetListViewModelDelegate.swift */; };
-		2B0FEDA82D37973100F637E6 /* AssetListViewModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0FEDA52D37972500F637E6 /* AssetListViewModelDelegate.swift */; };
-		2B0FEDA92D37973100F637E6 /* AssetListViewModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0FEDA52D37972500F637E6 /* AssetListViewModelDelegate.swift */; };
 		2B0FEDAB2D37980200F637E6 /* AssetSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0FEDAA2D37980200F637E6 /* AssetSummary.swift */; };
 		2B0FEDAC2D37980200F637E6 /* AssetSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0FEDAA2D37980200F637E6 /* AssetSummary.swift */; };
 		2B0FEDAD2D37980200F637E6 /* AssetSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0FEDAA2D37980200F637E6 /* AssetSummary.swift */; };
@@ -22,7 +18,6 @@
 		2B0FEDB12D37D7A000F637E6 /* ReceiveViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0FEDB02D37D79E00F637E6 /* ReceiveViewModel.swift */; };
 		2B21D7E42BC563F7003ADD29 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86859F522A384D8A0056E3C6 /* AppDelegate.swift */; };
 		2B21D7F72BC56B5C003ADD29 /* Asset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DA06542A645E1300160ADC /* Asset.swift */; };
-		2B21D7F92BC56B5C003ADD29 /* ApproveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603903722A6D1F560060E026 /* ApproveViewController.swift */; };
 		2B21D7FA2BC56B5C003ADD29 /* TransactionSentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B137B32A8B6A4C009A4ECB /* TransactionSentViewModel.swift */; };
 		2B21D7FB2BC56B5C003ADD29 /* AddAssetViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3E6C102ACE96AC000E91CF /* AddAssetViewCell.swift */; };
 		2B21D7FC2BC56B5C003ADD29 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608293932A56BEF200B11839 /* Status.swift */; };
@@ -62,14 +57,12 @@
 		2B21D8232BC56B5C003ADD29 /* PrepareForScanViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558E852B47044C006212B2 /* PrepareForScanViewModel.swift */; };
 		2B21D8242BC56B5C003ADD29 /* SendToViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DA06B02A65204600160ADC /* SendToViewController.swift */; };
 		2B21D8252BC56B5C003ADD29 /* CodableAnyExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B94CFC92A9CE576003E7508 /* CodableAnyExtension.swift */; };
-		2B21D8262BC56B5C003ADD29 /* BackupStatusViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3E6C022ACC0C40000E91CF /* BackupStatusViewModel.swift */; };
 		2B21D8272BC56B5C003ADD29 /* AlertBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF8EDBD2B56758300046F0B /* AlertBannerView.swift */; };
 		2B21D8282BC56B5C003ADD29 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EB512A2A66C08C00D2911A /* SettingsViewController.swift */; };
 		2B21D8292BC56B5C003ADD29 /* Double+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867828D32A696D170035787D /* Double+Extension.swift */; };
 		2B21D82A2BC56B5C003ADD29 /* GoogleSignInManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862E2AA32A543B86002FF774 /* GoogleSignInManager.swift */; };
 		2B21D82B2BC56B5C003ADD29 /* FBHostingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA53D3C2B46B348008C7B6C /* FBHostingViewController.swift */; };
 		2B21D82C2BC56B5C003ADD29 /* DeriveKeysViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD34A762B98B995008406D5 /* DeriveKeysViewModel.swift */; };
-		2B21D82D2BC56B5C003ADD29 /* ReceiveViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EECFA72A66BE6400F3891C /* ReceiveViewModel.swift */; };
 		2B21D82E2BC56B5C003ADD29 /* BackupProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866A73D02A696A7C00E8E545 /* BackupProvider.swift */; };
 		2B21D82F2BC56B5C003ADD29 /* PollingListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B94CFFB2A9F3F03003E7508 /* PollingListener.swift */; };
 		2B21D8302BC56B5C003ADD29 /* AssetHeaderUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86229D802A8B7FF20089F7DA /* AssetHeaderUIView.swift */; };
@@ -96,7 +89,6 @@
 		2B21D8482BC56B5C003ADD29 /* AuthProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862E2AA52A543B86002FF774 /* AuthProtocols.swift */; };
 		2B21D8492BC56B5C003ADD29 /* PrepareForScanHostingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558E982B483CB3006212B2 /* PrepareForScanHostingVC.swift */; };
 		2B21D84A2BC56B5C003ADD29 /* ChooseAssetRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EECF9F2A66BE3100F3891C /* ChooseAssetRepository.swift */; };
-		2B21D84B2BC56B5C003ADD29 /* AssetListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6025732F2A39E7F600A3C5D5 /* AssetListViewController.swift */; };
 		2B21D84C2BC56B5C003ADD29 /* ApproveViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603903742A6D1F560060E026 /* ApproveViewModel.swift */; };
 		2B21D84D2BC56B5C003ADD29 /* KeyStorageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B287E12A8903CF00DEA50C /* KeyStorageProvider.swift */; };
 		2B21D84E2BC56B5C003ADD29 /* ValidateRequestIdViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558E9A2B484A87006212B2 /* ValidateRequestIdViewModel.swift */; };
@@ -108,7 +100,6 @@
 		2B21D8542BC56B5C003ADD29 /* CodableExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B94CFD02A9CE627003E7508 /* CodableExtension.swift */; };
 		2B21D8552BC56B5C003ADD29 /* PrepareForScanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558E872B4704BA006212B2 /* PrepareForScanView.swift */; };
 		2B21D8562BC56B5C003ADD29 /* AssetsIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602573292A39D76900A3C5D5 /* AssetsIcons.swift */; };
-		2B21D8572BC56B5C003ADD29 /* BackupStatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866A73CA2A696A4B00E8E545 /* BackupStatusViewController.swift */; };
 		2B21D8582BC56B5C003ADD29 /* GoogleDriveManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866A73D82A696AA200E8E545 /* GoogleDriveManager.swift */; };
 		2B21D8592BC56B5C003ADD29 /* ChooseAssetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DA06712A645E9A00160ADC /* ChooseAssetViewModel.swift */; };
 		2B21D85A2BC56B5C003ADD29 /* BackupDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867828E92A696D7D0035787D /* BackupDetailsViewController.swift */; };
@@ -164,7 +155,6 @@
 		2B21D8942BC56B5C003ADD29 /* AssetViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60DA06A12A651D9300160ADC /* AssetViewCell.xib */; };
 		2B21D8952BC56B5C003ADD29 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 603B70DB2A810D6200796CEE /* Roboto-Bold.ttf */; };
 		2B21D8962BC56B5C003ADD29 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 86DC6E9C2A39ECC000A0B313 /* Localizable.strings */; };
-		2B21D8972BC56B5C003ADD29 /* ApproveViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 603903732A6D1F560060E026 /* ApproveViewController.xib */; };
 		2B21D8982BC56B5C003ADD29 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86859F5D2A384D8B0056E3C6 /* LaunchScreen.storyboard */; };
 		2B21D8992BC56B5C003ADD29 /* TransferCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 608293902A56BB1400B11839 /* TransferCell.xib */; };
 		2B21D89B2BC56B5C003ADD29 /* TransferDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 608293C32A5AD72400B11839 /* TransferDetailsViewController.xib */; };
@@ -179,12 +169,10 @@
 		2B21D8A52BC56B5C003ADD29 /* Inter-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 603B71022A81371200796CEE /* Inter-Medium.ttf */; };
 		2B21D8A62BC56B5C003ADD29 /* BackupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86EB512C2A66C08C00D2911A /* BackupViewController.xib */; };
 		2B21D8A72BC56B5C003ADD29 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86859F5B2A384D8B0056E3C6 /* Assets.xcassets */; };
-		2B21D8A92BC56B5C003ADD29 /* BackupStatusViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 866A73CB2A696A4B00E8E545 /* BackupStatusViewController.xib */; };
 		2B21D8AA2BC56B5C003ADD29 /* FeeRateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60DA06882A645EF400160ADC /* FeeRateCell.xib */; };
 		2B21D8AB2BC56B5C003ADD29 /* AmountToSendViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60DA06662A645E9A00160ADC /* AmountToSendViewController.xib */; };
 		2B21D8AC2BC56B5C003ADD29 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 603B70E22A810D6200796CEE /* Roboto-Medium.ttf */; };
 		2B21D8AD2BC56B5C003ADD29 /* AreYouSureBottomSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86ED2BB12A64434500377F6C /* AreYouSureBottomSheet.xib */; };
-		2B21D8AE2BC56B5C003ADD29 /* AssetListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 602573302A39E7F600A3C5D5 /* AssetListViewController.xib */; };
 		2B21D8AF2BC56B5C003ADD29 /* Inter-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 603B71082A8137AE00796CEE /* Inter-Bold.ttf */; };
 		2B21D8B02BC56B5C003ADD29 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86ED2BAA2A64430F00377F6C /* SettingsViewController.xib */; };
 		2B21D8B12BC56B5C003ADD29 /* Inter-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 603B71052A81379D00796CEE /* Inter-Regular.ttf */; };
@@ -287,7 +275,6 @@
 		2B2B19F52D2D120E00A2B39D /* ValidateRequestIdViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558E9A2B484A87006212B2 /* ValidateRequestIdViewModel.swift */; };
 		2B2B19F72D2D120E00A2B39D /* BiometricsAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867828C52A696D170035787D /* BiometricsAuthentication.swift */; };
 		2B2B19F92D2D120E00A2B39D /* AppBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B18942D2AC27F00A2B39D /* AppBackgroundView.swift */; };
-		2B2B19FB2D2D120E00A2B39D /* BackupStatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866A73CA2A696A4B00E8E545 /* BackupStatusViewController.swift */; };
 		2B2B19FC2D2D120E00A2B39D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86859F542A384D8A0056E3C6 /* SceneDelegate.swift */; };
 		2B2B19FD2D2D120E00A2B39D /* TakeoverViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E4A1642A6852CE00A2861D /* TakeoverViewModel.swift */; };
 		2B2B19FF2D2D120E00A2B39D /* AreYouSureBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86ED2BB22A64434500377F6C /* AreYouSureBottomSheet.swift */; };
@@ -330,7 +317,6 @@
 		2B2B1A422D2D120E00A2B39D /* GoogleSignInManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862E2AA32A543B86002FF774 /* GoogleSignInManager.swift */; };
 		2B2B1A442D2D120E00A2B39D /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A72232B45ABB50011C398 /* Style.swift */; };
 		2B2B1A462D2D120E00A2B39D /* AddDeviceQRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A721C2B45A8FF0011C398 /* AddDeviceQRView.swift */; };
-		2B2B1A482D2D120E00A2B39D /* BackupStatusViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3E6C022ACC0C40000E91CF /* BackupStatusViewModel.swift */; };
 		2B2B1A4B2D2D120E00A2B39D /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD53A222B28735700756C4A /* Date+Extensions.swift */; };
 		2B2B1A4C2D2D120E00A2B39D /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867828D12A696D170035787D /* UIView+Extension.swift */; };
 		2B2B1A4D2D2D120E00A2B39D /* QRCodeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867828D82A696D170035787D /* QRCodeGenerator.swift */; };
@@ -376,7 +362,6 @@
 		2B2B1A892D2D120E00A2B39D /* SendToViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60DA06B22A65204600160ADC /* SendToViewController.xib */; };
 		2B2B1A8A2D2D120E00A2B39D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 86DC6E9C2A39ECC000A0B313 /* Localizable.strings */; };
 		2B2B1A8B2D2D120E00A2B39D /* AssetViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60DA06A12A651D9300160ADC /* AssetViewCell.xib */; };
-		2B2B1A8C2D2D120E00A2B39D /* AssetListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 602573302A39E7F600A3C5D5 /* AssetListViewController.xib */; };
 		2B2B1A8D2D2D120E00A2B39D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B7C46DD2B32D638001C804B /* Preview Assets.xcassets */; };
 		2B2B1A8E2D2D120E00A2B39D /* Inter-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 603B71052A81379D00796CEE /* Inter-Regular.ttf */; };
 		2B2B1A8F2D2D120E00A2B39D /* AddAssetsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B3E6C0E2ACDAB97000E91CF /* AddAssetsViewController.xib */; };
@@ -384,11 +369,9 @@
 		2B2B1A912D2D120E00A2B39D /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 603B70DB2A810D6200796CEE /* Roboto-Bold.ttf */; };
 		2B2B1A922D2D120E00A2B39D /* TransferCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 608293902A56BB1400B11839 /* TransferCell.xib */; };
 		2B2B1A932D2D120E00A2B39D /* FeeRateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60DA06A62A651F7E00160ADC /* FeeRateViewController.xib */; };
-		2B2B1A942D2D120E00A2B39D /* ApproveViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 603903732A6D1F560060E026 /* ApproveViewController.xib */; };
 		2B2B1A952D2D120E00A2B39D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86859F5D2A384D8B0056E3C6 /* LaunchScreen.storyboard */; };
 		2B2B1A962D2D120E00A2B39D /* FeeRateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60DA06882A645EF400160ADC /* FeeRateCell.xib */; };
 		2B2B1A972D2D120E00A2B39D /* BackupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86EB512C2A66C08C00D2911A /* BackupViewController.xib */; };
-		2B2B1A982D2D120E00A2B39D /* BackupStatusViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 866A73CB2A696A4B00E8E545 /* BackupStatusViewController.xib */; };
 		2B2B1A992D2D120E00A2B39D /* TakeoverViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86E4A1662A6852CE00A2861D /* TakeoverViewController.xib */; };
 		2B2B1A9B2D2D120E00A2B39D /* MpcKeyCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8668C2272A67109400575A6A /* MpcKeyCellView.xib */; };
 		2B2B1A9C2D2D120E00A2B39D /* AddAssetViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B3E6C122ACE96D7000E91CF /* AddAssetViewCell.xib */; };
@@ -414,7 +397,6 @@
 		2B2B1AD52D2E99CB00A2B39D /* RecoverManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B1AD22D2E99C500A2B39D /* RecoverManager.swift */; };
 		2B2B1AD62D2E99CB00A2B39D /* RecoverManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B1AD22D2E99C500A2B39D /* RecoverManager.swift */; };
 		2B2D36162B2B205A00B04667 /* AppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2D36152B2B205A00B04667 /* AppLogger.swift */; };
-		2B3E6C032ACC0C40000E91CF /* BackupStatusViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3E6C022ACC0C40000E91CF /* BackupStatusViewModel.swift */; };
 		2B3E6C092ACD8CFD000E91CF /* AddAssetsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3E6C082ACD8CFD000E91CF /* AddAssetsViewModel.swift */; };
 		2B3E6C0D2ACDAB0B000E91CF /* AddAssetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3E6C0C2ACDAB0B000E91CF /* AddAssetsViewController.swift */; };
 		2B3E6C0F2ACDAB97000E91CF /* AddAssetsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B3E6C0E2ACDAB97000E91CF /* AddAssetsViewController.xib */; };
@@ -434,10 +416,7 @@
 		2B558E9E2B484AC4006212B2 /* ValidateRequestIdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558E9D2B484AC4006212B2 /* ValidateRequestIdView.swift */; };
 		2B558EA02B484ADC006212B2 /* ValidateRequestIdHostingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558E9F2B484ADC006212B2 /* ValidateRequestIdHostingVC.swift */; };
 		2B558EA22B484BE1006212B2 /* Platform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558EA12B484BE1006212B2 /* Platform.swift */; };
-		2B5F46B42D709D9500B23371 /* NFTDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5F46B32D709D9000B23371 /* NFTDataModel.swift */; };
-		2B5F46B52D709D9500B23371 /* NFTDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5F46B32D709D9000B23371 /* NFTDataModel.swift */; };
 		2B5F46B62D709D9500B23371 /* NFTDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5F46B32D709D9000B23371 /* NFTDataModel.swift */; };
-		2B5F46B72D709D9500B23371 /* NFTDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5F46B32D709D9000B23371 /* NFTDataModel.swift */; };
 		2B5F46BA2D70A5CA00B23371 /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5F46B92D70A5C600B23371 /* CacheManager.swift */; };
 		2B5F46BC2D70AE1F00B23371 /* EWNFTPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5F46BB2D70AE1F00B23371 /* EWNFTPreviewView.swift */; };
 		2B5F46BF2D70AE7600B23371 /* EWNFTPreviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5F46BE2D70AE7300B23371 /* EWNFTPreviewViewModel.swift */; };
@@ -514,29 +493,24 @@
 		2B7C472A2B32D965001C804B /* FeeRateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60DA06A62A651F7E00160ADC /* FeeRateViewController.xib */; };
 		2B7C472B2B32D965001C804B /* ReceiveViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60EECFA62A66BE6400F3891C /* ReceiveViewController.xib */; };
 		2B7C472C2B32D965001C804B /* TransactionSentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60B137B22A8B6A4C009A4ECB /* TransactionSentViewController.xib */; };
-		2B7C472E2B32D965001C804B /* ApproveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603903722A6D1F560060E026 /* ApproveViewController.swift */; };
 		2B7C47302B32D965001C804B /* FeeRateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DA06A72A651F7E00160ADC /* FeeRateViewModel.swift */; };
 		2B7C47312B32D965001C804B /* ChooseAssetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DA066F2A645E9A00160ADC /* ChooseAssetViewController.swift */; };
 		2B7C47322B32D965001C804B /* ReceiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EECFA52A66BE6400F3891C /* ReceiveViewController.swift */; };
 		2B7C47332B32D965001C804B /* ChooseAssetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60DA06702A645E9A00160ADC /* ChooseAssetViewController.xib */; };
 		2B7C47342B32D965001C804B /* QRCodeScannerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60DA06AE2A65204600160ADC /* QRCodeScannerViewController.xib */; };
-		2B7C47352B32D965001C804B /* ApproveViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 603903732A6D1F560060E026 /* ApproveViewController.xib */; };
 		2B7C47362B32D965001C804B /* SendToViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60DA06B22A65204600160ADC /* SendToViewController.xib */; };
 		2B7C47382B32D965001C804B /* QRCodeScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DA06AF2A65204600160ADC /* QRCodeScannerViewController.swift */; };
 		2B7C473A2B32D965001C804B /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DA069E2A651C5200160ADC /* TabBarViewController.swift */; };
 		2B7C473C2B32D965001C804B /* AmountToSendViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60DA06662A645E9A00160ADC /* AmountToSendViewController.xib */; };
 		2B7C473D2B32D965001C804B /* TransactionSentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B137B32A8B6A4C009A4ECB /* TransactionSentViewModel.swift */; };
-		2B7C473E2B32D965001C804B /* ReceiveViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EECFA72A66BE6400F3891C /* ReceiveViewModel.swift */; };
 		2B7C473F2B32D965001C804B /* ChooseAssetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DA06712A645E9A00160ADC /* ChooseAssetViewModel.swift */; };
 		2B7C47402B32D965001C804B /* TransactionSentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B137B42A8B6A4C009A4ECB /* TransactionSentViewController.swift */; };
 		2B7C47412B32D965001C804B /* AmountToSendViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DA06642A645E9A00160ADC /* AmountToSendViewModel.swift */; };
 		2B7C47422B32D96E001C804B /* AssetListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DA065A2A645E2E00160ADC /* AssetListViewModel.swift */; };
-		2B7C47432B32D96E001C804B /* AssetListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6025732F2A39E7F600A3C5D5 /* AssetListViewController.swift */; };
 		2B7C47442B32D96E001C804B /* AddAssetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3E6C0C2ACDAB0B000E91CF /* AddAssetsViewController.swift */; };
 		2B7C47452B32D96E001C804B /* AddAssetsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3E6C082ACD8CFD000E91CF /* AddAssetsViewModel.swift */; };
 		2B7C47462B32D96E001C804B /* AddAssetViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B3E6C122ACE96D7000E91CF /* AddAssetViewCell.xib */; };
 		2B7C47472B32D96E001C804B /* AddAssetsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B3E6C0E2ACDAB97000E91CF /* AddAssetsViewController.xib */; };
-		2B7C47482B32D96E001C804B /* AssetListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 602573302A39E7F600A3C5D5 /* AssetListViewController.xib */; };
 		2B7C47492B32D96E001C804B /* AddAssetViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3E6C102ACE96AC000E91CF /* AddAssetViewCell.swift */; };
 		2B7C474A2B32D979001C804B /* TransfersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6082938B2A56B85800B11839 /* TransfersViewController.xib */; };
 		2B7C474B2B32D979001C804B /* TransfersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608293BA2A56F0AC00B11839 /* TransfersViewModel.swift */; };
@@ -557,14 +531,11 @@
 		2B7C475B2B32D9A5001C804B /* BackupDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 867828EA2A696D7D0035787D /* BackupDetailsViewController.xib */; };
 		2B7C475C2B32D9A5001C804B /* BackupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EB51312A66C08C00D2911A /* BackupViewController.swift */; };
 		2B7C475D2B32D9A5001C804B /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EB512A2A66C08C00D2911A /* SettingsViewController.swift */; };
-		2B7C475E2B32D9A5001C804B /* BackupStatusViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 866A73CB2A696A4B00E8E545 /* BackupStatusViewController.xib */; };
 		2B7C475F2B32D9A5001C804B /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86ED2BAA2A64430F00377F6C /* SettingsViewController.xib */; };
 		2B7C47602B32D9A5001C804B /* BackupDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867828E92A696D7D0035787D /* BackupDetailsViewController.swift */; };
 		2B7C47612B32D9A5001C804B /* BackupDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867828EB2A696D7D0035787D /* BackupDetailsViewModel.swift */; };
 		2B7C47632B32D9A5001C804B /* BackupViewControllerStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862F430F2A6AC23600C594CA /* BackupViewControllerStrategy.swift */; };
 		2B7C47652B32D9A5001C804B /* BackupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86EB512C2A66C08C00D2911A /* BackupViewController.xib */; };
-		2B7C47662B32D9A5001C804B /* BackupStatusViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3E6C022ACC0C40000E91CF /* BackupStatusViewModel.swift */; };
-		2B7C47672B32D9A5001C804B /* BackupStatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866A73CA2A696A4B00E8E545 /* BackupStatusViewController.swift */; };
 		2B7C47692B32D9A5001C804B /* SettingsOptionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EB51292A66C08C00D2911A /* SettingsOptionButton.swift */; };
 		2B7C476A2B32D9C9001C804B /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EECFD92A69198B00F3891C /* AlertView.swift */; };
 		2B7C476B2B32D9C9001C804B /* TransferCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6082938F2A56BB1400B11839 /* TransferCell.swift */; };
@@ -619,7 +590,6 @@
 		2B83E26B2D38033F003B1397 /* PassphraseInfoBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B83E2692D38033F003B1397 /* PassphraseInfoBody.swift */; };
 		2B83E26C2D38033F003B1397 /* PassphraseInfoBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B83E2692D38033F003B1397 /* PassphraseInfoBody.swift */; };
 		2B83E26D2D380347003B1397 /* PassphraseInfoBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B83E2692D38033F003B1397 /* PassphraseInfoBody.swift */; };
-		2B83E26E2D38045F003B1397 /* AssetListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6025732F2A39E7F600A3C5D5 /* AssetListViewController.swift */; };
 		2B83E26F2D3804DB003B1397 /* AssetViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DA06A22A651D9300160ADC /* AssetViewCell.swift */; };
 		2B83E2702D3804EE003B1397 /* AddAssetViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3E6C102ACE96AC000E91CF /* AddAssetViewCell.swift */; };
 		2B83E2722D38053B003B1397 /* AssetToAdd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B83E2712D38053B003B1397 /* AssetToAdd.swift */; };
@@ -675,7 +645,6 @@
 		2B87CB0C2D47CFF700448A2A /* AssetError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B87CB0A2D47CFF700448A2A /* AssetError.swift */; };
 		2B87CB0D2D47CFF700448A2A /* AssetError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B87CB0A2D47CFF700448A2A /* AssetError.swift */; };
 		2B87CB0E2D47CFF700448A2A /* AssetError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B87CB0A2D47CFF700448A2A /* AssetError.swift */; };
-		2B87CB0F2D47D06E00448A2A /* ApproveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603903722A6D1F560060E026 /* ApproveViewController.swift */; };
 		2B87CB132D47D12A00448A2A /* ApproveRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B87CB122D47D12800448A2A /* ApproveRepository.swift */; };
 		2B87CB152D47D2D000448A2A /* Fee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B87CB142D47D2D000448A2A /* Fee.swift */; };
 		2B87CB162D47D2D000448A2A /* Fee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B87CB142D47D2D000448A2A /* Fee.swift */; };
@@ -836,6 +805,21 @@
 		2BEB9BDF2D75FBDB00699AC1 /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5F46B92D70A5C600B23371 /* CacheManager.swift */; };
 		2BEB9BE02D75FBDB00699AC1 /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5F46B92D70A5C600B23371 /* CacheManager.swift */; };
 		2BEB9BE12D75FBDB00699AC1 /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5F46B92D70A5C600B23371 /* CacheManager.swift */; };
+		2BEB9BE32D771D3500699AC1 /* AssetListViewModelBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEB9BE22D771D3500699AC1 /* AssetListViewModelBase.swift */; };
+		2BEB9BE42D771D3F00699AC1 /* AssetListViewModelBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEB9BE22D771D3500699AC1 /* AssetListViewModelBase.swift */; };
+		2BEB9BE52D771D3F00699AC1 /* AssetListViewModelBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEB9BE22D771D3500699AC1 /* AssetListViewModelBase.swift */; };
+		2BEB9BE62D771D3F00699AC1 /* AssetListViewModelBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEB9BE22D771D3500699AC1 /* AssetListViewModelBase.swift */; };
+		2BEB9BE82D7728BD00699AC1 /* AddAssetsViewModelBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEB9BE72D7728BD00699AC1 /* AddAssetsViewModelBase.swift */; };
+		2BEB9BE92D7728D500699AC1 /* AddAssetsViewModelBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEB9BE72D7728BD00699AC1 /* AddAssetsViewModelBase.swift */; };
+		2BEB9BEA2D7728D500699AC1 /* AddAssetsViewModelBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEB9BE72D7728BD00699AC1 /* AddAssetsViewModelBase.swift */; };
+		2BEB9BEB2D7728D500699AC1 /* AddAssetsViewModelBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEB9BE72D7728BD00699AC1 /* AddAssetsViewModelBase.swift */; };
+		2BEB9BED2D772F6C00699AC1 /* ApproveViewModelBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEB9BEC2D772F6C00699AC1 /* ApproveViewModelBase.swift */; };
+		2BEB9BF12D772F9800699AC1 /* ApproveViewModelBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEB9BEC2D772F6C00699AC1 /* ApproveViewModelBase.swift */; };
+		2BEB9BF22D772F9800699AC1 /* ApproveViewModelBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEB9BEC2D772F6C00699AC1 /* ApproveViewModelBase.swift */; };
+		2BEB9BF32D772F9800699AC1 /* ApproveViewModelBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEB9BEC2D772F6C00699AC1 /* ApproveViewModelBase.swift */; };
+		2BEB9BF42D77338D00699AC1 /* ReceiveViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0FEDB02D37D79E00F637E6 /* ReceiveViewModel.swift */; };
+		2BEB9BF52D77338D00699AC1 /* ReceiveViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0FEDB02D37D79E00F637E6 /* ReceiveViewModel.swift */; };
+		2BEB9BF62D77338D00699AC1 /* ReceiveViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0FEDB02D37D79E00F637E6 /* ReceiveViewModel.swift */; };
 		2BEEF7C52BAC6EFD004AF6AB /* DeriveKeysHostingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD34A742B98B983008406D5 /* DeriveKeysHostingVC.swift */; };
 		2BEEF7C62BAC6F11004AF6AB /* DeriveKeysViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD34A762B98B995008406D5 /* DeriveKeysViewModel.swift */; };
 		2BEEF7C72BAC6F11004AF6AB /* DerivedAssetRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD34A7A2B98C129008406D5 /* DerivedAssetRow.swift */; };
@@ -854,10 +838,6 @@
 		2BF8EDC02B569D3B00046F0B /* ValidateRequestIdTimeOutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF8EDBF2B569D3B00046F0B /* ValidateRequestIdTimeOutView.swift */; };
 		602573282A39D6F000A3C5D5 /* AssetsColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602573272A39D6F000A3C5D5 /* AssetsColors.swift */; };
 		6025732A2A39D76900A3C5D5 /* AssetsIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602573292A39D76900A3C5D5 /* AssetsIcons.swift */; };
-		602573312A39E7F600A3C5D5 /* AssetListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6025732F2A39E7F600A3C5D5 /* AssetListViewController.swift */; };
-		602573322A39E7F600A3C5D5 /* AssetListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 602573302A39E7F600A3C5D5 /* AssetListViewController.xib */; };
-		603903752A6D1F560060E026 /* ApproveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603903722A6D1F560060E026 /* ApproveViewController.swift */; };
-		603903762A6D1F560060E026 /* ApproveViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 603903732A6D1F560060E026 /* ApproveViewController.xib */; };
 		603903772A6D1F560060E026 /* ApproveViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603903742A6D1F560060E026 /* ApproveViewModel.swift */; };
 		603903792A6D3F880060E026 /* ApproveRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603903782A6D3F880060E026 /* ApproveRepository.swift */; };
 		603B70EB2A810D6200796CEE /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 603B70DB2A810D6200796CEE /* Roboto-Bold.ttf */; };
@@ -912,7 +892,6 @@
 		60EECFA02A66BE3100F3891C /* ChooseAssetRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EECF9F2A66BE3100F3891C /* ChooseAssetRepository.swift */; };
 		60EECFA82A66BE6400F3891C /* ReceiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EECFA52A66BE6400F3891C /* ReceiveViewController.swift */; };
 		60EECFA92A66BE6400F3891C /* ReceiveViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60EECFA62A66BE6400F3891C /* ReceiveViewController.xib */; };
-		60EECFAA2A66BE6400F3891C /* ReceiveViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EECFA72A66BE6400F3891C /* ReceiveViewModel.swift */; };
 		60EECFDA2A69198B00F3891C /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EECFD92A69198B00F3891C /* AlertView.swift */; };
 		86229D812A8B7FF20089F7DA /* AssetHeaderUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86229D802A8B7FF20089F7DA /* AssetHeaderUIView.swift */; };
 		862E2AA02A543B6D002FF774 /* AuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862E2A9F2A543B6D002FF774 /* AuthRepository.swift */; };
@@ -930,8 +909,6 @@
 		866A73C42A696A0F00E8E545 /* GoogleAPIClientForREST_DriveActivity in Frameworks */ = {isa = PBXBuildFile; productRef = 866A73C32A696A0F00E8E545 /* GoogleAPIClientForREST_DriveActivity */; };
 		866A73C62A696A0F00E8E545 /* GoogleAPIClientForREST_DriveLabels in Frameworks */ = {isa = PBXBuildFile; productRef = 866A73C52A696A0F00E8E545 /* GoogleAPIClientForREST_DriveLabels */; };
 		866A73C82A696A3100E8E545 /* BackupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866A73C72A696A3100E8E545 /* BackupViewModel.swift */; };
-		866A73CC2A696A4B00E8E545 /* BackupStatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866A73CA2A696A4B00E8E545 /* BackupStatusViewController.swift */; };
-		866A73CD2A696A4B00E8E545 /* BackupStatusViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 866A73CB2A696A4B00E8E545 /* BackupStatusViewController.xib */; };
 		866A73CF2A696A5E00E8E545 /* BackupRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866A73CE2A696A5E00E8E545 /* BackupRepository.swift */; };
 		866A73D12A696A7C00E8E545 /* BackupProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866A73D02A696A7C00E8E545 /* BackupProvider.swift */; };
 		866A73D92A696AA200E8E545 /* ICloudManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866A73D72A696AA200E8E545 /* ICloudManager.swift */; };
@@ -1032,7 +1009,6 @@
 		2B05C0692B4698BF004CF1CE /* JoinRequestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinRequestData.swift; sourceTree = "<group>"; };
 		2B0FED9C2D37968B00F637E6 /* EWManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EWManager.swift; sourceTree = "<group>"; };
 		2B0FED9F2D3796E700F637E6 /* AssetListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetListViewModel.swift; sourceTree = "<group>"; };
-		2B0FEDA52D37972500F637E6 /* AssetListViewModelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetListViewModelDelegate.swift; sourceTree = "<group>"; };
 		2B0FEDAA2D37980200F637E6 /* AssetSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetSummary.swift; sourceTree = "<group>"; };
 		2B0FEDB02D37D79E00F637E6 /* ReceiveViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiveViewModel.swift; sourceTree = "<group>"; };
 		2B21D8BB2BC56B5C003ADD29 /* NCW-production.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NCW-production.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1083,7 +1059,6 @@
 		2B2B1ACB2D2D558F00A2B39D /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2B2B1AD22D2E99C500A2B39D /* RecoverManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverManager.swift; sourceTree = "<group>"; };
 		2B2D36152B2B205A00B04667 /* AppLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLogger.swift; sourceTree = "<group>"; };
-		2B3E6C022ACC0C40000E91CF /* BackupStatusViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupStatusViewModel.swift; sourceTree = "<group>"; };
 		2B3E6C082ACD8CFD000E91CF /* AddAssetsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAssetsViewModel.swift; sourceTree = "<group>"; };
 		2B3E6C0C2ACDAB0B000E91CF /* AddAssetsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAssetsViewController.swift; sourceTree = "<group>"; };
 		2B3E6C0E2ACDAB97000E91CF /* AddAssetsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddAssetsViewController.xib; sourceTree = "<group>"; };
@@ -1194,6 +1169,9 @@
 		2BEB9BCC2D75D2B400699AC1 /* TransactionStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionStatusView.swift; sourceTree = "<group>"; };
 		2BEB9BD32D75DE9400699AC1 /* FeeRateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeeRateViewModel.swift; sourceTree = "<group>"; };
 		2BEB9BD92D75EB4C00699AC1 /* ApproveViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApproveViewModel.swift; sourceTree = "<group>"; };
+		2BEB9BE22D771D3500699AC1 /* AssetListViewModelBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetListViewModelBase.swift; sourceTree = "<group>"; };
+		2BEB9BE72D7728BD00699AC1 /* AddAssetsViewModelBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAssetsViewModelBase.swift; sourceTree = "<group>"; };
+		2BEB9BEC2D772F6C00699AC1 /* ApproveViewModelBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApproveViewModelBase.swift; sourceTree = "<group>"; };
 		2BF477E02D37DBBD000C9553 /* BackupData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupData.swift; sourceTree = "<group>"; };
 		2BF477E52D37DC29000C9553 /* UsersLocalStorageManager+NCW.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UsersLocalStorageManager+NCW.swift"; sourceTree = "<group>"; };
 		2BF8EDB52B56673300046F0B /* EndFlowFeedbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndFlowFeedbackView.swift; sourceTree = "<group>"; };
@@ -1203,10 +1181,6 @@
 		2BF8EDBF2B569D3B00046F0B /* ValidateRequestIdTimeOutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateRequestIdTimeOutView.swift; sourceTree = "<group>"; };
 		602573272A39D6F000A3C5D5 /* AssetsColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetsColors.swift; sourceTree = "<group>"; };
 		602573292A39D76900A3C5D5 /* AssetsIcons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetsIcons.swift; sourceTree = "<group>"; };
-		6025732F2A39E7F600A3C5D5 /* AssetListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetListViewController.swift; sourceTree = "<group>"; };
-		602573302A39E7F600A3C5D5 /* AssetListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AssetListViewController.xib; sourceTree = "<group>"; };
-		603903722A6D1F560060E026 /* ApproveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApproveViewController.swift; sourceTree = "<group>"; };
-		603903732A6D1F560060E026 /* ApproveViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ApproveViewController.xib; sourceTree = "<group>"; };
 		603903742A6D1F560060E026 /* ApproveViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApproveViewModel.swift; sourceTree = "<group>"; };
 		603903782A6D3F880060E026 /* ApproveRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApproveRepository.swift; sourceTree = "<group>"; };
 		603B70DB2A810D6200796CEE /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
@@ -1264,7 +1238,6 @@
 		60EECF9F2A66BE3100F3891C /* ChooseAssetRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseAssetRepository.swift; sourceTree = "<group>"; };
 		60EECFA52A66BE6400F3891C /* ReceiveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiveViewController.swift; sourceTree = "<group>"; };
 		60EECFA62A66BE6400F3891C /* ReceiveViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReceiveViewController.xib; sourceTree = "<group>"; };
-		60EECFA72A66BE6400F3891C /* ReceiveViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiveViewModel.swift; sourceTree = "<group>"; };
 		60EECFD92A69198B00F3891C /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		86229D802A8B7FF20089F7DA /* AssetHeaderUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetHeaderUIView.swift; sourceTree = "<group>"; };
 		862E2A9F2A543B6D002FF774 /* AuthRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthRepository.swift; sourceTree = "<group>"; };
@@ -1279,8 +1252,6 @@
 		8668C2282A67109400575A6A /* AdvancedInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdvancedInfoViewController.swift; sourceTree = "<group>"; };
 		8668C2292A67109400575A6A /* AdvancedInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdvancedInfoViewController.xib; sourceTree = "<group>"; };
 		866A73C72A696A3100E8E545 /* BackupViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackupViewModel.swift; sourceTree = "<group>"; };
-		866A73CA2A696A4B00E8E545 /* BackupStatusViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackupStatusViewController.swift; sourceTree = "<group>"; };
-		866A73CB2A696A4B00E8E545 /* BackupStatusViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BackupStatusViewController.xib; sourceTree = "<group>"; };
 		866A73CE2A696A5E00E8E545 /* BackupRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackupRepository.swift; sourceTree = "<group>"; };
 		866A73D02A696A7C00E8E545 /* BackupProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackupProvider.swift; sourceTree = "<group>"; };
 		866A73D72A696AA200E8E545 /* ICloudManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ICloudManager.swift; sourceTree = "<group>"; };
@@ -1441,22 +1412,7 @@
 			isa = PBXGroup;
 			children = (
 				2B0FED9F2D3796E700F637E6 /* AssetListViewModel.swift */,
-			);
-			path = EW;
-			sourceTree = "<group>";
-		};
-		2B0FEDAF2D37D78800F637E6 /* NCW */ = {
-			isa = PBXGroup;
-			children = (
-				60EECFA72A66BE6400F3891C /* ReceiveViewModel.swift */,
-			);
-			path = NCW;
-			sourceTree = "<group>";
-		};
-		2B0FEDB52D37D7A400F637E6 /* EW */ = {
-			isa = PBXGroup;
-			children = (
-				2B0FEDB02D37D79E00F637E6 /* ReceiveViewModel.swift */,
+				2BEB9BE22D771D3500699AC1 /* AssetListViewModelBase.swift */,
 			);
 			path = EW;
 			sourceTree = "<group>";
@@ -1674,9 +1630,6 @@
 			children = (
 				2B0FEDA42D3796F600F637E6 /* EW */,
 				2B0FED9E2D3796D400F637E6 /* NCW */,
-				6025732F2A39E7F600A3C5D5 /* AssetListViewController.swift */,
-				2B0FEDA52D37972500F637E6 /* AssetListViewModelDelegate.swift */,
-				602573302A39E7F600A3C5D5 /* AssetListViewController.xib */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -1852,6 +1805,7 @@
 			isa = PBXGroup;
 			children = (
 				2B83E27D2D38D1F7003B1397 /* AddAssetsViewModel.swift */,
+				2BEB9BE72D7728BD00699AC1 /* AddAssetsViewModelBase.swift */,
 			);
 			path = EW;
 			sourceTree = "<group>";
@@ -2064,6 +2018,7 @@
 			isa = PBXGroup;
 			children = (
 				2BEB9BD92D75EB4C00699AC1 /* ApproveViewModel.swift */,
+				2BEB9BEC2D772F6C00699AC1 /* ApproveViewModelBase.swift */,
 			);
 			path = EW;
 			sourceTree = "<group>";
@@ -2144,8 +2099,6 @@
 			children = (
 				2BEB9BD82D75EB4100699AC1 /* NCW */,
 				2BEB9BDE2D75EB5500699AC1 /* EW */,
-				603903722A6D1F560060E026 /* ApproveViewController.swift */,
-				603903732A6D1F560060E026 /* ApproveViewController.xib */,
 				2BEB9BC22D75CB6700699AC1 /* ApproveTransactionView.swift */,
 				2BEB9BC72D75CCDD00699AC1 /* TransactionHeaderView.swift */,
 				2BEB9BCC2D75D2B400699AC1 /* TransactionStatusView.swift */,
@@ -2332,8 +2285,7 @@
 		60EECFA42A66BE6400F3891C /* Receive */ = {
 			isa = PBXGroup;
 			children = (
-				2B0FEDB52D37D7A400F637E6 /* EW */,
-				2B0FEDAF2D37D78800F637E6 /* NCW */,
+				2B0FEDB02D37D79E00F637E6 /* ReceiveViewModel.swift */,
 				60EECFA52A66BE6400F3891C /* ReceiveViewController.swift */,
 				60EECFA62A66BE6400F3891C /* ReceiveViewController.xib */,
 			);
@@ -2426,16 +2378,6 @@
 				8668C2262A67109400575A6A /* MpcKeyCellView.swift */,
 			);
 			path = Cell;
-			sourceTree = "<group>";
-		};
-		866A73C92A696A4B00E8E545 /* BackupStatus */ = {
-			isa = PBXGroup;
-			children = (
-				866A73CB2A696A4B00E8E545 /* BackupStatusViewController.xib */,
-				866A73CA2A696A4B00E8E545 /* BackupStatusViewController.swift */,
-				2B3E6C022ACC0C40000E91CF /* BackupStatusViewModel.swift */,
-			);
-			path = BackupStatus;
 			sourceTree = "<group>";
 		};
 		867828C32A696D170035787D /* Utils */ = {
@@ -2679,7 +2621,6 @@
 			isa = PBXGroup;
 			children = (
 				867828E82A696D7D0035787D /* BackupDetails */,
-				866A73C92A696A4B00E8E545 /* BackupStatus */,
 				86EB512C2A66C08C00D2911A /* BackupViewController.xib */,
 				866A73C72A696A3100E8E545 /* BackupViewModel.swift */,
 				86EB51312A66C08C00D2911A /* BackupViewController.swift */,
@@ -2898,7 +2839,6 @@
 				2B21D8942BC56B5C003ADD29 /* AssetViewCell.xib in Resources */,
 				2B21D8952BC56B5C003ADD29 /* Roboto-Bold.ttf in Resources */,
 				2B21D8962BC56B5C003ADD29 /* Localizable.strings in Resources */,
-				2B21D8972BC56B5C003ADD29 /* ApproveViewController.xib in Resources */,
 				2BD5D0E12D6DFADF0025A9A8 /* Figtree-Medium.ttf in Resources */,
 				2B21D8982BC56B5C003ADD29 /* LaunchScreen.storyboard in Resources */,
 				2B21D8992BC56B5C003ADD29 /* TransferCell.xib in Resources */,
@@ -2915,14 +2855,12 @@
 				2B21D8A62BC56B5C003ADD29 /* BackupViewController.xib in Resources */,
 				2B21D8A72BC56B5C003ADD29 /* Assets.xcassets in Resources */,
 				2B21D8C12BC570AA003ADD29 /* GoogleService-Info.plist in Resources */,
-				2B21D8A92BC56B5C003ADD29 /* BackupStatusViewController.xib in Resources */,
 				2B2303A72D6DDA1500260CD9 /* Figtree-Bold.ttf in Resources */,
 				2B2303A82D6DDA1500260CD9 /* Figtree-Regular.ttf in Resources */,
 				2B21D8AA2BC56B5C003ADD29 /* FeeRateCell.xib in Resources */,
 				2B21D8AB2BC56B5C003ADD29 /* AmountToSendViewController.xib in Resources */,
 				2B21D8AC2BC56B5C003ADD29 /* Roboto-Medium.ttf in Resources */,
 				2B21D8AD2BC56B5C003ADD29 /* AreYouSureBottomSheet.xib in Resources */,
-				2B21D8AE2BC56B5C003ADD29 /* AssetListViewController.xib in Resources */,
 				2B21D8AF2BC56B5C003ADD29 /* Inter-Bold.ttf in Resources */,
 				2B21D8B02BC56B5C003ADD29 /* SettingsViewController.xib in Resources */,
 				2B21D8B12BC56B5C003ADD29 /* Inter-Regular.ttf in Resources */,
@@ -2951,7 +2889,6 @@
 				2B2B1A892D2D120E00A2B39D /* SendToViewController.xib in Resources */,
 				2B2B1A8A2D2D120E00A2B39D /* Localizable.strings in Resources */,
 				2B2B1A8B2D2D120E00A2B39D /* AssetViewCell.xib in Resources */,
-				2B2B1A8C2D2D120E00A2B39D /* AssetListViewController.xib in Resources */,
 				2B2B1ACC2D2D558F00A2B39D /* GoogleService-Info.plist in Resources */,
 				2B2B1A8D2D2D120E00A2B39D /* Preview Assets.xcassets in Resources */,
 				2B2B1A8E2D2D120E00A2B39D /* Inter-Regular.ttf in Resources */,
@@ -2960,11 +2897,9 @@
 				2B2B1A912D2D120E00A2B39D /* Roboto-Bold.ttf in Resources */,
 				2B2B1A922D2D120E00A2B39D /* TransferCell.xib in Resources */,
 				2B2B1A932D2D120E00A2B39D /* FeeRateViewController.xib in Resources */,
-				2B2B1A942D2D120E00A2B39D /* ApproveViewController.xib in Resources */,
 				2B2B1A952D2D120E00A2B39D /* LaunchScreen.storyboard in Resources */,
 				2B2B1A962D2D120E00A2B39D /* FeeRateCell.xib in Resources */,
 				2B2B1A972D2D120E00A2B39D /* BackupViewController.xib in Resources */,
-				2B2B1A982D2D120E00A2B39D /* BackupStatusViewController.xib in Resources */,
 				2B2B1A992D2D120E00A2B39D /* TakeoverViewController.xib in Resources */,
 				2B2B1A9B2D2D120E00A2B39D /* MpcKeyCellView.xib in Resources */,
 				2B2B1A9C2D2D120E00A2B39D /* AddAssetViewCell.xib in Resources */,
@@ -2998,7 +2933,6 @@
 				2B7C47362B32D965001C804B /* SendToViewController.xib in Resources */,
 				2B7C46FC2B32D8CC001C804B /* Localizable.strings in Resources */,
 				2B7C47742B32D9C9001C804B /* AssetViewCell.xib in Resources */,
-				2B7C47482B32D96E001C804B /* AssetListViewController.xib in Resources */,
 				2B2B1ACA2D2D556400A2B39D /* GoogleService-Info.plist in Resources */,
 				2B7C46DE2B32D638001C804B /* Preview Assets.xcassets in Resources */,
 				2B7C46EE2B32D8B3001C804B /* Inter-Regular.ttf in Resources */,
@@ -3007,11 +2941,9 @@
 				2B7C46F32B32D8B9001C804B /* Roboto-Bold.ttf in Resources */,
 				2B7C476D2B32D9C9001C804B /* TransferCell.xib in Resources */,
 				2B7C472A2B32D965001C804B /* FeeRateViewController.xib in Resources */,
-				2B7C47352B32D965001C804B /* ApproveViewController.xib in Resources */,
 				2B7C47762B32D9D9001C804B /* LaunchScreen.storyboard in Resources */,
 				2B7C47712B32D9C9001C804B /* FeeRateCell.xib in Resources */,
 				2B7C47652B32D9A5001C804B /* BackupViewController.xib in Resources */,
-				2B7C475E2B32D9A5001C804B /* BackupStatusViewController.xib in Resources */,
 				2B7C47522B32D985001C804B /* TakeoverViewController.xib in Resources */,
 				2B7C47542B32D98D001C804B /* MpcKeyCellView.xib in Resources */,
 				2B7C47462B32D96E001C804B /* AddAssetViewCell.xib in Resources */,
@@ -3037,7 +2969,6 @@
 				60DA06A32A651D9300160ADC /* AssetViewCell.xib in Resources */,
 				603B70EB2A810D6200796CEE /* Roboto-Bold.ttf in Resources */,
 				86DC6E9D2A39ECC000A0B313 /* Localizable.strings in Resources */,
-				603903762A6D1F560060E026 /* ApproveViewController.xib in Resources */,
 				2BD5D0E02D6DFADF0025A9A8 /* Figtree-Medium.ttf in Resources */,
 				86859F5F2A384D8B0056E3C6 /* LaunchScreen.storyboard in Resources */,
 				608293922A56BB1400B11839 /* TransferCell.xib in Resources */,
@@ -3054,14 +2985,12 @@
 				603B71032A81371200796CEE /* Inter-Medium.ttf in Resources */,
 				86EB51342A66C08C00D2911A /* BackupViewController.xib in Resources */,
 				86859F5C2A384D8B0056E3C6 /* Assets.xcassets in Resources */,
-				866A73CD2A696A4B00E8E545 /* BackupStatusViewController.xib in Resources */,
 				2B2303A92D6DDA1500260CD9 /* Figtree-Bold.ttf in Resources */,
 				2B2303AA2D6DDA1500260CD9 /* Figtree-Regular.ttf in Resources */,
 				60DA068A2A645EF400160ADC /* FeeRateCell.xib in Resources */,
 				60DA06772A645E9A00160ADC /* AmountToSendViewController.xib in Resources */,
 				603B70F92A810D6200796CEE /* Roboto-Medium.ttf in Resources */,
 				86ED2BB32A64434500377F6C /* AreYouSureBottomSheet.xib in Resources */,
-				602573322A39E7F600A3C5D5 /* AssetListViewController.xib in Resources */,
 				603B71092A8137AF00796CEE /* Inter-Bold.ttf in Resources */,
 				86ED2BAE2A64430F00377F6C /* SettingsViewController.xib in Resources */,
 				603B71062A81379D00796CEE /* Inter-Regular.ttf in Resources */,
@@ -3079,7 +3008,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B21D7F72BC56B5C003ADD29 /* Asset.swift in Sources */,
-				2B21D7F92BC56B5C003ADD29 /* ApproveViewController.swift in Sources */,
 				2B21D7FA2BC56B5C003ADD29 /* TransactionSentViewModel.swift in Sources */,
 				2B21D7FB2BC56B5C003ADD29 /* AddAssetViewCell.swift in Sources */,
 				2B2B18962D2AC27F00A2B39D /* AppBackgroundView.swift in Sources */,
@@ -3094,7 +3022,6 @@
 				2BF477E12D37DBBD000C9553 /* BackupData.swift in Sources */,
 				2B2B1AD62D2E99CB00A2B39D /* RecoverManager.swift in Sources */,
 				2B21D8012BC56B5C003ADD29 /* FeeManager.swift in Sources */,
-				2B5F46B72D709D9500B23371 /* NFTDataModel.swift in Sources */,
 				2B21D8022BC56B5C003ADD29 /* ApproveRepository.swift in Sources */,
 				2BCFE1152D54F377006BE227 /* BackupWalletViewModel.swift in Sources */,
 				2B21D8032BC56B5C003ADD29 /* AdvancedInfoViewModel.swift in Sources */,
@@ -3113,11 +3040,13 @@
 				2B95395F2D54B45300816DB7 /* GenerateKeysViewModel.swift in Sources */,
 				2B21D80B2BC56B5C003ADD29 /* AddAssetsViewModel.swift in Sources */,
 				2B83E2602D37F4DE003B1397 /* PassphraseInfo.swift in Sources */,
+				2BEB9BF32D772F9800699AC1 /* ApproveViewModelBase.swift in Sources */,
 				2B21D80C2BC56B5C003ADD29 /* DeriveKeysView.swift in Sources */,
 				2B2B18C62D2ADF5300A2B39D /* AddDeviceViewModel.swift in Sources */,
 				2B21D80D2BC56B5C003ADD29 /* FeeRateRepository.swift in Sources */,
 				2B2B18AA2D2AC5C300A2B39D /* CustomBackButtonView.swift in Sources */,
 				2B21D80E2BC56B5C003ADD29 /* ActivityIndicator.swift in Sources */,
+				2BEB9BEB2D7728D500699AC1 /* AddAssetsViewModelBase.swift in Sources */,
 				2B21D80F2BC56B5C003ADD29 /* BackupViewControllerStrategy.swift in Sources */,
 				2B21D8102BC56B5C003ADD29 /* Date+Extensions.swift in Sources */,
 				2B21D8112BC56B5C003ADD29 /* AssetsImageMapper.swift in Sources */,
@@ -3144,11 +3073,11 @@
 				2B21D8252BC56B5C003ADD29 /* CodableAnyExtension.swift in Sources */,
 				2B87CB212D47D30F00448A2A /* EstimatedTransactionFeeResponse.swift in Sources */,
 				2BEB9BC82D75CCDD00699AC1 /* TransactionHeaderView.swift in Sources */,
-				2B21D8262BC56B5C003ADD29 /* BackupStatusViewModel.swift in Sources */,
 				2B21D8272BC56B5C003ADD29 /* AlertBannerView.swift in Sources */,
 				2B83E2792D3809A8003B1397 /* AddAssetsViewControllerDelegate.swift in Sources */,
 				2BCFE1252D5B326A006BE227 /* ActivityViewRep.swift in Sources */,
 				2B21D8282BC56B5C003ADD29 /* SettingsViewController.swift in Sources */,
+				2BEB9BE62D771D3F00699AC1 /* AssetListViewModelBase.swift in Sources */,
 				2B83E2722D38053B003B1397 /* AssetToAdd.swift in Sources */,
 				2B21D8292BC56B5C003ADD29 /* Double+Extension.swift in Sources */,
 				2B21D82A2BC56B5C003ADD29 /* GoogleSignInManager.swift in Sources */,
@@ -3156,7 +3085,6 @@
 				2B2B18B72D2AD9AF00A2B39D /* RecoverWalletView.swift in Sources */,
 				2B21D82C2BC56B5C003ADD29 /* DeriveKeysViewModel.swift in Sources */,
 				2B2B19B92D2C058E00A2B39D /* FireblocksManagerProtocol.swift in Sources */,
-				2B21D82D2BC56B5C003ADD29 /* ReceiveViewModel.swift in Sources */,
 				2B21D82E2BC56B5C003ADD29 /* BackupProvider.swift in Sources */,
 				2B21D8012BC56B5C003ADD29 /* FeeManager.swift in Sources */,
 				2B21D82F2BC56B5C003ADD29 /* PollingListener.swift in Sources */,
@@ -3199,14 +3127,12 @@
 				2BEB9BE12D75FBDB00699AC1 /* CacheManager.swift in Sources */,
 				2BCF87952D37DE6C00A46521 /* ChooseAssetFlowType.swift in Sources */,
 				2B21D8492BC56B5C003ADD29 /* PrepareForScanHostingVC.swift in Sources */,
-				2B0FEDA92D37973100F637E6 /* AssetListViewModelDelegate.swift in Sources */,
 				2B21D84A2BC56B5C003ADD29 /* ChooseAssetRepository.swift in Sources */,
-				2B21D84B2BC56B5C003ADD29 /* AssetListViewController.swift in Sources */,
 				2BCFE1372D5B7C46006BE227 /* TabBarView.swift in Sources */,
 				2B21D84C2BC56B5C003ADD29 /* ApproveViewModel.swift in Sources */,
-				2B21D84B2BC56B5C003ADD29 /* AssetListViewController.swift in Sources */,
 				2B83E26B2D38033F003B1397 /* PassphraseInfoBody.swift in Sources */,
 				2B21D84D2BC56B5C003ADD29 /* KeyStorageProvider.swift in Sources */,
+				2BEB9BF62D77338D00699AC1 /* ReceiveViewModel.swift in Sources */,
 				2B21D84E2BC56B5C003ADD29 /* ValidateRequestIdViewModel.swift in Sources */,
 				2B21D8BE2BC56BAA003ADD29 /* EnvironmentConstantsProd.swift in Sources */,
 				2B21D84F2BC56B5C003ADD29 /* FireblocksManager.swift in Sources */,
@@ -3221,7 +3147,6 @@
 				2BD5D0EF2D706C490025A9A8 /* TitleValueRow.swift in Sources */,
 				2B21D8552BC56B5C003ADD29 /* PrepareForScanView.swift in Sources */,
 				2B21D8562BC56B5C003ADD29 /* AssetsIcons.swift in Sources */,
-				2B21D8572BC56B5C003ADD29 /* BackupStatusViewController.swift in Sources */,
 				2B2B18802D2A76A700A2B39D /* LaunchView.swift in Sources */,
 				2B21D8582BC56B5C003ADD29 /* GoogleDriveManager.swift in Sources */,
 				2B21D8592BC56B5C003ADD29 /* ChooseAssetViewModel.swift in Sources */,
@@ -3292,6 +3217,7 @@
 				2B2B19DD2D2D120E00A2B39D /* CodableExtension.swift in Sources */,
 				2B2B19E22D2D120E00A2B39D /* SpinnerView.swift in Sources */,
 				2B83E26F2D3804DB003B1397 /* AssetViewCell.swift in Sources */,
+				2BEB9BE32D771D3500699AC1 /* AssetListViewModelBase.swift in Sources */,
 				2B87CAEC2D47AC8700448A2A /* NotificationType.swift in Sources */,
 				2B0FEDA12D3796F000F637E6 /* AssetListViewModel.swift in Sources */,
 				2B87CB132D47D12A00448A2A /* ApproveRepository.swift in Sources */,
@@ -3328,11 +3254,9 @@
 				2B5F46BC2D70AE1F00B23371 /* EWNFTPreviewView.swift in Sources */,
 				2B2B19F72D2D120E00A2B39D /* BiometricsAuthentication.swift in Sources */,
 				2B2B19F92D2D120E00A2B39D /* AppBackgroundView.swift in Sources */,
-				2B2B19FB2D2D120E00A2B39D /* BackupStatusViewController.swift in Sources */,
 				2B83E2812D38D1F8003B1397 /* AddAssetsViewModel.swift in Sources */,
 				2B2B19FC2D2D120E00A2B39D /* SceneDelegate.swift in Sources */,
 				2B87CB292D48BC6A00448A2A /* CryptoCurrency.swift in Sources */,
-				2B83E26E2D38045F003B1397 /* AssetListViewController.swift in Sources */,
 				2BCFE1302D5B7B39006BE227 /* NavigationBarLeftHeader.swift in Sources */,
 				2B87CAE42D47AC4700448A2A /* TransfersViewModel.swift in Sources */,
 				2B2B19FD2D2D120E00A2B39D /* TakeoverViewModel.swift in Sources */,
@@ -3346,13 +3270,12 @@
 				2B83E28A2D3D19B5003B1397 /* AmountToSendViewModel.swift in Sources */,
 				2BEB9BCF2D75D2B400699AC1 /* TransactionStatusView.swift in Sources */,
 				2B223FC12D6741F8002285B9 /* EWNFTDetailsViewModel.swift in Sources */,
-				2B87CB0F2D47D06E00448A2A /* ApproveViewController.swift in Sources */,
 				2B2B1A032D2D120E00A2B39D /* EndFlowFeedbackViewModel.swift in Sources */,
 				2B2B1A052D2D120E00A2B39D /* EndFlowFeedbackHostingVC.swift in Sources */,
 				2B2B1A062D2D120E00A2B39D /* RecoverWalletView.swift in Sources */,
 				2B2B1A0B2D2D120E00A2B39D /* AppActionBotton.swift in Sources */,
 				2B2B1A0D2D2D120E00A2B39D /* Modifiers.swift in Sources */,
-				2B0FEDA62D37972500F637E6 /* AssetListViewModelDelegate.swift in Sources */,
+				2BEB9BE82D7728BD00699AC1 /* AddAssetsViewModelBase.swift in Sources */,
 				2BEB9BDB2D75EB5000699AC1 /* ApproveViewModel.swift in Sources */,
 				2B2B1A0F2D2D120E00A2B39D /* VersionBanner.swift in Sources */,
 				2B87CAC72D477CAD00448A2A /* TransferCell.swift in Sources */,
@@ -3372,6 +3295,7 @@
 				2B223FB42D673EAE002285B9 /* EWNFTDetailsView.swift in Sources */,
 				2B223FB52D673EAE002285B9 /* EWWeb3ConnectionURI.swift in Sources */,
 				2B223FB62D673EAE002285B9 /* EWNFTsView.swift in Sources */,
+				2BEB9BED2D772F6C00699AC1 /* ApproveViewModelBase.swift in Sources */,
 				2B223FB72D673EAE002285B9 /* EWWeb3ConnectionURIModel.swift in Sources */,
 				2B2B1A1A2D2D120E00A2B39D /* AlertBannerView.swift in Sources */,
 				2B2B1A1D2D2D120E00A2B39D /* ICloudManager.swift in Sources */,
@@ -3433,7 +3357,6 @@
 				2B83E27B2D38D1A6003B1397 /* AddAssetsViewController.swift in Sources */,
 				2B87CB1D2D47D2E600448A2A /* FeeRateType.swift in Sources */,
 				2B87CB032D47CA2D00448A2A /* EstimatedFeeRequestBody.swift in Sources */,
-				2B2B1A482D2D120E00A2B39D /* BackupStatusViewModel.swift in Sources */,
 				2B83E25E2D37F16C003B1397 /* BackupInfo.swift in Sources */,
 				2B2B1A4B2D2D120E00A2B39D /* Date+Extensions.swift in Sources */,
 				2B2B1A4C2D2D120E00A2B39D /* UIView+Extension.swift in Sources */,
@@ -3494,7 +3417,7 @@
 				2B7C475C2B32D9A5001C804B /* BackupViewController.swift in Sources */,
 				2B83E26C2D38033F003B1397 /* PassphraseInfoBody.swift in Sources */,
 				2BEEF7C72BAC6F11004AF6AB /* DerivedAssetRow.swift in Sources */,
-				2B7C473E2B32D965001C804B /* ReceiveViewModel.swift in Sources */,
+				2BEB9BEA2D7728D500699AC1 /* AddAssetsViewModelBase.swift in Sources */,
 				2B2B18B32D2ACF4B00A2B39D /* SpinnerView.swift in Sources */,
 				2B7C47512B32D985001C804B /* TakeoverViewController.swift in Sources */,
 				2B7C47632B32D9A5001C804B /* BackupViewControllerStrategy.swift in Sources */,
@@ -3531,7 +3454,6 @@
 				2B87CAFA2D47C95E00448A2A /* PostTransactionParams.swift in Sources */,
 				2B2B18972D2AC27F00A2B39D /* AppBackgroundView.swift in Sources */,
 				2B7C475D2B32D9A5001C804B /* SettingsViewController.swift in Sources */,
-				2B7C47672B32D9A5001C804B /* BackupStatusViewController.swift in Sources */,
 				2B7C47012B32D8EE001C804B /* SceneDelegate.swift in Sources */,
 				2B7C47502B32D985001C804B /* TakeoverViewModel.swift in Sources */,
 				2B87CB1C2D47D2DE00448A2A /* FeeRateType.swift in Sources */,
@@ -3587,13 +3509,13 @@
 				2B83E25D2D37F164003B1397 /* BackupInfo.swift in Sources */,
 				2B7C46FA2B32D8C4001C804B /* FBTransaction.swift in Sources */,
 				2B7C47322B32D965001C804B /* ReceiveViewController.swift in Sources */,
+				2BEB9BF22D772F9800699AC1 /* ApproveViewModelBase.swift in Sources */,
 				2B7C471F2B32D916001C804B /* UIButton+Extension.swift in Sources */,
 				2BCFE12F2D5B7B39006BE227 /* NavigationBarLeftHeader.swift in Sources */,
 				2B7C47412B32D965001C804B /* AmountToSendViewModel.swift in Sources */,
 				2BAB68212B820E89003592F1 /* FBFont.swift in Sources */,
 				2B7C46F52B32D8C4001C804B /* ExtraParameters.swift in Sources */,
 				2B83E2862D38D20E003B1397 /* AddAssetsDelegate.swift in Sources */,
-				2B0FEDA82D37973100F637E6 /* AssetListViewModelDelegate.swift in Sources */,
 				2BAB68262B820E9C003592F1 /* VerticalSeparator.swift in Sources */,
 				2B2B1AD02D2D6D0A00A2B39D /* LatestBackupState.swift in Sources */,
 				2B7C476A2B32D9C9001C804B /* AlertView.swift in Sources */,
@@ -3619,13 +3541,11 @@
 				2B7C47072B32D8F3001C804B /* GoogleSignInManager.swift in Sources */,
 				2BCFE1282D5B326A006BE227 /* ActivityViewRep.swift in Sources */,
 				2BAB68222B820E89003592F1 /* Style.swift in Sources */,
-				2B7C47432B32D96E001C804B /* AssetListViewController.swift in Sources */,
 				2BAB68182B820E13003592F1 /* AddDeviceQRView.swift in Sources */,
 				2B87CB0C2D47CFF700448A2A /* AssetError.swift in Sources */,
 				2B0FEDAB2D37980200F637E6 /* AssetSummary.swift in Sources */,
 				2B7C474B2B32D979001C804B /* TransfersViewModel.swift in Sources */,
 				2B2B1AD42D2E99CB00A2B39D /* RecoverManager.swift in Sources */,
-				2B7C47662B32D9A5001C804B /* BackupStatusViewModel.swift in Sources */,
 				2B7C470E2B32D8FC001C804B /* ChooseAssetRepository.swift in Sources */,
 				2B7C474C2B32D979001C804B /* TransfersViewController.swift in Sources */,
 				2B7C47162B32D916001C804B /* Date+Extensions.swift in Sources */,
@@ -3654,19 +3574,19 @@
 				2B7C47282B32D964001C804B /* FeeRateViewController.swift in Sources */,
 				2BEEF7C92BAC6F11004AF6AB /* DerivedKeyItem.swift in Sources */,
 				2B2B18892D2A8A0C00A2B39D /* SignInView.swift in Sources */,
-				2B7C472E2B32D965001C804B /* ApproveViewController.swift in Sources */,
 				2BD5D0ED2D706C490025A9A8 /* TitleValueRow.swift in Sources */,
+				2BEB9BF52D77338D00699AC1 /* ReceiveViewModel.swift in Sources */,
 				2B7C473F2B32D965001C804B /* ChooseAssetViewModel.swift in Sources */,
 				2BCF87932D37DE6C00A46521 /* ChooseAssetFlowType.swift in Sources */,
 				2B2B18C42D2ADF5300A2B39D /* AddDeviceViewModel.swift in Sources */,
 				2BAB681A2B820E19003592F1 /* JoinRequestData.swift in Sources */,
 				2B7C47092B32D8F3001C804B /* KeyStorageProvider.swift in Sources */,
 				2B7C471A2B32D916001C804B /* ViewController+Extensions.swift in Sources */,
+				2BEB9BE52D771D3F00699AC1 /* AssetListViewModelBase.swift in Sources */,
 				2B7C470F2B32D8FC001C804B /* BackupRepository.swift in Sources */,
 				2B7C47192B32D916001C804B /* CodableParsingExtension.swift in Sources */,
 				2B7C470C2B32D8FC001C804B /* AssetsImageMapper.swift in Sources */,
 				2B7C474E2B32D97E001C804B /* TransferDetailsViewController.swift in Sources */,
-				2B5F46B52D709D9500B23371 /* NFTDataModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3675,7 +3595,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				60DA06572A645E1300160ADC /* Asset.swift in Sources */,
-				603903752A6D1F560060E026 /* ApproveViewController.swift in Sources */,
 				60B137B72A8B6A4C009A4ECB /* TransactionSentViewModel.swift in Sources */,
 				2B3E6C112ACE96AC000E91CF /* AddAssetViewCell.swift in Sources */,
 				2B2B18952D2AC27F00A2B39D /* AppBackgroundView.swift in Sources */,
@@ -3690,7 +3609,6 @@
 				2BF477E32D37DBBD000C9553 /* BackupData.swift in Sources */,
 				2B2B1AD52D2E99CB00A2B39D /* RecoverManager.swift in Sources */,
 				867828E72A696D170035787D /* QRCodeGenerator.swift in Sources */,
-				2B5F46B42D709D9500B23371 /* NFTDataModel.swift in Sources */,
 				60DA06582A645E1300160ADC /* FeeManager.swift in Sources */,
 				2BCFE1172D54F377006BE227 /* BackupWalletViewModel.swift in Sources */,
 				603903792A6D3F880060E026 /* ApproveRepository.swift in Sources */,
@@ -3709,11 +3627,13 @@
 				2B95395C2D54B45300816DB7 /* GenerateKeysViewModel.swift in Sources */,
 				86B67A392A6FF925007AC728 /* Int+Extension.swift in Sources */,
 				2B83E2622D37F4DE003B1397 /* PassphraseInfo.swift in Sources */,
+				2BEB9BF12D772F9800699AC1 /* ApproveViewModelBase.swift in Sources */,
 				2B3E6C092ACD8CFD000E91CF /* AddAssetsViewModel.swift in Sources */,
 				2B2B18C52D2ADF5300A2B39D /* AddDeviceViewModel.swift in Sources */,
 				2BD34A792B98B9A2008406D5 /* DeriveKeysView.swift in Sources */,
 				2B2B18AC2D2AC5C300A2B39D /* CustomBackButtonView.swift in Sources */,
 				60DA06862A645ED300160ADC /* FeeRateRepository.swift in Sources */,
+				2BEB9BE92D7728D500699AC1 /* AddAssetsViewModelBase.swift in Sources */,
 				867828E62A696D170035787D /* ActivityIndicator.swift in Sources */,
 				862F43102A6AC23600C594CA /* BackupViewControllerStrategy.swift in Sources */,
 				2BD53A232B28735700756C4A /* Date+Extensions.swift in Sources */,
@@ -3741,10 +3661,10 @@
 				2B87CB1F2D47D30F00448A2A /* EstimatedTransactionFeeResponse.swift in Sources */,
 				2BEB9BCA2D75CCDD00699AC1 /* TransactionHeaderView.swift in Sources */,
 				2B94CFCC2A9CE576003E7508 /* CodableAnyExtension.swift in Sources */,
-				2B3E6C032ACC0C40000E91CF /* BackupStatusViewModel.swift in Sources */,
 				2B83E27A2D3809A8003B1397 /* AddAssetsViewControllerDelegate.swift in Sources */,
 				2BCFE1272D5B326A006BE227 /* ActivityViewRep.swift in Sources */,
 				2BF8EDBE2B56758300046F0B /* AlertBannerView.swift in Sources */,
+				2BEB9BE42D771D3F00699AC1 /* AssetListViewModelBase.swift in Sources */,
 				2B83E2742D38053B003B1397 /* AssetToAdd.swift in Sources */,
 				86EB51332A66C08C00D2911A /* SettingsViewController.swift in Sources */,
 				867828E42A696D170035787D /* Double+Extension.swift in Sources */,
@@ -3753,7 +3673,6 @@
 				2BA53D3D2B46B348008C7B6C /* FBHostingViewController.swift in Sources */,
 				2B2B19B82D2C058E00A2B39D /* FireblocksManagerProtocol.swift in Sources */,
 				2BD34A772B98B995008406D5 /* DeriveKeysViewModel.swift in Sources */,
-				60EECFAA2A66BE6400F3891C /* ReceiveViewModel.swift in Sources */,
 				866A73D12A696A7C00E8E545 /* BackupProvider.swift in Sources */,
 				60DA06582A645E1300160ADC /* FeeManager.swift in Sources */,
 				2B94CFFD2A9F3F03003E7508 /* PollingListener.swift in Sources */,
@@ -3795,14 +3714,12 @@
 				2BEB9BDF2D75FBDB00699AC1 /* CacheManager.swift in Sources */,
 				2BCF87942D37DE6C00A46521 /* ChooseAssetFlowType.swift in Sources */,
 				862E2AA82A543B86002FF774 /* AuthProtocols.swift in Sources */,
-				2B0FEDA72D37973100F637E6 /* AssetListViewModelDelegate.swift in Sources */,
 				2B558E992B483CB3006212B2 /* PrepareForScanHostingVC.swift in Sources */,
 				60EECFA02A66BE3100F3891C /* ChooseAssetRepository.swift in Sources */,
 				2BCFE1342D5B7C46006BE227 /* TabBarView.swift in Sources */,
-				602573312A39E7F600A3C5D5 /* AssetListViewController.swift in Sources */,
 				603903772A6D1F560060E026 /* ApproveViewModel.swift in Sources */,
 				2B83E26A2D38033F003B1397 /* PassphraseInfoBody.swift in Sources */,
-				602573312A39E7F600A3C5D5 /* AssetListViewController.swift in Sources */,
+				2BEB9BF42D77338D00699AC1 /* ReceiveViewModel.swift in Sources */,
 				60B287E32A8903CF00DEA50C /* KeyStorageProvider.swift in Sources */,
 				2B558E9B2B484A87006212B2 /* ValidateRequestIdViewModel.swift in Sources */,
 				86EBAABA2A5C3D560085E76B /* FireblocksManager.swift in Sources */,
@@ -3817,7 +3734,6 @@
 				2BD5D0EE2D706C490025A9A8 /* TitleValueRow.swift in Sources */,
 				2B558E882B4704BA006212B2 /* PrepareForScanView.swift in Sources */,
 				6025732A2A39D76900A3C5D5 /* AssetsIcons.swift in Sources */,
-				866A73CC2A696A4B00E8E545 /* BackupStatusViewController.swift in Sources */,
 				2B2B18812D2A76A700A2B39D /* LaunchView.swift in Sources */,
 				866A73DA2A696AA200E8E545 /* GoogleDriveManager.swift in Sources */,
 				60DA067F2A645E9A00160ADC /* ChooseAssetViewModel.swift in Sources */,

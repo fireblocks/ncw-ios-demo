@@ -17,6 +17,7 @@ import SwiftUI
 struct AssetListView: View {
     @EnvironmentObject var coordinator: Coordinator
     @EnvironmentObject var loadingManager: LoadingManager
+    @EnvironmentObject var fireblocksManager: FireblocksManager
     #if EW
     @Environment(EWManager.self) var ewManager
     #endif
@@ -39,10 +40,11 @@ struct AssetListView: View {
         .onAppear() {
             #if EW
             viewModel.setup(ewManager: ewManager, loadingManager: loadingManager, coordinator: coordinator)
+            #else
+            viewModel.setup(loadingManager: loadingManager, coordinator: coordinator)
             #endif
         }
         .animation(.default, value: viewModel.assetsSummary)
-        .animation(.default, value: viewModel.ewManager?.errorMessage)
         .tint(.white)
     }
     

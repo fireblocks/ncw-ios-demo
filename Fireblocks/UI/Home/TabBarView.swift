@@ -21,10 +21,12 @@ enum TabIndex: Int, CaseIterable {
             return "Assets"
         case .Transfers:
             return "Transfers"
+        #if EW
         case .NFTs:
             return "NFTs"
         case .Web3:
             return "Web3"
+        #endif
         }
     }
     
@@ -34,10 +36,12 @@ enum TabIndex: Int, CaseIterable {
             return "Assets"
         case .Transfers:
             return "Transfers"
+        #if EW
         case .NFTs:
             return "NFTs"
         case .Web3:
             return "WeWeb3 connectionsb3"
+        #endif
         }
     }
     
@@ -45,7 +49,8 @@ enum TabIndex: Int, CaseIterable {
 
 struct TabBarView: View {
     @EnvironmentObject var coordinator: Coordinator
-    
+    @EnvironmentObject var fireblocksManager: FireblocksManager
+
     @State var selectedIndex = TabIndex.Assets
     
     var body: some View {

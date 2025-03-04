@@ -60,7 +60,7 @@ struct RecoverWalletView: View {
         .navigationBarBackButtonHidden()
         .navigationBarItems(leading: CustomBackButtonView())
         .onAppear() {
-            viewModel.setup(loadingManager: loadingManager, fireblocksManager: fireblocksManager, googleSignInManager: googleSignInManager)
+            viewModel.setup(loadingManager: loadingManager, fireblocksManager: fireblocksManager, googleSignInManager: googleSignInManager, coordinator: coordinator)
         }
         .onChange(of: viewModel.dismiss) { _, newValue in
             if newValue {

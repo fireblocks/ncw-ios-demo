@@ -34,20 +34,20 @@ class TabBarViewController: UITabBarController {
     
 //MARK: - FUNCTIONS
     private func initSubviewControllers(){
-        typealias TabBarItem = (viewController: UIViewController, image: UIImage, name: String)
-        let viewControllers: [TabBarItem] = [
-            (AssetListViewController(), AssetsIcons.wallet.getIcon(), "Assets"),
-            (TransfersViewController(), AssetsIcons.transfer.getIcon(), "Transfers")
-        ]
-        
-        setupNavButtons()
-        for (index,item) in viewControllers.enumerated() {
-            let viewController = item.viewController
-            let _ = viewController.view
-            let tabImage = item.image
-            viewController.tabBarItem = UITabBarItem(title: item.name, image: tabImage, tag: index)
-            subviewControllers.append(viewController)
-        }
+//        typealias TabBarItem = (viewController: UIViewController, image: UIImage, name: String)
+//        let viewControllers: [TabBarItem] = [
+//            (AssetListViewController(), AssetsIcons.wallet.getIcon(), "Assets"),
+//            (TransfersViewController(), AssetsIcons.transfer.getIcon(), "Transfers")
+//        ]
+//        
+//        setupNavButtons()
+//        for (index,item) in viewControllers.enumerated() {
+//            let viewController = item.viewController
+//            let _ = viewController.view
+//            let tabImage = item.image
+//            viewController.tabBarItem = UITabBarItem(title: item.name, image: tabImage, tag: index)
+//            subviewControllers.append(viewController)
+//        }
     }
     
     private func setupNavButtons() {

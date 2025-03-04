@@ -107,8 +107,10 @@ struct AssetRow: View {
                     Spacer()
 
                     if let assetId = asset.asset?.id, let total = asset.balance?.total, let price = Double(total) {
+                        #if EW
                         Text(CryptoCurrencyManager.shared.getTotalPrice(assetId: assetId, amount: price))
                             .font(.b2)
+                        #endif
                     }
                 }
                 .foregroundStyle(.secondary)

@@ -85,7 +85,7 @@ extension BackupWalletView {
         @MainActor
         private func authenticateUser(passphraseId: String, callback: @escaping (Bool) -> ()) {
             guard let gidConfig = googleSignInManager?.getGIDConfiguration() else {
-                print("❌ BackupViewController, gidConfig is nil.")
+                print("❌ BackupWalletView, gidConfig is nil.")
                 return callback(false)
             }
             

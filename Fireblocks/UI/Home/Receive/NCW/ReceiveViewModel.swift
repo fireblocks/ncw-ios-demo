@@ -8,8 +8,13 @@
 import Foundation
 
 class ReceiveViewModel {
-    var asset: AssetSummary!
+    var loadingManager: LoadingManager?
+    var asset: AssetSummary
     
+    init(asset: AssetSummary = AssetSummary()) {
+        self.asset = asset
+    }
+
     func getAssetAddress() -> String {
         return asset.address?.address ?? ""
     }

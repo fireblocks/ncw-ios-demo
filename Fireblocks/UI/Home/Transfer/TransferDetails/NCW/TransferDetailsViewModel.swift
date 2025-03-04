@@ -10,7 +10,7 @@ import Combine
 
 class TransferDetailsViewModel {
     var transferInfo: TransferInfo?
-    let repository = ApproveRepository()
+    let repository = ApproveRepository(fireblocksManager: FireblocksManager.shared)
     var hideBackBarButton: Bool
     
     weak var delegate: TransferDetailsViewModelDelegate?

@@ -53,22 +53,9 @@ class AssetsSequence: AsyncSequence {
 }
 
 @Observable
-class AssetListViewModel {
+class AssetListViewModel: AssetListViewModelBase {
     var ewManager: EWManager!
-    var loadingManager: LoadingManager!
-    var coordinator: Coordinator!
-    var didLoad = false
-    var addAssetPresented = false
-    
-    weak var delegate: AssetListViewModelDelegate?
-    var assetsSummary: [AssetSummary] = []
-    private var task: Task<Void, Never>?
-    var cancellable = Set<AnyCancellable>()
-    var chooseAssetFlowType: ChooseAssetFlowType = .send
-    let accountId = 0
     static let shared = AssetListViewModel()
-
-    init() {}
     
     func setup(ewManager: EWManager, loadingManager: LoadingManager, coordinator: Coordinator) {
         if !didLoad {
@@ -83,14 +70,6 @@ class AssetListViewModel {
         
     }
     
-    func signOut() {
-        assetsSummary.removeAll()
-        cancellable.removeAll()
-    }
-    
-    deinit {
-        task?.cancel()
-    }
     
     func listenToTransferChanges() {
 //        TransfersViewModel.shared.$transfers.receive(on: RunLoop.main)
@@ -102,7 +81,7 @@ class AssetListViewModel {
 //            }.store(in: &cancellable)
     }
 
-    func fetchAssets() {
+    override func fetchAssets() {
         Task {
             do {
                 let assets = try await ewManager?.fetchAllAccountAssets(accountId: accountId)
@@ -134,16 +113,6 @@ class AssetListViewModel {
 
         }
     }
-    
-//    func loadAssetData() async {
-//        await withTaskGroup(of: (EmbeddedWalletSDKDev.AssetBalance?, [EmbeddedWalletSDKDev.AssetAddress]).self) { group in
-//            group.addTask{
-//                self.balance = await self.getAssetBalance()
-//                self.addresses = await self.getAddresses()
-//                return (self.balance, self.addresses)
-//            }
-//        }
-//    }
     
     private func getAssetBalance(asset: Asset) async -> EmbeddedWalletSDKDev.AssetBalance? {
         guard let assetId = asset.id else {
@@ -181,25 +150,7 @@ class AssetListViewModel {
         }
     }
 
-    func toggleAssetExpanded(asset: AssetSummary, section: Int = 0) {
-        if let index = assetsSummary.firstIndex(where: {$0 == asset}) {
-            assetsSummary[index].isExpanded.toggle()
-        }
-    }
-    
-    func getAssetSummary() -> [AssetSummary] {
-        return assetsSummary
-    }
-    
-    func getAssets() -> [AssetSummary] {
-        return assetsSummary
-    }
-    
-    func getAssetsCount() -> Int {
-        assetsSummary.count
-    }
-    
-    func getBalance() -> String {
+    override func getBalance() -> String {
         var balanceSum: Double = 0.0
         assetsSummary.filter({$0.balance != nil}).map({$0.balance!}).forEach { balance in
             if let assetId = balance.id, let total = balance.total, let price = Double(total) {
@@ -209,50 +160,5 @@ class AssetListViewModel {
         
         return "$\(balanceSum.formatFractions(fractionDigits: 2))"
     }
-    
-    func getIsButtonsEnabled() -> Bool {
-        return !assetsSummary.isEmpty
-    }
-    
-    func getAsset(by assetId: String) -> Asset? {
-        return assetsSummary.filter({$0.asset != nil}).map({$0.asset!}).first(where: {$0.id == assetId})
-    }
-    
-    func didTapSend(index: Int) {
-        if assetsSummary.count > index {
-            let asset = getAssets()[index]
-            self.chooseAssetFlowType = .send
-            delegate?.navigateToNextScreen(with: asset)
-        }
-    }
-    
-    func didTapReceive(index: Int) {
-        if assetsSummary.count > index {
-            let asset = getAssets()[index]
-            self.chooseAssetFlowType = .receive
-            delegate?.navigateToNextScreen(with: asset)
-        }
-    }
-
-    
+        
 }
-
-extension AssetListViewModel: AddAssetsViewControllerDelegate {
-    func dismissAddAssets(addedAssets: [Asset], failedAssets: [Asset]) {
-        self.addAssetPresented = false
-        if failedAssets.count > 0 {
-//            let prefix = failedAssets.count > 1 ? "The following assets were" : "The following asset was"
-//            var assets: String = ""
-//            failedAssets.forEach { asset in
-//                assets += " \(asset.symbol),"
-//            }
-//            assets.removeLast()
-//            self.showAlertView(message: "\(prefix) not added: \(assets).\nPlease try again\n")
-        }
-        if addedAssets.count > 0 {
-            loadingManager.isLoading = true
-            fetchAssets()
-        }
-    }
-}
-

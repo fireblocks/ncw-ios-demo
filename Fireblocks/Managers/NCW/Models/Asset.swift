@@ -21,8 +21,8 @@ struct Asset: Codable, Identifiable, Hashable {
 
     
     var id: String = ""
-    var symbol: String = ""
-    var name: String
+    var symbol: String?
+    var name: String?
     var decimals: Int = 0
     var testnet = false
     var hasFee = false
@@ -45,7 +45,7 @@ struct Asset: Codable, Identifiable, Hashable {
 
 struct AssetBalance: Codable, Hashable {
     var id: String
-    var total: String = "0"
+    var total: String?
     var frozen: String? = "0"
     var locked: String? = "0"
     var pending: String? = "0"

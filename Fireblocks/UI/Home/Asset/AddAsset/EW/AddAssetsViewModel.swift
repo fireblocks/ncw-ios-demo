@@ -14,14 +14,8 @@ import EmbeddedWalletSDK
 #endif
 
 @Observable
-class AddAssetsViewModel {
+class AddAssetsViewModel: AddAssetsViewModelBase {
     var ewManager: EWManager!
-    var loadingManager: LoadingManager!
-
-    private var assets: [AssetToAdd] = []
-    var searchResults: [AssetToAdd] = []
-    var selectedAsset: AssetToAdd?
-    var searchText = ""
 
     func setup(ewManager: EWManager, loadingManager: LoadingManager) {
         self.ewManager = ewManager
@@ -42,37 +36,7 @@ class AddAssetsViewModel {
         }
     }
         
-    func getAssetsCount() -> Int {
-        return searchResults.count
-    }
-    
-    func getSelectedCount() -> Int {
-        return assets.filter({$0.isSelected}).count
-    }
-
-    func getAssets() -> [AssetToAdd] {
-        return searchResults
-    }
-        
-    func didSelect(asset: AssetToAdd) {
-        if !asset.isSelected {
-            if let index = searchResults.firstIndex(where: {$0.isSelected}) {
-                searchResults[index].isSelected = false
-            }
-            if let index = assets.firstIndex(where: {$0.isSelected}) {
-                assets[index].isSelected = false
-            }
-        }
-        
-        if let index = searchResults.firstIndex(where: {$0 == asset}) {
-            searchResults[index].isSelected.toggle()
-            if let index = assets.firstIndex(where: {$0 == asset}) {
-                assets[index].isSelected.toggle()
-            }
-        }
-    }
-    
-    func createAsset() {
+    override func createAsset() {
         self.loadingManager.isLoading = true
         Task {
             do {
@@ -95,13 +59,4 @@ class AddAssetsViewModel {
             }
         }
     }
-    
-    func searchDidChange() {
-        if searchText.isEmpty {
-            searchResults = assets
-        } else {
-            searchResults = assets.filter({$0.asset.asset != nil && $0.asset.asset!.name != nil && $0.asset.asset!.symbol != nil}).filter({$0.asset.asset!.name!.localizedStandardContains(searchText) || $0.asset.asset!.symbol!.localizedStandardContains(searchText) })
-        }
-    }
-
 }

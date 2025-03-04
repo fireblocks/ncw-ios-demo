@@ -8,17 +8,22 @@
 import Foundation
 
 class ApproveRepository {
+    let fireblocksManager: FireblocksManager
+    
+    init(fireblocksManager: FireblocksManager) {
+        self.fireblocksManager = fireblocksManager
+    }
     
     func approveTransaction(transactionId: String) async -> Bool {
-        return await FireblocksManager.shared.signTransaction(transactionId: transactionId)
+        return await fireblocksManager.signTransaction(transactionId: transactionId)
     }
     
     func stopTransaction() {
-        FireblocksManager.shared.stopTransaction()
+        fireblocksManager.stopTransaction()
     }
     
     func cancelTransaction(assetId: String, txId: String) async throws -> Bool {
-        let deviceId = FireblocksManager.shared.getDeviceId()
+        let deviceId = fireblocksManager.getDeviceId()
         return try await SessionManager.shared.denyTransaction(deviceId: deviceId, txId: txId)
     }
 }

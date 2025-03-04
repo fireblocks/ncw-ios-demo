@@ -6,13 +6,13 @@
 //
 
 import Foundation
-
+#if EW
 #if DEV
 import EmbeddedWalletSDKDev
 #else
 import EmbeddedWalletSDK
 #endif
-
+#endif
 class ReceiveViewModel {
     var loadingManager: LoadingManager?
     var asset: AssetSummary

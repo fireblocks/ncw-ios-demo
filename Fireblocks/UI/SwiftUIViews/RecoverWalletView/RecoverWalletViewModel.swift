@@ -19,6 +19,7 @@ import FireblocksSDK
 extension RecoverWalletView {
     class ViewModel: ObservableObject, FireblocksPassphraseResolver {
         private var loadingManager: LoadingManager!
+        var coordinator: Coordinator?
         var googleSignInManager: GoogleSignInManager?
         var fireblocksManager: FireblocksManager?
         let googleDriveManager = GoogleDriveManager()
@@ -33,8 +34,9 @@ extension RecoverWalletView {
             self.redirect = redirect
         }
         
-        func setup(loadingManager: LoadingManager, fireblocksManager: FireblocksManager, googleSignInManager: GoogleSignInManager) {
+        func setup(loadingManager: LoadingManager, fireblocksManager: FireblocksManager, googleSignInManager: GoogleSignInManager, coordinator: Coordinator) {
             self.loadingManager = loadingManager
+            self.coordinator = coordinator
             self.fireblocksManager = fireblocksManager
             self.googleSignInManager = googleSignInManager
             if redirect {
@@ -70,7 +72,7 @@ extension RecoverWalletView {
                                     TabBarView()
                                 }
                             } else {
-                                dismiss = true
+                                self.coordinator?.path = NavigationPath()
                             }
                         } else {
                             
@@ -110,7 +112,7 @@ extension RecoverWalletView {
         @MainActor
         private func authenticateUser(passphraseId: String, callback: @escaping (String?) -> ()) {
             guard let gidConfig = googleSignInManager?.getGIDConfiguration() else {
-                print("❌ BackupViewController, gidConfig is nil.")
+                print("❌ BackupWalletView, gidConfig is nil.")
                 return callback(nil)
             }
             

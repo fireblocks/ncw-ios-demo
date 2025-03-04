@@ -25,11 +25,9 @@ class ReceiveViewController: UIViewController, SwiftUIEnvironmentBridge {
     
     #if EW
     func setEnvironment(loadingManager: LoadingManager, coordinator: Coordinator, ewManager: EWManager) {
-        viewModel.loadingManager = loadingManager
     }
     #else
     func setEnvironment(loadingManager: LoadingManager, coordinator: Coordinator) {
-        viewModel.loadingManager = loadingManager
     }
     #endif
 

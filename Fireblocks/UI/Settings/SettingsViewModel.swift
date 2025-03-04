@@ -33,7 +33,7 @@ class SettingsViewModel {
                 self.coordinator.path.append(NavigationTypes.backup(true))
             }),
             SettingsData(icon: "settingsRecover", title: "Recover wallet", subtitle: nil, action: {
-                self.coordinator.path.append(NavigationTypes.recoverWallet(true))
+                self.coordinator.path.append(NavigationTypes.recoverWallet(false))
             }),
             SettingsData(icon: "settingsExport", title: "Export private key", subtitle: nil, action: {
                 self.coordinator.path.append(NavigationTypes.takeover)

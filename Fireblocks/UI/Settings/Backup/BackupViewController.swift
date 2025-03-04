@@ -118,18 +118,14 @@ class BackupViewController: UIViewController{
     }
     
     private func navigateToBackupStatusViewController() {
-        let vc = BackupStatusViewController(didComeFromGenerateKeys: viewModel.didComeFromGenerateKeys)
-        navigationController?.pushViewController(vc, animated: true)
+//        let vc = BackupStatusViewController(didComeFromGenerateKeys: viewModel.didComeFromGenerateKeys)
+//        navigationController?.pushViewController(vc, animated: true)
     }
     
     private func navigateToAssetsViewController() {
-        if let window = view.window {
-            let rootViewController = UINavigationController()
-            let vc = TabBarViewController()
-            rootViewController.pushViewController(vc, animated: true)
-            window.rootViewController = rootViewController
-        }
-        
+        SignInViewModel.shared.launchView = NavigationContainerView {
+            TabBarView()
+        }        
     }
     
     private func showError(message: String) {

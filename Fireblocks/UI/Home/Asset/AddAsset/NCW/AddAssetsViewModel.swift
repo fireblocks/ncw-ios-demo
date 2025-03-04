@@ -9,104 +9,47 @@ import Foundation
 import UIKit
 
 
-
-class AddAssetsViewModel: ObservableObject {
-    private let deviceId: String
-    private var assets: [AssetToAdd] = []
-    private var searchResults: [AssetToAdd] = []
-    private var addedAssets: [Asset] = []
-    private var failedAssets: [Asset] = []
-
-    weak var delegate: AddAssetsDelegate?
-        
-    init(deviceId: String) {
+@Observable
+class AddAssetsViewModel: AddAssetsViewModelBase {
+    private var deviceId: String = ""
+    
+    func setup(loadingManager: LoadingManager, deviceId: String) {
+        self.loadingManager = loadingManager
         self.deviceId = deviceId
-        
-
         Task {
+            await self.loadingManager.setLoading(value: true)
             do {
                 let response = try await SessionManager.shared.getSupportedAssets(deviceId: deviceId)
-                DispatchQueue.main.async {
-                    self.assets = response.map({AssetToAdd(asset: AssetSummary(asset: $0))})
-                    self.searchResults = response.map({AssetToAdd(asset: AssetSummary(asset: $0))})
-                    self.delegate?.didLoadAssets()
+                await MainActor.run {
+                    self.assets = response.map({AssetToAdd(asset: $0)})
+                    self.searchResults = response.map({AssetToAdd(asset: $0)})
+                    self.loadingManager.isLoading = false
                 }
             } catch {
-                DispatchQueue.main.async {
-                    self.delegate?.failedToLoadAssets()
-                }
+                await self.loadingManager.setAlertMessage(error: error)
+                await self.loadingManager.setLoading(value: false)
             }
         }
     }
         
-    func getAssetsCount() -> Int {
-        return searchResults.count
-    }
-    
-    func getAssets() -> [AssetToAdd] {
-        return searchResults
-    }
-    
-    func getSelectedCount() -> Int {
-        return assets.filter({$0.isSelected}).count
-    }
-    
-    func didSelect(indexPath: IndexPath) {
-        //TBD - can be removed when switch to multi selection
-        if !searchResults[indexPath.row].isSelected {
-            if let index = searchResults.firstIndex(where: {$0.isSelected}) {
-                searchResults[index].isSelected = false
-            }
-            if let index = assets.firstIndex(where: {$0.isSelected}) {
-                assets[index].isSelected = false
-            }
-        }
-        //
-        
-        searchResults[indexPath.row].isSelected.toggle()
-        if let index = assets.firstIndex(where: {$0.asset == searchResults[indexPath.row].asset}) {
-            assets[index].isSelected.toggle()
-        }
-        delegate?.reloadData()
-    }
-    
-    func createAsset() {
+    override func createAsset() {
+        self.loadingManager.isLoading = true
         Task {
-            for asset in assets.filter({$0.isSelected}).map({$0.asset}) {
-                do {
-                    if let asset = asset.asset {
-                        if let result = try await SessionManager.shared.createAsset(deviceId: deviceId, assetId: asset.id), let data = result.data(using: .utf8) {
-                            if let error = try? JSONDecoder().decode(ErrorResponse.self, from: data) {
-                                failedAssets.append(asset)
-                            } else {
-                                addedAssets.append(asset)
-                            }
-                        } else {
-                            failedAssets.append(asset)
+            do {
+                if let assetToAdd = assets.filter({$0.isSelected}).first {
+                    if let result = try await SessionManager.shared.createAsset(deviceId: deviceId, assetId: assetToAdd.asset.id) {
+                        await MainActor.run {
+                            selectedAsset = assetToAdd
                         }
                     }
-                } catch {
-                    if let asset = asset.asset {
-                        failedAssets.append(asset)
-                    }
+                    await self.loadingManager.setLoading(value: false)
                 }
-            }
-            DispatchQueue.main.async {
-                self.delegate?.didAddAssets(addedAssets: self.addedAssets, failedAssets: self.failedAssets)
+            } catch {
+                await self.loadingManager.setAlertMessage(error: error)
+                await self.loadingManager.setLoading(value: false)
             }
         }
 
     }
-    
-    func searchDidChange(searchText: String) {
-        if searchText.isEmpty {
-            searchResults = assets
-        } else {
-            searchResults = assets.filter({$0.asset.asset != nil}).filter({$0.asset.asset!.name.localizedStandardContains(searchText) || $0.asset.asset!.symbol.localizedStandardContains(searchText) })
-        }
-        
-        self.delegate?.reloadData()
-    }
-
 }
 

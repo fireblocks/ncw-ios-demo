@@ -14,7 +14,6 @@ class SignInViewModel: SignInView.ViewModel {
 
     override func handleSuccessSignIn(isLaunch: Bool = false) async {
         if let _ = await fireblocksManager?.assignWallet() {
-//            UsersLocalStorageManager.shared.setDidSignIn(value: true)
             guard let state = await fireblocksManager?.getLatestBackupState() else {
                 return
             }
@@ -45,8 +44,6 @@ class SignInViewModel: SignInView.ViewModel {
                         JoinOrRecoverView()
                     }
                 }
-
-//                coordinator?.path.append(NavigationTypes.joinOrRecover)
             case .error:
                 print("error")
             }

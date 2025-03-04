@@ -231,6 +231,7 @@ struct NavigationContainerView<Content: View>: View {
                     SpinnerViewContainer {
                         ApproveTransactionView(transaction: transaction)
                             .environmentObject(coordinator)
+                            .environmentObject(fireblocksManager)
                             #if EW
                             .environment(ewManager)
                             #endif
