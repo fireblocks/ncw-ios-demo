@@ -26,10 +26,12 @@ class ApproveViewModelBase {
     var cancellable = Set<AnyCancellable>()
 
     var didLoad = false
-    init(transaction: FBTransaction = FBTransaction()) {
+    let fromCreate: Bool
+    init(transaction: FBTransaction = FBTransaction(), fromCreate: Bool) {
         self.transaction = transaction
+        self.fromCreate = fromCreate
     }
-
+    
     func getCreationDate() -> String {
         return transferInfo?.creationDate ?? ""
     }
@@ -45,7 +47,7 @@ class ApproveViewModelBase {
 
     func getFee() -> String {
         if let transferInfo {
-            return "\(transferInfo.fee) \(transferInfo.assetId)"
+            return "\(transferInfo.fee) \(transferInfo.blockChainName)"
         }
         return "0"
     }
@@ -109,9 +111,24 @@ class ApproveViewModelBase {
             self.loadingManager?.isLoading = false
             return
         }
+        self.loadingManager?.isLoading = true
+
         Task {
-            let isApproved = await repository.approveTransaction(transactionId: transactionId)
-            //update ui
+            do {
+                let isApproved = try await repository.approveTransaction(transactionId: transactionId)
+                await self.loadingManager?.setLoading(value: false)
+
+                if isApproved {
+                    await MainActor.run {
+                        self.coordinator?.path = NavigationPath()
+                    }
+                } else {
+                    await self.loadingManager?.setAlertMessage(error: CustomError.genericError("Failed to approve transaction"))
+                }
+            } catch {
+                await self.loadingManager?.setLoading(value: false)
+                await self.loadingManager?.setAlertMessage(error: error)
+            }
         }
     }
 
@@ -129,6 +146,7 @@ class ApproveViewModelBase {
         Task {
             do {
                 let isCanceled = try await repository.cancelTransaction(assetId: assetId, txId: transactionId)
+                await self.loadingManager?.setLoading(value: false)
                 if isCanceled {
                     await MainActor.run {
                         self.coordinator?.path = NavigationPath()
@@ -143,5 +161,4 @@ class ApproveViewModelBase {
             
         }
     }
-
 }

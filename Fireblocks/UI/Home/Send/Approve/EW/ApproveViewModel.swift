@@ -23,6 +23,11 @@ class ApproveViewModel: ApproveViewModelBase {
 
     weak var transferDelegate: TransferDetailsViewModelDelegate?
     
+    deinit {
+        pollingManagerTxId?.stopPolling()
+        cancellable.removeAll()
+    }
+
     func setup(coordinator: Coordinator,
                loadingManager: LoadingManager,
                ewManager: EWManager, fireblocksManager: FireblocksManager) {
@@ -34,6 +39,7 @@ class ApproveViewModel: ApproveViewModelBase {
             self.repository = ApproveRepository(ewManager: ewManager, fireBlocksManager: fireblocksManager)
             self.pollingManagerTxId = PollingManagerTxId(ewManager: ewManager)
             if let txId = transaction.txId {
+                self.loadingManager?.isLoading = true
                 self.pollingManagerTxId?.startPolling(txId: txId)
                 self.listenToTransferChanges(txId: txId)
             }
@@ -45,7 +51,16 @@ class ApproveViewModel: ApproveViewModelBase {
             .sink { [weak self] response in
                 if let self, let response {
                     if txId == response.id {
-                        self.transferInfo = TransferInfo.toTransferInfo(response: response)
+                        let temp = TransferInfo.toTransferInfo(response: response)
+                        if temp != self.transferInfo {
+                            if self.transferInfo == nil {
+                                self.loadingManager?.isLoading = false
+                            }
+                            self.transferInfo =  TransferInfo.toTransferInfo(response: response)
+                        }
+                        if let transferInfo, transferInfo.isEndedTransaction() {
+                            self.pollingManagerTxId?.stopPolling()
+                        }
                     }
                 }
             }.store(in: &cancellable)

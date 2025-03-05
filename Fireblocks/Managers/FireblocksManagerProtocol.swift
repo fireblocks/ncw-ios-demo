@@ -46,7 +46,7 @@ protocol FireblocksManagerProtocol {
     
     func startPolling()
     func stopPollingMessages()
-    func signTransaction(transactionId: String) async -> Bool
+    func signTransaction(transactionId: String) async throws -> Bool
     func stopTransaction()
     
     func addDevice(joinWalletHandler: FireblocksJoinWalletHandler) async -> Bool
@@ -224,20 +224,15 @@ extension FireblocksManagerProtocol {
         }
     }
 
-    func signTransaction(transactionId: String) async -> Bool {
-        do {
-            let startDate = Date()
-            let result = try await getNCWInstance()?.signTransaction(txId: transactionId)
-            print("Measure - signTransaction \(Date().timeIntervalSince(startDate))")
-            print("RESULT: \(result?.transactionSignatureStatus.rawValue ?? "")")
-            return result?.transactionSignatureStatus == .COMPLETED
-        } catch let err as FireblocksError {
-            AppLoggerManager.shared.logger()?.log("FireblocksManager, signTransaction() failed: \(err.description).")
-            return false
-        } catch {
-            AppLoggerManager.shared.logger()?.log("FireblocksManager, signTransaction() failed: \(error.localizedDescription).")
+    func signTransaction(transactionId: String) async throws -> Bool {
+        let startDate = Date()
+        guard let instance = getNCWInstance() else {
             return false
         }
+
+        let result = try await instance.signTransaction(txId: transactionId)
+        print("Measure - signTransaction \(Date().timeIntervalSince(startDate))")
+        return result.transactionSignatureStatus == .COMPLETED
     }
     
     func stopTransaction() {

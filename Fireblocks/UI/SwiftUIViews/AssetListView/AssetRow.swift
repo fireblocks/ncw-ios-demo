@@ -110,6 +110,12 @@ struct AssetRow: View {
                         #if EW
                         Text(CryptoCurrencyManager.shared.getTotalPrice(assetId: assetId, amount: price))
                             .font(.b2)
+                        #else
+                        if let rate = asset.asset?.rate, let total = asset.balance?.total, let price = Double(total), price != 0 {
+                            let rounded = String(format: "%.\(2)f", (price * rate))
+                            Text("$\(rounded)")
+                                .font(.b2)
+                        }
                         #endif
                     }
                 }

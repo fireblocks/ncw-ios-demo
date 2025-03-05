@@ -51,7 +51,7 @@ class PollingManager: ObservableObject {
                 afterTimestamp = max + 1
             }
         }
-        let after = afterTimestamp != nil ? String(afterTimestamp!) : nil
+        let after = afterTimestamp != nil ? String(afterTimestamp!/1000) : nil
         await withTaskGroup(of: ([TransactionResponse], [TransactionResponse]).self) { group in
             group.addTask{
                 let incoming = try? await self.ewManager.getTransactions( after: after, pageCursor: nil, order: order, incoming: true, destId: "\(accountId)")
@@ -62,7 +62,7 @@ class PollingManager: ObservableObject {
             }
         }
 
-        self.transactions = (self.incomingTransactions + self.outgoingTransactions).filter({$0.createdAt != nil}).sorted(by: {$0.createdAt! > $1.createdAt!})
+        self.transactions = (self.incomingTransactions + self.outgoingTransactions).filter({$0.lastUpdated != nil}).sorted(by: {$0.lastUpdated! > $1.lastUpdated!})
 
         if poll {
             do {

@@ -24,7 +24,7 @@ struct ApproveTransactionView: View {
     @State var viewModel: ApproveViewModel
     
     init(transaction: FBTransaction, fromCreate: Bool = false) {
-        _viewModel = State(initialValue: ApproveViewModel(transaction: transaction))
+        _viewModel = State(initialValue: ApproveViewModel(transaction: transaction, fromCreate: fromCreate))
     }
 
     var body: some View {
@@ -34,9 +34,11 @@ struct ApproveTransactionView: View {
                 List {
                     Section {
                         VStack(spacing: 0) {
-                            Text("You're sending")
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .padding()
+                            if let isEndedTransaction = viewModel.transferInfo?.isEndedTransaction(), !isEndedTransaction {
+                                Text("You're sending")
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                    .padding()
+                            }
                             TransactionHeaderView(transaction: viewModel.transaction, transferInfo: viewModel.transferInfo)
 
                         }
@@ -60,25 +62,10 @@ struct ApproveTransactionView: View {
                 }
             }
         }
-//        .safeAreaInset(edge: .bottom, content: {
-//            VStack(spacing: 8) {
-//                Button {
-//                    viewModel.approveTransaction()
-//                } label: {
-//                    Label("Approve", systemImage: "checkmark")
-//                        .frame(maxWidth: .infinity, alignment: .center)
-//                        .padding(8)
-//                }
-//                .buttonStyle(.borderedProminent)
-//                .tint(AssetsColors.gray2.color())
-//                .background(AssetsColors.gray2.color(), in: .capsule)
-//                .clipShape(.capsule)
-//                .contentShape(.rect)
-//
-//            }
-//            .padding()
-//            .background()
-//        })
+        .safeAreaInset(edge: .bottom, content: {
+            buttons
+            .background()
+        })
         .onAppear() {
             #if EW
             viewModel.setup(coordinator: coordinator, loadingManager: loadingManager, ewManager: ewManager, fireblocksManager: fireblocksManager)
@@ -87,13 +74,30 @@ struct ApproveTransactionView: View {
             #endif
         }
         .toolbar(content: {
-            ToolbarItem(placement: .topBarTrailing) {
-                Button {
-                    viewModel.cancelTransaction()
-                } label: {
-                    Image(.close)
-                        .tint(.white)
+            if viewModel.fromCreate {
+                if let transactionInfo = viewModel.transferInfo, !transactionInfo.isEndedTransaction() {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Button {
+                            viewModel.cancelTransaction()
+                        } label: {
+                            Image(.close)
+                                .tint(.white)
+                        }
+                    }
                 }
+                ToolbarItem(placement: .topBarLeading) {
+                    Button {
+                        coordinator.path = NavigationPath()
+                    } label: {
+                        Image(.backButton)
+                    }
+                }
+
+            } else {
+                ToolbarItem(placement: .topBarLeading) {
+                    CustomBackButtonView()
+                }
+
             }
         })
 //        .animation(.default, value: viewModel.dataModel.feeLevel)
@@ -238,13 +242,52 @@ struct ApproveTransactionView: View {
         }
     }
 
+    @ViewBuilder
+    private var buttons: some View {
+        if let transactionInfo = viewModel.transferInfo {
+            HStack(spacing: 16) {
+                Button {
+                    viewModel.cancelTransaction()
+                } label: {
+                    Text("Deny")
+                        .frame(maxWidth: .infinity, alignment: .center)
+                        .padding(8)
+                }
+                .buttonStyle(.borderedProminent)
+                .tint(AssetsColors.gray2.color())
+                .background(AssetsColors.gray2.color(), in: .capsule)
+                .clipShape(.capsule)
+                .contentShape(.rect)
+                
+                Button {
+                    viewModel.approveTransaction()
+                } label: {
+                    Text("Approve")
+                        .frame(maxWidth: .infinity, alignment: .center)
+                        .padding(8)
+                }
+                .buttonStyle(.borderedProminent)
+                .tint(AssetsColors.gray2.color())
+                .background(AssetsColors.gray2.color(), in: .capsule)
+                .clipShape(.capsule)
+                .contentShape(.rect)
+                
+            }
+            .padding()
+            .opacity(transactionInfo.status == .pendingSignature ? 1 : 0)
+            .disabled(transactionInfo.status != .pendingSignature)
+            .animation(.default, value: viewModel.transferInfo?.status)
+
+        }
+    }
+
 }
 
 #Preview {
     #if EW
     NavigationContainerView(mockManager: EWManagerMock()) {
         SpinnerViewContainer {
-            ApproveTransactionView(transaction: TransferInfo.toTransferInfo(response: Mocks.Transaction.getResponse_ETH_TEST5()).toTransaction(assetListViewModel: AssetListViewModelMock())!)
+            ApproveTransactionView(transaction: TransferInfo.toTransferInfo(response: Mocks.Transaction.getResponse_ETH_TEST5()).toTransaction(assetListViewModel: AssetListViewModelMock())!, fromCreate: false)
         }
     }
     #else

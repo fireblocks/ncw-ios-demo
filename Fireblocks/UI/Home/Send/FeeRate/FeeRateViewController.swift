@@ -76,7 +76,7 @@ class FeeRateViewController: UIViewController, SwiftUIEnvironmentBridge {
     
     private func navigateToApproveScreen(){
         if let transaction = viewModel.getTransaction() {
-            viewModel.coordinator?.path.append(NavigationTypes.approveTransaction(transaction))
+            viewModel.coordinator?.path.append(NavigationTypes.approveTransaction(transaction, true))
         }
     }    
 }

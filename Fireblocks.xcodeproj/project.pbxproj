@@ -820,6 +820,14 @@
 		2BEB9BF42D77338D00699AC1 /* ReceiveViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0FEDB02D37D79E00F637E6 /* ReceiveViewModel.swift */; };
 		2BEB9BF52D77338D00699AC1 /* ReceiveViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0FEDB02D37D79E00F637E6 /* ReceiveViewModel.swift */; };
 		2BEB9BF62D77338D00699AC1 /* ReceiveViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0FEDB02D37D79E00F637E6 /* ReceiveViewModel.swift */; };
+		2BEB9BF82D7845FB00699AC1 /* TransferListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEB9BF72D7845FB00699AC1 /* TransferListView.swift */; };
+		2BEB9BF92D7845FB00699AC1 /* TransferListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEB9BF72D7845FB00699AC1 /* TransferListView.swift */; };
+		2BEB9BFA2D7845FB00699AC1 /* TransferListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEB9BF72D7845FB00699AC1 /* TransferListView.swift */; };
+		2BEB9BFB2D7845FB00699AC1 /* TransferListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEB9BF72D7845FB00699AC1 /* TransferListView.swift */; };
+		2BEB9BFE2D78473900699AC1 /* TransferRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEB9BFD2D78473900699AC1 /* TransferRow.swift */; };
+		2BEB9BFF2D78473900699AC1 /* TransferRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEB9BFD2D78473900699AC1 /* TransferRow.swift */; };
+		2BEB9C002D78473900699AC1 /* TransferRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEB9BFD2D78473900699AC1 /* TransferRow.swift */; };
+		2BEB9C012D78473900699AC1 /* TransferRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEB9BFD2D78473900699AC1 /* TransferRow.swift */; };
 		2BEEF7C52BAC6EFD004AF6AB /* DeriveKeysHostingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD34A742B98B983008406D5 /* DeriveKeysHostingVC.swift */; };
 		2BEEF7C62BAC6F11004AF6AB /* DeriveKeysViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD34A762B98B995008406D5 /* DeriveKeysViewModel.swift */; };
 		2BEEF7C72BAC6F11004AF6AB /* DerivedAssetRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD34A7A2B98C129008406D5 /* DerivedAssetRow.swift */; };
@@ -1172,6 +1180,8 @@
 		2BEB9BE22D771D3500699AC1 /* AssetListViewModelBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetListViewModelBase.swift; sourceTree = "<group>"; };
 		2BEB9BE72D7728BD00699AC1 /* AddAssetsViewModelBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAssetsViewModelBase.swift; sourceTree = "<group>"; };
 		2BEB9BEC2D772F6C00699AC1 /* ApproveViewModelBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApproveViewModelBase.swift; sourceTree = "<group>"; };
+		2BEB9BF72D7845FB00699AC1 /* TransferListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferListView.swift; sourceTree = "<group>"; };
+		2BEB9BFD2D78473900699AC1 /* TransferRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferRow.swift; sourceTree = "<group>"; };
 		2BF477E02D37DBBD000C9553 /* BackupData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupData.swift; sourceTree = "<group>"; };
 		2BF477E52D37DC29000C9553 /* UsersLocalStorageManager+NCW.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UsersLocalStorageManager+NCW.swift"; sourceTree = "<group>"; };
 		2BF8EDB52B56673300046F0B /* EndFlowFeedbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndFlowFeedbackView.swift; sourceTree = "<group>"; };
@@ -2023,6 +2033,15 @@
 			path = EW;
 			sourceTree = "<group>";
 		};
+		2BEB9BFC2D78460900699AC1 /* TransferListView */ = {
+			isa = PBXGroup;
+			children = (
+				2BEB9BF72D7845FB00699AC1 /* TransferListView.swift */,
+				2BEB9BFD2D78473900699AC1 /* TransferRow.swift */,
+			);
+			path = TransferListView;
+			sourceTree = "<group>";
+		};
 		2BF8EDB72B56673E00046F0B /* EndFlowFeedback */ = {
 			isa = PBXGroup;
 			children = (
@@ -2036,6 +2055,7 @@
 		2BF8EDBC2B56756700046F0B /* SwiftUIViews */ = {
 			isa = PBXGroup;
 			children = (
+				2BEB9BFC2D78460900699AC1 /* TransferListView */,
 				2BEB9BB12D72345600699AC1 /* AssetListView */,
 				2B223F962D673EAE002285B9 /* EWNFTsView */,
 				2B223F9B2D673EAE002285B9 /* Web3 */,
@@ -3113,6 +3133,7 @@
 				2B21D83E2BC56B5C003ADD29 /* AlertView.swift in Sources */,
 				2B21D8402BC56B5C003ADD29 /* AreYouSureBottomSheet.swift in Sources */,
 				2B21D8412BC56B5C003ADD29 /* FBTransaction.swift in Sources */,
+				2BEB9BFE2D78473900699AC1 /* TransferRow.swift in Sources */,
 				2B21D8422BC56B5C003ADD29 /* EndFlowFeedbackViewModel.swift in Sources */,
 				2B87CB152D47D2D000448A2A /* Fee.swift in Sources */,
 				2B21D8432BC56B5C003ADD29 /* ChooseAssetViewController.swift in Sources */,
@@ -3140,6 +3161,7 @@
 				2BCFE1322D5B7B39006BE227 /* NavigationBarLeftHeader.swift in Sources */,
 				2B21D8512BC56B5C003ADD29 /* ValidateRequestIdView.swift in Sources */,
 				2B2B18882D2A8A0C00A2B39D /* SignInView.swift in Sources */,
+				2BEB9BFA2D7845FB00699AC1 /* TransferListView.swift in Sources */,
 				2B2B18C02D2ADF4400A2B39D /* AddDeviceView.swift in Sources */,
 				2B21D8522BC56B5C003ADD29 /* ExtraParameters.swift in Sources */,
 				2B21D8532BC56B5C003ADD29 /* UIButton+Extension.swift in Sources */,
@@ -3228,6 +3250,7 @@
 				2B2B19E72D2D120E00A2B39D /* AssetsIcons.swift in Sources */,
 				2B83E2632D37F4E6003B1397 /* PassphraseInfo.swift in Sources */,
 				2B0FED9D2D37968B00F637E6 /* EWManager.swift in Sources */,
+				2BEB9BF82D7845FB00699AC1 /* TransferListView.swift in Sources */,
 				2B2B19E82D2D120E00A2B39D /* AuthProtocols.swift in Sources */,
 				2BEB9BD42D75DE9600699AC1 /* FeeRateViewModel.swift in Sources */,
 				2BCFE1262D5B326A006BE227 /* ActivityViewRep.swift in Sources */,
@@ -3308,6 +3331,7 @@
 				2B2B1A222D2D120E00A2B39D /* FireblocksManagerProtocol.swift in Sources */,
 				2B2303892D6CBC2900260CD9 /* EWWeb3ConnectionSubmitViewModel.swift in Sources */,
 				2B2B1A232D2D120E00A2B39D /* JoinOrRecoverView.swift in Sources */,
+				2BEB9C002D78473900699AC1 /* TransferRow.swift in Sources */,
 				2BD5D0E92D6F4DFA0025A9A8 /* EWNFTCardViewModel.swift in Sources */,
 				2B95395E2D54B45300816DB7 /* GenerateKeysViewModel.swift in Sources */,
 				2B5F46BA2D70A5CA00B23371 /* CacheManager.swift in Sources */,
@@ -3406,6 +3430,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B7C47722B32D9C9001C804B /* AssetHeaderUIView.swift in Sources */,
+				2BEB9BFF2D78473900699AC1 /* TransferRow.swift in Sources */,
 				2B7C47052B32D8F3001C804B /* AppleSignInManager.swift in Sources */,
 				2B7C46FB2B32D8C4001C804B /* Status.swift in Sources */,
 				2B7C47082B32D8F3001C804B /* UsersLocalStorageManager.swift in Sources */,
@@ -3508,6 +3533,7 @@
 				2B7C470D2B32D8FC001C804B /* AuthRepository.swift in Sources */,
 				2B83E25D2D37F164003B1397 /* BackupInfo.swift in Sources */,
 				2B7C46FA2B32D8C4001C804B /* FBTransaction.swift in Sources */,
+				2BEB9BFB2D7845FB00699AC1 /* TransferListView.swift in Sources */,
 				2B7C47322B32D965001C804B /* ReceiveViewController.swift in Sources */,
 				2BEB9BF22D772F9800699AC1 /* ApproveViewModelBase.swift in Sources */,
 				2B7C471F2B32D916001C804B /* UIButton+Extension.swift in Sources */,
@@ -3700,6 +3726,7 @@
 				608293912A56BB1400B11839 /* TransferCell.swift in Sources */,
 				60EECFDA2A69198B00F3891C /* AlertView.swift in Sources */,
 				86ED2BB42A64434500377F6C /* AreYouSureBottomSheet.swift in Sources */,
+				2BEB9C012D78473900699AC1 /* TransferRow.swift in Sources */,
 				60DA06592A645E1300160ADC /* FBTransaction.swift in Sources */,
 				2B87CB172D47D2D000448A2A /* Fee.swift in Sources */,
 				2BF8EDB92B56676300046F0B /* EndFlowFeedbackViewModel.swift in Sources */,
@@ -3727,6 +3754,7 @@
 				2BCFE1312D5B7B39006BE227 /* NavigationBarLeftHeader.swift in Sources */,
 				2B558E9E2B484AC4006212B2 /* ValidateRequestIdView.swift in Sources */,
 				2B2B18872D2A8A0C00A2B39D /* SignInView.swift in Sources */,
+				2BEB9BF92D7845FB00699AC1 /* TransferListView.swift in Sources */,
 				2B2B18BF2D2ADF4400A2B39D /* AddDeviceView.swift in Sources */,
 				2B94CFC52A9CDF62003E7508 /* ExtraParameters.swift in Sources */,
 				867828E02A696D170035787D /* UIButton+Extension.swift in Sources */,

@@ -14,8 +14,8 @@ class ApproveRepository {
         self.fireblocksManager = fireblocksManager
     }
     
-    func approveTransaction(transactionId: String) async -> Bool {
-        return await fireblocksManager.signTransaction(transactionId: transactionId)
+    func approveTransaction(transactionId: String) async throws -> Bool {
+        return try await fireblocksManager.signTransaction(transactionId: transactionId)
     }
     
     func stopTransaction() {

@@ -15,11 +15,16 @@ import Combine
     #endif
 #endif
 
-final class TransfersViewModel: ObservableObject {
+@Observable
+final class TransfersViewModel {
     
     static let shared = TransfersViewModel()
+    init() {
+        listenToTransferChanges()
+    }
+    var transfers: [TransferInfo] = []
+    var selectedTransfer: TransferInfo?
     
-    @Published var transfers: [TransferInfo] = []
     weak var delegate: TransfersViewModelDelegate?
     private var task: Task<Void, Never>?
     private var didRequestAlltransactions = false
@@ -35,7 +40,7 @@ final class TransfersViewModel: ObservableObject {
         transfers.removeAll()
     }
     
-    var sortedTransfer: [TransferInfo] {
+    var sortedTransfers: [TransferInfo] {
         return transfers.filter({$0.lastUpdated != nil}).sorted(by: {$0.lastUpdated! > $1.lastUpdated!})
     }
     
@@ -82,7 +87,7 @@ final class TransfersViewModel: ObservableObject {
     
 
     func getTransferFor(index: Int) -> TransferInfo {
-        return sortedTransfer[index]
+        return sortedTransfers[index]
     }
     
     func getTransfersCount() -> Int {
@@ -103,7 +108,7 @@ final class TransfersViewModel: ObservableObject {
     }
     
     func getTransferData(for index: Int) -> TransferInfo {
-        return sortedTransfer[index]
+        return sortedTransfers[index]
     }
     
     func updateStatusWhenApproved(index: Int) {

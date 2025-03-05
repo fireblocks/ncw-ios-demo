@@ -87,7 +87,8 @@ struct TransactionResponse: Codable, Identifiable, Hashable, Equatable {
     let createdAt: Int?
     let lastUpdated: TimeInterval?
     let details: TransactionDetails
-    
+    var feeCurrency: String?
+
     var createdSeconds: Int? {
         return createdAt != nil ? createdAt!/1000 : nil
     }

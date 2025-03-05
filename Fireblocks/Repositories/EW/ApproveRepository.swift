@@ -20,8 +20,8 @@ class ApproveRepository {
         self.ewManager = ewManager
     }
 
-    func approveTransaction(transactionId: String) async -> Bool {
-        return await FireblocksManager.shared.signTransaction(transactionId: transactionId)
+    func approveTransaction(transactionId: String) async throws -> Bool {
+        return try await FireblocksManager.shared.signTransaction(transactionId: transactionId)
     }
     
     func stopTransaction() {

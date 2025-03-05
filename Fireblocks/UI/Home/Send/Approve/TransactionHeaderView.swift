@@ -42,7 +42,11 @@ struct TransactionHeaderView: View {
             VStack(alignment: .center, spacing: 4) {
                 HStack(spacing: 4) {
                     Text(transaction.amountToSend.formatted())
-                    Text(transaction.asset.asset?.symbol ?? "")
+                    if let transferInfo, transferInfo.isNFT() {
+                        Text("NFT")
+                    } else {
+                        Text(transaction.asset.asset?.symbol ?? "")
+                    }
                     Spacer()
                 }
                 .font(.b1)

@@ -10,7 +10,7 @@ import SwiftUI
 struct TransactionStatusView: View {
     let transferInfo: TransferInfo
     var body: some View {
-        Text(transferInfo.status.rawValue)
+        Text(transferInfo.status.rawValue.capitalized)
             .font(.b4)
             .foregroundStyle(transferInfo.getColor())
     }

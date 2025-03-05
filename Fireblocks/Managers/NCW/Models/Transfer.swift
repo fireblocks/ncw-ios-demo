@@ -16,7 +16,15 @@ import UIKit.UIImage
     #endif
 #endif
 
-struct TransferInfo {
+struct TransferInfo: Identifiable, Equatable, Hashable {
+    static func == (lhs: TransferInfo, rhs: TransferInfo) -> Bool {
+        return lhs.id == rhs.id && lhs.lastUpdated == rhs.lastUpdated && lhs.status == rhs.status
+    }
+
+    var id: String {
+        return transactionID
+    }
+    
     let transactionID: String
     let creationDate: String
     let lastUpdated: TimeInterval?
@@ -117,6 +125,14 @@ struct TransferInfo {
         }
     }
 
+    func getReceiverRowTitle(walletId: String) -> String {
+        if senderWalletId == walletId {
+            return "Sent "
+        } else {
+            return "Received "
+        }
+    }
+
     func getReceiverAddress(walletId: String) -> String {
         if senderWalletId == walletId {
             return receiverAddress
@@ -141,12 +157,24 @@ struct TransferInfo {
         return transactionHash.isEmpty
     }
     
+    func isNFT() -> Bool {
+        return assetId.contains("NFT")
+    }
+    
     func toTransaction(assetListViewModel: AssetListViewModel) -> FBTransaction? {
-        if let asset = assetListViewModel.getAsset(by: assetId) {
+        let assetName = isNFT() ? blockChainName : assetId
+        if let asset = assetListViewModel.getAsset(by: assetName) {
             return FBTransaction(asset: AssetSummary(asset: asset), amountToSend: amount, price: price, receiverAddress: receiverAddress, txId: transactionID, isTransferred: true, transferFee: fee)
         }
         return nil
 
+    }
+    
+    func isEndedTransaction() -> Bool {
+        let endedTransactionStatusArray: [Status] = [
+            .completed, .failed, .cancelled, .blocked, .rejected
+        ]
+        return endedTransactionStatusArray.contains(status)
     }
     
     mutating func updateStatusWhenApproved() {

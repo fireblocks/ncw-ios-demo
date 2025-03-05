@@ -74,7 +74,7 @@ enum NavigationTypes: Hashable {
     case info
     case generateKeys
     case genericController(UIViewController, String)
-    case approveTransaction(FBTransaction)
+    case approveTransaction(FBTransaction, Bool)
     
     #if EW
     case createConnection(Web3DataModel)
@@ -227,9 +227,9 @@ struct NavigationContainerView<Content: View>: View {
                                 }
                             }
                     }
-                case .approveTransaction(let transaction):
+                case .approveTransaction(let transaction, let fromCreate):
                     SpinnerViewContainer {
-                        ApproveTransactionView(transaction: transaction)
+                        ApproveTransactionView(transaction: transaction, fromCreate: fromCreate)
                             .environmentObject(coordinator)
                             .environmentObject(fireblocksManager)
                             #if EW

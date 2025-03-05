@@ -65,7 +65,8 @@ struct TabBarView: View {
                 .tag(TabIndex.Assets)
                 
                 SpinnerViewContainer {
-                    GenericController(uiViewType: TransfersViewController())
+                    TransferListView()
+//                    GenericController(uiViewType: TransfersViewController())
                 }
                 .tabItem {
                     getTabItem(.Transfers)

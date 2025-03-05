@@ -8,7 +8,12 @@
 import Foundation
 import UIKit.UIImage
 
+@Observable
+class TransfersViewModelBase {
+    var transfers: [TransferInfo] = []
+    private var task: Task<Void, Never>?
 
+}
 
 
 
@@ -29,7 +34,7 @@ final class TransfersViewModel: ObservableObject {
         transfers.removeAll()
     }
     
-    var sortedTransfer: [TransferInfo] {
+    var sortedTransfers: [TransferInfo] {
         return transfers.filter({$0.lastUpdated != nil}).sorted(by: {$0.lastUpdated! > $1.lastUpdated!})
     }
     
@@ -66,10 +71,9 @@ final class TransfersViewModel: ObservableObject {
     func lastUpdate() -> TimeInterval? {
         return transfers.filter({$0.lastUpdated != nil}).map({$0.lastUpdated!}).max()
     }
-    
 
     func getTransferFor(index: Int) -> TransferInfo {
-        return sortedTransfer[index]
+        return sortedTransfers[index]
     }
     
     func getTransfersCount() -> Int {
@@ -90,7 +94,7 @@ final class TransfersViewModel: ObservableObject {
     }
     
     func getTransferData(for index: Int) -> TransferInfo {
-        return sortedTransfer[index]
+        return sortedTransfers[index]
     }
     
     func updateStatusWhenApproved(index: Int) {
