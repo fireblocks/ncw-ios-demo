@@ -7,19 +7,39 @@
 
 import Foundation
 
-class PrepareForScanViewModel: ObservableObject, UIHostingBridgeNotifications {
-    var didAppear: Bool = false
-    @Published var requestId: String = ""
-    @Published var error: String?
+protocol PrepareForScanDelegate: AnyObject {
+    func scanQR()
+}
 
-    weak var delegate: (any QRCodeScannerViewControllerDelegate)?
+@Observable
+class PrepareForScanViewModel: QRCodeScannerViewControllerDelegate {
+    static func == (lhs: PrepareForScanViewModel, rhs: PrepareForScanViewModel) -> Bool {
+        lhs.requestId == rhs.requestId
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(requestId)
+    }
+
+    var coordinator: Coordinator?
+    var loadingManager: LoadingManager?
+
+    var isQRPresented: Bool = false
+    var requestId: String = ""
+
     weak var prepareDelegate: PrepareForScanDelegate?
 
+    func setup(coordinator: Coordinator, loadingManager: LoadingManager) {
+        self.coordinator = coordinator
+        self.loadingManager = loadingManager
+    }
+    
+    @MainActor
     func sendRequestId() {
         if !requestId.isTrimmedEmpty, let _ = qrData(encoded: requestId.base64Decoded() ?? "") {
-            self.delegate?.gotAddress(address: requestId)
+            self.gotAddress(address: requestId)
         } else {
-            self.error = "Missing request ID. Go back and try again"
+            self.loadingManager?.setAlertMessage(error: CustomError.genericError("Missing request ID. Go back and try again"))
         }
     }
     
@@ -35,10 +55,23 @@ class PrepareForScanViewModel: ObservableObject, UIHostingBridgeNotifications {
         }
         return nil
     }
-
     
     func scanQR() {
-        self.error = nil
-        self.prepareDelegate?.scanQR()
+        self.isQRPresented = true
     }
+    
+    @MainActor
+    func gotAddress(address: String) {
+        guard let _ = qrData(encoded: address.base64Decoded() ?? "") else {
+            self.loadingManager?.setAlertMessage(error: CustomError.genericError("Missing request ID. Go back and try again"))
+            return
+        }
+        
+        guard !requestId.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
+            self.loadingManager?.setAlertMessage(error: CustomError.genericError("Missing request ID. Go back and try again"))
+            return
+        }
+        coordinator?.path.append(NavigationTypes.validateRequestIdView(requestId))
+    }
+
 }

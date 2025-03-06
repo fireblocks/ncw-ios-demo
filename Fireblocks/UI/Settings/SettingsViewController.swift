@@ -196,8 +196,6 @@ class SettingsViewController: UIViewController {
     }
     
     private func navigateToAddDeviceViewController() {
-        let vc = PrepareForScanHostingVC()
-        self.navigationController?.pushViewController(vc, animated: true)
     }
 
     

@@ -68,7 +68,7 @@ class AssetViewCell: AddAssetViewCell {
 
         #if EW
         if let assetId = asset.asset?.id, let total = asset.balance?.total, let price = Double(total) {
-            assetValue.text = CryptoCurrencyManager.shared.getTotalPrice(assetId: assetId, amount: price)
+            assetValue.text = CryptoCurrencyManager.shared.getTotalPrice(assetId: assetId, networkProtocol: asset.asset?.networkProtocol, amount: price)
         }
         #else
         if let rate = asset.asset?.rate,let total = asset.balance?.total, let price = Double(total) {

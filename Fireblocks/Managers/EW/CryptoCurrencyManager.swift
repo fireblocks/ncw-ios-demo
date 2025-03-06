@@ -9,10 +9,14 @@ class CryptoCurrencyManager {
     static let shared = CryptoCurrencyManager()
     private init() {}
     
-    func getTotalPrice(assetId: String, amount: Double) -> String {
+    func getTotalPrice(assetId: String, networkProtocol: String?, amount: Double) -> String {
         if let data = CryptoCurrencyData.cryptoCurrency.data(using: .utf8) {
             if let cryptoCurrecnyData: CryptoCurrency = try? GenericDecoder.decode(data: data) {
                 if let rate = cryptoCurrecnyData.data.first(where: {$0.symbol == assetId})?.quote.USD.price {
+                    let totalPrice = amount * rate
+                    
+                    return "$\(totalPrice.formatFractions(fractionDigits: 2))"
+                } else if let networkProtocol, let rate = cryptoCurrecnyData.data.first(where: {$0.symbol == networkProtocol})?.quote.USD.price {
                     let totalPrice = amount * rate
                     
                     return "$\(totalPrice.formatFractions(fractionDigits: 2))"
@@ -23,10 +27,14 @@ class CryptoCurrencyManager {
 
     }
     
-    func getPrice(assetId: String, amount: Double) -> Double {
+    func getPrice(assetId: String, networkProtocol: String?, amount: Double) -> Double {
         if let data = CryptoCurrencyData.cryptoCurrency.data(using: .utf8) {
             if let cryptoCurrecnyData: CryptoCurrency = try? GenericDecoder.decode(data: data) {
                 if let rate = cryptoCurrecnyData.data.first(where: {$0.symbol == assetId})?.quote.USD.price {
+                    let totalPrice = amount * rate
+                    
+                    return totalPrice
+                } else if let networkProtocol, let rate = cryptoCurrecnyData.data.first(where: {$0.symbol == networkProtocol})?.quote.USD.price {
                     let totalPrice = amount * rate
                     
                     return totalPrice

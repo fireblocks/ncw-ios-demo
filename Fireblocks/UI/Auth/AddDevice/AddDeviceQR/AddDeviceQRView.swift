@@ -14,7 +14,11 @@ struct AddDeviceQRView: View {
     @EnvironmentObject var loadingManager: LoadingManager
     @EnvironmentObject var fireblocksManager: FireblocksManager
 
-    @StateObject var viewModel: AddDeviceQRViewModel
+    @State var viewModel: AddDeviceQRViewModel
+    
+    init(viewModel: AddDeviceQRViewModel) {
+        _viewModel = .init(initialValue: viewModel)
+    }
     
     let context = CIContext()
     let filter = CIFilter.qrCodeGenerator()
@@ -62,9 +66,8 @@ struct AddDeviceQRView: View {
                             }
                             .padding(.bottom, 40)
                             
-//                            AddDeviceQRInnerView(image: generateQRCode(from: viewModel.url, size: CGSize(width: 171.0, height: 171.0)), url: viewModel.url, action: viewModel.showToast)
                             AddDeviceQRInnerView(image: generateQRCode(from: viewModel.url, size: CGSize(width: 171.0, height: 171.0)), url: viewModel.url) {
-                                print("show toast")
+                                self.loadingManager.toastMessage = "Copied!"
                             }
 
                             Spacer()
@@ -88,7 +91,6 @@ struct AddDeviceQRView: View {
                 ToolbarItem {
                     Button {
                         viewModel.dismiss()
-                        dismiss()
                     } label: {
                         Image(uiImage: AssetsIcons.close.getIcon())
                     }
@@ -174,13 +176,22 @@ struct AddDeviceQRInnerView: View {
     }
 }
 
-
-struct AddDeviceQRView_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationContainerView {
-            SpinnerViewContainer {
-                AddDeviceQRView(viewModel: AddDeviceQRViewModel(requestId: "XXXXXX", email: "aaa@bbb.cc"))
-            }
+#Preview {
+    NavigationContainerView {
+        SpinnerViewContainer {
+            AddDeviceQRView(viewModel: AddDeviceQRViewModelMock(requestId: "XXXXXX", email: "aaa@bbb.cc", expiredInterval: 5))
         }
     }
+}
+
+class AddDeviceQRViewModelMock: AddDeviceQRViewModel {
+    override func didQRTimeExpired() {
+        let vm = EndFlowFeedbackView.ViewModel(icon: AssetsIcons.errorImage.rawValue, title: LocalizableStrings.approveJoinWalletCanceled, subTitle: LocalizableStrings.addDeviceFailedSubtitle, buttonTitle: LocalizableStrings.tryAgain, actionButton:  {
+            self.coordinator.path = NavigationPath()
+        }, rightToolbarItemIcon: AssetsIcons.close.rawValue, rightToolbarItemAction: {
+            self.coordinator.path = NavigationPath()
+        }, didFail: true, canGoBack: false)
+        self.coordinator.path.append(NavigationTypes.feedback(vm))
+    }
+
 }

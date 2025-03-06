@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import SwiftUI
 
 extension EndFlowFeedbackView {
     
@@ -32,12 +33,15 @@ extension EndFlowFeedbackView {
         var rightToolbarItemIcon: String?
         var rightToolbarItemAction: (() -> ())?
         var didFail = false
-        
-        init(icon: String? = nil, title: String? = nil, subTitle: String? = nil, navigationBarTitle: String = "", buttonIcon: UIImage? = nil, buttonTitle: String? = nil, actionButton: (() -> Void)? = nil, rightToolbarItemIcon: String? = nil, rightToolbarItemAction: (() -> ())? = nil, didFail: Bool = false) {
+        var canGoBack: Bool = true
+        var content: AnyView?
+
+        init(icon: String? = nil, title: String? = nil, subTitle: String? = nil, navigationBarTitle: String = "", buttonIcon: UIImage? = nil, buttonTitle: String? = nil, actionButton: (() -> Void)? = nil, rightToolbarItemIcon: String? = nil, rightToolbarItemAction: (() -> ())? = nil, didFail: Bool = false, canGoBack: Bool = true, content: AnyView? = nil) {
             self.icon = icon
             self.title = title
             self.subTitle = subTitle
             self.didFail = didFail
+            self.canGoBack = canGoBack
             
             self.navigationBarTitle = navigationBarTitle
             self.buttonIcon = buttonIcon
@@ -46,6 +50,7 @@ extension EndFlowFeedbackView {
             
             self.rightToolbarItemIcon = rightToolbarItemIcon
             self.rightToolbarItemAction = rightToolbarItemAction
+            self.content = content
         }
         
         func shareLogs() {

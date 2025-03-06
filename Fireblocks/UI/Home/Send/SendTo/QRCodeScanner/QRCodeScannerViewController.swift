@@ -9,6 +9,7 @@ import UIKit
 import AVFoundation
 
 protocol QRCodeScannerViewControllerDelegate: AnyObject, Hashable, Equatable {
+    @MainActor
     func gotAddress(address: String)
 }
 

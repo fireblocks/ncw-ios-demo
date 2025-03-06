@@ -70,6 +70,7 @@ enum NavigationTypes: Hashable {
     case backup(Bool)
     case takeover
     case joinDevice
+    case validateRequestIdView(String)
     case settings
     case info
     case generateKeys
@@ -162,6 +163,12 @@ struct NavigationContainerView<Content: View>: View {
                         JoinOrRecoverView()
                             .environmentObject(coordinator)
                     }
+                case .validateRequestIdView(let requestId):
+                    SpinnerViewContainer {
+                        ValidateRequestIdView(viewModel: ValidateRequestIdViewModel(requestId: requestId))
+                            .environmentObject(coordinator)
+                            .environmentObject(fireblocksManager)
+                    }
                 case .recoverWallet(let redirect):
                     SpinnerViewContainer {
                         RecoverWalletView(redirect: redirect)
@@ -181,9 +188,9 @@ struct NavigationContainerView<Content: View>: View {
                             .environmentObject(coordinator)
                             .environmentObject(fireblocksManager)
                     }
-                case .feedback(let viewModel): 
+                case .feedback(let viewModel):
                     SpinnerViewContainer {
-                        EndFlowFeedbackView(viewModel: viewModel, content: nil)                     .environmentObject(coordinator)
+                        EndFlowFeedbackView(viewModel: viewModel)                     .environmentObject(coordinator)
                             .environmentObject(fireblocksManager)
                     }
                 case .backup(let redirect):
@@ -204,7 +211,12 @@ struct NavigationContainerView<Content: View>: View {
                 case .takeover:
                     TakeoverViewControllerRep()
                 case .joinDevice:
-                    PrepareForScanHostingVCRep()
+                    SpinnerViewContainer {
+                        PrepareForScanView()
+                            .environmentObject(fireblocksManager)
+                            .environmentObject(coordinator)
+
+                    }
                 case .info:
                     AdvancedInfoViewControllerRep()
                 case .settings:

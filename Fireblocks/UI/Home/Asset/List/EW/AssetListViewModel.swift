@@ -152,9 +152,9 @@ class AssetListViewModel: AssetListViewModelBase {
 
     override func getBalance() -> String {
         var balanceSum: Double = 0.0
-        assetsSummary.filter({$0.balance != nil}).map({$0.balance!}).forEach { balance in
-            if let assetId = balance.id, let total = balance.total, let price = Double(total) {
-                balanceSum += CryptoCurrencyManager.shared.getPrice(assetId: assetId, amount: price)
+        assetsSummary.filter({$0.balance != nil}).forEach { assetSummary in
+            if let assetId = assetSummary.asset?.id, let total = assetSummary.balance?.total, let price = Double(total) {
+                balanceSum += CryptoCurrencyManager.shared.getPrice(assetId: assetId, networkProtocol: assetSummary.asset?.networkProtocol, amount: price)
             }
         }
         

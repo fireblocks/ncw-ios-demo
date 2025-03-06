@@ -6,11 +6,7 @@
 //
 
 import Foundation
-#if DEV
-import FireblocksDev
-#else
-import FireblocksSDK
-#endif
+import SwiftUI
 
 protocol ValidateRequestIdDelegate: AnyObject {
     func didApproveJoinWallet()
@@ -18,42 +14,30 @@ protocol ValidateRequestIdDelegate: AnyObject {
     func didApproveJoinWalletTimeExpired()
 }
 
-class ValidateRequestIdViewModel: ObservableObject, UIHostingBridgeNotifications {
-    var didAppear: Bool = false
+@Observable
+class ValidateRequestIdViewModel {
+    var coordinator: Coordinator?
+    var loadingManager: LoadingManager?
+    var fireblocksManager: FireblocksManager?
+    
+    var didLoad: Bool = false
     var requestId: String?
     weak var delegate: ValidateRequestIdDelegate?
     var email: String?
     var platform: String?
     private var approveJoinWalletTask: Task<Void, Never>?
 
-    let expiredInterval: TimeInterval = 180.seconds
+    let expiredInterval: TimeInterval
     var timer: Timer?
-    @Published var timeleft = ""
-    @Published var isToolbarHidden = false
-    @Published var error: String?
+    var timeleft = ""
+    var isToolbarHidden = false
     
-    init(requestId: String) {
+    init(requestId: String, expiredInterval: TimeInterval = 180.seconds) {
+        self.expiredInterval = expiredInterval
         if let decoded = self.qrData(encoded: requestId.base64Decoded() ?? "") {
             self.email = decoded.email
             self.platform = decoded.platform
             self.requestId = decoded.requestId
-
-            self.startTimer()
-            timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] timer in
-                if let self {
-                    if self.isExpired() {
-                        self.timer?.invalidate()
-                        self.timer = nil
-                        self.timeleft = ""
-                        self.delegate?.didApproveJoinWalletTimeExpired()
-                    } else {
-                        self.timeleft = self.timeLeft()
-                    }
-                }
-            }
-            timer?.fire()
-        } else {
-            self.error = "Missing request ID. Go back and try again"
         }
 
     }
@@ -63,7 +47,27 @@ class ValidateRequestIdViewModel: ObservableObject, UIHostingBridgeNotifications
         self.timer = nil
     }
     
-    private func qrData(encoded: String) -> JoinRequestData? {
+    @MainActor
+    func setup(coordinator: Coordinator, loadingManager: LoadingManager, fireblocksManager: FireblocksManager) {
+        if !didLoad {
+            didLoad = true
+            self.coordinator = coordinator
+            self.loadingManager = loadingManager
+            self.fireblocksManager = fireblocksManager
+            
+            guard let requestId else {
+                self.loadingManager?.isLoading = false
+                self.loadingManager?.setAlertMessage(error: CustomError.genericError("Missing request ID. Go back and try again"))
+                return
+            }
+            
+            self.startTimer()
+
+        }
+
+    }
+
+    func qrData(encoded: String) -> JoinRequestData? {
         if let data = encoded.data(using: .utf8) {
             let decoder = JSONDecoder()
             return try? decoder.decode(JoinRequestData.self, from: data)
@@ -71,18 +75,34 @@ class ValidateRequestIdViewModel: ObservableObject, UIHostingBridgeNotifications
         return nil
     }
     
-
+    @MainActor
     func presentIndicator(show: Bool) {
-        isToolbarHidden = show
-        if show {
-            showIndicator()
-        } else {
-            hideIndicator()
-        }
+        self.loadingManager?.isLoading = show
     }
         
     func startTimer() {
         UsersLocalStorageManager.shared.setAddDeviceTimer()
+        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] timer in
+            if let self {
+                if self.isExpired() {
+                    self.timer?.invalidate()
+                    self.timer = nil
+                    self.timeleft = ""
+                    let feedbackVM = EndFlowFeedbackView.ViewModel(icon: AssetsIcons.errorImage.rawValue, title: LocalizableStrings.approveJoinWalletCanceled, buttonTitle: LocalizableStrings.tryAgain, actionButton: {
+                        self.startTimer()
+                        self.coordinator?.path = NavigationPath()
+                    }, rightToolbarItemIcon: AssetsIcons.close.rawValue, rightToolbarItemAction: {
+                        self.coordinator?.path = NavigationPath()
+                    }, didFail: true, canGoBack: false, content: AnyView(ValidateRequestIdTimeOutView()))
+                    self.coordinator?.path.append(NavigationTypes.feedback(feedbackVM))
+
+                } else {
+                    self.timeleft = self.timeLeft()
+                }
+            }
+        }
+        timer?.fire()
+
     }
     
     func isExpired() -> Bool {
@@ -102,27 +122,30 @@ class ValidateRequestIdViewModel: ObservableObject, UIHostingBridgeNotifications
     func approveJoinWallet() {
         guard let requestId else { return }
 
-        presentIndicator(show: true)
+        self.loadingManager?.isLoading = true
         approveJoinWalletTask = Task {
             do {
                 let keys = try await FireblocksManager.shared.approveJoinWallet(requestId: requestId)
-                DispatchQueue.main.async {
+                await MainActor.run {
                     self.timer?.invalidate()
                     self.timer = nil
-                    self.presentIndicator(show: false)
+                    self.loadingManager?.isLoading = false
                     if let _ = keys.first(where: {$0.status == .ERROR}) {
-                        self.error = LocalizableStrings.approveJoinWalletFailed
+                        self.loadingManager?.setAlertMessage(error: CustomError.genericError(LocalizableStrings.approveJoinWalletFailed))
                         return
                     }
-                    self.delegate?.didApproveJoinWallet()
+                    let feedbackVM = EndFlowFeedbackView.ViewModel(icon: AssetsIcons.addDeviceSucceeded.rawValue, title: LocalizableStrings.approveJoinWalletSucceeded, buttonTitle: LocalizableStrings.goHome, actionButton: {
+                        self.coordinator?.path = NavigationPath()
+                    }, canGoBack: false)
+                    self.coordinator?.path.append(NavigationTypes.feedback(feedbackVM))
                 }
             } catch {
-                DispatchQueue.main.async {
+                await MainActor.run {
                     self.timer?.invalidate()
                     self.timer = nil
-                    self.presentIndicator(show: false)
-                    FireblocksManager.shared.stopJoinWallet()
-                    self.error = error.localizedDescription
+                    self.loadingManager?.isLoading = false
+                    self.fireblocksManager?.stopJoinWallet()
+                    self.loadingManager?.setAlertMessage(error: error)
                 }
             }
         }
@@ -131,7 +154,11 @@ class ValidateRequestIdViewModel: ObservableObject, UIHostingBridgeNotifications
     func didTapCancel() {
         self.timer?.invalidate()
         self.timer = nil
-        FireblocksManager.shared.stopJoinWallet()
-        delegate?.didCancelJoinWallet()
+        self.fireblocksManager?.stopJoinWallet()
+        let feedbackVM = EndFlowFeedbackView.ViewModel(icon: AssetsIcons.addDeviceFailed.rawValue, title: LocalizableStrings.approveJoinWalletCanceled, subTitle: LocalizableStrings.approveJoinWalletCanceledSubtitle, buttonTitle: LocalizableStrings.goHome, actionButton: {
+            self.coordinator?.path = NavigationPath()
+        }, didFail: true, canGoBack: false)
+        self.coordinator?.path.append(NavigationTypes.feedback(feedbackVM))
+
     }
 }

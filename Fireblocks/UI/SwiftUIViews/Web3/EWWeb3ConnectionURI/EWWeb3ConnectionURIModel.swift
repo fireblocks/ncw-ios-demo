@@ -60,6 +60,7 @@ extension EWWeb3ConnectionURI {
             hasher.combine(dataModel.uri)
         }
 
+        @MainActor
         func gotAddress(address: String) {
             isQRPresented = false
             dataModel.uri = address

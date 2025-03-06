@@ -14,19 +14,13 @@ import FireblocksSDK
 #endif
 
 class ValidateRequestIdHostingVC: FBHostingViewController {
-    let viewModel: ValidateRequestIdViewModel
     init(requestId: String) {
-        self.viewModel = ValidateRequestIdViewModel(requestId: requestId)
-        let view = ValidateRequestIdView(viewModel: self.viewModel)
+        let view = ValidateRequestIdView(viewModel: ValidateRequestIdViewModel(requestId: requestId))
         super.init(rootView: AnyView(view))
     }
     
     @MainActor required dynamic init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func didInit() {
-        viewModel.delegate = self
     }
 }
 

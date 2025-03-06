@@ -116,11 +116,10 @@ extension SendToViewController: UITextFieldDelegate {
 
 //MARK: - QRCodeScannerViewControllerDelegate
 extension SendToViewController: QRCodeScannerViewControllerDelegate {
+    @MainActor
     func gotAddress(address: String) {
-        DispatchQueue.main.async {
-            self.addressTextField.text = address
-            self.viewModel.setAddress(address: address)
-        }
+        self.addressTextField.text = address
+        self.viewModel.setAddress(address: address)
     }
 }
 

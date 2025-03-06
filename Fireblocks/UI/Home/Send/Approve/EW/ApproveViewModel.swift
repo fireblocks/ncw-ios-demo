@@ -20,8 +20,6 @@ import Combine
 class ApproveViewModel: ApproveViewModelBase {
     var ewManager: EWManager?
     var pollingManagerTxId: PollingManagerTxId?
-
-    weak var transferDelegate: TransferDetailsViewModelDelegate?
     
     deinit {
         pollingManagerTxId?.stopPolling()
@@ -74,7 +72,7 @@ class ApproveViewModel: ApproveViewModelBase {
         }
         
         if let assetId = transaction.asset.asset?.id {
-            return CryptoCurrencyManager.shared.getTotalPrice(assetId: assetId, amount: totalAmount)
+            return CryptoCurrencyManager.shared.getTotalPrice(assetId: assetId, networkProtocol: transaction.asset.asset?.networkProtocol, amount: totalAmount)
         }
         
         return "$\(totalAmount.formatFractions(fractionDigits: 2))"

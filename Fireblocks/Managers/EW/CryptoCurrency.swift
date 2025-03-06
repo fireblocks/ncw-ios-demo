@@ -274,53 +274,6 @@ struct CryptoCurrencyData {
             }
         },
         {
-            "id": 999,
-            "name": "XRP_TEST",
-            "symbol": "XRP_TEST",
-            "slug": "xrp_tst",
-            "num_market_pairs": 1463,
-            "date_added": "2013-08-04T00:00:00.000Z",
-            "tags": [
-                "medium-of-exchange",
-                "enterprise-solutions",
-                "arrington-xrp-capital-portfolio",
-                "galaxy-digital-portfolio",
-                "a16z-portfolio",
-                "pantera-capital-portfolio",
-                "ftx-bankruptcy-estate",
-                "2017-2018-alt-season"
-            ],
-            "max_supply": 100000000000,
-            "circulating_supply": 57051491087,
-            "total_supply": 99986947886,
-            "infinite_supply": false,
-            "platform": null,
-            "cmc_rank": 4,
-            "self_reported_circulating_supply": null,
-            "self_reported_market_cap": null,
-            "tvl_ratio": null,
-            "last_updated": "2024-12-05T14:58:00.000Z",
-            "quote": {
-                "USD": {
-                    "price": 2.3448624281895363,
-                    "volume_24h": 25934155916.20723,
-                    "volume_change_24h": 5.4027,
-                    "percent_change_1h": -1.16609432,
-                    "percent_change_24h": -8.82858633,
-                    "percent_change_7d": 59.62919796,
-                    "percent_change_30d": 357.85942237,
-                    "percent_change_60d": 338.43572824,
-                    "percent_change_90d": 342.88151194,
-                    "market_cap": 133777897922.09651,
-                    "market_cap_dominance": 3.5993,
-                    "fully_diluted_market_cap": 234486242818.95,
-                    "tvl": null,
-                    "last_updated": "2024-12-05T14:58:00.000Z"
-                }
-            }
-        },
-
-        {
             "id": 5426,
             "name": "Solana",
             "symbol": "SOL",

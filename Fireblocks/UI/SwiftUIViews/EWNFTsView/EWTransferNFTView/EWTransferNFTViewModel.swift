@@ -49,6 +49,7 @@ extension EWTransferNFTView {
             hasher.combine(dataModel.address)
         }
 
+        @MainActor
         func gotAddress(address: String) {
             isQRPresented = false
             dataModel.address = address

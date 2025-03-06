@@ -13,11 +13,9 @@ struct EndFlowFeedbackView: View {
     @EnvironmentObject var fireblocksManager: FireblocksManager
 
     @StateObject var viewModel: ViewModel
-    var content: AnyView?
 
-    init(viewModel: ViewModel, content: AnyView?) {
+    init(viewModel: ViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
-        self.content = content
     }
     
     var body: some View {
@@ -40,9 +38,11 @@ struct EndFlowFeedbackView: View {
                         .foregroundStyle(.secondary)
                 }
 
-                content
-                    .padding(.top, 32)
-                    .foregroundStyle(.secondary)
+                if let content = viewModel.content {
+                    content
+                        .padding(.top, 32)
+                        .foregroundStyle(.secondary)
+                }
 
                 Spacer()
                 
@@ -111,11 +111,16 @@ struct EndFlowFeedbackView: View {
                 Text(viewModel.navigationBarTitle)
                     .foregroundStyle(.secondary)
             }
+            if viewModel.canGoBack {
+                ToolbarItem(placement: .topBarLeading) {
+                    CustomBackButtonView()
+                }
+            }
         }
 //        .navigationTitle(viewModel.navigationBarTitle)
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden()
-        .navigationBarItems(leading: CustomBackButtonView())
+//        .navigationBarItems(leading: CustomBackButtonView())
         .interactiveDismissDisabled()
 
     }
@@ -139,8 +144,9 @@ struct EndFlowFeedbackView_Previews: PreviewProvider {
                 rightToolbarItemAction: {
                     print("close")
                 },
-                didFail: true
-            ), content: AnyView(ValidateRequestIdTimeOutView()))
+                didFail: true,
+                content: AnyView(ValidateRequestIdTimeOutView())
+            ))
         }
     }
 }

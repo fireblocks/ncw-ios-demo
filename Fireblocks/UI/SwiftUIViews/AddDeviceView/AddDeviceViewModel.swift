@@ -19,11 +19,15 @@ extension AddDeviceView {
         var fireblocksManager: FireblocksManager?
         
         private var mpcKeyTask: Task<Void, Never>?
+        var didLoad = false
         
         func setup(loadingManager: LoadingManager, coordinator: Coordinator, fireblocksManager: FireblocksManager) {
-            self.loadingManager = loadingManager
-            self.fireblocksManager = fireblocksManager
-            self.coordinator = coordinator
+            if !didLoad {
+                didLoad = true
+                self.loadingManager = loadingManager
+                self.fireblocksManager = fireblocksManager
+                self.coordinator = coordinator
+            }
         }
         
         @MainActor
@@ -90,7 +94,7 @@ extension AddDeviceView {
                     SignInViewModel.shared.launchView = NavigationContainerView {
                         TabBarView()
                     }
-                }, didFail: false)
+                }, didFail: false, canGoBack: false)
                 
                 self.coordinator.path.append(NavigationTypes.feedback(vm))
                 

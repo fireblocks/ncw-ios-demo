@@ -63,8 +63,10 @@ struct ApproveTransactionView: View {
             }
         }
         .safeAreaInset(edge: .bottom, content: {
-            buttons
-            .background()
+//            if viewModel.transferInfo?.status == .pendingSignature {
+                buttons
+//                    .background()
+//            }
         })
         .onAppear() {
             #if EW
@@ -277,7 +279,7 @@ struct ApproveTransactionView: View {
             .opacity(transactionInfo.status == .pendingSignature ? 1 : 0)
             .disabled(transactionInfo.status != .pendingSignature)
             .animation(.default, value: viewModel.transferInfo?.status)
-
+            .background(transactionInfo.status == .pendingSignature ? nil : Color.clear)
         }
     }
 
