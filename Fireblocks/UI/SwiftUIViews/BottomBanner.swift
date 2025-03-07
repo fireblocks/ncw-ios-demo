@@ -23,7 +23,6 @@ struct BottomBanner: View {
                 )
 
         }
-        .padding()
         .background(Color.clear)
     }
 }

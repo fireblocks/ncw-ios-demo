@@ -38,7 +38,6 @@ class FeeRateViewController: UIViewController, SwiftUIEnvironmentBridge {
     init(transaction: FBTransaction) {
         self.viewModel = FeeRateViewModel(transaction: transaction)
         super.init(nibName: "FeeRateViewController", bundle: nil)
-        self.viewModel.delegate = self
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -66,7 +65,6 @@ class FeeRateViewController: UIViewController, SwiftUIEnvironmentBridge {
     
     private func configButtons(){
         createTransactionButton.config(title: "Create transaction", style: .Primary)
-        createTransactionButton.isEnabled = viewModel.isContinueButtonEnabled()
     }
     
     @IBAction func createTransactionTapped(_ sender: AppActionBotton) {
@@ -75,10 +73,7 @@ class FeeRateViewController: UIViewController, SwiftUIEnvironmentBridge {
     }
     
     private func navigateToApproveScreen(){
-        if let transaction = viewModel.getTransaction() {
-            viewModel.coordinator?.path.append(NavigationTypes.approveTransaction(transaction, true))
-        }
-    }    
+    }
 }
 
 //MARK: - UITableViewDataSource
@@ -95,12 +90,6 @@ extension FeeRateViewController: UITableViewDataSource {
         let fee = viewModel.getFees()[indexPath.row]
         let assetName = viewModel.transaction.asset.asset?.symbol ?? ""
         cell.configCell(with: fee, assetName: assetName)
-        let selectedFeeIndex = viewModel.getSelectedIndex()
-        
-        if indexPath.row == selectedFeeIndex {
-            selectedIndexPath = indexPath
-            cell.setSelected(isSelected: true)
-        }
         
         return cell
     }
@@ -117,9 +106,7 @@ extension FeeRateViewController: UITableViewDelegate {
             previousCell.setSelected(isSelected: false)
         }
         
-        viewModel.selectFee(at: indexPath.row)
         selectedIndexPath = indexPath
-        self.createTransactionButton.isEnabled = self.viewModel.isContinueButtonEnabled()
     }
 }
 
@@ -140,7 +127,6 @@ extension FeeRateViewController: FeeRateViewModelDelegate {
         DispatchQueue.main.async { [weak self] in
             if let self {
                 self.tableView.reloadData()
-                self.createTransactionButton.isEnabled = self.viewModel.isContinueButtonEnabled()
             }
         }
     }

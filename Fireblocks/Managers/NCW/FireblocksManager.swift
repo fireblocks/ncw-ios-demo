@@ -175,7 +175,9 @@ class FireblocksManager: FireblocksManagerProtocol, ObservableObject {
 
 extension FireblocksManager: PollingListenerDelegate {
     func handleTransactions(transactions: [TransactionResponse]) {
-        TransfersViewModel.shared.handleTransactions(transactions: transactions)
+        DispatchQueue.main.async {
+            TransfersViewModel.shared.handleTransactions(transactions: transactions)
+        }
     }
     
     func lastUpdate() -> TimeInterval? {

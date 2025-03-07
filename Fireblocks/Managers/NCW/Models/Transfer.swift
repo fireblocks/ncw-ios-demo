@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 import UIKit.UIImage
+
 #if EW
     #if DEV
     import EmbeddedWalletSDKDev

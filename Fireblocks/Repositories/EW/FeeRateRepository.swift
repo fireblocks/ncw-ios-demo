@@ -20,7 +20,7 @@ class FeeRateRepository {
         self.ewManager = ewManager
     }
     
-    func getFeeRates(for assetId: String, amount: String, address: String, feeLevel: FeeRateType? = nil) async throws -> [Fee] {
+    func getFeeRates(for assetId: String, amount: String, address: String, feeLevel: FeeLevel? = nil) async throws -> [Fee] {
         let response = try await ewManager.estimateOneTimeAddressTransaction(accountId: 0, assetId: assetId, destAddress: address, amount: amount, feeLevel: .LOW)
         return FeeManager.calcFee(feeResponse: response)
     }

@@ -13,52 +13,11 @@ import SwiftUI
     import EmbeddedWalletSDK
     #endif
 #endif
-
-//struct ToolbarItemData: Identifiable, Hashable, Equatable {
-//    static func == (lhs: ToolbarItemData, rhs: ToolbarItemData) -> Bool {
-//        lhs.id == rhs.id
-//    }
-//    
-//    func hash(into hasher: inout Hasher) {
-//        hasher.combine(id)
-//    }
-//
-//    var id = UUID().uuidString
-//    var action: () -> ()
-//    var icon: String
-//}
-//
-//struct HomeToolbar: ToolbarContent {
-//    var leading: ToolbarItemData?
-//    var trailing: ToolbarItemData?
-//    
-//    var body: some ToolbarContent {
-//        if leading == nil, trailing == nil {
-//            ToolbarItem(placement: .topBarLeading) {
-//                CustomBackButtonView()
-//            }
-//        } else {
-//            if let leading {
-//                ToolbarItem(placement: .topBarLeading) {
-//                    Button {
-//                        leading.action()
-//                    } label: {
-//                        Image(leading.icon)
-//                    }
-//                }
-//            }
-//            if let trailing {
-//                ToolbarItem(placement: .topBarTrailing) {
-//                    Button {
-//                        trailing.action()
-//                    } label: {
-//                        Image(trailing.icon)
-//                    }
-//                }
-//            }
-//        }
-//    }
-//}
+#if DEV
+import FireblocksDev
+#else
+import FireblocksSDK
+#endif
 
 enum NavigationTypes: Hashable {
     case signIn(SignInView.ViewModel)
@@ -69,12 +28,14 @@ enum NavigationTypes: Hashable {
     case feedback(EndFlowFeedbackView.ViewModel)
     case backup(Bool)
     case takeover
+    case derivedKeysView(Set<FullKey>)
     case joinDevice
     case validateRequestIdView(String)
     case settings
     case info
     case generateKeys
     case genericController(UIViewController, String)
+    case selectFee(FBTransaction)
     case approveTransaction(FBTransaction, Bool)
     
     #if EW
@@ -209,12 +170,28 @@ struct NavigationContainerView<Content: View>: View {
 
                     }
                 case .takeover:
-                    TakeoverViewControllerRep()
+                    SpinnerViewContainer {
+                        TakeoverView()
+                            .environmentObject(fireblocksManager)
+                            .environmentObject(coordinator)
+
+                    }
+                case .derivedKeysView(let keys):
+                    DeriveKeysView(viewModel: DeriveKeysView.ViewModel(privateKeys: keys))
                 case .joinDevice:
                     SpinnerViewContainer {
                         PrepareForScanView()
                             .environmentObject(fireblocksManager)
                             .environmentObject(coordinator)
+
+                    }
+                case .selectFee(let transaction):
+                    SpinnerViewContainer {
+                        FeeRateView(viewModel: FeeRateViewModel(transaction: transaction))
+                            .environmentObject(coordinator)
+                            #if EW
+                                .environment(ewManager)
+                            #endif
 
                     }
                 case .info:

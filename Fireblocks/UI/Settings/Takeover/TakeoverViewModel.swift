@@ -16,13 +16,32 @@ protocol TakeoverViewModelDelegate: AnyObject {
     func didReceiveFullKeys(fullKeys: Set<FullKey>?)
 }
 
-final class TakeoverViewModel  {
-    weak var delegate: TakeoverViewModelDelegate?
+@Observable
+class TakeoverViewModel  {
+    var coordinator: Coordinator?
+    var loadingManager: LoadingManager?
+    var fireblocksManager: FireblocksManager?
+
+    func setup(coordinator: Coordinator, loadingManager: LoadingManager, fireblocksManager: FireblocksManager) {
+        self.coordinator = coordinator
+        self.loadingManager = loadingManager
+        self.fireblocksManager = fireblocksManager
+    }
     
     func getTakeoverFullKeys() {
+        self.loadingManager?.isLoading = true
         Task {
-            let keys = await FireblocksManager.shared.takeOver()
-            delegate?.didReceiveFullKeys(fullKeys: keys)
+            if let keys = await fireblocksManager?.takeOver(), keys.count > 0, keys.filter({$0.error != nil}).isEmpty {
+                await MainActor.run {
+                    self.loadingManager?.isLoading = false
+                    self.coordinator?.path.append(NavigationTypes.derivedKeysView(keys))
+                }
+            } else {
+                await MainActor.run {
+                    self.loadingManager?.isLoading = false
+                    self.loadingManager?.setAlertMessage(error: CustomError.genericError("Failed to takeover keys"))
+                }
+            }
         }
 
     }

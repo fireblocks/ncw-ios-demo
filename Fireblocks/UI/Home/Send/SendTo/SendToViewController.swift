@@ -93,7 +93,7 @@ class SendToViewController: UIViewController, SwiftUIEnvironmentBridge {
     
     private func navigateToFeeRatePage(){
         if let transaction = viewModel.getTransaction() {
-            viewModel.coordinator?.path.append(NavigationTypes.genericController(FeeRateViewController(transaction: transaction), "Fee"))
+            viewModel.coordinator?.path.append(NavigationTypes.selectFee(transaction))
         }
     }
     

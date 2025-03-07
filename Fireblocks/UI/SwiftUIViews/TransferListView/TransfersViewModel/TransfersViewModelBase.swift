@@ -1,45 +1,31 @@
 //
-//  TransfersViewModel.swift
+//  TransfersViewModelBase.swift
 //  Fireblocks
 //
-//  Created by Fireblocks Ltd. on 06/07/2023.
+//  Created by Dudi Shani-Gabay on 07/03/2025.
 //
 
-import Foundation
-import UIKit.UIImage
+import Combine
+import SwiftUI
 
-@Observable
-class TransfersViewModelBase {
-    var transfers: [TransferInfo] = []
-    private var task: Task<Void, Never>?
+#if EW
+    #if DEV
+    import EmbeddedWalletSDKDev
+    #else
+    import EmbeddedWalletSDK
+    #endif
+#endif
 
-}
-
-
-
-
-final class TransfersViewModel: ObservableObject {
-    
-    static let shared = TransfersViewModel()
-    
+class TransfersViewModelBase: ObservableObject {
     @Published var transfers: [TransferInfo] = []
-    weak var delegate: TransfersViewModelDelegate?
-    private var task: Task<Void, Never>?
-    private var didRequestAlltransactions = false
+    var selectedTransfer: TransferInfo?
+    var cancellable = Set<AnyCancellable>()
+
     deinit {
-        task?.cancel()
+        cancellable.removeAll()
     }
     
-    func signOut() {
-        transfers.removeAll()
-    }
-    
-    var sortedTransfers: [TransferInfo] {
-        return transfers.filter({$0.lastUpdated != nil}).sorted(by: {$0.lastUpdated! > $1.lastUpdated!})
-    }
-    
-    func listenToTransferChanges() {}
-    
+    @MainActor
     func handleTransactions(transactions: [TransactionResponse]) {
         var didChange = false
         if transfers.isEmpty {
@@ -50,13 +36,17 @@ final class TransfersViewModel: ObservableObject {
                 let transferInfo = TransferInfo.toTransferInfo(response: transaction)
                 if let index = transfers.firstIndex(where: {$0.transactionID == transferInfo.transactionID}) {
                     if transfers[index].lastUpdated != transferInfo.lastUpdated {
-                        transfers[index] = transferInfo
+                        withAnimation {
+                            transfers[index] = transferInfo
+                        }
                         didChange = true
                         print("TRANSFER_UPDATED: \(transferInfo)")
                     }
 
                 } else {
-                    transfers.append(transferInfo)
+                    withAnimation {
+                        transfers.append(transferInfo)
+                    }
                     didChange = true
                     print("TRANSFER_ADDED: \(transferInfo)")
                 }
@@ -67,11 +57,19 @@ final class TransfersViewModel: ObservableObject {
             updateUI()
         }
     }
-    
+
+    func signOut() {
+        transfers.removeAll()
+    }
+
+    var sortedTransfers: [TransferInfo] {
+        return transfers.filter({$0.lastUpdated != nil}).sorted(by: {$0.lastUpdated! > $1.lastUpdated!})
+    }
+
     func lastUpdate() -> TimeInterval? {
         return transfers.filter({$0.lastUpdated != nil}).map({$0.lastUpdated!}).max()
     }
-
+    
     func getTransferFor(index: Int) -> TransferInfo {
         return sortedTransfers[index]
     }
@@ -80,17 +78,10 @@ final class TransfersViewModel: ObservableObject {
         return transfers.count
     }
     
-    private func updateUI(){
-        if transfers.isEmpty {
-            delegate?.showNotification(type: .notification)
-        } else {
-            delegate?.transfersUpdated()
+    func updateUI(){
+        if !transfers.isEmpty {
             AssetListViewModel.shared.fetchAssets()
         }
-
-    }
-    
-    func refresh() {
     }
     
     func getTransferData(for index: Int) -> TransferInfo {
@@ -101,4 +92,5 @@ final class TransfersViewModel: ObservableObject {
         transfers[index].status = .confirming
         updateUI()
     }
+
 }

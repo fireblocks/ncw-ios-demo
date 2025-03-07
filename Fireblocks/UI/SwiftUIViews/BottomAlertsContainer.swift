@@ -48,10 +48,12 @@ struct BottomAlertsContainer: View {
     var body: some View {
         ZStack {
             AlertBannerView(message: loadingManager.alertMessage)
+                .padding()
                 .frame(height: loadingManager.alertMessage == nil ? 0 : nil)
                 .animation(.default, value: loadingManager.alertMessage)
                 .clipped()
             BottomBanner(message: loadingManager.toastMessage)
+                .padding()
                 .frame(height: loadingManager.toastMessage == nil ? 0 : nil)
                 .animation(.default, value: loadingManager.toastMessage)
                 .clipped()

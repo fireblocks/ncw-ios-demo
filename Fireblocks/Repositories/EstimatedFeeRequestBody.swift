@@ -13,6 +13,6 @@ struct EstimatedFeeRequestBody: Codable {
     var accountId = "0"
     let destAddress: String
     let amount: String
-    var feeLevel: String = FeeRateType.low.rawValue
+    var feeLevel: String = FeeLevel.LOW.rawValue
     var estimateFee: Bool = true
 }

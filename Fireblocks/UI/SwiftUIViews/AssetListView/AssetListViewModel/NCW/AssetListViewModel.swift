@@ -26,13 +26,13 @@ class AssetListViewModel: AssetListViewModelBase {
     }
 
     func listenToTransferChanges() {
-        TransfersViewModel.shared.$transfers.receive(on: RunLoop.main)
-            .sink { [weak self] transfers in
-                if let self {
-                    self.task?.cancel()
-                    self.fetchAssets()
-                }
-            }.store(in: &cancellable)
+//        TransfersViewModel.shared.$transfers.receive(on: RunLoop.main)
+//            .sink { [weak self] (transfers: [TransferInfo]) in
+//                if let self {
+//                    self.task?.cancel()
+//                    self.fetchAssets()
+//                }
+//            }.store(in: &cancellable)
     }
 
     override func fetchAssets() {

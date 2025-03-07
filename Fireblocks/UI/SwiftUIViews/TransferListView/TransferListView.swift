@@ -22,7 +22,7 @@ struct TransferListView: View {
     @Environment(EWManager.self) var ewManager
     #endif
     
-    @State var viewModel = TransfersViewModel.shared
+    @StateObject var viewModel = TransfersViewModel.shared
     @State var selectedTransfer: TransferInfo?
     
     var body: some View {
@@ -37,13 +37,6 @@ struct TransferListView: View {
         }
         .navigationTitle("Transfers")
         .navigationBarTitleDisplayMode(.inline)
-        .onAppear() {
-//            #if EW
-//            viewModel.setup(ewManager: ewManager, loadingManager: loadingManager, coordinator: coordinator)
-//            #else
-//            viewModel.setup(loadingManager: loadingManager, coordinator: coordinator)
-//            #endif
-        }
         .animation(.default, value: viewModel.selectedTransfer)
         .tint(.white)
     }
@@ -60,13 +53,12 @@ struct TransferListView: View {
                                 coordinator.path.append(NavigationTypes.approveTransaction(transaction, false))
                             }
                         }
+                        .listRowBackground(Color.clear)
+
                 }
             }
         }
-        .listRowBackground(Color.clear)
-        .listSectionSpacing(.compact)
-        .scrollContentBackground(.hidden)
-        .listStyle(.insetGrouped)
+        .listStyle(.plain)
         .contentMargins(.top, 16)
     }
 

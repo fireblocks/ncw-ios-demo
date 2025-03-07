@@ -32,6 +32,10 @@ class ApproveViewModelBase {
         self.fromCreate = fromCreate
     }
     
+    deinit {
+        print("ApproveViewModelBase deinit")
+    }
+    
     func getCreationDate() -> String {
         return transferInfo?.creationDate ?? ""
     }

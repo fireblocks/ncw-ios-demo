@@ -11,6 +11,11 @@ import Combine
 
 @Observable
 class ApproveViewModel: ApproveViewModelBase {
+    deinit {
+        print("ApproveViewModel deinit")
+    }
+    
+    @MainActor
     func setup(coordinator: Coordinator,
                loadingManager: LoadingManager,
                fireblocksManager: FireblocksManager) {
@@ -25,7 +30,23 @@ class ApproveViewModel: ApproveViewModelBase {
         }
     }
 
+    @MainActor
+    private func updateTransaction(txId: String) {
+        if let transactionInfo = TransfersViewModel.shared.transfers.first(where: {$0.transactionID == txId}) {
+            self.transferInfo = transactionInfo
+        }
+    }
+    
+    @MainActor
     private func listenToTransferChanges(txId: String) {
+//        withObservationTracking {
+//            updateTransaction(txId: txId)
+//        } onChange: {
+//            DispatchQueue.main.async {
+//                self.listenToTransferChanges(txId: txId)
+//            }
+//        }
+
         TransfersViewModel.shared.$transfers.receive(on: RunLoop.main)
             .sink { [weak self] transfers in
                 if let self {

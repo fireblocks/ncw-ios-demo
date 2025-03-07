@@ -38,4 +38,13 @@ struct FBTransaction: Equatable, Hashable {
         return Double(fee)
     }
     
+    static let mock = FBTransaction(
+        asset: AssetSummary(asset: Mocks.AssetMock.getAsset()),
+        amountToSend: 100,
+        price: 1000,
+        receiverAddress: "0x1234567890123456789012345678901234567890",
+        fee: nil,
+        txId: UUID().uuidString
+    )
+    
 }

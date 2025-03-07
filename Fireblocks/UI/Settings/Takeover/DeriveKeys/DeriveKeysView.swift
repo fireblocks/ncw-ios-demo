@@ -102,6 +102,9 @@ struct DeriveKeysView: View {
         .animation(.default, value: viewModel.copiedText)
         .navigationTitle(viewModel.navigationBarTitle)
         .navigationBarTitleDisplayMode(.inline)
+        .navigationBarBackButtonHidden()
+        .navigationBarItems(leading: CustomBackButtonView())
+
     }
 }
 

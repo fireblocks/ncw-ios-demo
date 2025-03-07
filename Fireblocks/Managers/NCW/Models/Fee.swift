@@ -7,9 +7,16 @@
 
 
 import Foundation
+#if EW
+    #if DEV
+    import EmbeddedWalletSDKDev
+    #else
+    import EmbeddedWalletSDK
+    #endif
+#endif
 
 struct Fee {
-    let feeRateType: FeeRateType
+    let feeRateType: FeeLevel
     let fee: String
     
     func getFeeName() -> String {

@@ -8,7 +8,7 @@
 import Foundation
 
 class FeeRateRepository {
-    func getFeeRates(for assetId: String, amount: String, address: String, feeLevel: FeeRateType? = nil) async throws -> [Fee] {
+    func getFeeRates(for assetId: String, amount: String, address: String, feeLevel: FeeLevel? = nil) async throws -> [Fee] {
         let deviceId = FireblocksManager.shared.getDeviceId()
         let payload = EstimatedFeeRequestBody(assetId: assetId, destAddress: address, amount: amount)
         let response = try await SessionManager.shared.estimateFee(deviceId: deviceId, body: payload.dictionary())
