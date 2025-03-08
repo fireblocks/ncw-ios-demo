@@ -22,17 +22,21 @@ struct FireblocksApp: App {
                 viewModel.fireblocksManager = FireblocksManager.shared
                 await viewModel.handleSuccessSignIn(isLaunch: true)
             } else {
-                viewModel.launchView = NavigationContainerView {
-                    SpinnerViewContainer {
-                        SignInView()
-                            .environmentObject(viewModel)
+                withAnimation {
+                    viewModel.launchView = NavigationContainerView {
+                        SpinnerViewContainer {
+                            SignInView()
+                                .environmentObject(viewModel)
+                        }
                     }
                 }
             }
         } else {
-            launchView = NavigationContainerView {
-                LaunchView()
-                    .environmentObject(viewModel)
+            withAnimation {
+                launchView = NavigationContainerView {
+                    LaunchView()
+                        .environmentObject(viewModel)
+                }
             }
         }
     }
@@ -40,11 +44,15 @@ struct FireblocksApp: App {
     var body: some Scene {
         WindowGroup {
             if let launchView = viewModel.launchView {
-                AnyView(launchView)
-                    .environmentObject(viewModel)
+                withAnimation {
+                    AnyView(launchView)
+                        .environmentObject(viewModel)
+                }
             } else if let launchView {
-                AnyView(launchView)
-                    .environmentObject(viewModel)
+                withAnimation {
+                    AnyView(launchView)
+                        .environmentObject(viewModel)
+                }
             } else {
                 AppBackgroundView()
                     .onAppear() {

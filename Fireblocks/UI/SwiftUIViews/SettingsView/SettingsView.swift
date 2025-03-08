@@ -66,9 +66,19 @@ struct SettingsView: View {
             }
             
             Section("General Settings") {
-                ForEach(viewModel.settingsGeneralActions) { action in
-                    settingsRow(data: action)
+                if let advanceInfoAction = viewModel.advanceInfoAction {
+                    settingsRow(data: advanceInfoAction)
                 }
+                if !viewModel.items.isEmpty {
+                    ShareLink(items: viewModel.items) {
+                        settingsInnerRow(data: SettingsData(icon: "settingsShareLogs", title: "Share logs", subtitle: nil, action: nil))
+                            .foregroundStyle(.white)
+                    }
+                }
+                if let signOutAction = viewModel.signOutAction {
+                    settingsRow(data: signOutAction)
+                }
+
             }
 
         }
@@ -78,12 +88,28 @@ struct SettingsView: View {
         }
         .navigationBarBackButtonHidden()
         .navigationBarItems(leading: CustomBackButtonView())
+        .sheet(isPresented: $viewModel.isDiscardAlertPresented) {
+            DiscardAlert(title: "Are you sure you want to sign out?", mainTitle: "Sign out") {
+                viewModel.isDiscardAlertPresented = false
+                viewModel.signOutFromFirebase()
+            }
+            .presentationDetents([.fraction(0.5)])
+            .presentationDragIndicator(.visible)
+        }
     }
 }
 
 extension SettingsView {
     @ViewBuilder
     func settingsRow(data: SettingsData) -> some View {
+        settingsInnerRow(data: data)
+        .onTapGesture {
+            data.action?()
+        }
+    }
+    
+    @ViewBuilder
+    func settingsInnerRow(data: SettingsData) -> some View {
         HStack(spacing: 12) {
             Image(data.icon)
             VStack {
@@ -103,16 +129,8 @@ extension SettingsView {
         }
         .padding(.vertical)
         .contentShape(.rect)
-        .onTapGesture {
-            data.action()
-        }
-        .sheet(isPresented: $viewModel.isShareLogsPresented) {
-            if let appLogoURL = viewModel.appLogoURL, let fireblocksLogsURL = viewModel.fireblocksLogsURL {
-                GenericController(uiViewType: UIActivityViewController(activityItems: [appLogoURL, fireblocksLogsURL], applicationActivities: nil))
-                .presentationDetents([.medium])
-            }
-        }
     }
+
 }
 
 #Preview {

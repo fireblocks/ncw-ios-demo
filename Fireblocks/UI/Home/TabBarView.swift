@@ -128,6 +128,8 @@ struct TabBarView: View {
             .foregroundStyle(.white)
             .padding()
             .frame(maxWidth: .infinity)
+            .lineLimit(1)
+            .minimumScaleFactor(0.5)
             .background(tabIndex == selectedIndex ? AnyShapeStyle(AssetsColors.gray2.color()) : AnyShapeStyle(Color.clear))
             .clipShape(.rect(cornerRadius: 8))
             .contentShape(.rect)

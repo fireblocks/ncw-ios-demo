@@ -85,6 +85,8 @@ struct EWNFTDetailsView: View {
         }
         .navigationTitle("NFT Details")
         .navigationBarTitleDisplayMode(.inline)
+        .navigationBarBackButtonHidden()
+        .navigationBarItems(leading: CustomBackButtonView())
         .contentMargins(.top, 16)
 
     }

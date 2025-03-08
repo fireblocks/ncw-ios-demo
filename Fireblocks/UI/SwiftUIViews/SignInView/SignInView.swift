@@ -83,16 +83,13 @@ struct SignInView: View {
                     .ignoresSafeArea(.all)
                 VStack {
                     VStack {
-                        Button {
-                            print("Send Logs")
-                        } label: {
-                            Label("Send Logs", image: "sendLogsMenu")
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .padding()
-                            
+                        if let fireblocksLogsURL = fireblocksManager.getURLForLogFiles() {
+                            ShareLink(item: fireblocksLogsURL) {
+                                Label("Send Logs", image: "sendLogsMenu")
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                    .padding()
+                            }
                         }
-                        .contentShape(.rect)
-                        
                         Divider()
                         Button {
                             print("trashMenu")
@@ -147,6 +144,12 @@ struct SignInView: View {
             
         }
         .navigationBarBackButtonHidden()
+        .sheet(isPresented: $viewModel.isShareLogsPresented) {
+            if let fireblocksLogsURL = viewModel.fireblocksLogsURL {
+                GenericController(uiViewType: UIActivityViewController(activityItems: [ fireblocksLogsURL], applicationActivities: nil))
+                .presentationDetents([.medium])
+            }
+        }
 
     }
 }

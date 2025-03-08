@@ -91,8 +91,10 @@ extension AddDeviceView {
                 let vm = EndFlowFeedbackView.ViewModel(icon: AssetsIcons.addDeviceSucceeded.rawValue, title: LocalizableStrings.addDeviceAdded, buttonTitle: LocalizableStrings.goHome, actionButton:  {
                     
                     self.fireblocksManager?.startPolling()
-                    SignInViewModel.shared.launchView = NavigationContainerView {
-                        TabBarView()
+                    withAnimation {
+                        SignInViewModel.shared.launchView = NavigationContainerView {
+                            TabBarView()
+                        }
                     }
                 }, didFail: false, canGoBack: false)
                 

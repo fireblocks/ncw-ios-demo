@@ -92,6 +92,8 @@ struct EWNFTFeeView: View {
         .animation(.default, value: viewModel.dataModel.feeLevel)
         .navigationTitle("NFT Transfer")
         .navigationBarTitleDisplayMode(.inline)
+        .navigationBarBackButtonHidden()
+        .navigationBarItems(leading: CustomBackButtonView())
         .contentMargins(.top, 16)
 
     }

@@ -26,6 +26,7 @@ class ApproveViewModelBase {
     var cancellable = Set<AnyCancellable>()
 
     var didLoad = false
+    var isDiscardAlertPresented = false
     let fromCreate: Bool
     init(transaction: FBTransaction = FBTransaction(), fromCreate: Bool) {
         self.transaction = transaction

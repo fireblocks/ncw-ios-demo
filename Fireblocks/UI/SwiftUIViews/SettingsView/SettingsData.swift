@@ -21,5 +21,5 @@ struct SettingsData: Identifiable, Hashable {
     let icon: String
     let title: String
     let subtitle: String?
-    let action: () -> ()
+    let action: (() -> ())?
 }

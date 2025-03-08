@@ -110,6 +110,8 @@ struct EWTransferNFTView: View {
         .animation(.default, value: viewModel.dataModel.address)
         .navigationTitle("NFT Transfer")
         .navigationBarTitleDisplayMode(.inline)
+        .navigationBarBackButtonHidden()
+        .navigationBarItems(leading: CustomBackButtonView())
         .contentMargins(.top, 16)
         .fullScreenCover(isPresented: $viewModel.isQRPresented, content: {
             NavigationStack {

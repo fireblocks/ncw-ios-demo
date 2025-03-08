@@ -15,11 +15,13 @@ class SettingsViewModel {
     var coordinator: Coordinator!
     
     var settingsWalletActions: [SettingsData] = []
-    var settingsGeneralActions: [SettingsData] = []
-    var isShareLogsPresented = false
+//    var settingsGeneralActions: [SettingsData] = []
+    var advanceInfoAction: SettingsData?
+    var signOutAction: SettingsData?
     
-    var appLogoURL: URL?
-    var fireblocksLogsURL: URL?
+    var isShareLogsPresented = false
+    var isDiscardAlertPresented = false
+    var items: [URL] = []
     
     var currentUser: User? {
         get {
@@ -28,6 +30,12 @@ class SettingsViewModel {
     }
     
     init() {
+        if let fireblocksLogsURL = FireblocksManager.shared.getURLForLogFiles() {
+            items.append(fireblocksLogsURL)
+        }
+        if let appLogoURL = AppLoggerManager.shared.logger()?.getURLForLogFiles() {
+            items.append(appLogoURL)
+        }
         let walletActions = [
             SettingsData(icon: "settingsBackup", title: "Create a backup", subtitle: nil, action: {
                 self.coordinator.path.append(NavigationTypes.backup(true))
@@ -52,38 +60,18 @@ class SettingsViewModel {
             })
         )
         #endif
-        
-        let generalActions = [
-            SettingsData(icon: "settingsAdvancedInfo", title: "Advanced info", subtitle: nil, action: {
-                self.coordinator.path.append(NavigationTypes.info)
-
-            }),
-            SettingsData(icon: "settingsShareLogs", title: "Share logs", subtitle: nil, action: {
-                guard let fireblocksLogsURL = FireblocksManager.shared.getURLForLogFiles() else {
-                    print("Can't get file log url")
-                    return
-                }
-
-                guard let appLogoURL = AppLoggerManager.shared.logger()?.getURLForLogFiles() else {
-                    print("Can't get app file log url")
-                    return
-                }
-                self.fireblocksLogsURL = fireblocksLogsURL
-                self.appLogoURL = appLogoURL
-                self.isShareLogsPresented = true
-            }),
-            SettingsData(icon: "settingsSignOut", title: "Sign out", subtitle: nil, action: {
-                self.signOutFromFirebase()
-            })
-        ]
-
-        self.settingsGeneralActions = generalActions
-
-
     }
     
     func setup(coordinator: Coordinator) {
         self.coordinator = coordinator
+        self.advanceInfoAction = SettingsData(icon: "settingsAdvancedInfo", title: "Advanced info", subtitle: nil, action: {
+            self.coordinator.path.append(NavigationTypes.info)
+
+        })
+        self.signOutAction = SettingsData(icon: "settingsSignOut", title: "Sign out", subtitle: nil, action: {
+            self.isDiscardAlertPresented = true
+        })
+
     }
     
     func stopPollingMessages() {

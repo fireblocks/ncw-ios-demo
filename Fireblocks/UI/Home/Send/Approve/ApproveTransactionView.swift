@@ -80,7 +80,7 @@ struct ApproveTransactionView: View {
                 if let transactionInfo = viewModel.transferInfo, !transactionInfo.isEndedTransaction() {
                     ToolbarItem(placement: .topBarTrailing) {
                         Button {
-                            viewModel.cancelTransaction()
+                            viewModel.isDiscardAlertPresented = true
                         } label: {
                             Image(.close)
                                 .tint(.white)
@@ -102,8 +102,12 @@ struct ApproveTransactionView: View {
 
             }
         })
-//        .animation(.default, value: viewModel.dataModel.feeLevel)
-//        .animation(.default, value: viewModel.dataModel.transaction?.status)
+        .sheet(isPresented: $viewModel.isDiscardAlertPresented, content: {
+            discardAlert()
+                .presentationDetents([.fraction(0.5)])
+                .presentationDragIndicator(.visible)
+
+        })
         .scrollContentBackground(.hidden)
         .navigationTitle("Transaction Details")
         .navigationBarTitleDisplayMode(.inline)
@@ -249,7 +253,7 @@ struct ApproveTransactionView: View {
         if let transactionInfo = viewModel.transferInfo {
             HStack(spacing: 16) {
                 Button {
-                    viewModel.cancelTransaction()
+                    viewModel.isDiscardAlertPresented = true
                 } label: {
                     Text("Deny")
                         .frame(maxWidth: .infinity, alignment: .center)
@@ -280,6 +284,15 @@ struct ApproveTransactionView: View {
             .disabled(transactionInfo.status != .pendingSignature)
             .animation(.default, value: viewModel.transferInfo?.status)
             .background(transactionInfo.status == .pendingSignature ? nil : Color.clear)
+        }
+    }
+    
+    @ViewBuilder
+    private func discardAlert() -> some View {
+        DiscardAlert(title: "Are you sure you want to discard this transaction", mainTitle: "Discard transaction") {
+            viewModel.isDiscardAlertPresented = false
+            viewModel.cancelTransaction()
+
         }
     }
 

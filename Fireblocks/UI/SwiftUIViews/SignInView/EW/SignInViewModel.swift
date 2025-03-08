@@ -20,28 +20,36 @@ class SignInViewModel: SignInView.ViewModel {
 
             switch state {
             case .generate:
-                self.launchView = NavigationContainerView {
-                    SpinnerViewContainer {
-                        GenerateKeysView()
-                    }
-                }
-            case .exist:
-                if userHasKeys {
-                    fireblocksManager?.startPolling()
-                    self.launchView = NavigationContainerView {
-                        TabBarView()
-                    }
-                } else {
+                withAnimation {
                     self.launchView = NavigationContainerView {
                         SpinnerViewContainer {
                             GenerateKeysView()
                         }
                     }
                 }
+            case .exist:
+                if userHasKeys {
+                    fireblocksManager?.startPolling()
+                    withAnimation {
+                        self.launchView = NavigationContainerView {
+                            TabBarView()
+                        }
+                    }
+                } else {
+                    withAnimation {
+                        self.launchView = NavigationContainerView {
+                            SpinnerViewContainer {
+                                GenerateKeysView()
+                            }
+                        }
+                    }
+                }
             case .joinOrRecover:
-                self.launchView = NavigationContainerView {
-                    SpinnerViewContainer {
-                        JoinOrRecoverView()
+                withAnimation {
+                    self.launchView = NavigationContainerView {
+                        SpinnerViewContainer {
+                            JoinOrRecoverView()
+                        }
                     }
                 }
             case .error:

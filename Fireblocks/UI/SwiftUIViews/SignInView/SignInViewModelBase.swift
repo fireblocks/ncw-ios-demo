@@ -30,7 +30,11 @@ extension SignInView {
         
         @Published var isConnected: Bool = false
         @Published var launchView: (any View)?
-                
+          
+        var appLogoURL: URL?
+        var fireblocksLogsURL: URL?
+        var isShareLogsPresented = false
+
         func setup(authRepository: AuthRepository, loadingManager: LoadingManager, coordinator: Coordinator, fireblocksManager: FireblocksManager, googleSignInManager: GoogleSignInManager, appleSignInManager: AppleSignInManager) {
             self.authRepository = authRepository
             self.loadingManager = loadingManager
@@ -123,6 +127,18 @@ extension SignInView {
         func handleSuccessSignIn(isLaunch: Bool = false) async {
             fatalError("handleSuccessSignIn should be implemented on child class")
         }
+        
+        func shareLogs() {
+            guard let fireblocksLogsURL = fireblocksManager?.getURLForLogFiles() else {
+                print("Can't get file log url")
+                return
+            }
+            
+            self.fireblocksLogsURL = fireblocksLogsURL
+            isShareLogsPresented = true
+
+        }
+
     }
 }
 
