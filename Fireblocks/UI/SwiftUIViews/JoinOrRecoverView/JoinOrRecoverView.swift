@@ -75,7 +75,7 @@ struct JoinOrRecoverView: View {
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Button("Sign Out") {
-                    FireblocksManager.shared.signOut()
+                    try? FireblocksManager.shared.signOut()
                 }
                 .foregroundStyle(.white)
                 .opacity(isLaunch ? 1 : 0)

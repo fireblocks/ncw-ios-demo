@@ -114,7 +114,7 @@ class AddDeviceQRViewModel {
             self.startTimer()
             self.coordinator.path.removeLast(2)
         }, rightToolbarItemIcon: AssetsIcons.close.rawValue, rightToolbarItemAction: {
-            self.fireblocksManager?.signOut()
+            try? self.fireblocksManager?.signOut()
         }, didFail: true, canGoBack: false)
         self.coordinator.path.append(NavigationTypes.feedback(vm))
     }

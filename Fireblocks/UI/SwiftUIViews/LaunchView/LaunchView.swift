@@ -24,7 +24,7 @@ struct LaunchView: View {
                         .multilineTextAlignment(.center)
                         .padding(.top, 40)
                     Button {
-                        coordinator.path.append(NavigationTypes.signIn(viewModel))
+                        coordinator.path.append(NavigationTypes.signIn)
                     } label: {
                         Image("letsGo")
                     }
@@ -49,10 +49,6 @@ struct LaunchView: View {
                 ToolbarItem(placement: .topBarLeading) {
                     NavigationBarLeftHeader()
                 }
-            }
-            
-            if let view = viewModel.launchView {
-                AnyView(view)
             }
         }
     }

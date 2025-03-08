@@ -30,7 +30,7 @@ extension SignInView {
         
         @Published var isConnected: Bool = false
         @Published var launchView: (any View)?
-          
+        
         var appLogoURL: URL?
         var fireblocksLogsURL: URL?
         var isShareLogsPresented = false

@@ -195,24 +195,9 @@ class FireblocksManager: FireblocksManagerProtocol, ObservableObject {
         }
     }
 
-    func signOut() {
-        do{
-            try Auth.auth().signOut()
-            stopPollingMessages()
-            TransfersViewModel.shared.signOut()
-            AssetListViewModel.shared.signOut()
-            stopJoinWallet()
-            UsersLocalStorageManager.shared.resetAuthProvider()
-            deviceId = ""
-            walletId = ""
-            latestBackupDeviceId = ""
-            ewManager.instance = nil
-            SignInViewModel.shared.launchView = nil
-        } catch{
-            print("Can't sign out with current user: \(error.localizedDescription)")
-            return
-        }
-
+    func signOut() throws {
+        try signOutFlow()
+        ewManager.instance = nil
     }
 }
 

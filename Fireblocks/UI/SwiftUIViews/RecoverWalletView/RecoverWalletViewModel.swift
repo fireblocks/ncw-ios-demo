@@ -68,10 +68,8 @@ extension RecoverWalletView {
                             
                             if redirect {
                                 fireblocksManager.startPolling()
-                                withAnimation {
-                                    SignInViewModel.shared.launchView = NavigationContainerView {
-                                        TabBarView()
-                                    }
+                                SignInViewModel.shared.launchView = NavigationContainerView {
+                                    TabBarView()
                                 }
                             } else {
                                 self.coordinator?.path = NavigationPath()

@@ -59,7 +59,7 @@ protocol FireblocksManagerProtocol {
     
     func recoverWallet(resolver: FireblocksPassphraseResolver) async -> Bool
     func backupKeys(passphrase: String, passphraseId: String) async -> Set<KeyBackup>?
-    func signOut()
+    func signOut() throws
     
 }
 
@@ -239,35 +239,21 @@ extension FireblocksManagerProtocol {
         getNCWInstance()?.stopSignTransaction()
     }
     
-    func signOut() {
-//        guard let window = (UIApplication.shared.connectedScenes.first as? UIWindowScene)?.windows.first else {
-//            return
-//        }
-
-        do{
-            try Auth.auth().signOut()
-            FireblocksManager.shared.stopPollingMessages()
-            TransfersViewModel.shared.signOut()
-            AssetListViewModel.shared.signOut()
-            FireblocksManager.shared.stopJoinWallet()
-            SignInViewModel.shared.launchView = nil
-            UsersLocalStorageManager.shared.resetAuthProvider()
-            FireblocksManager.shared.deviceId = ""
-            FireblocksManager.shared.walletId = ""
-            FireblocksManager.shared.latestBackupDeviceId = ""
-        } catch{
-            print("Can't sign out with current user: \(error.localizedDescription)")
-            return
-        }
-        
-//        let rootViewController = UIHostingController(
-//            rootView: NavigationContainerView() {
-//                LaunchView()
-//                    .environmentObject(SignInViewModel.shared)
-//            }
-//        )
-//        window.rootViewController = rootViewController
-
+    func signOut() throws {
+        try signOutFlow()
+    }
+    
+    func signOutFlow() throws {
+        try Auth.auth().signOut()
+        stopPollingMessages()
+        TransfersViewModel.shared.signOut()
+        AssetListViewModel.shared.signOut()
+        stopJoinWallet()
+        UsersLocalStorageManager.shared.resetAuthProvider()
+        SignInViewModel.shared.launchView = nil
+        FireblocksManager.shared.deviceId = ""
+        FireblocksManager.shared.walletId = ""
+        FireblocksManager.shared.latestBackupDeviceId = ""
     }
 
 

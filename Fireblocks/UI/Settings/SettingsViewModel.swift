@@ -12,7 +12,8 @@ import SwiftUI
 
 @Observable
 class SettingsViewModel {
-    var coordinator: Coordinator!
+    var coordinator: Coordinator?
+    var loadingManager: LoadingManager?
     
     var settingsWalletActions: [SettingsData] = []
 //    var settingsGeneralActions: [SettingsData] = []
@@ -38,16 +39,16 @@ class SettingsViewModel {
         }
         let walletActions = [
             SettingsData(icon: "settingsBackup", title: "Create a backup", subtitle: nil, action: {
-                self.coordinator.path.append(NavigationTypes.backup(true))
+                self.coordinator?.path.append(NavigationTypes.backup(true))
             }),
             SettingsData(icon: "settingsRecover", title: "Recover wallet", subtitle: nil, action: {
-                self.coordinator.path.append(NavigationTypes.recoverWallet(false))
+                self.coordinator?.path.append(NavigationTypes.recoverWallet(false))
             }),
             SettingsData(icon: "settingsExport", title: "Export private key", subtitle: nil, action: {
-                self.coordinator.path.append(NavigationTypes.takeover)
+                self.coordinator?.path.append(NavigationTypes.takeover)
             }),
             SettingsData(icon: "settingsAddNewDevice", title: "Add new device", subtitle: nil, action: {
-                self.coordinator.path.append(NavigationTypes.joinDevice)
+                self.coordinator?.path.append(NavigationTypes.joinDevice)
             })
         ]
         
@@ -56,16 +57,17 @@ class SettingsViewModel {
         #if DEV
         self.settingsWalletActions.append(
             SettingsData(icon: "settingsExport", title: "Generate keys", subtitle: nil, action: {
-                self.coordinator.path.append(NavigationTypes.generateKeys)
+                self.coordinator?.path.append(NavigationTypes.generateKeys)
             })
         )
         #endif
     }
     
-    func setup(coordinator: Coordinator) {
+    func setup(coordinator: Coordinator, loadingManager: LoadingManager) {
         self.coordinator = coordinator
+        self.loadingManager = loadingManager
         self.advanceInfoAction = SettingsData(icon: "settingsAdvancedInfo", title: "Advanced info", subtitle: nil, action: {
-            self.coordinator.path.append(NavigationTypes.info)
+            self.coordinator?.path.append(NavigationTypes.info)
 
         })
         self.signOutAction = SettingsData(icon: "settingsSignOut", title: "Sign out", subtitle: nil, action: {
@@ -78,9 +80,13 @@ class SettingsViewModel {
         FireblocksManager.shared.stopPollingMessages()
     }
     
+    @MainActor
     func signOutFromFirebase() {
-        FireblocksManager.shared.signOut()
-        coordinator.path = NavigationPath()
+        do {
+            try FireblocksManager.shared.signOut()
+        } catch {
+            self.loadingManager?.setAlertMessage(error: error)
+        }
     }
     
     func getUrlOfProfilePicture() -> URL? {

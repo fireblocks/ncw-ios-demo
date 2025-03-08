@@ -23,6 +23,11 @@ struct EWWeb3ConnectionsView: View {
         ZStack {
             AppBackgroundView()
             
+            if viewModel.dataModel.connections.isEmpty {
+                ContentUnavailableView("Web3 Connections", systemImage: "magnifyingglass", description: Text("No Web3 Connections found on your wallet"))
+                    .listRowBackground(Color.clear)
+            }
+
             VStack {
                 List {
                     HStack {
@@ -57,6 +62,7 @@ struct EWWeb3ConnectionsView: View {
                     
                 }
                 .listSectionSpacing(.compact)
+                .scrollContentBackground(.hidden)
                 .refreshable {
                     loadingManager.isLoading = true
                     viewModel.fetchAllConnections()
@@ -64,9 +70,6 @@ struct EWWeb3ConnectionsView: View {
                 .contentMargins(.top, 16)
 
                 Spacer()
-//                BottomBanner(message: viewModel.ewManager?.errorMessage)
-//                    .animation(.default, value: viewModel.ewManager?.errorMessage)
-                
             }
 
         }

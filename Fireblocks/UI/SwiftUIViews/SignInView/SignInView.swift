@@ -150,7 +150,6 @@ struct SignInView: View {
                 .presentationDetents([.medium])
             }
         }
-
     }
 }
 

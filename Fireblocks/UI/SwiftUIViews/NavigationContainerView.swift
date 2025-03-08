@@ -20,7 +20,7 @@ import FireblocksSDK
 #endif
 
 enum NavigationTypes: Hashable {
-    case signIn(SignInView.ViewModel)
+    case signIn
     case joinOrRecover
     case recoverWallet(Bool)
     case addDevice
@@ -110,10 +110,10 @@ struct NavigationContainerView<Content: View>: View {
             #endif
             .navigationDestination(for: NavigationTypes.self) { type in
                 switch type {
-                case .signIn(let viewModel):
+                case .signIn:
                     SpinnerViewContainer {
                         SignInView()
-                            .environmentObject(viewModel)
+                            .environmentObject(SignInViewModel.shared)
                             .environmentObject(coordinator)
                             .environmentObject(fireblocksManager)
                             .environmentObject(googleSignInManager)
@@ -197,8 +197,10 @@ struct NavigationContainerView<Content: View>: View {
                 case .info:
                     AdvancedInfoViewControllerRep()
                 case .settings:
-                    SettingsView()
-                        .environmentObject(coordinator)
+                    SpinnerViewContainer {
+                        SettingsView()
+                            .environmentObject(coordinator)
+                    }
                 case .genericController(let controller, let title):
                     SpinnerViewContainer {
                         GenericController(uiViewType: controller)

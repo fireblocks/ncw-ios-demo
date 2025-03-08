@@ -44,28 +44,22 @@ class SignInViewModel: SignInView.ViewModel {
             if userHasKeys {
                 if let _ = await fireblocksManager?.assignWallet() {
                     fireblocksManager?.startPolling()
-                    withAnimation {
-                        self.launchView = NavigationContainerView {
-                            TabBarView()
-                        }
+                    self.launchView = NavigationContainerView {
+                        TabBarView()
                     }
                 }
             } else {
-                withAnimation {
-                    self.launchView = NavigationContainerView {
-                        SpinnerViewContainer {
-                            GenerateKeysView()
-                        }
+                self.launchView = NavigationContainerView {
+                    SpinnerViewContainer {
+                        GenerateKeysView()
                     }
                 }
             }
         case .joinOrRecover:
             if isLaunch {
-                withAnimation {
-                    self.launchView = NavigationContainerView {
-                        SpinnerViewContainer {
-                            JoinOrRecoverView()
-                        }
+                self.launchView = NavigationContainerView {
+                    SpinnerViewContainer {
+                        JoinOrRecoverView()
                     }
                 }
             } else {
