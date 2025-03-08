@@ -19,7 +19,8 @@ import EmbeddedWalletSDK
 @Observable
 final class FeeRateViewModel: FeeRateViewModelBase {
     var ewManager: EWManager?
-    
+    var pollingManagerTxId: PollingManagerTxId?
+
     func setup(loadingManager: LoadingManager, coordinator: Coordinator, ewManager: EWManager) {
         if !didLoad {
             didLoad = true

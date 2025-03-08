@@ -3639,7 +3639,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "NCW-dev/NCW-devDebug.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"NCW-dev/Preview Content\"";
 				DEVELOPMENT_TEAM = 2HS962GC9R;
 				ENABLE_PREVIEWS = YES;
@@ -3659,7 +3659,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1.0;
+				MARKETING_VERSION = 0.2.0;
 				OTHER_SWIFT_FLAGS = "-DDEV -DEW";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fireblocks.ew.demo.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3679,7 +3679,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "NCW-dev/NCW-devRelease.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"NCW-dev/Preview Content\"";
 				DEVELOPMENT_TEAM = 2HS962GC9R;
 				ENABLE_PREVIEWS = YES;
@@ -3699,7 +3699,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1.0;
+				MARKETING_VERSION = 0.2.0;
 				OTHER_SWIFT_FLAGS = "-DDEV -DEW";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fireblocks.ew.demo.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";

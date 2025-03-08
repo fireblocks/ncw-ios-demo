@@ -12,7 +12,6 @@ import Combine
 class FeeRateViewModelBase {
     var coordinator: Coordinator?
     var loadingManager: LoadingManager?
-    var pollingManagerTxId: PollingManagerTxId?
     
     //MARK: - PROPERTIES
     var transaction: FBTransaction

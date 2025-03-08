@@ -113,11 +113,13 @@ struct FeeRateView: View {
 }
 
 #Preview {
+    #if EW
     NavigationContainerView(mockManager: EWManagerMock()) {
         SpinnerViewContainer {
             FeeRateView(viewModel: FeeRateViewModel(transaction: FBTransaction.mock))
         }
     }
+    #endif
 }
 
 
