@@ -746,6 +746,10 @@
 		2BEB9C822D7C1BE100699AC1 /* DiscardAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEB9C802D7C1BE100699AC1 /* DiscardAlert.swift */; };
 		2BEB9C832D7C1BE100699AC1 /* DiscardAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEB9C802D7C1BE100699AC1 /* DiscardAlert.swift */; };
 		2BEB9C842D7C1BE100699AC1 /* DiscardAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEB9C802D7C1BE100699AC1 /* DiscardAlert.swift */; };
+		2BEB9C8F2D7DBEB600699AC1 /* AssetRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEB9C8E2D7DBEB600699AC1 /* AssetRowViewModel.swift */; };
+		2BEB9C902D7DBEB600699AC1 /* AssetRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEB9C8E2D7DBEB600699AC1 /* AssetRowViewModel.swift */; };
+		2BEB9C912D7DBEB600699AC1 /* AssetRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEB9C8E2D7DBEB600699AC1 /* AssetRowViewModel.swift */; };
+		2BEB9C922D7DBEB700699AC1 /* AssetRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEB9C8E2D7DBEB600699AC1 /* AssetRowViewModel.swift */; };
 		2BEEF7C62BAC6F11004AF6AB /* DeriveKeysViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD34A762B98B995008406D5 /* DeriveKeysViewModel.swift */; };
 		2BEEF7C72BAC6F11004AF6AB /* DerivedAssetRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD34A7A2B98C129008406D5 /* DerivedAssetRow.swift */; };
 		2BEEF7C82BAC6F11004AF6AB /* DeriveKeysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD34A782B98B9A2008406D5 /* DeriveKeysView.swift */; };
@@ -1071,6 +1075,7 @@
 		2BEB9C762D7B3C0000699AC1 /* FeeRateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeeRateView.swift; sourceTree = "<group>"; };
 		2BEB9C7B2D7B5BF100699AC1 /* FeeRateViewModelBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeeRateViewModelBase.swift; sourceTree = "<group>"; };
 		2BEB9C802D7C1BE100699AC1 /* DiscardAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscardAlert.swift; sourceTree = "<group>"; };
+		2BEB9C8E2D7DBEB600699AC1 /* AssetRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetRowViewModel.swift; sourceTree = "<group>"; };
 		2BF477E02D37DBBD000C9553 /* BackupData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupData.swift; sourceTree = "<group>"; };
 		2BF477E52D37DC29000C9553 /* UsersLocalStorageManager+NCW.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UsersLocalStorageManager+NCW.swift"; sourceTree = "<group>"; };
 		2BF8EDB52B56673300046F0B /* EndFlowFeedbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndFlowFeedbackView.swift; sourceTree = "<group>"; };
@@ -1779,10 +1784,10 @@
 		2BEB9BB12D72345600699AC1 /* AssetListView */ = {
 			isa = PBXGroup;
 			children = (
-				2BEB9C2C2D79DC7600699AC1 /* AssetListViewModel */,
 				2BEB9BA72D71BBED00699AC1 /* AssetListView.swift */,
-				2BEB9BAC2D71BF8100699AC1 /* AssetRow.swift */,
 				2BEB9BB22D72346F00699AC1 /* AddAssetView.swift */,
+				2BEB9C932D7DBECC00699AC1 /* AssetRow */,
+				2BEB9C2C2D79DC7600699AC1 /* AssetListViewModel */,
 			);
 			path = AssetListView;
 			sourceTree = "<group>";
@@ -1902,6 +1907,15 @@
 				2B87CAE12D47AC3700448A2A /* NCW */,
 			);
 			path = TransfersViewModel;
+			sourceTree = "<group>";
+		};
+		2BEB9C932D7DBECC00699AC1 /* AssetRow */ = {
+			isa = PBXGroup;
+			children = (
+				2BEB9BAC2D71BF8100699AC1 /* AssetRow.swift */,
+				2BEB9C8E2D7DBEB600699AC1 /* AssetRowViewModel.swift */,
+			);
+			path = AssetRow;
 			sourceTree = "<group>";
 		};
 		2BF8EDB72B56673E00046F0B /* EndFlowFeedback */ = {
@@ -2842,6 +2856,7 @@
 				2BEB9BBA2D7478A300699AC1 /* BottomAlertsContainer.swift in Sources */,
 				2B21D8152BC56B5C003ADD29 /* BackupViewModel.swift in Sources */,
 				2B21D8182BC56B5C003ADD29 /* AppLogger.swift in Sources */,
+				2BEB9C902D7DBEB600699AC1 /* AssetRowViewModel.swift in Sources */,
 				2B21D8192BC56B5C003ADD29 /* BackupDetailsViewModel.swift in Sources */,
 				2B21D81A2BC56B5C003ADD29 /* FeeRateCell.swift in Sources */,
 				2BEB9C7F2D7B5BFB00699AC1 /* FeeRateViewModelBase.swift in Sources */,
@@ -3055,6 +3070,7 @@
 				2B223FB12D673EAE002285B9 /* EWNFTsViewModel.swift in Sources */,
 				2B223FB22D673EAE002285B9 /* EWWeb3ConnectionsViewModel.swift in Sources */,
 				2B223FB32D673EAE002285B9 /* EWWeb3ConnectionsView.swift in Sources */,
+				2BEB9C922D7DBEB700699AC1 /* AssetRowViewModel.swift in Sources */,
 				2BEB9BA92D71BBF300699AC1 /* AssetListView.swift in Sources */,
 				2B223FB42D673EAE002285B9 /* EWNFTDetailsView.swift in Sources */,
 				2B223FB52D673EAE002285B9 /* EWWeb3ConnectionURI.swift in Sources */,
@@ -3247,6 +3263,7 @@
 				2B7C47562B32D98D001C804B /* AdvancedInfoViewModel.swift in Sources */,
 				2B7C47152B32D90C001C804B /* SessionManager.swift in Sources */,
 				2B7C476E2B32D9C9001C804B /* AssetViewCell.swift in Sources */,
+				2BEB9C912D7DBEB600699AC1 /* AssetRowViewModel.swift in Sources */,
 				2BF477E62D37DC29000C9553 /* UsersLocalStorageManager+NCW.swift in Sources */,
 				2B2B18C12D2ADF4400A2B39D /* AddDeviceView.swift in Sources */,
 				2B7C47572B32D98D001C804B /* AdvancedInfoViewController.swift in Sources */,
@@ -3385,6 +3402,7 @@
 				2BEB9BB82D7478A300699AC1 /* BottomAlertsContainer.swift in Sources */,
 				86346ACD2A6D0D2C0002FE34 /* ToastView.swift in Sources */,
 				866A73C82A696A3100E8E545 /* BackupViewModel.swift in Sources */,
+				2BEB9C8F2D7DBEB600699AC1 /* AssetRowViewModel.swift in Sources */,
 				2B2D36162B2B205A00B04667 /* AppLogger.swift in Sources */,
 				867828EE2A696D7D0035787D /* BackupDetailsViewModel.swift in Sources */,
 				2BEB9C7D2D7B5BFB00699AC1 /* FeeRateViewModelBase.swift in Sources */,
@@ -3659,7 +3677,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.3.0;
+				MARKETING_VERSION = 0.5.0;
 				OTHER_SWIFT_FLAGS = "-DDEV -DEW";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fireblocks.ew.demo.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3699,7 +3717,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.3.0;
+				MARKETING_VERSION = 0.5.0;
 				OTHER_SWIFT_FLAGS = "-DDEV -DEW";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fireblocks.ew.demo.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -57,8 +57,24 @@ struct BackupWalletView: View {
                 .padding(.horizontal)
             }
         }
+        .toolbar(content: {
+            ToolbarItem(placement: .topBarLeading) {
+                Button {
+                    if viewModel.redirect {
+                        SignInViewModel.shared.launchView = NavigationContainerView {
+                            TabBarView()
+                        }
+                    } else {
+                        dismiss()
+                    }
+                } label: {
+                    Image(.backButton)
+
+                }
+
+            }
+        })
         .navigationBarBackButtonHidden()
-        .navigationBarItems(leading: viewModel.redirect ? CustomBackButtonView() : nil)
         .onAppear() {
             viewModel.setup(loadingManager: loadingManager, fireblocksManager: fireblocksManager, googleSignInManager: googleSignInManager, coordinator: coordinator)
         }

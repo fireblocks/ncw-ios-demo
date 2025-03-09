@@ -100,7 +100,7 @@ class EWManagerMock: EWManager {
     }
 
     //MARK: - Web3 -
-    override func getConnections(allPages: Bool = true, pageCursor: String? = nil, order: Order? = nil, filter: String? = nil, sort: Web3ConnectionSort? = nil, pageSize: Int? = nil) async throws -> PaginatedResponse<Web3Connection> {
+    override func getConnections(allPages: Bool = true, pageCursor: String? = nil, order: Order? = nil, filter: Web3Filter? = nil, sort: Web3ConnectionSort? = nil, pageSize: Int? = nil) async throws -> PaginatedResponse<Web3Connection> {
 
         if let data = Mocks.Connections.getResponse.data(using: .utf8) {
             if let connections: PaginatedResponse<Web3Connection> = try GenericDecoder.decode(data: data) {
@@ -203,7 +203,7 @@ class EWManagerMock1: EWManager {
         return []
     }
     
-    override func getConnections(allPages: Bool = true, pageCursor: String? = nil, order: Order? = nil, filter: String? = nil, sort: Web3ConnectionSort? = nil, pageSize: Int? = nil) async throws -> PaginatedResponse<Web3Connection> {
+    override func getConnections(allPages: Bool = true, pageCursor: String? = nil, order: Order? = nil, filter: Web3Filter? = nil, sort: Web3ConnectionSort? = nil, pageSize: Int? = nil) async throws -> PaginatedResponse<Web3Connection> {
 
         if let data = Mocks.Connections.getResponse.data(using: .utf8) {
             if let asset: PaginatedResponse<Web3Connection> = try GenericDecoder.decode(data: data) {

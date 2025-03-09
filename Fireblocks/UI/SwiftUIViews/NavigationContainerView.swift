@@ -33,7 +33,6 @@ enum NavigationTypes: Hashable {
     case validateRequestIdView(String)
     case settings
     case info
-    case generateKeys
     case genericController(UIViewController, String)
     case selectFee(FBTransaction)
     case approveTransaction(FBTransaction, Bool)
@@ -160,13 +159,6 @@ struct NavigationContainerView<Content: View>: View {
                             .environmentObject(coordinator)
                             .environmentObject(fireblocksManager)
                             .environmentObject(googleSignInManager)
-
-                    }
-                case .generateKeys:
-                    SpinnerViewContainer {
-                        GenerateKeysView()
-                            .environmentObject(fireblocksManager)
-                            .environmentObject(coordinator)
 
                     }
                 case .takeover:

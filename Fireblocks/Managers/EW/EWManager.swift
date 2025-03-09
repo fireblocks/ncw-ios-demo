@@ -144,6 +144,11 @@ class EWManager: Hashable {
         return try await instance.getBalance(accountId: accountId, assetId: assetId)
     }
 
+    func refreshAssetBalance(assetId: String, accountId: Int) async throws -> EmbeddedWalletSDKDev.AssetBalance {
+        let instance = try initialize()
+        return try await instance.refreshBalance(accountId: accountId, assetId: assetId)
+    }
+
     func fetchAllAccountAssets(accountId: Int) async throws -> [EmbeddedWalletSDKDev.Asset] {
         let instance = try initialize()
         return try await instance.getAssets(accountId: accountId).data ?? []
@@ -313,7 +318,7 @@ class EWManager: Hashable {
     
     //MARK: - Web3Connections -
     
-    func getConnections(allPages: Bool = true, pageCursor: String? = nil, order: Order? = nil, filter: String? = nil, sort: Web3ConnectionSort? = nil, pageSize: Int? = nil) async throws -> PaginatedResponse<Web3Connection> {
+    func getConnections(allPages: Bool = true, pageCursor: String? = nil, order: Order? = nil, filter: Web3Filter? = nil, sort: Web3ConnectionSort? = nil, pageSize: Int? = nil) async throws -> PaginatedResponse<Web3Connection> {
         if let mockManager {
             return try await mockManager.getConnections(allPages: allPages, pageCursor: pageCursor, order: order, filter: filter, sort: sort, pageSize: pageSize)
         }

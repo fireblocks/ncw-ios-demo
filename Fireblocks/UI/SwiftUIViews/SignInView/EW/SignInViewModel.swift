@@ -49,4 +49,8 @@ class SignInViewModel: SignInView.ViewModel {
             }
         }
     }
+    
+    override func clearWallet() {
+    }
+
 }

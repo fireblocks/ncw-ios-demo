@@ -51,10 +51,24 @@ extension BackupWalletView {
                     let viewModel: EndFlowFeedbackView.ViewModel
                     if result {
                         viewModel = EndFlowFeedbackView.ViewModel(icon: nil, title: "Recovery key backed up", subTitle: "Your recovery key was successfully completed and backed up.", navigationBarTitle: "Create key backup", buttonIcon: nil, buttonTitle: "Go home", actionButton: {
-                            self.coordinator.path = NavigationPath()
-                        }, rightToolbarItemIcon: nil, rightToolbarItemAction: nil, didFail: false)
+                            if self.redirect {
+                                SignInViewModel.shared.launchView = NavigationContainerView {
+                                    TabBarView()
+                                }
+                            } else {
+                                self.coordinator.path = NavigationPath()
+                            }
+                        }, rightToolbarItemIcon: nil, rightToolbarItemAction: nil, didFail: false, canGoBack: false)
                     } else {
-                        viewModel = EndFlowFeedbackView.ViewModel(icon: nil, title: "Recovery key backed up", subTitle: "Your recovery key was failed to backup.", navigationBarTitle: "Create key backup", buttonIcon: nil, buttonTitle: "Go home", actionButton: { self.coordinator.path = NavigationPath() }, rightToolbarItemIcon: nil, rightToolbarItemAction: nil, didFail: true)
+                        viewModel = EndFlowFeedbackView.ViewModel(icon: nil, title: "Recovery key backed up", subTitle: "Your recovery key was failed to backup.", navigationBarTitle: "Create key backup", buttonIcon: nil, buttonTitle: "Go home", actionButton: {
+                            if self.redirect {
+                                SignInViewModel.shared.launchView = NavigationContainerView {
+                                    TabBarView()
+                                }
+                            } else {
+                                self.coordinator.path = NavigationPath()
+                            }
+                        }, rightToolbarItemIcon: nil, rightToolbarItemAction: nil, didFail: true, canGoBack: true)
                     }
                     coordinator.path.append(NavigationTypes.feedback(viewModel))
                 } else {

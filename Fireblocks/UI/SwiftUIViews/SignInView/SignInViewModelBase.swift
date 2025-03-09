@@ -138,6 +138,11 @@ extension SignInView {
             isShareLogsPresented = true
 
         }
+        
+        func clearWallet() {
+            fatalError("clearWallet should be implemented on child class")
+        }
+
 
     }
 }

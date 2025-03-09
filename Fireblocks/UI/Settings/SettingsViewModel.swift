@@ -39,7 +39,7 @@ class SettingsViewModel {
         }
         let walletActions = [
             SettingsData(icon: "settingsBackup", title: "Create a backup", subtitle: nil, action: {
-                self.coordinator?.path.append(NavigationTypes.backup(true))
+                self.coordinator?.path.append(NavigationTypes.backup(false))
             }),
             SettingsData(icon: "settingsRecover", title: "Recover wallet", subtitle: nil, action: {
                 self.coordinator?.path.append(NavigationTypes.recoverWallet(false))
@@ -57,7 +57,11 @@ class SettingsViewModel {
         #if DEV
         self.settingsWalletActions.append(
             SettingsData(icon: "settingsExport", title: "Generate keys", subtitle: nil, action: {
-                self.coordinator?.path.append(NavigationTypes.generateKeys)
+                SignInViewModel.shared.launchView = NavigationContainerView {
+                    SpinnerViewContainer {
+                        GenerateKeysView()
+                    }
+                }
             })
         )
         #endif

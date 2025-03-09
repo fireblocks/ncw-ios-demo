@@ -14,38 +14,6 @@ import SwiftUI
     #endif
 #endif
 
-@Observable
-class AssetRowViewModel {
-    var asset: AssetSummary
-    var uiimage: UIImage?
-    var image: Image?
-    
-    init(asset: AssetSummary) {
-        self.asset = asset
-        self.uiimage = asset.image
-        loadAsset()
-    }
-    
-    private func loadAsset() {
-        self.image = Image(uiImage: asset.image)
-        Task {
-            if let imageURL = asset.iconUrl, let url = URL(string: imageURL) {
-                if let uiimage = try? await SessionManager.shared.loadImage(url: url) {
-                    await MainActor.run {
-                        self.uiimage = uiimage
-                        self.image = Image(uiImage: uiimage)
-                        if self.image == nil {
-                            self.image = Image(uiImage: asset.image)
-                        }
-                        
-                    }
-                }
-            }
-        }
-
-    }
-}
-
 struct AssetRow: View {
     @EnvironmentObject var coordinator: Coordinator
     @EnvironmentObject var loadingManager: LoadingManager
@@ -70,7 +38,11 @@ struct AssetRow: View {
                 .opacity( asset.isExpanded ? 1 : 0)
         }
         .animation(.default, value: asset.isExpanded)
-
+        .onAppear() {
+            #if EW
+            viewModel.setup(loadingManager: loadingManager, ewManager: ewManager)
+            #endif
+        }
     }
     
     @ViewBuilder
@@ -166,13 +138,27 @@ struct AssetRow: View {
         .swipeActions {
             Button {
                 if let value = asset.address?.address {
+                    loadingManager.toastMessage = "Address copied to clipboard"
                     UIPasteboard.general.string = value
                 }
             } label: {
-                Label("Copy Address", systemImage: "doc.on.doc")
+                Label("Address", systemImage: "doc.on.doc")
             }
             .tint(.orange)
+            
+            #if EW
+            #if DEV
+            Button {
+                viewModel.refreshBalance()
+            } label: {
+                Label("Refresh", systemImage: "arrow.clockwise")
+            }
+            .tint(.blue)
+            #endif
+            #endif
+
         }
+
     }
 }
 

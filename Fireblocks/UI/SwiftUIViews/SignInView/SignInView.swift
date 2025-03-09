@@ -92,7 +92,7 @@ struct SignInView: View {
                         }
                         Divider()
                         Button {
-                            print("trashMenu")
+                            viewModel.clearWallet()
                         } label: {
                             Label("Clear and create a new wallet", image: "trashMenu")
                                 .frame(maxWidth: .infinity, alignment: .leading)
