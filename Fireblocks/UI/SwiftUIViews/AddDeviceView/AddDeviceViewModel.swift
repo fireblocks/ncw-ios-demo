@@ -39,9 +39,9 @@ extension AddDeviceView {
             Task {
                 do {
                     let _ = try await SessionManager.shared.joinWallet(deviceId: fireblocksManager.deviceId, walletId: fireblocksManager.walletId)
-                    try fireblocksManager.initializeFireblocksSDK()
+                    let _ = try fireblocksManager.initializeCore()
                     
-                    let addDeviceResult = await fireblocksManager.addDevice(joinWalletHandler: self)
+                    let addDeviceResult = try await fireblocksManager.addDevice(joinWalletHandler: self)
                     await MainActor.run {
                         self.isKeysGenerated(isGenerated: addDeviceResult)
                         self.loadingManager.setLoading(value: false)

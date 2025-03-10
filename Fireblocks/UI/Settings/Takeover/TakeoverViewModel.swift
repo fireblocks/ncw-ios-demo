@@ -29,17 +29,26 @@ class TakeoverViewModel  {
     }
     
     func getTakeoverFullKeys() {
+        guard let fireblocksManager else { return }
         self.loadingManager?.isLoading = true
         Task {
-            if let keys = await fireblocksManager?.takeOver(), keys.count > 0, keys.filter({$0.error != nil}).isEmpty {
-                await MainActor.run {
-                    self.loadingManager?.isLoading = false
-                    self.coordinator?.path.append(NavigationTypes.derivedKeysView(keys))
+            do {
+                let keys = try await fireblocksManager.takeOver()
+                if keys.count > 0, keys.filter({$0.error != nil}).isEmpty {
+                    await MainActor.run {
+                        self.loadingManager?.isLoading = false
+                        self.coordinator?.path.append(NavigationTypes.derivedKeysView(keys))
+                    }
+                } else {
+                    await MainActor.run {
+                        self.loadingManager?.isLoading = false
+                        self.loadingManager?.setAlertMessage(error: CustomError.takeover)
+                    }
                 }
-            } else {
+            } catch {
                 await MainActor.run {
                     self.loadingManager?.isLoading = false
-                    self.loadingManager?.setAlertMessage(error: CustomError.genericError("Failed to takeover keys"))
+                    self.loadingManager?.setAlertMessage(error: error)
                 }
             }
         }

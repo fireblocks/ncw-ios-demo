@@ -55,11 +55,11 @@ extension RecoverWalletView {
                     return
                 }
                                 
-                try fireblocksManager.initializeFireblocksSDK()
+                let _ = try fireblocksManager.initializeCore()
                 self.loadingManager.setLoading(value: true)
                 Task {
                     self.gidUser = await gidUser()
-                    let result = await fireblocksManager.recoverWallet(resolver: self)
+                    let result = try await fireblocksManager.recoverWallet(resolver: self)
                     await MainActor.run {
                         self.loadingManager.setLoading(value: false)
                         if result, let email = fireblocksManager.getUserEmail() {
@@ -75,12 +75,13 @@ extension RecoverWalletView {
                                 self.coordinator?.path = NavigationPath()
                             }
                         } else {
-                            
+                            self.loadingManager.setAlertMessage(error: CustomError.recover)
                         }
                     }
                 }
             } catch {
-                return
+                self.loadingManager.setLoading(value: false)
+                self.loadingManager.setAlertMessage(error: error)
             }
         }
         

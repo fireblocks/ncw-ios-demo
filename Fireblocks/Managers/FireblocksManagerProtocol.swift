@@ -21,7 +21,6 @@ protocol FireblocksManagerProtocol {
     var algoArray: [Algorithm] { get set }
     var deviceId: String { get }
     var walletId: String { get }
-    var errorMessage: String? { get set }
     var latestBackupDeviceId: String { get }
     var didClearWallet: Bool { get set }
 
@@ -32,34 +31,32 @@ protocol FireblocksManagerProtocol {
     
     func getDeviceId() -> String
     func getWalletId() -> String
-    func generateMpcKeys() async -> Set<KeyDescriptor>?
-    func generateECDSAKeys() async -> Set<KeyDescriptor>?
-    func generateEDDSAKeys() async -> Set<KeyDescriptor>?
-    func initializeFireblocksSDK() throws
-    func getNCWInstance() -> Fireblocks?
-    func getMpcKeys() -> [KeyDescriptor]
-    func getFullKey() async -> [String: Data]?
-    func generateKeys() async -> Set<KeyDescriptor>?
-    func isKeyInitialized(algorithm: Algorithm) -> Bool
-//    func isInstanceInitialized(authUser: AuthUser?) -> Bool
+    func generateMpcKeys() async throws -> Set<KeyDescriptor>
+    func generateECDSAKeys() async throws -> Set<KeyDescriptor>
+    func generateEDDSAKeys() async throws -> Set<KeyDescriptor>
+    func initializeCore() throws -> Fireblocks
+    func getMpcKeys() throws -> [KeyDescriptor]
+    func generateKeys() async throws -> Set<KeyDescriptor>
+    func isKeyInitialized(algorithm: Algorithm) throws -> Bool
+
     func getUserEmail() -> String?
     func assignWallet() async throws
     
     func startPolling()
     func stopPollingMessages()
     func signTransaction(transactionId: String) async throws -> Bool
-    func stopTransaction()
+    func stopTransaction() throws
     
-    func addDevice(joinWalletHandler: FireblocksJoinWalletHandler) async -> Bool
+    func addDevice(joinWalletHandler: FireblocksJoinWalletHandler) async throws -> Bool
     func approveJoinWallet(requestId: String) async throws -> Set<JoinWalletDescriptor>
-    func stopJoinWallet()
+    func stopJoinWallet() throws
     
     
-    func takeOver() async -> Set<FullKey>?
-    func deriveAssetKey(privateKey: String, derivationParams: DerivationParams) async -> KeyData?
+    func takeOver() async throws -> Set<FullKey>
+    func deriveAssetKey(privateKey: String, derivationParams: DerivationParams) async throws -> KeyData
     
-    func recoverWallet(resolver: FireblocksPassphraseResolver) async -> Bool
-    func backupKeys(passphrase: String, passphraseId: String) async -> Set<KeyBackup>?
+    func recoverWallet(resolver: FireblocksPassphraseResolver) async throws -> Bool
+    func backupKeys(passphrase: String, passphraseId: String) async throws -> Set<KeyBackup>
     func signOut() throws
     
 }
@@ -91,153 +88,77 @@ extension FireblocksManagerProtocol {
         return walletId
     }
 
-    func isKeyInitialized(algorithm: Algorithm) -> Bool {
-        return getMpcKeys().filter({$0.algorithm == algorithm}).first?.keyStatus == .READY
+    func isKeyInitialized(algorithm: Algorithm) throws -> Bool {
+        return try getMpcKeys().filter({$0.algorithm == algorithm}).first?.keyStatus == .READY
     }
     
     func getUserEmail() -> String? {
         return Auth.auth().currentUser?.email
     }
 
-    func getMpcKeys() -> [KeyDescriptor] {
-        return getNCWInstance()?.getKeysStatus() ?? []
+    func getMpcKeys() throws -> [KeyDescriptor] {
+        return try initializeCore().getKeysStatus()
     }
 
-    func getFullKey() async -> [String: Data]? {
-        guard getNCWInstance() != nil else {
-            return nil
-        }
-        
-        var keysSet: Set<String> = []
-        let allKeys = getMpcKeys()
-        for mpcKey in allKeys {
-            keysSet.insert(mpcKey.keyId ?? "")
-        }
-            
-        return nil
-    }
-
-    func generateKeys() async -> Set<KeyDescriptor>? {
-        do {
-            let algorithms: Set<Algorithm> = Set(algoArray)
-            let startDate = Date()
-            let result = try await getNCWInstance()?.generateMPCKeys(algorithms: algorithms)
-            print("Measure - generateMpcKeys \(Date().timeIntervalSince(startDate))")
-            return result
-        } catch {
-            AppLoggerManager.shared.logger()?.log("FireblocksManager, generateMpcKeys() failed: \(error).")
-            return nil
-        }
+    func generateKeys() async throws -> Set<KeyDescriptor> {
+        let algorithms: Set<Algorithm> = Set(algoArray)
+        let startDate = Date()
+        let result = try await initializeCore().generateMPCKeys(algorithms: algorithms)
+        print("Measure - generateMpcKeys \(Date().timeIntervalSince(startDate))")
+        return result
     }
         
-    func backupKeys(passphrase: String, passphraseId: String) async -> Set<KeyBackup>? {
-        guard let instance = getNCWInstance() else {
-            return nil
-        }
-        
-        do {
-            let keys = try await instance.backupKeys(passphrase: passphrase, passphraseId: passphraseId)
-            return keys
-        } catch {
-            AppLoggerManager.shared.logger()?.log("FireblocksManager, backupKeys(): \(error).")
-            return nil
-        }
+    func backupKeys(passphrase: String, passphraseId: String) async throws -> Set<KeyBackup> {
+        return try await initializeCore().backupKeys(passphrase: passphrase, passphraseId: passphraseId)
     }
     
-    func stopJoinWallet() {
-        getNCWInstance()?.stopJoinWallet()
+    func stopJoinWallet() throws {
+        try initializeCore().stopJoinWallet()
     }
 
-    func takeOver() async -> Set<FullKey>? {
-        guard let instance = getNCWInstance() else {
-            return nil
-        }
-        
-        do {
-            return try await instance.takeover()
-        } catch {
-            AppLoggerManager.shared.logger()?.log("FireblocksManager, Takeover() can't takeover keys: \(error).")
-            return nil
-        }
+    func takeOver() async throws -> Set<FullKey> {
+        return try await initializeCore().takeover()
     }
     
-    func deriveAssetKey(privateKey: String, derivationParams: DerivationParams) async -> KeyData? {
-        guard let instance = getNCWInstance() else {
-            return nil
-        }
-        
-        do {
-            return try await instance.deriveAssetKey(extendedPrivateKey: privateKey, bip44DerivationParams: derivationParams)
-        } catch {
-            AppLoggerManager.shared.logger()?.log("FireblocksManager, deriveAssetKey failed: \(error).")
-            return nil
-        }
+    func deriveAssetKey(privateKey: String, derivationParams: DerivationParams) async throws -> KeyData {
+        return try await initializeCore().deriveAssetKey(extendedPrivateKey: privateKey, bip44DerivationParams: derivationParams)
     }
 
     
-    func recoverWallet(resolver: FireblocksPassphraseResolver) async -> Bool {
-        guard let instance = getNCWInstance() else {
-            return false
-        }
-        
-        do {
-            let keySet = try await instance.recoverKeys(passphraseResolver: resolver)
-            if keySet.isEmpty { return false }
-            if keySet.first(where: {$0.keyRecoveryStatus == .ERROR}) != nil  { return false }
-            startPolling()
-            return true
-        } catch {
-            AppLoggerManager.shared.logger()?.log("FireblocksManager, recoverWallet() can't recover wallet: \(error).")
-            return false
-        }
+    func recoverWallet(resolver: FireblocksPassphraseResolver) async throws -> Bool {
+        let keySet = try await initializeCore().recoverKeys(passphraseResolver: resolver)
+        if keySet.isEmpty { return false }
+        if keySet.first(where: {$0.keyRecoveryStatus == .ERROR}) != nil  { return false }
+        startPolling()
+        return true
     }
     
     func approveJoinWallet(requestId: String) async throws -> Set<JoinWalletDescriptor> {
-        guard getNCWInstance() != nil else {
-            return Set()
-        }
-
-        let instance = try Fireblocks.getInstance(deviceId: deviceId)
-        return try await instance.approveJoinWalletRequest(requestId: requestId)
+        return try await initializeCore().approveJoinWalletRequest(requestId: requestId)
     }
 
-    func addDevice(joinWalletHandler: FireblocksJoinWalletHandler) async -> Bool {
-        do {
-            let startDate = Date()
-            guard let result = try await getNCWInstance()?.requestJoinExistingWallet(joinWalletHandler: joinWalletHandler) else {
-                return false
-            }
-            print("Measure - addDevice \(Date().timeIntervalSince(startDate))")
+    func addDevice(joinWalletHandler: FireblocksJoinWalletHandler) async throws -> Bool {
+        let startDate = Date()
+        let result = try await initializeCore().requestJoinExistingWallet(joinWalletHandler: joinWalletHandler)
+        print("Measure - addDevice \(Date().timeIntervalSince(startDate))")
 
-            let didFail = result.filter({$0.keyStatus != .READY}).count > 0 || result.filter({$0.keyStatus == .READY}).count == 0
-            if !didFail {
-                startPolling()
-            }
-            
-            return !didFail
-
-        } catch let error as FireblocksError {
-            AppLoggerManager.shared.logger()?.log("FireblocksManager, addDevice() failed: \(error.description).")
-            return false
-        } catch {
-            AppLoggerManager.shared.logger()?.log("FireblocksManager, addDevice() failed: \(error.localizedDescription).")
-            return false
+        let didFail = result.filter({$0.keyStatus != .READY}).count > 0 || result.filter({$0.keyStatus == .READY}).count == 0
+        if !didFail {
+            startPolling()
         }
+        
+        return !didFail
     }
 
     func signTransaction(transactionId: String) async throws -> Bool {
         let startDate = Date()
-        guard let instance = getNCWInstance() else {
-            return false
-        }
-
-        let result = try await instance.signTransaction(txId: transactionId)
+        let result = try await initializeCore().signTransaction(txId: transactionId)
         print("Measure - signTransaction \(Date().timeIntervalSince(startDate))")
         return result.transactionSignatureStatus == .COMPLETED
     }
     
-    func stopTransaction() {
-        getNCWInstance()?.stopSignTransaction()
+    func stopTransaction() throws {
+        try initializeCore().stopSignTransaction()
     }
     
     func signOutFlow() throws {
@@ -245,7 +166,7 @@ extension FireblocksManagerProtocol {
         stopPollingMessages()
         TransfersViewModel.shared.signOut()
         AssetListViewModel.shared.signOut()
-        stopJoinWallet()
+        try stopJoinWallet()
         UsersLocalStorageManager.shared.resetAuthProvider()
         SignInViewModel.shared.launchView = nil
         FireblocksManager.shared.deviceId = ""

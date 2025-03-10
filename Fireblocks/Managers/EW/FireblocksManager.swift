@@ -21,10 +21,6 @@ private let logger = Logger(subsystem: "Fireblocks", category: "FireblocksManage
 class FireblocksManager: FireblocksManagerProtocol, ObservableObject {
     var latestBackupDeviceId: String = ""
     
-//    func isInstanceInitialized(authUser: AuthUser?) -> Bool {
-//        return false
-//    }
-    
     func stopPollingMessages() {
         PollingManager.shared.stopPolling()
     }
@@ -37,89 +33,47 @@ class FireblocksManager: FireblocksManagerProtocol, ObservableObject {
     var algoArray: [Algorithm] = [.MPC_ECDSA_SECP256K1, .MPC_EDDSA_ED25519]
     var didClearWallet = false
     
-    var errorMessage: String? {
-        didSet {
-            if errorMessage != nil {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-                    self.errorMessage = nil
-                }
-            }
-        }
-    }
-    
     var options: EmbeddedWalletOptions?
     var keyStorageDelegate: KeyStorageProvider?
     var ewManager = EWManager.shared
 
-    func generateMpcKeys() async -> Set<KeyDescriptor>? {
+    func generateMpcKeys() async throws -> Set<KeyDescriptor> {
         algoArray = [.MPC_ECDSA_SECP256K1, .MPC_EDDSA_ED25519]
-        return await generateKeys()
+        return try await generateKeys()
     }
     
-    func generateECDSAKeys() async -> Set<KeyDescriptor>? {
+    func generateECDSAKeys() async throws -> Set<KeyDescriptor> {
         algoArray = [.MPC_ECDSA_SECP256K1]
-        return await generateKeys()
+        return try await generateKeys()
     }
     
-    func generateEDDSAKeys() async -> Set<KeyDescriptor>? {
+    func generateEDDSAKeys() async throws -> Set<KeyDescriptor> {
         algoArray = [.MPC_ECDSA_SECP256K1, .MPC_EDDSA_ED25519]
-        return await generateKeys()
+        return try await generateKeys()
     }
 
-    func initializeFireblocksSDK() throws {
-        if getNCWInstance() == nil {
-            let _ = initializeCore()
-        }
+    func getInstance() throws -> EmbeddedWallet {
+        return try ewManager.initialize()
     }
     
-    func getNCWInstance() -> Fireblocks? {
+    func initializeCore() throws -> Fireblocks {
         guard !deviceId.isEmpty else {
-            errorMessage = "Unknown Device Id"
-            return nil
+            throw CustomError.deviceId
         }
+
+        let ewInstance = try getInstance()
 
         do {
             return try Fireblocks.getInstance(deviceId: deviceId)
-        } catch let error as FireblocksError {
-            errorMessage = error.description
         } catch {
-            errorMessage = error.localizedDescription
+            self.keyStorageDelegate = KeyStorageProvider(deviceId: deviceId)
+            return try ewInstance.initializeCore(deviceId: deviceId, keyStorage: keyStorageDelegate!)
         }
-
-        return nil
-    }
-    
-    func getInstance() -> EmbeddedWallet? {
-        return try? ewManager.initialize()
-    }
-    
-    func initializeCore() -> Fireblocks? {
-        guard !deviceId.isEmpty else {
-            errorMessage = "Unknown Device Id"
-            return nil
-        }
-        
-        self.keyStorageDelegate = KeyStorageProvider(deviceId: deviceId)
-        if let keyStorageDelegate {
-            guard let instance = getInstance() else { return nil }
-            if let ncwInstance = getNCWInstance() {
-                return ncwInstance
-            }
-
-            do {
-                return try instance.initializeCore(deviceId: deviceId, keyStorage: keyStorageDelegate)
-            } catch {
-                errorMessage = error.localizedDescription
-            }
-        }
-            
-        return nil
-
     }
 
     func assignWallet() async throws {
         self.options = EmbeddedWalletOptions(env: .DEV9, logLevel: .info, logToConsole: true, logNetwork: true, eventHandlerDelegate: nil, reporting: .init(enabled: true))
-        guard let instance = getInstance() else { throw CustomError.failedToGetInstance(Constants.ew) }
+        let instance = try getInstance()
         let result = try await instance.assignWallet()
         if let walletId = result.walletId {
             self.walletId = walletId
@@ -137,12 +91,12 @@ class FireblocksManager: FireblocksManagerProtocol, ObservableObject {
     }
     
     func getLatestBackupState() async -> LatestBackupState  {
-        guard let instance = getInstance() else { return .error(CustomError.failedToGetInstance(Constants.ew)) }
         guard let email = getUserEmail() else {
             return .error(CustomError.login)
         }
         
         do {
+            let instance = try getInstance()
             if didClearWallet {
                 UsersLocalStorageManager.shared.removeLastDeviceId(email: email)
             }
@@ -151,17 +105,18 @@ class FireblocksManager: FireblocksManagerProtocol, ObservableObject {
                 self.deviceId = deviceId
                 AppLoggerManager.shared.loggers[deviceId] = AppLogger(deviceId: deviceId)
                 self.latestBackupDeviceId = deviceId
-                return initializeCore() == nil ? .error(CustomError.failedToGetInstance(Constants.fireblocks)) : .exist
+                let _ = try initializeCore()
+                return .exist
             }
             
             if let keys = try await instance.getLatestBackup().keys {
                 if let latestBackupDeviceId = keys.first?.deviceId {
                     self.deviceId = generateDeviceId()
                     self.latestBackupDeviceId = latestBackupDeviceId
-                    return initializeCore() == nil ? .error(CustomError.failedToGetInstance(Constants.fireblocks)) : .joinOrRecover
+                    let _ = try initializeCore()
+                    return .joinOrRecover
                 } else {
                     return .error(CustomError.noWallet)
-
                 }
             } else {
                 return .error(CustomError.noWallet)
@@ -170,11 +125,16 @@ class FireblocksManager: FireblocksManagerProtocol, ObservableObject {
             if let httpStatusCode = error.httpStatusCode, httpStatusCode == 404 {
                 self.deviceId = generateDeviceId()
                 UsersLocalStorageManager.shared.setLastDeviceId(deviceId: self.deviceId, email: email)
-                return initializeCore() == nil ? .error(CustomError.failedToGetInstance(Constants.fireblocks)) : .generate
+                do {
+                    let _ = try initializeCore()
+                    return .generate
+                } catch {
+                    return .error(CustomError.genericError(error.localizedDescription))
+                }
             }
-            return .error(CustomError.genericError(error.description))
+            return .error(error)
         } catch {
-            return .error(CustomError.genericError(error.localizedDescription))
+            return .error(error)
         }
     }
         

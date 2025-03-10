@@ -138,7 +138,7 @@ class ApproveViewModelBase {
     }
 
     func stopTransaction() {
-        repository?.stopTransaction()
+        try? repository?.stopTransaction()
     }
 
     func cancelTransaction() {

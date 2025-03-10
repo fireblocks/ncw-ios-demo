@@ -40,35 +40,49 @@ extension GenerateKeysView {
 
         @MainActor
         func generateMpcKeys() {
+            guard let fireblocksManager else { return }
             self.loadingManager.setLoading(value: true)
             mpcKeyTask = Task {
-                let result = await fireblocksManager?.generateMpcKeys()
-                handleResult(result: result)
+                do {
+                    let result = try await fireblocksManager.generateMpcKeys()
+                    handleResult(result: result)
+                } catch {
+                    self.loadingManager.setAlertMessage(error: error)
+                }
             }
         }
         
         @MainActor
         func generateEDDSAKeys() {
+            guard let fireblocksManager else { return }
             self.loadingManager.setLoading(value: true)
             mpcKeyTask = Task {
-                let result = await fireblocksManager?.generateEDDSAKeys()
-                handleResult(result: result)
-                
+                do {
+                    let result = try await fireblocksManager.generateEDDSAKeys()
+                    handleResult(result: result)
+                } catch {
+                    self.loadingManager.setAlertMessage(error: error)
+                }
             }
         }
         
         @MainActor
         func generateECDSAKeys() {
+            guard let fireblocksManager else { return }
             self.loadingManager.setLoading(value: true)
             mpcKeyTask = Task {
-                let result = await fireblocksManager?.generateECDSAKeys()
-                handleResult(result: result)
+                do {
+                    let result = try await fireblocksManager.generateECDSAKeys()
+                    handleResult(result: result)
+                } catch {
+                    self.loadingManager.setAlertMessage(error: error)
+                }
             }
         }
         
-        private func handleResult(result: Set<KeyDescriptor>?) {
+        private func handleResult(result: Set<KeyDescriptor>) {
             DispatchQueue.main.async {
-                let isGenerated = result != nil && result!.filter({$0.keyStatus == .READY}).count > 0
+                let isGenerated = result.filter({$0.keyStatus == .READY}).count > 0
                 AppLoggerManager.shared.logger()?.log("FireblocksManager, generateMpcKeys() isGenerated value: \(isGenerated).")
                 self.loadingManager.setLoading(value: false)
                 if isGenerated {

@@ -120,8 +120,11 @@ extension SignInView {
             }
         }
         
-        var userHasKeys: Bool {
-            return FireblocksManager.shared.isKeyInitialized(algorithm: .MPC_ECDSA_SECP256K1) || FireblocksManager.shared.isKeyInitialized(algorithm: .MPC_EDDSA_ED25519)
+        func userHasKeys() throws -> Bool {
+            guard let fireblocksManager else { return false }
+            let ecdsa = try fireblocksManager.isKeyInitialized(algorithm: .MPC_ECDSA_SECP256K1)
+            let eddsa = try fireblocksManager.isKeyInitialized(algorithm: .MPC_EDDSA_ED25519)
+            return eddsa || ecdsa
         }
         
         func handleSuccessSignIn(isLaunch: Bool = false) async {

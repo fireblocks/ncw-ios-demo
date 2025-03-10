@@ -36,7 +36,7 @@ class SignInViewModel: SignInView.ViewModel {
                     }
                 }
             case .exist:
-                if userHasKeys {
+                if try userHasKeys() {
                     fireblocksManager.startPolling()
                     self.launchView = NavigationContainerView {
                         TabBarView()

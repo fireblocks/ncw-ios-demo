@@ -16,6 +16,8 @@ enum CustomError: LocalizedError {
     case deviceId
     case latestBackup
     case noAvailableBackup
+    case recover
+    case takeover
 }
 
 extension CustomError: CustomStringConvertible {
@@ -41,6 +43,10 @@ extension CustomError: CustomStringConvertible {
             return "Failed to get latest backup status"
         case .assignWallet:
             return "Failed to assign wallet"
+        case .recover:
+            return "Failed to recover wallet"
+        case .takeover:
+            return "Failed to takeover keys"
         }
     }
 }

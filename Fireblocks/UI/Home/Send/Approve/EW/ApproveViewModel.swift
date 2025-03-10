@@ -34,7 +34,7 @@ class ApproveViewModel: ApproveViewModelBase {
             self.coordinator = coordinator
             self.loadingManager = loadingManager
             self.ewManager = ewManager
-            self.repository = ApproveRepository(ewManager: ewManager, fireBlocksManager: fireblocksManager)
+            self.repository = ApproveRepository(ewManager: ewManager, fireblocksManager: fireblocksManager)
             self.pollingManagerTxId = PollingManagerTxId(ewManager: ewManager)
             if let txId = transaction.txId {
                 self.loadingManager?.isLoading = true

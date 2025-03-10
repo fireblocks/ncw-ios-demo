@@ -16,16 +16,18 @@ import Foundation
 
 class ApproveRepository {
     let ewManager: EWManager
-    init(ewManager: EWManager, fireBlocksManager: FireblocksManager) {
+    let fireblocksManager: FireblocksManager
+    init(ewManager: EWManager, fireblocksManager: FireblocksManager) {
         self.ewManager = ewManager
+        self.fireblocksManager = fireblocksManager
     }
 
     func approveTransaction(transactionId: String) async throws -> Bool {
-        return try await FireblocksManager.shared.signTransaction(transactionId: transactionId)
+        return try await fireblocksManager.signTransaction(transactionId: transactionId)
     }
     
-    func stopTransaction() {
-        FireblocksManager.shared.stopTransaction()
+    func stopTransaction() throws {
+        try fireblocksManager.stopTransaction()
     }
     
     func cancelTransaction(assetId: String, txId: String) async throws -> Bool {

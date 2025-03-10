@@ -144,17 +144,17 @@ class ValidateRequestIdViewModel {
                     self.timer?.invalidate()
                     self.timer = nil
                     self.loadingManager?.isLoading = false
-                    self.fireblocksManager?.stopJoinWallet()
+                    try? self.fireblocksManager?.stopJoinWallet()
                     self.loadingManager?.setAlertMessage(error: error)
                 }
             }
         }
     }
-    
+        
     func didTapCancel() {
         self.timer?.invalidate()
         self.timer = nil
-        self.fireblocksManager?.stopJoinWallet()
+        try? self.fireblocksManager?.stopJoinWallet()
         let feedbackVM = EndFlowFeedbackView.ViewModel(icon: AssetsIcons.addDeviceFailed.rawValue, title: LocalizableStrings.approveJoinWalletCanceled, subTitle: LocalizableStrings.approveJoinWalletCanceledSubtitle, buttonTitle: LocalizableStrings.goHome, actionButton: {
             self.coordinator?.path = NavigationPath()
         }, didFail: true, canGoBack: false)

@@ -53,7 +53,7 @@ class AddDeviceQRViewModel {
     }
     
     func dismiss() {
-        fireblocksManager?.stopJoinWallet()
+        try? fireblocksManager?.stopJoinWallet()
     }
     
     func setURL() -> String? {
