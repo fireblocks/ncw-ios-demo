@@ -3677,7 +3677,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.5.0;
+				MARKETING_VERSION = 0.6.0;
 				OTHER_SWIFT_FLAGS = "-DDEV -DEW";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fireblocks.ew.demo.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3717,7 +3717,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.5.0;
+				MARKETING_VERSION = 0.6.0;
 				OTHER_SWIFT_FLAGS = "-DDEV -DEW";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fireblocks.ew.demo.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";

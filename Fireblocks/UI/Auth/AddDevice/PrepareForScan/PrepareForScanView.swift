@@ -135,7 +135,7 @@ struct PrepareForScanView: View {
             }
             .fullScreenCover(isPresented: $viewModel.isQRPresented, content: {
                 NavigationStack {
-                    GenericController(uiViewType: QRCodeScannerViewController(delegate: viewModel)
+                    GenericControllerNoEnvironments(uiViewType: QRCodeScannerViewController(delegate: viewModel)
                     )
                     .navigationTitle("Scan New Device QR")
                     .navigationBarTitleDisplayMode(.inline)

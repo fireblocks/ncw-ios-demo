@@ -8,6 +8,30 @@
 import UIKit
 import SwiftUI
 
+struct GenericControllerNoEnvironments<T: UIViewController>: UIViewControllerRepresentable, Hashable {
+
+    static func == (lhs: GenericControllerNoEnvironments<T>, rhs: GenericControllerNoEnvironments<T>) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+    
+    var id: String = UUID().uuidString
+    let uiViewType: T
+    var configuration: ((T) -> ())? = nil
+    func makeUIViewController(context: Context) -> UIViewController {
+        return uiViewType
+    }
+    
+    func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
+        configuration?(uiViewController as! T)
+
+    }
+
+}
+
 struct GenericController<T: UIViewController>: UIViewControllerRepresentable, Hashable {
     @EnvironmentObject var loadingManager: LoadingManager
     @EnvironmentObject var coordinator: Coordinator

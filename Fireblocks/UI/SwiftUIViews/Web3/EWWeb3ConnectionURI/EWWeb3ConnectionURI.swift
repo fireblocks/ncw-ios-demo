@@ -118,7 +118,7 @@ struct EWWeb3ConnectionURI: View {
         }
         .fullScreenCover(isPresented: $viewModel.isQRPresented, content: {
             NavigationStack {
-                GenericController(uiViewType: QRCodeScannerViewController(delegate: viewModel)
+                GenericControllerNoEnvironments(uiViewType: QRCodeScannerViewController(delegate: viewModel)
                 )
                 .navigationTitle("Scan Connecion QR")
                 .navigationBarTitleDisplayMode(.inline)

@@ -13,7 +13,7 @@ protocol QRCodeScannerViewControllerDelegate: AnyObject, Hashable, Equatable {
     func gotAddress(address: String)
 }
 
-class QRCodeScannerViewController: UIViewController{
+class QRCodeScannerViewController: UIViewController {
     
 //MARK: - PROPERTIES
     @IBOutlet weak var borderView: UIView!

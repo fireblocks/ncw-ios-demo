@@ -115,7 +115,7 @@ struct EWTransferNFTView: View {
         .contentMargins(.top, 16)
         .fullScreenCover(isPresented: $viewModel.isQRPresented, content: {
             NavigationStack {
-                GenericController(uiViewType: QRCodeScannerViewController(delegate: viewModel)
+                GenericControllerNoEnvironments(uiViewType: QRCodeScannerViewController(delegate: viewModel)
                 )
                 .navigationTitle("Scan Address QR")
                 .navigationBarTitleDisplayMode(.inline)
