@@ -23,7 +23,8 @@ protocol FireblocksManagerProtocol {
     var walletId: String { get }
     var errorMessage: String? { get set }
     var latestBackupDeviceId: String { get }
-    
+    var didClearWallet: Bool { get set }
+
     func generateDeviceId() -> String
     func generatePassphraseId() -> String
     func generatePassphrase() -> String
@@ -42,7 +43,7 @@ protocol FireblocksManagerProtocol {
     func isKeyInitialized(algorithm: Algorithm) -> Bool
 //    func isInstanceInitialized(authUser: AuthUser?) -> Bool
     func getUserEmail() -> String?
-    func assignWallet() async -> String?
+    func assignWallet() async throws
     
     func startPolling()
     func stopPollingMessages()
@@ -237,10 +238,6 @@ extension FireblocksManagerProtocol {
     
     func stopTransaction() {
         getNCWInstance()?.stopSignTransaction()
-    }
-    
-    func signOut() throws {
-        try signOutFlow()
     }
     
     func signOutFlow() throws {

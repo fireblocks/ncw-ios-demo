@@ -9,5 +9,5 @@ enum LatestBackupState {
     case generate
     case exist
     case joinOrRecover
-    case error
+    case error(Error)
 }

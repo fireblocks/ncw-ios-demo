@@ -21,7 +21,7 @@ extension SignInView {
     class ViewModel: NSObject, ASAuthorizationControllerDelegate,
                      ASAuthorizationControllerPresentationContextProviding, ObservableObject {
         private var authRepository: AuthRepository!
-        private var loadingManager: LoadingManager!
+        var loadingManager: LoadingManager!
         var googleSignInManager: GoogleSignInManager?
         var appleSignInManager: AppleSignInManager?
         var fireblocksManager: FireblocksManager?
@@ -34,7 +34,7 @@ extension SignInView {
         var appLogoURL: URL?
         var fireblocksLogsURL: URL?
         var isShareLogsPresented = false
-
+        
         func setup(authRepository: AuthRepository, loadingManager: LoadingManager, coordinator: Coordinator, fireblocksManager: FireblocksManager, googleSignInManager: GoogleSignInManager, appleSignInManager: AppleSignInManager) {
             self.authRepository = authRepository
             self.loadingManager = loadingManager
@@ -140,7 +140,17 @@ extension SignInView {
         }
         
         func clearWallet() {
-            fatalError("clearWallet should be implemented on child class")
+            loadingManager.isLoading = true
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                do {
+                    try self.fireblocksManager?.signOut()
+                    self.fireblocksManager?.didClearWallet = true
+                    self.loadingManager.isLoading = false
+                } catch {
+                    self.loadingManager.isLoading = false
+                    self.loadingManager.setAlertMessage(error: error)
+                }
+            }
         }
 
 

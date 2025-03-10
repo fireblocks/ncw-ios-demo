@@ -35,7 +35,8 @@ class FireblocksManager: FireblocksManagerProtocol, ObservableObject {
     var deviceId: String = ""
     var walletId: String = ""
     var algoArray: [Algorithm] = [.MPC_ECDSA_SECP256K1, .MPC_EDDSA_ED25519]
-
+    var didClearWallet = false
+    
     var errorMessage: String? {
         didSet {
             if errorMessage != nil {
@@ -46,9 +47,6 @@ class FireblocksManager: FireblocksManagerProtocol, ObservableObject {
         }
     }
     
-//    var authClientId = "6303105e-38ac-4a21-8909-2b1f7f205fd1"
-//    let options = EmbeddedWalletOptions(env: .RENTBLOCKS, logLevel: .info, logToConsole: true, logNetwork: true, eventHandlerDelegate: nil, reporting: .init(enabled: true))
-    var authClientId: String?
     var options: EmbeddedWalletOptions?
     var keyStorageDelegate: KeyStorageProvider?
     var ewManager = EWManager.shared
@@ -92,11 +90,6 @@ class FireblocksManager: FireblocksManagerProtocol, ObservableObject {
     }
     
     func getInstance() -> EmbeddedWallet? {
-        guard let authClientId else {
-            errorMessage = "Unknown authClientId"
-            return nil
-        }
-
         return try? ewManager.initialize()
     }
     
@@ -124,26 +117,19 @@ class FireblocksManager: FireblocksManagerProtocol, ObservableObject {
 
     }
 
-    func assignWallet() async -> String? {
-        self.authClientId = "1fcfe7cf-60b4-4111-b844-af607455ff76"
+    func assignWallet() async throws {
         self.options = EmbeddedWalletOptions(env: .DEV9, logLevel: .info, logToConsole: true, logNetwork: true, eventHandlerDelegate: nil, reporting: .init(enabled: true))
-        guard let instance = getInstance() else { return nil }
-
-        do {
-            let result = try await instance.assignWallet()
-            if let walletId = result.walletId {
-                self.walletId = walletId
-                return walletId
-            }
-        } catch {
-            errorMessage = error.localizedDescription
+        guard let instance = getInstance() else { throw CustomError.failedToGetInstance(Constants.ew) }
+        let result = try await instance.assignWallet()
+        if let walletId = result.walletId {
+            self.walletId = walletId
+        } else {
+            throw(CustomError.assignWallet)
         }
-        return nil
     }
     
     func getDevice() async -> Device? {
         guard !deviceId.isEmpty else {
-            errorMessage = "Failed to get device. deviceId is empty"
             return nil
         }
         
@@ -151,42 +137,45 @@ class FireblocksManager: FireblocksManagerProtocol, ObservableObject {
     }
     
     func getLatestBackupState() async -> LatestBackupState  {
-        guard let instance = getInstance() else { return .error }
+        guard let instance = getInstance() else { return .error(CustomError.failedToGetInstance(Constants.ew)) }
         guard let email = getUserEmail() else {
-            errorMessage = "Failed to login. there is no signed in user"
-            return .error
+            return .error(CustomError.login)
         }
         
         do {
+            if didClearWallet {
+                UsersLocalStorageManager.shared.removeLastDeviceId(email: email)
+            }
+            
             if let deviceId = UsersLocalStorageManager.shared.lastDeviceId(email: email), !deviceId.isTrimmedEmpty {
                 self.deviceId = deviceId
                 AppLoggerManager.shared.loggers[deviceId] = AppLogger(deviceId: deviceId)
                 self.latestBackupDeviceId = deviceId
-                return initializeCore() == nil ? .error : .exist
+                return initializeCore() == nil ? .error(CustomError.failedToGetInstance(Constants.fireblocks)) : .exist
             }
             
             if let keys = try await instance.getLatestBackup().keys {
                 if let latestBackupDeviceId = keys.first?.deviceId {
                     self.deviceId = generateDeviceId()
                     self.latestBackupDeviceId = latestBackupDeviceId
-                    return initializeCore() == nil ? .error : .joinOrRecover
+                    return initializeCore() == nil ? .error(CustomError.failedToGetInstance(Constants.fireblocks)) : .joinOrRecover
                 } else {
-                    errorMessage = "Couldn't sign in. There is no existing wallet"
+                    return .error(CustomError.noWallet)
+
                 }
             } else {
-                errorMessage = "Couldn't sign in. There is no existing wallet"
+                return .error(CustomError.noWallet)
             }
         } catch let error as EmbeddedWalletException{
             if let httpStatusCode = error.httpStatusCode, httpStatusCode == 404 {
                 self.deviceId = generateDeviceId()
                 UsersLocalStorageManager.shared.setLastDeviceId(deviceId: self.deviceId, email: email)
-                return initializeCore() == nil ? .error : .generate
+                return initializeCore() == nil ? .error(CustomError.failedToGetInstance(Constants.fireblocks)) : .generate
             }
-            errorMessage = error.localizedDescription
+            return .error(CustomError.genericError(error.description))
         } catch {
-            errorMessage = error.localizedDescription
+            return .error(CustomError.genericError(error.localizedDescription))
         }
-        return .error
     }
         
     func startPolling() {

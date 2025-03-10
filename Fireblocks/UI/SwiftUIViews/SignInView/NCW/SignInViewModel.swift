@@ -14,66 +14,58 @@ class SignInViewModel: SignInView.ViewModel {
     override func handleSuccessSignIn(isLaunch: Bool = false)  async {
         do {
             let _ = try await SessionManager.shared.login()
-        } catch {
-            print(error.localizedDescription)
-            return
-        }
-
-        guard let state = await fireblocksManager?.getLatestBackupState() else {
-            print("Failed to getLatestBackupState")
-            return
-        }
-        
-        guard let window = (UIApplication.shared.connectedScenes.first as? UIWindowScene)?.windows.first else {
-            return
-        }
-
-        switch state {
-        case .generate:
-            if let _ = await fireblocksManager?.assignWallet() {
-                let view = NavigationContainerView {
+            
+            guard let fireblocksManager else {
+                loadingManager.setAlertMessage(error: CustomError.genericError("Failed to load Fireblocks Manager"))
+                return
+            }
+            
+            guard let email = fireblocksManager.getUserEmail() else {
+                loadingManager.setAlertMessage(error: CustomError.genericError("Failed to getUserEmail"))
+                return
+            }
+            
+            let state = await fireblocksManager.getLatestBackupState()
+            UsersLocalStorageManager.shared.setLastLoggedInEmail(email: email)
+            switch state {
+            case .generate:
+                try await fireblocksManager.assignWallet()
+                self.fireblocksManager?.didClearWallet = false
+                self.launchView = NavigationContainerView {
                     SpinnerViewContainer {
                         GenerateKeysView()
                     }
                 }
-
-                let vc = UIHostingController(rootView: view)
-                window.rootViewController = vc
-            }
-        case .exist:
-            if userHasKeys {
-                if let _ = await fireblocksManager?.assignWallet() {
-                    fireblocksManager?.startPolling()
+            case .exist:
+                if userHasKeys {
+                    try await fireblocksManager.assignWallet()
+                    fireblocksManager.startPolling()
                     self.launchView = NavigationContainerView {
                         TabBarView()
                     }
-                }
-            } else {
-                self.launchView = NavigationContainerView {
-                    SpinnerViewContainer {
-                        GenerateKeysView()
+                } else {
+                    self.launchView = NavigationContainerView {
+                        SpinnerViewContainer {
+                            GenerateKeysView()
+                        }
                     }
                 }
-            }
-        case .joinOrRecover:
-            if isLaunch {
-                self.launchView = NavigationContainerView {
-                    SpinnerViewContainer {
-                        JoinOrRecoverView()
+            case .joinOrRecover:
+                if isLaunch {
+                    self.launchView = NavigationContainerView {
+                        SpinnerViewContainer {
+                            JoinOrRecoverView()
+                        }
                     }
+                } else {
+                    coordinator?.path.append(NavigationTypes.joinOrRecover)
                 }
-            } else {
-                coordinator?.path.append(NavigationTypes.joinOrRecover)
+            case .error:
+                loadingManager.setAlertMessage(error: CustomError.assignWallet)
             }
-        case .error:
-            print("error")
+        } catch {
+            loadingManager.setAlertMessage(error: error)
         }
-
-
     }
     
-    override func clearWallet() {
-        
-    }
-
 }

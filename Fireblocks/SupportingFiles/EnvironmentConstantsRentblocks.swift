@@ -15,7 +15,7 @@ struct EnvironmentConstants {
 
     static let baseURL = "https://dev9-ncw-saas-gateway.waterballoons.xyz"
     static let env: FireblocksDev.FireblocksEnvironment = .dev9
-    static let authClientId = "1fcfe7cf-60b4-4111-b844-af607455ff76"
+    static let authClientId = "ba2b45dd-d6a5-4b97-9493-28fe12953ad0"
 
 }
 

@@ -26,6 +26,7 @@ class FireblocksManager: FireblocksManagerProtocol, ObservableObject {
     var latestBackupDeviceId: String = ""
     var walletId: String = ""
     var algoArray: [Algorithm] = [.MPC_ECDSA_SECP256K1, .MPC_EDDSA_ED25519]
+    var didClearWallet = false
     
     var errorMessage: String? {
         didSet {
@@ -75,30 +76,28 @@ class FireblocksManager: FireblocksManagerProtocol, ObservableObject {
         }
     }
     
-    func assignWallet() async -> String? {
-        do {
-            let result = try await SessionManager.shared.assign(deviceId:deviceId)
-            if let walletId = result.walletId {
-                self.walletId = walletId
-                return walletId
-            } else {
-                errorMessage = "Failed to create wallet"
-            }
-        } catch {
-            errorMessage = error.localizedDescription
+    func assignWallet() async throws {
+        let result = try await SessionManager.shared.assign(deviceId:deviceId)
+        if let walletId = result.walletId {
+            self.walletId = walletId
+        } else {
+            throw(CustomError.assignWallet)
         }
-
-        return nil
-
     }
     
     func getLatestBackupState() async -> LatestBackupState  {
         guard let email = getUserEmail() else {
-            errorMessage = "Failed to login. there is no signed in user"
-            return .error
+            return .error(CustomError.login)
         }
         
         do {
+            if didClearWallet {
+                self.deviceId = generateDeviceId()
+                UsersLocalStorageManager.shared.setLastDeviceId(deviceId: self.deviceId, email: email)
+                try initializeFireblocksSDK()
+                return .generate
+            }
+            
             if let deviceId = UsersLocalStorageManager.shared.lastDeviceId(email: email), !deviceId.isTrimmedEmpty {
                 self.deviceId = deviceId
                 self.latestBackupDeviceId = deviceId
@@ -109,6 +108,7 @@ class FireblocksManager: FireblocksManagerProtocol, ObservableObject {
             
             let devices = try await SessionManager.shared.getDevices()
             let device = devices?.devices.last
+            
             if device == nil || device!.deviceId.isEmptyOrNil || device!.walletId.isEmptyOrNil {
                 self.deviceId = generateDeviceId()
                 UsersLocalStorageManager.shared.setLastDeviceId(deviceId: self.deviceId, email: email)
@@ -118,20 +118,17 @@ class FireblocksManager: FireblocksManagerProtocol, ObservableObject {
                 self.walletId = device?.walletId ?? ""
                 let info = try await SessionManager.shared.getLatestBackupInfo(walletId: walletId)
                 if info.deviceId.isEmptyOrNil {
-                    errorMessage = "No available backup"
-                    return .error
+                    return .error(CustomError.noAvailableBackup)
                 } else {
                     self.deviceId = info.deviceId!
                     AppLoggerManager.shared.loggers[deviceId] = AppLogger(deviceId: deviceId)
                     self.latestBackupDeviceId = info.deviceId!
                     return .joinOrRecover
-
                 }
             }
         } catch {
-            errorMessage = error.localizedDescription
+            return .error(CustomError.genericError(error.localizedDescription))
         }
-        return .error
     }
 
     /*By default, workspaces are not enabled with EdDSA so you may remove MPC_EDDSA_ED25519 when calling generateMPCKeys
@@ -187,6 +184,11 @@ extension FireblocksManager: PollingListenerDelegate {
     func handleError(error: String?) {
         AppLoggerManager.shared.logger()?.log("\(error ?? "")")
     }
+    
+    func signOut() throws {
+        try signOutFlow()
+    }
+
     
 }
 

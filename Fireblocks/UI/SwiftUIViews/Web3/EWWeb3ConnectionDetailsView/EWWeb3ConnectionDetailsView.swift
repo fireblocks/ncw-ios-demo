@@ -25,6 +25,7 @@ struct EWWeb3ConnectionDetailsView: View {
                 VStack {
                     EWWeb3ConnectionDetailsHeader(connection: connection, metadata: connection.sessionMetadata, isConnected: true)
                         .environment(ewManager)
+                        .environmentObject(loadingManager)
                     Spacer()
 //                    BottomBanner(message: viewModel.ewManager?.errorMessage)
 //                        .animation(.default, value: viewModel.ewManager?.errorMessage)

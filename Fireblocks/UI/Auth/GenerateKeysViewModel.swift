@@ -76,7 +76,7 @@ extension GenerateKeysView {
                     self.createAssets()
                     self.coordinator?.path.append(NavigationTypes.backup(true))
                 } else {
-                    //TODO handle error message
+                    self.loadingManager.setAlertMessage(error: CustomError.genericError("Failed to generate keys"))
                 }
             }
         }

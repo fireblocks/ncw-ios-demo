@@ -182,7 +182,7 @@ struct EWNFTPreviewView: View {
                         .font(.b2)
                     Spacer()
                     Button {
-                        viewModel.ewManager?.errorMessage = "Copied!"
+                        viewModel.loadingManager.toastMessage = "Copied to clipboard!"
                         UIPasteboard.general.string = value
                     } label: {
                         Image(uiImage: AssetsIcons.copy.getIcon())

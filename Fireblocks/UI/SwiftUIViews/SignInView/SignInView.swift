@@ -89,10 +89,15 @@ struct SignInView: View {
                                     .frame(maxWidth: .infinity, alignment: .leading)
                                     .padding()
                             }
+                            .simultaneousGesture(TapGesture().onEnded() {
+                                showMenu = false
+                            })
                         }
+                        #if DEV || !EW
                         Divider()
                         Button {
                             viewModel.clearWallet()
+                            showMenu = false
                         } label: {
                             Label("Clear and create a new wallet", image: "trashMenu")
                                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -100,6 +105,7 @@ struct SignInView: View {
                             
                         }
                         .contentShape(.rect)
+                        #endif
                         
                     }
                     .background(.thinMaterial, in: .rect(cornerRadius: 16))

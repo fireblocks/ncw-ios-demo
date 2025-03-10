@@ -6,6 +6,8 @@
 //
 
 struct Constants {
+    static let fireblocks = "Fireblocks"
+    static let ew = "Embedded Wallet"
     static let navigationTitle = "Embedded Wallets"
     
     //MOCKS

@@ -11,13 +11,23 @@ import SwiftUI
 //EW
 class SignInViewModel: SignInView.ViewModel {
     static let shared = SignInViewModel()
-
+    
     override func handleSuccessSignIn(isLaunch: Bool = false) async {
-        if let _ = await fireblocksManager?.assignWallet() {
-            guard let state = await fireblocksManager?.getLatestBackupState() else {
+        guard let fireblocksManager else {
+            loadingManager.setAlertMessage(error: CustomError.genericError("Failed to load Fireblocks Manager"))
+            return
+        }
+        
+        do {
+            try await fireblocksManager.assignWallet()
+            guard let email = fireblocksManager.getUserEmail() else {
+                loadingManager.setAlertMessage(error: CustomError.login)
                 return
             }
-
+            
+            let state = await fireblocksManager.getLatestBackupState()
+            UsersLocalStorageManager.shared.setLastLoggedInEmail(email: email)
+            
             switch state {
             case .generate:
                 self.launchView = NavigationContainerView {
@@ -27,7 +37,7 @@ class SignInViewModel: SignInView.ViewModel {
                 }
             case .exist:
                 if userHasKeys {
-                    fireblocksManager?.startPolling()
+                    fireblocksManager.startPolling()
                     self.launchView = NavigationContainerView {
                         TabBarView()
                     }
@@ -44,13 +54,11 @@ class SignInViewModel: SignInView.ViewModel {
                         JoinOrRecoverView()
                     }
                 }
-            case .error:
-                print("error")
+            case .error(let error):
+                loadingManager.setAlertMessage(error: error)
             }
+        } catch {
+            loadingManager.setAlertMessage(error: error)
         }
     }
-    
-    override func clearWallet() {
-    }
-
 }

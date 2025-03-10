@@ -9,6 +9,7 @@ import EmbeddedWalletSDKDev
 
 struct EWWeb3ConnectionDetailsHeader: View {
     @Environment(EWManager.self) var ewManager
+    @EnvironmentObject var loadingManager: LoadingManager
     var connection: Web3Connection?
     let metadata: Web3ConnectionSessionMetadata?
     let isConnected: Bool
@@ -95,7 +96,7 @@ struct EWWeb3ConnectionDetailsHeader: View {
                                         .multilineTextAlignment(.leading)
                                     
                                     Button {
-                                        ewManager.errorMessage = "Copied!"
+                                        loadingManager.toastMessage = "Copied to clipboard!"
                                         UIPasteboard.general.string = connectionId
                                     } label: {
                                         Image(uiImage: AssetsIcons.copy.getIcon())

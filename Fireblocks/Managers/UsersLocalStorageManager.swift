@@ -66,6 +66,14 @@ class UsersLocalStorageManager: ObservableObject {
     private init() {
     }
     
+    func lastLoggedInEmail() -> String? {
+        return defaults.string(forKey: "lastLoggedInEmail")
+    }
+
+    func setLastLoggedInEmail(email: String) {
+        defaults.set(email, forKey: "lastLoggedInEmail")
+    }
+
     func lastDeviceId(email: String) -> String? {
         return defaults.string(forKey: "\(email)-deviceId")
     }
@@ -73,6 +81,11 @@ class UsersLocalStorageManager: ObservableObject {
     func setLastDeviceId(deviceId: String, email: String) {
         defaults.set(deviceId, forKey: "\(email)-deviceId")
     }
+    
+    func removeLastDeviceId(email: String) {
+        defaults.removeObject(forKey: "\(email)-deviceId")
+    }
+
 
     func setAddDeviceTimer() {
         defaults.set(Date().timeIntervalSince1970, forKey: "addDeviceStartTimer")

@@ -31,37 +31,37 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //        configNavigationBar()
     }
     
-    private func loadLaunchViewController(_ windowScene: UIWindowScene) async {
-        let window = UIWindow(windowScene: windowScene)
-        if let _ = UsersLocalStorageManager.shared.getAuthProvider() {
-            if await AuthRepository.getUserIdToken() != nil {
-                let viewModel = SignInViewModel.shared
-                viewModel.fireblocksManager = FireblocksManager.shared
-                await viewModel.handleSuccessSignIn(isLaunch: true)
-            } else {
-                let rootViewController = UIHostingController(
-                    rootView: NavigationContainerView() {
-                        SpinnerViewContainer {
-                            SignInView()
-                        }
-                    }
-                )
-                window.rootViewController = rootViewController
-                self.window = window
-                window.makeKeyAndVisible()
-            }
-        } else {
-            let rootViewController = UIHostingController(
-                rootView: NavigationContainerView() {
-                    LaunchView()
-                }
-            )
-            window.rootViewController = rootViewController
-            self.window = window
-            window.makeKeyAndVisible()
-        }
-
-    }
+//    private func loadLaunchViewController(_ windowScene: UIWindowScene) async {
+//        let window = UIWindow(windowScene: windowScene)
+//        if let _ = UsersLocalStorageManager.shared.getAuthProvider() {
+//            if await AuthRepository.getUserIdToken() != nil {
+//                let viewModel = SignInViewModel.shared
+//                viewModel.fireblocksManager = FireblocksManager.shared
+//                await viewModel.handleSuccessSignIn(isLaunch: true)
+//            } else {
+//                let rootViewController = UIHostingController(
+//                    rootView: NavigationContainerView() {
+//                        SpinnerViewContainer {
+//                            SignInView()
+//                        }
+//                    }
+//                )
+//                window.rootViewController = rootViewController
+//                self.window = window
+//                window.makeKeyAndVisible()
+//            }
+//        } else {
+//            let rootViewController = UIHostingController(
+//                rootView: NavigationContainerView() {
+//                    LaunchView()
+//                }
+//            )
+//            window.rootViewController = rootViewController
+//            self.window = window
+//            window.makeKeyAndVisible()
+//        }
+//
+//    }
     
     private func configNavigationBar() {
         UINavigationBar.appearance().tintColor = .white
