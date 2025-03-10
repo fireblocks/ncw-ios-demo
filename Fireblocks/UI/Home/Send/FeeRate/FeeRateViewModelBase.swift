@@ -31,7 +31,7 @@ class FeeRateViewModelBase {
         cancellable.removeAll()
     }
     
-    func fetchFeeRates(){
+    func fetchFeeRates() {
         guard let repository else { return }
         guard let destAddress = transaction.receiverAddress else { return }
         let assetId = transaction.asset.id
@@ -44,7 +44,8 @@ class FeeRateViewModelBase {
                 await self.loadingManager?.setLoading(value: false)
                 if fees.isEmpty {
                     await self.loadingManager?.setAlertMessage(error: CustomError.genericError("No available fees"))
-                    
+                } else {
+                    self.selectedFee = fees.first(where: {$0.feeRateType == .LOW}) ?? fees.first
                 }
             } catch let error {
                 await self.loadingManager?.setLoading(value: false)
