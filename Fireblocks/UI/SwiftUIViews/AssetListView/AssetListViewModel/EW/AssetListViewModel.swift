@@ -88,7 +88,7 @@ class AssetListViewModel: AssetListViewModelBase {
                 if let assets, assets.count > 0 {
                     let assetsSequence = AssetsSequence(assets: assets)
                     for try await asset in assetsSequence {
-                        await withTaskGroup(of: (EmbeddedWalletSDKDev.AssetBalance?, [EmbeddedWalletSDKDev.AddressDetails]).self) { [weak self] group in
+                        await withTaskGroup(of: (AssetBalance?, [AddressDetails]).self) { [weak self] group in
                             guard let self else { return }
                             group.addTask{
                                 let balance = await self.getAssetBalance(asset: asset)
@@ -114,7 +114,7 @@ class AssetListViewModel: AssetListViewModelBase {
         }
     }
     
-    private func getAssetBalance(asset: Asset) async -> EmbeddedWalletSDKDev.AssetBalance? {
+    private func getAssetBalance(asset: Asset) async -> AssetBalance? {
         guard let assetId = asset.id else {
             return nil
         }
@@ -127,7 +127,7 @@ class AssetListViewModel: AssetListViewModelBase {
 
     }
     
-    private func getAddresses(asset: Asset) async -> [EmbeddedWalletSDKDev.AddressDetails] {
+    private func getAddresses(asset: Asset) async -> [AddressDetails] {
         guard let assetId = asset.id else {
             return []
         }

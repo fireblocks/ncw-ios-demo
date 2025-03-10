@@ -129,62 +129,62 @@ class EWManager: Hashable {
     
     //MARK: - EmbeddedWalletAssetsProtocol -
 
-    func addAsset(assetId: String, accountId: Int) async throws -> EmbeddedWalletSDKDev.AddressDetails {
+    func addAsset(assetId: String, accountId: Int) async throws -> AddressDetails {
         let instance = try initialize()
         return try await instance.addAsset(accountId: accountId, assetId: assetId)
     }
     
-    func getAsset(assetId: String, accountId: Int) async throws -> EmbeddedWalletSDKDev.Asset {
+    func getAsset(assetId: String, accountId: Int) async throws -> Asset {
         let instance = try initialize()
         return try await instance.getAsset(accountId: accountId, assetId: assetId)
     }
 
-    func getAssetBalance(assetId: String, accountId: Int) async throws -> EmbeddedWalletSDKDev.AssetBalance {
+    func getAssetBalance(assetId: String, accountId: Int) async throws -> AssetBalance {
         let instance = try initialize()
         return try await instance.getBalance(accountId: accountId, assetId: assetId)
     }
 
-    func refreshAssetBalance(assetId: String, accountId: Int) async throws -> EmbeddedWalletSDKDev.AssetBalance {
+    func refreshAssetBalance(assetId: String, accountId: Int) async throws -> AssetBalance {
         let instance = try initialize()
         return try await instance.refreshBalance(accountId: accountId, assetId: assetId)
     }
 
-    func fetchAllAccountAssets(accountId: Int) async throws -> [EmbeddedWalletSDKDev.Asset] {
+    func fetchAllAccountAssets(accountId: Int) async throws -> [Asset] {
         let instance = try initialize()
         return try await instance.getAssets(accountId: accountId).data ?? []
     }
     
-    func fetchAccountAssetsWithPagination(accountId: Int, pageCursor: String?, pageSize: Int?, order: Order) async throws -> PaginatedResponse<EmbeddedWalletSDKDev.Asset> {
+    func fetchAccountAssetsWithPagination(accountId: Int, pageCursor: String?, pageSize: Int?, order: Order) async throws -> PaginatedResponse<Asset> {
         let instance = try initialize()
         return try await instance.getAssets(accountId: accountId, allPages: false, pageCursor: pageCursor, pageSize: pageSize, order: order)
     }
 
-    func fetchAllAccountAssetAddresses(assetId: String, accountId: Int) async throws -> [EmbeddedWalletSDKDev.AddressDetails] {
+    func fetchAllAccountAssetAddresses(assetId: String, accountId: Int) async throws -> [AddressDetails] {
         let instance = try initialize()
         return try await instance.getAddresses(accountId: accountId, assetId: assetId).data ?? []
     }
     
-    func fetchAccountAssetAddressesWithPagination(assetId: String, accountId: Int, pageCursor: String?, pageSize: Int?, order: Order) async throws -> PaginatedResponse<EmbeddedWalletSDKDev.AddressDetails> {
+    func fetchAccountAssetAddressesWithPagination(assetId: String, accountId: Int, pageCursor: String?, pageSize: Int?, order: Order) async throws -> PaginatedResponse<AddressDetails> {
         let instance = try initialize()
         return try await instance.getAddresses(accountId: accountId, assetId: assetId, allPages: false, pageCursor: pageCursor, pageSize: pageSize, order: order)
     }
 
-    func fetchAllSupportedAssets() async throws -> [EmbeddedWalletSDKDev.Asset] {
+    func fetchAllSupportedAssets() async throws -> [Asset] {
         let instance = try initialize()
         return try await instance.getSupportedAssets(onlyBaseAssets: true).data ?? []
     }
     
-    func fetchSupportedAssetsWithPagination(pageCursor: String?, pageSize: Int?, order: Order) async throws -> PaginatedResponse<EmbeddedWalletSDKDev.Asset> {
+    func fetchSupportedAssetsWithPagination(pageCursor: String?, pageSize: Int?, order: Order) async throws -> PaginatedResponse<Asset> {
         let instance = try initialize()
         return try await instance.getSupportedAssets(allPages: true, pageCursor: pageCursor, pageSize: pageSize, onlyBaseAssets: true)
     }
     
-    func getTransactions(after: String? = nil, pageCursor: String?, order: Order, incoming: Bool? = nil, sourceId: String? = nil, outgoing: Bool? = nil, destId: String? = nil) async throws -> PaginatedResponse<EmbeddedWalletSDKDev.TransactionResponse> {
+    func getTransactions(after: String? = nil, pageCursor: String?, order: Order, incoming: Bool? = nil, sourceId: String? = nil, outgoing: Bool? = nil, destId: String? = nil) async throws -> PaginatedResponse<TransactionResponse> {
         let instance = try initialize()
         return try await instance.getTransactions(after: after, incoming: incoming, outgoing: outgoing, sourceId: sourceId, destId: destId, pageCursor: pageCursor)
     }
     
-    func getTransactionById(txId: String) async throws-> EmbeddedWalletSDKDev.TransactionResponse {
+    func getTransactionById(txId: String) async throws-> TransactionResponse {
         if let mockManager {
             return try await mockManager.getTransactionById(txId: txId)
         }
@@ -192,7 +192,7 @@ class EWManager: Hashable {
         return try await instance.getTransaction(txId: txId)
     }
     
-    func createTypedMessageTransaction(accountId: Int, asset: String) async throws -> EmbeddedWalletSDKDev.CreateTransactionResponse {
+    func createTypedMessageTransaction(accountId: Int, asset: String) async throws -> CreateTransactionResponse {
         let instance = try initialize()
         let content = try getTypedDataJson()
         let message = UnsignedRawMessage(content: content, type: "EIP712")
@@ -218,7 +218,7 @@ class EWManager: Hashable {
         return try await instance.estimateTransactionFee(transactionRequest: request)
     }
 
-    func createOneTimeAddressTransaction(accountId: Int, assetId: String, destAddress: String, amount: String, feeLevel: FeeLevel?) async throws -> EmbeddedWalletSDKDev.CreateTransactionResponse {
+    func createOneTimeAddressTransaction(accountId: Int, assetId: String, destAddress: String, amount: String, feeLevel: FeeLevel?) async throws -> CreateTransactionResponse {
         if let mockManager {
             return try await mockManager.createOneTimeAddressTransaction(accountId: accountId, assetId: assetId, destAddress: destAddress, amount: amount, feeLevel: feeLevel)
         }
@@ -234,7 +234,7 @@ class EWManager: Hashable {
         return try await instance.createTransaction(transactionRequest: request)
     }
     
-    func estimateEndUserWalletTransaction(accountId: Int, assetId: String, destWalletId: String, destinationAccountId: Int, amount: String, feeLevel: FeeLevel) async throws -> EmbeddedWalletSDKDev.EstimatedTransactionFeeResponse {
+    func estimateEndUserWalletTransaction(accountId: Int, assetId: String, destWalletId: String, destinationAccountId: Int, amount: String, feeLevel: FeeLevel) async throws -> EstimatedTransactionFeeResponse {
         let instance = try initialize()
         let request = TransactionRequest(
             assetId: assetId,
@@ -246,7 +246,7 @@ class EWManager: Hashable {
         return try await instance.estimateTransactionFee(transactionRequest: request)
     }
 
-    func createEndUserWalletTransaction(accountId: Int, assetId: String, destWalletId: String, destinationAccountId: Int, amount: String, feeLevel: FeeLevel?) async throws -> EmbeddedWalletSDKDev.CreateTransactionResponse {
+    func createEndUserWalletTransaction(accountId: Int, assetId: String, destWalletId: String, destinationAccountId: Int, amount: String, feeLevel: FeeLevel?) async throws -> CreateTransactionResponse {
         let instance = try initialize()
         let request = TransactionRequest(
             assetId: assetId,
@@ -258,7 +258,7 @@ class EWManager: Hashable {
         return try await instance.createTransaction(transactionRequest: request)
     }
 
-    func estimateVaultTransaction(accountId: Int, assetId: String, vaultAccountId: String, amount: String, feeLevel: FeeLevel?) async throws -> EmbeddedWalletSDKDev.EstimatedTransactionFeeResponse {
+    func estimateVaultTransaction(accountId: Int, assetId: String, vaultAccountId: String, amount: String, feeLevel: FeeLevel?) async throws -> EstimatedTransactionFeeResponse {
         let instance = try initialize()
         let request = TransactionRequest(
             assetId: assetId,
@@ -271,7 +271,7 @@ class EWManager: Hashable {
     }
 
     
-    func createVaultTransaction(accountId: Int, assetId: String, vaultAccountId: String, amount: String, feeLevel: FeeLevel?) async throws -> EmbeddedWalletSDKDev.CreateTransactionResponse {
+    func createVaultTransaction(accountId: Int, assetId: String, vaultAccountId: String, amount: String, feeLevel: FeeLevel?) async throws -> CreateTransactionResponse {
         let instance = try initialize()
         let request = TransactionRequest(
             assetId: assetId,
@@ -283,7 +283,7 @@ class EWManager: Hashable {
         return try await instance.createTransaction(transactionRequest: request)
     }
 
-    func estimateContractCallTransaction(accountId: Int, assetId: String, contractCallData: String, amount: String, feeLevel: FeeLevel) async throws -> EmbeddedWalletSDKDev.EstimatedTransactionFeeResponse {
+    func estimateContractCallTransaction(accountId: Int, assetId: String, contractCallData: String, amount: String, feeLevel: FeeLevel) async throws -> EstimatedTransactionFeeResponse {
         let instance = try initialize()
         let request = TransactionRequest(
             operation: .contractCall,
@@ -297,7 +297,7 @@ class EWManager: Hashable {
         return try await instance.estimateTransactionFee(transactionRequest: request)
     }
 
-    func createContractCallTransaction(accountId: Int, assetId: String, contractCallData: String, amount: String, feeLevel: FeeLevel) async throws -> EmbeddedWalletSDKDev.CreateTransactionResponse {
+    func createContractCallTransaction(accountId: Int, assetId: String, contractCallData: String, amount: String, feeLevel: FeeLevel) async throws -> CreateTransactionResponse {
         let instance = try initialize()
         let request = TransactionRequest(
             operation: .contractCall,
@@ -311,7 +311,7 @@ class EWManager: Hashable {
         return try await instance.createTransaction(transactionRequest: request)
     }
 
-    func cancelTransaction(txId: String) async throws -> EmbeddedWalletSDKDev.SuccessResponse {
+    func cancelTransaction(txId: String) async throws -> SuccessResponse {
         let instance = try initialize()
         return try await instance.cancelTransaction(txId: txId)
     }
