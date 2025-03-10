@@ -37,7 +37,7 @@ class SignInViewModel: SignInView.ViewModel {
                     }
                 }
             case .exist:
-                if userHasKeys {
+                if try userHasKeys() {
                     try await fireblocksManager.assignWallet()
                     fireblocksManager.startPolling()
                     self.launchView = NavigationContainerView {

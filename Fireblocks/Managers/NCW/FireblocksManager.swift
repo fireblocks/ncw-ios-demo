@@ -45,27 +45,6 @@ class FireblocksManager: FireblocksManagerProtocol, ObservableObject {
     private init() {
     }
         
-
-//    func isInstanceInitialized(authUser: AuthUser?) -> Bool {
-//        guard let deviceId = authUser?.deviceId,
-//              let walletId = authUser?.walletId
-//        else {
-//            AppLoggerManager.shared.logger()?.log("FireblocksManager, initInstance() failed: user credentials is nil")
-//            return false
-//        }
-//        
-//        self.deviceId = deviceId
-//        self.walletId = walletId
-//        
-//        do {
-//            try initializeFireblocksSDK()
-//            return true
-//        } catch {
-//            AppLoggerManager.shared.logger()?.log("FireblocksManager, initInstance() throws exc: \(error).")
-//            return false
-//        }
-//    }
-        
     func getNCWInstance() -> Fireblocks? {
         do {
             return try Fireblocks.getInstance(deviceId: deviceId)
@@ -75,6 +54,20 @@ class FireblocksManager: FireblocksManagerProtocol, ObservableObject {
             return nil
         }
     }
+    
+    func initializeCore() throws -> Fireblocks {
+        do {
+            return try Fireblocks.getInstance(deviceId: deviceId)
+        } catch {
+            return try Fireblocks.initialize(
+                deviceId: deviceId,
+                messageHandlerDelegate: self,
+                keyStorageDelegate: KeyStorageProvider(deviceId: self.deviceId),
+                fireblocksOptions: FireblocksOptions(env: EnvironmentConstants.env, eventHandlerDelegate: self, logLevel: .info, logToConsole: true, reporting: ReportingOptions(enabled: true))
+            )
+        }
+    }
+
     
     func assignWallet() async throws {
         let result = try await SessionManager.shared.assign(deviceId:deviceId)
@@ -94,7 +87,7 @@ class FireblocksManager: FireblocksManagerProtocol, ObservableObject {
             if didClearWallet {
                 self.deviceId = generateDeviceId()
                 UsersLocalStorageManager.shared.setLastDeviceId(deviceId: self.deviceId, email: email)
-                try initializeFireblocksSDK()
+                let _ = try initializeCore()
                 return .generate
             }
             
@@ -102,7 +95,7 @@ class FireblocksManager: FireblocksManagerProtocol, ObservableObject {
                 self.deviceId = deviceId
                 self.latestBackupDeviceId = deviceId
                 AppLoggerManager.shared.loggers[deviceId] = AppLogger(deviceId: deviceId)
-                try initializeFireblocksSDK()
+                let _ = try initializeCore()
                 return .exist
             }
             
@@ -112,7 +105,7 @@ class FireblocksManager: FireblocksManagerProtocol, ObservableObject {
             if device == nil || device!.deviceId.isEmptyOrNil || device!.walletId.isEmptyOrNil {
                 self.deviceId = generateDeviceId()
                 UsersLocalStorageManager.shared.setLastDeviceId(deviceId: self.deviceId, email: email)
-                try initializeFireblocksSDK()
+                let _ = try initializeCore()
                 return .generate
             } else {
                 self.walletId = device?.walletId ?? ""
@@ -134,36 +127,25 @@ class FireblocksManager: FireblocksManagerProtocol, ObservableObject {
     /*By default, workspaces are not enabled with EdDSA so you may remove MPC_EDDSA_ED25519 when calling generateMPCKeys
     Please ask your CSM or in the https://community.fireblocks.com/ to enable your workspace to support EdDSA if you wish to work with EdDSA chains.
      */
-    func generateMpcKeys() async -> Set<KeyDescriptor>? {
+    func generateMpcKeys() async throws -> Set<KeyDescriptor> {
         algoArray = [.MPC_ECDSA_SECP256K1, .MPC_EDDSA_ED25519]
-        return await generateKeys()
+        return try await generateKeys()
     }
     
-    func generateECDSAKeys() async -> Set<KeyDescriptor>? {
+    func generateECDSAKeys() async throws -> Set<KeyDescriptor> {
         algoArray = [.MPC_ECDSA_SECP256K1]
-        return await generateKeys()
+        return try await generateKeys()
     }
     
-    func generateEDDSAKeys() async -> Set<KeyDescriptor>? {
+    func generateEDDSAKeys() async throws -> Set<KeyDescriptor> {
         algoArray = [.MPC_ECDSA_SECP256K1, .MPC_EDDSA_ED25519]
-        return await generateKeys()
+        return try await generateKeys()
     }
 
     func startPolling() {
         PollingManager.shared.createListener(deviceId: deviceId, instance: self, sessionManager: SessionManager.shared)
     }
-                
-    func initializeFireblocksSDK() throws {
-        if getNCWInstance() == nil {
-            let _ = try Fireblocks.initialize(
-                deviceId: deviceId,
-                messageHandlerDelegate: self,
-                keyStorageDelegate: KeyStorageProvider(deviceId: self.deviceId),
-                fireblocksOptions: FireblocksOptions(env: EnvironmentConstants.env, eventHandlerDelegate: self, logLevel: .info, logToConsole: true, reporting: ReportingOptions(enabled: true))
-            )
-        }
-    }
-    
+                    
     func stopPollingMessages() {
         PollingManager.shared.removeListener(deviceId: deviceId)
     }
