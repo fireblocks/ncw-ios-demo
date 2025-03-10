@@ -166,7 +166,7 @@ extension FireblocksManagerProtocol {
         stopPollingMessages()
         TransfersViewModel.shared.signOut()
         AssetListViewModel.shared.signOut()
-        try stopJoinWallet()
+        try? stopJoinWallet()
         UsersLocalStorageManager.shared.resetAuthProvider()
         SignInViewModel.shared.launchView = nil
         FireblocksManager.shared.deviceId = ""
