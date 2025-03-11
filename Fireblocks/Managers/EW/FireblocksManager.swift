@@ -124,6 +124,8 @@ class FireblocksManager: FireblocksManagerProtocol, ObservableObject {
         } catch let error as EmbeddedWalletException{
             if let httpStatusCode = error.httpStatusCode, httpStatusCode == 404 {
                 self.deviceId = generateDeviceId()
+                self.latestBackupDeviceId = self.deviceId
+
                 UsersLocalStorageManager.shared.setLastDeviceId(deviceId: self.deviceId, email: email)
                 do {
                     let _ = try initializeCore()

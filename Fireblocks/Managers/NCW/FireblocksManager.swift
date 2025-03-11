@@ -86,6 +86,7 @@ class FireblocksManager: FireblocksManagerProtocol, ObservableObject {
         do {
             if didClearWallet {
                 self.deviceId = generateDeviceId()
+                self.latestBackupDeviceId = deviceId
                 UsersLocalStorageManager.shared.setLastDeviceId(deviceId: self.deviceId, email: email)
                 let _ = try initializeCore()
                 return .generate
@@ -104,6 +105,7 @@ class FireblocksManager: FireblocksManagerProtocol, ObservableObject {
             
             if device == nil || device!.deviceId.isEmptyOrNil || device!.walletId.isEmptyOrNil {
                 self.deviceId = generateDeviceId()
+                self.latestBackupDeviceId = deviceId
                 UsersLocalStorageManager.shared.setLastDeviceId(deviceId: self.deviceId, email: email)
                 let _ = try initializeCore()
                 return .generate

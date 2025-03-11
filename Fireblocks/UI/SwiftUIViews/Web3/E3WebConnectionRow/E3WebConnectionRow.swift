@@ -37,8 +37,8 @@ struct E3WebConnectionRow: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .font(.b1)
                 }
-                if let appDescription = viewModel.connection.sessionMetadata?.appDescription {
-                    Text(appDescription)
+                if let creationDate = viewModel.connection.creationDate, let date = creationDate.iso8601Date() {
+                    Text("Established \(date)")
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .foregroundStyle(.secondary)
                         .font(.b4)

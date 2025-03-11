@@ -84,7 +84,7 @@ struct PrepareForScanView: View {
                             .font(.b1)
                             .padding(16)
 
-                        TextField("", text: $viewModel.requestId)
+                        TextField("", text: $viewModel.qrCode)
                             .autocorrectionDisabled()
                             .frame(maxWidth: .infinity)
                             .padding()
@@ -117,7 +117,7 @@ struct PrepareForScanView: View {
                 .frame(maxWidth: .infinity)
                 .background(AssetsColors.gray2.color())
                 .cornerRadius(16)
-                .disabled(viewModel.requestId.isTrimmedEmpty)
+                .disabled(viewModel.qrCode.isTrimmedEmpty)
                 .opacity(isTextFieldPresented ? 1 : 0)
             }
             .onAppear() {
@@ -179,13 +179,13 @@ struct PrepareForScanView: View {
 class PrepareForScanViewModelMock: PrepareForScanViewModel {
     override init() {
         super.init()
-        self.requestId = "cfbd543a-345d-4fa2-a233-3078f3adbee8"
+        self.qrCode = "cfbd543a-345d-4fa2-a233-3078f3adbee8"
     }
     
     @MainActor
     override func sendRequestId() {
-        if !requestId.isTrimmedEmpty {
-            self.gotAddress(address: requestId)
+        if !qrCode.isTrimmedEmpty {
+            self.gotAddress(address: qrCode)
         } else {
             self.loadingManager?.setAlertMessage(error: CustomError.genericError("Missing request ID. Go back and try again"))
         }
@@ -193,7 +193,7 @@ class PrepareForScanViewModelMock: PrepareForScanViewModel {
 
     @MainActor
     override func gotAddress(address: String) {
-        coordinator?.path.append(NavigationTypes.validateRequestIdView(requestId))
+        coordinator?.path.append(NavigationTypes.validateRequestIdView(qrCode))
     }
 
 }

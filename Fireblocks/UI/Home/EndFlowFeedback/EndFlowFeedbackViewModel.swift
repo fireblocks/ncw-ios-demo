@@ -34,8 +34,10 @@ extension EndFlowFeedbackView {
         var rightToolbarItemAction: (() -> ())?
         var didFail = false
         var canGoBack: Bool = true
+        var items: [URL] = []
+        
         var content: AnyView?
-
+        
         init(icon: String? = nil, title: String? = nil, subTitle: String? = nil, navigationBarTitle: String = "", buttonIcon: UIImage? = nil, buttonTitle: String? = nil, actionButton: (() -> Void)? = nil, rightToolbarItemIcon: String? = nil, rightToolbarItemAction: (() -> ())? = nil, didFail: Bool = false, canGoBack: Bool = true, content: AnyView? = nil) {
             self.icon = icon
             self.title = title
@@ -51,6 +53,14 @@ extension EndFlowFeedbackView {
             self.rightToolbarItemIcon = rightToolbarItemIcon
             self.rightToolbarItemAction = rightToolbarItemAction
             self.content = content
+            
+            if let fireblocksLogsURL = FireblocksManager.shared.getURLForLogFiles() {
+                items.append(fireblocksLogsURL)
+            }
+            if let appLogoURL = AppLoggerManager.shared.logger()?.getURLForLogFiles() {
+                items.append(appLogoURL)
+            }
+
         }
         
         func shareLogs() {

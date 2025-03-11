@@ -127,13 +127,13 @@ class ValidateRequestIdViewModel {
             do {
                 let keys = try await FireblocksManager.shared.approveJoinWallet(requestId: requestId)
                 await MainActor.run {
-                    self.timer?.invalidate()
-                    self.timer = nil
                     self.loadingManager?.isLoading = false
                     if let _ = keys.first(where: {$0.status == .ERROR}) {
                         self.loadingManager?.setAlertMessage(error: CustomError.genericError(LocalizableStrings.approveJoinWalletFailed))
                         return
                     }
+                    self.timer?.invalidate()
+                    self.timer = nil
                     let feedbackVM = EndFlowFeedbackView.ViewModel(icon: AssetsIcons.addDeviceSucceeded.rawValue, title: LocalizableStrings.approveJoinWalletSucceeded, buttonTitle: LocalizableStrings.goHome, actionButton: {
                         self.coordinator?.path = NavigationPath()
                     }, canGoBack: false)
@@ -141,8 +141,6 @@ class ValidateRequestIdViewModel {
                 }
             } catch {
                 await MainActor.run {
-                    self.timer?.invalidate()
-                    self.timer = nil
                     self.loadingManager?.isLoading = false
                     try? self.fireblocksManager?.stopJoinWallet()
                     self.loadingManager?.setAlertMessage(error: error)

@@ -14,18 +14,18 @@ protocol PrepareForScanDelegate: AnyObject {
 @Observable
 class PrepareForScanViewModel: QRCodeScannerViewControllerDelegate {
     static func == (lhs: PrepareForScanViewModel, rhs: PrepareForScanViewModel) -> Bool {
-        lhs.requestId == rhs.requestId
+        lhs.qrCode == rhs.qrCode
     }
     
     func hash(into hasher: inout Hasher) {
-        hasher.combine(requestId)
+        hasher.combine(qrCode)
     }
 
     var coordinator: Coordinator?
     var loadingManager: LoadingManager?
 
     var isQRPresented: Bool = false
-    var requestId: String = ""
+    var qrCode: String = ""
 
     weak var prepareDelegate: PrepareForScanDelegate?
 
@@ -36,8 +36,8 @@ class PrepareForScanViewModel: QRCodeScannerViewControllerDelegate {
     
     @MainActor
     func sendRequestId() {
-        if !requestId.isTrimmedEmpty, let _ = qrData(encoded: requestId.base64Decoded() ?? "") {
-            self.gotAddress(address: requestId)
+        if !qrCode.isTrimmedEmpty {
+            self.gotAddress(address: qrCode)
         } else {
             self.loadingManager?.setAlertMessage(error: CustomError.genericError("Missing request ID. Go back and try again"))
         }
@@ -62,16 +62,17 @@ class PrepareForScanViewModel: QRCodeScannerViewControllerDelegate {
     
     @MainActor
     func gotAddress(address: String) {
-        guard let _ = qrData(encoded: address.base64Decoded() ?? "") else {
+        self.isQRPresented = false
+        guard let data = qrData(encoded: address.base64Decoded() ?? "") else {
             self.loadingManager?.setAlertMessage(error: CustomError.genericError("Missing request ID. Go back and try again"))
             return
         }
         
-        guard !requestId.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
+        guard !address.isEmpty else {
             self.loadingManager?.setAlertMessage(error: CustomError.genericError("Missing request ID. Go back and try again"))
             return
         }
-        coordinator?.path.append(NavigationTypes.validateRequestIdView(requestId))
+        coordinator?.path.append(NavigationTypes.validateRequestIdView(address))
     }
 
 }

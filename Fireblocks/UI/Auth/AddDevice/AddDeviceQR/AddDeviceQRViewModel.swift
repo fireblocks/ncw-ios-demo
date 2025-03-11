@@ -11,8 +11,8 @@ import FirebaseAuth
 
 @Observable
 class AddDeviceQRViewModel {
-    var loadingManager: LoadingManager!
-    var coordinator: Coordinator!
+    var loadingManager: LoadingManager?
+    var coordinator: Coordinator?
     var fireblocksManager: FireblocksManager?
     var didLoad = false
     
@@ -67,14 +67,14 @@ class AddDeviceQRViewModel {
     @objc func onProvisionerFound() {
         self.timer?.invalidate()
         self.timer = nil
-        self.loadingManager.setLoading(value: true)
+        self.loadingManager?.setLoading(value: true)
     }
     
     @MainActor
     @objc func onAddingDevice() {
         self.timer?.invalidate()
         self.timer = nil
-        self.loadingManager.setLoading(value: false)
+        self.loadingManager?.setLoading(value: false)
     }
     
     func startTimer() {
@@ -112,11 +112,11 @@ class AddDeviceQRViewModel {
     func didQRTimeExpired() {
         let vm = EndFlowFeedbackView.ViewModel(icon: AssetsIcons.errorImage.rawValue, title: LocalizableStrings.approveJoinWalletCanceled, subTitle: LocalizableStrings.addDeviceFailedSubtitle, buttonTitle: LocalizableStrings.tryAgain, actionButton:  {
             self.startTimer()
-            self.coordinator.path.removeLast(2)
+            self.coordinator?.path.removeLast(2)
         }, rightToolbarItemIcon: AssetsIcons.close.rawValue, rightToolbarItemAction: {
             try? self.fireblocksManager?.signOut()
         }, didFail: true, canGoBack: false)
-        self.coordinator.path.append(NavigationTypes.feedback(vm))
+        self.coordinator?.path.append(NavigationTypes.feedback(vm))
     }
 
 }

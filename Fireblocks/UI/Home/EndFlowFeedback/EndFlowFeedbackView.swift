@@ -73,24 +73,17 @@ struct EndFlowFeedbackView: View {
                 }
                 
                 if viewModel.didFail {
-                    Button {
-                        viewModel.shareLogs()
-                    } label: {
-                        HStack {
+                    if !viewModel.items.isEmpty {
+                        ShareLink(items: viewModel.items) {
                             Text("Share Logs")
                                 .font(.b1)
+                                .padding()
                                 .frame(maxWidth: .infinity)
+                                .foregroundStyle(.secondary)
+                                .contentShape(.rect)
                         }
-                        .padding(16)
-                        .contentShape(.rect)
-                        
+                        .tint(.secondary)
                     }
-                    .buttonStyle(.borderless)
-                    .foregroundStyle(.secondary)
-                    .cornerRadius(16)
-                    .padding(.top)
-                    .contentShape(.rect)
-
                 }
 
             }

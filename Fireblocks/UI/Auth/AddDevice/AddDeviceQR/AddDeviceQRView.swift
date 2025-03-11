@@ -187,11 +187,11 @@ struct AddDeviceQRInnerView: View {
 class AddDeviceQRViewModelMock: AddDeviceQRViewModel {
     override func didQRTimeExpired() {
         let vm = EndFlowFeedbackView.ViewModel(icon: AssetsIcons.errorImage.rawValue, title: LocalizableStrings.approveJoinWalletCanceled, subTitle: LocalizableStrings.addDeviceFailedSubtitle, buttonTitle: LocalizableStrings.tryAgain, actionButton:  {
-            self.coordinator.path = NavigationPath()
+            self.coordinator?.path = NavigationPath()
         }, rightToolbarItemIcon: AssetsIcons.close.rawValue, rightToolbarItemAction: {
-            self.coordinator.path = NavigationPath()
+            self.coordinator?.path = NavigationPath()
         }, didFail: true, canGoBack: false)
-        self.coordinator.path.append(NavigationTypes.feedback(vm))
+        self.coordinator?.path.append(NavigationTypes.feedback(vm))
     }
 
 }
