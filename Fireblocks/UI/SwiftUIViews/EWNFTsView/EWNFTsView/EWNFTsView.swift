@@ -6,7 +6,11 @@
 //
 
 import SwiftUI
+#if DEV
 import EmbeddedWalletSDKDev
+#else
+import EmbeddedWalletSDK
+#endif
 
 struct EWNFTsView: View {
     @EnvironmentObject var coordinator: Coordinator

@@ -6,8 +6,12 @@
 //
 
 import SwiftUI
-import EmbeddedWalletSDKDev
 import Combine
+#if DEV
+import EmbeddedWalletSDKDev
+#else
+import EmbeddedWalletSDK
+#endif
 
 extension EWNFTPreviewView {
     @Observable

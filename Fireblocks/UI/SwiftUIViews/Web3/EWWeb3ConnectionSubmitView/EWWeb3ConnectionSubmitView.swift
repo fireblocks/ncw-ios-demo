@@ -6,7 +6,11 @@
 //
 
 import SwiftUI
+#if DEV
 import EmbeddedWalletSDKDev
+#else
+import EmbeddedWalletSDK
+#endif
 
 struct EWWeb3ConnectionSubmitView: View {
     @Environment(\.dismiss) var dismiss

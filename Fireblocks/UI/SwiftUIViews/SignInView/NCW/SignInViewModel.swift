@@ -16,12 +16,12 @@ class SignInViewModel: SignInView.ViewModel {
             let _ = try await SessionManager.shared.login()
             
             guard let fireblocksManager else {
-                loadingManager.setAlertMessage(error: CustomError.genericError("Failed to load Fireblocks Manager"))
+                loadingManager?.setAlertMessage(error: CustomError.genericError("Failed to load Fireblocks Manager"))
                 return
             }
             
             guard let email = fireblocksManager.getUserEmail() else {
-                loadingManager.setAlertMessage(error: CustomError.genericError("Failed to getUserEmail"))
+                loadingManager?.setAlertMessage(error: CustomError.genericError("Failed to getUserEmail"))
                 return
             }
             
@@ -61,10 +61,10 @@ class SignInViewModel: SignInView.ViewModel {
                     coordinator?.path.append(NavigationTypes.joinOrRecover)
                 }
             case .error:
-                loadingManager.setAlertMessage(error: CustomError.assignWallet)
+                loadingManager?.setAlertMessage(error: CustomError.assignWallet)
             }
         } catch {
-            loadingManager.setAlertMessage(error: error)
+            loadingManager?.setAlertMessage(error: error)
         }
     }
     

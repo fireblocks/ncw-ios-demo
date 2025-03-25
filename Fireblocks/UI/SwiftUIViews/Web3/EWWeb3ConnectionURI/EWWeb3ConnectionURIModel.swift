@@ -6,7 +6,11 @@
 //
 
 import Foundation
+#if DEV
 import EmbeddedWalletSDKDev
+#else
+import EmbeddedWalletSDK
+#endif
 
 extension EWWeb3ConnectionURI {
     @Observable

@@ -5,7 +5,11 @@
 //  Created by Dudi Shani-Gabay on 25/02/2025.
 //
 import SwiftUI
+#if DEV
 import EmbeddedWalletSDKDev
+#else
+import EmbeddedWalletSDK
+#endif
 
 struct EWWeb3ConnectionDetailsHeader: View {
     @Environment(EWManager.self) var ewManager
@@ -132,12 +136,6 @@ struct EWWeb3ConnectionDetailsHeader: View {
                             }
                         }
                         
-                        if !isConnected {
-                            Text("Note that if you authorize a 3rd party to access your wallet it may be risky or something....")
-                                .multilineTextAlignment(.center)
-                                .foregroundStyle(.secondary)
-                                .font(.b4)
-                        }
                     }
                     .padding()
                     .padding(.top, 36)

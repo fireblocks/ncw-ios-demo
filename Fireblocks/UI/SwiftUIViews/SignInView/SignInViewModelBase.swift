@@ -21,7 +21,7 @@ extension SignInView {
     class ViewModel: NSObject, ASAuthorizationControllerDelegate,
                      ASAuthorizationControllerPresentationContextProviding, ObservableObject {
         private var authRepository: AuthRepository!
-        var loadingManager: LoadingManager!
+        var loadingManager: LoadingManager?
         var googleSignInManager: GoogleSignInManager?
         var appleSignInManager: AppleSignInManager?
         var fireblocksManager: FireblocksManager?
@@ -64,12 +64,12 @@ extension SignInView {
                     print("Sign in failed with: \(String(describing: error?.localizedDescription)).")
                     return
                 }
-                self.loadingManager.setLoading(value: true)
+                self.loadingManager?.setLoading(value: true)
                 if let user = result?.user.userID {
                     self.provider = .google
                     self.signInToFirebase(with: result, user: user)
                 } else {
-                    self.loadingManager.setLoading(value: false)
+                    self.loadingManager?.setLoading(value: false)
                 }
             }
         }
@@ -78,7 +78,7 @@ extension SignInView {
             guard let request = appleSignInManager?.getAppleRequest() else {
                 return
             }
-            self.loadingManager.setLoading(value: true)
+            self.loadingManager?.setLoading(value: true)
             let authorizationController = ASAuthorizationController(
                 authorizationRequests: [request]
             )
@@ -95,7 +95,7 @@ extension SignInView {
         }
         
         func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
-            self.loadingManager.setLoading(value: false)
+            self.loadingManager?.setLoading(value: false)
             print("Sign in with Apple errored: \(error)")
         }
         
@@ -116,7 +116,7 @@ extension SignInView {
                     }
                     await self.handleSuccessSignIn()
                 }
-                self.loadingManager.isLoading = false
+                self.loadingManager?.isLoading = false
             }
         }
         
@@ -143,15 +143,15 @@ extension SignInView {
         }
         
         func clearWallet() {
-            loadingManager.isLoading = true
+            loadingManager?.isLoading = true
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                 do {
                     try self.fireblocksManager?.signOut()
                     self.fireblocksManager?.didClearWallet = true
-                    self.loadingManager.isLoading = false
+                    self.loadingManager?.isLoading = false
                 } catch {
-                    self.loadingManager.isLoading = false
-                    self.loadingManager.setAlertMessage(error: error)
+                    self.loadingManager?.isLoading = false
+                    self.loadingManager?.setAlertMessage(error: error)
                 }
             }
         }

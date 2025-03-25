@@ -14,14 +14,14 @@ class SignInViewModel: SignInView.ViewModel {
     
     override func handleSuccessSignIn(isLaunch: Bool = false) async {
         guard let fireblocksManager else {
-            loadingManager.setAlertMessage(error: CustomError.genericError("Failed to load Fireblocks Manager"))
+            loadingManager?.setAlertMessage(error: CustomError.genericError("Failed to load Fireblocks Manager"))
             return
         }
         
         do {
             try await fireblocksManager.assignWallet()
             guard let email = fireblocksManager.getUserEmail() else {
-                loadingManager.setAlertMessage(error: CustomError.login)
+                loadingManager?.setAlertMessage(error: CustomError.login)
                 return
             }
             
@@ -55,10 +55,10 @@ class SignInViewModel: SignInView.ViewModel {
                     }
                 }
             case .error(let error):
-                loadingManager.setAlertMessage(error: error)
+                loadingManager?.setAlertMessage(error: error)
             }
         } catch {
-            loadingManager.setAlertMessage(error: error)
+            loadingManager?.setAlertMessage(error: error)
         }
     }
 }

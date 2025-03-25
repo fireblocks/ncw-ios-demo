@@ -1,5 +1,5 @@
 {
-  "originHash" : "be9080ca6ab706696c5601f2cfd5257cc97966ff2413a3e9f65f4ab709d6d85e",
+  "originHash" : "d31a1092dabefd75beac2161400d8e57acf201f659f1e7700fc542ed45e56860",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -26,6 +26,15 @@
       "state" : {
         "revision" : "c89ed571ae140f8eb1142735e6e23d7bb8c34cb2",
         "version" : "1.7.5"
+      }
+    },
+    {
+      "identity" : "ew-ios-sdk",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/fireblocks/ew-ios-sdk",
+      "state" : {
+        "revision" : "1c7d82102a414fa07e867e239153ccd95a0306d8",
+        "version" : "0.1.9"
       }
     },
     {
@@ -139,7 +148,7 @@
     {
       "identity" : "ncw-ios-sdk",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/fireblocks/ncw-ios-sdk.git",
+      "location" : "https://github.com/fireblocks/ncw-ios-sdk",
       "state" : {
         "revision" : "a2f31bd56388f407c178cb20fb755239e233bc7f",
         "version" : "2.9.1"

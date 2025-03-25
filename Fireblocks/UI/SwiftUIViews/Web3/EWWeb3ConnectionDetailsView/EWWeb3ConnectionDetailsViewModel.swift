@@ -5,7 +5,11 @@
 //  Created by Dudi Shani-Gabay on 24/02/2025.
 //
 import SwiftUI
+#if DEV
 import EmbeddedWalletSDKDev
+#else
+import EmbeddedWalletSDK
+#endif
 
 extension EWWeb3ConnectionDetailsView {
     @Observable

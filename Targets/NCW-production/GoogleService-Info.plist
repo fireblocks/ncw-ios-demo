@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>1010855653011-tned9icpji9nca618ofqc3oouqg64h86.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.1010855653011-tned9icpji9nca618ofqc3oouqg64h86</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>1010855653011-57o7daqr5qi77v5dhtgvtvoi376gocfu.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyC-HdLc3_KHm3QuaVGHhG6dxx5eI8QnPIs</string>
+	<key>GCM_SENDER_ID</key>
+	<string>1010855653011</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.fireblocks.ncw.demo</string>
+	<key>PROJECT_ID</key>
+	<string>fireblocks-ncw-demo</string>
+	<key>STORAGE_BUCKET</key>
+	<string>fireblocks-ncw-demo.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:1010855653011:ios:66dd3dba16c7d885092766</string>
+</dict>
+</plist>

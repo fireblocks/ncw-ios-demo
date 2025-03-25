@@ -48,7 +48,7 @@ class FireblocksManager: FireblocksManagerProtocol, ObservableObject {
     }
     
     func generateEDDSAKeys() async throws -> Set<KeyDescriptor> {
-        algoArray = [.MPC_ECDSA_SECP256K1, .MPC_EDDSA_ED25519]
+        algoArray = [.MPC_EDDSA_ED25519]
         return try await generateKeys()
     }
 
@@ -72,7 +72,7 @@ class FireblocksManager: FireblocksManagerProtocol, ObservableObject {
     }
 
     func assignWallet() async throws {
-        self.options = EmbeddedWalletOptions(env: .DEV9, logLevel: .info, logToConsole: true, logNetwork: true, eventHandlerDelegate: nil, reporting: .init(enabled: true))
+        self.options = EmbeddedWalletOptions(env: EnvironmentConstants.ewEnv, logLevel: .info, logToConsole: true, logNetwork: true, eventHandlerDelegate: nil, reporting: .init(enabled: true))
         let instance = try getInstance()
         let result = try await instance.assignWallet()
         if let walletId = result.walletId {

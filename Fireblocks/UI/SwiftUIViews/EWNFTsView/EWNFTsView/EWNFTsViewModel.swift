@@ -6,7 +6,11 @@
 //
 
 import Foundation
+#if DEV
 import EmbeddedWalletSDKDev
+#else
+import EmbeddedWalletSDK
+#endif
 
 enum ViewAsOptions: String, CaseIterable {
     case List
