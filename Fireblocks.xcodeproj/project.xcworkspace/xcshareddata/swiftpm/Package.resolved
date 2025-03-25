@@ -1,5 +1,5 @@
 {
-  "originHash" : "d31a1092dabefd75beac2161400d8e57acf201f659f1e7700fc542ed45e56860",
+  "originHash" : "2fd8db5fbde6d9eb8aa8c1000b33001c817e11a0a617264b619fd83ed24427d7",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -33,8 +33,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/fireblocks/ew-ios-sdk",
       "state" : {
-        "revision" : "1c7d82102a414fa07e867e239153ccd95a0306d8",
-        "version" : "0.1.9"
+        "revision" : "6d7c2261e655ff3a84be4a0eda4fc98f3af18cce",
+        "version" : "0.2.1"
       }
     },
     {
