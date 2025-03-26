@@ -15,34 +15,33 @@ import EmbeddedWalletSDK
 
 @Observable
 class AddAssetsViewModel: AddAssetsViewModelBase {
-    var ewManager: EWManager!
+    var ewManager: EWManager?
 
     func setup(ewManager: EWManager, loadingManager: LoadingManager) {
         self.ewManager = ewManager
         self.loadingManager = loadingManager
         Task {
-            await self.loadingManager.setLoading(value: true)
+            await self.loadingManager?.setLoading(value: true)
             do {
                 let response = try await self.ewManager?.fetchAllSupportedAssets()
                 await MainActor.run {
                     self.assets = response?.map({AssetToAdd(asset: $0)}) ?? []
                     self.searchResults = response?.map({AssetToAdd(asset: $0)}) ?? []
-                    self.loadingManager.isLoading = false
+                    self.loadingManager?.isLoading = false
                 }
             } catch {
-                await self.loadingManager.setAlertMessage(error: error)
-                await self.loadingManager.setLoading(value: false)
+                await self.loadingManager?.setAlertMessage(error: error)
             }
         }
     }
         
     override func createAsset() {
-        self.loadingManager.isLoading = true
+        self.loadingManager?.isLoading = true
         Task {
             do {
                 let accounts = try await ewManager?.fetchAllAccounts()
                 if accounts?.count == 0 {
-                    let _ = try await ewManager.createAccount()
+                    let _ = try await ewManager?.createAccount()
                 }
                 
                 if let assetToAdd = assets.filter({$0.isSelected}).first {
@@ -51,11 +50,10 @@ class AddAssetsViewModel: AddAssetsViewModelBase {
                             selectedAsset = assetToAdd
                         }
                     }
-                    await self.loadingManager.setLoading(value: false)
+                    await self.loadingManager?.setLoading(value: false)
                 }
             } catch {
-                await self.loadingManager.setAlertMessage(error: error)
-                await self.loadingManager.setLoading(value: false)
+                await self.loadingManager?.setAlertMessage(error: error)
             }
         }
     }

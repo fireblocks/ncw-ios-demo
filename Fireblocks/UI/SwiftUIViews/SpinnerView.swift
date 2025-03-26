@@ -64,6 +64,7 @@ class LoadingManager: ObservableObject {
         #else
             setError(error: error)
         #endif
+            setLoading(value: false)
         } else {
             self.alertMessage = nil
         }

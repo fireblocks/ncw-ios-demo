@@ -15,8 +15,8 @@ import EmbeddedWalletSDK
 extension EWWeb3ConnectionsView {
     @Observable
     class ViewModel {
-        var loadingManager: LoadingManager!
-        var ewManager: EWManager!
+        var loadingManager: LoadingManager?
+        var ewManager: EWManager?
         var didLoad = false
         var dataModel = Web3DataModel()
 
@@ -31,7 +31,7 @@ extension EWWeb3ConnectionsView {
                 didLoad = true
                 self.loadingManager = loadingManager
                 self.ewManager = ewManager
-                self.loadingManager.isLoading = true
+                self.loadingManager?.isLoading = true
             }
             
             fetchAllConnections()
@@ -43,30 +43,28 @@ extension EWWeb3ConnectionsView {
                     let connections = try await self.ewManager?.getConnections().data ?? []
                     await MainActor.run {
                         self.dataModel.connections = connections
-                        self.loadingManager.isLoading = false
+                        self.loadingManager?.isLoading = false
                     }
                 } catch {
-                    await self.loadingManager.setAlertMessage(error: error)
+                    await self.loadingManager?.setAlertMessage(error: error)
                 }
-                await self.loadingManager.setLoading(value: false)
+                await self.loadingManager?.setLoading(value: false)
             }
         }
         
         func removeConnection(id: String?) {
             if let id {
-                self.loadingManager.isLoading = true
+                self.loadingManager?.isLoading = true
                 Task {
                     do {
                         if let _ = try await self.ewManager?.removeConnection(id: id) {
                             fetchAllConnections()
                         } else {
-                            await self.loadingManager.setLoading(value: false)
+                            await self.loadingManager?.setLoading(value: false)
                         }
                     } catch {
-                        await self.loadingManager.setAlertMessage(error: error)
-                        await self.loadingManager.setLoading(value: false)
+                        await self.loadingManager?.setAlertMessage(error: error)
                     }
-
                 }
             }
         }

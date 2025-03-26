@@ -16,8 +16,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2B78DE2A2D92B7D8003B7D82"
-               BuildableName = "EW-sandbox copy.app"
-               BlueprintName = "EW-sandbox copy"
+               BuildableName = "EW-production.app"
+               BlueprintName = "EW-production"
                ReferencedContainer = "container:Fireblocks.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,8 +45,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2B78DE2A2D92B7D8003B7D82"
-            BuildableName = "EW-sandbox copy.app"
-            BlueprintName = "EW-sandbox copy"
+            BuildableName = "EW-production.app"
+            BlueprintName = "EW-production"
             ReferencedContainer = "container:Fireblocks.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -62,8 +62,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2B78DE2A2D92B7D8003B7D82"
-            BuildableName = "EW-sandbox copy.app"
-            BlueprintName = "EW-sandbox copy"
+            BuildableName = "EW-production.app"
+            BlueprintName = "EW-production"
             ReferencedContainer = "container:Fireblocks.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

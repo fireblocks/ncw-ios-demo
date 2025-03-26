@@ -21,7 +21,7 @@ import FireblocksSDK
 extension GenerateKeysView {
     class ViewModel: ObservableObject {
         private var coordinator: Coordinator?
-        private var loadingManager: LoadingManager!
+        private var loadingManager: LoadingManager?
         private var fireblocksManager: FireblocksManager?
         private var mpcKeyTask: Task<Void, Never>?
         
@@ -41,13 +41,13 @@ extension GenerateKeysView {
         @MainActor
         func generateMpcKeys() {
             guard let fireblocksManager else { return }
-            self.loadingManager.setLoading(value: true)
+            self.loadingManager?.setLoading(value: true)
             mpcKeyTask = Task {
                 do {
                     let result = try await fireblocksManager.generateMpcKeys()
                     handleResult(result: result)
                 } catch {
-                    self.loadingManager.setAlertMessage(error: error)
+                    self.loadingManager?.setAlertMessage(error: error)
                 }
             }
         }
@@ -55,13 +55,13 @@ extension GenerateKeysView {
         @MainActor
         func generateEDDSAKeys() {
             guard let fireblocksManager else { return }
-            self.loadingManager.setLoading(value: true)
+            self.loadingManager?.setLoading(value: true)
             mpcKeyTask = Task {
                 do {
                     let result = try await fireblocksManager.generateEDDSAKeys()
                     handleResult(result: result)
                 } catch {
-                    self.loadingManager.setAlertMessage(error: error)
+                    self.loadingManager?.setAlertMessage(error: error)
                 }
             }
         }
@@ -69,13 +69,13 @@ extension GenerateKeysView {
         @MainActor
         func generateECDSAKeys() {
             guard let fireblocksManager else { return }
-            self.loadingManager.setLoading(value: true)
+            self.loadingManager?.setLoading(value: true)
             mpcKeyTask = Task {
                 do {
                     let result = try await fireblocksManager.generateECDSAKeys()
                     handleResult(result: result)
                 } catch {
-                    self.loadingManager.setAlertMessage(error: error)
+                    self.loadingManager?.setAlertMessage(error: error)
                 }
             }
         }
@@ -84,13 +84,13 @@ extension GenerateKeysView {
             DispatchQueue.main.async {
                 let isGenerated = result.filter({$0.keyStatus == .READY}).count > 0
                 AppLoggerManager.shared.logger()?.log("FireblocksManager, generateMpcKeys() isGenerated value: \(isGenerated).")
-                self.loadingManager.setLoading(value: false)
+                self.loadingManager?.setLoading(value: false)
                 if isGenerated {
                     self.fireblocksManager?.startPolling()
                     self.createAssets()
                     self.coordinator?.path.append(NavigationTypes.backup(true))
                 } else {
-                    self.loadingManager.setAlertMessage(error: CustomError.genericError("Failed to generate keys"))
+                    self.loadingManager?.setAlertMessage(error: CustomError.genericError("Failed to generate keys"))
                 }
             }
         }

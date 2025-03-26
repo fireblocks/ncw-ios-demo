@@ -26,9 +26,9 @@ enum SortingDateOptions: String, CaseIterable {
 extension EWNFTsView {
     @Observable
     class ViewModel {
-        var coordinator: Coordinator!
-        var ewManager: EWManager!
-        var loadingManager: LoadingManager!
+        var coordinator: Coordinator?
+        var ewManager: EWManager?
+        var loadingManager: LoadingManager?
         var didLoad = false
         var selectedViewOption: ViewAsOptions = .List
         var selectedSortingOption: SortingDateOptions = .ASC
@@ -41,7 +41,7 @@ extension EWNFTsView {
                 self.loadingManager = loadingManager
                 self.ewManager = ewManager
                 self.coordinator = coordinator
-                self.loadingManager.isLoading = true
+                self.loadingManager?.isLoading = true
             }
 
             Task {
@@ -53,9 +53,9 @@ extension EWNFTsView {
             do {
                 self.dataModel.tokens = try await self.ewManager?.getOwnedNFTs().data ?? []
             } catch {
-                await self.loadingManager.setAlertMessage(error: error)
+                await self.loadingManager?.setAlertMessage(error: error)
             }
-            await self.loadingManager.setLoading(value: false)
+            await self.loadingManager?.setLoading(value: false)
         }
         
         func sortedTokens() -> [TokenOwnershipResponse] {
@@ -68,7 +68,7 @@ extension EWNFTsView {
         }
         
         func proceedToDetails() {
-            coordinator.path.append(NavigationTypes.NFTToken(dataModel))
+            coordinator?.path.append(NavigationTypes.NFTToken(dataModel))
 
         }
         

@@ -50,6 +50,13 @@ struct SettingsView: View {
                         .font(.b2)
                         .frame(maxWidth: .infinity, alignment: .center)
                         .foregroundStyle(.secondary)
+                    Text(Bundle.main.versionLabel)
+                        .font(.b4)
+                        .foregroundStyle(.secondary)
+                        .frame(alignment: .center)
+                        .padding(8)
+                        .background(.thinMaterial, in: .capsule)
+
                 }
             } header: {
                 EmptyView()

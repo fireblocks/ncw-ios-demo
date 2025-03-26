@@ -131,7 +131,6 @@ class ApproveViewModelBase {
                     await self.loadingManager?.setAlertMessage(error: CustomError.genericError("Failed to approve transaction"))
                 }
             } catch {
-                await self.loadingManager?.setLoading(value: false)
                 await self.loadingManager?.setAlertMessage(error: error)
             }
         }
@@ -160,7 +159,6 @@ class ApproveViewModelBase {
                     await self.loadingManager?.setAlertMessage(error: CustomError.genericError("Failed to cancel transaction"))
                 }
             } catch {
-                await self.loadingManager?.setLoading(value: false)
                 await self.loadingManager?.setAlertMessage(error: error)
             }
             

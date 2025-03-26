@@ -4709,7 +4709,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.8.0;
+				MARKETING_VERSION = 0.10.0;
 				OTHER_SWIFT_FLAGS = "-DSANDBOX -DEW";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fireblocks.ew.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -4749,7 +4749,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.8.0;
+				MARKETING_VERSION = 0.10.0;
 				OTHER_SWIFT_FLAGS = "-DSANDBOX -DEW";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fireblocks.ew.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";

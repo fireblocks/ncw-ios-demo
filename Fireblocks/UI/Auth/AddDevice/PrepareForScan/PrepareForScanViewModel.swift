@@ -63,7 +63,7 @@ class PrepareForScanViewModel: QRCodeScannerViewControllerDelegate {
     @MainActor
     func gotAddress(address: String) {
         self.isQRPresented = false
-        guard let data = qrData(encoded: address.base64Decoded() ?? "") else {
+        guard let _ = qrData(encoded: address.base64Decoded() ?? "") else {
             self.loadingManager?.setAlertMessage(error: CustomError.genericError("Missing request ID. Go back and try again"))
             return
         }

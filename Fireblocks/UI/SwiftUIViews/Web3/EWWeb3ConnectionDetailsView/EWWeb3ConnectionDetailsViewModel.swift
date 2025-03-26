@@ -14,9 +14,9 @@ import EmbeddedWalletSDK
 extension EWWeb3ConnectionDetailsView {
     @Observable
     class ViewModel {
-        var coordinator: Coordinator!
-        var loadingManager: LoadingManager!
-        var ewManager: EWManager!
+        var coordinator: Coordinator?
+        var loadingManager: LoadingManager?
+        var ewManager: EWManager?
         var dataModel: Web3DataModel
         
         init(dataModel: Web3DataModel) {
@@ -31,20 +31,20 @@ extension EWWeb3ConnectionDetailsView {
         
         func removeConnection() {
             if let id = dataModel.connection?.id {
-                self.loadingManager.isLoading = true
+                self.loadingManager?.isLoading = true
                 Task {
                     do {
                         let didRemove = try await self.ewManager?.removeConnection(id: id)
                         await MainActor.run {
                             if didRemove != nil {
-                                coordinator.path = NavigationPath()
+                                coordinator?.path = NavigationPath()
                             }
-                            self.loadingManager.isLoading = false
+                            self.loadingManager?.isLoading = false
                         }
                     } catch {
-                        await self.loadingManager.setAlertMessage(error: error)
+                        await self.loadingManager?.setAlertMessage(error: error)
                     }
-                    await self.loadingManager.setLoading(value: false)
+                    await self.loadingManager?.setLoading(value: false)
 
                 }
             }

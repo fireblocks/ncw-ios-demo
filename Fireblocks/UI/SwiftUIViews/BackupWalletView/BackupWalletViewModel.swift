@@ -18,8 +18,8 @@ import FireblocksSDK
 
 extension BackupWalletView {
     class ViewModel: ObservableObject {
-        private var coordinator: Coordinator!
-        private var loadingManager: LoadingManager!
+        private var coordinator: Coordinator?
+        private var loadingManager: LoadingManager?
         var googleSignInManager: GoogleSignInManager?
         var fireblocksManager: FireblocksManager?
         let googleDriveManager = GoogleDriveManager()
@@ -42,13 +42,13 @@ extension BackupWalletView {
         }
         
         @MainActor func backup() {
-            self.loadingManager.setLoading(value: true)
+            self.loadingManager?.setLoading(value: true)
             Task {
                 let passphraseInfo = await getPassphraseInfo(location: .GoogleDrive)
                 if let gidUser = await gidUser() {
                     do {
                         let result = try await repository.backupToGoogleDrive(gidUser: gidUser, passphraseId: passphraseInfo.passphraseId)
-                        self.loadingManager.setLoading(value: false)
+                        self.loadingManager?.setLoading(value: false)
                         let viewModel: EndFlowFeedbackView.ViewModel
                         if result {
                             viewModel = EndFlowFeedbackView.ViewModel(icon: nil, title: "Recovery key backed up", subTitle: "Your recovery key was successfully completed and backed up.", navigationBarTitle: "Create key backup", buttonIcon: nil, buttonTitle: "Go home", actionButton: {
@@ -57,7 +57,7 @@ extension BackupWalletView {
                                         TabBarView()
                                     }
                                 } else {
-                                    self.coordinator.path = NavigationPath()
+                                    self.coordinator?.path = NavigationPath()
                                 }
                             }, rightToolbarItemIcon: nil, rightToolbarItemAction: nil, didFail: false, canGoBack: false)
                         } else {
@@ -67,19 +67,18 @@ extension BackupWalletView {
                                         TabBarView()
                                     }
                                 } else {
-                                    self.coordinator.path = NavigationPath()
+                                    self.coordinator?.path = NavigationPath()
                                 }
                             }, rightToolbarItemIcon: nil, rightToolbarItemAction: nil, didFail: true, canGoBack: true)
                         }
-                        coordinator.path.append(NavigationTypes.feedback(viewModel))
+                        coordinator?.path.append(NavigationTypes.feedback(viewModel))
                     } catch {
-                        self.loadingManager.setLoading(value: false)
-                        self.loadingManager.setAlertMessage(error: error)
+                        self.loadingManager?.setAlertMessage(error: error)
                     }
                 } else {
                     authenticateUser(passphraseId: passphraseInfo.passphraseId) { [weak self] result in
                         if let self {
-                            self.loadingManager.setLoading(value: false)
+                            self.loadingManager?.setLoading(value: false)
                         }
                     }
                 }
@@ -134,7 +133,7 @@ extension BackupWalletView {
                         let result = try await repository.backupToGoogleDrive(gidUser: gidUser, passphraseId: passphraseId)
                         callback(result)
                     } catch {
-                        self.loadingManager.setAlertMessage(error: error)
+                        self.loadingManager?.setAlertMessage(error: error)
                         return callback(false)
                     }
                 }

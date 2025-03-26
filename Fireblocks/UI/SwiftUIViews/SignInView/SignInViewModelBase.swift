@@ -150,7 +150,6 @@ extension SignInView {
                     self.fireblocksManager?.didClearWallet = true
                     self.loadingManager?.isLoading = false
                 } catch {
-                    self.loadingManager?.isLoading = false
                     self.loadingManager?.setAlertMessage(error: error)
                 }
             }

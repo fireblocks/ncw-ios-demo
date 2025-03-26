@@ -18,7 +18,7 @@ import FireblocksSDK
 
 extension RecoverWalletView {
     class ViewModel: ObservableObject, FireblocksPassphraseResolver {
-        private var loadingManager: LoadingManager!
+        private var loadingManager: LoadingManager?
         var coordinator: Coordinator?
         var googleSignInManager: GoogleSignInManager?
         var fireblocksManager: FireblocksManager?
@@ -56,12 +56,12 @@ extension RecoverWalletView {
                 }
                                 
                 let _ = try fireblocksManager.initializeCore()
-                self.loadingManager.setLoading(value: true)
+                self.loadingManager?.setLoading(value: true)
                 Task {
                     self.gidUser = await gidUser()
                     let result = try await fireblocksManager.recoverWallet(resolver: self)
                     await MainActor.run {
-                        self.loadingManager.setLoading(value: false)
+                        self.loadingManager?.setLoading(value: false)
                         if result, let email = fireblocksManager.getUserEmail() {
                             let deviceId = fireblocksManager.deviceId
                             UsersLocalStorageManager.shared.setLastDeviceId(deviceId: deviceId, email: email)
@@ -75,13 +75,12 @@ extension RecoverWalletView {
                                 self.coordinator?.path = NavigationPath()
                             }
                         } else {
-                            self.loadingManager.setAlertMessage(error: CustomError.recover)
+                            self.loadingManager?.setAlertMessage(error: CustomError.recover)
                         }
                     }
                 }
             } catch {
-                self.loadingManager.setLoading(value: false)
-                self.loadingManager.setAlertMessage(error: error)
+                self.loadingManager?.setAlertMessage(error: error)
             }
         }
         

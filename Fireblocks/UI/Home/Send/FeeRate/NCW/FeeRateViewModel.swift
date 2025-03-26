@@ -32,7 +32,6 @@ final class FeeRateViewModel: FeeRateViewModelBase {
                                 self.loadingManager?.isLoading = false
                                 self.coordinator?.path.append(NavigationTypes.approveTransaction(transaction, true))
                             } else {
-                                self.loadingManager?.isLoading = false
                                 self.loadingManager?.setAlertMessage(error: CustomError.genericError("Failed to get transaction"))
                             }
                         }

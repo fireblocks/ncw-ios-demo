@@ -55,8 +55,7 @@ class ValidateRequestIdViewModel {
             self.loadingManager = loadingManager
             self.fireblocksManager = fireblocksManager
             
-            guard let requestId else {
-                self.loadingManager?.isLoading = false
+            guard requestId != nil else {
                 self.loadingManager?.setAlertMessage(error: CustomError.genericError("Missing request ID. Go back and try again"))
                 return
             }
@@ -141,7 +140,6 @@ class ValidateRequestIdViewModel {
                 }
             } catch {
                 await MainActor.run {
-                    self.loadingManager?.isLoading = false
                     try? self.fireblocksManager?.stopJoinWallet()
                     self.loadingManager?.setAlertMessage(error: error)
                 }

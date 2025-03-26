@@ -48,7 +48,6 @@ class FeeRateViewModelBase {
                     self.selectedFee = fees.first(where: {$0.feeRateType == .LOW}) ?? fees.first
                 }
             } catch let error {
-                await self.loadingManager?.setLoading(value: false)
                 await self.loadingManager?.setAlertMessage(error: error)
             }
         }
@@ -107,7 +106,6 @@ class FeeRateViewModelBase {
                     listenToTransactionStatusChanges()
                 }
             } catch let error {
-                await self.loadingManager?.setLoading(value: false)
                 await self.loadingManager?.setAlertMessage(error: error)
             }
         }

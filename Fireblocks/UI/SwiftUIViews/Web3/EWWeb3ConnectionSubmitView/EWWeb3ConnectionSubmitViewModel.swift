@@ -15,9 +15,9 @@ import EmbeddedWalletSDK
 extension EWWeb3ConnectionSubmitView {
     @Observable
     class ViewModel {
-        var coordinator: Coordinator!
-        var loadingManager: LoadingManager!
-        var ewManager: EWManager!
+        var coordinator: Coordinator?
+        var loadingManager: LoadingManager?
+        var ewManager: EWManager?
         var dataModel: Web3DataModel
         var uiimage: UIImage?
         var image: Image?
@@ -47,36 +47,35 @@ extension EWWeb3ConnectionSubmitView {
                 Task {
                     let _ = try? await self.ewManager?.submitConnection(id: id, approve: false)
                 }
-                coordinator.path = NavigationPath()
+                coordinator?.path = NavigationPath()
             }
         }
         
         func submitConnection(approve: Bool) {
             if let id = dataModel.response?.id {
-                self.loadingManager.isLoading = true
+                self.loadingManager?.isLoading = true
                 Task {
                     do {
                         let didSubmitConnection = try await self.ewManager?.submitConnection(id: id, approve: approve)
                         if didSubmitConnection != nil {
                             if approve {
-                                let connections = try await self.ewManager.getConnections()
-                                if let _ = connections.data?.first(where: {$0.id == id}) {
+                                let connections = try await self.ewManager?.getConnections()
+                                if let _ = connections?.data?.first(where: {$0.id == id}) {
                                     await MainActor.run {
-                                        coordinator.path = NavigationPath()
+                                        coordinator?.path = NavigationPath()
                                     }
                                 }
                             } else {
                                 await MainActor.run {
-                                    coordinator.path = NavigationPath()
+                                    coordinator?.path = NavigationPath()
                                 }
                             }
                         }
                         await MainActor.run {
-                            self.loadingManager.isLoading = false
+                            self.loadingManager?.isLoading = false
                         }
                     } catch {
-                        await self.loadingManager.setAlertMessage(error: error)
-                        await self.loadingManager.setLoading(value: false)
+                        await self.loadingManager?.setAlertMessage(error: error)
                     }
                     
                 }

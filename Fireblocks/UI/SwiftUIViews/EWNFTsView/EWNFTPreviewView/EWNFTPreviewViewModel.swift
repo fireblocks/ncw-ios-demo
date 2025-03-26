@@ -16,9 +16,9 @@ import EmbeddedWalletSDK
 extension EWNFTPreviewView {
     @Observable
     class ViewModel {
-        var coordinator: Coordinator!
-        var loadingManager: LoadingManager!
-        var ewManager: EWManager!
+        var coordinator: Coordinator?
+        var loadingManager: LoadingManager?
+        var ewManager: EWManager?
         var dataModel: NFTDataModel
         private var pollingManagerTxId: PollingManagerTxId!
         private var cancellable = Set<AnyCancellable>()
@@ -41,55 +41,51 @@ extension EWNFTPreviewView {
                 self.pollingManagerTxId = PollingManagerTxId(ewManager: ewManager)
                 listenToTransferChanges()
                 if let txId = dataModel.transaction?.id {
-                    Task {
-                        await pollingManagerTxId?.startPolling(txId: txId)
-                    }
+                    pollingManagerTxId?.startPolling(txId: txId)
                 }
-
             }
         }
         
         func approveTransaction() {
+            guard let ewManager else { return }
             if let transactionID = self.dataModel.transaction?.id {
-                self.loadingManager.isLoading = true
+                self.loadingManager?.isLoading = true
                 Task {
                     do {
-                        let result = try await self.ewManager.getCore().signTransaction(txId: transactionID)
+                        let result = try await ewManager.getCore().signTransaction(txId: transactionID)
                         if result.transactionSignatureStatus == .ERROR || result.transactionSignatureStatus == .TIMEOUT {
-                            await self.loadingManager.setAlertMessage(error: CustomError.genericError("Failed to sign transaction"))
-                            await self.loadingManager.setLoading(value: false)
+                            await self.loadingManager?.setAlertMessage(error: CustomError.genericError("Failed to sign transaction"))
                         } else {
                             await MainActor.run {
-                                self.coordinator.path = NavigationPath()
-                                self.loadingManager.isLoading = false
+                                self.coordinator?.path = NavigationPath()
+                                self.loadingManager?.isLoading = false
                             }
                         }
                     } catch {
-                        await self.loadingManager.setLoading(value: false)
-                        await self.loadingManager.setAlertMessage(error: error)
+                        await self.loadingManager?.setAlertMessage(error: error)
                     }
                 }
             }
         }
         
         func cancelTransaction() {
+            guard let ewManager else { return }
             if let transactionID = self.dataModel.transaction?.id {
-                self.loadingManager.isLoading = true
+                self.loadingManager?.isLoading = true
                 Task {
                     do {
                         let result = try await ewManager.cancelTransaction(txId: transactionID)
                         if let success = result.success, success {
                             await MainActor.run {
-                                self.coordinator.path = NavigationPath()
+                                self.coordinator?.path = NavigationPath()
                             }
                         } else {
-                            await self.loadingManager.setAlertMessage(error: CustomError.genericError("Failed to cancel transaction"))
+                            await self.loadingManager?.setAlertMessage(error: CustomError.genericError("Failed to cancel transaction"))
                         }
-                        await self.loadingManager.setLoading(value: false)
+                        await self.loadingManager?.setLoading(value: false)
 
                     } catch {
-                        await self.loadingManager.setLoading(value: false)
-                        await self.loadingManager.setAlertMessage(error: error)
+                        await self.loadingManager?.setAlertMessage(error: error)
                     }
                 }
             }

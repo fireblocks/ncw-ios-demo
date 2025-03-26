@@ -17,8 +17,8 @@ import EmbeddedWalletSDK
 
 @Observable
 class AssetListViewModelBase {
-    var loadingManager: LoadingManager!
-    var coordinator: Coordinator!
+    var loadingManager: LoadingManager?
+    var coordinator: Coordinator?
     var didLoad: Bool = false
     var addAssetPresented: Bool = false
     var assetsSummary: [AssetSummary] = []

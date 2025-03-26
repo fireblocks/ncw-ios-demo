@@ -15,9 +15,9 @@ import EmbeddedWalletSDK
 extension EWWeb3ConnectionURI {
     @Observable
     class ViewModel: QRCodeScannerViewControllerDelegate {
-        var coordinator: Coordinator!
-        var loadingManager: LoadingManager!
-        var ewManager: EWManager!
+        var coordinator: Coordinator?
+        var loadingManager: LoadingManager?
+        var ewManager: EWManager?
         var dataModel: Web3DataModel
         var isQRPresented = false
         
@@ -37,20 +37,20 @@ extension EWWeb3ConnectionURI {
         
         func createConnection() {
             if !dataModel.uri.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-                self.loadingManager.isLoading = true
+                self.loadingManager?.isLoading = true
                 Task {
                     do {
                         dataModel.response = try await self.ewManager?.createConnection(feeLevel: .medium, uri: dataModel.uri, ncwAccountId: dataModel.accountId)
                         await MainActor.run {
                             if dataModel.response != nil {
-                                self.coordinator.path.append(NavigationTypes.submitConnection(dataModel))
+                                self.coordinator?.path.append(NavigationTypes.submitConnection(dataModel))
                             }
-                            self.loadingManager.isLoading = false
+                            self.loadingManager?.isLoading = false
                         }
                     } catch {
-                        await self.loadingManager.setAlertMessage(error: error)
+                        await self.loadingManager?.setAlertMessage(error: error)
                     }
-                    await self.loadingManager.setLoading(value: false)
+                    await self.loadingManager?.setLoading(value: false)
                 }
             }
         }

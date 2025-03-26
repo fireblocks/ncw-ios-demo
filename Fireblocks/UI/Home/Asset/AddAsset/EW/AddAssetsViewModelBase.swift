@@ -18,7 +18,7 @@ import EmbeddedWalletSDK
 
 @Observable
 class AddAssetsViewModelBase {
-    var loadingManager: LoadingManager!
+    var loadingManager: LoadingManager?
 
     var assets: [AssetToAdd] = []
     var searchResults: [AssetToAdd] = []

@@ -15,9 +15,9 @@ import EmbeddedWalletSDK
 extension EWNFTFeeView {
     @Observable
     class ViewModel {
-        var coordinator: Coordinator!
-        var loadingManager: LoadingManager!
-        var ewManager: EWManager!
+        var coordinator: Coordinator?
+        var loadingManager: LoadingManager?
+        var ewManager: EWManager?
         var dataModel: NFTDataModel
         var image: Image?
         var uiimage: UIImage?
@@ -47,18 +47,18 @@ extension EWNFTFeeView {
         
         func createTransaction() {
             if !dataModel.address.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty, let assetId = dataModel.token?.id  {
-                loadingManager.isLoading = true
+                loadingManager?.isLoading = true
                 Task {
                     do {
                         let transaction = try await ewManager?.createOneTimeAddressTransaction(accountId: 0, assetId: assetId, destAddress: dataModel.address, amount: "1", feeLevel: dataModel.feeLevel)
                         await MainActor.run {
                             dataModel.transaction = transaction
-                            coordinator.path.append(NavigationTypes.nftPreview(dataModel))
+                            coordinator?.path.append(NavigationTypes.nftPreview(dataModel))
                         }
                     } catch {
-                        await self.loadingManager.setAlertMessage(error: error)
+                        await self.loadingManager?.setAlertMessage(error: error)
                     }
-                    await self.loadingManager.setLoading(value: false)
+                    await self.loadingManager?.setLoading(value: false)
                 }
             }
         }

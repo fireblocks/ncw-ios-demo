@@ -14,8 +14,8 @@ import FireblocksSDK
 
 extension AddDeviceView {
     class ViewModel: ObservableObject, FireblocksJoinWalletHandler {
-        private var loadingManager: LoadingManager!
-        private var coordinator: Coordinator!
+        private var loadingManager: LoadingManager?
+        private var coordinator: Coordinator?
         var fireblocksManager: FireblocksManager?
         
         private var mpcKeyTask: Task<Void, Never>?
@@ -35,7 +35,7 @@ extension AddDeviceView {
             guard let fireblocksManager else { return }
             fireblocksManager.deviceId = fireblocksManager.generateDeviceId()
             
-            self.loadingManager.setLoading(value: true)
+            self.loadingManager?.setLoading(value: true)
             Task {
                 do {
                     let _ = try await SessionManager.shared.joinWallet(deviceId: fireblocksManager.deviceId, walletId: fireblocksManager.walletId)
@@ -44,12 +44,12 @@ extension AddDeviceView {
                     let addDeviceResult = try await fireblocksManager.addDevice(joinWalletHandler: self)
                     await MainActor.run {
                         self.isKeysGenerated(isGenerated: addDeviceResult)
-                        self.loadingManager.setLoading(value: false)
+                        self.loadingManager?.setLoading(value: false)
                     }
                 } catch {
                     await MainActor.run {
                         self.isKeysGenerated(isGenerated: false)
-                        self.loadingManager.setLoading(value: false)
+                        self.loadingManager?.setLoading(value: false)
                     }
                 }
             }
@@ -66,8 +66,8 @@ extension AddDeviceView {
                     return
                 }
                 
-                self.loadingManager.setLoading(value: false)
-                self.coordinator.path.append(NavigationTypes.addDeviceQR(requestId, email))
+                self.loadingManager?.setLoading(value: false)
+                self.coordinator?.path.append(NavigationTypes.addDeviceQR(requestId, email))
             }
         }
         
@@ -79,7 +79,7 @@ extension AddDeviceView {
         
         @MainActor
         func onAddingDevice(success: Bool) {
-            self.loadingManager.setLoading(value: false)
+            self.loadingManager?.setLoading(value: false)
             NotificationCenter.default.post(name: Notification.Name("onAddingDevice"), object: nil, userInfo: nil)
             if success {
                 guard let deviceId = self.fireblocksManager?.deviceId, let email = self.fireblocksManager?.getUserEmail() else {
@@ -96,13 +96,13 @@ extension AddDeviceView {
                     }
                 }, didFail: false, canGoBack: false)
                 
-                self.coordinator.path.append(NavigationTypes.feedback(vm))
+                self.coordinator?.path.append(NavigationTypes.feedback(vm))
                 
             } else {
                 let vm = EndFlowFeedbackView.ViewModel(icon: AssetsIcons.addDeviceFailed.rawValue, title: LocalizableStrings.addDeviceFailedTitle, subTitle: LocalizableStrings.addDeviceFailedSubtitle, buttonTitle: LocalizableStrings.goHome, actionButton:  {
-                    self.coordinator.path = NavigationPath()
+                    self.coordinator?.path = NavigationPath()
                 }, didFail: true)
-                self.coordinator.path.append(NavigationTypes.feedback(vm))
+                self.coordinator?.path.append(NavigationTypes.feedback(vm))
             }
         }
     }

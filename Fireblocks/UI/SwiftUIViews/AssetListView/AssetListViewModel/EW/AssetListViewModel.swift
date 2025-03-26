@@ -54,7 +54,7 @@ class AssetsSequence: AsyncSequence {
 
 @Observable
 class AssetListViewModel: AssetListViewModelBase {
-    var ewManager: EWManager!
+    var ewManager: EWManager?
     static let shared = AssetListViewModel()
     
     func setup(ewManager: EWManager, loadingManager: LoadingManager, coordinator: Coordinator) {
@@ -107,7 +107,7 @@ class AssetListViewModel: AssetListViewModelBase {
                     }
                 }
             } catch {
-                await self.loadingManager.setAlertMessage(error: error)
+                await self.loadingManager?.setAlertMessage(error: error)
             }
             await self.loadingManager?.setLoading(value: false)
 
@@ -119,9 +119,9 @@ class AssetListViewModel: AssetListViewModelBase {
             return nil
         }
         do {
-            return try await ewManager.getAssetBalance(assetId: assetId, accountId: accountId)
+            return try await ewManager?.getAssetBalance(assetId: assetId, accountId: accountId)
         } catch {
-            await self.loadingManager.setAlertMessage(error: error)
+            await self.loadingManager?.setAlertMessage(error: error)
             return nil
         }
 
@@ -141,13 +141,15 @@ class AssetListViewModel: AssetListViewModelBase {
         }
 
         do {
-            let addresses = try await ewManager.fetchAllAccountAssetAddresses(assetId: assetId, accountId: accountId)
-            UsersLocalStorageManager.shared.setAddressDetails(accountId: accountId, assetId: assetId, addressDetails: addresses)
-            return addresses
+            if let addresses = try await ewManager?.fetchAllAccountAssetAddresses(assetId: assetId, accountId: accountId) {
+                UsersLocalStorageManager.shared.setAddressDetails(accountId: accountId, assetId: assetId, addressDetails: addresses)
+                return addresses
+            }
         } catch {
-            await self.loadingManager.setAlertMessage(error: error)
-            return []
+            await self.loadingManager?.setAlertMessage(error: error)
         }
+        return []
+
     }
 
     override func getBalance() -> String {

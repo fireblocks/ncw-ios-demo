@@ -15,9 +15,9 @@ import EmbeddedWalletSDK
 extension EWTransferNFTView {
     @Observable
     class ViewModel: QRCodeScannerViewControllerDelegate {
-        var coordinator: Coordinator!
-        var loadingManager: LoadingManager!
-        var ewManager: EWManager!
+        var coordinator: Coordinator?
+        var loadingManager: LoadingManager?
+        var ewManager: EWManager?
         var dataModel: NFTDataModel
         var image: Image?
         var uiimage: UIImage?
@@ -39,7 +39,7 @@ extension EWTransferNFTView {
         
         func proceedToFee() {
             if !dataModel.address.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-                coordinator.path.append(NavigationTypes.nftFee(dataModel))
+                coordinator?.path.append(NavigationTypes.nftFee(dataModel))
             }
         }
 

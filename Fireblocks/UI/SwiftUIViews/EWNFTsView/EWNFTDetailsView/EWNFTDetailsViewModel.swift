@@ -16,9 +16,9 @@ import EmbeddedWalletSDK
 extension EWNFTDetailsView {
     @Observable
     class ViewModel {
-        var coordinator: Coordinator!
-        var loadingManager: LoadingManager!
-        var ewManager: EWManager!
+        var coordinator: Coordinator?
+        var loadingManager: LoadingManager?
+        var ewManager: EWManager?
         var dataModel: NFTDataModel
         var image: Image?
         var uiimage: UIImage?
@@ -34,7 +34,7 @@ extension EWNFTDetailsView {
                 self.loadingManager = loadingManager
                 self.ewManager = ewManager
                 self.coordinator = coordinator
-                self.loadingManager.isLoading = true
+                self.loadingManager?.isLoading = true
             }
             getNFT()
         }
@@ -50,21 +50,21 @@ extension EWNFTDetailsView {
                                 self.image = Image("globe")
                             }
                             
-                            self.loadingManager.isLoading = false
+                            self.loadingManager?.isLoading = false
 
                         }
                     } else {
-                        await self.loadingManager.setLoading(value: false)
+                        await self.loadingManager?.setLoading(value: false)
                     }
                 } else {
-                    await self.loadingManager.setLoading(value: false)
+                    await self.loadingManager?.setLoading(value: false)
                 }
                 
             }
         }
         
         func proceedToTransfer() {
-            coordinator.path.append(NavigationTypes.transferNFT(dataModel))
+            coordinator?.path.append(NavigationTypes.transferNFT(dataModel))
         }
         
     }

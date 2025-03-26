@@ -63,7 +63,6 @@ class AssetRowViewModel {
                     let result = try await ewManager?.refreshAssetBalance(assetId: assetId, accountId: 0)
                     await self.loadingManager?.setLoading(value: false)
                 } catch {
-                    await self.loadingManager?.setLoading(value: false)
                     await self.loadingManager?.setAlertMessage(error: error)
                 }
             }

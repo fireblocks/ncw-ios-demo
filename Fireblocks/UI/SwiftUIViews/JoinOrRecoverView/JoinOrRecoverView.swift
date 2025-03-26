@@ -11,7 +11,6 @@ struct JoinOrRecoverView: View {
     
     @EnvironmentObject var coordinator: Coordinator
     @EnvironmentObject var loadingManager: LoadingManager
-    var isLaunch: Bool = false
     
     var body: some View {
         ZStack {
@@ -70,19 +69,9 @@ struct JoinOrRecoverView: View {
                 }
                 .padding(.horizontal)
                 .padding(.horizontal)
+                Spacer()
             }
         }
-        .toolbar {
-            ToolbarItem(placement: .topBarTrailing) {
-                Button("Sign Out") {
-                    try? FireblocksManager.shared.signOut()
-                }
-                .foregroundStyle(.white)
-                .opacity(isLaunch ? 1 : 0)
-            }
-            
-        }
-
         .navigationBarBackButtonHidden()
 //        .navigationBarItems(leading: isLaunch ? nil : CustomBackButtonView())
     }
@@ -91,7 +80,7 @@ struct JoinOrRecoverView: View {
 #Preview {
     NavigationContainerView {
         SpinnerViewContainer {
-            JoinOrRecoverView(isLaunch: false)
+            JoinOrRecoverView()
         }
     }
 }

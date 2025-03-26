@@ -41,13 +41,11 @@ class TakeoverViewModel  {
                     }
                 } else {
                     await MainActor.run {
-                        self.loadingManager?.isLoading = false
                         self.loadingManager?.setAlertMessage(error: CustomError.takeover)
                     }
                 }
             } catch {
                 await MainActor.run {
-                    self.loadingManager?.isLoading = false
                     self.loadingManager?.setAlertMessage(error: error)
                 }
             }
