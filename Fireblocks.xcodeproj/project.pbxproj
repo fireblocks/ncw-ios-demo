@@ -1021,6 +1021,9 @@
 		2B95395D2D54B45300816DB7 /* GenerateKeysViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B95395B2D54B44900816DB7 /* GenerateKeysViewModel.swift */; };
 		2B95395E2D54B45300816DB7 /* GenerateKeysViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B95395B2D54B44900816DB7 /* GenerateKeysViewModel.swift */; };
 		2B95395F2D54B45300816DB7 /* GenerateKeysViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B95395B2D54B44900816DB7 /* GenerateKeysViewModel.swift */; };
+		2BA1F5DA2D9ABDBA00FCC8CC /* EW-sandbox-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2BA1F5D92D9ABDBA00FCC8CC /* EW-sandbox-Info.plist */; };
+		2BA1F5DC2D9ABDCB00FCC8CC /* EW-dev-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2BA1F5DB2D9ABDCB00FCC8CC /* EW-dev-Info.plist */; };
+		2BA1F5DE2D9ABDD800FCC8CC /* NCW-production-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2BA1F5DD2D9ABDD800FCC8CC /* NCW-production-Info.plist */; };
 		2BAB68102B820DD1003592F1 /* PrepareForScanViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558E852B47044C006212B2 /* PrepareForScanViewModel.swift */; };
 		2BAB68112B820DDD003592F1 /* PrepareForScanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558E872B4704BA006212B2 /* PrepareForScanView.swift */; };
 		2BAB68142B820DFF003592F1 /* ValidateRequestIdViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558E9A2B484A87006212B2 /* ValidateRequestIdViewModel.swift */; };
@@ -1369,7 +1372,6 @@
 		2B0FEDAA2D37980200F637E6 /* AssetSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetSummary.swift; sourceTree = "<group>"; };
 		2B0FEDB02D37D79E00F637E6 /* ReceiveViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiveViewModel.swift; sourceTree = "<group>"; };
 		2B21D8BB2BC56B5C003ADD29 /* NCW-production.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NCW-production.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2B21D8BC2BC56B5C003ADD29 /* NCW-production-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "NCW-production-Info.plist"; path = "/Users/dudishani-gabay/projects/ncw-ios-demo-github/Targets/NCW-production/NCW-production-Info.plist"; sourceTree = "<absolute>"; };
 		2B21D8BD2BC56BAA003ADD29 /* EnvironmentConstantsProd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentConstantsProd.swift; sourceTree = "<group>"; };
 		2B21D8C02BC570AA003ADD29 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2B223F932D673EAE002285B9 /* EWNFTDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EWNFTDetailsView.swift; sourceTree = "<group>"; };
@@ -1383,7 +1385,6 @@
 		2B223FBD2D6741F8002285B9 /* EWNFTDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EWNFTDetailsViewModel.swift; sourceTree = "<group>"; };
 		2B223FC52D676984002285B9 /* EWManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EWManagerMock.swift; sourceTree = "<group>"; };
 		2B22D9A42D82EBF500F1C1A2 /* EW-sandbox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EW-sandbox.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2B22D9A52D82EBF600F1C1A2 /* EW-sandbox-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "EW-sandbox-Info.plist"; path = "/Users/dudishani-gabay/projects/ncw-ios-demo-github/Targets/EW-sandbox/EW-sandbox-Info.plist"; sourceTree = "<absolute>"; };
 		2B22D9A62D82EC4A00F1C1A2 /* EnvironmentConstantsEWSandbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentConstantsEWSandbox.swift; sourceTree = "<group>"; };
 		2B22D9AE2D82EE2900F1C1A2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2B2303842D6C6C6200260CD9 /* E3WebConnectionRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = E3WebConnectionRow.swift; sourceTree = "<group>"; };
@@ -1411,7 +1412,6 @@
 		2B2B19BB2D2C161800A2B39D /* FireblocksManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireblocksManager.swift; sourceTree = "<group>"; };
 		2B2B19C12D2C172E00A2B39D /* EmbeddedWalletSDKDev.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = EmbeddedWalletSDKDev.xcframework; path = "../ios-embedded-wallet-sdk/iOS-EmbeddedWalletSDKDev/EmbeddedWalletSDKDev.xcframework"; sourceTree = SOURCE_ROOT; };
 		2B2B1AA92D2D120E00A2B39D /* EW-dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EW-dev.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2B2B1AAA2D2D120E00A2B39D /* EW-dev-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "EW-dev-Info.plist"; path = "/Users/dudishani-gabay/projects/ncw-ios-demo-github/Targets/EW-dev/EW-dev-Info.plist"; sourceTree = "<absolute>"; };
 		2B2B1AAE2D2D306E00A2B39D /* LatestBackupState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestBackupState.swift; sourceTree = "<group>"; };
 		2B2B1AB52D2D4ED500A2B39D /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		2B2B1ABB2D2D4EEA00A2B39D /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
@@ -1483,6 +1483,9 @@
 		2B95394C2D52254700816DB7 /* MPCFBFramework.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = MPCFBFramework.xcframework; path = "../fireblocks-ios-sdk/Frameworks/MPCFBFramework/MPCFBFramework.xcframework"; sourceTree = SOURCE_ROOT; };
 		2B9539562D54A09F00816DB7 /* GenerateKeysView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateKeysView.swift; sourceTree = "<group>"; };
 		2B95395B2D54B44900816DB7 /* GenerateKeysViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateKeysViewModel.swift; sourceTree = "<group>"; };
+		2BA1F5D92D9ABDBA00FCC8CC /* EW-sandbox-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "EW-sandbox-Info.plist"; sourceTree = "<group>"; };
+		2BA1F5DB2D9ABDCB00FCC8CC /* EW-dev-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "EW-dev-Info.plist"; sourceTree = "<group>"; };
+		2BA1F5DD2D9ABDD800FCC8CC /* NCW-production-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "NCW-production-Info.plist"; sourceTree = "<group>"; };
 		2BC5837D2B6BD5DC005E6EEB /* Bullet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bullet.swift; sourceTree = "<group>"; };
 		2BC5837F2B6BD5FF005E6EEB /* VerticalSeparator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalSeparator.swift; sourceTree = "<group>"; };
 		2BCFE10E2D54F293006BE227 /* BackupWalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupWalletView.swift; sourceTree = "<group>"; };
@@ -2039,8 +2042,8 @@
 		2B78DE272D92B09E003B7D82 /* NCW-production */ = {
 			isa = PBXGroup;
 			children = (
+				2BA1F5DD2D9ABDD800FCC8CC /* NCW-production-Info.plist */,
 				2B21D8C02BC570AA003ADD29 /* GoogleService-Info.plist */,
-				2B21D8BC2BC56B5C003ADD29 /* NCW-production-Info.plist */,
 				2B21D8BD2BC56BAA003ADD29 /* EnvironmentConstantsProd.swift */,
 			);
 			path = "NCW-production";
@@ -2049,8 +2052,8 @@
 		2B78DE282D92B3AB003B7D82 /* EW-dev */ = {
 			isa = PBXGroup;
 			children = (
+				2BA1F5DB2D9ABDCB00FCC8CC /* EW-dev-Info.plist */,
 				2B2B1ACB2D2D558F00A2B39D /* GoogleService-Info.plist */,
-				2B2B1AAA2D2D120E00A2B39D /* EW-dev-Info.plist */,
 				2B2B1AC12D2D52ED00A2B39D /* EnvironmentConstantsRentblocks.swift */,
 			);
 			path = "EW-dev";
@@ -2059,8 +2062,8 @@
 		2B78DE292D92B484003B7D82 /* EW-sandbox */ = {
 			isa = PBXGroup;
 			children = (
+				2BA1F5D92D9ABDBA00FCC8CC /* EW-sandbox-Info.plist */,
 				2B22D9AE2D82EE2900F1C1A2 /* GoogleService-Info.plist */,
-				2B22D9A52D82EBF600F1C1A2 /* EW-sandbox-Info.plist */,
 				2B22D9A62D82EC4A00F1C1A2 /* EnvironmentConstantsEWSandbox.swift */,
 			);
 			path = "EW-sandbox";
@@ -3271,6 +3274,7 @@
 				2B21D8A12BC56B5C003ADD29 /* ReceiveViewController.xib in Resources */,
 				2B21D8A22BC56B5C003ADD29 /* QRCodeScannerViewController.xib in Resources */,
 				2B21D8A52BC56B5C003ADD29 /* Inter-Medium.ttf in Resources */,
+				2BA1F5DE2D9ABDD800FCC8CC /* NCW-production-Info.plist in Resources */,
 				2B21D8A72BC56B5C003ADD29 /* Assets.xcassets in Resources */,
 				2B21D8C12BC570AA003ADD29 /* GoogleService-Info.plist in Resources */,
 				2B2303A72D6DDA1500260CD9 /* Figtree-Bold.ttf in Resources */,
@@ -3313,6 +3317,7 @@
 				2B22D9972D82EBF500F1C1A2 /* MpcKeyCellView.xib in Resources */,
 				2B22D9982D82EBF500F1C1A2 /* Main.storyboard in Resources */,
 				2B22D9992D82EBF500F1C1A2 /* Figtree-Medium.ttf in Resources */,
+				2BA1F5DA2D9ABDBA00FCC8CC /* EW-sandbox-Info.plist in Resources */,
 				2B22D99A2D82EBF500F1C1A2 /* Figtree-Bold.ttf in Resources */,
 				2B22D99B2D82EBF500F1C1A2 /* Figtree-Regular.ttf in Resources */,
 				2B22D99C2D82EBF500F1C1A2 /* Assets.xcassets in Resources */,
@@ -3347,6 +3352,7 @@
 				2B2B1A9B2D2D120E00A2B39D /* MpcKeyCellView.xib in Resources */,
 				2B2B1A9D2D2D120E00A2B39D /* Main.storyboard in Resources */,
 				2BD5D0DF2D6DFADF0025A9A8 /* Figtree-Medium.ttf in Resources */,
+				2BA1F5DC2D9ABDCB00FCC8CC /* EW-dev-Info.plist in Resources */,
 				2B2303A52D6DDA1500260CD9 /* Figtree-Bold.ttf in Resources */,
 				2B2303A62D6DDA1500260CD9 /* Figtree-Regular.ttf in Resources */,
 				2B2B1AA02D2D120E00A2B39D /* Assets.xcassets in Resources */,
