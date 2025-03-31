@@ -7,6 +7,14 @@
 
 import Foundation
 import SwiftUI
+#if EW
+    #if DEV
+    import EmbeddedWalletSDKDev
+    #else
+    import EmbeddedWalletSDK
+    #endif
+#endif
+
 #if DEV
 import FireblocksDev
 #else

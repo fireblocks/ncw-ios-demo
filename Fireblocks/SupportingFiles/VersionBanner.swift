@@ -15,8 +15,13 @@ extension Bundle {
         return infoDictionary?["CFBundleVersion"] as? String ?? ""
     }
     
+    var displayName: String {
+        return infoDictionary?["CFBundleDisplayName"] as? String ?? ""
+    }
+
+    
     var versionLabel: String {
-        return "Version " + releaseVersionNumber + " • " + "Build " + buildVersionNumber + " • " + EnvironmentConstants.env.rawValue.capitalized
+        return "Version " + releaseVersionNumber + " • " + "Build " + buildVersionNumber + " • " + displayName + " • " + EnvironmentConstants.env.rawValue.capitalized
     }
 }
 

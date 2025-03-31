@@ -27,7 +27,7 @@ class AssetHeaderUIView: UIView {
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: "Roboto", size: 16)
+        label.font = UIFont(name: "Figtree-Regular", size: 16)
         label.textColor = AssetsColors.white.getColor()
         label.text = "Balance"
         return label
@@ -36,7 +36,7 @@ class AssetHeaderUIView: UIView {
     private let balanceLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: "Roboto-Bold", size: 32)
+        label.font = UIFont(name: "Figtree-Medium", size: 32)
         label.textColor = AssetsColors.white.getColor()
         return label
     }()

@@ -6,38 +6,69 @@
 //
 
 import UIKit
+import SwiftUI
+import Combine
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
+    private var cancellable = Set<AnyCancellable>()
     
+    //MARK: - FUNCTIONS
+    deinit {
+        cancellable.removeAll()
+    }
+
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        guard let window = (scene as? UIWindowScene) else { return }
-        loadRootViewController(window)
+//        guard let window = (scene as? UIWindowScene) else { return }
+////        loadRootViewController(window)
+//        Task {
+//            await loadLaunchViewController(window)
+//        }
+//        configNavigationBar()
     }
     
-    private func loadRootViewController(_ windowScene: UIWindowScene) {
-        let window = UIWindow(windowScene: windowScene)
-        let rootViewController = UINavigationController()
-        let vc = AuthViewController()
-        rootViewController.isNavigationBarHidden = true
-        
-        configNavigationBar()
-        
-        rootViewController.setViewControllers([vc], animated: true)
-        window.rootViewController = rootViewController
-        self.window = window
-        window.makeKeyAndVisible()
-    }
+//    private func loadLaunchViewController(_ windowScene: UIWindowScene) async {
+//        let window = UIWindow(windowScene: windowScene)
+//        if let _ = UsersLocalStorageManager.shared.getAuthProvider() {
+//            if await AuthRepository.getUserIdToken() != nil {
+//                let viewModel = SignInViewModel.shared
+//                viewModel.fireblocksManager = FireblocksManager.shared
+//                await viewModel.handleSuccessSignIn(isLaunch: true)
+//            } else {
+//                let rootViewController = UIHostingController(
+//                    rootView: NavigationContainerView() {
+//                        SpinnerViewContainer {
+//                            SignInView()
+//                        }
+//                    }
+//                )
+//                window.rootViewController = rootViewController
+//                self.window = window
+//                window.makeKeyAndVisible()
+//            }
+//        } else {
+//            let rootViewController = UIHostingController(
+//                rootView: NavigationContainerView() {
+//                    LaunchView()
+//                }
+//            )
+//            window.rootViewController = rootViewController
+//            self.window = window
+//            window.makeKeyAndVisible()
+//        }
+//
+//    }
     
-    private func configNavigationBar(){
+    private func configNavigationBar() {
+        UINavigationBar.appearance().tintColor = .white
         UINavigationBar.appearance().backIndicatorTransitionMaskImage = AssetsIcons.back.getIcon()
         UINavigationBar.appearance().backIndicatorImage = AssetsIcons.back.getIcon()
-        UINavigationBar.appearance().tintColor = AssetsColors.white.getColor()
         UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffset(horizontal: -1000, vertical: 0), for: .default)
+
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {

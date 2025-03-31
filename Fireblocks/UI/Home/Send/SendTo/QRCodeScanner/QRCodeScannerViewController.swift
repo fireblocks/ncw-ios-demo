@@ -8,23 +8,33 @@
 import UIKit
 import AVFoundation
 
-protocol QRCodeScannerViewControllerDelegate: AnyObject {
+protocol QRCodeScannerViewControllerDelegate: AnyObject, Hashable, Equatable {
+    @MainActor
     func gotAddress(address: String)
 }
 
-class QRCodeScannerViewController: UIViewController{
+class QRCodeScannerViewController: UIViewController {
     
 //MARK: - PROPERTIES
     @IBOutlet weak var borderView: UIView!
     @IBOutlet weak var scanningAreaView: UIView!
     @IBOutlet weak var backgroundCameraView: UIView!
     
-    var delegate: QRCodeScannerViewControllerDelegate?
+    var delegate: (any QRCodeScannerViewControllerDelegate)?
     var didGetAddress = false
     var captureSession = AVCaptureSession()
     var previewLayer: AVCaptureVideoPreviewLayer!
     
 //MARK: - LIFECYCLE Functions
+    init(delegate: any QRCodeScannerViewControllerDelegate) {
+        super.init(nibName: "QRCodeScannerViewController", bundle: nil)
+        self.delegate = delegate
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         

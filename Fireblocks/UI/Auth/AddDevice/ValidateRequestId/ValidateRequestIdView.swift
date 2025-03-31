@@ -8,9 +8,17 @@
 import SwiftUI
 
 struct ValidateRequestIdView: View {
+    @EnvironmentObject var coordinator: Coordinator
+    @EnvironmentObject var loadingManager: LoadingManager
+    @EnvironmentObject var fireblocksManager: FireblocksManager
+
     @Environment(\.dismiss) var dismiss
-    @StateObject var viewModel: ValidateRequestIdViewModel
+    @State var viewModel: ValidateRequestIdViewModel
         
+    init(viewModel: ValidateRequestIdViewModel) {
+        _viewModel = .init(initialValue: viewModel)
+    }
+    
     var body: some View {
         ZStack {
             Color.black
@@ -26,7 +34,7 @@ struct ValidateRequestIdView: View {
                 
                 VStack {
                     Text("Device Details")
-                        .font(.subtitle1)
+                        .font(.b1)
                         .padding(24)
                     VStack(spacing: 16) {
                         HStack {
@@ -34,14 +42,14 @@ struct ValidateRequestIdView: View {
                             Text("Type: \(viewModel.platform ?? Platform.Unknown.rawValue)")
                             Spacer()
                         }
-                        .font(.subtitle2)
+                        .font(.b2)
 
                         HStack {
                             Text("\u{2022} ")
                             Text("User: \(viewModel.email ?? "")")
                             Spacer()
                         }
-                        .font(.subtitle2)
+                        .font(.b2)
 
                     }
                     .padding(.horizontal)
@@ -55,11 +63,6 @@ struct ValidateRequestIdView: View {
                 
                 Spacer()
                 
-                if let error = viewModel.error {
-                    AlertBannerView(message: error)
-                        .padding(.vertical, 16)
-                }
-                
                 VStack(spacing: 8) {
                     Button {
                         viewModel.approveJoinWallet()
@@ -67,7 +70,7 @@ struct ValidateRequestIdView: View {
                         HStack {
                             Spacer()
                             Text("Add device")
-                                .font(.body1)
+                                .font(.b1)
                             Spacer()
                         }
                         .padding(16)
@@ -76,7 +79,7 @@ struct ValidateRequestIdView: View {
                     }
                     .buttonStyle(.plain)
                     .frame(maxWidth: .infinity)
-                    .background(AssetsColors.lightBlue.color())
+                    .background(AssetsColors.gray2.color())
                     .cornerRadius(16)
                     
                     Button {
@@ -85,7 +88,7 @@ struct ValidateRequestIdView: View {
                         HStack {
                             Spacer()
                             Text("Cancel")
-                                .font(.body1)
+                                .font(.b1)
                             Spacer()
                         }
                         .padding(16)
@@ -93,29 +96,43 @@ struct ValidateRequestIdView: View {
                         
                     }
                     .buttonStyle(.borderless)
+                    .tint(.white)
                     .frame(maxWidth: .infinity)
                     .cornerRadius(16)
 
                 }
                 .padding(.bottom, 24)
                 Text("QR code expires in: \(viewModel.timeleft)")
-                    .font(.body3)
+                    .font(.b3)
                     .foregroundColor(AssetsColors.gray4.color())
             }
             .padding(.horizontal, 16)
         }
         .onAppear() {
-            viewModel.didInit()
+            viewModel.setup(coordinator: coordinator, loadingManager: loadingManager, fireblocksManager: fireblocksManager)
         }
         .navigationTitle(LocalizableStrings.addNewDeviceNavigationBar)
         .navigationBarTitleDisplayMode(.inline)
+        .navigationBarBackButtonHidden()
+        .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                CustomBackButtonView()
+            }
+        }
+
     }
 }
 
-struct ValidateRequestIdView_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationView {
-            ValidateRequestIdView(viewModel: ValidateRequestIdViewModel(requestId: "AAAAAA"))
+#Preview {
+    NavigationContainerView {
+        SpinnerViewContainer {
+            ValidateRequestIdView(viewModel: ValidateRequestIdViewModelMock(requestId: UUID().uuidString, expiredInterval: 5.seconds))
         }
+    }
+}
+
+class ValidateRequestIdViewModelMock: ValidateRequestIdViewModel {
+    override func qrData(encoded: String) -> JoinRequestData? {
+        JoinRequestData(requestId: requestId, platform: Platform.iOS.rawValue, email: "dsgabay@fireblocks.com")
     }
 }

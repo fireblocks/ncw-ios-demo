@@ -15,13 +15,13 @@ protocol TransactionSentViewModelDelegate: AnyObject {
 final class TransactionSentViewModel {
     
 //MARK: - PROPERTIES
-    var transaction: Transaction!
+    var transaction: FBTransaction!
     private var transfersInfo: [TransferInfo] = []
     weak var delegate: TransactionSentViewModelDelegate?
     
 //MARK: - FUNCTIONS
     func getAmount() -> String {
-        return "\(transaction.amountToSend) \(transaction.asset.symbol)"
+        return "\(transaction.amountToSend) \(transaction.asset.asset?.symbol ?? "")"
     }
     
     func getAmountPrice() -> String {
@@ -33,7 +33,7 @@ final class TransactionSentViewModel {
     }
     
     func getTitle() -> String {
-        return "Sending \(transaction.asset.symbol)"
+        return "Sending \(transaction.asset.asset?.symbol ?? "")"
     }
     
     func fetchTransfers() {

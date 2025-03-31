@@ -18,7 +18,7 @@ class SettingsOptionButton: UIButton {
         let labelNumberOfLines = 2
         
         let label = UILabel()
-        label.font = UIFont(name: "Roboto", size: labelSize)
+        label.font = UIFont(name: "Figtree-Regular", size: labelSize)
         label.textColor = .white
         label.textAlignment = .left
         label.translatesAutoresizingMaskIntoConstraints = false

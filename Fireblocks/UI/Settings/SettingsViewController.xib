@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -18,12 +17,13 @@
         </array>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SettingsViewController" customModule="NCW_sandbox" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SettingsViewController" customModule="EW_dev" customModuleProvider="target">
             <connections>
                 <outlet property="addNewDeviceButton" destination="No6-xA-agh" id="uri-tm-xKU"/>
                 <outlet property="advancedInfoButton" destination="s5j-8F-sU7" id="Xx1-BW-3hO"/>
                 <outlet property="backupButton" destination="uxe-9E-tNo" id="Fyb-ju-jIE"/>
                 <outlet property="exportPrivateKeyButton" destination="gOh-Qw-ZDl" id="yOc-Ku-14w"/>
+                <outlet property="generateKeysButton" destination="bfb-LL-VnK" id="3cn-C5-lfe"/>
                 <outlet property="profilePictureImageView" destination="bs8-1Z-eY5" id="4oK-Nm-jwH"/>
                 <outlet property="recoverWalletButton" destination="78U-7E-bw6" id="xJw-pz-YJf"/>
                 <outlet property="shareLogsButton" destination="3gj-hZ-ai9" id="o0C-Vh-tgP"/>
@@ -43,7 +43,7 @@
                     <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sZF-Ac-5x2">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="776.5"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="914.5"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bs8-1Z-eY5">
                                     <rect key="frame" x="147.5" y="0.0" width="80" height="80"/>
@@ -85,13 +85,13 @@
                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="LMe-ah-u8c">
                                     <rect key="frame" x="16" y="212.5" width="343" height="130"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uxe-9E-tNo" customClass="SettingsOptionButton" customModule="NCW_sandbox" customModuleProvider="target">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uxe-9E-tNo" customClass="SettingsOptionButton" customModule="EW_dev" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="167.5" height="130"/>
                                             <connections>
                                                 <action selector="backupTapped:" destination="-1" eventType="touchUpInside" id="jBM-x6-Z1N"/>
                                             </connections>
                                         </view>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="78U-7E-bw6" customClass="SettingsOptionButton" customModule="NCW_sandbox" customModuleProvider="target">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="78U-7E-bw6" customClass="SettingsOptionButton" customModule="EW_dev" customModuleProvider="target">
                                             <rect key="frame" x="175.5" y="0.0" width="167.5" height="130"/>
                                             <connections>
                                                 <action selector="recoverTapped:" destination="-1" eventType="touchUpInside" id="hci-zg-lfL"/>
@@ -105,13 +105,13 @@
                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="wR7-eb-FjG">
                                     <rect key="frame" x="16" y="350.5" width="343" height="130"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gOh-Qw-ZDl" customClass="SettingsOptionButton" customModule="NCW_sandbox" customModuleProvider="target">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gOh-Qw-ZDl" customClass="SettingsOptionButton" customModule="EW_dev" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="167.5" height="130"/>
                                             <connections>
                                                 <action selector="exportPrivateKeyTapped:" destination="-1" eventType="touchUpInside" id="90U-WH-7PI"/>
                                             </connections>
                                         </view>
-                                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s5j-8F-sU7" customClass="SettingsOptionButton" customModule="NCW_sandbox" customModuleProvider="target">
+                                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s5j-8F-sU7" customClass="SettingsOptionButton" customModule="EW_dev" customModuleProvider="target">
                                             <rect key="frame" x="175.5" y="0.0" width="167.5" height="130"/>
                                             <connections>
                                                 <action selector="advancedInfoTapped:" destination="-1" eventType="touchUpInside" id="I8F-h7-C79"/>
@@ -123,16 +123,16 @@
                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="130" id="yKw-rI-Ql6"/>
                                     </constraints>
                                 </stackView>
-                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Iim-2c-bJk">
+                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Iim-2c-bJk" userLabel="AddNewDeviceStackView">
                                     <rect key="frame" x="16" y="488.5" width="343" height="130"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="No6-xA-agh" customClass="SettingsOptionButton" customModule="NCW_sandbox" customModuleProvider="target">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="No6-xA-agh" customClass="SettingsOptionButton" customModule="EW_dev" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="167.5" height="130"/>
                                             <connections>
                                                 <action selector="addNewDeviceTapped:" destination="-1" eventType="touchUpInside" id="5a2-xR-OqG"/>
                                             </connections>
                                         </view>
-                                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3gj-hZ-ai9" customClass="SettingsOptionButton" customModule="NCW_sandbox" customModuleProvider="target">
+                                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3gj-hZ-ai9" customClass="SettingsOptionButton" customModule="EW_dev" customModuleProvider="target">
                                             <rect key="frame" x="175.5" y="0.0" width="167.5" height="130"/>
                                             <connections>
                                                 <action selector="shareLogsTapped:" destination="-1" eventType="touchUpInside" id="467-Jk-UKz"/>
@@ -143,8 +143,25 @@
                                         <constraint firstAttribute="height" constant="130" id="zZv-F5-TUE"/>
                                     </constraints>
                                 </stackView>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kcB-OF-qQe">
-                                    <rect key="frame" x="16" y="626.5" width="343" height="150"/>
+                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="AeM-sG-Z0h" userLabel="GenerateKeysStackView">
+                                    <rect key="frame" x="16" y="626.5" width="343" height="130"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bfb-LL-VnK" customClass="SettingsOptionButton" customModule="EW_dev" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="167.5" height="130"/>
+                                            <connections>
+                                                <action selector="generateKeysTapped:" destination="-1" eventType="touchUpInside" id="MhK-g7-rJW"/>
+                                            </connections>
+                                        </view>
+                                        <view clipsSubviews="YES" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oHQ-6b-Gl2" customClass="SettingsOptionButton" customModule="EW_dev" customModuleProvider="target">
+                                            <rect key="frame" x="175.5" y="0.0" width="167.5" height="130"/>
+                                        </view>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="130" id="Ilh-I2-bM0"/>
+                                    </constraints>
+                                </stackView>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kcB-OF-qQe" userLabel="SpacerView">
+                                    <rect key="frame" x="16" y="764.5" width="343" height="150"/>
                                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="150" id="sew-ab-PQa"/>
@@ -160,13 +177,16 @@
                                 <constraint firstItem="bs8-1Z-eY5" firstAttribute="centerX" secondItem="sZF-Ac-5x2" secondAttribute="centerX" id="JgA-Lv-0R5"/>
                                 <constraint firstAttribute="trailing" secondItem="kcB-OF-qQe" secondAttribute="trailing" constant="16" id="Jm2-fc-KsO"/>
                                 <constraint firstItem="Iim-2c-bJk" firstAttribute="top" secondItem="wR7-eb-FjG" secondAttribute="bottom" constant="8" id="LQx-Ty-4ie"/>
-                                <constraint firstItem="kcB-OF-qQe" firstAttribute="top" secondItem="Iim-2c-bJk" secondAttribute="bottom" constant="8" id="LaL-DW-vIO"/>
                                 <constraint firstItem="wR7-eb-FjG" firstAttribute="leading" secondItem="sZF-Ac-5x2" secondAttribute="leading" constant="16" id="MZO-Gl-Lbh"/>
                                 <constraint firstItem="LMe-ah-u8c" firstAttribute="top" secondItem="3cc-mz-V3b" secondAttribute="bottom" constant="40" id="PIe-a1-e5c"/>
                                 <constraint firstAttribute="trailing" secondItem="KP9-o7-UXb" secondAttribute="trailing" constant="8" id="Ryg-zN-CgU"/>
                                 <constraint firstAttribute="bottom" secondItem="kcB-OF-qQe" secondAttribute="bottom" id="SzI-jf-xF5"/>
                                 <constraint firstItem="wR7-eb-FjG" firstAttribute="top" secondItem="LMe-ah-u8c" secondAttribute="bottom" constant="8" id="V1a-Nd-AAA"/>
+                                <constraint firstAttribute="trailing" secondItem="AeM-sG-Z0h" secondAttribute="trailing" constant="16" id="WB3-dp-NSZ"/>
+                                <constraint firstItem="AeM-sG-Z0h" firstAttribute="leading" secondItem="sZF-Ac-5x2" secondAttribute="leading" constant="16" id="Y5m-hb-D3G"/>
+                                <constraint firstItem="AeM-sG-Z0h" firstAttribute="top" secondItem="Iim-2c-bJk" secondAttribute="bottom" constant="8" id="aip-WD-3G6"/>
                                 <constraint firstAttribute="trailing" secondItem="LMe-ah-u8c" secondAttribute="trailing" constant="16" id="bSD-iv-jiN"/>
+                                <constraint firstItem="kcB-OF-qQe" firstAttribute="top" secondItem="AeM-sG-Z0h" secondAttribute="bottom" constant="8" id="fJt-Ru-hjK"/>
                                 <constraint firstItem="3cc-mz-V3b" firstAttribute="centerX" secondItem="sZF-Ac-5x2" secondAttribute="centerX" id="fRx-dN-iqv"/>
                                 <constraint firstItem="LMe-ah-u8c" firstAttribute="leading" secondItem="sZF-Ac-5x2" secondAttribute="leading" constant="16" id="fTH-Z7-bIW"/>
                                 <constraint firstItem="Iim-2c-bJk" firstAttribute="leading" secondItem="sZF-Ac-5x2" secondAttribute="leading" constant="16" id="fZF-8R-gLm"/>

@@ -11,10 +11,6 @@ protocol ChooseAssetViewModelDelegate: AnyObject {
     func navigateToNextScreen(asset: Asset)
 }
 
-enum ChooseAssetFlowType {
-    case send
-    case receive
-}
 
 class ChooseAssetViewModel {
     

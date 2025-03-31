@@ -104,14 +104,14 @@ struct DerivedKeyItem {
     var algorithm: String?
     var privateKey: String?
 
-    func deriveAssetKey(privateKey: String) async -> KeyData?{
+    func deriveAssetKey(privateKey: String) async -> KeyData? {
         let derivationParams =  DerivationParams(
             coinType: assetSummary.asset?.coinType ?? 0,
             account: Int(assetSummary.address?.accountId ?? "0") ?? 0,
             change: 0,
             index: assetSummary.address?.addressIndex ?? 0)
         
-        return await FireblocksManager.shared.deriveAssetKey(privateKey: privateKey, derivationParams: derivationParams)
+        return try? await FireblocksManager.shared.deriveAssetKey(privateKey: privateKey, derivationParams: derivationParams)
 
     }
     

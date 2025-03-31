@@ -15,8 +15,11 @@ protocol AmountToSendViewModelDelegate: AnyObject {
 class AmountToSendViewModel {
     
 //MARK: - PROPERTIES
+    var coordinator: Coordinator?
+    var loadingManager: LoadingManager?
+    
     weak var delegate: AmountToSendViewModelDelegate?
-    var asset: Asset!
+    var asset: AssetSummary
     private var assetAmount: Double {
         get {
             return Double(assetAmountString) ?? 0
@@ -25,6 +28,11 @@ class AmountToSendViewModel {
     private var assetAmountString: String = "0"
     private var calculatedPrice: Double = 0
     private var isDecimalEntered = false
+    
+    init(asset: AssetSummary = AssetSummary()) {
+        self.asset = asset
+        self.asset.isExpanded = false
+    }
     
 //MARK: - Functions
     func addDote(){
@@ -70,44 +78,54 @@ class AmountToSendViewModel {
     }
     
     func setMaxAmount(){
-        if let balance = asset.balance {
+        if let balance = asset.balance?.total {
             assetAmountString = "\(balance)"
         }
-        isDecimalEntered = true
+        if assetAmountString.contains(".") {
+            isDecimalEntered = true
+        } else {
+            isDecimalEntered = false
+        }
         
         calculatePrice()
         checkAmountIsValid()
     }
     
-    func getAsset() -> Asset {
+    func getAsset() -> AssetSummary {
         return asset
     }
     
     private func calculatePrice(){
-        if let rate = asset.rate {
+        #if EW
+        if let assetId = asset.asset?.id {
+            calculatedPrice = CryptoCurrencyManager.shared.getPrice(assetId: assetId, networkProtocol: asset.asset?.networkProtocol, amount: assetAmount).formatFractions(fractionDigits: 5)
+        }
+        #else
+        if let rate = asset.asset?.rate {
             calculatedPrice = (assetAmount * rate).formatFractions(fractionDigits: 2)
         }
+        #endif
         updateUI()
     }
     
     private func checkAmountIsValid(){
-        if let balance = asset.balance {
+        if let total = asset.balance?.total, let balance = Double(total) {
             let isValid = assetAmount <= balance && assetAmount != 0
             updateUIIsAmountValid(isValid: isValid)
         }
     }
     
     private func updateUIIsAmountValid(isValid: Bool){
-        let errorMessage = isValid ? nil : "You have \(asset.balance ?? 0.0) \(asset.symbol) available."
+        let errorMessage = isValid ? nil : "You have \(asset.balance?.total ?? "0.0") \(asset.asset?.symbol ?? "") available."
         delegate?.isAmountInputValid(isValid: isValid, errorMessage: errorMessage)
     }
     
     private func updateUI(){
-        delegate?.amountAndSumChanged(amount: "\(assetAmountString) \(asset.symbol)", price: "$\(calculatedPrice)")
+        delegate?.amountAndSumChanged(amount: "\(assetAmountString) \(asset.asset?.symbol ?? "")", price: "$\(calculatedPrice)")
     }
     
-    func createTransaction() -> Transaction {
-        return Transaction(asset: asset,
+    func createTransaction() -> FBTransaction {
+        return FBTransaction(asset: asset,
                            amountToSend: assetAmount,
                            price: calculatedPrice)
     }

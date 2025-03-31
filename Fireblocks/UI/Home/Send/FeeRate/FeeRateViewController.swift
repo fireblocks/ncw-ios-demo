@@ -6,8 +6,21 @@
 //
 
 import UIKit
+import SwiftUI
+#if EW
+    #if DEV
+    import EmbeddedWalletSDKDev
+    #else
+    import EmbeddedWalletSDK
+    #endif
+#endif
 
-class FeeRateViewController: UIViewController {
+protocol FeeRateViewModelDelegate: AnyObject {
+    func refreshData()
+    func isTransactionCreated(isCreated: Bool)
+}
+
+class FeeRateViewController: UIViewController, SwiftUIEnvironmentBridge {
 
 //MARK: - PROPERTIES 
     @IBOutlet weak var tableView: UITableView! {
@@ -20,25 +33,38 @@ class FeeRateViewController: UIViewController {
     @IBOutlet weak var createTransactionButton: AppActionBotton!
     
     var selectedIndexPath: IndexPath?
-    let viewModel = FeeRateViewModel()
+    let viewModel: FeeRateViewModel
     
+    init(transaction: FBTransaction) {
+        self.viewModel = FeeRateViewModel(transaction: transaction)
+        super.init(nibName: "FeeRateViewController", bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        self.viewModel = FeeRateViewModel()
+        super.init(coder: aDecoder)
+    }
+    
+    #if EW
+    func setEnvironment(loadingManager: LoadingManager, coordinator: Coordinator, ewManager: EWManager) {
+        viewModel.setup(loadingManager: loadingManager, coordinator: coordinator, ewManager: ewManager)
+    }
+    #else
+    func setEnvironment(loadingManager: LoadingManager, coordinator: Coordinator) {
+        viewModel.loadingManager = loadingManager
+        viewModel.coordinator = coordinator
+    }
+    #endif
+
     //MARK: - LIFECYCLE Functions
     override func viewDidLoad() {
         super.viewDidLoad()
         configButtons()
-        viewModel.delegate = self
         viewModel.fetchFeeRates()
     }
     
     private func configButtons(){
-        navigationItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "close"), style: .plain, target: self, action: #selector(handleCloseTap))]
-        self.navigationItem.title = "Fee"
         createTransactionButton.config(title: "Create transaction", style: .Primary)
-        createTransactionButton.isEnabled = viewModel.isContinueButtonEnabled()
-    }
-    
-    @objc private func handleCloseTap() {
-        navigationController?.popToRootViewController(animated: true)
     }
     
     @IBAction func createTransactionTapped(_ sender: AppActionBotton) {
@@ -47,19 +73,6 @@ class FeeRateViewController: UIViewController {
     }
     
     private func navigateToApproveScreen(){
-        if let transaction = viewModel.getTransaction() {
-            let vc = ApproveViewController(nibName: "ApproveViewController", bundle: nil)
-            vc.viewModel.transaction = transaction
-            vc.hidesBottomBarWhenPushed = true
-            self.navigationController?.pushViewController(vc, animated: true)
-        }
-    }
-    
-    private func showAlertView(){
-        showAlert(
-            description: LocalizableStrings.accountCreationFailed,
-            bottomAnchor: createTransactionButton.topAnchor
-        )
     }
 }
 
@@ -75,14 +88,8 @@ extension FeeRateViewController: UITableViewDataSource {
         }
         
         let fee = viewModel.getFees()[indexPath.row]
-        let assetName = viewModel.transaction?.asset.symbol ?? ""
+        let assetName = viewModel.transaction.asset.asset?.symbol ?? ""
         cell.configCell(with: fee, assetName: assetName)
-        let selectedFeeIndex = viewModel.getSelectedIndex()
-        
-        if indexPath.row == selectedFeeIndex {
-            selectedIndexPath = indexPath
-            cell.setSelected(isSelected: true)
-        }
         
         return cell
     }
@@ -99,9 +106,7 @@ extension FeeRateViewController: UITableViewDelegate {
             previousCell.setSelected(isSelected: false)
         }
         
-        viewModel.selectFee(at: indexPath.row)
         selectedIndexPath = indexPath
-        self.createTransactionButton.isEnabled = self.viewModel.isContinueButtonEnabled()
     }
 }
 
@@ -113,7 +118,6 @@ extension FeeRateViewController: FeeRateViewModelDelegate {
             if isCreated {
                 self.navigateToApproveScreen()
             } else {
-                self.showAlertView()
                 self.createTransactionButton.isEnabled = false
             }
         }
@@ -123,7 +127,6 @@ extension FeeRateViewController: FeeRateViewModelDelegate {
         DispatchQueue.main.async { [weak self] in
             if let self {
                 self.tableView.reloadData()
-                self.createTransactionButton.isEnabled = self.viewModel.isContinueButtonEnabled()
             }
         }
     }

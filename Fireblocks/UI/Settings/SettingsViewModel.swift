@@ -7,27 +7,89 @@
 
 import Foundation
 import FirebaseAuth
+import UIKit
+import SwiftUI
 
-class SettingsViewModel{
+@Observable
+class SettingsViewModel {
+    var coordinator: Coordinator?
+    var loadingManager: LoadingManager?
     
-    private var currentUser: User? {
+    var settingsWalletActions: [SettingsData] = []
+//    var settingsGeneralActions: [SettingsData] = []
+    var advanceInfoAction: SettingsData?
+    var signOutAction: SettingsData?
+    
+    var isShareLogsPresented = false
+    var isDiscardAlertPresented = false
+    var items: [URL] = []
+    
+    var currentUser: User? {
         get {
             return Auth.auth().currentUser
         }
+    }
+    
+    init() {
+        if let fireblocksLogsURL = FireblocksManager.shared.getURLForLogFiles() {
+            items.append(fireblocksLogsURL)
+        }
+        if let appLogoURL = AppLoggerManager.shared.logger()?.getURLForLogFiles() {
+            items.append(appLogoURL)
+        }
+        let walletActions = [
+            SettingsData(icon: "settingsBackup", title: "Create a backup", subtitle: nil, action: {
+                self.coordinator?.path.append(NavigationTypes.backup(false))
+            }),
+            SettingsData(icon: "settingsRecover", title: "Recover wallet", subtitle: nil, action: {
+                self.coordinator?.path.append(NavigationTypes.recoverWallet(false))
+            }),
+            SettingsData(icon: "settingsExport", title: "Export private key", subtitle: nil, action: {
+                self.coordinator?.path.append(NavigationTypes.takeover)
+            }),
+            SettingsData(icon: "settingsAddNewDevice", title: "Add new device", subtitle: nil, action: {
+                self.coordinator?.path.append(NavigationTypes.joinDevice)
+            })
+        ]
+        
+        self.settingsWalletActions = walletActions
+        
+        #if DEV
+        self.settingsWalletActions.append(
+            SettingsData(icon: "settingsExport", title: "Generate keys", subtitle: nil, action: {
+                SignInViewModel.shared.launchView = NavigationContainerView {
+                    SpinnerViewContainer {
+                        GenerateKeysView()
+                    }
+                }
+            })
+        )
+        #endif
+    }
+    
+    func setup(coordinator: Coordinator, loadingManager: LoadingManager) {
+        self.coordinator = coordinator
+        self.loadingManager = loadingManager
+        self.advanceInfoAction = SettingsData(icon: "settingsAdvancedInfo", title: "Advanced info", subtitle: nil, action: {
+            self.coordinator?.path.append(NavigationTypes.info)
+
+        })
+        self.signOutAction = SettingsData(icon: "settingsSignOut", title: "Sign out", subtitle: nil, action: {
+            self.isDiscardAlertPresented = true
+        })
+
     }
     
     func stopPollingMessages() {
         FireblocksManager.shared.stopPollingMessages()
     }
     
+    @MainActor
     func signOutFromFirebase() {
-        do{
-            try Auth.auth().signOut()
-            TransfersViewModel.shared.signOut()
-            AssetListViewModel.shared.signOut()
-            FireblocksManager.shared.stopPollingMessages()
-        }catch{
-            print("SettingsViewModel can't sign out with current user: \(error)")
+        do {
+            try FireblocksManager.shared.signOut()
+        } catch {
+            self.loadingManager?.setAlertMessage(error: error)
         }
     }
     
@@ -48,4 +110,19 @@ class SettingsViewModel{
     func getUserEmail() -> String {
         return currentUser?.email ?? ""
     }
+}
+
+class SettingsViewModelMock: SettingsViewModel {
+    override func getUrlOfProfilePicture() -> URL? {
+        return URL(string: "https://fireblocks.com/images/fireblocks-logo-white.png")
+    }
+    
+    override func getUserName() -> String {
+        return "Dudi Shani-Gabay"
+    }
+    
+    override func getUserEmail() -> String {
+        return "dsgabay@fireblocks.com"
+    }
+
 }

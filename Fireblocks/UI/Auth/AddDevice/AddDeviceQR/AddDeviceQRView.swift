@@ -10,7 +10,15 @@ import CoreImage.CIFilterBuiltins
 
 struct AddDeviceQRView: View {
     @Environment(\.dismiss) var dismiss
-    @StateObject var viewModel: AddDeviceQRViewModel
+    @EnvironmentObject var coordinator: Coordinator
+    @EnvironmentObject var loadingManager: LoadingManager
+    @EnvironmentObject var fireblocksManager: FireblocksManager
+
+    @State var viewModel: AddDeviceQRViewModel
+    
+    init(viewModel: AddDeviceQRViewModel) {
+        _viewModel = .init(initialValue: viewModel)
+    }
     
     let context = CIContext()
     let filter = CIFilter.qrCodeGenerator()
@@ -30,14 +38,14 @@ struct AddDeviceQRView: View {
                                 HStack {
                                     Bullet(text: "1")
                                     Text(LocalizableStrings.launchOnExistingDevice)
-                                        .font(.subtitle1)
+                                        .font(.b1)
                                     Spacer()
                                 }
                                 VerticalSeparator()
                                 HStack {
                                     Bullet(text: "2")
                                     Text(LocalizableStrings.openSettingsMenu)
-                                        .font(.subtitle1)
+                                        .font(.b1)
                                     Image(uiImage: AssetsIcons.settings.getIcon())
                                     Spacer()
                                 }
@@ -45,21 +53,23 @@ struct AddDeviceQRView: View {
                                 HStack {
                                     Bullet(text: "3")
                                     Text(LocalizableStrings.tapAddNewDevice)
-                                        .font(.subtitle1)
+                                        .font(.b1)
                                     Spacer()
                                 }
                                 VerticalSeparator()
                                 HStack {
                                     Bullet(text: "4")
                                     Text(LocalizableStrings.scanTheQRCode)
-                                        .font(.subtitle1)
+                                        .font(.b1)
                                     Spacer()
                                 }
                             }
                             .padding(.bottom, 40)
                             
-                            AddDeviceQRInnerView(image: generateQRCode(from: viewModel.url, size: CGSize(width: 171.0, height: 171.0)), url: viewModel.url, action: viewModel.showToast)
-                            
+                            AddDeviceQRInnerView(image: generateQRCode(from: viewModel.url, size: CGSize(width: 171.0, height: 171.0)), url: viewModel.url) {
+                                self.loadingManager.toastMessage = "Copied!"
+                            }
+
                             Spacer()
                         }
                         .padding(.horizontal, 26)
@@ -74,14 +84,13 @@ struct AddDeviceQRView: View {
             VStack {
                 Spacer()
                 Text("\(LocalizableStrings.qrCodeExpiresIn) \(viewModel.timeleft)")
-                    .font(.body3)
+                    .font(.b3)
                     .foregroundColor(AssetsColors.gray4.color())
             }
             .toolbar {
                 ToolbarItem {
                     Button {
                         viewModel.dismiss()
-                        dismiss()
                     } label: {
                         Image(uiImage: AssetsIcons.close.getIcon())
                     }
@@ -91,12 +100,13 @@ struct AddDeviceQRView: View {
             }
         }
         .onAppear() {
-            viewModel.didInit()
+            viewModel.setup(loadingManager: loadingManager, coordinator: coordinator, fireblocksManager: fireblocksManager)
         }
         .navigationTitle(LocalizableStrings.addNewDeviceNavigationBar)
         .navigationBarTitleDisplayMode(.inline)
-        .navigationBarBackButtonHidden()
         .interactiveDismissDisabled()
+        .navigationBarBackButtonHidden()
+        .navigationBarItems(leading: CustomBackButtonView())
     }
     
     func generateQRCode(from url: String?, size: CGSize) -> Image {
@@ -138,7 +148,7 @@ struct AddDeviceQRInnerView: View {
                 .padding(.bottom, 24)
             
             Text(LocalizableStrings.qrCodeLink)
-                .font(.subtitle1)
+                .font(.b1)
                 .padding(.top, 16)
             
             if let url = url {
@@ -166,9 +176,22 @@ struct AddDeviceQRInnerView: View {
     }
 }
 
-
-struct AddDeviceQRView_Previews: PreviewProvider {
-    static var previews: some View {
-        AddDeviceQRView(viewModel: AddDeviceQRViewModel(requestId: "XXXXXX", email: "aaa@bbb.cc"))
+#Preview {
+    NavigationContainerView {
+        SpinnerViewContainer {
+            AddDeviceQRView(viewModel: AddDeviceQRViewModelMock(requestId: "XXXXXX", email: "aaa@bbb.cc", expiredInterval: 5))
+        }
     }
+}
+
+class AddDeviceQRViewModelMock: AddDeviceQRViewModel {
+    override func didQRTimeExpired() {
+        let vm = EndFlowFeedbackView.ViewModel(icon: AssetsIcons.errorImage.rawValue, title: LocalizableStrings.approveJoinWalletCanceled, subTitle: LocalizableStrings.addDeviceFailedSubtitle, buttonTitle: LocalizableStrings.tryAgain, actionButton:  {
+            self.coordinator?.path = NavigationPath()
+        }, rightToolbarItemIcon: AssetsIcons.close.rawValue, rightToolbarItemAction: {
+            self.coordinator?.path = NavigationPath()
+        }, didFail: true, canGoBack: false)
+        self.coordinator?.path.append(NavigationTypes.feedback(vm))
+    }
+
 }

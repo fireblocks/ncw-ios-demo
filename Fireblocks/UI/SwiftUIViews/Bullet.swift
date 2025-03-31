@@ -13,7 +13,7 @@ struct Bullet: View {
     
     var body: some View {
         Text(text)
-            .font(.subtitle3)
+            .font(.b3)
             .contentShape(Rectangle())
             .padding(.horizontal, 8)
             .padding(.vertical, 4)

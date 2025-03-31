@@ -8,38 +8,41 @@
 import SwiftUI
 
 struct EndFlowFeedbackView: View {
-    @StateObject var viewModel: ViewModel
-    var content: AnyView?
+    @EnvironmentObject var coordinator: Coordinator
+    @EnvironmentObject var loadingManager: LoadingManager
+    @EnvironmentObject var fireblocksManager: FireblocksManager
 
-    init(viewModel: ViewModel, content: AnyView?) {
+    @StateObject var viewModel: ViewModel
+
+    init(viewModel: ViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
-        self.content = content
     }
     
     var body: some View {
         ZStack {
-            Color.black
-                .edgesIgnoringSafeArea(.all)
+            AppBackgroundView()
             VStack(spacing: 0) {
-                if let icon = viewModel.icon {
-                    Image(icon)
-                        .padding(.top, 12)
-                        .padding(.bottom, 24)
-                }
-                
+                Image(viewModel.didFail ? .feedbackFailure : .feedbackSuccess)
+                    .padding(.top, 12)
+                    .padding(.bottom, 24)
+
                 if let title = viewModel.title {
                     Text(title)
                         .font(.h2)
-                        .padding(.bottom, 4)
+                        .padding(.bottom, 16)
                 }
                 
                 if let subtitle = viewModel.subTitle {
                     Text(subtitle)
-                        .font(.body4)
+                        .font(.b1)
+                        .foregroundStyle(.secondary)
                 }
 
-                content
-                    .padding(.top, 32)
+                if let content = viewModel.content {
+                    content
+                        .padding(.top, 32)
+                        .foregroundStyle(.secondary)
+                }
 
                 Spacer()
                 
@@ -54,38 +57,33 @@ struct EndFlowFeedbackView: View {
                             }
                             if let title = viewModel.buttonTitle {
                                 Text(title)
-                                    .font(.body1)
+                                    .font(.b1)
                             }
                             Spacer()
                         }
                         .padding(16)
-                        .contentShape(Rectangle())
+                        .contentShape(.rect)
                         
                     }
                     .buttonStyle(.plain)
                     .frame(maxWidth: .infinity)
-                    .background(AssetsColors.primaryBlue.color())
-                    .cornerRadius(16)
-                    
+                    .background(.thinMaterial, in: .capsule)
+                    .contentShape(.rect)
+
                 }
                 
                 if viewModel.didFail {
-                    Button {
-                        viewModel.shareLogs()
-                    } label: {
-                        HStack {
+                    if !viewModel.items.isEmpty {
+                        ShareLink(items: viewModel.items) {
                             Text("Share Logs")
-                                .font(.body1)
+                                .font(.b1)
+                                .padding()
+                                .frame(maxWidth: .infinity)
+                                .foregroundStyle(.secondary)
+                                .contentShape(.rect)
                         }
-                        .padding(16)
-                        .contentShape(Rectangle())
-                        
+                        .tint(.secondary)
                     }
-                    .buttonStyle(.borderless)
-                    .frame(maxWidth: .infinity)
-                    .foregroundStyle(AssetsColors.primaryBlue.color())
-                    .cornerRadius(16)
-                    .padding(.top)
                 }
 
             }
@@ -93,19 +91,29 @@ struct EndFlowFeedbackView: View {
 
         }
         .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
+            ToolbarItem(placement: .topBarTrailing) {
                 Button {
                     (viewModel.rightToolbarItemAction ?? {})()
                 } label: {
                     Image(viewModel.rightToolbarItemIcon ?? "")
                 }
                 .opacity(viewModel.rightToolbarItemAction != nil ? 1 : 0)
-                .tint(.white)
+                .tint(.secondary)
+            }
+            ToolbarItem(placement: .principal) {
+                Text(viewModel.navigationBarTitle)
+                    .foregroundStyle(.secondary)
+            }
+            if viewModel.canGoBack {
+                ToolbarItem(placement: .topBarLeading) {
+                    CustomBackButtonView()
+                }
             }
         }
-        .navigationTitle(viewModel.navigationBarTitle)
+//        .navigationTitle(viewModel.navigationBarTitle)
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden()
+//        .navigationBarItems(leading: CustomBackButtonView())
         .interactiveDismissDisabled()
 
     }
@@ -128,8 +136,10 @@ struct EndFlowFeedbackView_Previews: PreviewProvider {
                 rightToolbarItemIcon: "close",
                 rightToolbarItemAction: {
                     print("close")
-                }
-            ), content: AnyView(ValidateRequestIdTimeOutView()))
+                },
+                didFail: true,
+                content: AnyView(ValidateRequestIdTimeOutView())
+            ))
         }
     }
 }

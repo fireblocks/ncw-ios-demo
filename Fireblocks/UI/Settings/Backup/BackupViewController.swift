@@ -47,14 +47,8 @@ class BackupViewController: UIViewController{
     private func configureUI() {
         self.navigationItem.title = actionType.viewControllerTitle
         titleLabel.text = actionType.explanation
-        if actionType is Backup {
-            googleDriveButton.config(title: actionType.googleTitle, image: AssetsIcons.googleIcon.getIcon(), style: .Secondary)
-            iCloudButton.config(title: actionType.iCloudTitle, image: AssetsIcons.appleIcon.getIcon(), style: .Secondary)
-        } else {
-            googleDriveContainerHC.constant = 0
-            iCloudDriveContainerHC.constant = 0
-            navigationItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "settings"), style: .plain, target: self, action: #selector(settingsTapped))]
-        }
+        googleDriveButton.config(title: actionType.googleTitle, image: AssetsIcons.googleIcon.getIcon(), style: .Secondary)
+        iCloudButton.config(title: actionType.iCloudTitle, image: AssetsIcons.appleIcon.getIcon(), style: .Secondary)
     }
     
     @objc func settingsTapped(){
@@ -65,11 +59,13 @@ class BackupViewController: UIViewController{
 
     @IBAction func driveBackupTapped(_ sender: AppActionBotton) {
         showActivityIndicator()
-        if actionType is Recover {
-            recoverFromGoogleDrive()
-        } else {
-            Task {
-                let passphraseInfo = await viewModel.getPassphraseInfo(location: .GoogleDrive)
+        Task {
+            let passphraseInfo = await viewModel.getPassphraseInfo(location: .GoogleDrive)
+            if let gidUser = await viewModel.gidUser() {
+                actionType.performDriveAction(gidUser, passphraseId: passphraseInfo.passphraseId) { _ in
+                    
+                }
+            } else {
                 authenticateUser(passphraseId: passphraseInfo.passphraseId) { _ in
                 }
             }
@@ -91,7 +87,7 @@ class BackupViewController: UIViewController{
     @IBAction func goBackTapped(_ sender: UIButton) {
         navigationController?.popViewController(animated: true)
     }
-    
+        
     private func authenticateUser(passphraseId: String, callback: @escaping (String) -> ()) {
         guard let gidConfig = viewModel.getGidConfiguration() else {
             print("❌ BackupViewController, gidConfig is nil.")
@@ -122,18 +118,14 @@ class BackupViewController: UIViewController{
     }
     
     private func navigateToBackupStatusViewController() {
-        let vc = BackupStatusViewController(didComeFromGenerateKeys: viewModel.didComeFromGenerateKeys)
-        navigationController?.pushViewController(vc, animated: true)
+//        let vc = BackupStatusViewController(didComeFromGenerateKeys: viewModel.didComeFromGenerateKeys)
+//        navigationController?.pushViewController(vc, animated: true)
     }
     
     private func navigateToAssetsViewController() {
-        if let window = view.window {
-            let rootViewController = UINavigationController()
-            let vc = TabBarViewController()
-            rootViewController.pushViewController(vc, animated: true)
-            window.rootViewController = rootViewController
-        }
-        
+        SignInViewModel.shared.launchView = NavigationContainerView {
+            TabBarView()
+        }        
     }
     
     private func showError(message: String) {
@@ -149,26 +141,9 @@ extension BackupViewController: BackupDelegate {
             }
             
             self.hideActivityIndicator()
-            if actionType is Backup {
-                if let backupData = backupData {
-                    UIView.animate(withDuration: 0.3) {
-                        self.titleLabel.attributedText = self.viewModel.getBackupDetails(backupData: backupData)
-                    }
-                }
-            } else {
-                if let backupData = backupData, let location = backupData.location {
-                    if location == BackupProvider.GoogleDrive.rawValue {
-                        googleDriveButton.config(title: actionType.googleTitle, image: AssetsIcons.googleIcon.getIcon(), style: .Secondary)
-                        googleDriveContainerHC.constant = 58.0
-                    } else if location == BackupProvider.iCloud.rawValue {
-                        iCloudButton.config(title: actionType.iCloudTitle, image: AssetsIcons.appleIcon.getIcon(), style: .Secondary)
-                        iCloudDriveContainerHC.constant = 58.0
-                    }
-                    self.view.layoutIfNeeded()
-                } else {
-                    tryAgainButton.config(title: actionType.tryAgainTitle, style: .Secondary)
-                    tryAgainContainerHC.constant = 58.0
-                    showError(message: LocalizableStrings.failedToRecoverWallet)
+            if let backupData = backupData {
+                UIView.animate(withDuration: 0.3) {
+                    self.titleLabel.attributedText = self.viewModel.getBackupDetails(backupData: backupData)
                 }
             }
         }

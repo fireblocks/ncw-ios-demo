@@ -45,5 +45,17 @@ extension Encodable {
         
         return dict
     }
+    
+    func toData() -> Data? {
+        return try? JSONEncoder().encode(self)
+    }
+
+}
+
+extension Decodable {
+    static func fromData(_ data: Data?) -> Self? {
+        guard let data else { return nil }
+        return try? JSONDecoder().decode(Self.self, from: data)
+    }
 }
 

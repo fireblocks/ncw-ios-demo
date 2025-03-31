@@ -37,8 +37,8 @@ class FeeRateCell: UITableViewCell {
         var textColor = AssetsColors.white.getColor()
         
         if isSelected {
-            backgroundColor = AssetsColors.primaryBlue.getColor()
-            textColor = AssetsColors.lightBlue.getColor()
+            backgroundColor = AssetsColors.gray2.getColor()
+//            textColor = AssetsColors.lightBlue.getColor()
         }
         
         cellBackground.backgroundColor = backgroundColor?.withAlphaComponent(0.4)

@@ -48,14 +48,14 @@ class AssetViewCell: AddAssetViewCell {
         assetBlockchainBadgeBackground.layer.cornerRadius = assetBlockchainBadgeBackground.frame.height / 2
     }
     
-    func configCellWith(asset: Asset, section: Int, isBlockchainHidden: Bool = false) {
+    func configCellWith(asset: AssetSummary, section: Int, isBlockchainHidden: Bool = false) {
         sendButton.tag = section
         receiveButton.tag = section
         
         configCellWith(asset: asset, isBlockchainHidden: isBlockchainHidden)
     }
     
-    func configTransparentCellWith(asset: Asset, isBlockchainHidden: Bool = false) {
+    func configTransparentCellWith(asset: AssetSummary, isBlockchainHidden: Bool = false) {
         assetContainerView.backgroundColor = .clear
         buttonsContainerView.backgroundColor = .clear
         
@@ -63,17 +63,23 @@ class AssetViewCell: AddAssetViewCell {
     }
     
 
-    func configCellWith(asset: Asset, isBlockchainHidden: Bool = false) {
+    func configCellWith(asset: AssetSummary, isBlockchainHidden: Bool = false) {
         configAssetView(asset: asset, isBlockchainHidden: isBlockchainHidden)
 
-        if let price = asset.price {
-            assetValue.text = "$\(price.formatFractions(fractionDigits: 2))"
+        #if EW
+        if let assetId = asset.asset?.id, let total = asset.balance?.total, let price = Double(total) {
+            assetValue.text = CryptoCurrencyManager.shared.getTotalPrice(assetId: assetId, networkProtocol: asset.asset?.networkProtocol, amount: price)
         }
-        if let balance = asset.balance {
+        #else
+        if let rate = asset.asset?.rate,let total = asset.balance?.total, let price = Double(total) {
+            assetValue.text = "$\((price * rate).formatFractions(fractionDigits: 2))"
+        }
+        #endif
+        if let balance = asset.balance?.total?.toDouble?.formatFractions() {
             assetTokenAmount.text = "\(balance)"
         }
         
-        if let isExpanded = asset.isExpanded, isExpanded {
+        if asset.isExpanded {
             buttonsContainerViewHC.constant = 80
         } else {
             buttonsContainerViewHC.constant = 0

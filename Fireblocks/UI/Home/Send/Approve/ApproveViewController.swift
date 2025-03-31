@@ -7,7 +7,13 @@
 
 import UIKit
 
-class ApproveViewController: UIViewController {
+protocol ApproveViewModelDelegate: AnyObject {
+    func transactionStatusChanged(isApproved: Bool)
+    func cancelTransactionStatusChanged(isCanceled: Bool)
+    func hideIndicator()
+}
+
+class ApproveViewController: UIViewController, SwiftUIEnvironmentBridge {
     
     @IBOutlet weak var assetImage: UIImageView!
     @IBOutlet weak var amount: UILabel!
@@ -23,12 +29,33 @@ class ApproveViewController: UIViewController {
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var txId: UILabel!
 
-    let viewModel = ApproveViewModel()
+    let viewModel: ApproveViewModel
     
+    init(transaction: FBTransaction) {
+        self.viewModel = ApproveViewModel(transaction: transaction)
+        super.init(nibName: "ApproveViewController", bundle: nil)
+        viewModel.setDelegate(delegate: self)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        self.viewModel = ApproveViewModel()
+        super.init(coder: aDecoder)
+    }
+    
+    #if EW
+    func setEnvironment(loadingManager: LoadingManager, coordinator: Coordinator, ewManager: EWManager) {
+        viewModel.loadingManager = loadingManager
+        viewModel.coordinator = coordinator
+    }
+    #else
+    func setEnvironment(loadingManager: LoadingManager, coordinator: Coordinator) {
+        viewModel.loadingManager = loadingManager
+        viewModel.coordinator = coordinator
+    }
+    #endif
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel.delegate = self
-        viewModel.setDelegate(delegate: self)
         configView()
         configButtons()
     }
@@ -54,8 +81,8 @@ class ApproveViewController: UIViewController {
         stopButton.config(title: "Stop", image: buttonImage, style: .Secondary)
         statusBackground.layer.cornerRadius = 6
         statusLabel.text = viewModel.transferInfo?.status.rawValue
-        statusLabel.textColor = viewModel.transferInfo?.status.color
-        statusBackground.addBorder(color: viewModel.transferInfo?.status.color ?? UIColor.clear, width: 0.5)
+        statusLabel.textColor = viewModel.transferInfo?.color
+        statusBackground.addBorder(color: viewModel.transferInfo?.color ?? UIColor.clear, width: 0.5)
         txId.text = viewModel.transferInfo?.transactionID
     }
     
@@ -139,7 +166,7 @@ extension ApproveViewController: ApproveViewModelDelegate {
     
     private func showToolbar(show: Bool) {
         if show {
-            self.navigationItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "close"), style: .plain, target: self, action: #selector(handleCloseTap))]
+            self.navigationController?.navigationItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "close"), style: .plain, target: self, action: #selector(handleCloseTap))]
             self.navigationItem.leftBarButtonItems = [UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self, action: #selector(goHome))]
         } else {
             self.navigationItem.rightBarButtonItems = nil

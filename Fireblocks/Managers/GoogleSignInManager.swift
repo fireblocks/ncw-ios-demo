@@ -9,8 +9,18 @@ import Foundation
 import GoogleSignIn
 import FirebaseAuth
 import FirebaseCore
+import GoogleAPIClientForREST_Drive
 
-class GoogleSignInManager {
+class GoogleSignInManager: Identifiable, Equatable, Hashable, ObservableObject {
+    static func == (lhs: GoogleSignInManager, rhs: GoogleSignInManager) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+    
+    let id = UUID().uuidString
     func getGIDConfiguration() -> GIDConfiguration? {
         guard let clientID = FirebaseApp.app()?.options.clientID else {
             print("GoogleSignInManager, getGIDConfiguration(): clientID is nil.")
@@ -18,6 +28,8 @@ class GoogleSignInManager {
         }
         return GIDConfiguration(clientID: clientID)
     }
+    
+    let googleDriveScope = [kGTLRAuthScopeDriveFile, kGTLRAuthScopeDriveAppdata]
 }
 
 extension GIDSignInResult: FirebaseAuthDelegate {

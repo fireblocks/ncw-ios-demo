@@ -26,6 +26,7 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var exportPrivateKeyButton: SettingsOptionButton!
     @IBOutlet weak var advancedInfoButton: SettingsOptionButton!
     @IBOutlet weak var addNewDeviceButton: SettingsOptionButton!
+    @IBOutlet weak var generateKeysButton: SettingsOptionButton!
     @IBOutlet weak var shareLogsButton: SettingsOptionButton!
     @IBOutlet weak var versionLabel: UILabel!
     @IBOutlet weak var versionLabelContainer: UIView!
@@ -78,6 +79,11 @@ class SettingsViewController: UIViewController {
             title: LocalizableStrings.shareLogs,
             icon: AssetsIcons.shareLogs
         )
+        generateKeysButton.setData(
+            title: LocalizableStrings.generateKeys,
+            icon: AssetsIcons.key
+        )
+
     }
     
     @objc func handleCloseTap() {
@@ -139,6 +145,26 @@ class SettingsViewController: UIViewController {
         self.createLogFile()
     }
     
+    @IBAction func generateKeysTapped(_ sender: SettingsOptionButton) {
+        guard let window = (UIApplication.shared.connectedScenes.first as? UIWindowScene)?.windows.first else {
+            return
+        }
+        
+        let view = NavigationContainerView {
+            SpinnerViewContainer {
+                GenerateKeysView()
+            }
+        }
+
+        let vc = UIHostingController(rootView: view)
+
+        UIView.animate(withDuration: 0.3) {
+            window.rootViewController = vc
+        }
+
+    }
+
+    
     @IBAction func signOutTapped(_ button: UIButton) {
         showConfirmationBottomSheet()
     }
@@ -147,20 +173,29 @@ class SettingsViewController: UIViewController {
         if isDisableAdvancedFeatures {
             return
         }
-        let vc = BackupViewController()
-        vc.actionType = Backup(delegate: vc.self)
+        
+        let rootView = SpinnerViewContainer() {
+            BackupWalletView(redirect: true)
+                .environmentObject(FireblocksManager.shared)
+                .environmentObject(GoogleSignInManager())
+        }
+        let vc = UIHostingController(rootView: rootView)
+        vc.navigationItem.setHidesBackButton(true, animated: false)
         navigationController?.pushViewController(vc, animated: true)
     }
     
     private func navigateToRecoverViewController() {
-        let vc = BackupViewController()
-        vc.actionType = Recover(delegate: vc.self)
+        let rootView = SpinnerViewContainer() {
+            RecoverWalletView(redirect: false)
+                .environmentObject(FireblocksManager.shared)
+                .environmentObject(GoogleSignInManager())
+        }
+        let vc = UIHostingController(rootView: rootView)
+        vc.navigationItem.setHidesBackButton(true, animated: false)
         navigationController?.pushViewController(vc, animated: true)
     }
     
     private func navigateToAddDeviceViewController() {
-        let vc = PrepareForScanHostingVC()
-        self.navigationController?.pushViewController(vc, animated: true)
     }
 
     
@@ -198,9 +233,12 @@ class SettingsViewController: UIViewController {
     
     private func navigateToLogin() {
         if let window = view.window {
-            let rootViewController = UINavigationController()
-            let vc = AuthViewController()
-            rootViewController.pushViewController(vc, animated: true)
+            let rootViewController = UIHostingController(
+                rootView: NavigationContainerView() {
+                    LaunchView()
+                        .environmentObject(SignInViewModel.shared)
+                }
+            )
             window.rootViewController = rootViewController
         }
     }

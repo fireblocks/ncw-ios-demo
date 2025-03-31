@@ -6,9 +6,16 @@
 //
 
 import SwiftUI
+#if EW
+    #if DEV
+    import EmbeddedWalletSDKDev
+    #else
+    import EmbeddedWalletSDK
+    #endif
+#endif
 
 struct DerivedAssetRow: View {
-    let asset: Asset
+    let asset: AssetSummary
     
     var body: some View {
         HStack {
@@ -44,9 +51,11 @@ struct DerivedAssetRow: View {
             .background(Color.black)
             .clipShape(RoundedRectangle(cornerRadius: 8.0))
 
-            Text(asset.name)
-                .font(.body1)
-                .multilineTextAlignment(.leading)
+            if let name = asset.asset?.name {
+                Text(name)
+                    .font(.b1)
+                    .multilineTextAlignment(.leading)
+            }
 
         }
     }

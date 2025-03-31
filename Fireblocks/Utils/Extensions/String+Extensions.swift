@@ -34,5 +34,17 @@ extension String {
     var isTrimmedEmpty: Bool {
         return self.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
     }
+    
+    var toDouble: Double? {
+        return Double(self)
+    }
 
 }
+
+extension Optional where Wrapped == String {
+    var isEmptyOrNil: Bool {
+        if let text = self, !text.isEmpty { return false }
+        return true
+    }
+}
+

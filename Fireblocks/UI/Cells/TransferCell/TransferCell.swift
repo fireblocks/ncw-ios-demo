@@ -45,7 +45,7 @@ class TransferCell: UITableViewCell {
         amount.text = "\(transfer.amount.formatFractions(fractionDigits: 6))"
         price.text = transfer.getPriceString()
         
-        updateStatusLabel(with: transfer.status.color)
+        updateStatusLabel(with: transfer.color)
         setSelected(isSelected: false)
     }
     

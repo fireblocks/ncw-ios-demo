@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SendToViewController: UIViewController {
+class SendToViewController: UIViewController, SwiftUIEnvironmentBridge {
     
 //MARK: - PROPERTIES
     @IBOutlet weak var assetIcon: UIImageView!
@@ -18,13 +18,35 @@ class SendToViewController: UIViewController {
     @IBOutlet weak var eraseButton: UIImageView!
     @IBOutlet weak var addressTextField: UITextField!
     @IBOutlet weak var continueButton: AppActionBotton!
+        
+    let viewModel: SendToViewModel
     
-    let viewModel = SendToViewModel()
+    init(transaction: FBTransaction) {
+        viewModel = SendToViewModel(transaction: transaction)
+        super.init(nibName: "SendToViewController", bundle: nil)
+        viewModel.delegate = self
+    }
     
+    required init?(coder aDecoder: NSCoder) {
+        viewModel = SendToViewModel()
+        super.init(coder: aDecoder)
+    }
+    
+    #if EW
+    func setEnvironment(loadingManager: LoadingManager, coordinator: Coordinator, ewManager: EWManager) {
+        viewModel.loadingManager = loadingManager
+        viewModel.coordinator = coordinator
+    }
+    #else
+    func setEnvironment(loadingManager: LoadingManager, coordinator: Coordinator) {
+        viewModel.loadingManager = loadingManager
+        viewModel.coordinator = coordinator
+    }
+    #endif
+
 //MARK: - LIFECYCLE Functions
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel.delegate = self
         addressTextField.delegate = self
         configButtons()
         configView()
@@ -35,8 +57,6 @@ class SendToViewController: UIViewController {
     }
     
     private func configButtons(){
-        navigationItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "close"), style: .plain, target: self, action: #selector(handleCloseTap))]
-
         let eraseTapGesture = UITapGestureRecognizer(target: self, action: #selector(handleEraseTap(_:)))
         eraseButton.isUserInteractionEnabled = true
         eraseButton.addGestureRecognizer(eraseTapGesture)
@@ -51,7 +71,6 @@ class SendToViewController: UIViewController {
     }
     
     private func configView(){
-        self.navigationItem.title = "Receiving Address"
         addressTextField.tintColor = AssetsColors.white.getColor()
         textFieldBackground.layer.cornerRadius = 16
         textFieldBackground.addBorder(color: AssetsColors.gray2.getColor(), width: 1)
@@ -61,27 +80,20 @@ class SendToViewController: UIViewController {
         price.text = viewModel.getPriceAsString()
     }
     
-    @objc private func handleCloseTap() {
-        navigationController?.popToRootViewController(animated: true)
-    }
     @objc private func handleEraseTap(_ gesture: UITapGestureRecognizer) {
         addressTextField.text = ""
         viewModel.setAddress(address: addressTextField.text)
     }
     
     @objc private func handleScanQRCodeTap(_ gesture: UITapGestureRecognizer) {
-        let vc = QRCodeScannerViewController(nibName: "QRCodeScannerViewController", bundle: nil)
-        vc.delegate = self
+        let vc = QRCodeScannerViewController(delegate: self)
         vc.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
     private func navigateToFeeRatePage(){
         if let transaction = viewModel.getTransaction() {
-            let vc = FeeRateViewController(nibName: "FeeRateViewController", bundle: nil)
-            vc.viewModel.transaction = transaction
-            vc.hidesBottomBarWhenPushed = true
-            self.navigationController?.pushViewController(vc, animated: true)
+            viewModel.coordinator?.path.append(NavigationTypes.selectFee(transaction))
         }
     }
     
@@ -104,11 +116,10 @@ extension SendToViewController: UITextFieldDelegate {
 
 //MARK: - QRCodeScannerViewControllerDelegate
 extension SendToViewController: QRCodeScannerViewControllerDelegate {
+    @MainActor
     func gotAddress(address: String) {
-        DispatchQueue.main.async {
-            self.addressTextField.text = address
-            self.viewModel.setAddress(address: address)
-        }
+        self.addressTextField.text = address
+        self.viewModel.setAddress(address: address)
     }
 }
 

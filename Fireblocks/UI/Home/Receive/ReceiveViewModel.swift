@@ -2,15 +2,27 @@
 //  ReceiveViewModel.swift
 //  Fireblocks
 //
-//  Created by Fireblocks Ltd. on 16/07/2023.
+//  Created by Dudi Shani-Gabay on 15/01/2025.
 //
 
 import Foundation
-
+#if EW
+#if DEV
+import EmbeddedWalletSDKDev
+#else
+import EmbeddedWalletSDK
+#endif
+#endif
 class ReceiveViewModel {
-    var asset: Asset!
+    var loadingManager: LoadingManager?
+    var asset: AssetSummary
+    
+    init(asset: AssetSummary = AssetSummary()) {
+        self.asset = asset
+    }
     
     func getAssetAddress() -> String {
-        return asset.address ?? ""
+        return asset.address?.address ?? ""
     }
 }
+

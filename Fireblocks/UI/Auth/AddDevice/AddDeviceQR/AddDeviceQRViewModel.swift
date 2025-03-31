@@ -6,54 +6,54 @@
 //
 
 import Foundation
+import SwiftUI
+import FirebaseAuth
 
-protocol AddDeviceQRDelegate: AnyObject {
-    func didQRTimeExpired()
-}
-
-class AddDeviceQRViewModel: ObservableObject, UIHostingBridgeNotifications {
-    var didAppear: Bool = false
+@Observable
+class AddDeviceQRViewModel {
+    var loadingManager: LoadingManager?
+    var coordinator: Coordinator?
+    var fireblocksManager: FireblocksManager?
+    var didLoad = false
+    
     let requestId: String
     var email: String?
     var url: String?
-    var expiredInterval: TimeInterval = 180.seconds
+    let expiredInterval: TimeInterval
     var timer: Timer?
-    weak var delegate: AddDeviceQRDelegate?
     
-    @Published var timeleft = ""
-    @Published var isToolbarHidden = false
+    var timeleft = ""
+    var isToolbarHidden = false
     
     init(requestId: String, email: String?, expiredInterval: TimeInterval = 180.seconds) {
         self.requestId = requestId
         self.email = email
-        self.url = setURL()
         self.expiredInterval = expiredInterval
-        self.startTimer()
-        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] timer in
-            if let self {
-                if self.isExpired() {
-                    self.timer?.invalidate()
-                    self.timer = nil
-                    self.timeleft = ""
-                    self.delegate?.didQRTimeExpired()
-                } else {
-                    self.timeleft = self.timeLeft()
-                }
-            }
-        }
-        timer?.fire()
-        
+        self.url = setURL()
+
         NotificationCenter.default.addObserver(self, selector: #selector(onProvisionerFound), name: Notification.Name("onProvisionerFound"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(onAddingDevice), name: Notification.Name("onAddingDevice"), object: nil)
 
     }
     
+    func setup(loadingManager: LoadingManager, coordinator: Coordinator, fireblocksManager: FireblocksManager) {
+        if !didLoad {
+            didLoad = true
+            self.loadingManager = loadingManager
+            self.fireblocksManager = fireblocksManager
+            self.coordinator = coordinator
+
+            startTimer()
+        }
+
+    }
+
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
     
     func dismiss() {
-        FireblocksManager.shared.stopJoinWallet()
+        try? fireblocksManager?.stopJoinWallet()
     }
     
     func setURL() -> String? {
@@ -63,24 +63,36 @@ class AddDeviceQRViewModel: ObservableObject, UIHostingBridgeNotifications {
         return encoded
     }
     
+    @MainActor
     @objc func onProvisionerFound() {
         self.timer?.invalidate()
         self.timer = nil
-        presentIndicator()
+        self.loadingManager?.setLoading(value: true)
     }
     
+    @MainActor
     @objc func onAddingDevice() {
         self.timer?.invalidate()
         self.timer = nil
-    }
-    
-    func presentIndicator() {
-        isToolbarHidden = true
-        showIndicator()
+        self.loadingManager?.setLoading(value: false)
     }
     
     func startTimer() {
         UsersLocalStorageManager.shared.setAddDeviceTimer()
+        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] timer in
+            if let self {
+                if self.isExpired() {
+                    self.timer?.invalidate()
+                    self.timer = nil
+                    self.timeleft = ""
+                    self.didQRTimeExpired()
+                } else {
+                    self.timeleft = self.timeLeft()
+                }
+            }
+        }
+        timer?.fire()
+
     }
     
     func isExpired() -> Bool {
@@ -96,4 +108,15 @@ class AddDeviceQRViewModel: ObservableObject, UIHostingBridgeNotifications {
         
         return "\(String(format: "%02d", minutes)):\(String(format: "%02d", seconds))"
     }
+    
+    func didQRTimeExpired() {
+        let vm = EndFlowFeedbackView.ViewModel(icon: AssetsIcons.errorImage.rawValue, title: LocalizableStrings.approveJoinWalletCanceled, subTitle: LocalizableStrings.addDeviceFailedSubtitle, buttonTitle: LocalizableStrings.tryAgain, actionButton:  {
+            self.startTimer()
+            self.coordinator?.path.removeLast(2)
+        }, rightToolbarItemIcon: AssetsIcons.close.rawValue, rightToolbarItemAction: {
+            try? self.fireblocksManager?.signOut()
+        }, didFail: true, canGoBack: false)
+        self.coordinator?.path.append(NavigationTypes.feedback(vm))
+    }
+
 }

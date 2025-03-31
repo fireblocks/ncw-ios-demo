@@ -6,6 +6,9 @@
 //
 
 import UIKit
+import SwiftUI
+
+
 
 class TabBarViewController: UITabBarController {
     
@@ -16,9 +19,9 @@ class TabBarViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationController?.setNavigationBarHidden(true, animated: true)
+//        navigationController?.setNavigationBarHidden(true, animated: true)
         initSubviewControllers()
-        configTabBarView()
+//        configTabBarView()
         
         self.setViewControllers(subviewControllers,animated: true)
         self.selectedIndex = 0
@@ -31,32 +34,46 @@ class TabBarViewController: UITabBarController {
     
 //MARK: - FUNCTIONS
     private func initSubviewControllers(){
-        typealias TabBarItem = (viewController: UIViewController, image: UIImage, name: String)
-        let viewControllers: [TabBarItem] = [ (AssetListViewController(), AssetsIcons.wallet.getIcon(), "Assets"),
-                                              (TransfersViewController(), AssetsIcons.transfer.getIcon(), "Transfers")]
-        
-        setupNavButtons()
-        for (index,item) in viewControllers.enumerated() {
-            let viewController = item.viewController
-            let _ = viewController.view
-            let tabImage = item.image
-            viewController.tabBarItem = UITabBarItem(title: item.name, image: tabImage, tag: index)
-            subviewControllers.append(viewController)
-        }
+//        typealias TabBarItem = (viewController: UIViewController, image: UIImage, name: String)
+//        let viewControllers: [TabBarItem] = [
+//            (AssetListViewController(), AssetsIcons.wallet.getIcon(), "Assets"),
+//            (TransfersViewController(), AssetsIcons.transfer.getIcon(), "Transfers")
+//        ]
+//        
+//        setupNavButtons()
+//        for (index,item) in viewControllers.enumerated() {
+//            let viewController = item.viewController
+//            let _ = viewController.view
+//            let tabImage = item.image
+//            viewController.tabBarItem = UITabBarItem(title: item.name, image: tabImage, tag: index)
+//            subviewControllers.append(viewController)
+//        }
     }
     
     private func setupNavButtons() {
-        let barButtonITem = UIBarButtonItem(title: "Welcome to Bitvault", style: .plain, target: self, action: nil)
-        barButtonITem.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font:UIFont.init(name:"Roboto", size:20.0)!], for: .disabled)
-        barButtonITem.isEnabled = false
-        navigationItem.leftBarButtonItems = [barButtonITem]
-        navigationItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "settings"), style: .plain, target: self, action: #selector(settingsTapped))]
+        let barButtonItem = UIBarButtonItem(image: UIImage(named: "navigationBar"), style: .plain, target: self, action: nil)
+//        let barButtonItem = UIBarButtonItem(title: "Constants.navigationTitle", image: UIImage(named: "navigationBar"), target: self, action: nil, menu: nil)
+        barButtonItem.tintColor = .white
+        
+        navigationItem.leftBarButtonItems = [barButtonItem]
+        let settingsButtonITem = UIBarButtonItem(image: UIImage(named: "settings"), style: .plain, target: self, action: #selector(settingsTapped))
+        settingsButtonITem.tintColor = .white
+        navigationItem.rightBarButtonItems = [settingsButtonITem]
     }
     
     @objc func settingsTapped(){
-        let vc = SettingsViewController()
-        vc.hidesBottomBarWhenPushed = true
-        navigationController?.pushViewController(vc, animated: true)
+        let vc = UIHostingController(rootView: NavigationContainerView() {
+            SpinnerViewContainer {
+                SettingsView()
+            }
+        })
+
+        vc.modalPresentationStyle = .fullScreen
+        vc.modalTransitionStyle = .crossDissolve
+        
+        self.present(vc, animated: true)
+//        vc.hidesBottomBarWhenPushed = true
+//        navigationController?.pushViewController(vc, animated: true)
     }
 
     private func configTabBarView(){
@@ -67,7 +84,7 @@ class TabBarViewController: UITabBarController {
         let normalColor = AssetsColors.gray4.getColor()
         let selectedColor = AssetsColors.white.getColor()
         let imageTintColor = AssetsColors.alert.getColor()
-        let font = UIFont(name: "Roboto", size: 14) ?? UIFont.systemFont(ofSize: 14)
+        let font = UIFont(name: "Figtree-Medium", size: 14) ?? UIFont.systemFont(ofSize: 14)
         let normalTextAttributes: [NSAttributedString.Key: Any] = [
             .foregroundColor: normalColor,
             .font: font
