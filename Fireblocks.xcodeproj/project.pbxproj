@@ -1024,6 +1024,7 @@
 		2BA1F5DA2D9ABDBA00FCC8CC /* EW-sandbox-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2BA1F5D92D9ABDBA00FCC8CC /* EW-sandbox-Info.plist */; };
 		2BA1F5DC2D9ABDCB00FCC8CC /* EW-dev-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2BA1F5DB2D9ABDCB00FCC8CC /* EW-dev-Info.plist */; };
 		2BA1F5DE2D9ABDD800FCC8CC /* NCW-production-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2BA1F5DD2D9ABDD800FCC8CC /* NCW-production-Info.plist */; };
+		2BA1F5E02D9C006600FCC8CC /* EW-production-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2BA1F5DF2D9C006600FCC8CC /* EW-production-Info.plist */; };
 		2BAB68102B820DD1003592F1 /* PrepareForScanViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558E852B47044C006212B2 /* PrepareForScanViewModel.swift */; };
 		2BAB68112B820DDD003592F1 /* PrepareForScanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558E872B4704BA006212B2 /* PrepareForScanView.swift */; };
 		2BAB68142B820DFF003592F1 /* ValidateRequestIdViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558E9A2B484A87006212B2 /* ValidateRequestIdViewModel.swift */; };
@@ -1438,7 +1439,6 @@
 		2B769B9D2B1DFCBA00557E97 /* NCW-sandboxDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "NCW-sandboxDebug.entitlements"; sourceTree = "<group>"; };
 		2B769B9E2B1DFCC700557E97 /* NCW-sandboxRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "NCW-sandboxRelease.entitlements"; sourceTree = "<group>"; };
 		2B78DF272D92B7D8003B7D82 /* EW-production.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EW-production.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2B78DF282D92B7D8003B7D82 /* EW-production-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "EW-production-Info.plist"; path = "/Users/dudishani-gabay/projects/ncw-ios-demo-github/Targets/EW-production/EW-production-Info.plist"; sourceTree = "<absolute>"; };
 		2B78DF2A2D92B89F003B7D82 /* EnvironmentConstantsEWProduction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentConstantsEWProduction.swift; sourceTree = "<group>"; };
 		2B78DF2C2D92C866003B7D82 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2B7A721A2B45A2250011C398 /* AddDeviceQRViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDeviceQRViewModel.swift; sourceTree = "<group>"; };
@@ -1486,6 +1486,7 @@
 		2BA1F5D92D9ABDBA00FCC8CC /* EW-sandbox-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "EW-sandbox-Info.plist"; sourceTree = "<group>"; };
 		2BA1F5DB2D9ABDCB00FCC8CC /* EW-dev-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "EW-dev-Info.plist"; sourceTree = "<group>"; };
 		2BA1F5DD2D9ABDD800FCC8CC /* NCW-production-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "NCW-production-Info.plist"; sourceTree = "<group>"; };
+		2BA1F5DF2D9C006600FCC8CC /* EW-production-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "EW-production-Info.plist"; sourceTree = "<group>"; };
 		2BC5837D2B6BD5DC005E6EEB /* Bullet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bullet.swift; sourceTree = "<group>"; };
 		2BC5837F2B6BD5FF005E6EEB /* VerticalSeparator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalSeparator.swift; sourceTree = "<group>"; };
 		2BCFE10E2D54F293006BE227 /* BackupWalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupWalletView.swift; sourceTree = "<group>"; };
@@ -2073,8 +2074,8 @@
 			isa = PBXGroup;
 			children = (
 				2B78DF2C2D92C866003B7D82 /* GoogleService-Info.plist */,
+				2BA1F5DF2D9C006600FCC8CC /* EW-production-Info.plist */,
 				2B78DF2A2D92B89F003B7D82 /* EnvironmentConstantsEWProduction.swift */,
-				2B78DF282D92B7D8003B7D82 /* EW-production-Info.plist */,
 			);
 			path = "EW-production";
 			sourceTree = "<group>";
@@ -3382,6 +3383,7 @@
 				2B78DF192D92B7D8003B7D82 /* AmountToSendViewController.xib in Resources */,
 				2B78DF1A2D92B7D8003B7D82 /* Roboto-Bold.ttf in Resources */,
 				2B78DF1B2D92B7D8003B7D82 /* TransferCell.xib in Resources */,
+				2BA1F5E02D9C006600FCC8CC /* EW-production-Info.plist in Resources */,
 				2B78DF1C2D92B7D8003B7D82 /* LaunchScreen.storyboard in Resources */,
 				2B78DF1D2D92B7D8003B7D82 /* FeeRateCell.xib in Resources */,
 				2B78DF1E2D92B7D8003B7D82 /* MpcKeyCellView.xib in Resources */,
