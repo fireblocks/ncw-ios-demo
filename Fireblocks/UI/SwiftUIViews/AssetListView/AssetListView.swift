@@ -82,8 +82,9 @@ struct AssetListView: View {
     var assetSummaryBanner: some View {
         Section {
             VStack(spacing: 24) {
-                Text("Balance")
+                Text("Total Balance")
                     .font(.b2)
+                    .foregroundStyle(.secondary)
                 Text(viewModel.getBalance())
                     .font(.h1)
             }
