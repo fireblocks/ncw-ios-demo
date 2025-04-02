@@ -59,22 +59,16 @@ struct AssetRow: View {
                         .frame(width: 30, height: 30)
                     }
             }
-            
             VStack(alignment: .center, spacing: 4) {
                 HStack {
-                    Text(asset.asset?.name ?? "")
+                    let title = AssetsUtils.getAssetTitleText(asset: asset.asset)
+                    Text(title)
                     Spacer()
                     Text(asset.balance?.total?.toDouble?.formatFractions().formatted() ?? "")
                 }
                 .font(.b1)
                 HStack(spacing: 4) {
-                    Group {
-                        Text(asset.asset?.symbol ?? "")
-                        Text(asset.asset?.blockchain ?? "")
-                            .padding(.horizontal, 8)
-                            .padding(.vertical, 6)
-                            .background(AssetsColors.gray2.color(), in: .capsule)
-                    }
+                    Text(asset.asset?.name ?? "")
                     .font(.b4)
                     Spacer()
 
@@ -162,10 +156,25 @@ struct AssetRow: View {
     }
 }
 
-//#Preview {
-//    NavigationContainerView(mockManager: EWManagerMock()) {
-//        SpinnerViewContainer {
-//            AssetRow(asset: <#T##AssetSummary#>)
-//        }
-//    }
-//}
+// create a #Preview for the AssetRow
+#Preview {
+    NavigationContainerView(mockManager: EWManagerMock()) {
+        SpinnerViewContainer {
+            let asset: Asset = Asset(id: "1", symbol: "BTC", name: "Bitcoin", blockchain: "BTC")
+            let jsonString = """
+            {
+                "total": "0.0001",
+                "available": "0.0001",
+                "frozen": "0.0",
+                "pending": "0.0"
+            }
+            """
+            let jsonData = jsonString.data(using: .utf8)!
+            let balance = try! JSONDecoder().decode(AssetBalance.self, from: jsonData)
+            let assetSummary: AssetSummary = AssetSummary(asset: asset, balance: balance)
+        
+            AssetRow(asset: assetSummary)
+        }
+    }
+}
+

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -1317,6 +1317,15 @@
 		86ED2BAC2A64430F00377F6C /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86ED2BA72A64430F00377F6C /* SettingsViewModel.swift */; };
 		86ED2BB32A64434500377F6C /* AreYouSureBottomSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86ED2BB12A64434500377F6C /* AreYouSureBottomSheet.xib */; };
 		86ED2BB42A64434500377F6C /* AreYouSureBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86ED2BB22A64434500377F6C /* AreYouSureBottomSheet.swift */; };
+		FF75F4492D9D133C00E7695A /* Blockchain.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF75F4482D9D132E00E7695A /* Blockchain.swift */; };
+		FF75F44A2D9D133C00E7695A /* Blockchain.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF75F4482D9D132E00E7695A /* Blockchain.swift */; };
+		FF75F44B2D9D133C00E7695A /* Blockchain.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF75F4482D9D132E00E7695A /* Blockchain.swift */; };
+		FF75F44C2D9D133C00E7695A /* Blockchain.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF75F4482D9D132E00E7695A /* Blockchain.swift */; };
+		FF75F44D2D9D133C00E7695A /* Blockchain.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF75F4482D9D132E00E7695A /* Blockchain.swift */; };
+		FF75F44E2D9D133C00E7695A /* Blockchain.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF75F4482D9D132E00E7695A /* Blockchain.swift */; };
+		FF75F45E2D9D17B500E7695A /* BlockchainProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF75F45D2D9D17B100E7695A /* BlockchainProvider.swift */; };
+		FF75F45F2D9D17B500E7695A /* BlockchainProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF75F45D2D9D17B100E7695A /* BlockchainProvider.swift */; };
+		FF75F4602D9D17B500E7695A /* BlockchainProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF75F45D2D9D17B100E7695A /* BlockchainProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -1638,7 +1647,13 @@
 		86ED2BA72A64430F00377F6C /* SettingsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		86ED2BB12A64434500377F6C /* AreYouSureBottomSheet.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AreYouSureBottomSheet.xib; sourceTree = "<group>"; };
 		86ED2BB22A64434500377F6C /* AreYouSureBottomSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AreYouSureBottomSheet.swift; sourceTree = "<group>"; };
+		FF75F4482D9D132E00E7695A /* Blockchain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blockchain.swift; sourceTree = "<group>"; };
+		FF75F45D2D9D17B100E7695A /* BlockchainProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockchainProvider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		FF75F44F2D9D171B00E7695A /* Assets */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Assets; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		2B21D87E2BC56B5C003ADD29 /* Frameworks */ = {
@@ -2686,6 +2701,8 @@
 		862E2AA12A543B86002FF774 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				FF75F45D2D9D17B100E7695A /* BlockchainProvider.swift */,
+				FF75F4482D9D132E00E7695A /* Blockchain.swift */,
 				2B2B19B52D2C058500A2B39D /* FireblocksManagerProtocol.swift */,
 				2B2B19C02D2C162500A2B39D /* EW */,
 				2B2B19BA2D2C160900A2B39D /* NCW */,
@@ -2759,6 +2776,7 @@
 		867828C32A696D170035787D /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				FF75F44F2D9D171B00E7695A /* Assets */,
 				867828C42A696D170035787D /* Biometrics */,
 				867828C62A696D170035787D /* Network */,
 				867828CE2A696D170035787D /* Extensions */,
@@ -3029,6 +3047,9 @@
 			);
 			dependencies = (
 			);
+			fileSystemSynchronizedGroups = (
+				FF75F44F2D9D171B00E7695A /* Assets */,
+			);
 			name = "NCW-production";
 			packageProductDependencies = (
 				2B21D7E62BC56B5C003ADD29 /* FirebaseAuth */,
@@ -3059,6 +3080,9 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				FF75F44F2D9D171B00E7695A /* Assets */,
 			);
 			name = "EW-sandbox";
 			packageProductDependencies = (
@@ -3093,6 +3117,9 @@
 			);
 			dependencies = (
 			);
+			fileSystemSynchronizedGroups = (
+				FF75F44F2D9D171B00E7695A /* Assets */,
+			);
 			name = "EW-dev";
 			packageProductDependencies = (
 				2B2B19C42D2D120E00A2B39D /* FirebaseAuth */,
@@ -3122,6 +3149,9 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				FF75F44F2D9D171B00E7695A /* Assets */,
 			);
 			name = "EW-production";
 			packageProductDependencies = (
@@ -3156,6 +3186,9 @@
 			);
 			dependencies = (
 			);
+			fileSystemSynchronizedGroups = (
+				FF75F44F2D9D171B00E7695A /* Assets */,
+			);
 			name = "NCW-dev";
 			packageProductDependencies = (
 				2B7C47792B32DA77001C804B /* FirebaseAuth */,
@@ -3186,6 +3219,9 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				FF75F44F2D9D171B00E7695A /* Assets */,
 			);
 			name = "NCW-sandbox";
 			packageProductDependencies = (
@@ -3593,6 +3629,7 @@
 				2B21D8BE2BC56BAA003ADD29 /* EnvironmentConstantsProd.swift in Sources */,
 				2B21D84F2BC56B5C003ADD29 /* FireblocksManager.swift in Sources */,
 				2B21D8502BC56B5C003ADD29 /* AppDelegate.swift in Sources */,
+				FF75F44D2D9D133C00E7695A /* Blockchain.swift in Sources */,
 				2BCFE1322D5B7B39006BE227 /* NavigationBarLeftHeader.swift in Sources */,
 				2B21D8512BC56B5C003ADD29 /* ValidateRequestIdView.swift in Sources */,
 				2B2B18882D2A8A0C00A2B39D /* SignInView.swift in Sources */,
@@ -3796,6 +3833,7 @@
 				2B22D94B2D82EBF500F1C1A2 /* GenericController.swift in Sources */,
 				2B22D94C2D82EBF500F1C1A2 /* EWManagerMock.swift in Sources */,
 				2B22D94D2D82EBF500F1C1A2 /* QRCodeGenerator.swift in Sources */,
+				FF75F44A2D9D133C00E7695A /* Blockchain.swift in Sources */,
 				2B22D94E2D82EBF500F1C1A2 /* CustomError.swift in Sources */,
 				2B22D94F2D82EBF500F1C1A2 /* SignInViewModel.swift in Sources */,
 				2B22D9502D82EBF500F1C1A2 /* Transfer.swift in Sources */,
@@ -3808,6 +3846,7 @@
 				2B22D9572D82EBF500F1C1A2 /* AddAssetsViewModelBase.swift in Sources */,
 				2B22D9582D82EBF500F1C1A2 /* AssetToAdd.swift in Sources */,
 				2B22D9592D82EBF500F1C1A2 /* AddAssetsViewModel.swift in Sources */,
+				FF75F45F2D9D17B500E7695A /* BlockchainProvider.swift in Sources */,
 				2B22D95A2D82EBF500F1C1A2 /* AssetListViewModelBase.swift in Sources */,
 				2B22D95B2D82EBF500F1C1A2 /* AddAssetViewCell.swift in Sources */,
 				2B22D95C2D82EBF500F1C1A2 /* String+Extensions.swift in Sources */,
@@ -3989,6 +4028,7 @@
 				2BCFE12B2D5B57ED006BE227 /* GenericController.swift in Sources */,
 				2B223FC62D67698A002285B9 /* EWManagerMock.swift in Sources */,
 				2B2B1A4D2D2D120E00A2B39D /* QRCodeGenerator.swift in Sources */,
+				FF75F44B2D9D133C00E7695A /* Blockchain.swift in Sources */,
 				2B2B1A4F2D2D120E00A2B39D /* CustomError.swift in Sources */,
 				2B2B1AB72D2D4ED500A2B39D /* SignInViewModel.swift in Sources */,
 				2B87CAD62D47933600448A2A /* Transfer.swift in Sources */,
@@ -4001,6 +4041,7 @@
 				2BEB9C3F2D79DC7600699AC1 /* AddAssetsViewModelBase.swift in Sources */,
 				2BEB9C412D79DC7600699AC1 /* AssetToAdd.swift in Sources */,
 				2BEB9C432D79DC7600699AC1 /* AddAssetsViewModel.swift in Sources */,
+				FF75F45E2D9D17B500E7695A /* BlockchainProvider.swift in Sources */,
 				2BEB9C442D79DC7600699AC1 /* AssetListViewModelBase.swift in Sources */,
 				2BEB9C452D79DC7600699AC1 /* AddAssetViewCell.swift in Sources */,
 				2B2B1A542D2D120E00A2B39D /* String+Extensions.swift in Sources */,
@@ -4182,6 +4223,7 @@
 				2B78DED32D92B7D8003B7D82 /* GenericController.swift in Sources */,
 				2B78DED42D92B7D8003B7D82 /* EWManagerMock.swift in Sources */,
 				2B78DED52D92B7D8003B7D82 /* QRCodeGenerator.swift in Sources */,
+				FF75F4492D9D133C00E7695A /* Blockchain.swift in Sources */,
 				2B78DED62D92B7D8003B7D82 /* CustomError.swift in Sources */,
 				2B78DED72D92B7D8003B7D82 /* SignInViewModel.swift in Sources */,
 				2B78DED82D92B7D8003B7D82 /* Transfer.swift in Sources */,
@@ -4194,6 +4236,7 @@
 				2B78DEDF2D92B7D8003B7D82 /* AddAssetsViewModelBase.swift in Sources */,
 				2B78DEE02D92B7D8003B7D82 /* AssetToAdd.swift in Sources */,
 				2B78DEE12D92B7D8003B7D82 /* AddAssetsViewModel.swift in Sources */,
+				FF75F4602D9D17B500E7695A /* BlockchainProvider.swift in Sources */,
 				2B78DEE22D92B7D8003B7D82 /* AssetListViewModelBase.swift in Sources */,
 				2B78DEE32D92B7D8003B7D82 /* AddAssetViewCell.swift in Sources */,
 				2B78DEE42D92B7D8003B7D82 /* String+Extensions.swift in Sources */,
@@ -4243,6 +4286,7 @@
 				2BEB9C7E2D7B5BFB00699AC1 /* FeeRateViewModelBase.swift in Sources */,
 				2B7C47032B32D8F3001C804B /* FireblocksManager.swift in Sources */,
 				2B7C471E2B32D916001C804B /* CodableExtension.swift in Sources */,
+				FF75F44C2D9D133C00E7695A /* Blockchain.swift in Sources */,
 				2B83E26C2D38033F003B1397 /* PassphraseInfoBody.swift in Sources */,
 				2BEEF7C72BAC6F11004AF6AB /* DerivedAssetRow.swift in Sources */,
 				2B2B18B32D2ACF4B00A2B39D /* SpinnerView.swift in Sources */,
@@ -4525,6 +4569,7 @@
 				2B558E9B2B484A87006212B2 /* ValidateRequestIdViewModel.swift in Sources */,
 				86EBAABA2A5C3D560085E76B /* FireblocksManager.swift in Sources */,
 				2B21D7E42BC563F7003ADD29 /* AppDelegate.swift in Sources */,
+				FF75F44E2D9D133C00E7695A /* Blockchain.swift in Sources */,
 				2BCFE1312D5B7B39006BE227 /* NavigationBarLeftHeader.swift in Sources */,
 				2B558E9E2B484AC4006212B2 /* ValidateRequestIdView.swift in Sources */,
 				2B2B18872D2A8A0C00A2B39D /* SignInView.swift in Sources */,
