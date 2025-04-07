@@ -60,6 +60,14 @@ class SessionManager: ObservableObject {
 
     }
     
+    func constructImageURL(iconUrl: String?, symbol: String) -> String? {
+        if iconUrl?.isEmpty ?? true, !symbol.isEmpty {
+            let formattedSymbol = symbol.replacingOccurrences(of: "_TEST\\d*$", with: "", options: .regularExpression).lowercased()
+            return "https://assets.coincap.io/assets/icons/\(formattedSymbol)@2x.png"
+        }
+        return iconUrl
+    }
+    
     func sendRequest(url: URL, httpMethod: String = "POST", timeout: TimeInterval? = nil, numberOfRetries: Int = 2, message: String? = nil, body: Any? = nil, skipLogs: Bool = false) async throws -> (Data) {
         guard let currentAccessToken = await AuthRepository.getUserIdToken() else {
             throw SessionManager.error

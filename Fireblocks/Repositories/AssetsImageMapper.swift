@@ -34,7 +34,13 @@ struct AssetsImageMapper {
 
     ]
     
-    func getIconForAsset(_ assetSign: String) -> UIImage {
-        return cryptoMap[assetSign]?.getIcon() ?? AssetsIcons.PlaceholderIcon.getIcon()
+    func getIconForAsset(_ assetSign: String, isBlockchain: Bool = false) -> UIImage {
+        return cryptoMap[assetSign]?.getIcon() ?? {
+            if (isBlockchain) {
+                AssetsIcons.BlockchainPlaceholderIcon.getIcon()
+            } else {
+                AssetsIcons.PlaceholderIcon.getIcon()
+            }
+        }()
     }
 }

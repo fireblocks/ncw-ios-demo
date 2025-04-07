@@ -48,17 +48,7 @@ struct AssetRow: View {
     @ViewBuilder
     func configAssetView() -> some View {
         HStack(spacing: 16) {
-            if let image = viewModel.image {
-                RoundedRectangle(cornerRadius: 8)
-                    .fill(AssetsColors.gray2.color())
-                    .frame(width: 46, height: 46)
-                    .overlay {
-                        image
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 30, height: 30)
-                    }
-            }
+            CryptoIconCardView(asset: asset, showBlockchainImage: true)
             VStack(alignment: .center, spacing: 4) {
                 HStack {
                     let title = AssetsUtils.getAssetTitleText(asset: asset.asset)
@@ -89,7 +79,6 @@ struct AssetRow: View {
             }
         }
         .padding(.vertical, 8)
-
     }
 
     @ViewBuilder
@@ -156,13 +145,14 @@ struct AssetRow: View {
     }
 }
 
-// create a #Preview for the AssetRow
 #Preview {
+    #if EW
     NavigationContainerView(mockManager: EWManagerMock()) {
         SpinnerViewContainer {
             let asset: Asset = Asset(id: "1", symbol: "BTC", name: "Bitcoin", blockchain: "BTC")
             let jsonString = """
             {
+                "id": "xxxxx",
                 "total": "0.0001",
                 "available": "0.0001",
                 "frozen": "0.0",
@@ -176,5 +166,26 @@ struct AssetRow: View {
             AssetRow(asset: assetSummary)
         }
     }
+    #else
+    NavigationContainerView() {
+        SpinnerViewContainer {
+            let asset: Asset = Asset(id: "1", symbol: "BTC", name: "Bitcoin", type: "", blockchain: "BTC")
+            let jsonString = """
+            {
+                "id": "xxxxx",
+                "total": "0.0001",
+                "available": "0.0001",
+                "frozen": "0.0",
+                "pending": "0.0"
+            }
+            """
+            let jsonData = jsonString.data(using: .utf8)!
+            let balance = try! JSONDecoder().decode(AssetBalance.self, from: jsonData)
+            let assetSummary: AssetSummary = AssetSummary(asset: asset, balance: balance)
+        
+            AssetRow(asset: assetSummary)
+        }
+    }
+    #endif
 }
 

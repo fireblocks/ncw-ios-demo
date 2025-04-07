@@ -14,6 +14,7 @@ import SwiftUI
     #endif
 #endif
 
+
 class AssetsUtils {
     
     static func getAssetTitleText(asset: Asset?) -> String {
@@ -30,13 +31,23 @@ class AssetsUtils {
         
         return title!
         
-        func removeTestSuffix(_ title: String) -> String {
-            var title = title
-            if title.contains("_TEST") {
-                title = title.replacingOccurrences(of: "_TEST\\d*$", with: "", options: .regularExpression)
-            }
-            return title
-        }
-        
+                
     }
+
+    static func removeTestSuffix(_ title: String) -> String {
+        var title = title
+        if title.contains("_TEST") {
+            title = title.replacingOccurrences(of: "_TEST\\d*$", with: "", options: .regularExpression)
+        }
+        return title
+    }
+    
+    static func getBlockchainDisplayName(blockchainName: String?) -> String {
+        if let blockchain = BlockchainProvider.shared.getBlockchain(blockchainName: blockchainName ?? "") {
+            return blockchain.displayName
+        }
+        return ""
+    }
+
 }
+

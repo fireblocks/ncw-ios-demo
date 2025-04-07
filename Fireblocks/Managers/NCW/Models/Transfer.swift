@@ -42,6 +42,7 @@ struct TransferInfo: Identifiable, Equatable, Hashable {
     let senderWalletId: String
     let receiverWalletID: String
     let image: UIImage
+    var nftWrapper: NFTWrapper?
     
     var color: UIColor {
         switch status {
@@ -131,6 +132,14 @@ struct TransferInfo: Identifiable, Equatable, Hashable {
             return "Sent "
         } else {
             return "Received "
+        }
+    }
+    
+    func getSendOrReceiveTitle(walletId: String) -> String {
+        if senderWalletId == walletId {
+            return LocalizableStrings.sent
+        } else {
+            return LocalizableStrings.received
         }
     }
 
