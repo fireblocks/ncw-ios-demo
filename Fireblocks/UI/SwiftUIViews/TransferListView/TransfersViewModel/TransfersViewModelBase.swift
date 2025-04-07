@@ -81,6 +81,9 @@ class TransfersViewModelBase: ObservableObject {
     func updateUI(){
         if !transfers.isEmpty {
             AssetListViewModel.shared.fetchAssets()
+            #if EW
+            NFTViewModel.shared.loadNFTs(transfers: transfers)
+            #endif
         }
     }
     

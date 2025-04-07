@@ -39,6 +39,11 @@ struct TransferListView: View {
         .navigationBarTitleDisplayMode(.inline)
         .animation(.default, value: viewModel.selectedTransfer)
         .tint(.white)
+        .onAppear {
+        #if EW
+            viewModel.setup(ewManager: ewManager)
+        #endif
+        }
     }
     
     @ViewBuilder

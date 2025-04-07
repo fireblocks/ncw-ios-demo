@@ -592,6 +592,14 @@ extension SessionManager {
         }
     }
     
+    func constructImageURL(iconUrl: String?, symbol: String) -> String? {
+        if iconUrl?.isEmpty ?? true, !symbol.isEmpty {
+            let formattedSymbol = symbol.replacingOccurrences(of: "_TEST\\d*$", with: "", options: .regularExpression).lowercased()
+            return "https://assets.coincap.io/assets/icons/\(formattedSymbol)@2x.png"
+        }
+        return iconUrl
+    }
+    
     func loadImage(url: URL) async throws -> UIImage {
         if let image = CacheManager.shared.getImage(url: url) {
             return image

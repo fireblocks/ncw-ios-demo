@@ -14,16 +14,9 @@ struct TransferRow: View {
         VStack(spacing: 2) {
             HStack(spacing: 2) {
                 Text(transferInfo.getReceiverRowTitle(walletId: fireblocksManager.walletId))
-                Text(transferInfo.isNFT() ? "NFT" : transferInfo.blockChainName)
-                Text(transferInfo.blockChainName)
-                    .padding(.horizontal, 8)
-                    .padding(.vertical, 6)
-                    .background(AssetsColors.gray2.color(), in: .capsule)
-                    .font(.b4)
-                    .foregroundColor(.secondary)
+                Text(transferInfo.isNFT() ? "NFT" : AssetsUtils.removeTestSuffix(transferInfo.assetSymbol))
                 Spacer()
                 Text(transferInfo.amount.formatted())
-
             }
             
             HStack {

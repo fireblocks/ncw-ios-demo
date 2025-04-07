@@ -45,6 +45,7 @@ enum AssetsIcons: String {
     case BitcoinIcon = "bitcoin_icon"
     case EthereumIcon = "ethereum_icon"
     case PlaceholderIcon = "placeholder_icon"
+    case BlockchainPlaceholderIcon = "blockchain_placeholder_icon"
     case SolanaIcon = "solana_icon"
     case AdaIcon = "ada"
     case AvaxIcon = "avax"

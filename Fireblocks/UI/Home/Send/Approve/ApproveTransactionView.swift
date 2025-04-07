@@ -30,37 +30,37 @@ struct ApproveTransactionView: View {
     var body: some View {
         ZStack {
             AppBackgroundView()
-            if let txId = viewModel.transaction.txId {
-                List {
-                    Section {
+            VStack(spacing: 0) {
+                if viewModel.transaction.txId != nil {
+                    List {
                         VStack(spacing: 0) {
-                            if let isEndedTransaction = viewModel.transferInfo?.isEndedTransaction(), !isEndedTransaction {
-                                Text("You're sending")
-                                    .frame(maxWidth: .infinity, alignment: .leading)
-                                    .padding()
-                            }
                             TransactionHeaderView(transaction: viewModel.transaction, transferInfo: viewModel.transferInfo)
-
+                            Divider()
+                            
+                            let views: [AnyView] = [
+                                AnyView(recipient),
+                                AnyView(fee),
+                                AnyView(status),
+                                AnyView(creationDate),
+                                AnyView(fireblocksId),
+                                AnyView(transactionHash)
+                            ]
+                            
+                            VStack(spacing: 0) {
+                                ForEach(0..<views.count, id: \.self) { index in
+                                    views[index]
+                                    if index < views.count - 1 {
+                                        Divider()
+                                    }
+                                }
+                            }
                         }
+                        .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
                     }
-                    .listRowBackground(Color.clear)
-                    .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
-                    
-                    Section {
-                        VStack(spacing: 16) {
-                            creationDate
-                            receivedFrom
-                            fee
-                            transactionHash
-                            fireblocksId
-                            assetId
-                        }
-                    }
-                    .listRowBackground(Color.clear)
-                    .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
-                    
+                    .scrollContentBackground(.hidden)
                 }
             }
+            .background(Color.clear)
         }
         .safeAreaInset(edge: .bottom, content: {
 //            if viewModel.transferInfo?.status == .pendingSignature {
@@ -109,117 +109,67 @@ struct ApproveTransactionView: View {
 
         })
         .scrollContentBackground(.hidden)
-        .navigationTitle("Transaction Details")
+        .navigationTitle(LocalizableStrings.transactionDetails)
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden()
         .contentMargins(.top, 16)
-
     }
     
     @ViewBuilder
     private var creationDate: some View {
-        VStack(spacing: 8) {
-            Text("Creation date")
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .foregroundStyle(.secondary)
-                .font(.b2)
-            Text(viewModel.getCreationDate())
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .multilineTextAlignment(.leading)
-                .font(.b2)
-        }
+        DetailsListItemView(
+            title: LocalizableStrings.creationDate,
+            contentText: viewModel.getCreationDate(),
+            showCopyButton: false
+        )
     }
     
     @ViewBuilder
-    private var receivedFrom: some View {
-        VStack(spacing: 8) {
-            Text(viewModel.getReceivedFromTitle())
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .foregroundStyle(.secondary)
-                .font(.b2)
-            HStack {
-                Text(viewModel.getReceivedFrom())
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .multilineTextAlignment(.leading)
-                    .font(.b2)
-                Spacer()
-                Image(uiImage: AssetsIcons.copy.getIcon())
-
-            }
-            .contentShape(.rect)
-            .onTapGesture {
-                loadingManager.toastMessage = "Copied!"
-                UIPasteboard.general.string = viewModel.getReceivedFrom()
-
-            }
-
-        }
+    private var recipient: some View {
+        DetailsListItemView(
+            title: LocalizableStrings.recipient,
+            contentText: viewModel.getReceivedFrom(),
+            showCopyButton: true
+        )
     }
 
     
     @ViewBuilder
     private var fee: some View {
-        VStack(spacing: 8) {
-            Text("Fee")
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .foregroundStyle(.secondary)
-                .font(.b2)
-            Text(viewModel.getFee())
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .font(.b2)
+        DetailsListItemView(
+            title: LocalizableStrings.fee,
+            contentText: viewModel.getFee(),
+            showCopyButton: true
+        )
+    }
+    
+    @ViewBuilder
+    private var status: some View {
+        if let transferInfo = viewModel.transferInfo {
+            DetailsListItemView(
+                title: LocalizableStrings.status,
+                contentText: transferInfo.status.rawValue.capitalized,
+                contentColor: transferInfo.getColor()
+            )
         }
     }
 
     @ViewBuilder
     private var transactionHash: some View {
-        VStack(spacing: 8) {
-            HStack {
-                Text("Transaction hash")
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .foregroundStyle(.secondary)
-                    .font(.b2)
-            }
-            HStack {
-                Text(viewModel.getTransactionHash())
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .multilineTextAlignment(.leading)
-                    .font(.b2)
-                Spacer()
-                Image(uiImage: AssetsIcons.copy.getIcon())
-            }
-            .contentShape(.rect)
-            .onTapGesture {
-                loadingManager.toastMessage = "Copied!"
-                UIPasteboard.general.string = viewModel.getTransactionHash()
-
-            }
-        }
+        DetailsListItemView(
+            title: LocalizableStrings.transactionHash,
+            contentText: viewModel.getTransactionHash(),
+            showCopyButton: true
+        )
     }
     
     @ViewBuilder
     private var fireblocksId: some View {
-        VStack(spacing: 4) {
-            HStack {
-                Text("Fireblocks Id")
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .foregroundStyle(.secondary)
-                    .font(.b2)
-            }
-            HStack {
-                Text(viewModel.getTransactionId())
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .multilineTextAlignment(.leading)
-                    .font(.b2)
-                Spacer()
-                Image(uiImage: AssetsIcons.copy.getIcon())
-            }
-            .contentShape(.rect)
-            .onTapGesture {
-                loadingManager.toastMessage = "Copied!"
-                UIPasteboard.general.string = viewModel.getTransactionId()
-
-            }
-        }
+        DetailsListItemView(
+            title: LocalizableStrings.fireblocks_transaction_id,
+            contentText: viewModel.getTransactionId(),
+            showCopyButton: true
+        )
     }
     
     @ViewBuilder
@@ -297,6 +247,8 @@ struct ApproveTransactionView: View {
     }
 
 }
+
+
 
 #Preview {
     #if EW
