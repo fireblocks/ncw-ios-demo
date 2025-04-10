@@ -45,17 +45,9 @@ struct TransferInfo: Identifiable, Equatable, Hashable {
     var nftWrapper: NFTWrapper?
     
     var color: UIColor {
-        switch status {
-        case .confirming, .broadcasting, .pendingSignature, .pendingAuthorization, .queued:
-            return (AssetsColors.inProgress.getColor())
-        case .completed, .submitted:
-            return (AssetsColors.success.getColor())
-        case .failed, .blocked, .cancelled, .rejected:
-            return (AssetsColors.alert.getColor())
-        default:
-            return (AssetsColors.white.getColor())
-        }
+        return TransferUtils.getStatusColor(status: status)
     }
+
     
     func getColor() -> Color {
         return Color(uiColor: color)
@@ -64,16 +56,19 @@ struct TransferInfo: Identifiable, Equatable, Hashable {
     var getStatusString: String {
         return status.rawValue.replacingOccurrences(of: "_", with: " ").lowercased().capitalized()
     }
+    
+
 
     #if EW
     static func toTransferInfo(response: TransactionResponse) -> TransferInfo {
         let statusType = response.status ?? .unknown
         let image = AssetsImageMapper().getIconForAsset(response.assetId ?? "")
+        let assetId = response.assetId?.hasPrefix("NFT") == true ? response.feeCurrency ?? "" : response.assetId ?? ""
         return TransferInfo(transactionID: response.id ?? "",
                             creationDate: response.createdAt?.toDateFormattedString() ?? "",
                             lastUpdated:  TimeInterval(response.lastUpdated ?? 0),
                             assetId: response.assetId ?? "",
-                            assetSymbol: response.assetId ?? "",
+                            assetSymbol: response.assetId?.hasPrefix("NFT") == true ? response.feeCurrency ?? "" : response.assetId ?? "", //TODO: find a better way to get the blockchain in caseof NFT
                             amount: Double(response.amountInfo?.amount ?? "0")?.formatFractions(fractionDigits: 6) ?? 0,
                             fee: Double(response.feeInfo?.networkFee ?? "0") ?? 0,
                             receiverAddress: response.destinationAddress ?? "",
@@ -168,7 +163,7 @@ struct TransferInfo: Identifiable, Equatable, Hashable {
     }
     
     func isNFT() -> Bool {
-        return assetId.contains("NFT")
+        return assetId.hasPrefix("NFT")
     }
     
     func toTransaction(assetListViewModel: AssetListViewModel) -> FBTransaction? {

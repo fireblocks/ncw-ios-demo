@@ -43,7 +43,8 @@ struct ApproveTransactionView: View {
                                 AnyView(status),
                                 AnyView(creationDate),
                                 AnyView(fireblocksId),
-                                AnyView(transactionHash)
+                                AnyView(transactionHash),
+                                AnyView(fireblocksNftId)
                             ]
                             
                             VStack(spacing: 0) {
@@ -114,6 +115,19 @@ struct ApproveTransactionView: View {
         .navigationBarBackButtonHidden()
         .contentMargins(.top, 16)
     }
+
+    @ViewBuilder
+    private var fireblocksNftId: some View {
+        let transferInfo: TransferInfo? = viewModel.transferInfo
+        if (transferInfo?.isNFT() == true) {
+            let nftView = DetailsListItemView(
+                title: LocalizableStrings.fireblocksNFTId,
+                contentText: transferInfo?.assetId,
+                showCopyButton: true
+            )
+            nftView
+        }
+    }
     
     @ViewBuilder
     private var creationDate: some View {
@@ -138,8 +152,7 @@ struct ApproveTransactionView: View {
     private var fee: some View {
         DetailsListItemView(
             title: LocalizableStrings.fee,
-            contentText: viewModel.getFee(),
-            showCopyButton: true
+            contentText: viewModel.getFee()
         )
     }
     
@@ -156,12 +169,16 @@ struct ApproveTransactionView: View {
 
     @ViewBuilder
     private var transactionHash: some View {
-        DetailsListItemView(
-            title: LocalizableStrings.transactionHash,
-            contentText: viewModel.getTransactionHash(),
-            showCopyButton: true
-        )
+        let transactionHash = viewModel.getTransactionHash()
+        if !transactionHash.isEmpty {
+            DetailsListItemView(
+                title: LocalizableStrings.transactionHash,
+                contentText: transactionHash,
+                showCopyButton: true
+            )
+        }
     }
+
     
     @ViewBuilder
     private var fireblocksId: some View {
@@ -171,32 +188,7 @@ struct ApproveTransactionView: View {
             showCopyButton: true
         )
     }
-    
-    @ViewBuilder
-    private var assetId: some View {
-        VStack(spacing: 4) {
-            HStack {
-                Text("Asset Id")
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .foregroundStyle(.secondary)
-                    .font(.b2)
-            }
-            HStack {
-                Text(viewModel.getAssetId())
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .multilineTextAlignment(.leading)
-                    .font(.b2)
-                Spacer()
-                Image(uiImage: AssetsIcons.copy.getIcon())
-            }
-            .contentShape(.rect)
-            .onTapGesture {
-                loadingManager.toastMessage = "Copied!"
-                UIPasteboard.general.string = viewModel.getAssetId()
-
-            }
-        }
-    }
+        
 
     @ViewBuilder
     private var buttons: some View {
@@ -239,10 +231,9 @@ struct ApproveTransactionView: View {
     
     @ViewBuilder
     private func discardAlert() -> some View {
-        DiscardAlert(title: "Are you sure you want to discard this transaction", mainTitle: "Discard transaction") {
+        DiscardAlert(title: "Cancel transaction?", mainTitle: "Cancel transaction", image: .errorBox) {
             viewModel.isDiscardAlertPresented = false
             viewModel.cancelTransaction()
-
         }
     }
 

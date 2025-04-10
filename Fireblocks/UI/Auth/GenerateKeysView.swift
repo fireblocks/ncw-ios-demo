@@ -31,7 +31,7 @@ struct GenerateKeysView: View {
                         .frame(maxWidth: .infinity, alignment: .center)
                         .multilineTextAlignment(.center)
                         .padding(.bottom, 16)
-                    Text("We use MPC keys to provide the highest level of wallet security. MPCs allow different parties to hold a piece of a private key without possessing the entire thing.")
+                    Text("We use multi-party computation (MPC) keys to provide the highest level of wallet security. MPCs allow for different parties to hold a piece of a private key without possessing the entire thing.")
                         .foregroundStyle(.secondary)
                         .multilineTextAlignment(.center)
                         .font(.b1)

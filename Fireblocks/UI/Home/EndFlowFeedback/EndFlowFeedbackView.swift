@@ -129,7 +129,7 @@ struct EndFlowFeedbackView_Previews: PreviewProvider {
                 subTitle: "The process was canceled.",
                 navigationBarTitle: "Add Device",
                 buttonIcon: AssetsIcons.addNewDevice.getIcon(),
-                buttonTitle: "Go home",
+                buttonTitle: LocalizableStrings.goHome,
                 actionButton: {
                     print("action")
                 },

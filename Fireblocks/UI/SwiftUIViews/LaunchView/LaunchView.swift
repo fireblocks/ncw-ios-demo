@@ -14,8 +14,7 @@ struct LaunchView: View {
             
     var body: some View {
         ZStack {
-            AppBackgroundView()
-            
+            AppBackgroundView()            
             VStack {
                 VStack(spacing: 0) {
                     Text("Securely store, send, and receive digital assets on the go.")
@@ -26,7 +25,7 @@ struct LaunchView: View {
                     Button {
                         coordinator.path.append(NavigationTypes.signIn)
                     } label: {
-                        Image("letsGo")
+                        Image("getStarted")
                     }
                     .padding(.vertical, 40)
                 }

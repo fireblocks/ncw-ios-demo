@@ -8,28 +8,33 @@
 import SwiftUI
 
 struct BulletSentenceView: View {
-    var textList: [String?]
-    var textStyle: Font = .b2
+    let textList: [String?]
+    let textStyle: Font = .b2
+    let textColor: Color = .secondary
 
     var body: some View {
-        HStack(spacing: 4) {
-            ForEach(textList.compactMap { $0 }, id: \.self) { text in
-                Text(text)
-                    .font(textStyle)
-                    .foregroundStyle(.secondary)
-                if text != textList.compactMap({ $0 }).last {
-                    Image(systemName: "circle.fill")
-                        .resizable()
-                        .frame(width: 4, height: 4)
-                        .foregroundColor(.secondary)
-                }
+        Text(buildBulletSentence())
+            .font(textStyle)
+            .foregroundColor(textColor)
+    }
+
+    private func buildBulletSentence() -> AttributedString {
+        var result = AttributedString()
+        let bullet = "•" // Bullet symbol
+
+        for (index, text) in textList.compactMap({ $0 }).enumerated() {
+            if index > 0 {
+                result.append(AttributedString(" \(bullet) "))
             }
+            var attributedText = AttributedString(text)
+            attributedText.foregroundColor = textColor
+            result.append(attributedText)
         }
+
+        return result
     }
 }
 
-struct BulletSentence_Previews: PreviewProvider {
-    static var previews: some View {
-        BulletSentenceView(textList: ["Ethereum", "ERC721"])
-    }
+#Preview {
+    BulletSentenceView(textList: ["Ethereum", "ERC721"])    
 }

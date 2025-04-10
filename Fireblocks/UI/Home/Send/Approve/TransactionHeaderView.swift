@@ -28,7 +28,6 @@ struct TransactionHeaderView: View {
         #if EW
         if let transferInfo, transferInfo.isNFT() {
             self.nftWrapper = NFTViewModel.shared.getNFTWrapper(id: transferInfo.assetId)
-            print("TransactionHeaderView init with NFT, nftWrapper id = \(nftWrapper?.id ?? "")")
         }
         #endif
     }
@@ -41,7 +40,7 @@ struct TransactionHeaderView: View {
     var body: some View {
         let title = transferInfo?.getSendOrReceiveTitle(walletId: fireblocksManager.walletId) ?? ""
         if (nftWrapper != nil) {
-            var balance = transaction.amountToSend.formatted()
+            let balance = transaction.amountToSend.formatted()
             DetailsListItemView(
                 title: title,
                 contentText: getNumberOfNFTs(balance: balance)

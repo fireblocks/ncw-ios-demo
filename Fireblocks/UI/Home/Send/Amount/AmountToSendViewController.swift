@@ -57,7 +57,7 @@ class AmountToSendViewController: UIViewController, SwiftUIEnvironmentBridge {
         errorMessage.isHidden = true
         amountInput.numberOfLines = 2
         if let symbol = viewModel.getAsset().asset?.symbol {
-            amountInput.text = "0 \(symbol)"
+            amountInput.text = "0 \(AssetsUtils.removeTestSuffix(symbol))"
         }
         for key in numberPadKeys {
             key.layer.cornerRadius = 16

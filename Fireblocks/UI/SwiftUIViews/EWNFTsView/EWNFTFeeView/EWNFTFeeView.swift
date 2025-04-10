@@ -27,42 +27,35 @@ struct EWNFTFeeView: View {
     var body: some View {
         ZStack {
             AppBackgroundView()
-            if let token = viewModel.dataModel.token {
+            if viewModel.dataModel.token != nil {
                 List {
                     Section {
-                        VStack(spacing: 0) {
-                            EWNFTCard(token: token, isRow: true)
-                                .padding()
-                        }
-                    }
-                    .background(AssetsColors.gray2.color(), in: .rect)
-                    .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
-                    
-                    Section {
-                        VStack {
-                            Text("Select fee speed")
+                        VStack(spacing: 16) {
+                            Text(LocalizableStrings.transactionSpeed)
                                 .frame(maxWidth: .infinity, alignment: .leading)
                                 .font(.b2)
-                            ForEach(FeeLevel.allCases, id: \.self) { fee in
-                                Text(viewModel.speed(level: fee))
-                                    .frame(maxWidth: .infinity, alignment: .leading)
-                                    .padding()
-                                    .contentShape(.rect())
-                                    .background(fee == viewModel.dataModel.feeLevel ? AssetsColors.gray2.color()  : Color.clear, in: .rect(cornerRadius: 8))
-                                    .foregroundStyle(fee == viewModel.dataModel.feeLevel ? .white : .secondary)
-                                    .onTapGesture {
-                                        viewModel.dataModel.feeLevel = fee
-                                    }
-                                
+                            VStack(spacing: 4) {
+                                ForEach(FeeLevel.allCases, id: \.self) { fee in
+                                    Text(viewModel.speed(level: fee))
+                                        .frame(maxWidth: .infinity, alignment: .leading)
+                                        .padding()
+                                        .contentShape(.rect())
+                                        .background(fee == viewModel.dataModel.feeLevel ? AssetsColors.gray2.color()  : Color.clear, in: .rect(cornerRadius: 8))
+                                        .foregroundStyle(fee == viewModel.dataModel.feeLevel ? .white : .secondary)
+                                        .onTapGesture {
+                                            viewModel.dataModel.feeLevel = fee
+                                        }
+                                }
                             }
-                            
                         }
-                        .padding()
+                        .padding(.vertical, 32)
                     }
-                    .background(AssetsColors.gray1.color(), in: .rect)
-                    .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
-                    
+                    .listRowBackground(AssetsColors.gray1.color())
+                    .listRowSeparator(.hidden)
                 }
+                .listRowSeparator(.hidden)
+                .listStyle(.insetGrouped)
+
             }
         }
         .safeAreaInset(edge: .bottom, content: {
@@ -72,7 +65,7 @@ struct EWNFTFeeView: View {
                 Button {
                     viewModel.createTransaction()
                 } label: {
-                    Text("Create transaction")
+                    Text(LocalizableStrings.continueButton)
                         .frame(maxWidth: .infinity, alignment: .center)
                         .padding(8)
                 }
@@ -90,7 +83,7 @@ struct EWNFTFeeView: View {
             viewModel.setup(loadingManager: loadingManager, ewManager: ewManager, coordinator: coordinator)
         }
         .animation(.default, value: viewModel.dataModel.feeLevel)
-        .navigationTitle("NFT Transfer")
+        .navigationTitle(LocalizableStrings.fee)
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden()
         .navigationBarItems(leading: CustomBackButtonView())

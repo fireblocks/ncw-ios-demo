@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -14,7 +13,7 @@
         </array>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AdvancedInfoViewController" customModule="NCW_sandbox" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AdvancedInfoViewController" customModule="EW_dev" customModuleProvider="target">
             <connections>
                 <outlet property="algorithmsCollectionView" destination="htW-GN-6vD" id="dgn-1O-SBT"/>
                 <outlet property="copyDeviceIdButton" destination="tIW-Mb-caG" id="EHS-3t-oC7"/>
@@ -38,6 +37,7 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ROe-at-BDa">
                     <rect key="frame" x="341" y="95" width="36" height="36"/>
                     <constraints>
+                        <constraint firstAttribute="width" secondItem="ROe-at-BDa" secondAttribute="height" multiplier="1:1" id="byY-6T-c3V"/>
                         <constraint firstAttribute="width" constant="36" id="u9I-pq-eQn"/>
                     </constraints>
                     <color key="tintColor" name="white"/>
@@ -62,6 +62,7 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tIW-Mb-caG">
                     <rect key="frame" x="341" y="179" width="36" height="36"/>
                     <constraints>
+                        <constraint firstAttribute="width" secondItem="tIW-Mb-caG" secondAttribute="height" multiplier="1:1" id="wsd-9l-XmK"/>
                         <constraint firstAttribute="width" constant="36" id="xoZ-pw-tdG"/>
                     </constraints>
                     <color key="tintColor" name="white"/>
@@ -89,7 +90,7 @@
                 </collectionView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <color key="backgroundColor" name="black"/>
+            <color key="backgroundColor" name="background"/>
             <constraints>
                 <constraint firstItem="q7F-wn-zMq" firstAttribute="top" secondItem="ROe-at-BDa" secondAttribute="bottom" constant="16" id="4uX-kJ-blc"/>
                 <constraint firstItem="D6y-2H-4eT" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="48" id="8Wf-XU-2Ja"/>
@@ -103,22 +104,20 @@
                 <constraint firstItem="htW-GN-6vD" firstAttribute="top" secondItem="Vr7-Rj-Xr7" secondAttribute="bottom" constant="24" id="Oof-YT-Zk2"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="tIW-Mb-caG" secondAttribute="trailing" constant="16" id="S0p-0y-UXU"/>
                 <constraint firstItem="D6y-2H-4eT" firstAttribute="leading" secondItem="ltp-DG-Gb0" secondAttribute="leading" id="ZLI-UZ-yHL"/>
-                <constraint firstItem="ROe-at-BDa" firstAttribute="width" secondItem="ROe-at-BDa" secondAttribute="height" multiplier="1:1" id="byY-6T-c3V"/>
                 <constraint firstItem="ltp-DG-Gb0" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="24" id="gbY-tq-DYX"/>
                 <constraint firstItem="Vr7-Rj-Xr7" firstAttribute="trailing" secondItem="q7F-wn-zMq" secondAttribute="trailing" id="jcG-uu-elX"/>
                 <constraint firstItem="Vr7-Rj-Xr7" firstAttribute="top" secondItem="ltp-DG-Gb0" secondAttribute="bottom" constant="16" id="krg-up-1Ys"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Vr7-Rj-Xr7" secondAttribute="trailing" constant="24" id="mQm-L3-tyf"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="htW-GN-6vD" secondAttribute="bottom" id="rKQ-4I-xcK"/>
                 <constraint firstItem="Vr7-Rj-Xr7" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="24" id="w8u-Rh-VTT"/>
-                <constraint firstItem="tIW-Mb-caG" firstAttribute="width" secondItem="tIW-Mb-caG" secondAttribute="height" multiplier="1:1" id="wsd-9l-XmK"/>
             </constraints>
             <point key="canvasLocation" x="137" y="25"/>
         </view>
     </objects>
     <resources>
         <image name="copy" width="20" height="20"/>
-        <namedColor name="black">
-            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <namedColor name="background">
+            <color red="0.070588235294117646" green="0.070588235294117646" blue="0.070588235294117646" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="gray_4">
             <color red="0.62699997425079346" green="0.62699997425079346" blue="0.62699997425079346" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

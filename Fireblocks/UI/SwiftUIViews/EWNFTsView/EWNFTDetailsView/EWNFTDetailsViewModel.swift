@@ -61,7 +61,7 @@ extension EWNFTDetailsView {
                 }
                 
             }
-        }
+        }    
         
         func proceedToTransfer() {
             coordinator?.path.append(NavigationTypes.transferNFT(dataModel))

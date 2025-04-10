@@ -25,7 +25,7 @@ extension NFTIconCardView {
         
         init(iconUrl: String?, blockchain: String?) {
                         
-            if let imageURL = iconUrl, let url = URL(string: imageURL) { //TODO: add blockchain icon
+            if let imageURL = iconUrl, let url = URL(string: imageURL) {
                 Task {
                     if let uiimage = try? await SessionManager.shared.loadImage(url: url) {
                         await MainActor.run {
