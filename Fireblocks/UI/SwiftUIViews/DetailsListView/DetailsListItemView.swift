@@ -64,13 +64,10 @@ struct DetailsListItemView: View {
     }
 }
 
-struct DetailsListItem_Previews: PreviewProvider {
-    static var previews: some View {
-        DetailsListItemView(
-            title: "Recipientldkh;akdh;akhd;akhd",
-            contentText: "0x324387ynckc83y48fhlc883mf",
-            showCopyButton: true
-        )
-        .previewLayout(.sizeThatFits)
-    }
+#Preview {
+    DetailsListItemView(
+        title: "Recipient",
+        contentText: "0x324387ynckc83y48fhlc883mf",
+        showCopyButton: true
+    )
 }

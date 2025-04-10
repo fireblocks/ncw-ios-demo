@@ -35,22 +35,22 @@ struct EWTransferNFTView: View {
                                 .padding()
                         }
                     }
-                    .background(AssetsColors.gray2.color(), in: .rect)
+                    .background(AssetsColors.gray1.color(), in: .rect)
                     .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
                     
                     Section {
-                        VStack {
-                            Text("Scan or enter a receiving address ")
+                        VStack(spacing: 16) {
+                            Text(LocalizableStrings.address)
                                 .frame(maxWidth: .infinity, alignment: .leading)
                                 .font(.b2)
                             
-                            HStack(spacing: 16) {
+                            HStack(spacing: 0) {
                                 ZStack {
                                     RoundedRectangle(cornerRadius: 8)
                                         .fill(AssetsColors.gray2.color())
-                                        .frame(height: 42)
+                                        .frame(height: 48)
                                         .overlay {
-                                            Text("Enter address")
+                                            Text(LocalizableStrings.address_hint)
                                                 .font(.b4)
                                                 .foregroundStyle(.secondary)
                                                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -63,6 +63,7 @@ struct EWTransferNFTView: View {
                                         .textFieldStyle(.plain)
                                         .padding(.horizontal, 8)
                                 }
+                                .padding(.trailing, 12)
                                 Button {
                                     viewModel.presentQRCodeScanner()
                                 } label: {
@@ -70,7 +71,7 @@ struct EWTransferNFTView: View {
                                         .resizable()
                                         .aspectRatio(contentMode: .fit)
                                         .frame(height: 20)
-                                        .padding(8)
+                                        .padding(7)
                                     
                                 }
                                 .buttonStyle(.borderedProminent)
@@ -79,6 +80,8 @@ struct EWTransferNFTView: View {
                             }
                         }
                     }
+                    .listRowBackground(AssetsColors.gray1.color())
+                    .listRowInsets(EdgeInsets(top: 24, leading: 16, bottom: 24, trailing: 16))
                 }
             }
         }

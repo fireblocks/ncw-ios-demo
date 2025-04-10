@@ -63,6 +63,7 @@ enum AssetsIcons: String {
 
 
     case errorImage = "error_image"
+    case errorBox = "error_box"
     case generateKeyImage = "generate_key_image"
     case keyImage = "key_image"
     case searchImage = "search_image"

@@ -94,7 +94,7 @@
 "approveJoinWalletFailed" = "Couldn’t add new device. Try again.";
 "approveJoinWalletCanceled" = "Couldn’t add device";
 "approveJoinWalletCanceledSubtitle" = "The process was canceled.";
-"goHome" = "Go home";
+"goHome" = "Go to wallet";
 "try_again" = "Try again";
 
 "addDeviceAdded" = "Your device was added!";

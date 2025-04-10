@@ -40,8 +40,6 @@ struct ValidateRequestIdTimeOutView: View {
     }
 }
 
-struct ValidateRequestIdTimeOutView_Previews: PreviewProvider {
-    static var previews: some View {
-        ValidateRequestIdTimeOutView()
-    }
+#Preview {
+    ValidateRequestIdTimeOutView()    
 }

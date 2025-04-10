@@ -44,14 +44,11 @@ struct AlertBannerView: View {
     }
 }
 
-struct AlertBannerView_Previews: PreviewProvider {
-    static var previews: some View {
-        VStack {
-            AlertBannerView(message: LocalizableStrings.approveJoinWalletCanceled)
-            AlertBannerView(subtitle: LocalizableStrings.approveJoinWalletCanceledSubtitle)
-            AlertBannerView(message: LocalizableStrings.approveJoinWalletCanceled, subtitle: LocalizableStrings.approveJoinWalletCanceledSubtitle)
-            AlertBannerView(message: LocalizableStrings.approveJoinWalletCanceled, subtitle: LocalizableStrings.approveJoinWalletCanceledSubtitle, color: AssetsColors.warning.color())
-        }
-        .padding()
+#Preview {
+    VStack {
+        AlertBannerView(message: LocalizableStrings.approveJoinWalletCanceled)
+        AlertBannerView(subtitle: LocalizableStrings.approveJoinWalletCanceledSubtitle)
+        AlertBannerView(message: LocalizableStrings.approveJoinWalletCanceled, subtitle: LocalizableStrings.approveJoinWalletCanceledSubtitle)
+        AlertBannerView(message: LocalizableStrings.approveJoinWalletCanceled, subtitle: LocalizableStrings.approveJoinWalletCanceledSubtitle, color: AssetsColors.warning.color())
     }
 }

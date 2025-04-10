@@ -1687,6 +1687,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		FF4D3AFF2DA570F0003FAE56 /* Transfer */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Transfer; sourceTree = "<group>"; };
 		FF75F44F2D9D171B00E7695A /* Assets */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Assets; sourceTree = "<group>"; };
 		FF75F4642D9D45E900E7695A /* DetailsListView */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = DetailsListView; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -2817,6 +2818,7 @@
 		867828C32A696D170035787D /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				FF4D3AFF2DA570F0003FAE56 /* Transfer */,
 				FF75F44F2D9D171B00E7695A /* Assets */,
 				867828C42A696D170035787D /* Biometrics */,
 				867828C62A696D170035787D /* Network */,
@@ -3090,6 +3092,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
+				FF4D3AFF2DA570F0003FAE56 /* Transfer */,
 				FF75F44F2D9D171B00E7695A /* Assets */,
 				FF75F4642D9D45E900E7695A /* DetailsListView */,
 			);
@@ -3125,6 +3128,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
+				FF4D3AFF2DA570F0003FAE56 /* Transfer */,
 				FF75F44F2D9D171B00E7695A /* Assets */,
 				FF75F4642D9D45E900E7695A /* DetailsListView */,
 			);
@@ -3162,6 +3166,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
+				FF4D3AFF2DA570F0003FAE56 /* Transfer */,
 				FF75F44F2D9D171B00E7695A /* Assets */,
 				FF75F4642D9D45E900E7695A /* DetailsListView */,
 			);
@@ -3196,6 +3201,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
+				FF4D3AFF2DA570F0003FAE56 /* Transfer */,
 				FF75F44F2D9D171B00E7695A /* Assets */,
 				FF75F4642D9D45E900E7695A /* DetailsListView */,
 			);
@@ -3233,6 +3239,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
+				FF4D3AFF2DA570F0003FAE56 /* Transfer */,
 				FF75F44F2D9D171B00E7695A /* Assets */,
 				FF75F4642D9D45E900E7695A /* DetailsListView */,
 			);
@@ -3268,6 +3275,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
+				FF4D3AFF2DA570F0003FAE56 /* Transfer */,
 				FF75F44F2D9D171B00E7695A /* Assets */,
 				FF75F4642D9D45E900E7695A /* DetailsListView */,
 			);

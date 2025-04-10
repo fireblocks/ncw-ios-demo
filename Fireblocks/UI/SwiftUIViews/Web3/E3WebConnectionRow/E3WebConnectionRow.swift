@@ -38,7 +38,7 @@ struct E3WebConnectionRow: View {
                         .font(.b1)
                 }
                 if let creationDate = viewModel.connection.creationDate, let date = creationDate.iso8601Date() {
-                    Text("Established \(date)")
+                    Text("Connectedon: \(date)")
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .foregroundStyle(.secondary)
                         .font(.b4)
