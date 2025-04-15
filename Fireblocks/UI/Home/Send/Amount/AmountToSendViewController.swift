@@ -46,6 +46,11 @@ class AmountToSendViewController: UIViewController, SwiftUIEnvironmentBridge {
     #endif
 
 //MARK: - LIFECYCLE Functions
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        setBottomBarBackground()
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel.delegate = self

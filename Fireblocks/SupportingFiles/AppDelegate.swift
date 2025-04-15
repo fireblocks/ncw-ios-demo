@@ -75,18 +75,24 @@ struct FireblocksApp: App {
         
         // Remove the bottom divider
         appearance.shadowColor = .clear
-        
-        // Set the updated appearance
-        UINavigationBar.appearance().standardAppearance = appearance
-        UINavigationBar.appearance().scrollEdgeAppearance = appearance
-        UINavigationBar.appearance().compactAppearance = appearance
-        
+                
         // Keeping the existing icon and tint customizations
         UINavigationBar.appearance().backIndicatorTransitionMaskImage = AssetsIcons.back.getIcon()
         UINavigationBar.appearance().backIndicatorImage = AssetsIcons.back.getIcon()
         UINavigationBar.appearance().tintColor = AssetsColors.white.getColor()
         UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffset(horizontal: -1000, vertical: 0), for: .default)
         UINavigationBar.appearance().isTranslucent = false
+        
+        appearance.backgroundColor = AssetsColors.background.getColor()
+        appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+        appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+
+        UINavigationBar.appearance().standardAppearance = appearance
+        UINavigationBar.appearance().compactAppearance = appearance
+        UINavigationBar.appearance().scrollEdgeAppearance = appearance
+        
+        
+
     }
 
 }

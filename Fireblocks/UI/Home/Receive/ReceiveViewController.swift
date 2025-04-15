@@ -41,6 +41,11 @@ class ReceiveViewController: UIViewController, SwiftUIEnvironmentBridge {
         super.init(coder: aDecoder)
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        setBottomBarBackground()
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         configView()
