@@ -84,6 +84,27 @@ extension UIViewController{
 
 
 extension UIViewController {
+    func setBottomBarBackground() {
+        // Use the current window from the view's window scene
+        guard let windowScene = view.window?.windowScene,
+              let window = windowScene.windows.first else {
+            return
+        }
+
+        let bottomInset = window.safeAreaInsets.bottom
+
+        let homeIndicatorBackgroundView = UIView(frame: CGRect(
+            x: 0,
+            y: view.bounds.height,
+            width: view.bounds.width,
+            height: bottomInset
+        ))
+        homeIndicatorBackgroundView.backgroundColor = AssetsColors.background.getColor() // Customize your color
+        homeIndicatorBackgroundView.autoresizingMask = [.flexibleWidth, .flexibleTopMargin]
+        view.addSubview(homeIndicatorBackgroundView)
+
+    }
+    
     func createLogFile() {
         guard let url = FireblocksManager.shared.getURLForLogFiles() else {
             print("Can't get file log url")

@@ -4928,7 +4928,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.8.0;
+				MARKETING_VERSION = 0.9.0;
 				OTHER_SWIFT_FLAGS = "-DDEV -DEW";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fireblocks.ew.demo.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -4968,7 +4968,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.8.0;
+				MARKETING_VERSION = 0.9.0;
 				OTHER_SWIFT_FLAGS = "-DDEV -DEW";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fireblocks.ew.demo.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -5424,8 +5424,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/fireblocks/ncw-ios-sdk";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.9.1;
+				kind = exactVersion;
+				version = "2.9.2-beta2";
 			};
 		};
 		2B21D7E72BC56B5C003ADD29 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {

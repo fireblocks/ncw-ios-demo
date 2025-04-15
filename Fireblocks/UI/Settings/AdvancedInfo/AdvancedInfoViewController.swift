@@ -30,6 +30,11 @@ class AdvancedInfoViewController: UIViewController {
     
     private let viewModel = AdvancedInfoViewModel()
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        setBottomBarBackground()
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Advanced Info"
