@@ -50,7 +50,6 @@ struct SupportedBlockchainsListItemView: View {
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
-        .frame(height: Dimens.detailsListItemHeight)
         .padding(.horizontal, Dimens.paddingLarge)
     }
 }
