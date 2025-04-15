@@ -45,26 +45,25 @@ class AssetViewCell: AddAssetViewCell {
 //MARK: - FUNCTIONS
     override func configCellView(){
         imageBackground.layer.cornerRadius = 9
-        assetBlockchainBadgeBackground.layer.cornerRadius = assetBlockchainBadgeBackground.frame.height / 2
     }
     
-    func configCellWith(asset: AssetSummary, section: Int, isBlockchainHidden: Bool = false) {
+    func configCellWith(asset: AssetSummary, section: Int) {
         sendButton.tag = section
         receiveButton.tag = section
         
-        configCellWith(asset: asset, isBlockchainHidden: isBlockchainHidden)
+        configCellWith(asset: asset)
     }
     
-    func configTransparentCellWith(asset: AssetSummary, isBlockchainHidden: Bool = false) {
+    func configTransparentCellWith(asset: AssetSummary) {
         assetContainerView.backgroundColor = .clear
         buttonsContainerView.backgroundColor = .clear
         
-        configCellWith(asset: asset, isBlockchainHidden: isBlockchainHidden)
+        configCellWith(asset: asset)
     }
     
 
-    func configCellWith(asset: AssetSummary, isBlockchainHidden: Bool = false) {
-        configAssetView(asset: asset, isBlockchainHidden: isBlockchainHidden)
+    func configCellWith(asset: AssetSummary) {
+        configAssetView(asset: asset)
 
         #if EW
         if let assetId = asset.asset?.id, let total = asset.balance?.total, let price = Double(total) {

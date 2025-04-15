@@ -54,7 +54,7 @@ struct TransferInfo: Identifiable, Equatable, Hashable {
     }
     
     var getStatusString: String {
-        return status.rawValue.replacingOccurrences(of: "_", with: " ").lowercased().capitalized()
+        return status.rawValue.beautifySigningStatus()
     }
     
 
@@ -155,7 +155,7 @@ struct TransferInfo: Identifiable, Equatable, Hashable {
     }
     
     func getTxHash() -> String {
-        return transactionHash.isEmpty ? "-" : transactionHash
+        return transactionHash
     }
     
     func isTxHashEmpty() -> Bool {

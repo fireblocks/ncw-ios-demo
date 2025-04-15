@@ -161,7 +161,7 @@ struct ApproveTransactionView: View {
         if let transferInfo = viewModel.transferInfo {
             DetailsListItemView(
                 title: LocalizableStrings.status,
-                contentText: transferInfo.status.rawValue.capitalized,
+                contentText: transferInfo.status.rawValue.beautifySigningStatus(),
                 contentColor: transferInfo.getColor()
             )
         }
@@ -183,7 +183,7 @@ struct ApproveTransactionView: View {
     @ViewBuilder
     private var fireblocksId: some View {
         DetailsListItemView(
-            title: LocalizableStrings.fireblocks_transaction_id,
+            title: LocalizableStrings.fireblocksTransactionId,
             contentText: viewModel.getTransactionId(),
             showCopyButton: true
         )

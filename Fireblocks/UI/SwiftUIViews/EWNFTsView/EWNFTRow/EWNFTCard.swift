@@ -69,7 +69,7 @@ struct EWNFTCard: View {
                 .background(AssetsColors.gray2.color())
             }
             .contentShape(Rectangle())
-            .clipShape(.rect(cornerRadius: 16))
+            .clipShape(.rect(cornerRadius: 12))
         }
     }
     

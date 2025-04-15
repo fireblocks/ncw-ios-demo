@@ -113,7 +113,7 @@ struct EWNFTPreviewView: View {
             if let status = transaction.status {
                 DetailsListItemView(
                     title: LocalizableStrings.status,
-                    contentText: status.rawValue.capitalized,
+                    contentText: status.rawValue.beautifySigningStatus(),
                     contentColor: Color(TransferUtils.getStatusColor(status: status))
                 )
             }
@@ -124,7 +124,7 @@ struct EWNFTPreviewView: View {
     private var fireblocksId: some View {
         if let value = viewModel.dataModel.transaction?.id {
             DetailsListItemView(
-                title: LocalizableStrings.fireblocks_transaction_id,
+                title: LocalizableStrings.fireblocksTransactionId,
                 contentText: value,
                 showCopyButton: true
             )

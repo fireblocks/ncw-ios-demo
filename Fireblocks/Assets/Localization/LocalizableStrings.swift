@@ -117,7 +117,7 @@ struct LocalizableStrings{
     static let fee = "Fee".localize()
     static let estimatedFee = "Estimated fee".localize()
     static let transactionHash = "Transaction hash".localize()
-    static let fireblocks_transaction_id = "Fireblocks transaction ID".localize()
+    static let fireblocksTransactionId = "Fireblocks transaction ID".localize()
     static let fireblocksNftId = "Fireblocks NFT ID".localize()
     static let creationDate = "Creation date".localize()
     static let status = "Status".localize()
@@ -139,4 +139,5 @@ struct LocalizableStrings{
     static let transactionSpeed = "Transaction speed".localize()
     static let transferNFT = "Transfer NFT".localize()
     static let backupYourKeys = "Backup your keys".localize()
+    static let description = "Description".localize()
 }

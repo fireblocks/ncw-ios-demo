@@ -40,7 +40,7 @@ enum TabIndex: Int, CaseIterable {
         case .NFTs:
             return "NFTs"
         case .Web3:
-            return "WeWeb3 connectionsb3"
+            return "Web3 Connections"
         #endif
         }
     }
