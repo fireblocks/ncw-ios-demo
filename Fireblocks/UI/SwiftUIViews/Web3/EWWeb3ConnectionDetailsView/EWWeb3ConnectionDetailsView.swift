@@ -26,7 +26,7 @@ struct EWWeb3ConnectionDetailsView: View {
         ZStack {
             AppBackgroundView()
             if let connection = viewModel.dataModel.connection {
-                VStack {
+                VStack(spacing: 0) {
                     EWWeb3ConnectionDetailsHeader(connection: connection, metadata: connection.sessionMetadata, isConnected: true)
                         .environment(ewManager)
                         .environmentObject(loadingManager)
@@ -49,7 +49,7 @@ struct EWWeb3ConnectionDetailsView: View {
                 .padding()
             }
         }
-        .navigationTitle(viewModel.dataModel.connection?.sessionMetadata?.appName ?? "Connection Details")
+        .navigationTitle("Connected dApp")
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden()
         .toolbar {

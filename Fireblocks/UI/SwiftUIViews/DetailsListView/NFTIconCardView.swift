@@ -32,7 +32,7 @@ struct NFTIconCardView: View {
             }
             .frame(width: 64, height: 64)
             .background(viewModel.uiimage?.averageColor)
-            .clipShape(.rect(cornerRadius: 8))
+            .clipShape(.rect(cornerRadius: 12))
             .contentShape(Rectangle())
             .overlay(alignment: .bottomTrailing) {
                 if (showBlockchainImage) {
@@ -58,8 +58,8 @@ struct NFTIconCardView: View {
             image.resizable()
                 .aspectRatio(contentMode: .fit)
         } else {
-            Image(systemName: "globe")
-                .frame(width: 64, height: 64)
+            Image(.nftPlaceholder)
+                .frame(width: 48, height: 48)
                 .clipShape(.rect(cornerRadius: 8))
 
         }

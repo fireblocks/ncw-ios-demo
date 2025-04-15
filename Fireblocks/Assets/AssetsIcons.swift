@@ -58,10 +58,6 @@ enum AssetsIcons: String {
     case XrpIcon = "xrp"
     case DotIcon = "dot"
     case CeloAlfIcon = "celo"
-
-
-
-
     case errorImage = "error_image"
     case errorBox = "error_box"
     case generateKeyImage = "generate_key_image"
@@ -74,6 +70,8 @@ enum AssetsIcons: String {
     case addAccountImage = "add_account"
     case existingAccountImage = "existing_account"
     case transferImage = "transfer_image"
+    case dappPlaceholder = "dapp_placeholder"
+    case nftPlaceholder = "nft_placeholder"
 }
 
 extension AssetsIcons {

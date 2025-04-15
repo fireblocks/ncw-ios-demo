@@ -24,7 +24,8 @@ class SendToViewModel {
     }
     
     func getAmountToSendAsString() -> String {
-        return String(transaction.amountToSend) + " \(transaction.asset.asset?.symbol ?? "")"
+        let symbol = AssetsUtils.removeTestSuffix(transaction.asset.asset?.symbol ?? "")
+        return String(transaction.amountToSend) + " \(symbol)"
     }
     
     func getPriceAsString() -> String {

@@ -75,7 +75,15 @@ class SendToViewController: UIViewController, SwiftUIEnvironmentBridge {
         textFieldBackground.layer.cornerRadius = 16
         textFieldBackground.addBorder(color: AssetsColors.gray2.getColor(), width: 1)
         
-        assetIcon.image = viewModel.getAsset()?.image ?? AssetsIcons.PlaceholderIcon.getIcon()
+        let asset = viewModel.getAsset()
+        let assetSymbol = asset?.asset?.symbol ?? ""
+        let iconURL: String? = SessionManager.shared.constructImageURL(iconUrl: asset?.iconUrl, symbol: assetSymbol)
+        if let iconURL {
+            assetIcon.sd_setImage(with: URL(string: iconURL), placeholderImage: asset?.image)
+        } else {
+            assetIcon.image = asset?.image
+        }
+        
         amountToSend.text = viewModel.getAmountToSendAsString()
         price.text = viewModel.getPriceAsString()
     }

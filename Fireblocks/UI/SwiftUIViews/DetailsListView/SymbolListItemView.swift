@@ -6,8 +6,6 @@
 //
 import SwiftUI
 
-import SwiftUI
-
 struct SymbolListItemView: View {
     var title: String
     var blockchain: String
