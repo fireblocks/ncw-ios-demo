@@ -23,9 +23,8 @@ struct PrepareForScanView: View {
         ZStack {
             AppBackgroundView()
             ReceivingAddressGenericView(
-                addressText: $viewModel.qrCode,
-                isQRPresented: $viewModel.isQRPresented,
                 onContinueClicked: { uri in
+                    viewModel.qrCode = uri
                     viewModel.sendRequestId()
                 },
                 scanTitleResId: "Scan the QR code on your new device",
@@ -39,142 +38,7 @@ struct PrepareForScanView: View {
         .onAppear() {
             viewModel.setup(coordinator: coordinator, loadingManager: loadingManager)
         }
-    }
-    
-//    var body: some View {
-//        ZStack {
-//            AppBackgroundView()
-//            VStack(spacing: 0) {
-//                Image(uiImage: AssetsIcons.addDeviceImage.getIcon())
-//                    .padding(.top, 12)
-//                    .padding(.bottom, 24)
-//                
-//                Text(LocalizableStrings.prepareForScanHeader)
-//                    .multilineTextAlignment(.center)
-//                    .padding(.bottom, 32)
-//                Button {
-//                    viewModel.scanQR()
-//                } label: {
-//                    HStack {
-//                        Spacer()
-//                        Image(AssetsIcons.scanQrCode.rawValue)
-//                        Text(LocalizableStrings.scanQRCode)
-//                            .font(.b1)
-//                        Spacer()
-//                    }
-//                    .padding(16)
-//                    .contentShape(Rectangle())
-//                    
-//                }
-//                .tint(.white)
-//                .buttonStyle(.plain)
-//                .frame(maxWidth: .infinity)
-//                .background(AssetsColors.gray2.color())
-//                .cornerRadius(16)
-//                
-//                Text("or")
-//                    .font(.b1)
-//                    .foregroundColor(AssetsColors.gray3.color())
-//                    .padding(16)
-//                
-//                ZStack {
-//                    VStack {
-//                        Button {
-//                            isTextFieldPresented = true
-//                        } label: {
-//                            HStack {
-//                                Spacer()
-//                                Text(LocalizableStrings.enterQRCodeLink)
-//                                    .font(.b1)
-//                                Spacer()
-//                            }
-//                            .padding(16)
-//                            .contentShape(Rectangle())
-//                            
-//                        }
-//                        .buttonStyle(.borderless)
-//                        .tint(.white)
-//                        .frame(maxWidth: .infinity)
-//                        .cornerRadius(16)
-//                        .opacity(isTextFieldPresented ? 0 : 1)
-//                        
-//                        Spacer()
-//                    }
-//                    
-//                    VStack(spacing: 12) {
-//                        Text(LocalizableStrings.copyQRCodeLink)
-//                            .font(.b1)
-//                            .padding(16)
-//
-//                        TextField("", text: $viewModel.qrCode)
-//                            .autocorrectionDisabled()
-//                            .frame(maxWidth: .infinity)
-//                            .padding()
-//                            .background(AssetsColors.gray2.color())
-//                            .cornerRadius(16)
-//                            .overlay(
-//                                RoundedRectangle(cornerRadius: 16)
-//                                    .stroke(AssetsColors.gray3.color(), lineWidth: 1)
-//                            )
-//                        Spacer()
-//                    }
-//                    .opacity(isTextFieldPresented ? 1 : 0)
-//                }
-//                Spacer()
-//                
-//                Button {
-//                    viewModel.sendRequestId()
-//                } label: {
-//                    HStack {
-//                        Spacer()
-//                        Text(LocalizableStrings.continueTitle)
-//                            .font(.b1)
-//                        Spacer()
-//                    }
-//                    .padding(16)
-//                    .contentShape(Rectangle())
-//                    
-//                }
-//                .buttonStyle(.plain)
-//                .frame(maxWidth: .infinity)
-//                .background(AssetsColors.gray2.color())
-//                .cornerRadius(16)
-//                .disabled(viewModel.qrCode.isTrimmedEmpty)
-//                .opacity(isTextFieldPresented ? 1 : 0)
-//            }
-//            .onAppear() {
-//                viewModel.setup(coordinator: coordinator, loadingManager: loadingManager)
-//            }
-//            .animation(.default, value: isTextFieldPresented)
-//            .padding(24)
-//            .navigationTitle(LocalizableStrings.addNewDeviceNavigationBar)
-//            .navigationBarTitleDisplayMode(.inline)
-//            .navigationBarBackButtonHidden()
-//            .toolbar {
-//                ToolbarItem(placement: .topBarLeading) {
-//                    CustomBackButtonView()
-//                }
-//            }
-//            .fullScreenCover(isPresented: $viewModel.isQRPresented, content: {
-//                NavigationStack {
-//                    GenericControllerNoEnvironments(uiViewType: QRCodeScannerViewController(delegate: viewModel)
-//                    )
-//                    .navigationTitle("Scan New Device QR")
-//                    .navigationBarTitleDisplayMode(.inline)
-//                    .toolbar {
-//                        ToolbarItem(placement: .topBarTrailing) {
-//                            Button {
-//                                viewModel.isQRPresented = false
-//                            } label: {
-//                                Image(.close)
-//                                    .tint(.white)
-//                            }
-//                        }
-//                    }
-//                }
-//            })
-//        }
-//    }
+    }    
 }
 
 #Preview("Empty") {

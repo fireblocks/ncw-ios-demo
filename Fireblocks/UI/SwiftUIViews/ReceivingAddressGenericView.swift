@@ -6,27 +6,35 @@
 //
 import SwiftUI
 
-struct ReceivingAddressGenericView: View {
-    @Binding var addressText: String
-    @Binding var isQRPresented: Bool
+extension ReceivingAddressGenericView {
+    @Observable
+    class ViewModel: QRCodeScannerViewControllerDelegate {
+        var addressText: String = ""
+        func gotAddress(address: String) {
+            self.addressText = address
+        }
+        
+        static func == (lhs: ViewModel, rhs: ViewModel) -> Bool {
+            lhs.addressText == rhs.addressText
+        }
+        
+        func hash(into hasher: inout Hasher) {
+            hasher.combine(addressText)
+        }
+        
+    }
+}
 
+struct ReceivingAddressGenericView: View {
     var onContinueClicked: (String) -> Void
     var scanTitleResId: LocalizedStringKey
     var scanSubtitleResId: LocalizedStringKey? = nil
     var hint: LocalizedStringKey
-    
-    // Add delegate to handle QR scanning
-    class QRScanDelegate: NSObject {
-        var onCodeScanned: (String) -> Void
-        
-        init(onCodeScanned: @escaping (String) -> Void) {
-            self.onCodeScanned = onCodeScanned
-        }
-    }
-    
-    // Create a delegate property
-    @State private var qrDelegate: QRScanDelegate?
-    
+
+    @State var isQRPresented: Bool = false
+    @State var addressText: String = ""
+    @State var viewModel = ViewModel()
+
     var body: some View {
         VStack(spacing: 16) {
             VStack(spacing: 24) {
@@ -36,7 +44,6 @@ struct ReceivingAddressGenericView: View {
                 
                 HStack(spacing: 16) {
                     Button {
-                        setupQRDelegate()
                         isQRPresented = true
                     } label: {
                         Image(.scanQrCode)
@@ -62,7 +69,6 @@ struct ReceivingAddressGenericView: View {
                     }
                     .contentShape(.rect)
                     .onTapGesture {
-                        setupQRDelegate()
                         isQRPresented = true
                     }
                 }
@@ -103,6 +109,7 @@ struct ReceivingAddressGenericView: View {
                 .foregroundStyle(.white)
             
             Button {
+                self.isQRPresented = false
                 onContinueClicked(addressText)
             } label: {
                 Text("Continue")
@@ -117,45 +124,33 @@ struct ReceivingAddressGenericView: View {
             .contentShape(.rect)
         }
         .padding()
+        .onChange(of: viewModel.addressText, { _, newValue in
+            DispatchQueue.main.async {
+                self.isQRPresented = false
+                self.onContinueClicked(newValue)
+            }
+        })
         .fullScreenCover(isPresented: $isQRPresented, content: {
             NavigationStack {
-                if let delegate = qrDelegate {
-                    GenericControllerNoEnvironments(
-                        uiViewType: QRCodeScannerViewController(delegate: delegate)
-                    )
-                    .navigationTitle("Scan Connection QR")
-                    .navigationBarTitleDisplayMode(.inline)
-                    .toolbar {
-                        ToolbarItem(placement: .topBarTrailing) {
-                            Button {
-                                isQRPresented = false
-                            } label: {
-                                Image(.close)
-                                    .tint(.white)
-                            }
+                GenericControllerNoEnvironments(
+                    uiViewType: QRCodeScannerViewController(delegate: viewModel)
+                )
+                .navigationTitle("Scan Connection QR")
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Button {
+                            isQRPresented = false
+                        } label: {
+                            Image(.close)
+                                .tint(.white)
                         }
                     }
                 }
             }
         })
         .animation(.default, value: addressText)
+        .animation(.default, value: viewModel.addressText)
     }
     
-    private func setupQRDelegate() {
-        qrDelegate = QRScanDelegate { code in
-            addressText = code
-            isQRPresented = false
-        }
-    }
-}
-
-// Make QRScanDelegate conform to necessary protocol for QRCodeScannerViewController
-extension ReceivingAddressGenericView.QRScanDelegate: QRCodeScannerViewControllerDelegate {
-    func gotAddress(address: String) {
-        
-    }
-    
-    func didScanCode(_ code: String) {
-        onCodeScanned(code)
-    }
 }

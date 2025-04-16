@@ -14,12 +14,11 @@ import EmbeddedWalletSDK
 
 extension EWWeb3ConnectionURI {
     @Observable
-    class ViewModel: QRCodeScannerViewControllerDelegate {
+    class ViewModel {
         var coordinator: Coordinator?
         var loadingManager: LoadingManager?
         var ewManager: EWManager?
         var dataModel: Web3DataModel
-        var isQRPresented = false
         
         init(dataModel: Web3DataModel) {
             self.dataModel = dataModel
@@ -29,10 +28,6 @@ extension EWWeb3ConnectionURI {
             self.loadingManager = loadingManager
             self.ewManager = ewManager
             self.coordinator = coordinator
-        }
-
-        func presentQRCodeScanner() {
-            self.isQRPresented = true
         }
         
         func createConnection() {
@@ -54,23 +49,6 @@ extension EWWeb3ConnectionURI {
                 }
             }
         }
-    
-        //MARK: QRCodeScannerViewControllerDelegate -
-        static func == (lhs: EWWeb3ConnectionURI.ViewModel, rhs: EWWeb3ConnectionURI.ViewModel) -> Bool {
-            lhs.dataModel.uri == rhs.dataModel.uri
-        }
-        
-        func hash(into hasher: inout Hasher) {
-            hasher.combine(dataModel.uri)
-        }
-
-        @MainActor
-        func gotAddress(address: String) {
-            isQRPresented = false
-            dataModel.uri = address
-            createConnection()
-        }
-
     }
     
     

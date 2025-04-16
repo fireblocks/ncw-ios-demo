@@ -27,9 +27,8 @@ struct EWWeb3ConnectionURI: View {
         ZStack {
             AppBackgroundView()
             ReceivingAddressGenericView(
-                addressText: $viewModel.dataModel.uri,
-                isQRPresented: $viewModel.isQRPresented,
                 onContinueClicked: { uri in
+                    viewModel.dataModel.uri = uri
                     viewModel.createConnection()
                 },
                 scanTitleResId: "Scan dApp QR code",
