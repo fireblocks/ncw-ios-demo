@@ -48,6 +48,10 @@ struct CryptoIconCardView: View {
                             }
                         }
                     }
+            } else {
+                RoundedRectangle(cornerRadius: 8)
+                    .fill(.clear)
+                    .frame(width: imageSize, height: imageSize)
             }
         }
     }
