@@ -16,36 +16,22 @@ import SwiftUI
 
 struct DerivedAssetRow: View {
     let asset: AssetSummary
+    @State var viewModel: ViewModel
+    
+    init(asset: AssetSummary) {
+        self.asset = asset
+        _viewModel = State(initialValue: ViewModel(symbol: asset.asset?.symbol, iconUrl: asset.iconUrl))
+    }
     
     var body: some View {
         HStack {
             VStack(spacing: 0) {
-                Group {
-                    if let iconURL = asset.iconUrl {
-                        AsyncImage(url: URL(string: iconURL)) { phase in
-                            switch phase {
-                            case .empty:
-                                ProgressView()
-                            case .success(let image):
-                                image.resizable()
-                                    .aspectRatio(contentMode: .fit)
-                            case .failure(let error):
-                                Image(uiImage: asset.image)
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                            @unknown default:
-                                EmptyView()
-                                
-                            }
-                        }
-                        
-                    } else {
-                        Image(uiImage: asset.image)
-                            .resizable()
-                            .scaledToFit()
+                if let assetImage = viewModel.assetImage {
+                    Group {
+                        assetImage
                     }
+                    .padding(4)
                 }
-                .padding(4)
             }
             .frame(width: 32, height: 32)
             .background(Color.black)

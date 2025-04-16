@@ -27,37 +27,23 @@ class AssetRowViewModel {
     
     init(asset: AssetSummary) {
         self.asset = asset
-        self.uiimage = asset.image
         loadAsset()
     }
     
     private func loadAsset() {
-        self.image = Image(uiImage: asset.image)
-        self.blockchainImage = Image(uiImage: asset.blockchainImage)
         Task {
             let assetSymbol = asset.asset?.symbol ?? ""
             let blockchainSymbol = asset.asset?.blockchain ?? ""
 
-            let imageURL: String? = SessionManager.shared.constructImageURL(iconUrl: asset.iconUrl, symbol: assetSymbol)
-            let blockchainImageURL: String? = SessionManager.shared.constructImageURL(iconUrl: nil, symbol: blockchainSymbol)
-
-            if let imageURL = imageURL, let url = URL(string: imageURL) {
-                if let uiimage = try? await SessionManager.shared.loadImage(url: url) {
-                    await MainActor.run {
-                        self.uiimage = uiimage
-                        self.image = Image(uiImage: uiimage)
-                        if self.image == nil {
-                            self.image = Image(uiImage: asset.image)
-                        }
-                    }
+            if let uiImage = await AssetImageLoader.shared.loadAssetImage(symbol: assetSymbol, iconUrl: asset.iconUrl) {
+                await MainActor.run {
+                    self.image = Image(uiImage: uiImage)
                 }
             }
-
-            if let blockchainImageURL = blockchainImageURL, let url = URL(string: blockchainImageURL) {
-                if let blockchainUIImage = try? await SessionManager.shared.loadImage(url: url) {
-                    await MainActor.run {
-                        self.blockchainImage = Image(uiImage: blockchainUIImage)
-                    }
+            
+            if let uiImage = await AssetImageLoader.shared.loadAssetImage(symbol: blockchainSymbol, iconUrl: nil, isBlockchain: true) {
+                await MainActor.run {
+                    self.blockchainImage = Image(uiImage: uiImage)
                 }
             }
         }

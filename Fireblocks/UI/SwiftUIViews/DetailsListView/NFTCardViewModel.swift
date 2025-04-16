@@ -39,21 +39,20 @@ extension NFTIconCardView {
             guard let blockchain = blockchain else {
                 return
             }
-            let blockchainImage = AssetsImageMapper().getIconForAsset(blockchain, isBlockchain: true)
-            self.blockchainImage = Image(uiImage: blockchainImage)
-            let blockchainImageURL: String? = SessionManager.shared.constructImageURL(iconUrl: nil, symbol: blockchain)
             
-            if let blockchainImageURL = blockchainImageURL, let url = URL(string: blockchainImageURL) {
+            loadBlockchainImage(blockchainSymbol: blockchain)
+
+            
+            func loadBlockchainImage(blockchainSymbol: String) {
                 Task {
-                    if let blockchainUIImage = try? await SessionManager.shared.loadImage(url: url) {
+                    if let uiImage = await AssetImageLoader.shared.loadAssetImage(symbol: blockchainSymbol, iconUrl: nil) {
                         await MainActor.run {
-                            self.blockchainImage = Image(uiImage: blockchainUIImage)
+                            self.blockchainImage = Image(uiImage: uiImage)
                         }
                     }
                 }
             }
-        }
-        
+        }        
     }
 }
 

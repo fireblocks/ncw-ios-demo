@@ -57,11 +57,12 @@ class ReceiveViewController: UIViewController, SwiftUIEnvironmentBridge {
         addressBackground.layer.cornerRadius = 16
         copyButton.setTitle("", for: .normal)
         
-        if let iconURL = viewModel.asset.iconUrl {
-            assetImage.sd_setImage(with: URL(string: iconURL), placeholderImage: viewModel.asset.image)
-        } else {
-            assetImage.image = viewModel.asset.image
-        }
+        AssetImageLoader.shared.loadAssetIcon(
+            into: assetImage,
+            iconUrl: viewModel.asset.iconUrl,
+            symbol: viewModel.asset.asset?.symbol ?? ""
+        )
+        
         assetName.text = viewModel.asset.asset?.name
         assetBlockchainName.text = viewModel.asset.asset?.blockchain
         assetAddressTitle.text = "\(viewModel.asset.asset?.symbol ?? "") address"

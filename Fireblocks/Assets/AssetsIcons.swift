@@ -57,6 +57,9 @@ enum AssetsIcons: String {
     case UniIcon = "uni"
     case XrpIcon = "xrp"
     case DotIcon = "dot"
+    case BasechainIcon = "base"
+    case EtherlinkIcon = "etherlink"
+    
     case CeloAlfIcon = "celo"
     case errorImage = "error_image"
     case errorBox = "error_box"

@@ -41,7 +41,7 @@ struct TransferInfo: Identifiable, Equatable, Hashable {
     let blockChainName: String
     let senderWalletId: String
     let receiverWalletID: String
-    let image: UIImage
+//    let image: UIImage
     var nftWrapper: NFTWrapper?
     
     var color: UIColor {
@@ -62,7 +62,7 @@ struct TransferInfo: Identifiable, Equatable, Hashable {
     #if EW
     static func toTransferInfo(response: TransactionResponse) -> TransferInfo {
         let statusType = response.status ?? .unknown
-        let image = AssetsImageMapper().getIconForAsset(response.assetId ?? "")
+//        let image = AssetsImageMapper().getIconForAsset(response.assetId ?? "")
         let assetId = response.assetId?.hasPrefix("NFT") == true ? response.feeCurrency ?? "" : response.assetId ?? ""
         return TransferInfo(transactionID: response.id ?? "",
                             creationDate: response.createdAt?.toDateFormattedString() ?? "",
@@ -78,8 +78,8 @@ struct TransferInfo: Identifiable, Equatable, Hashable {
                             price: Double(response.amountInfo?.amountUSD ?? "0")?.formatFractions(fractionDigits: 6) ?? 0,
                             blockChainName: response.feeCurrency ?? "",
                             senderWalletId: response.source?.walletId ?? "",
-                            receiverWalletID: response.destination?.walletId ?? "",
-                            image: image)
+                            receiverWalletID: response.destination?.walletId ?? "")
+//                            image: image)
 
     }
     #else
@@ -104,8 +104,7 @@ struct TransferInfo: Identifiable, Equatable, Hashable {
                             price: Double(response.details.amountInfo?.amountUSD ?? "0")?.formatFractions(fractionDigits: 6) ?? 0,
                             blockChainName: response.details.feeCurrency ?? "",
                             senderWalletId: response.details.source?.walletId ?? "",
-                            receiverWalletID: response.details.destination?.walletId ?? "",
-                            image: image)
+                            receiverWalletID: response.details.destination?.walletId ?? "")
 
     }
     #endif

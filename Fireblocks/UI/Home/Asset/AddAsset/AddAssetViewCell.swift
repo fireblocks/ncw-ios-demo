@@ -59,14 +59,12 @@ class AddAssetViewCell: UITableViewCell {
     
     func configAssetView(asset: AssetSummary) {
         let assetSymbol = asset.asset?.symbol ?? ""
-
-        let iconURL: String? = SessionManager.shared.constructImageURL(iconUrl: asset.iconUrl, symbol: assetSymbol)
-
-        if let iconURL {
-            assetImage.sd_setImage(with: URL(string: iconURL), placeholderImage: asset.image)
-        } else {
-            assetImage.image = asset.image
-        }
+        
+        AssetImageLoader.shared.loadAssetIcon(
+            into: assetImage,
+            iconUrl: asset.iconUrl,
+            symbol: assetSymbol
+        )
         
         imageBackground.backgroundColor = isBackgroundTransparent(asset: asset.asset) ? .white : .clear
 

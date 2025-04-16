@@ -77,12 +77,12 @@ class SendToViewController: UIViewController, SwiftUIEnvironmentBridge {
         
         let asset = viewModel.getAsset()
         let assetSymbol = asset?.asset?.symbol ?? ""
-        let iconURL: String? = SessionManager.shared.constructImageURL(iconUrl: asset?.iconUrl, symbol: assetSymbol)
-        if let iconURL {
-            assetIcon.sd_setImage(with: URL(string: iconURL), placeholderImage: asset?.image)
-        } else {
-            assetIcon.image = asset?.image
-        }
+        
+        AssetImageLoader.shared.loadAssetIcon(
+            into: assetIcon,
+            iconUrl: asset?.iconUrl,
+            symbol: assetSymbol
+        )
         
         amountToSend.text = viewModel.getAmountToSendAsString()
         price.text = viewModel.getPriceAsString()
