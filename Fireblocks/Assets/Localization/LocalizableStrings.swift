@@ -138,6 +138,6 @@ struct LocalizableStrings{
     static let continueButton = "Continue".localize()
     static let transactionSpeed = "Transaction speed".localize()
     static let transferNFT = "Transfer NFT".localize()
-    static let backupYourKeys = "Backup your keys".localize()
+    static let backupYourKeys = "Back up your keys".localize()
     static let description = "Description".localize()
 }

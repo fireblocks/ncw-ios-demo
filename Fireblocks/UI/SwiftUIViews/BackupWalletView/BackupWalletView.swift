@@ -27,7 +27,7 @@ struct BackupWalletView: View {
                     .aspectRatio(contentMode: .fit)
 
                 VStack {
-                    Text("Backup your keys")
+                    Text(LocalizableStrings.backupYourKeys)
                         .font(.h1)
                         .frame(maxWidth: .infinity, alignment: .center)
                         .multilineTextAlignment(.center)
@@ -41,7 +41,7 @@ struct BackupWalletView: View {
                     Button {
                         viewModel.backup()
                     } label: {
-                        Label("Backup keys", image: "google_icon")
+                        Label("Back up keys", image: "google_icon")
                             .frame(maxWidth: .infinity)
                             .padding()
                             .padding(.horizontal)

@@ -35,7 +35,7 @@ struct TransferListView: View {
             }
             list
         }
-        .navigationTitle("Transfers")
+        .navigationTitle("Transfer history")
         .navigationBarTitleDisplayMode(.inline)
         .animation(.default, value: viewModel.selectedTransfer)
         .tint(.white)
