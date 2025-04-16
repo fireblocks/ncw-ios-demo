@@ -28,61 +28,65 @@ struct EWTransferNFTView: View {
         ZStack {
             AppBackgroundView()
             if let token = viewModel.dataModel.token {
-                List {
-                    Section {
-                        VStack(spacing: 0) {
-                            EWNFTCard(token: token, isRow: true)
-                                .padding()
-                        }
-                    }
-                    .background(AssetsColors.gray1.color(), in: .rect)
-                    .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
-                    
-                    Section {
-                        VStack(spacing: 16) {
-                            Text(LocalizableStrings.address)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .font(.b2)
-                            
-                            HStack(spacing: 0) {
-                                ZStack {
-                                    RoundedRectangle(cornerRadius: 8)
-                                        .fill(AssetsColors.gray2.color())
-                                        .frame(height: 48)
-                                        .overlay {
-                                            Text(LocalizableStrings.address_hint)
-                                                .font(.b4)
-                                                .foregroundStyle(.secondary)
-                                                .frame(maxWidth: .infinity, alignment: .leading)
-                                                .opacity(viewModel.dataModel.address.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? 1 : 0)
-                                                .padding(.horizontal, 8)
-                                            
-                                        }
-                                    TextField("", text: $viewModel.dataModel.address)
-                                        .font(.b2)
-                                        .textFieldStyle(.plain)
-                                        .padding(.horizontal, 8)
-                                }
-                                .padding(.trailing, 12)
-                                Button {
-                                    viewModel.presentQRCodeScanner()
-                                } label: {
-                                    Image(.scanQrCode)
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                        .frame(height: 20)
-                                        .padding(7)
-                                    
-                                }
-                                .buttonStyle(.borderedProminent)
-                                .tint(AssetsColors.gray2.color())
-                                .contentShape(.rect)
+                VStack(spacing: 0) {
+                    List {
+                        Section {
+                            VStack(spacing: 0) {
+                                EWNFTCard(token: token, isRow: true)
+                                    .padding()
                             }
                         }
+                        .background(AssetsColors.gray1.color(), in: .rect)
+                        .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+                        
+                        Section {
+                            VStack(spacing: 16) {
+                                Text(LocalizableStrings.address)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                    .font(.b2)
+                                
+                                HStack(spacing: 0) {
+                                    ZStack {
+                                        RoundedRectangle(cornerRadius: 8)
+                                            .fill(AssetsColors.gray2.color())
+                                            .frame(height: 48)
+                                            .overlay {
+                                                Text(LocalizableStrings.address_hint)
+                                                    .font(.b4)
+                                                    .foregroundStyle(.secondary)
+                                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                                    .opacity(viewModel.dataModel.address.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? 1 : 0)
+                                                    .padding(.horizontal, 8)
+                                                
+                                            }
+                                        TextField("", text: $viewModel.dataModel.address)
+                                            .font(.b2)
+                                            .textFieldStyle(.plain)
+                                            .padding(.horizontal, 8)
+                                    }
+                                    .padding(.trailing, 12)
+                                    Button {
+                                        viewModel.presentQRCodeScanner()
+                                    } label: {
+                                        Image(.scanQrCode)
+                                            .resizable()
+                                            .aspectRatio(contentMode: .fit)
+                                            .frame(height: 20)
+                                            .padding(7)
+                                        
+                                    }
+                                    .buttonStyle(.borderedProminent)
+                                    .tint(AssetsColors.gray2.color())
+                                    .contentShape(.rect)
+                                }
+                            }
+                        }
+                        .listRowBackground(AssetsColors.gray1.color())
+                        .listRowInsets(EdgeInsets(top: 24, leading: 16, bottom: 24, trailing: 16))
                     }
-                    .listRowBackground(AssetsColors.gray1.color())
-                    .listRowInsets(EdgeInsets(top: 24, leading: 16, bottom: 24, trailing: 16))
+                    .scrollContentBackground(.hidden)
                 }
+                .padding(.bottom, 1)
             }
         }
         .safeAreaInset(edge: .bottom, content: {
@@ -105,7 +109,7 @@ struct EWTransferNFTView: View {
 
             }
             .padding()
-            .background()
+//            .background()
         })
         .onAppear() {
             viewModel.setup(loadingManager: loadingManager, ewManager: ewManager, coordinator: coordinator)

@@ -21,10 +21,10 @@
 "login_google_add_device" = " Sign in with Google";
 "login_apple_add_device" = " Sign in with Apple";
 "sign_in_title" = "Sign in to your existing wallet";
-"sign_up_title" = "Create a Bitvault wallet";
+"sign_up_title" = "Create a wallet";
 "add_device_title" = "Add a device to an existing wallet";
 "mpc_keys_genertae_title" = "To provide the highest level of wallet security, we use multi-party computation (MPC) keys. MPCs allow for different parties to hold a piece of a private key without possessing the entire thing.";
-"mpc_keys_add_device_title" = "To keep your assets safe, this device must be added to your BitVault wallet using your existing device. Make sure you have your existing device nearby before continuing.";
+"mpc_keys_add_device_title" = "To keep your assets safe, this device must be added to your wallet using your existing device. Make sure you have your existing device nearby before continuing.";
 "mpc_keys_add_device_header" = "Add new device";
 "share_logs" = "Share\nlogs";
 "add_new_device" = "Add new\ndevice";
@@ -102,7 +102,7 @@
 "addDeviceFailedSubtitle" = "The process has failed.";
 "addDeviceFailedToGenerateQR" = "Couldn’t generate QR code";
 
-"launchOnExistingDevice" = "Launch BitVault on your existing device.";
+"launchOnExistingDevice" = "Launch Embedded Wallets on existing device.";
 "openSettingsMenu" = "Open the settings menu.";
 "tapAddNewDevice" = "Tap “Add new device”.";
 "scanTheQRCode" = "Scan the QR code.";
@@ -110,6 +110,6 @@
 "qrCodeExpiresIn" = "QR code expires in:";
 "qrCodeLink" = "QR code link";
 
-"prepareForScanHeader" = "Scan the QR code on your new device to add it to your BitVault wallet.";
+"prepareForScanHeader" = "Scan the QR code or paste the link.";
 "enterQRCodeLink" = "Enter QR code link";
 "copyQRCodeLink" = "Copy the QR code link";

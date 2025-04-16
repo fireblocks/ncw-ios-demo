@@ -25,12 +25,8 @@ struct AddDeviceQRView: View {
     
     var body: some View {
         ZStack {
-            Color.black
-                .edgesIgnoringSafeArea(.all)
+            AppBackgroundView()
             VStack {
-                Color.black
-                    .frame(height: 12)
-
                 ScrollView {
                     VStack {
                         VStack(spacing: 8) {
@@ -107,6 +103,7 @@ struct AddDeviceQRView: View {
         .interactiveDismissDisabled()
         .navigationBarBackButtonHidden()
         .navigationBarItems(leading: CustomBackButtonView())
+        .contentMargins(.top, 16)
     }
     
     func generateQRCode(from url: String?, size: CGSize) -> Image {
