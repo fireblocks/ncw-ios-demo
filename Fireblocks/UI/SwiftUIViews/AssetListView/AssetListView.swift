@@ -16,7 +16,7 @@ import SwiftUI
 
 struct AssetListView: View {
     @EnvironmentObject var coordinator: Coordinator
-    @EnvironmentObject var loadingManager: LoadingManager
+    @Environment(LoadingManager.self) var loadingManager
     @EnvironmentObject var fireblocksManager: FireblocksManager
     #if EW
     @Environment(EWManager.self) var ewManager
@@ -26,6 +26,7 @@ struct AssetListView: View {
     @State var selectedAsset: AssetSummary?
     
     var body: some View {
+        let _ = Self._printChanges()
         ZStack {
             AppBackgroundView()
             

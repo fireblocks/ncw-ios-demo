@@ -12,7 +12,7 @@ import AuthenticationServices
 struct SignInView: View {
     @EnvironmentObject var viewModel: SignInViewModel
     @EnvironmentObject var coordinator: Coordinator
-    @EnvironmentObject var loadingManager: LoadingManager
+    @Environment(LoadingManager.self) var loadingManager
     @EnvironmentObject var fireblocksManager: FireblocksManager
     @EnvironmentObject var googleSignInManager: GoogleSignInManager
     @EnvironmentObject var appleSignInManager: AppleSignInManager

@@ -16,7 +16,7 @@ import SwiftUI
 
 struct AssetRow: View {
     @EnvironmentObject var coordinator: Coordinator
-    @EnvironmentObject var loadingManager: LoadingManager
+    @Environment(LoadingManager.self) var loadingManager
     #if EW
     @Environment(EWManager.self) var ewManager
     #endif
