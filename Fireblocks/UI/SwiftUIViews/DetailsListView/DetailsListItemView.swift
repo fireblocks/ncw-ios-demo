@@ -7,7 +7,7 @@
 import SwiftUI
 
 struct DetailsListItemView: View {
-    @EnvironmentObject var loadingManager: LoadingManager
+    @Environment(LoadingManager.self) var loadingManager
     var title: String?
     var attributedTitle: AttributedString?
     var contentText: String?
@@ -20,7 +20,6 @@ struct DetailsListItemView: View {
         HStack(spacing: 0) {
             if let attributedTitle = attributedTitle {
                 Text(attributedTitle)
-                    .font(.b2)
                     .frame(width: Dimens.cellTitleWidth, alignment: .leading)
                     .padding(.trailing, Dimens.paddingSmall)
             } else if let title = title {

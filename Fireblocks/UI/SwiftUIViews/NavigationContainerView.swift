@@ -187,8 +187,10 @@ struct NavigationContainerView<Content: View>: View {
 
                     }
                 case .info:
-                    AdvancedInfoView()
-                        .environmentObject(fireblocksManager)
+                    SpinnerViewContainer {
+                        AdvancedInfoView()
+                            .environmentObject(fireblocksManager)
+                    }
                 case .settings:
                     SpinnerViewContainer {
                         SettingsView()

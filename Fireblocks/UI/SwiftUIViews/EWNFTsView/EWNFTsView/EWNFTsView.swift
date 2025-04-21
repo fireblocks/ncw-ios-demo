@@ -14,7 +14,7 @@ import EmbeddedWalletSDK
 
 struct EWNFTsView: View {
     @EnvironmentObject var coordinator: Coordinator
-    @EnvironmentObject var loadingManager: LoadingManager
+    @Environment(LoadingManager.self) var loadingManager
     @Environment(EWManager.self) var ewManager
 
     @State var viewModel = ViewModel()

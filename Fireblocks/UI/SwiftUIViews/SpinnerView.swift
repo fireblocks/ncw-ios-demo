@@ -14,9 +14,10 @@ import SwiftUI
     #endif
 #endif
 
-class LoadingManager: ObservableObject {
-    @Published var isLoading: Bool = false
-    @Published var alertMessage: String? {
+@Observable
+class LoadingManager {
+    var isLoading: Bool = false
+    var alertMessage: String? {
         didSet {
             if alertMessage != nil {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
@@ -26,7 +27,7 @@ class LoadingManager: ObservableObject {
         }
     }
     
-    @Published var toastMessage: String? {
+    var toastMessage: String? {
         didSet {
             if toastMessage != nil {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
@@ -94,7 +95,7 @@ struct SpinnerView: View {
 }
 
 struct SpinnerViewContainer<Content: View>: View {
-    @StateObject var loadingManager = LoadingManager()
+    @State var loadingManager = LoadingManager()
     @ViewBuilder var content: Content
     @State var isSpinnerPresenting: Bool = false
     
@@ -106,7 +107,7 @@ struct SpinnerViewContainer<Content: View>: View {
                 Spacer()
             }
         }
-        .environmentObject(loadingManager)
+        .environment(loadingManager)
         .overlay {
             Group {
                 Color.black.opacity(0.3)

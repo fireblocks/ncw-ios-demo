@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ValidateRequestIdView: View {
     @EnvironmentObject var coordinator: Coordinator
-    @EnvironmentObject var loadingManager: LoadingManager
+    @Environment(LoadingManager.self) var loadingManager
     @EnvironmentObject var fireblocksManager: FireblocksManager
 
     @Environment(\.dismiss) var dismiss

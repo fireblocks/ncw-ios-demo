@@ -149,9 +149,11 @@ private func getStatusColor(keyStatus: KeyStatus) -> Color {
 }
 
 #Preview {
+    #if EW
     NavigationContainerView(mockManager: EWManagerMock()) {
         SpinnerViewContainer {
             AdvancedInfoView()
         }
     }
+    #endif
 }

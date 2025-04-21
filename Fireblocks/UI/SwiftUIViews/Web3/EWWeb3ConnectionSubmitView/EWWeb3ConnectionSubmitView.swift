@@ -15,7 +15,7 @@ import EmbeddedWalletSDK
 struct EWWeb3ConnectionSubmitView: View {
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var coordinator: Coordinator
-    @EnvironmentObject var loadingManager: LoadingManager
+    @Environment(LoadingManager.self) var loadingManager
     @Environment(EWManager.self) var ewManager
     @State var viewModel: ViewModel
     
