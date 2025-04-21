@@ -113,3 +113,4 @@
 "prepareForScanHeader" = "Scan the QR code or paste the link.";
 "enterQRCodeLink" = "Enter QR code link";
 "copyQRCodeLink" = "Copy the QR code link";
+"walletId" = "Wallet ID";
