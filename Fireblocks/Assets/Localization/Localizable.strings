@@ -40,7 +40,7 @@
 "create_a_backup" = "Create \na backup";
 "recover_wallet" = "Recover \nwallet";
 "export_private_key" = "Export \nprivate key";
-"advanced_info" = "Advanced \ninfo";
+"advanced_info" = "Advanced info";
 "sign_up_failed" = "Couldn’t complete signup. Try again.";
 "mpc_keys_generation_failed" = "We couldn’t generate the MPC keys.\nTry again.";
 "account_creation_failed" = "We couldn’t create account.\nTry again.";

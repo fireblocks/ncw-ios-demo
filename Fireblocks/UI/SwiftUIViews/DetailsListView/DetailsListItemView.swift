@@ -8,21 +8,29 @@ import SwiftUI
 
 struct DetailsListItemView: View {
     @EnvironmentObject var loadingManager: LoadingManager
-    let title: String
-    let contentText: String?
+    var title: String?
+    var attributedTitle: AttributedString?
+    var contentText: String?
     var subContent: String? = nil
     var showCopyButton: Bool = false
     var contentColor: Color = .white
     var overflow: Text.TruncationMode = .middle
 
-
     var body: some View {
         HStack(spacing: 0) {
-            Text(title)
-                .font(.b2)
-                .foregroundStyle(.secondary)
-                .frame(width: Dimens.cellTitleWidth, alignment: .leading)
-                .padding(.trailing, Dimens.paddingSmall)
+            if let attributedTitle = attributedTitle {
+                Text(attributedTitle)
+                    .font(.b2)
+                    .frame(width: Dimens.cellTitleWidth, alignment: .leading)
+                    .padding(.trailing, Dimens.paddingSmall)
+            } else if let title = title {
+                Text(title)
+                    .font(.b2)
+                    .foregroundStyle(.secondary)
+                    .frame(width: Dimens.cellTitleWidth, alignment: .leading)
+                    .padding(.trailing, Dimens.paddingSmall)
+            }
+                
             
             if let contentText = contentText {
                 if let subContent = subContent {

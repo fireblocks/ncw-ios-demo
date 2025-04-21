@@ -33,37 +33,28 @@ extension AdvancedInfoView {
         }
         
     }
-
+    
 }
 
 struct AdvancedInfoView: View {
     @EnvironmentObject var fireblocksManager: FireblocksManager
     @State var viewModel = ViewModel()
-
+    
     var body: some View {
         ZStack {
             AppBackgroundView()
             List {
-                VStack(spacing: 0) {
-                    let views: [AnyView] = [
-                        AnyView(walletId),
-                        AnyView(deviceId),
-                        AnyView(mpcKeys)
-
-                    ]
-                    
+                Section {
                     VStack(spacing: 0) {
-                        ForEach(0..<views.count, id: \.self) { index in
-                            views[index]
-                            if index < views.count - 1 {
-                                Divider()
-                            }
-                        }
+                        deviceId
+                        Divider()
+                        walletId
                     }
+                    .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
                 }
-                .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
-
+                mpcKeys                
             }
+           
             .scrollContentBackground(.hidden)
         }
         .onAppear() {
@@ -78,7 +69,7 @@ struct AdvancedInfoView: View {
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden()
         .contentMargins(.top, 16)
-
+        
     }
     
     @ViewBuilder
@@ -89,7 +80,7 @@ struct AdvancedInfoView: View {
             showCopyButton: true
         )
     }
-
+    
     @ViewBuilder
     private var deviceId: some View {
         DetailsListItemView(
@@ -98,23 +89,63 @@ struct AdvancedInfoView: View {
             showCopyButton: true
         )
     }
-
+    
     @ViewBuilder
     private var mpcKeys: some View {
         ForEach(viewModel.mpcKeys) { keyDescriptor in
-            DetailsListItemView(
-                title: LocalizableStrings.keyId,
-                contentText: keyDescriptor.keyId,
-                showCopyButton: false
-            )
-            DetailsListItemView(
-                title: LocalizableStrings.algorithm,
-                contentText: keyDescriptor.algorithm?.rawValue,
-                showCopyButton: false
-            )
+            let keyStatus = keyDescriptor.keyStatus
+            
+            Section {
+                VStack(spacing: 0) {
+                    DetailsListItemView(
+                        attributedTitle: attributedKeyIdWithStatus(
+                            keyId: LocalizableStrings.keyId,
+                            keyStatus: keyStatus,
+                        ),
+                        contentText: keyDescriptor.keyId,
+                        showCopyButton: true
+                    )
+                    
+                    Divider()
+                    
+                    DetailsListItemView(
+                        title: LocalizableStrings.algorithm,
+                        contentText: keyDescriptor.algorithm?.rawValue,
+                        showCopyButton: false
+                    )
+                }
+                .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+            }
         }
     }
+    
+}
 
+private func attributedKeyIdWithStatus(keyId: String, keyStatus: KeyStatus?) -> AttributedString {
+    var result = AttributedString(keyId)
+    result.font = .b2
+    result.foregroundColor = .secondary
+    result.append(AttributedString("\n"))
+    
+    if let keyStatus = keyStatus {
+        var statusText = AttributedString(keyStatus.rawValue.capitalizeFirstCharOnly())
+        statusText.foregroundColor = getStatusColor(keyStatus: keyStatus)
+        statusText.font = .b3
+        result.append(statusText)
+    }
+    
+    return result
+}
+
+private func getStatusColor(keyStatus: KeyStatus) -> Color {
+    switch keyStatus {
+    case .READY:
+        return AssetsColors.success.color()
+    case .STOPPED, .ERROR, .TIMEOUT:
+        return AssetsColors.alert.color()
+    default:
+        return AssetsColors.primaryBlue.color()
+    }
 }
 
 #Preview {
