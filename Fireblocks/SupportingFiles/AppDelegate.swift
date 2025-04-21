@@ -12,6 +12,8 @@ import SwiftUI
 
 @main
 struct FireblocksApp: App {
+//    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+
     @StateObject var viewModel = SignInViewModel.shared
     @State var launchView: (any View)?
     @State var didLaunch = false
@@ -72,7 +74,7 @@ struct FireblocksApp: App {
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
         appearance.backgroundColor = AssetsColors.background.getColor() // Setting the desired background color
-        
+
         // Remove the bottom divider
         appearance.shadowColor = .clear
                 
@@ -90,7 +92,7 @@ struct FireblocksApp: App {
         UINavigationBar.appearance().standardAppearance = appearance
         UINavigationBar.appearance().compactAppearance = appearance
         UINavigationBar.appearance().scrollEdgeAppearance = appearance
-        
+
         
 
     }

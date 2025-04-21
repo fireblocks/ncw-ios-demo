@@ -14,7 +14,7 @@ struct LaunchView: View {
             
     var body: some View {
         ZStack {
-            AppBackgroundView()            
+            AppBackgroundView()
             VStack {
                 VStack(spacing: 0) {
                     Text("Securely store, send, and receive digital assets on the go.")
@@ -42,7 +42,7 @@ struct LaunchView: View {
                     .frame(alignment: .center)
                     .padding(8)
                     .background(.thinMaterial, in: .capsule)
-
+                
             }
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {

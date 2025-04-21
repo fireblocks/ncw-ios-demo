@@ -100,7 +100,7 @@ struct AdvancedInfoView: View {
                     DetailsListItemView(
                         attributedTitle: attributedKeyIdWithStatus(
                             keyId: LocalizableStrings.keyId,
-                            keyStatus: keyStatus,
+                            keyStatus: keyStatus
                         ),
                         contentText: keyDescriptor.keyId,
                         showCopyButton: true

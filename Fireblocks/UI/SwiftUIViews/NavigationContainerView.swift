@@ -275,6 +275,10 @@ struct NavigationContainerView<Content: View>: View {
                 #endif
                 }
             }
+            .navigationViewStyle(.stack)
+            .toolbarBackground(AssetsColors.background.color(), for: .navigationBar)
+            .toolbarBackground(.visible, for: .navigationBar)
+
         }
     }
 }
