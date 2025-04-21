@@ -16,43 +16,45 @@ import SwiftUI
 struct CryptoIconCardView: View {
     var asset: AssetSummary
     var showBlockchainImage: Bool = false
-    let assetRowViewModel: AssetRowViewModel
+    @State var assetRowViewModel: AssetRowViewModel
     var imageSize = Dimens.imageSize
     
     init(asset: AssetSummary, showBlockchainImage: Bool = false, imageSize: Double = Dimens.imageSize) {
         self.asset = asset
         self.showBlockchainImage = showBlockchainImage
         self.imageSize = imageSize
-        self.assetRowViewModel = AssetRowViewModel(asset: asset)
+        _assetRowViewModel = State(initialValue: AssetRowViewModel(asset: asset))
     }
     
     var body: some View {
-        VStack() {
-            if let image = assetRowViewModel.image {
-                image
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: imageSize, height: imageSize)
-                    .overlay(alignment: .bottomTrailing) {
-                        if (showBlockchainImage) {
-                            if let blockchainImage = assetRowViewModel.blockchainImage {
-                                blockchainImage
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(width: 20, height: 20)
-                                    .overlay {
-                                        RoundedRectangle(cornerRadius: 10)
-                                            .stroke(.black, lineWidth: 1)
+        ZStack {
+            RoundedRectangle(cornerRadius: 8)
+                .fill(.clear)
+                .frame(width: imageSize, height: imageSize)
+                .overlay {
+                    if let image = assetRowViewModel.image {
+                        image
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: imageSize, height: imageSize)
+                            .overlay(alignment: .bottomTrailing) {
+                                if (showBlockchainImage) {
+                                    if let blockchainImage = assetRowViewModel.blockchainImage {
+                                        blockchainImage
+                                            .resizable()
+                                            .aspectRatio(contentMode: .fit)
+                                            .frame(width: 20, height: 20)
+                                            .overlay {
+                                                RoundedRectangle(cornerRadius: 10)
+                                                    .stroke(.black, lineWidth: 1)
+                                            }
+                                        //                                    .opacity(blockchainImage != nil ? 1 : 0)
                                     }
-                                //                                    .opacity(blockchainImage != nil ? 1 : 0)
+                                }
                             }
-                        }
                     }
-            } else {
-                RoundedRectangle(cornerRadius: 8)
-                    .fill(.clear)
-                    .frame(width: imageSize, height: imageSize)
-            }
+                }
+                .animation(.default, value: assetRowViewModel.image)
         }
     }
 }

@@ -36,7 +36,7 @@ class SessionManager: ObservableObject {
     
     func loadImage(url: URL) async throws -> UIImage {
         if let image = CacheManager.shared.getImage(url: url) {
-            print("Image loaded from cache, url: \(url)")
+//            print("Image loaded from cache, url: \(url)")
             return image
         }
         

@@ -13,7 +13,7 @@ import EmbeddedWalletSDK
 
 struct EWWeb3ConnectionDetailsHeader: View {
     @Environment(EWManager.self) var ewManager
-    @EnvironmentObject var loadingManager: LoadingManager
+    @Environment(LoadingManager.self) var loadingManager
     var connection: Web3Connection?
     let metadata: Web3ConnectionSessionMetadata?
     let isConnected: Bool

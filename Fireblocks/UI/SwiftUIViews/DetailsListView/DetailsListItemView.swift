@@ -7,7 +7,7 @@
 import SwiftUI
 
 struct DetailsListItemView: View {
-    @EnvironmentObject var loadingManager: LoadingManager
+    @Environment(LoadingManager.self) var loadingManager
     let title: String
     let contentText: String?
     var subContent: String? = nil

@@ -11,7 +11,7 @@ import CoreImage.CIFilterBuiltins
 struct AddDeviceQRView: View {
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var coordinator: Coordinator
-    @EnvironmentObject var loadingManager: LoadingManager
+    @Environment(LoadingManager.self) var loadingManager
     @EnvironmentObject var fireblocksManager: FireblocksManager
 
     @State var viewModel: AddDeviceQRViewModel
