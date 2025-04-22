@@ -16,8 +16,9 @@ class AddAssetsViewModel: AddAssetsViewModelBase {
     func setup(loadingManager: LoadingManager, deviceId: String) {
         self.loadingManager = loadingManager
         self.deviceId = deviceId
+        self.loadingManager?.isLoading = true
+
         Task {
-            await self.loadingManager?.setLoading(value: true)
             do {
                 let response = try await SessionManager.shared.getSupportedAssets(deviceId: deviceId)
                 await MainActor.run {

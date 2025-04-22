@@ -86,15 +86,35 @@ class LoadingManager {
 
 }
 
-struct SpinnerView: View {
+struct CircularProgressView: View {
+    @State private var isAnimating = false
+    let size: CGFloat
+    let lineWidth: CGFloat
+    
+    init(size: CGFloat = 60, lineWidth: CGFloat = 6) {
+        self.size = size
+        self.lineWidth = lineWidth
+    }
+    
     var body: some View {
         VStack {
-            ProgressView()
+            Circle()
+                .trim(from: 0, to: 0.75)
+                .stroke(Color.white, lineWidth: lineWidth)
+                .frame(width: size, height: size)
+                .rotationEffect(Angle(degrees: isAnimating ? 360 : 0))
+                .animation(.linear(duration: 0.8).repeatForever(autoreverses: false), value: isAnimating)
+        }
+        .onAppear {
+            isAnimating = true
         }
     }
 }
 
+
 struct SpinnerViewContainer<Content: View>: View {
+    var isBasic = false
+    var title = ""
     @State var loadingManager = LoadingManager()
     @ViewBuilder var content: Content
     @State var isSpinnerPresenting: Bool = false
@@ -102,6 +122,7 @@ struct SpinnerViewContainer<Content: View>: View {
     var body: some View {
         ZStack {
             content
+            
             VStack {
                 BottomAlertsContainer()
                 Spacer()
@@ -109,13 +130,25 @@ struct SpinnerViewContainer<Content: View>: View {
         }
         .environment(loadingManager)
         .overlay {
-            Group {
+            ZStack {
                 Color.black.opacity(0.3)
-                ProgressView()
+                    .ignoresSafeArea(.all)
+                if isBasic {
+                    ProgressView()
+                } else {
+                    VStack(spacing: 8) {
+                        CircularProgressView()
+                        if !title.isEmpty {
+                           Text(title)
+                        }
+                    }
+                    .padding()
+                    .background(title.isEmpty ? Color.clear : Color.black.opacity(0.5), in: .rect(cornerRadius: 8))
+                }
             }
             .opacity(loadingManager.isLoading ? 1 : 0)
         }
-        .animation(.default, value: loadingManager.isLoading)
+//        .animation(.default, value: loadingManager.isLoading)
         .animation(.default, value: loadingManager.alertMessage)
         .animation(.default, value: loadingManager.toastMessage)
     }
@@ -128,3 +161,31 @@ struct SpinnerViewContainer<Content: View>: View {
         }
     }
 }
+
+#Preview("SpinnerView Components") {
+    VStack(spacing: 40) {
+        // Preview CircularProgressView with different sizes
+        HStack(spacing: 30) {
+            CircularProgressView(size: 18, lineWidth: 1.5)
+            CircularProgressView(size: 24, lineWidth: 2) // Default
+            CircularProgressView(size: 40, lineWidth: 3)
+            CircularProgressView(size: 60, lineWidth: 4)
+        }
+        
+        // Preview SpinnerViewContainer
+        SpinnerViewContainer(title: "Loading wallet...") {
+            VStack {
+                Text("Content behind loading overlay")
+                    .padding()
+                Button("Show Content") {
+                    // Just for visual reference
+                }
+                .buttonStyle(.borderedProminent)
+            }
+            .frame(height: 200)
+        }
+        .frame(height: 200)
+    }
+    .padding()
+}
+

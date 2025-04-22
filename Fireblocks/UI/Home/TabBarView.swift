@@ -56,7 +56,7 @@ struct TabBarView: View {
     var body: some View {
         ZStack {
             TabView(selection: $selectedIndex) {
-                SpinnerViewContainer {
+                SpinnerViewContainer(title: "Loading wallet...") {
                     AssetListView()
                 }
                 .tabItem {
