@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 class AmountToSendViewController: UIViewController, SwiftUIEnvironmentBridge {
 //MARK: - PROPERTIES
@@ -72,18 +73,9 @@ class AmountToSendViewController: UIViewController, SwiftUIEnvironmentBridge {
         configButtons()
     }
     
-    private func configAssetView(){
-        let cellNib = UINib(nibName: "AssetViewCell", bundle: nil)
-        let assetCellView = cellNib.instantiate(withOwner: nil, options: nil).first as! AssetViewCell
-        assetCellView.frame = assetView.bounds
-        assetCellView.translatesAutoresizingMaskIntoConstraints = false
-        assetCellView.configTransparentCellWith(asset: viewModel.getAsset())
-        assetView.addSubview(assetCellView)
-        let horizontalConstraint = assetCellView.centerXAnchor.constraint(equalTo: assetView.centerXAnchor)
-        let verticalConstraint = assetCellView.centerYAnchor.constraint(equalTo: assetView.centerYAnchor)
-        let widthConstraint = assetCellView.widthAnchor.constraint(equalTo: assetView.widthAnchor)
-        let heightConstraint = assetCellView.heightAnchor.constraint(equalTo: assetView.heightAnchor)
-        NSLayoutConstraint.activate([horizontalConstraint, verticalConstraint, widthConstraint, heightConstraint])
+    private func configAssetView() {
+        let swiftuiView = addSwiftUIView(rootView: AnyView(AssetRow(asset: viewModel.asset)), container: assetView)
+        swiftuiView.backgroundColor = AssetsColors.background.getColor()
     }
     
     private func configButtons(){

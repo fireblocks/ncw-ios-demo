@@ -144,4 +144,5 @@ struct LocalizableStrings{
     static let deviceId = "Device ID".localize()
     static let keyId = "Key ID".localize()
     static let algorithm = "Algorithm".localize()
+    static let walletAddress = "Wallet address".localize()
 }

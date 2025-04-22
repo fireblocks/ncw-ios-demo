@@ -127,19 +127,19 @@ extension UIViewController {
             )
     }
     
-    func addSwiftUIView(controller: UIHostingController<AnyView>) {
-        addChild(controller)
-        controller.view.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(controller.view)
-        controller.didMove(toParent: self)
-
+    func addSwiftUIView(rootView: AnyView, container: UIView) -> UIView {
+        let vc = UIHostingController(rootView: rootView)
+        let swiftuiView = vc.view!
+        swiftuiView.translatesAutoresizingMaskIntoConstraints = false
+        addChild(vc)
+        container.addSubview(swiftuiView)
         NSLayoutConstraint.activate([
-            controller.view.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1),
-            controller.view.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1),
-            controller.view.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            controller.view.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            swiftuiView.centerXAnchor.constraint(equalTo: container.centerXAnchor),
+            swiftuiView.centerYAnchor.constraint(equalTo: container.centerYAnchor),
+            swiftuiView.widthAnchor.constraint(equalTo: container.widthAnchor),
+            swiftuiView.heightAnchor.constraint(equalTo: container.heightAnchor),
         ])
+        vc.didMove(toParent: self)
+        return swiftuiView
     }
-
-
 }
