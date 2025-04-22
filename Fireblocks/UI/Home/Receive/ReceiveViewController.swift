@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 class ReceiveViewController: UIViewController, SwiftUIEnvironmentBridge {
     
@@ -20,7 +21,8 @@ class ReceiveViewController: UIViewController, SwiftUIEnvironmentBridge {
     @IBOutlet weak var assetAddressTitle: UILabel!
     @IBOutlet weak var assetAddress: UILabel!
     @IBOutlet weak var copyButton: UIButton!
-    
+    @IBOutlet weak var headerContainer: UIView!
+
     let viewModel: ReceiveViewModel
     
     #if EW
@@ -69,6 +71,14 @@ class ReceiveViewController: UIViewController, SwiftUIEnvironmentBridge {
         assetAddress.text = viewModel.getAssetAddress()
         
         qrCodeImage.image = getQRCodeImage()
+        
+        let headerRootView = ReceiveAssetHeaderView(asset: viewModel.asset)
+        let headerSwiftUIView = addSwiftUIView(rootView: AnyView(headerRootView), container: headerContainer)
+        headerSwiftUIView.backgroundColor = AssetsColors.background.getColor()
+
+        let rootView = DetailsListItemView(title: LocalizableStrings.walletAddress, contentText: viewModel.getAssetAddress(), showCopyButton: true)
+        let swiftUIView = addSwiftUIView(rootView: AnyView(rootView), container: addressBackground)
+        swiftUIView.backgroundColor = AssetsColors.background.getColor()
     }
         
     @IBAction func copyAddressTapped(_ sender: UIButton) {
