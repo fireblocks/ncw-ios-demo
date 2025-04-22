@@ -22,6 +22,7 @@ class ReceiveViewController: UIViewController, SwiftUIEnvironmentBridge {
     @IBOutlet weak var assetAddress: UILabel!
     @IBOutlet weak var copyButton: UIButton!
     @IBOutlet weak var headerContainer: UIView!
+    @IBOutlet weak var qrContainer: UIView!
 
     let viewModel: ReceiveViewModel
     
@@ -54,9 +55,10 @@ class ReceiveViewController: UIViewController, SwiftUIEnvironmentBridge {
     }
     
     private func configView() {
+        qrContainer.layer.cornerRadius = 16.0
+        qrContainer.layer.masksToBounds = true
+
         assetBlockchainNameBackground.layer.cornerRadius = assetBlockchainNameBackground.bounds.height / 2
-        qrCodeBackground.layer.cornerRadius = 16
-        addressBackground.layer.cornerRadius = 16
         copyButton.setTitle("", for: .normal)
         
         AssetImageLoader.shared.loadAssetIcon(
@@ -78,7 +80,7 @@ class ReceiveViewController: UIViewController, SwiftUIEnvironmentBridge {
 
         let rootView = DetailsListItemView(title: LocalizableStrings.walletAddress, contentText: viewModel.getAssetAddress(), showCopyButton: true)
         let swiftUIView = addSwiftUIView(rootView: AnyView(rootView), container: addressBackground)
-        swiftUIView.backgroundColor = AssetsColors.background.getColor()
+        swiftUIView.backgroundColor = AssetsColors.gray1.getColor()
     }
         
     @IBAction func copyAddressTapped(_ sender: UIButton) {
