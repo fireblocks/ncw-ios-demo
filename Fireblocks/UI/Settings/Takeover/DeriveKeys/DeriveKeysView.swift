@@ -21,14 +21,8 @@ struct DeriveKeysView: View {
     
     var body: some View {
         ZStack {
-            Color.black
-                .edgesIgnoringSafeArea(.all)
-            
+            AppBackgroundView()
             VStack(spacing: 0) {
-                Text(viewModel.title)
-                    .font(.b1)
-                    .padding(.bottom, 8)
-                    .padding(.horizontal, 16)
                 List {
                     ForEach(viewModel.sortedPrivateKeys(), id: \.self) { keyData in
                         if let algorithm = keyData.algorithm?.rawValue {
@@ -78,6 +72,7 @@ struct DeriveKeysView: View {
                 }
                 .listStyle(.insetGrouped)
                 .listRowSeparator(.hidden)
+                .scrollContentBackground(.hidden)
                 Spacer()
                 
             }
@@ -104,7 +99,6 @@ struct DeriveKeysView: View {
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden()
         .navigationBarItems(leading: CustomBackButtonView())
-
     }
 }
 
@@ -133,8 +127,42 @@ struct AssetCell<Content: View>: View {
                         UIPasteboard.general.string = privateKey
                         
                     }
-                
-                Image(uiImage: isExposed ?  AssetsIcons.eye.getIcon() : AssetsIcons.eyeCrossedOut.getIcon())
+            }
+            
+            MultilineSecureField(privateKey: privateKey, isExposed: isExposed)
+        }
+    }
+}
+
+struct MultilineSecureField: View {
+    let privateKey: String
+    @State var isExposed: Bool = false
+
+    var body: some View {
+        ZStack(alignment: .center) {
+            Group {
+                if isExposed {
+                    // When exposed, show normal text with multiple lines
+                    Text(privateKey)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .font(.b1)
+                        .multilineTextAlignment(.leading)
+                        .lineLimit(nil) // Allow multiple lines
+                } else {
+                    // Custom secure field replacement with multiple lines
+                    Text(String(repeating: "•", count: privateKey.count))
+                        .font(.b1)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .multilineTextAlignment(.leading)
+                        .lineLimit(nil) // Allow multiple lines
+                }
+            }
+            .padding(.trailing, 40) // Add trailing padding to prevent text overlap with icon
+            
+            // Eye icon positioned at center-right
+            HStack {
+                Spacer()
+                Image(uiImage: isExposed ? AssetsIcons.eye.getIcon() : AssetsIcons.eyeCrossedOut.getIcon())
                     .imageScale(.large)
                     .onTapGesture {
                         withAnimation {
@@ -142,33 +170,36 @@ struct AssetCell<Content: View>: View {
                         }
                     }
             }
-            
-            HStack {
-                if !isExposed {
-                    SecureField("", text: .constant(privateKey))
-                        .frame(maxWidth: .infinity)
-                        .padding()
-                        .disabled(true)
-                        .multilineTextAlignment(.leading)
-                    
-                } else {
-                    Text(privateKey)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding()
-                        .multilineTextAlignment(.leading)
-                }
-            }
-            .overlay(
-                RoundedRectangle(cornerRadius: 8)
-                    .stroke(AssetsColors.gray2.color(), lineWidth: 1)
-            )
-            
         }
-
-
+        .overlay(
+            RoundedRectangle(cornerRadius: 8)
+                .stroke(AssetsColors.gray2.color(), lineWidth: 1)
+        )
     }
 }
 
-//#Preview {
-//    DeriveKeysView(viewModel: DeriveKeysView.ViewModel(privateKeys: ["XXXX"]))
-//}
+#Preview("DeriveKeysView") {
+    NavigationContainerView(mockManager: EWManagerMock()) {
+        SpinnerViewContainer {
+            DeriveKeysView(viewModel: PreviewViewModel())
+        }
+    }
+}
+
+// Preview view model
+private class PreviewViewModel: DeriveKeysView.ViewModel {
+    init() {
+        // Create a mock FullKey using a decoder since we can't initialize it directly
+        let mockKey = try! JSONDecoder().decode(FullKey.self, from: """
+        {
+            "algorithm": "\(Algorithm.MPC_ECDSA_SECP256K1.rawValue)",
+            "privateKey": "xprv9s21ZrQH143K3QTDL4LXw2F7HEK3wJUD2nW2nRk4stbPy6cq3jPPqjiChkVvvNKmPGJxWUtg"
+        }
+        """.data(using: .utf8)!)
+        
+        super.init(privateKeys: Set([mockKey]))
+    }
+}
+
+
+
