@@ -90,7 +90,7 @@ class SendToViewController: UIViewController, SwiftUIEnvironmentBridge {
     
     @objc private func handleEraseTap(_ gesture: UITapGestureRecognizer) {
         addressTextField.text = ""
-        viewModel.setAddress(address: addressTextField.text)
+        viewModel.setAddress(address: addressTextField.text!)
     }
     
     @objc private func handleScanQRCodeTap(_ gesture: UITapGestureRecognizer) {
@@ -113,7 +113,7 @@ class SendToViewController: UIViewController, SwiftUIEnvironmentBridge {
 //MARK: - UITextFieldDelegate
 extension SendToViewController: UITextFieldDelegate {
     func textFieldDidChangeSelection(_ textField: UITextField) {
-        viewModel.setAddress(address: addressTextField.text)
+        viewModel.setAddress(address: addressTextField.text ?? "")
     }
     
     func textFieldShouldReturn(_ textfield: UITextField) -> Bool {

@@ -22,10 +22,15 @@ struct AssetRow: View {
     #endif
     
     let asset: AssetSummary
+    var titleAmount: String?
+    var subTitleAmount: String?
+    
     @State var viewModel: AssetRowViewModel
     
-    init(asset: AssetSummary) {
+    init(asset: AssetSummary, titleAmount: String? = nil, subTitleAmount: String? = nil) {
         self.asset = asset
+        self.titleAmount = titleAmount
+        self.subTitleAmount = subTitleAmount
         _viewModel = .init(initialValue: .init(asset: asset))
     }
     
@@ -55,7 +60,7 @@ struct AssetRow: View {
                     let title = AssetsUtils.getAssetTitleText(asset: asset.asset)
                     Text(title)
                     Spacer()
-                    Text(asset.balance?.total?.toDouble?.formatFractions().formatted() ?? "")
+                    Text(titleAmount ?? asset.balance?.total?.toDouble?.formatFractions().formatted() ?? "")
                 }
                 .font(.b1)
                 HStack(spacing: 4) {
@@ -63,17 +68,22 @@ struct AssetRow: View {
                     .font(.b4)
                     Spacer()
 
-                    if let assetId = asset.asset?.id, let total = asset.balance?.total, let price = Double(total) {
-                        #if EW
-                        Text(CryptoCurrencyManager.shared.getTotalPrice(assetId: assetId, networkProtocol: asset.asset?.networkProtocol, amount: price))
+                    if let subTitleAmount {
+                        Text(subTitleAmount)
                             .font(.b2)
-                        #else
-                        if let rate = asset.asset?.rate, let total = asset.balance?.total, let price = Double(total), price != 0 {
-                            let rounded = String(format: "%.\(2)f", (price * rate))
-                            Text("$\(rounded)")
+                    } else {
+                        if let assetId = asset.asset?.id, let total = asset.balance?.total, let price = Double(total) {
+#if EW
+                            Text(CryptoCurrencyManager.shared.getTotalPrice(assetId: assetId, networkProtocol: asset.asset?.networkProtocol, amount: price))
                                 .font(.b2)
+#else
+                            if let rate = asset.asset?.rate, let total = asset.balance?.total, let price = Double(total), price != 0 {
+                                let rounded = String(format: "%.\(2)f", (price * rate))
+                                Text("$\(rounded)")
+                                    .font(.b2)
+                            }
+#endif
                         }
-                        #endif
                     }
                 }
                 .foregroundStyle(.secondary)

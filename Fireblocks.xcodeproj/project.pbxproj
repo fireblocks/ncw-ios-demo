@@ -48,7 +48,6 @@
 		2B21D8202BC56B5C003ADD29 /* UIHostingBridgeNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558E832B47042D006212B2 /* UIHostingBridgeNotifications.swift */; };
 		2B21D8212BC56B5C003ADD29 /* FeeRateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DA06A72A651F7E00160ADC /* FeeRateViewModel.swift */; };
 		2B21D8232BC56B5C003ADD29 /* PrepareForScanViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558E852B47044C006212B2 /* PrepareForScanViewModel.swift */; };
-		2B21D8242BC56B5C003ADD29 /* SendToViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DA06B02A65204600160ADC /* SendToViewController.swift */; };
 		2B21D8252BC56B5C003ADD29 /* CodableAnyExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B94CFC92A9CE576003E7508 /* CodableAnyExtension.swift */; };
 		2B21D8272BC56B5C003ADD29 /* AlertBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF8EDBD2B56758300046F0B /* AlertBannerView.swift */; };
 		2B21D8292BC56B5C003ADD29 /* Double+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867828D32A696D170035787D /* Double+Extension.swift */; };
@@ -142,7 +141,6 @@
 		2B21D8AD2BC56B5C003ADD29 /* AreYouSureBottomSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86ED2BB12A64434500377F6C /* AreYouSureBottomSheet.xib */; };
 		2B21D8AF2BC56B5C003ADD29 /* Inter-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 603B71082A8137AE00796CEE /* Inter-Bold.ttf */; };
 		2B21D8B12BC56B5C003ADD29 /* Inter-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 603B71052A81379D00796CEE /* Inter-Regular.ttf */; };
-		2B21D8B32BC56B5C003ADD29 /* SendToViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60DA06B22A65204600160ADC /* SendToViewController.xib */; };
 		2B21D8BE2BC56BAA003ADD29 /* EnvironmentConstantsProd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B21D8BD2BC56BAA003ADD29 /* EnvironmentConstantsProd.swift */; };
 		2B21D8C12BC570AA003ADD29 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2B21D8C02BC570AA003ADD29 /* GoogleService-Info.plist */; };
 		2B223FB12D673EAE002285B9 /* EWNFTsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B223F952D673EAE002285B9 /* EWNFTsViewModel.swift */; };
@@ -293,7 +291,6 @@
 		2B22D93F2D82EBF500F1C1A2 /* Mocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEB9C712D7AD67900699AC1 /* Mocks.swift */; };
 		2B22D9402D82EBF500F1C1A2 /* GoogleSignInManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862E2AA32A543B86002FF774 /* GoogleSignInManager.swift */; };
 		2B22D9412D82EBF500F1C1A2 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A72232B45ABB50011C398 /* Style.swift */; };
-		2B22D9422D82EBF500F1C1A2 /* SendToViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DA06B02A65204600160ADC /* SendToViewController.swift */; };
 		2B22D9432D82EBF500F1C1A2 /* AddDeviceQRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A721C2B45A8FF0011C398 /* AddDeviceQRView.swift */; };
 		2B22D9442D82EBF500F1C1A2 /* RecoverManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B1AD22D2E99C500A2B39D /* RecoverManager.swift */; };
 		2B22D9452D82EBF500F1C1A2 /* ReceiveViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0FEDB02D37D79E00F637E6 /* ReceiveViewModel.swift */; };
@@ -360,7 +357,6 @@
 		2B22D9882D82EBF500F1C1A2 /* Inter-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 603B71082A8137AE00796CEE /* Inter-Bold.ttf */; };
 		2B22D9892D82EBF500F1C1A2 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 603B70E22A810D6200796CEE /* Roboto-Medium.ttf */; };
 		2B22D98A2D82EBF500F1C1A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86859F5B2A384D8B0056E3C6 /* Assets.xcassets */; };
-		2B22D98B2D82EBF500F1C1A2 /* SendToViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60DA06B22A65204600160ADC /* SendToViewController.xib */; };
 		2B22D98C2D82EBF500F1C1A2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 86DC6E9C2A39ECC000A0B313 /* Localizable.strings */; };
 		2B22D98D2D82EBF500F1C1A2 /* AssetViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60DA06A12A651D9300160ADC /* AssetViewCell.xib */; };
 		2B22D98F2D82EBF500F1C1A2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B7C46DD2B32D638001C804B /* Preview Assets.xcassets */; };
@@ -533,7 +529,6 @@
 		2B2B1A852D2D120E00A2B39D /* Inter-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 603B71082A8137AE00796CEE /* Inter-Bold.ttf */; };
 		2B2B1A872D2D120E00A2B39D /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 603B70E22A810D6200796CEE /* Roboto-Medium.ttf */; };
 		2B2B1A882D2D120E00A2B39D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86859F5B2A384D8B0056E3C6 /* Assets.xcassets */; };
-		2B2B1A892D2D120E00A2B39D /* SendToViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60DA06B22A65204600160ADC /* SendToViewController.xib */; };
 		2B2B1A8A2D2D120E00A2B39D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 86DC6E9C2A39ECC000A0B313 /* Localizable.strings */; };
 		2B2B1A8B2D2D120E00A2B39D /* AssetViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60DA06A12A651D9300160ADC /* AssetViewCell.xib */; };
 		2B2B1A8D2D2D120E00A2B39D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B7C46DD2B32D638001C804B /* Preview Assets.xcassets */; };
@@ -569,6 +564,12 @@
 		2B3DC7972DB61B5200D45323 /* AdvancedInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3DC7932DB61B5200D45323 /* AdvancedInfoView.swift */; };
 		2B3DC7982DB61B5200D45323 /* AdvancedInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3DC7932DB61B5200D45323 /* AdvancedInfoView.swift */; };
 		2B3DC7992DB61B5200D45323 /* AdvancedInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3DC7932DB61B5200D45323 /* AdvancedInfoView.swift */; };
+		2B4041CA2DB8E96B00D40AE4 /* SendToView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4041C92DB8E96B00D40AE4 /* SendToView.swift */; };
+		2B4041CB2DB8E96B00D40AE4 /* SendToView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4041C92DB8E96B00D40AE4 /* SendToView.swift */; };
+		2B4041CC2DB8E96B00D40AE4 /* SendToView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4041C92DB8E96B00D40AE4 /* SendToView.swift */; };
+		2B4041CD2DB8E96B00D40AE4 /* SendToView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4041C92DB8E96B00D40AE4 /* SendToView.swift */; };
+		2B4041CE2DB8E96B00D40AE4 /* SendToView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4041C92DB8E96B00D40AE4 /* SendToView.swift */; };
+		2B4041CF2DB8E96B00D40AE4 /* SendToView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4041C92DB8E96B00D40AE4 /* SendToView.swift */; };
 		2B54D6CC2D426C51001C135D /* DerivedKeyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B54D6C82D426C45001C135D /* DerivedKeyViewModel.swift */; };
 		2B54D6CF2D426CA7001C135D /* DeriveKeysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD34A782B98B9A2008406D5 /* DeriveKeysView.swift */; };
 		2B54D6D02D426D77001C135D /* DerivedAssetRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD34A7A2B98C129008406D5 /* DerivedAssetRow.swift */; };
@@ -720,7 +721,6 @@
 		2B78DEC72D92B7D8003B7D82 /* Mocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEB9C712D7AD67900699AC1 /* Mocks.swift */; };
 		2B78DEC82D92B7D8003B7D82 /* GoogleSignInManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862E2AA32A543B86002FF774 /* GoogleSignInManager.swift */; };
 		2B78DEC92D92B7D8003B7D82 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A72232B45ABB50011C398 /* Style.swift */; };
-		2B78DECA2D92B7D8003B7D82 /* SendToViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DA06B02A65204600160ADC /* SendToViewController.swift */; };
 		2B78DECB2D92B7D8003B7D82 /* AddDeviceQRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A721C2B45A8FF0011C398 /* AddDeviceQRView.swift */; };
 		2B78DECC2D92B7D8003B7D82 /* RecoverManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B1AD22D2E99C500A2B39D /* RecoverManager.swift */; };
 		2B78DECD2D92B7D8003B7D82 /* ReceiveViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0FEDB02D37D79E00F637E6 /* ReceiveViewModel.swift */; };
@@ -789,7 +789,6 @@
 		2B78DF0F2D92B7D8003B7D82 /* Inter-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 603B71082A8137AE00796CEE /* Inter-Bold.ttf */; };
 		2B78DF102D92B7D8003B7D82 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 603B70E22A810D6200796CEE /* Roboto-Medium.ttf */; };
 		2B78DF112D92B7D8003B7D82 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86859F5B2A384D8B0056E3C6 /* Assets.xcassets */; };
-		2B78DF122D92B7D8003B7D82 /* SendToViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60DA06B22A65204600160ADC /* SendToViewController.xib */; };
 		2B78DF132D92B7D8003B7D82 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 86DC6E9C2A39ECC000A0B313 /* Localizable.strings */; };
 		2B78DF142D92B7D8003B7D82 /* AssetViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60DA06A12A651D9300160ADC /* AssetViewCell.xib */; };
 		2B78DF162D92B7D8003B7D82 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B7C46DD2B32D638001C804B /* Preview Assets.xcassets */; };
@@ -872,13 +871,11 @@
 		2B7C47232B32D925001C804B /* AppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2D36152B2B205A00B04667 /* AppLogger.swift */; };
 		2B7C47242B32D964001C804B /* AmountToSendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DA06982A651AE000160ADC /* AmountToSendViewController.swift */; };
 		2B7C47252B32D964001C804B /* ApproveViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603903742A6D1F560060E026 /* ApproveViewModel.swift */; };
-		2B7C47262B32D964001C804B /* SendToViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DA06B02A65204600160ADC /* SendToViewController.swift */; };
 		2B7C47272B32D964001C804B /* SendToViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DA06B12A65204600160ADC /* SendToViewModel.swift */; };
 		2B7C472B2B32D965001C804B /* ReceiveViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60EECFA62A66BE6400F3891C /* ReceiveViewController.xib */; };
 		2B7C47302B32D965001C804B /* FeeRateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DA06A72A651F7E00160ADC /* FeeRateViewModel.swift */; };
 		2B7C47322B32D965001C804B /* ReceiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EECFA52A66BE6400F3891C /* ReceiveViewController.swift */; };
 		2B7C47342B32D965001C804B /* QRCodeScannerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60DA06AE2A65204600160ADC /* QRCodeScannerViewController.xib */; };
-		2B7C47362B32D965001C804B /* SendToViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60DA06B22A65204600160ADC /* SendToViewController.xib */; };
 		2B7C47382B32D965001C804B /* QRCodeScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DA06AF2A65204600160ADC /* QRCodeScannerViewController.swift */; };
 		2B7C473C2B32D965001C804B /* AmountToSendViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60DA06662A645E9A00160ADC /* AmountToSendViewController.xib */; };
 		2B7C47412B32D965001C804B /* AmountToSendViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DA06642A645E9A00160ADC /* AmountToSendViewModel.swift */; };
@@ -953,7 +950,6 @@
 		2B87CAD72D47952900448A2A /* FBTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DA06562A645E1300160ADC /* FBTransaction.swift */; };
 		2B87CAE02D47A73300448A2A /* PollingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B87CADF2D47A72E00448A2A /* PollingManager.swift */; };
 		2B87CAE42D47AC4700448A2A /* TransfersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B87CAE22D47AC4000448A2A /* TransfersViewModel.swift */; };
-		2B87CAF32D47C82A00448A2A /* SendToViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DA06B02A65204600160ADC /* SendToViewController.swift */; };
 		2B87CAF42D47C86900448A2A /* SendToViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DA06B12A65204600160ADC /* SendToViewModel.swift */; };
 		2B87CAF62D47C89600448A2A /* FeeRateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DA06892A645EF400160ADC /* FeeRateCell.swift */; };
 		2B87CAF92D47C95E00448A2A /* PostTransactionParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B87CAF82D47C95E00448A2A /* PostTransactionParams.swift */; };
@@ -1243,9 +1239,7 @@
 		60DA06AA2A651F7E00160ADC /* FeeRateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DA06A72A651F7E00160ADC /* FeeRateViewModel.swift */; };
 		60DA06B32A65204600160ADC /* QRCodeScannerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60DA06AE2A65204600160ADC /* QRCodeScannerViewController.xib */; };
 		60DA06B42A65204600160ADC /* QRCodeScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DA06AF2A65204600160ADC /* QRCodeScannerViewController.swift */; };
-		60DA06B52A65204600160ADC /* SendToViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DA06B02A65204600160ADC /* SendToViewController.swift */; };
 		60DA06B62A65204600160ADC /* SendToViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DA06B12A65204600160ADC /* SendToViewModel.swift */; };
-		60DA06B72A65204600160ADC /* SendToViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60DA06B22A65204600160ADC /* SendToViewController.xib */; };
 		60EECF9E2A66BE2700F3891C /* AssetsImageMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EECF9D2A66BE2700F3891C /* AssetsImageMapper.swift */; };
 		60EECFA02A66BE3100F3891C /* ChooseAssetRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EECF9F2A66BE3100F3891C /* ChooseAssetRepository.swift */; };
 		60EECFA82A66BE6400F3891C /* ReceiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EECFA52A66BE6400F3891C /* ReceiveViewController.swift */; };
@@ -1466,6 +1460,7 @@
 		2B2B1AD22D2E99C500A2B39D /* RecoverManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverManager.swift; sourceTree = "<group>"; };
 		2B2D36152B2B205A00B04667 /* AppLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLogger.swift; sourceTree = "<group>"; };
 		2B3DC7932DB61B5200D45323 /* AdvancedInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedInfoView.swift; sourceTree = "<group>"; };
+		2B4041C92DB8E96B00D40AE4 /* SendToView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendToView.swift; sourceTree = "<group>"; };
 		2B54D6C82D426C45001C135D /* DerivedKeyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DerivedKeyViewModel.swift; sourceTree = "<group>"; };
 		2B558E832B47042D006212B2 /* UIHostingBridgeNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHostingBridgeNotifications.swift; sourceTree = "<group>"; };
 		2B558E852B47044C006212B2 /* PrepareForScanViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareForScanViewModel.swift; sourceTree = "<group>"; };
@@ -1628,9 +1623,7 @@
 		60DA06A72A651F7E00160ADC /* FeeRateViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeeRateViewModel.swift; sourceTree = "<group>"; };
 		60DA06AE2A65204600160ADC /* QRCodeScannerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QRCodeScannerViewController.xib; sourceTree = "<group>"; };
 		60DA06AF2A65204600160ADC /* QRCodeScannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeScannerViewController.swift; sourceTree = "<group>"; };
-		60DA06B02A65204600160ADC /* SendToViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendToViewController.swift; sourceTree = "<group>"; };
 		60DA06B12A65204600160ADC /* SendToViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendToViewModel.swift; sourceTree = "<group>"; };
-		60DA06B22A65204600160ADC /* SendToViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SendToViewController.xib; sourceTree = "<group>"; };
 		60DA06C02A6552F100160ADC /* Double+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extension.swift"; sourceTree = "<group>"; };
 		60EECF9D2A66BE2700F3891C /* AssetsImageMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetsImageMapper.swift; sourceTree = "<group>"; };
 		60EECF9F2A66BE3100F3891C /* ChooseAssetRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseAssetRepository.swift; sourceTree = "<group>"; };
@@ -2709,9 +2702,8 @@
 			isa = PBXGroup;
 			children = (
 				60DA06AD2A65204600160ADC /* QRCodeScanner */,
-				60DA06B02A65204600160ADC /* SendToViewController.swift */,
 				60DA06B12A65204600160ADC /* SendToViewModel.swift */,
-				60DA06B22A65204600160ADC /* SendToViewController.xib */,
+				2B4041C92DB8E96B00D40AE4 /* SendToView.swift */,
 			);
 			path = SendTo;
 			sourceTree = "<group>";
@@ -3382,7 +3374,6 @@
 				2B21D8AD2BC56B5C003ADD29 /* AreYouSureBottomSheet.xib in Resources */,
 				2B21D8AF2BC56B5C003ADD29 /* Inter-Bold.ttf in Resources */,
 				2B21D8B12BC56B5C003ADD29 /* Inter-Regular.ttf in Resources */,
-				2B21D8B32BC56B5C003ADD29 /* SendToViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3398,7 +3389,6 @@
 				2B22D9882D82EBF500F1C1A2 /* Inter-Bold.ttf in Resources */,
 				2B22D9892D82EBF500F1C1A2 /* Roboto-Medium.ttf in Resources */,
 				2B22D98A2D82EBF500F1C1A2 /* Assets.xcassets in Resources */,
-				2B22D98B2D82EBF500F1C1A2 /* SendToViewController.xib in Resources */,
 				2B22D98C2D82EBF500F1C1A2 /* Localizable.strings in Resources */,
 				2B22D98D2D82EBF500F1C1A2 /* AssetViewCell.xib in Resources */,
 				2B22D9AF2D82EE2900F1C1A2 /* GoogleService-Info.plist in Resources */,
@@ -3432,7 +3422,6 @@
 				2B2B1A852D2D120E00A2B39D /* Inter-Bold.ttf in Resources */,
 				2B2B1A872D2D120E00A2B39D /* Roboto-Medium.ttf in Resources */,
 				2B2B1A882D2D120E00A2B39D /* Assets.xcassets in Resources */,
-				2B2B1A892D2D120E00A2B39D /* SendToViewController.xib in Resources */,
 				2B2B1A8A2D2D120E00A2B39D /* Localizable.strings in Resources */,
 				2B2B1A8B2D2D120E00A2B39D /* AssetViewCell.xib in Resources */,
 				2B2B1ACC2D2D558F00A2B39D /* GoogleService-Info.plist in Resources */,
@@ -3466,7 +3455,6 @@
 				2B78DF0F2D92B7D8003B7D82 /* Inter-Bold.ttf in Resources */,
 				2B78DF102D92B7D8003B7D82 /* Roboto-Medium.ttf in Resources */,
 				2B78DF112D92B7D8003B7D82 /* Assets.xcassets in Resources */,
-				2B78DF122D92B7D8003B7D82 /* SendToViewController.xib in Resources */,
 				2B78DF132D92B7D8003B7D82 /* Localizable.strings in Resources */,
 				2B78DF2D2D92C866003B7D82 /* GoogleService-Info.plist in Resources */,
 				2B78DF142D92B7D8003B7D82 /* AssetViewCell.xib in Resources */,
@@ -3500,7 +3488,6 @@
 				2B7C46F02B32D8B3001C804B /* Inter-Bold.ttf in Resources */,
 				2B7C46F22B32D8B8001C804B /* Roboto-Medium.ttf in Resources */,
 				2B7C47002B32D8D7001C804B /* Assets.xcassets in Resources */,
-				2B7C47362B32D965001C804B /* SendToViewController.xib in Resources */,
 				2B7C46FC2B32D8CC001C804B /* Localizable.strings in Resources */,
 				2B7C47742B32D9C9001C804B /* AssetViewCell.xib in Resources */,
 				2B2B1ACA2D2D556400A2B39D /* GoogleService-Info.plist in Resources */,
@@ -3548,7 +3535,6 @@
 				86ED2BB32A64434500377F6C /* AreYouSureBottomSheet.xib in Resources */,
 				603B71092A8137AF00796CEE /* Inter-Bold.ttf in Resources */,
 				603B71062A81379D00796CEE /* Inter-Regular.ttf in Resources */,
-				60DA06B72A65204600160ADC /* SendToViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3615,7 +3601,6 @@
 				2B21D8202BC56B5C003ADD29 /* UIHostingBridgeNotifications.swift in Sources */,
 				2B21D8212BC56B5C003ADD29 /* FeeRateViewModel.swift in Sources */,
 				2B21D8232BC56B5C003ADD29 /* PrepareForScanViewModel.swift in Sources */,
-				2B21D8242BC56B5C003ADD29 /* SendToViewController.swift in Sources */,
 				2B83E2532D37EA7B003B1397 /* JoinWalletResponse.swift in Sources */,
 				2B21D8252BC56B5C003ADD29 /* CodableAnyExtension.swift in Sources */,
 				2B87CB212D47D30F00448A2A /* EstimatedTransactionFeeResponse.swift in Sources */,
@@ -3695,6 +3680,7 @@
 				2BCFE1322D5B7B39006BE227 /* NavigationBarLeftHeader.swift in Sources */,
 				2B21D8512BC56B5C003ADD29 /* ValidateRequestIdView.swift in Sources */,
 				2B2B18882D2A8A0C00A2B39D /* SignInView.swift in Sources */,
+				2B4041CD2DB8E96B00D40AE4 /* SendToView.swift in Sources */,
 				2BEB9BFA2D7845FB00699AC1 /* TransferListView.swift in Sources */,
 				2B2B18C02D2ADF4400A2B39D /* AddDeviceView.swift in Sources */,
 				2B21D8522BC56B5C003ADD29 /* ExtraParameters.swift in Sources */,
@@ -3748,6 +3734,7 @@
 				2B22D8B82D82EBF500F1C1A2 /* FeeRateCell.swift in Sources */,
 				2B22D8B92D82EBF500F1C1A2 /* AddDeviceViewModel.swift in Sources */,
 				2B22D8BB2D82EBF500F1C1A2 /* AssetHeaderUIView.swift in Sources */,
+				2B4041CC2DB8E96B00D40AE4 /* SendToView.swift in Sources */,
 				2B22D8BC2D82EBF500F1C1A2 /* FireblocksManager.swift in Sources */,
 				2B22D8BD2D82EBF500F1C1A2 /* AssetError.swift in Sources */,
 				2B22D8BE2D82EBF500F1C1A2 /* SendToViewModel.swift in Sources */,
@@ -3888,7 +3875,6 @@
 				2B22D93F2D82EBF500F1C1A2 /* Mocks.swift in Sources */,
 				2B22D9402D82EBF500F1C1A2 /* GoogleSignInManager.swift in Sources */,
 				2B22D9412D82EBF500F1C1A2 /* Style.swift in Sources */,
-				2B22D9422D82EBF500F1C1A2 /* SendToViewController.swift in Sources */,
 				2B22D9432D82EBF500F1C1A2 /* AddDeviceQRView.swift in Sources */,
 				2B22D9442D82EBF500F1C1A2 /* RecoverManager.swift in Sources */,
 				2B22D9452D82EBF500F1C1A2 /* ReceiveViewModel.swift in Sources */,
@@ -3950,6 +3936,7 @@
 				2B87CAF62D47C89600448A2A /* FeeRateCell.swift in Sources */,
 				2B83E2482D37E849003B1397 /* AddDeviceViewModel.swift in Sources */,
 				2B2B1AC22D2D531100A2B39D /* EnvironmentConstantsRentblocks.swift in Sources */,
+				2B4041CB2DB8E96B00D40AE4 /* SendToView.swift in Sources */,
 				2B2B19D52D2D120E00A2B39D /* AssetHeaderUIView.swift in Sources */,
 				2B2B1AAB2D2D126000A2B39D /* FireblocksManager.swift in Sources */,
 				2B87CB0D2D47CFF700448A2A /* AssetError.swift in Sources */,
@@ -4090,7 +4077,6 @@
 				2BEB9C722D7AD67900699AC1 /* Mocks.swift in Sources */,
 				2B2B1A422D2D120E00A2B39D /* GoogleSignInManager.swift in Sources */,
 				2B2B1A442D2D120E00A2B39D /* Style.swift in Sources */,
-				2B87CAF32D47C82A00448A2A /* SendToViewController.swift in Sources */,
 				2B2B1A462D2D120E00A2B39D /* AddDeviceQRView.swift in Sources */,
 				2B2B1AD32D2E99CB00A2B39D /* RecoverManager.swift in Sources */,
 				2B0FEDB12D37D7A000F637E6 /* ReceiveViewModel.swift in Sources */,
@@ -4152,6 +4138,7 @@
 				2B78DE402D92B7D8003B7D82 /* FeeRateCell.swift in Sources */,
 				2B78DE412D92B7D8003B7D82 /* AddDeviceViewModel.swift in Sources */,
 				2B78DE422D92B7D8003B7D82 /* AssetHeaderUIView.swift in Sources */,
+				2B4041CF2DB8E96B00D40AE4 /* SendToView.swift in Sources */,
 				2B78DE432D92B7D8003B7D82 /* FireblocksManager.swift in Sources */,
 				2B78DE442D92B7D8003B7D82 /* AssetError.swift in Sources */,
 				2B78DE452D92B7D8003B7D82 /* SendToViewModel.swift in Sources */,
@@ -4292,7 +4279,6 @@
 				2B78DEC72D92B7D8003B7D82 /* Mocks.swift in Sources */,
 				2B78DEC82D92B7D8003B7D82 /* GoogleSignInManager.swift in Sources */,
 				2B78DEC92D92B7D8003B7D82 /* Style.swift in Sources */,
-				2B78DECA2D92B7D8003B7D82 /* SendToViewController.swift in Sources */,
 				2B78DECB2D92B7D8003B7D82 /* AddDeviceQRView.swift in Sources */,
 				2B78DECC2D92B7D8003B7D82 /* RecoverManager.swift in Sources */,
 				2B78DECD2D92B7D8003B7D82 /* ReceiveViewModel.swift in Sources */,
@@ -4389,7 +4375,6 @@
 				2BAB68252B820E9C003592F1 /* Bullet.swift in Sources */,
 				2B87CB002D47CA2000448A2A /* EstimatedFeeRequestBody.swift in Sources */,
 				2B7C46FF2B32D8D1001C804B /* AssetsColors.swift in Sources */,
-				2B7C47262B32D964001C804B /* SendToViewController.swift in Sources */,
 				2B87CB162D47D2D000448A2A /* Fee.swift in Sources */,
 				2BAB68232B820E89003592F1 /* Extensions.swift in Sources */,
 				2B2B188E2D2A900500A2B39D /* LaunchViewModel.swift in Sources */,
@@ -4399,6 +4384,7 @@
 				2B7C47202B32D916001C804B /* CodableAnyExtension.swift in Sources */,
 				2B7C46F62B32D8C4001C804B /* Asset.swift in Sources */,
 				2BF477E42D37DBBD000C9553 /* BackupData.swift in Sources */,
+				2B4041CA2DB8E96B00D40AE4 /* SendToView.swift in Sources */,
 				2BCFE1362D5B7C46006BE227 /* TabBarView.swift in Sources */,
 				2B7C47102B32D8FC001C804B /* FeeRateRepository.swift in Sources */,
 				2BEB9BC42D75CB6700699AC1 /* ApproveTransactionView.swift in Sources */,
@@ -4592,7 +4578,6 @@
 				60DA06AA2A651F7E00160ADC /* FeeRateViewModel.swift in Sources */,
 				2B558E862B47044C006212B2 /* PrepareForScanViewModel.swift in Sources */,
 				2B83E2512D37EA7B003B1397 /* JoinWalletResponse.swift in Sources */,
-				60DA06B52A65204600160ADC /* SendToViewController.swift in Sources */,
 				2B87CB1F2D47D30F00448A2A /* EstimatedTransactionFeeResponse.swift in Sources */,
 				2BEB9BCA2D75CCDD00699AC1 /* TransactionHeaderView.swift in Sources */,
 				2B94CFCC2A9CE576003E7508 /* CodableAnyExtension.swift in Sources */,
@@ -4670,6 +4655,7 @@
 				2BCFE1312D5B7B39006BE227 /* NavigationBarLeftHeader.swift in Sources */,
 				2B558E9E2B484AC4006212B2 /* ValidateRequestIdView.swift in Sources */,
 				2B2B18872D2A8A0C00A2B39D /* SignInView.swift in Sources */,
+				2B4041CE2DB8E96B00D40AE4 /* SendToView.swift in Sources */,
 				2BEB9BF92D7845FB00699AC1 /* TransferListView.swift in Sources */,
 				2B2B18BF2D2ADF4400A2B39D /* AddDeviceView.swift in Sources */,
 				2B94CFC52A9CDF62003E7508 /* ExtraParameters.swift in Sources */,

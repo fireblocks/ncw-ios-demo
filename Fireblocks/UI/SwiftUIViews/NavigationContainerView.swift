@@ -34,6 +34,7 @@ enum NavigationTypes: Hashable {
     case settings
     case info
     case genericController(UIViewController, String)
+    case transactionRecipient(FBTransaction)
     case selectFee(FBTransaction)
     case approveTransaction(FBTransaction, Bool)
     
@@ -175,6 +176,15 @@ struct NavigationContainerView<Content: View>: View {
                         PrepareForScanView()
                             .environmentObject(fireblocksManager)
                             .environmentObject(coordinator)
+
+                    }
+                case .transactionRecipient(let transaction):
+                    SpinnerViewContainer {
+                        SendToView(viewModel: SendToViewModel(transaction: transaction))
+                            .environmentObject(coordinator)
+                            #if EW
+                                .environment(ewManager)
+                            #endif
 
                     }
                 case .selectFee(let transaction):
