@@ -28,42 +28,37 @@ struct EWNFTFeeView: View {
         ZStack {
             AppBackgroundView()
             if viewModel.dataModel.token != nil {
-                VStack(spacing: 0) {
-                    List {
-                        Section {
-                            VStack(spacing: 16) {
-                                Text(LocalizableStrings.transactionSpeed)
-                                    .frame(maxWidth: .infinity, alignment: .leading)
-                                    .font(.b2)
-                                VStack(spacing: 4) {
-                                    ForEach(FeeLevel.allCases, id: \.self) { fee in
-                                        Text(viewModel.speed(level: fee))
-                                            .frame(maxWidth: .infinity, alignment: .leading)
-                                            .padding()
-                                            .contentShape(.rect())
-                                            .background(fee == viewModel.dataModel.feeLevel ? AssetsColors.gray2.color()  : Color.clear, in: .rect(cornerRadius: 8))
-                                            .foregroundStyle(fee == viewModel.dataModel.feeLevel ? .white : .secondary)
-                                            .onTapGesture {
-                                                viewModel.dataModel.feeLevel = fee
-                                            }
-                                    }
+                List {
+                    Section {
+                        VStack(spacing: 16) {
+                            Text(LocalizableStrings.transactionSpeed)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .font(.b2)
+                            VStack(spacing: 4) {
+                                ForEach(FeeLevel.allCases, id: \.self) { fee in
+                                    Text(viewModel.speed(level: fee))
+                                        .frame(maxWidth: .infinity, alignment: .leading)
+                                        .padding()
+                                        .contentShape(.rect())
+                                        .background(fee == viewModel.dataModel.feeLevel ? AssetsColors.gray2.color()  : Color.clear, in: .rect(cornerRadius: 8))
+                                        .foregroundStyle(fee == viewModel.dataModel.feeLevel ? .white : .secondary)
+                                        .onTapGesture {
+                                            viewModel.dataModel.feeLevel = fee
+                                        }
                                 }
                             }
-                            .padding(.vertical, 32)
                         }
-                        .listRowBackground(AssetsColors.gray1.color())
-                        .listRowSeparator(.hidden)
+                        .padding(.vertical, 32)
                     }
+                    .listRowBackground(AssetsColors.gray1.color())
                     .listRowSeparator(.hidden)
-                    .listStyle(.insetGrouped)
                 }
-                .padding(.bottom, 1)
+                .listRowSeparator(.hidden)
+                .listStyle(.insetGrouped)
             }
         }
         .safeAreaInset(edge: .bottom, content: {
             VStack(spacing: 8) {
-//                BottomBanner(message: viewModel.ewManager?.errorMessage)
-//                    .animation(.default, value: viewModel.ewManager?.errorMessage)
                 Button {
                     viewModel.createTransaction()
                 } label: {
@@ -79,7 +74,6 @@ struct EWNFTFeeView: View {
 
             }
             .padding()
-            .background()
         })
         .onAppear() {
             viewModel.setup(loadingManager: loadingManager, ewManager: ewManager, coordinator: coordinator)
@@ -87,6 +81,7 @@ struct EWNFTFeeView: View {
         .animation(.default, value: viewModel.dataModel.feeLevel)
         .navigationTitle(LocalizableStrings.fee)
         .navigationBarTitleDisplayMode(.inline)
+        .scrollContentBackground(.hidden)
         .navigationBarBackButtonHidden()
         .navigationBarItems(leading: CustomBackButtonView())
         .contentMargins(.top, 16)

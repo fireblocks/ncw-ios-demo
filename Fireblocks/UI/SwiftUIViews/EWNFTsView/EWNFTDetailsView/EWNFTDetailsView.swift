@@ -111,6 +111,7 @@ struct EWNFTDetailsView: View {
     @ViewBuilder
     private var tokenId: some View {
         if let tokenId = viewModel.dataModel.token?.tokenId {
+            let tokenId = "#" + tokenId
             DetailsListItemView(
                 title: LocalizableStrings.tokenId,
                 contentText: tokenId

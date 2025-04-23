@@ -127,7 +127,7 @@ struct LocalizableStrings{
     static let amount = "Amount".localize()
     static let dateAcquired = "Date Acquired".localize()
     static let collection = "Collection".localize()
-    static let tokenId = "token ID".localize()
+    static let tokenId = "Token ID".localize()
     static let blockchain = "Blockchain".localize()
     static let standard = "Standard".localize()
     static let contactAddress = "Contact address".localize()
