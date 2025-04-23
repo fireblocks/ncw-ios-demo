@@ -19,6 +19,7 @@ struct AlertBannerView: View {
                 VStack {
                     if let message {
                         Text(message)
+                            .font(.h4)
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .multilineTextAlignment(.leading)
                             .foregroundColor(AssetsColors.white.color())
@@ -26,6 +27,7 @@ struct AlertBannerView: View {
                     }
                     if let subtitle {
                         Text(subtitle)
+                            .font(.b1)
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .multilineTextAlignment(.leading)
                             .foregroundColor(AssetsColors.white.color())
