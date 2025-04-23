@@ -111,7 +111,7 @@ class AmountToSendViewController: UIViewController, SwiftUIEnvironmentBridge {
     
     private func navigateToAddReceiverScreen() {
         let transaction = viewModel.createTransaction()
-        viewModel.coordinator?.path.append(NavigationTypes.genericController(SendToViewController(transaction: transaction), "Receiving Address"))
+        viewModel.coordinator?.path.append(NavigationTypes.transactionRecipient(transaction))
     }
 }
 
