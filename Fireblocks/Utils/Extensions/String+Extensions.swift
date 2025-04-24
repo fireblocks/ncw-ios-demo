@@ -38,6 +38,14 @@ extension String {
     var toDouble: Double? {
         return Double(self)
     }
+    
+    func beautifySigningStatus() -> String {
+            return self.lowercased()
+                .replacingOccurrences(of: "_", with: " ")
+                .split(separator: " ")
+                .map { $0.capitalizeFirstCharOnly() }
+                .joined(separator: " ")
+        }
 
 }
 
@@ -45,6 +53,13 @@ extension Optional where Wrapped == String {
     var isEmptyOrNil: Bool {
         if let text = self, !text.isEmpty { return false }
         return true
+    }
+}
+
+extension StringProtocol {
+    func capitalizeFirstCharOnly() -> String {
+        guard let first = first else { return String(self) }
+        return String(first).uppercased() + String(self.dropFirst())
     }
 }
 

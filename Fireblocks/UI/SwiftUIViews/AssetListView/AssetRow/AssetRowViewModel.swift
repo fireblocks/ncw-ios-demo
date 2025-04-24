@@ -19,6 +19,7 @@ class AssetRowViewModel {
     var asset: AssetSummary
     var uiimage: UIImage?
     var image: Image?
+    var blockchainImage: Image?
     #if EW
     var loadingManager: LoadingManager?
     var ewManager: EWManager?
@@ -26,27 +27,27 @@ class AssetRowViewModel {
     
     init(asset: AssetSummary) {
         self.asset = asset
-        self.uiimage = asset.image
         loadAsset()
     }
     
     private func loadAsset() {
-        self.image = Image(uiImage: asset.image)
+        print("DID CALL loadAsset \(asset.id)")
         Task {
-            if let imageURL = asset.iconUrl, let url = URL(string: imageURL) {
-                if let uiimage = try? await SessionManager.shared.loadImage(url: url) {
-                    await MainActor.run {
-                        self.uiimage = uiimage
-                        self.image = Image(uiImage: uiimage)
-                        if self.image == nil {
-                            self.image = Image(uiImage: asset.image)
-                        }
-                        
-                    }
+            let assetSymbol = asset.asset?.symbol ?? ""
+            let blockchainSymbol = asset.asset?.blockchain ?? ""
+
+            if let uiImage = await AssetImageLoader.shared.loadAssetImage(symbol: assetSymbol, iconUrl: asset.iconUrl) {
+                await MainActor.run {
+                    self.image = Image(uiImage: uiImage)
+                }
+            }
+            
+            if let uiImage = await AssetImageLoader.shared.loadAssetImage(symbol: blockchainSymbol, iconUrl: nil, isBlockchain: true) {
+                await MainActor.run {
+                    self.blockchainImage = Image(uiImage: uiImage)
                 }
             }
         }
-
     }
     
     #if EW

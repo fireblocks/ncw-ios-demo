@@ -10,7 +10,7 @@ import SwiftUI
 struct SettingsView: View {
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var coordinator: Coordinator
-    @EnvironmentObject var loadingManager: LoadingManager
+    @Environment(LoadingManager.self) var loadingManager
     @EnvironmentObject var fireblocksManager: FireblocksManager
     @EnvironmentObject var googleSignInManager: GoogleSignInManager
     @State var viewModel: SettingsViewModel
@@ -20,89 +20,106 @@ struct SettingsView: View {
     }
 
     var body: some View {
-        List {
-            Section {
-                VStack(spacing: 8) {
-                    AsyncImage(url: viewModel.getUrlOfProfilePicture()) { phase in
-                        switch phase {
-                        case .empty:
-                            ProgressView()
-                        case .success(let image):
-                            image.resizable()
-                                .aspectRatio(contentMode: .fit)
-                        case .failure:
-                            Image(systemName: "person")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .foregroundStyle(.secondary)
-                        @unknown default:
-                            EmptyView()
-                            
+        ZStack {
+            AppBackgroundView()
+            List {
+                Section {
+                    VStack(spacing: 8) {
+                        AsyncImage(url: viewModel.getUrlOfProfilePicture()) { phase in
+                            switch phase {
+                            case .empty:
+                                ProgressView()
+                            case .success(let image):
+                                image.resizable()
+                                    .aspectRatio(contentMode: .fit)
+                            case .failure:
+                                Image(systemName: "person")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .foregroundStyle(.secondary)
+                            @unknown default:
+                                EmptyView()
+                                
+                            }
+                        }
+                        .frame(width: 88, height: 88)
+                        .clipShape(.rect(cornerRadius: 16))
+                        .padding(.bottom, 8)
+                        Text(viewModel.getUserName())
+                            .font(.h2)
+                            .frame(maxWidth: .infinity, alignment: .center)
+                        Text(viewModel.getUserEmail())
+                            .font(.b2)
+                            .frame(maxWidth: .infinity, alignment: .center)
+                            .foregroundStyle(.secondary)
+                        Text(Bundle.main.versionLabel)
+                            .font(.b4)
+                            .foregroundStyle(.secondary)
+                            .frame(alignment: .center)
+                            .padding(8)
+                            .background(.thinMaterial, in: .capsule)
+                        
+                    }
+                } header: {
+                    EmptyView()
+                } footer: {
+                    EmptyView()
+                }
+                .listRowBackground(Color.clear)
+                .listRowSeparator(.hidden)
+                .padding(.bottom, 24)
+                
+                Section() {
+                    ForEach(viewModel.settingsWalletActions) { action in
+                        settingsRow(data: action)
+                    }
+                } header: {
+                    Text("Actions")
+                        .font(.b2)
+                        .foregroundStyle(.secondary)
+                        .textCase(nil)
+                }
+                
+                Section() {
+                    if let advanceInfoAction = viewModel.advanceInfoAction {
+                        settingsRow(data: advanceInfoAction)
+                    }
+                    if !viewModel.items.isEmpty {
+                        ShareLink(items: viewModel.items) {
+                            settingsInnerRow(data: SettingsData(icon: "settingsShareLogs", title: "Share logs", subtitle: nil, action: nil))
+                                .foregroundStyle(.white)
                         }
                     }
-                    .frame(width: 88, height: 88)
-                    .clipShape(.rect(cornerRadius: 16))
-                    .padding(.bottom, 8)
-                    Text(viewModel.getUserName())
-                        .font(.h2)
-                        .frame(maxWidth: .infinity, alignment: .center)
-                    Text(viewModel.getUserEmail())
+                } header: {
+                    Text("Advanced")
                         .font(.b2)
-                        .frame(maxWidth: .infinity, alignment: .center)
                         .foregroundStyle(.secondary)
-                    Text(Bundle.main.versionLabel)
-                        .font(.b4)
-                        .foregroundStyle(.secondary)
-                        .frame(alignment: .center)
-                        .padding(8)
-                        .background(.thinMaterial, in: .capsule)
-
+                        .textCase(nil)
                 }
-            } header: {
-                EmptyView()
-            } footer: {
-                EmptyView()
-            }
-            .listRowBackground(Color.clear)
-            .listRowSeparator(.hidden)
-            .padding(.bottom, 24)
-            
-            Section("Wallet Actions") {
-                ForEach(viewModel.settingsWalletActions) { action in
-                    settingsRow(data: action)
-                }
-            }
-            
-            Section("General Settings") {
-                if let advanceInfoAction = viewModel.advanceInfoAction {
-                    settingsRow(data: advanceInfoAction)
-                }
-                if !viewModel.items.isEmpty {
-                    ShareLink(items: viewModel.items) {
-                        settingsInnerRow(data: SettingsData(icon: "settingsShareLogs", title: "Share logs", subtitle: nil, action: nil))
-                            .foregroundStyle(.white)
+                
+                Section() {
+                    if let signOutAction = viewModel.signOutAction {
+                        settingsRow(data: signOutAction)
                     }
                 }
-                if let signOutAction = viewModel.signOutAction {
-                    settingsRow(data: signOutAction)
+                
+            }
+            .listRowSeparator(.hidden)
+            .listStyle(.insetGrouped)
+            .onAppear() {
+                viewModel.setup(coordinator: coordinator, loadingManager: loadingManager)
+            }
+            .navigationBarBackButtonHidden()
+            .navigationBarItems(leading: CustomBackButtonView())
+            .sheet(isPresented: $viewModel.isDiscardAlertPresented) {
+                DiscardAlert(title: "Are you sure you want to sign out?", mainTitle: "Sign out", image: .signOut) {
+                    viewModel.isDiscardAlertPresented = false
+                    viewModel.signOutFromFirebase()
                 }
-
+                .presentationDetents([.fraction(0.5)])
+                .presentationDragIndicator(.visible)
             }
-
-        }
-        .listStyle(.insetGrouped)
-        .onAppear() {
-            viewModel.setup(coordinator: coordinator, loadingManager: loadingManager)
-        }
-        .navigationBarBackButtonHidden()
-        .navigationBarItems(leading: CustomBackButtonView())
-        .sheet(isPresented: $viewModel.isDiscardAlertPresented) {
-            DiscardAlert(title: "Are you sure you want to sign out?", mainTitle: "Sign out") {
-                viewModel.isDiscardAlertPresented = false
-                viewModel.signOutFromFirebase()
-            }
-            .presentationDetents([.fraction(0.5)])
-            .presentationDragIndicator(.visible)
+            .scrollContentBackground(.hidden)
         }
     }
 }
@@ -114,6 +131,11 @@ extension SettingsView {
         .onTapGesture {
             data.action?()
         }
+        .padding()
+        .alignmentGuide(.listRowSeparatorLeading) { viewDimensions in
+            return 0
+        }
+        .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
     }
     
     @ViewBuilder
@@ -135,7 +157,6 @@ extension SettingsView {
                 .foregroundStyle(.secondary)
 
         }
-        .padding(.vertical)
         .contentShape(.rect)
     }
 

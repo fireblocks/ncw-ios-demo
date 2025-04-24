@@ -14,6 +14,7 @@ struct NavigationBarLeftHeader: View {
             Image("navigationBar")
             Text(Constants.navigationTitle)
                 .font(.h2)
+                .frame(maxWidth: .infinity, alignment: .leading)
         }
     }
 }

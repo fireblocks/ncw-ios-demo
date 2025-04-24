@@ -44,7 +44,7 @@ class SettingsViewModel {
             SettingsData(icon: "settingsRecover", title: "Recover wallet", subtitle: nil, action: {
                 self.coordinator?.path.append(NavigationTypes.recoverWallet(false))
             }),
-            SettingsData(icon: "settingsExport", title: "Export private key", subtitle: nil, action: {
+            SettingsData(icon: "settingsExport", title: "View private keys", subtitle: nil, action: {
                 self.coordinator?.path.append(NavigationTypes.takeover)
             }),
             SettingsData(icon: "settingsAddNewDevice", title: "Add new device", subtitle: nil, action: {

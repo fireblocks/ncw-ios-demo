@@ -34,6 +34,7 @@ enum NavigationTypes: Hashable {
     case settings
     case info
     case genericController(UIViewController, String)
+    case transactionRecipient(FBTransaction)
     case selectFee(FBTransaction)
     case approveTransaction(FBTransaction, Bool)
     
@@ -177,6 +178,15 @@ struct NavigationContainerView<Content: View>: View {
                             .environmentObject(coordinator)
 
                     }
+                case .transactionRecipient(let transaction):
+                    SpinnerViewContainer {
+                        SendToView(viewModel: SendToViewModel(transaction: transaction))
+                            .environmentObject(coordinator)
+                            #if EW
+                                .environment(ewManager)
+                            #endif
+
+                    }
                 case .selectFee(let transaction):
                     SpinnerViewContainer {
                         FeeRateView(viewModel: FeeRateViewModel(transaction: transaction))
@@ -187,7 +197,10 @@ struct NavigationContainerView<Content: View>: View {
 
                     }
                 case .info:
-                    AdvancedInfoViewControllerRep()
+                    SpinnerViewContainer {
+                        AdvancedInfoView()
+                            .environmentObject(fireblocksManager)
+                    }
                 case .settings:
                     SpinnerViewContainer {
                         SettingsView()
@@ -272,6 +285,10 @@ struct NavigationContainerView<Content: View>: View {
                 #endif
                 }
             }
+            .navigationViewStyle(.stack)
+            .toolbarBackground(AssetsColors.background.color(), for: .navigationBar)
+            .toolbarBackground(.visible, for: .navigationBar)
+
         }
     }
 }

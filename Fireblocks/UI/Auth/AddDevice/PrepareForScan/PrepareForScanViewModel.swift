@@ -12,22 +12,11 @@ protocol PrepareForScanDelegate: AnyObject {
 }
 
 @Observable
-class PrepareForScanViewModel: QRCodeScannerViewControllerDelegate {
-    static func == (lhs: PrepareForScanViewModel, rhs: PrepareForScanViewModel) -> Bool {
-        lhs.qrCode == rhs.qrCode
-    }
-    
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(qrCode)
-    }
-
+class PrepareForScanViewModel {
     var coordinator: Coordinator?
     var loadingManager: LoadingManager?
 
-    var isQRPresented: Bool = false
     var qrCode: String = ""
-
-    weak var prepareDelegate: PrepareForScanDelegate?
 
     func setup(coordinator: Coordinator, loadingManager: LoadingManager) {
         self.coordinator = coordinator
@@ -56,13 +45,8 @@ class PrepareForScanViewModel: QRCodeScannerViewControllerDelegate {
         return nil
     }
     
-    func scanQR() {
-        self.isQRPresented = true
-    }
-    
     @MainActor
     func gotAddress(address: String) {
-        self.isQRPresented = false
         guard let _ = qrData(encoded: address.base64Decoded() ?? "") else {
             self.loadingManager?.setAlertMessage(error: CustomError.genericError("Missing request ID. Go back and try again"))
             return

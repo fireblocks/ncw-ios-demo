@@ -51,8 +51,10 @@ class ApproveViewModelBase {
 
 
     func getFee() -> String {
-        if let transferInfo {
-            return "\(transferInfo.fee) \(transferInfo.blockChainName)"
+        if let transferInfo { 
+            let fee = transferInfo.fee.formatFractionsAsString(fractionDigits: 6)
+            let symbol = AssetsUtils.removeTestSuffix(transferInfo.assetSymbol)
+            return "\(fee) \(symbol)"
         }
         return "0"
     }

@@ -23,7 +23,7 @@ struct ValidateRequestIdTimeOutView: View {
 
                 HStack {
                     Text("\u{2022} ")
-                    Text("Bitvault couldn’t connect\nCheck your connection and try again.")
+                    Text("Embedded wallet couldn’t connect\nCheck your connection and try again.")
                     Spacer()
                 }
                 .font(.b2)
@@ -40,8 +40,6 @@ struct ValidateRequestIdTimeOutView: View {
     }
 }
 
-struct ValidateRequestIdTimeOutView_Previews: PreviewProvider {
-    static var previews: some View {
-        ValidateRequestIdTimeOutView()
-    }
+#Preview {
+    ValidateRequestIdTimeOutView()    
 }

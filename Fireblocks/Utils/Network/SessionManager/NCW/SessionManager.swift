@@ -121,8 +121,7 @@ struct TransactionResponse: Codable, Identifiable, Hashable, Equatable {
                             price: Double(details.amountInfo?.amountUSD ?? "0")?.formatFractions(fractionDigits: 6) ?? 0,
                             blockChainName: details.feeCurrency ?? "",
                             senderWalletId: details.source?.walletId ?? "",
-                            receiverWalletID: details.destination?.walletId ?? "",
-                            image: image)
+                            receiverWalletID: details.destination?.walletId ?? "")
     }
 }
 
@@ -615,8 +614,5 @@ extension SessionManager {
             print("SessionManager Error")
             throw SessionManager.error
         }
-
     }
-
-    
 }

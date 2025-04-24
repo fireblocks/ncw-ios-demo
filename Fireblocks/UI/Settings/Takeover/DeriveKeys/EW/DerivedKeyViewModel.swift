@@ -36,7 +36,6 @@ extension DeriveKeysView {
         @Published var copiedText: String?
         @Published var items: [String: [DerivedKeyItem]] = [:]
         
-        var title: String = "Copy the Private Keys and save them in a secure location. You are now the responsible for their security."
         var navigationBarTitle: String = LocalizableStrings.exportPrivateKeyTitle
         
         init(privateKeys: Set<FullKey>) {

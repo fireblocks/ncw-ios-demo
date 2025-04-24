@@ -11,7 +11,7 @@ import CoreImage.CIFilterBuiltins
 struct AddDeviceQRView: View {
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var coordinator: Coordinator
-    @EnvironmentObject var loadingManager: LoadingManager
+    @Environment(LoadingManager.self) var loadingManager
     @EnvironmentObject var fireblocksManager: FireblocksManager
 
     @State var viewModel: AddDeviceQRViewModel
@@ -25,12 +25,8 @@ struct AddDeviceQRView: View {
     
     var body: some View {
         ZStack {
-            Color.black
-                .edgesIgnoringSafeArea(.all)
+            AppBackgroundView()
             VStack {
-                Color.black
-                    .frame(height: 12)
-
                 ScrollView {
                     VStack {
                         VStack(spacing: 8) {
@@ -107,6 +103,7 @@ struct AddDeviceQRView: View {
         .interactiveDismissDisabled()
         .navigationBarBackButtonHidden()
         .navigationBarItems(leading: CustomBackButtonView())
+        .contentMargins(.top, 16)
     }
     
     func generateQRCode(from url: String?, size: CGSize) -> Image {

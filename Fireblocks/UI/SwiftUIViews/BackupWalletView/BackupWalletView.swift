@@ -10,7 +10,7 @@ import SwiftUI
 struct BackupWalletView: View {
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var coordinator: Coordinator
-    @EnvironmentObject var loadingManager: LoadingManager
+    @Environment(LoadingManager.self) var loadingManager
     @EnvironmentObject var fireblocksManager: FireblocksManager
     @EnvironmentObject var googleSignInManager: GoogleSignInManager
     @StateObject var viewModel: ViewModel
@@ -27,12 +27,12 @@ struct BackupWalletView: View {
                     .aspectRatio(contentMode: .fit)
 
                 VStack {
-                    Text("Backup Wallet")
+                    Text(LocalizableStrings.backupYourKeys)
                         .font(.h1)
                         .frame(maxWidth: .infinity, alignment: .center)
                         .multilineTextAlignment(.center)
                         .padding(.bottom, 16)
-                    Text("Backup your keys to Google Drive to recover your wallet.")
+                    Text("Use the recovery key backup in case you lose access to your account.")
                         .foregroundStyle(.secondary)
                         .multilineTextAlignment(.center)
                         .font(.b1)
@@ -41,7 +41,7 @@ struct BackupWalletView: View {
                     Button {
                         viewModel.backup()
                     } label: {
-                        Label("Backup on Drive", image: "google_icon")
+                        Label("Back up keys", image: "google_icon")
                             .frame(maxWidth: .infinity)
                             .padding()
                             .padding(.horizontal)

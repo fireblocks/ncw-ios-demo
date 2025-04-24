@@ -160,7 +160,8 @@ class AssetListViewModel: AssetListViewModelBase {
             }
         }
         
-        return "$\(balanceSum.formatFractions(fractionDigits: 2))"
+        let balanceSumString = balanceSum.formatFractionsAsString(fractionDigits: 2)
+        return balanceSumString
     }
         
 }

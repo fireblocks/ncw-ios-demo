@@ -16,7 +16,7 @@ import SwiftUI
 
 struct AssetListView: View {
     @EnvironmentObject var coordinator: Coordinator
-    @EnvironmentObject var loadingManager: LoadingManager
+    @Environment(LoadingManager.self) var loadingManager
     @EnvironmentObject var fireblocksManager: FireblocksManager
     #if EW
     @Environment(EWManager.self) var ewManager
@@ -26,6 +26,7 @@ struct AssetListView: View {
     @State var selectedAsset: AssetSummary?
     
     var body: some View {
+        let _ = Self._printChanges()
         ZStack {
             AppBackgroundView()
             
@@ -65,7 +66,7 @@ struct AssetListView: View {
         .contentMargins(.top, 16)
         .sheet(isPresented: $viewModel.addAssetPresented) {
             NavigationContainerView {
-                SpinnerViewContainer {
+                SpinnerViewContainer(isBasic: true) {
                     AddAssetView(selectedAsset: $selectedAsset)
                 }
             }
@@ -82,8 +83,9 @@ struct AssetListView: View {
     var assetSummaryBanner: some View {
         Section {
             VStack(spacing: 24) {
-                Text("Balance")
+                Text("Total Balance")
                     .font(.b2)
+                    .foregroundStyle(.secondary)
                 Text(viewModel.getBalance())
                     .font(.h1)
             }

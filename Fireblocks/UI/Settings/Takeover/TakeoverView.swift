@@ -14,7 +14,7 @@ import FireblocksSDK
 
 struct TakeoverView: View {
     @EnvironmentObject var coordinator: Coordinator
-    @EnvironmentObject var loadingManager: LoadingManager
+    @Environment(LoadingManager.self) var loadingManager
     @EnvironmentObject var fireblocksManager: FireblocksManager
 
     @State var viewModel: TakeoverViewModel
@@ -28,7 +28,13 @@ struct TakeoverView: View {
             AppBackgroundView()
             
             VStack(spacing: 16) {
-                Text("Copy the Private Keys and save them in a secure location. You are now the responsible for their security.")
+                Image("export_keys")
+                    
+                Text("Use your private key to move assets to a different location. This won’t impact the wallet on this device.")
+                    .multilineTextAlignment(.center)
+                    .font(.h4)
+                    .foregroundStyle(.secondary)
+                    .padding(.horizontal, 34)
                 Spacer()
                 AlertBannerView(message: LocalizableStrings.takeoverWarningTitle, subtitle: LocalizableStrings.takeoverWarningDescription, color: AssetsColors.warning.color())
                 Button {
@@ -36,7 +42,7 @@ struct TakeoverView: View {
                 } label: {
                     HStack(spacing: 8) {
                         Spacer()
-                        Text("Continue")
+                        Text("Export keys")
                         Spacer()
                     }
                     .font(.b2)
@@ -55,14 +61,15 @@ struct TakeoverView: View {
         .onAppear() {
             viewModel.setup(coordinator: coordinator, loadingManager: loadingManager, fireblocksManager: fireblocksManager)
         }
-        .navigationTitle("Takeover")
+        .navigationTitle("View private keys")
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden()
         .navigationBarItems(leading: CustomBackButtonView())
+        .contentMargins(.top, 16)
     }
 }
 
-#Preview("Error") {
+#Preview("TakeoverView") {
     NavigationContainerView {
         SpinnerViewContainer {
             TakeoverView(viewModel: TakeoverViewModelMock())

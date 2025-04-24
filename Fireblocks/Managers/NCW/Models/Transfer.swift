@@ -41,38 +41,34 @@ struct TransferInfo: Identifiable, Equatable, Hashable {
     let blockChainName: String
     let senderWalletId: String
     let receiverWalletID: String
-    let image: UIImage
+//    let image: UIImage
+    var nftWrapper: NFTWrapper?
     
     var color: UIColor {
-        switch status {
-        case .confirming, .broadcasting, .pendingSignature, .pendingAuthorization, .queued:
-            return (AssetsColors.inProgress.getColor())
-        case .completed, .submitted:
-            return (AssetsColors.success.getColor())
-        case .failed, .blocked, .cancelled, .rejected:
-            return (AssetsColors.alert.getColor())
-        default:
-            return (AssetsColors.white.getColor())
-        }
+        return TransferUtils.getStatusColor(status: status)
     }
+
     
     func getColor() -> Color {
         return Color(uiColor: color)
     }
     
     var getStatusString: String {
-        return status.rawValue.replacingOccurrences(of: "_", with: " ").lowercased().capitalized()
+        return status.rawValue.beautifySigningStatus()
     }
+    
+
 
     #if EW
     static func toTransferInfo(response: TransactionResponse) -> TransferInfo {
         let statusType = response.status ?? .unknown
-        let image = AssetsImageMapper().getIconForAsset(response.assetId ?? "")
+//        let image = AssetsImageMapper().getIconForAsset(response.assetId ?? "")
+        let assetId = response.assetId?.hasPrefix("NFT") == true ? response.feeCurrency ?? "" : response.assetId ?? ""
         return TransferInfo(transactionID: response.id ?? "",
                             creationDate: response.createdAt?.toDateFormattedString() ?? "",
                             lastUpdated:  TimeInterval(response.lastUpdated ?? 0),
                             assetId: response.assetId ?? "",
-                            assetSymbol: response.assetId ?? "",
+                            assetSymbol: response.assetId?.hasPrefix("NFT") == true ? response.feeCurrency ?? "" : response.assetId ?? "", //TODO: find a better way to get the blockchain in caseof NFT
                             amount: Double(response.amountInfo?.amount ?? "0")?.formatFractions(fractionDigits: 6) ?? 0,
                             fee: Double(response.feeInfo?.networkFee ?? "0") ?? 0,
                             receiverAddress: response.destinationAddress ?? "",
@@ -82,8 +78,8 @@ struct TransferInfo: Identifiable, Equatable, Hashable {
                             price: Double(response.amountInfo?.amountUSD ?? "0")?.formatFractions(fractionDigits: 6) ?? 0,
                             blockChainName: response.feeCurrency ?? "",
                             senderWalletId: response.source?.walletId ?? "",
-                            receiverWalletID: response.destination?.walletId ?? "",
-                            image: image)
+                            receiverWalletID: response.destination?.walletId ?? "")
+//                            image: image)
 
     }
     #else
@@ -108,8 +104,7 @@ struct TransferInfo: Identifiable, Equatable, Hashable {
                             price: Double(response.details.amountInfo?.amountUSD ?? "0")?.formatFractions(fractionDigits: 6) ?? 0,
                             blockChainName: response.details.feeCurrency ?? "",
                             senderWalletId: response.details.source?.walletId ?? "",
-                            receiverWalletID: response.details.destination?.walletId ?? "",
-                            image: image)
+                            receiverWalletID: response.details.destination?.walletId ?? "")
 
     }
     #endif
@@ -133,6 +128,14 @@ struct TransferInfo: Identifiable, Equatable, Hashable {
             return "Received "
         }
     }
+    
+    func getSendOrReceiveTitle(walletId: String) -> String {
+        if senderWalletId == walletId {
+            return LocalizableStrings.sent
+        } else {
+            return LocalizableStrings.received
+        }
+    }
 
     func getReceiverAddress(walletId: String) -> String {
         if senderWalletId == walletId {
@@ -151,7 +154,7 @@ struct TransferInfo: Identifiable, Equatable, Hashable {
     }
     
     func getTxHash() -> String {
-        return transactionHash.isEmpty ? "-" : transactionHash
+        return transactionHash
     }
     
     func isTxHashEmpty() -> Bool {
@@ -159,7 +162,7 @@ struct TransferInfo: Identifiable, Equatable, Hashable {
     }
     
     func isNFT() -> Bool {
-        return assetId.contains("NFT")
+        return assetId.hasPrefix("NFT")
     }
     
     func toTransaction(assetListViewModel: AssetListViewModel) -> FBTransaction? {

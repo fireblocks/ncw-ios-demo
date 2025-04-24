@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 class ReceiveViewController: UIViewController, SwiftUIEnvironmentBridge {
     
@@ -20,7 +21,9 @@ class ReceiveViewController: UIViewController, SwiftUIEnvironmentBridge {
     @IBOutlet weak var assetAddressTitle: UILabel!
     @IBOutlet weak var assetAddress: UILabel!
     @IBOutlet weak var copyButton: UIButton!
-    
+    @IBOutlet weak var headerContainer: UIView!
+    @IBOutlet weak var qrContainer: UIView!
+
     let viewModel: ReceiveViewModel
     
     #if EW
@@ -41,28 +44,43 @@ class ReceiveViewController: UIViewController, SwiftUIEnvironmentBridge {
         super.init(coder: aDecoder)
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        setBottomBarBackground()
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         configView()
     }
     
     private func configView() {
+        qrContainer.layer.cornerRadius = 16.0
+        qrContainer.layer.masksToBounds = true
+
         assetBlockchainNameBackground.layer.cornerRadius = assetBlockchainNameBackground.bounds.height / 2
-        qrCodeBackground.layer.cornerRadius = 16
-        addressBackground.layer.cornerRadius = 16
         copyButton.setTitle("", for: .normal)
         
-        if let iconURL = viewModel.asset.iconUrl {
-            assetImage.sd_setImage(with: URL(string: iconURL), placeholderImage: viewModel.asset.image)
-        } else {
-            assetImage.image = viewModel.asset.image
-        }
+        AssetImageLoader.shared.loadAssetIcon(
+            into: assetImage,
+            iconUrl: viewModel.asset.iconUrl,
+            symbol: viewModel.asset.asset?.symbol ?? ""
+        )
+        
         assetName.text = viewModel.asset.asset?.name
         assetBlockchainName.text = viewModel.asset.asset?.blockchain
         assetAddressTitle.text = "\(viewModel.asset.asset?.symbol ?? "") address"
         assetAddress.text = viewModel.getAssetAddress()
         
         qrCodeImage.image = getQRCodeImage()
+        
+        let headerRootView = ReceiveAssetHeaderView(asset: viewModel.asset)
+        let headerSwiftUIView = addSwiftUIView(rootView: AnyView(headerRootView), container: headerContainer)
+        headerSwiftUIView.backgroundColor = AssetsColors.background.getColor()
+
+        let rootView = DetailsListItemView(title: LocalizableStrings.walletAddress, contentText: viewModel.getAssetAddress(), showCopyButton: true)
+        let swiftUIView = addSwiftUIView(rootView: AnyView(rootView), container: addressBackground)
+        swiftUIView.backgroundColor = AssetsColors.gray1.getColor()
     }
         
     @IBAction func copyAddressTapped(_ sender: UIButton) {

@@ -51,7 +51,7 @@ extension BackupWalletView {
                         self.loadingManager?.setLoading(value: false)
                         let viewModel: EndFlowFeedbackView.ViewModel
                         if result {
-                            viewModel = EndFlowFeedbackView.ViewModel(icon: nil, title: "Recovery key backed up", subTitle: "Your recovery key was successfully completed and backed up.", navigationBarTitle: "Create key backup", buttonIcon: nil, buttonTitle: "Go home", actionButton: {
+                            viewModel = EndFlowFeedbackView.ViewModel(icon: nil, title: "Your recovery key is backed up!", navigationBarTitle: LocalizableStrings.backupYourKeys, buttonIcon: nil, buttonTitle: LocalizableStrings.goHome, actionButton: {
                                 if self.redirect {
                                     SignInViewModel.shared.launchView = NavigationContainerView {
                                         TabBarView()
@@ -61,7 +61,7 @@ extension BackupWalletView {
                                 }
                             }, rightToolbarItemIcon: nil, rightToolbarItemAction: nil, didFail: false, canGoBack: false)
                         } else {
-                            viewModel = EndFlowFeedbackView.ViewModel(icon: nil, title: "Recovery key backed up", subTitle: "Your recovery key was failed to backup.", navigationBarTitle: "Create key backup", buttonIcon: nil, buttonTitle: "Go home", actionButton: {
+                            viewModel = EndFlowFeedbackView.ViewModel(icon: nil, title: "Recovery key backed up", subTitle: "Your recovery key was failed to backup.", navigationBarTitle: LocalizableStrings.backupYourKeys, buttonIcon: nil, buttonTitle: LocalizableStrings.goHome, actionButton: {
                                 if self.redirect {
                                     SignInViewModel.shared.launchView = NavigationContainerView {
                                         TabBarView()

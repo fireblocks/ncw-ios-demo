@@ -5,7 +5,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -46,11 +45,11 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Due-Y2-IzY">
-                    <rect key="frame" x="16" y="76" width="278" height="75"/>
+                    <rect key="frame" x="16" y="29" width="278" height="75"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4ce-Eu-8BE">
-                    <rect key="frame" x="302" y="76" width="72" height="75"/>
+                    <rect key="frame" x="302" y="29" width="72" height="75"/>
                     <color key="backgroundColor" name="gray_1"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="75" id="D53-vr-Ist"/>
@@ -73,26 +72,26 @@
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 BTC" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AHO-1f-2rA" userLabel="Amount">
-                    <rect key="frame" x="24" y="175" width="342" height="55"/>
+                    <rect key="frame" x="24" y="128" width="342" height="55"/>
                     <fontDescription key="fontDescription" type="system" pointSize="46"/>
                     <color key="textColor" name="white"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$0.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PTN-Pw-dxA" userLabel="AmountPrice">
-                    <rect key="frame" x="24" y="238" width="342" height="16.666666666666657"/>
+                    <rect key="frame" x="24" y="191" width="342" height="16.666666666666657"/>
                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
                     <color key="textColor" name="gray_4"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error message" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3GI-rz-Lqw" userLabel="ErrorMessage">
-                    <rect key="frame" x="24" y="262.66666666666669" width="342" height="16.666666666666686"/>
+                    <rect key="frame" x="24" y="215.66666666666666" width="342" height="16.666666666666657"/>
                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
                     <color key="textColor" name="alert"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="htg-as-KHu" userLabel="Continue" customClass="AppActionBotton" customModule="EW_dev" customModuleProvider="target">
-                    <rect key="frame" x="16" y="752" width="358" height="50"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <rect key="frame" x="16" y="786" width="358" height="50"/>
+                    <color key="backgroundColor" name="background"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="7yI-MR-qkS"/>
                     </constraints>
@@ -101,7 +100,7 @@
                     </connections>
                 </view>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="fcg-0k-Ana" userLabel="NumberPad">
-                    <rect key="frame" x="16" y="447" width="358" height="280"/>
+                    <rect key="frame" x="16" y="481" width="358" height="280"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="n1I-w5-Q3p">
                             <rect key="frame" x="4" y="0.0" width="350" height="64"/>
@@ -319,31 +318,31 @@
                     </constraints>
                 </stackView>
             </subviews>
-            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <color key="backgroundColor" name="black"/>
+            <viewLayoutGuide key="safeArea" id="Ip2-BY-Aai"/>
+            <color key="backgroundColor" name="background"/>
             <constraints>
                 <constraint firstItem="4ce-Eu-8BE" firstAttribute="leading" secondItem="Due-Y2-IzY" secondAttribute="trailing" constant="8" id="0MK-8l-xlP"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="htg-as-KHu" secondAttribute="bottom" constant="8" id="4px-ui-6es"/>
-                <constraint firstItem="Due-Y2-IzY" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="7Cm-bM-olj"/>
-                <constraint firstItem="AHO-1f-2rA" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="24" id="CAq-6f-M1L"/>
+                <constraint firstAttribute="bottom" secondItem="htg-as-KHu" secondAttribute="bottom" constant="8" id="4px-ui-6es"/>
+                <constraint firstItem="Due-Y2-IzY" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="7Cm-bM-olj"/>
+                <constraint firstItem="AHO-1f-2rA" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="24" id="CAq-6f-M1L"/>
                 <constraint firstItem="3GI-rz-Lqw" firstAttribute="top" secondItem="PTN-Pw-dxA" secondAttribute="bottom" constant="8" id="GKg-Se-5T6"/>
-                <constraint firstItem="3GI-rz-Lqw" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="24" id="IPU-ax-FxM"/>
-                <constraint firstItem="PTN-Pw-dxA" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="24" id="L7n-tj-WfY"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="AHO-1f-2rA" secondAttribute="trailing" constant="24" id="TzN-s0-NtA"/>
-                <constraint firstItem="htg-as-KHu" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="Ucm-tW-3BN"/>
+                <constraint firstItem="3GI-rz-Lqw" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="24" id="IPU-ax-FxM"/>
+                <constraint firstItem="PTN-Pw-dxA" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="24" id="L7n-tj-WfY"/>
+                <constraint firstAttribute="trailing" secondItem="AHO-1f-2rA" secondAttribute="trailing" constant="24" id="TzN-s0-NtA"/>
+                <constraint firstItem="htg-as-KHu" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="Ucm-tW-3BN"/>
                 <constraint firstItem="PTN-Pw-dxA" firstAttribute="top" secondItem="AHO-1f-2rA" secondAttribute="bottom" constant="8" id="XBz-79-nG8"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="PTN-Pw-dxA" secondAttribute="trailing" constant="24" id="a6C-2g-xjz"/>
-                <constraint firstItem="Due-Y2-IzY" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="29" id="aA8-kN-N2C"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="htg-as-KHu" secondAttribute="trailing" constant="16" id="dVd-AS-70W"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="fcg-0k-Ana" secondAttribute="trailing" constant="16" id="gLH-d8-G8r"/>
-                <constraint firstItem="fcg-0k-Ana" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="iiz-Kv-8Fz"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="3GI-rz-Lqw" secondAttribute="trailing" constant="24" id="kMj-lM-u8g"/>
+                <constraint firstAttribute="trailing" secondItem="PTN-Pw-dxA" secondAttribute="trailing" constant="24" id="a6C-2g-xjz"/>
+                <constraint firstItem="Due-Y2-IzY" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="29" id="aA8-kN-N2C"/>
+                <constraint firstAttribute="trailing" secondItem="htg-as-KHu" secondAttribute="trailing" constant="16" id="dVd-AS-70W"/>
+                <constraint firstAttribute="trailing" secondItem="fcg-0k-Ana" secondAttribute="trailing" constant="16" id="gLH-d8-G8r"/>
+                <constraint firstItem="fcg-0k-Ana" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="iiz-Kv-8Fz"/>
+                <constraint firstAttribute="trailing" secondItem="3GI-rz-Lqw" secondAttribute="trailing" constant="24" id="kMj-lM-u8g"/>
                 <constraint firstItem="fcg-0k-Ana" firstAttribute="top" relation="greaterThanOrEqual" secondItem="3GI-rz-Lqw" secondAttribute="bottom" constant="24" id="kfd-gV-7Or"/>
                 <constraint firstItem="AHO-1f-2rA" firstAttribute="top" secondItem="Due-Y2-IzY" secondAttribute="bottom" constant="24" id="ltN-HD-uJY"/>
                 <constraint firstItem="htg-as-KHu" firstAttribute="top" secondItem="fcg-0k-Ana" secondAttribute="bottom" constant="25" id="pYo-Ce-EiK"/>
                 <constraint firstItem="Due-Y2-IzY" firstAttribute="height" secondItem="4ce-Eu-8BE" secondAttribute="height" id="s3F-7o-5zY"/>
                 <constraint firstItem="4ce-Eu-8BE" firstAttribute="centerY" secondItem="Due-Y2-IzY" secondAttribute="centerY" id="xuv-lh-3SE"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="4ce-Eu-8BE" secondAttribute="trailing" constant="16" id="ycd-NX-bge"/>
+                <constraint firstAttribute="trailing" secondItem="4ce-Eu-8BE" secondAttribute="trailing" constant="16" id="ycd-NX-bge"/>
             </constraints>
             <point key="canvasLocation" x="138.46153846153845" y="20.616113744075829"/>
         </view>
@@ -352,11 +351,11 @@
         <namedColor name="alert">
             <color red="0.94117647058823528" green="0.32156862745098042" blue="0.32156862745098042" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="black">
-            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <namedColor name="background">
+            <color red="0.070588235294117646" green="0.070588235294117646" blue="0.070588235294117646" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="gray_1">
-            <color red="0.086274509803921567" green="0.086274509803921567" blue="0.086274509803921567" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.086000002920627594" green="0.086000002920627594" blue="0.086000002920627594" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="gray_4">
             <color red="0.62699997425079346" green="0.62699997425079346" blue="0.62699997425079346" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -364,8 +363,5 @@
         <namedColor name="white">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
     </resources>
 </document>

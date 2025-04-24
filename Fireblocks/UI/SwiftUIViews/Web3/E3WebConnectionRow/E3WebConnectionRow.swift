@@ -22,15 +22,14 @@ struct E3WebConnectionRow: View {
     
     var body: some View {
         HStack(spacing: 16) {
-            if let image = viewModel.image {
-                image.resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 48, height: 48)
-                    .clipShape(.rect(cornerRadius: 8))
-            } else {
-                Text("DAPP")
-                    .placeholderHeader()
+            HStack(spacing: 0) {
+                image
             }
+            .frame(width: 64, height: 64)
+            .background(Color.white)
+            .clipShape(.rect(cornerRadius: 8))
+            .contentShape(Rectangle())
+            
             VStack(spacing: 8) {
                 if let appName = viewModel.connection.sessionMetadata?.appName {
                     Text(appName)
@@ -38,7 +37,7 @@ struct E3WebConnectionRow: View {
                         .font(.b1)
                 }
                 if let creationDate = viewModel.connection.creationDate, let date = creationDate.iso8601Date() {
-                    Text("Established \(date)")
+                    Text("Connected on: \(date)")
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .foregroundStyle(.secondary)
                         .font(.b4)
@@ -48,6 +47,16 @@ struct E3WebConnectionRow: View {
         }
         .contentShape(Rectangle())
         .animation(.default, value: viewModel.image)
+    }
+    
+    @ViewBuilder
+    private var image: some View {
+        if let image = viewModel.image {
+            image.resizable()
+                .padding(8)
+        } else {
+            Image(.dappPlaceholder)
+        }
     }
 }
 

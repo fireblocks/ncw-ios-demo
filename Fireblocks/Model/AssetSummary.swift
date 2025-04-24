@@ -54,8 +54,17 @@ struct AssetSummary: Codable, Identifiable, Hashable {
         return asset?.id ?? ""
     }
     
-    var image: UIImage {
-        let assetImage = AssetsImageMapper().getIconForAsset(id)
-        return assetImage
+    var blockchain: String {
+        return asset?.blockchain ?? ""
     }
+    
+//    var image: UIImage {
+//        let assetImage = AssetsImageMapper().getIconForAsset(id)
+//        return assetImage
+//    }
+//    
+//    var blockchainImage: UIImage {
+//        let blockchainImage = AssetsImageMapper().getIconForAsset(blockchain, isBlockchain: true)
+//        return blockchainImage
+//    }
 }

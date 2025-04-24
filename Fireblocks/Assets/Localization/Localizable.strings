@@ -21,10 +21,10 @@
 "login_google_add_device" = " Sign in with Google";
 "login_apple_add_device" = " Sign in with Apple";
 "sign_in_title" = "Sign in to your existing wallet";
-"sign_up_title" = "Create a Bitvault wallet";
+"sign_up_title" = "Create a wallet";
 "add_device_title" = "Add a device to an existing wallet";
 "mpc_keys_genertae_title" = "To provide the highest level of wallet security, we use multi-party computation (MPC) keys. MPCs allow for different parties to hold a piece of a private key without possessing the entire thing.";
-"mpc_keys_add_device_title" = "To keep your assets safe, this device must be added to your BitVault wallet using your existing device. Make sure you have your existing device nearby before continuing.";
+"mpc_keys_add_device_title" = "To keep your assets safe, this device must be added to your wallet using your existing device. Make sure you have your existing device nearby before continuing.";
 "mpc_keys_add_device_header" = "Add new device";
 "share_logs" = "Share\nlogs";
 "add_new_device" = "Add new\ndevice";
@@ -40,7 +40,7 @@
 "create_a_backup" = "Create \na backup";
 "recover_wallet" = "Recover \nwallet";
 "export_private_key" = "Export \nprivate key";
-"advanced_info" = "Advanced \ninfo";
+"advanced_info" = "Advanced info";
 "sign_up_failed" = "Couldn’t complete signup. Try again.";
 "mpc_keys_generation_failed" = "We couldn’t generate the MPC keys.\nTry again.";
 "account_creation_failed" = "We couldn’t create account.\nTry again.";
@@ -52,7 +52,7 @@
 "recovery_key_is_incorrect" = "That recovery key is incorrect.";
 "failed_to_approve_transaction" = "Couldn’t approve the transaction. Try again.";
 "takeover_warning_title" = "Handle with care!";
-"takeover_warning_description" = "Creating the private key will compromise the security of your assets. ";
+"takeover_warning_description" = "Exporting the private key will compromise the security of your assets. ";
 "wallet_recovered_successfully" = "Wallet recovered successfully";
 "google_drive" = "Google Drive";
 "icloud" = "iCloud";
@@ -69,7 +69,7 @@
 "save_recovery_key" = "Save your recovery key in a secure location.";
 "copy_recovery_key" = " Copy recovery key";
 "recover_wallet_title" = "Recover wallet";
-"export_private_key_title" = "Export private key";
+"export_private_key_title" = "View private keys";
 "takeover_private_key" = "Create a private key to move your assets to a different location.";
 "backup_explanation" = "Backup your keys to recover your assets in case you lose access to your account";
 "backup_on_drive" = " Back up on Drive";
@@ -94,7 +94,7 @@
 "approveJoinWalletFailed" = "Couldn’t add new device. Try again.";
 "approveJoinWalletCanceled" = "Couldn’t add device";
 "approveJoinWalletCanceledSubtitle" = "The process was canceled.";
-"goHome" = "Go home";
+"goHome" = "Go to wallet";
 "try_again" = "Try again";
 
 "addDeviceAdded" = "Your device was added!";
@@ -102,7 +102,7 @@
 "addDeviceFailedSubtitle" = "The process has failed.";
 "addDeviceFailedToGenerateQR" = "Couldn’t generate QR code";
 
-"launchOnExistingDevice" = "Launch BitVault on your existing device.";
+"launchOnExistingDevice" = "Launch Embedded Wallets on existing device.";
 "openSettingsMenu" = "Open the settings menu.";
 "tapAddNewDevice" = "Tap “Add new device”.";
 "scanTheQRCode" = "Scan the QR code.";
@@ -110,6 +110,7 @@
 "qrCodeExpiresIn" = "QR code expires in:";
 "qrCodeLink" = "QR code link";
 
-"prepareForScanHeader" = "Scan the QR code on your new device to add it to your BitVault wallet.";
+"prepareForScanHeader" = "Scan the QR code or paste the link.";
 "enterQRCodeLink" = "Enter QR code link";
 "copyQRCodeLink" = "Copy the QR code link";
+"walletId" = "Wallet ID";
