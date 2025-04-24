@@ -9,7 +9,7 @@ import SwiftUI
 
 struct EndFlowFeedbackView: View {
     @EnvironmentObject var coordinator: Coordinator
-    @EnvironmentObject var loadingManager: LoadingManager
+    @Environment(LoadingManager.self) var loadingManager
     @EnvironmentObject var fireblocksManager: FireblocksManager
 
     @StateObject var viewModel: ViewModel
@@ -129,7 +129,7 @@ struct EndFlowFeedbackView_Previews: PreviewProvider {
                 subTitle: "The process was canceled.",
                 navigationBarTitle: "Add Device",
                 buttonIcon: AssetsIcons.addNewDevice.getIcon(),
-                buttonTitle: "Go home",
+                buttonTitle: LocalizableStrings.goHome,
                 actionButton: {
                     print("action")
                 },

@@ -15,10 +15,21 @@ extension Double {
         numberFormatter.minimumFractionDigits = fractionDigits
 
         if let formattedString = numberFormatter.string(from: NSNumber(value: self)) {
-            return Double(formattedString) ?? self
+            let cleanedString = formattedString.replacingOccurrences(of: ",", with: "")
+            return Double(cleanedString) ?? self
         }
         
         return self
+    }
+    
+    func formatFractionsAsString(fractionDigits: Int = 6) -> String {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        numberFormatter.maximumFractionDigits = fractionDigits
+        numberFormatter.minimumFractionDigits = fractionDigits
+        
+        let formattedString = numberFormatter.string(from: NSNumber(value: self))
+        return formattedString ?? "\(self)"
     }
 
     public var millisecond: TimeInterval  { return self / 1000 }

@@ -14,7 +14,7 @@ import EmbeddedWalletSDK
 
 struct EWNFTDetailsView: View {
     @EnvironmentObject var coordinator: Coordinator
-    @EnvironmentObject var loadingManager: LoadingManager
+    @Environment(LoadingManager.self) var loadingManager
     @Environment(EWManager.self) var ewManager
     @State var viewModel: ViewModel
     
@@ -39,34 +39,42 @@ struct EWNFTDetailsView: View {
                         }
                         .frame(height: 185)
                         .background(viewModel.uiimage?.averageColor ?? Color.clear)
-                        Spacer()
-                        HStack {
+                        HStack(spacing: 0) {
                             name
                             Spacer()
-                            tokenId
                         }
                         .padding()
+                        .background(Color(.background))
                         Divider()
-                        Group {
-                            dateAcquired
-                            collection
-                            blockchain
-                            standard
-                            balance
-                            contactAddress
-                            nftId
+                        
+                        let views: [AnyView] = [
+                            AnyView(amount),
+                            AnyView(dateAcquired),
+                            AnyView(collection),
+                            AnyView(tokenId),
+                            AnyView(blockchain),
+                            AnyView(standard),
+                            AnyView(contactAddress),
+                            AnyView(nftId),
+                        ]
+                        
+                        VStack(spacing: 0) {
+                            ForEach(0..<views.count, id: \.self) { index in
+                                views[index]
+                                if index < views.count - 1 {
+                                    Divider()
+                                }
+                            }
                         }
-                        .padding()
                     }
-//                    .background(AssetsColors.gray2.color(), in: .rect)
                     .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
                 }
                 .scrollContentBackground(.hidden)
             }
-            .background(Color.clear)
+            .padding(.bottom, 1)
         }
         .safeAreaInset(edge: .bottom, content: {
-            VStack(spacing: 8) {
+            VStack(spacing: 6) {
                 Button {
                     viewModel.proceedToTransfer()
                 } label: {
@@ -82,7 +90,6 @@ struct EWNFTDetailsView: View {
 
             }
             .padding()
-            .background()
         })
         .onAppear() {
             viewModel.setup(loadingManager: loadingManager, ewManager: ewManager, coordinator: coordinator)
@@ -92,7 +99,6 @@ struct EWNFTDetailsView: View {
         .navigationBarBackButtonHidden()
         .navigationBarItems(leading: CustomBackButtonView())
         .contentMargins(.top, 16)
-
     }
     
     @ViewBuilder
@@ -105,94 +111,85 @@ struct EWNFTDetailsView: View {
     @ViewBuilder
     private var tokenId: some View {
         if let tokenId = viewModel.dataModel.token?.tokenId {
-            Text(tokenId)
+            let tokenId = "#" + tokenId
+            DetailsListItemView(
+                title: LocalizableStrings.tokenId,
+                contentText: tokenId
+            )
         }
     }
 
     @ViewBuilder
     private var standard: some View {
         if let value = viewModel.dataModel.token?.standard {
-            TitleValueRow(title: "Standard", value: value)
+            DetailsListItemView(
+                title: LocalizableStrings.standard,
+                contentText: value,
+                showCopyButton: true
+            )
         }
     }
 
     @ViewBuilder
-    private var balance: some View {
+    private var amount: some View {
         if let value = viewModel.dataModel.token?.balance {
-            TitleValueRow(title: "Balance", value: value)
+            DetailsListItemView(
+                title: LocalizableStrings.amount,
+                contentText: value
+            )
         }
     }
 
     @ViewBuilder
     private var dateAcquired: some View {
         if let ownershipStartTime = viewModel.dataModel.token?.ownershipStartTime {
-            TitleValueRow(title: "Date Acquired", value: Date(timeIntervalSince1970: TimeInterval(ownershipStartTime)).format())
+            DetailsListItemView(
+                title: LocalizableStrings.dateAcquired,
+                contentText: Date(timeIntervalSince1970: TimeInterval(ownershipStartTime)).format()
+            )
         }
     }
 
     @ViewBuilder
     private var collection: some View {
         if let collection = viewModel.dataModel.token?.collection?.name {
-            TitleValueRow(title: "Collection", value: collection)
+            DetailsListItemView(
+                title: LocalizableStrings.collection,
+                contentText: collection
+            )
         }
     }
 
     @ViewBuilder
     private var blockchain: some View {
         if let blockchain = viewModel.dataModel.token?.blockchainDescriptor?.rawValue {
-            TitleValueRow(title: "Blockchain", value: blockchain)
+            SymbolListItemView(
+                title: LocalizableStrings.blockchain,
+                blockchain: AssetsUtils.getBlockchainDisplayName(blockchainName: blockchain),
+                blockchainSymbol: blockchain
+            )
         }
     }
 
     @ViewBuilder
     private var contactAddress: some View {
         if let value = viewModel.dataModel.token?.collection?.id {
-            VStack(spacing: 8) {
-                Text("Contact address")
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .foregroundStyle(.secondary)
-                    .font(.b2)
-                HStack {
-                    Text(value)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .multilineTextAlignment(.leading)
-                        .font(.b2)
-                    Spacer()
-                    Image(uiImage: AssetsIcons.copy.getIcon())
-
-                }
-                .contentShape(.rect)
-                .onTapGesture {
-                    loadingManager.toastMessage = "Copied!"
-                    UIPasteboard.general.string = value
-
-                }
-            }
+            DetailsListItemView(
+                title: LocalizableStrings.contactAddress,
+                contentText: value,
+                showCopyButton: true
+            )
         }
     }
 
     @ViewBuilder
     private var nftId: some View {
         if let value = viewModel.dataModel.token?.id {
-            VStack(spacing: 8) {
-                Text("Id")
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .foregroundStyle(.secondary)
-                    .font(.b2)
-                HStack {
-                    Text(value)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .multilineTextAlignment(.leading)
-                        .font(.b2)
-                    Spacer()
-                    Image(uiImage: AssetsIcons.copy.getIcon())
-                }
-                .contentShape(.rect)
-                .onTapGesture {
-                    loadingManager.toastMessage = "Copied!"
-                    UIPasteboard.general.string = value
-                }
-            }
+            DetailsListItemView(
+                title: LocalizableStrings.fireblocksNFTId,
+                contentText: value,
+                showCopyButton: true
+            )
         }
     }
 

@@ -16,7 +16,7 @@ import SwiftUI
 
 struct TransferListView: View {
     @EnvironmentObject var coordinator: Coordinator
-    @EnvironmentObject var loadingManager: LoadingManager
+    @Environment(LoadingManager.self) var loadingManager
     @EnvironmentObject var fireblocksManager: FireblocksManager
     #if EW
     @Environment(EWManager.self) var ewManager
@@ -35,10 +35,15 @@ struct TransferListView: View {
             }
             list
         }
-        .navigationTitle("Transfers")
+        .navigationTitle("Transfer history")
         .navigationBarTitleDisplayMode(.inline)
         .animation(.default, value: viewModel.selectedTransfer)
         .tint(.white)
+        .onAppear {
+        #if EW
+            viewModel.setup(ewManager: ewManager)
+        #endif
+        }
     }
     
     @ViewBuilder

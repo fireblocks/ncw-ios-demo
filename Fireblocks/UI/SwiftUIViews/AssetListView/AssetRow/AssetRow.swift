@@ -16,16 +16,21 @@ import SwiftUI
 
 struct AssetRow: View {
     @EnvironmentObject var coordinator: Coordinator
-    @EnvironmentObject var loadingManager: LoadingManager
+    @Environment(LoadingManager.self) var loadingManager
     #if EW
     @Environment(EWManager.self) var ewManager
     #endif
     
     let asset: AssetSummary
+    var titleAmount: String?
+    var subTitleAmount: String?
+    
     @State var viewModel: AssetRowViewModel
     
-    init(asset: AssetSummary) {
+    init(asset: AssetSummary, titleAmount: String? = nil, subTitleAmount: String? = nil) {
         self.asset = asset
+        self.titleAmount = titleAmount
+        self.subTitleAmount = subTitleAmount
         _viewModel = .init(initialValue: .init(asset: asset))
     }
     
@@ -37,6 +42,7 @@ struct AssetRow: View {
                 .frame(height: asset.isExpanded ? nil : 0)
                 .opacity( asset.isExpanded ? 1 : 0)
         }
+        .compositingGroup()
         .animation(.default, value: asset.isExpanded)
         .onAppear() {
             #if EW
@@ -48,54 +54,42 @@ struct AssetRow: View {
     @ViewBuilder
     func configAssetView() -> some View {
         HStack(spacing: 16) {
-            if let image = viewModel.image {
-                RoundedRectangle(cornerRadius: 8)
-                    .fill(AssetsColors.gray2.color())
-                    .frame(width: 46, height: 46)
-                    .overlay {
-                        image
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 30, height: 30)
-                    }
-            }
-            
+            CryptoIconCardView(asset: asset, showBlockchainImage: true)
             VStack(alignment: .center, spacing: 4) {
                 HStack {
-                    Text(asset.asset?.name ?? "")
+                    let title = AssetsUtils.getAssetTitleText(asset: asset.asset)
+                    Text(title)
                     Spacer()
-                    Text(asset.balance?.total?.toDouble?.formatFractions().formatted() ?? "")
+                    Text(titleAmount ?? asset.balance?.total?.toDouble?.formatFractions().formatted() ?? "")
                 }
                 .font(.b1)
                 HStack(spacing: 4) {
-                    Group {
-                        Text(asset.asset?.symbol ?? "")
-                        Text(asset.asset?.blockchain ?? "")
-                            .padding(.horizontal, 8)
-                            .padding(.vertical, 6)
-                            .background(AssetsColors.gray2.color(), in: .capsule)
-                    }
+                    Text(asset.asset?.name ?? "")
                     .font(.b4)
                     Spacer()
 
-                    if let assetId = asset.asset?.id, let total = asset.balance?.total, let price = Double(total) {
-                        #if EW
-                        Text(CryptoCurrencyManager.shared.getTotalPrice(assetId: assetId, networkProtocol: asset.asset?.networkProtocol, amount: price))
+                    if let subTitleAmount {
+                        Text(subTitleAmount)
                             .font(.b2)
-                        #else
-                        if let rate = asset.asset?.rate, let total = asset.balance?.total, let price = Double(total), price != 0 {
-                            let rounded = String(format: "%.\(2)f", (price * rate))
-                            Text("$\(rounded)")
+                    } else {
+                        if let assetId = asset.asset?.id, let total = asset.balance?.total, let price = Double(total) {
+#if EW
+                            Text(CryptoCurrencyManager.shared.getTotalPrice(assetId: assetId, networkProtocol: asset.asset?.networkProtocol, amount: price))
                                 .font(.b2)
+#else
+                            if let rate = asset.asset?.rate, let total = asset.balance?.total, let price = Double(total), price != 0 {
+                                let rounded = String(format: "%.\(2)f", (price * rate))
+                                Text("$\(rounded)")
+                                    .font(.b2)
+                            }
+#endif
                         }
-                        #endif
                     }
                 }
                 .foregroundStyle(.secondary)
             }
         }
         .padding(.vertical, 8)
-
     }
 
     @ViewBuilder
@@ -162,10 +156,47 @@ struct AssetRow: View {
     }
 }
 
-//#Preview {
-//    NavigationContainerView(mockManager: EWManagerMock()) {
-//        SpinnerViewContainer {
-//            AssetRow(asset: <#T##AssetSummary#>)
-//        }
-//    }
-//}
+#Preview {
+    #if EW
+    NavigationContainerView(mockManager: EWManagerMock()) {
+        SpinnerViewContainer {
+            let asset: Asset = Asset(id: "1", symbol: "BTC", name: "Bitcoin", blockchain: "BTC")
+            let jsonString = """
+            {
+                "id": "xxxxx",
+                "total": "0.0001",
+                "available": "0.0001",
+                "frozen": "0.0",
+                "pending": "0.0"
+            }
+            """
+            let jsonData = jsonString.data(using: .utf8)!
+            let balance = try! JSONDecoder().decode(AssetBalance.self, from: jsonData)
+            let assetSummary: AssetSummary = AssetSummary(asset: asset, balance: balance)
+        
+            AssetRow(asset: assetSummary)
+        }
+    }
+    #else
+    NavigationContainerView() {
+        SpinnerViewContainer {
+            let asset: Asset = Asset(id: "1", symbol: "BTC", name: "Bitcoin", type: "", blockchain: "BTC")
+            let jsonString = """
+            {
+                "id": "xxxxx",
+                "total": "0.0001",
+                "available": "0.0001",
+                "frozen": "0.0",
+                "pending": "0.0"
+            }
+            """
+            let jsonData = jsonString.data(using: .utf8)!
+            let balance = try! JSONDecoder().decode(AssetBalance.self, from: jsonData)
+            let assetSummary: AssetSummary = AssetSummary(asset: asset, balance: balance)
+        
+            AssetRow(asset: assetSummary)
+        }
+    }
+    #endif
+}
+

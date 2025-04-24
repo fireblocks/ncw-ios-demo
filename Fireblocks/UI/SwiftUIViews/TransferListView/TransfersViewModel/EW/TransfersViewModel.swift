@@ -24,7 +24,12 @@ final class TransfersViewModel: TransfersViewModelBase {
     }
 
     private let pollingManager = PollingManager.shared
+    private var ewMAnager: EWManager?
     
+    func setup(ewManager: EWManager) {
+        self.ewMAnager = ewManager
+    }
+        
     func listenToTransferChanges() {
         pollingManager.$transactions.receive(on: RunLoop.main)
             .sink { [weak self] transactions in
@@ -34,5 +39,6 @@ final class TransfersViewModel: TransfersViewModelBase {
                     }
                 }
             }.store(in: &cancellable)
-    }    
+    }
+    
 }

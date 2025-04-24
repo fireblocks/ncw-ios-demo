@@ -12,7 +12,7 @@ import AuthenticationServices
 struct SignInView: View {
     @EnvironmentObject var viewModel: SignInViewModel
     @EnvironmentObject var coordinator: Coordinator
-    @EnvironmentObject var loadingManager: LoadingManager
+    @Environment(LoadingManager.self) var loadingManager
     @EnvironmentObject var fireblocksManager: FireblocksManager
     @EnvironmentObject var googleSignInManager: GoogleSignInManager
     @EnvironmentObject var appleSignInManager: AppleSignInManager
@@ -22,10 +22,9 @@ struct SignInView: View {
     var body: some View {
         ZStack {
             AppBackgroundView()
-
             VStack {
                 VStack {
-                    Text("Sign in to your account")
+                    Text("Welcome to Embedded Wallets")
                         .font(.h1)
                         .frame(maxWidth: .infinity, alignment: .center)
                         .multilineTextAlignment(.center)
@@ -44,7 +43,7 @@ struct SignInView: View {
                         
                     }
                     .padding(.horizontal)
-                    .background(.thinMaterial, in: .capsule)
+                    .background(AssetsColors.gray2.color(), in: .capsule)
                     .foregroundStyle(.primary)
                     .contentShape(.rect)
                     
@@ -166,6 +165,7 @@ struct SignInView: View {
                 .environmentObject(FireblocksManager.shared)
                 .environmentObject(GoogleSignInManager())
                 .environmentObject(AppleSignInManager())
+                .environmentObject(SignInViewModel.shared)
         }
     }
 }

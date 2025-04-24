@@ -20,8 +20,8 @@ class AddAssetsViewModel: AddAssetsViewModelBase {
     func setup(ewManager: EWManager, loadingManager: LoadingManager) {
         self.ewManager = ewManager
         self.loadingManager = loadingManager
+        self.loadingManager?.isLoading = true
         Task {
-            await self.loadingManager?.setLoading(value: true)
             do {
                 let response = try await self.ewManager?.fetchAllSupportedAssets()
                 await MainActor.run {

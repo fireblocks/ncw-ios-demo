@@ -14,7 +14,7 @@ import EmbeddedWalletSDK
 
 struct EWWeb3ConnectionDetailsView: View {
     @EnvironmentObject var coordinator: Coordinator
-    @EnvironmentObject var loadingManager: LoadingManager
+    @Environment(LoadingManager.self) var loadingManager
     @Environment(EWManager.self) var ewManager
     @State var viewModel: ViewModel
     
@@ -26,10 +26,10 @@ struct EWWeb3ConnectionDetailsView: View {
         ZStack {
             AppBackgroundView()
             if let connection = viewModel.dataModel.connection {
-                VStack {
+                VStack(spacing: 0) {
                     EWWeb3ConnectionDetailsHeader(connection: connection, metadata: connection.sessionMetadata, isConnected: true)
                         .environment(ewManager)
-                        .environmentObject(loadingManager)
+                        .environment(loadingManager)
                     Spacer()
 //                    BottomBanner(message: viewModel.ewManager?.errorMessage)
 //                        .animation(.default, value: viewModel.ewManager?.errorMessage)
@@ -49,7 +49,7 @@ struct EWWeb3ConnectionDetailsView: View {
                 .padding()
             }
         }
-        .navigationTitle(viewModel.dataModel.connection?.sessionMetadata?.appName ?? "Connection Details")
+        .navigationTitle("Connected dApp")
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden()
         .toolbar {

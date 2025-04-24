@@ -16,39 +16,24 @@ import SwiftUI
 
 struct DerivedAssetRow: View {
     let asset: AssetSummary
+    @State var viewModel: ViewModel
+    
+    init(asset: AssetSummary) {
+        self.asset = asset
+        _viewModel = State(initialValue: ViewModel(symbol: asset.asset?.symbol, iconUrl: asset.iconUrl))
+    }
     
     var body: some View {
         HStack {
             VStack(spacing: 0) {
-                Group {
-                    if let iconURL = asset.iconUrl {
-                        AsyncImage(url: URL(string: iconURL)) { phase in
-                            switch phase {
-                            case .empty:
-                                ProgressView()
-                            case .success(let image):
-                                image.resizable()
-                                    .aspectRatio(contentMode: .fit)
-                            case .failure(let error):
-                                Image(uiImage: asset.image)
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                            @unknown default:
-                                EmptyView()
-                                
-                            }
-                        }
-                        
-                    } else {
-                        Image(uiImage: asset.image)
-                            .resizable()
-                            .scaledToFit()
+                if let assetImage = viewModel.assetImage {
+                    Group {
+                        assetImage
                     }
+                    .padding(4)
                 }
-                .padding(4)
             }
             .frame(width: 32, height: 32)
-            .background(Color.black)
             .clipShape(RoundedRectangle(cornerRadius: 8.0))
 
             if let name = asset.asset?.name {
@@ -61,6 +46,37 @@ struct DerivedAssetRow: View {
     }
 }
 
-//#Preview {
-//    DerivedAssetRow(asset: Ass)
-//}
+#Preview {
+    #if EW
+    let asset: Asset = Asset(id: "1", symbol: "BTC", name: "Bitcoin", blockchain: "BTC")
+    let jsonString = """
+    {
+        "id": "xxxxx",
+        "total": "0.0001",
+        "available": "0.0001",
+        "frozen": "0.0",
+        "pending": "0.0"
+    }
+    """
+    let jsonData = jsonString.data(using: .utf8)!
+    let balance = try! JSONDecoder().decode(AssetBalance.self, from: jsonData)
+    let assetSummary: AssetSummary = AssetSummary(asset: asset, balance: balance)
+
+    DerivedAssetRow(asset: assetSummary)
+    #else
+    let asset: Asset = Asset(id: "1", symbol: "BTC", name: "Bitcoin", type: "", blockchain: "BTC")
+    let jsonString = """
+    {
+        "id": "xxxxx",
+        "total": "0.0001",
+        "available": "0.0001",
+        "frozen": "0.0",
+        "pending": "0.0"
+    }
+    """
+    let jsonData = jsonString.data(using: .utf8)!
+    let balance = try! JSONDecoder().decode(AssetBalance.self, from: jsonData)
+    let assetSummary: AssetSummary = AssetSummary(asset: asset, balance: balance)
+    DerivedAssetRow(asset: assetSummary)
+    #endif
+}

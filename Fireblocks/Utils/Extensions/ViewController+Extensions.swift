@@ -84,6 +84,27 @@ extension UIViewController{
 
 
 extension UIViewController {
+    func setBottomBarBackground() {
+        // Use the current window from the view's window scene
+        guard let windowScene = view.window?.windowScene,
+              let window = windowScene.windows.first else {
+            return
+        }
+
+        let bottomInset = window.safeAreaInsets.bottom
+
+        let homeIndicatorBackgroundView = UIView(frame: CGRect(
+            x: 0,
+            y: view.bounds.height,
+            width: view.bounds.width,
+            height: bottomInset
+        ))
+        homeIndicatorBackgroundView.backgroundColor = AssetsColors.background.getColor() // Customize your color
+        homeIndicatorBackgroundView.autoresizingMask = [.flexibleWidth, .flexibleTopMargin]
+        view.addSubview(homeIndicatorBackgroundView)
+
+    }
+    
     func createLogFile() {
         guard let url = FireblocksManager.shared.getURLForLogFiles() else {
             print("Can't get file log url")
@@ -106,19 +127,19 @@ extension UIViewController {
             )
     }
     
-    func addSwiftUIView(controller: UIHostingController<AnyView>) {
-        addChild(controller)
-        controller.view.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(controller.view)
-        controller.didMove(toParent: self)
-
+    func addSwiftUIView(rootView: AnyView, container: UIView) -> UIView {
+        let vc = UIHostingController(rootView: rootView)
+        let swiftuiView = vc.view!
+        swiftuiView.translatesAutoresizingMaskIntoConstraints = false
+        addChild(vc)
+        container.addSubview(swiftuiView)
         NSLayoutConstraint.activate([
-            controller.view.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1),
-            controller.view.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1),
-            controller.view.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            controller.view.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            swiftuiView.centerXAnchor.constraint(equalTo: container.centerXAnchor),
+            swiftuiView.centerYAnchor.constraint(equalTo: container.centerYAnchor),
+            swiftuiView.widthAnchor.constraint(equalTo: container.widthAnchor),
+            swiftuiView.heightAnchor.constraint(equalTo: container.heightAnchor),
         ])
+        vc.didMove(toParent: self)
+        return swiftuiView
     }
-
-
 }

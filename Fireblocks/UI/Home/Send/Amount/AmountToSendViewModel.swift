@@ -121,7 +121,8 @@ class AmountToSendViewModel {
     }
     
     private func updateUI(){
-        delegate?.amountAndSumChanged(amount: "\(assetAmountString) \(asset.asset?.symbol ?? "")", price: "$\(calculatedPrice)")
+        let symbol = AssetsUtils.removeTestSuffix(asset.asset?.symbol ?? "")
+        delegate?.amountAndSumChanged(amount: "\(assetAmountString) \(symbol)", price: "$\(calculatedPrice)")
     }
     
     func createTransaction() -> FBTransaction {

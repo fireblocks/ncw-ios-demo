@@ -26,34 +26,16 @@ struct EWNFTCard: View {
 
     var body: some View {
         if isRow {
-            HStack(spacing: 16) {
-                HStack {
-                    Spacer()
-                    image
-                    Spacer()
-                }
-                .frame(width: 64, height: 64)
-                .background(viewModel.uiimage?.averageColor)
-                .clipShape(.rect(cornerRadius: 8))
-
-                VStack(spacing: 8) {
-                    HStack {
-                        name
-                        .font(.b1)
-                        Spacer()
-                        tokenId
-                            .font(.h4)
-                    }
-                    HStack {
-                        blockchainDescriptor
-                        Spacer()
-                        standard
-                    }
-                    .font(.b4)
-                    .foregroundStyle(.secondary)
-                }
-            }
-            .contentShape(Rectangle())
+            let nftToken = viewModel.token
+            let blockchain = nftToken.blockchainDescriptor?.rawValue
+            NFTCardDetails(iconUrl: nftToken.media?.first?.url,
+                           blockchain: AssetsUtils.getBlockchainDisplayName(blockchainName: blockchain),
+                           blockchainSymbol: blockchain,
+                           nftName: nftToken.name,
+                           balance: nftToken.balance,
+                           standard: nftToken.standard,
+                           showBlockchainImage: true
+            )
         } else {
             VStack(spacing: 0) {
                 HStack {
@@ -87,7 +69,7 @@ struct EWNFTCard: View {
                 .background(AssetsColors.gray2.color())
             }
             .contentShape(Rectangle())
-            .clipShape(.rect(cornerRadius: 16))
+            .clipShape(.rect(cornerRadius: 12))
         }
     }
     

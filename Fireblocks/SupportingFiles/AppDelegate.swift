@@ -12,6 +12,8 @@ import SwiftUI
 
 @main
 struct FireblocksApp: App {
+//    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+
     @StateObject var viewModel = SignInViewModel.shared
     @State var launchView: (any View)?
     @State var didLaunch = false
@@ -69,12 +71,29 @@ struct FireblocksApp: App {
     }
     
     private func configNavigationBar() {
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = AssetsColors.background.getColor() // Setting the desired background color
+
+        // Remove the bottom divider
+        appearance.shadowColor = .clear
+                
+        // Keeping the existing icon and tint customizations
         UINavigationBar.appearance().backIndicatorTransitionMaskImage = AssetsIcons.back.getIcon()
         UINavigationBar.appearance().backIndicatorImage = AssetsIcons.back.getIcon()
-        UINavigationBar.appearance().isOpaque = true
-        UINavigationBar.appearance().barTintColor = .white
         UINavigationBar.appearance().tintColor = AssetsColors.white.getColor()
         UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffset(horizontal: -1000, vertical: 0), for: .default)
+        UINavigationBar.appearance().isTranslucent = false
+        
+        appearance.backgroundColor = AssetsColors.background.getColor()
+        appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+        appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+
+        UINavigationBar.appearance().standardAppearance = appearance
+        UINavigationBar.appearance().compactAppearance = appearance
+        UINavigationBar.appearance().scrollEdgeAppearance = appearance
+
+        
 
     }
 

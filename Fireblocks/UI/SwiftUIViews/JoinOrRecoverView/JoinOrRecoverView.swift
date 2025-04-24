@@ -10,7 +10,7 @@ import SwiftUI
 struct JoinOrRecoverView: View {
     
     @EnvironmentObject var coordinator: Coordinator
-    @EnvironmentObject var loadingManager: LoadingManager
+    @Environment(LoadingManager.self) var loadingManager
     
     var body: some View {
         ZStack {

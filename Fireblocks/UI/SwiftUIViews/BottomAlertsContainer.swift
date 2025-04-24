@@ -43,7 +43,7 @@ class AlertsManager {
 }
 
 struct BottomAlertsContainer: View {
-    @EnvironmentObject var loadingManager: LoadingManager
+    @Environment(LoadingManager.self) var loadingManager
 
     var body: some View {
         ZStack {
@@ -66,9 +66,9 @@ struct BottomAlertsContainer: View {
     VStack {
         Spacer()
         BottomAlertsContainer()
-            .environmentObject(LoadingManager(alertMessage: "Alert\nAlert\nAlert"))
+            .environment(LoadingManager(alertMessage: "Alert\nAlert\nAlert"))
         BottomAlertsContainer()
-            .environmentObject(LoadingManager(toastMessage: "Copied"))
+            .environment(LoadingManager(toastMessage: "Copied"))
         Spacer()
     }
     .background(.green)

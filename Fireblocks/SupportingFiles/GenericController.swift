@@ -33,7 +33,7 @@ struct GenericControllerNoEnvironments<T: UIViewController>: UIViewControllerRep
 }
 
 struct GenericController<T: UIViewController>: UIViewControllerRepresentable, Hashable {
-    @EnvironmentObject var loadingManager: LoadingManager
+    @Environment(LoadingManager.self) var loadingManager
     @EnvironmentObject var coordinator: Coordinator
     #if EW
     @Environment(EWManager.self) var ewManager

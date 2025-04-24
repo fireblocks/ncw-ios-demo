@@ -46,7 +46,7 @@ struct Mocks {
           "blockchainSymbol": "string",
           "deprecated": true,
           "coinType": 0,
-          "blockchain": "string",
+          "blockchain": "Ethereume Testnet Sepoloa",
           "blockchainDisplayName": "string",
           "algorithm": "MPC_ECDSA_SECP256K1"
         }
@@ -282,7 +282,7 @@ struct Mocks {
         }
         
         static let response_ETH_TEST5 = #"""
-        {"id":"9fd15c0c-8eed-449f-9ffd-937c03e79854","assetId":"ETH_TEST5","source":{"id":"0","type":"END_USER_WALLET","name":"","subType":"","walletId":"280b3ca9-0b5d-81b9-ae17-c2c096f79608"},"destination":{"id":null,"type":"ONE_TIME_ADDRESS","name":"N/A","subType":""},"requestedAmount":0.0001,"amount":0.0001,"netAmount":-1,"amountUSD":0.21,"fee":-1,"networkFee":-1,"createdAt":1741073733403,"lastUpdated":1741073733403,"status":"SUBMITTED","txHash":"","subStatus":"","sourceAddress":"","destinationAddress":"0xd27429aB6c46aFA34f09b7831882c180D55831E2","destinationAddressDescription":"","destinationTag":"","signedBy":[],"createdBy":"e414094b-07dc-4eb9-9873-7e723c8dda86","rejectedBy":"","addressType":"","note":"","exchangeTxId":"","feeCurrency":"ETH_TEST5","operation":"TRANSFER","amountInfo":{"amount":"0.0001","requestedAmount":"0.0001","amountUSD":"0.21"},"feeInfo":{},"signedMessages":[],"destinations":[],"blockInfo":{},"assetType":"BASE_ASSET"}
+        {"id":"ec0b8150-84ed-4ae7-929a-d7fa438e5061","createdAt":1743512924440,"lastUpdated":1743512924554,"assetId":"ETH_TEST5","source":{"id":"","type":"UNKNOWN","name":"External","subType":""},"destination":{"id":"0","type":"END_USER_WALLET","name":"","subType":"","walletId":"460d3391-603e-8273-abee-c590741c0c1b"},"amount":0.1,"fee":0.000189303793371,"networkFee":0.000189303793371,"netAmount":0.1,"sourceAddress":"0x1F9E842D924049b75ca28a0B87cb34967D6A7800","destinationAddress":"0x1F9E842D924049b75ca28a0B87cb34967D6A7800","destinationAddressDescription":"","destinationTag":"","status":"COMPLETED","txHash":"0xb500b23f7e7dc1b49611a3afed2be1b1279ac672af6a40ecfab1e2f76406b757","subStatus":"CONFIRMED","signedBy":[],"createdBy":"","rejectedBy":"","amountUSD":186.62336387313678,"addressType":"","note":"","exchangeTxId":"","requestedAmount":0.1,"feeCurrency":"ETH_TEST5","operation":"TRANSFER","numOfConfirmations":1,"amountInfo":{"amount":"0.1","requestedAmount":"0.1","netAmount":"0.1","amountUSD":"186.62336387313677"},"feeInfo":{"networkFee":"0.000189303793371","gasPrice":"9.014466351"},"destinations":[],"blockInfo":{"blockHeight":"8027951","blockHash":"0xda671e84a2ce69d1f626803f9ca886c4fecbf3a8e34f3939694a10672aa46625"},"signedMessages":[],"index":0,"assetType":"BASE_ASSET"}
         """#
 
         static let response = #"""

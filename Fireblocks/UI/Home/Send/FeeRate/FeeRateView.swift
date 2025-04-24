@@ -16,7 +16,7 @@ import SwiftUI
 
 struct FeeRateView: View {
     @EnvironmentObject var coordinator: Coordinator
-    @EnvironmentObject var loadingManager: LoadingManager
+    @Environment(LoadingManager.self) var loadingManager
     #if EW
     @Environment(EWManager.self) var ewManager
     #endif
@@ -28,34 +28,33 @@ struct FeeRateView: View {
 
     var body: some View {
         ZStack {
-//            AppBackgroundView()
+            AppBackgroundView()
             if viewModel.getFees().isEmpty {
                 ContentUnavailableView("Fees", systemImage: "", description: Text("Select Transaction Fee"))
                     .listRowBackground(Color.clear)
             }
 
-            VStack(spacing: 8) {
-                HStack {
-                    Text("Speed")
-                    Spacer()
-                    Text("Fee")
-                }
-                .padding()
-                List {
-                    Section {
-                        VStack {
+            List {
+                Section {
+                    VStack(spacing: 16) {
+                        Text(LocalizableStrings.transactionSpeed)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .font(.b2)
+                        VStack(spacing: 4) {
                             ForEach(viewModel.getFees(), id: \.self.feeRateType) { fee in
                                 HStack {
                                     Text(fee.getFeeName())
                                         .frame(maxWidth: .infinity, alignment: .leading)
                                         .contentShape(.rect())
                                     Spacer()
-                                    if let feeDouble = Double(viewModel.getFee(fee: fee))?.formatFractions(fractionDigits: 6) {
-                                        Text("~" + "\(feeDouble)" + " " + viewModel.getSymbol())
+                                    let feeData: String = viewModel.getFee(fee: fee)
+                                    if let feeDouble = Double(feeData)?.formatFractionsAsString(fractionDigits: 6) {
+                                        Text("~" + "\(feeDouble)" + " " + AssetsUtils.removeTestSuffix(viewModel.getSymbol()))
+                                            .lineLimit(1)
                                     }
                                 }
                                 .padding()
-                                .background(viewModel.selectedFee == nil ? Color.clear : fee.feeRateType == viewModel.selectedFee!.feeRateType ? AssetsColors.gray2.color() : Color.clear, in: .rect)
+                                .background(viewModel.selectedFee == nil ? Color.clear : fee.feeRateType == viewModel.selectedFee!.feeRateType ? AssetsColors.gray2.color() : Color.clear, in: .rect(cornerRadius: 8))
                                 .foregroundStyle(viewModel.selectedFee == nil ? .secondary : fee.feeRateType == viewModel.selectedFee!.feeRateType ? Color.white : .secondary)
                                 .contentShape(.rect)
                                 .onTapGesture {
@@ -63,16 +62,18 @@ struct FeeRateView: View {
                                         viewModel.selectedFee = fee
                                     }
                                 }
-
+                                
                             }
-                            
                         }
+                        
                     }
-                    .background(AssetsColors.gray1.color(), in: .rect)
-                    .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
-                    
+                    .padding(.vertical, 32)
                 }
+                .listRowBackground(AssetsColors.gray1.color())
+                .listRowSeparator(.hidden)
             }
+            .listRowSeparator(.hidden)
+            .listStyle(.insetGrouped)
         }
         .safeAreaInset(edge: .bottom, content: {
             VStack(spacing: 8) {
@@ -80,7 +81,7 @@ struct FeeRateView: View {
                     viewModel.transaction.fee = viewModel.selectedFee
                     viewModel.createTransaction()
                 } label: {
-                    Text("Create transaction")
+                    Text(LocalizableStrings.continueButton)
                         .frame(maxWidth: .infinity, alignment: .center)
                         .padding(8)
                 }
@@ -93,7 +94,6 @@ struct FeeRateView: View {
 
             }
             .padding()
-            .background()
         })
         .onAppear() {
             #if EW
@@ -102,13 +102,12 @@ struct FeeRateView: View {
             viewModel.setup(loadingManager: loadingManager, coordinator: coordinator)
             #endif
         }
-        .navigationTitle("Select Fee")
+        .navigationTitle(LocalizableStrings.fee)
         .navigationBarTitleDisplayMode(.inline)
-        .contentMargins(.top, 0)
         .scrollContentBackground(.hidden)
         .navigationBarBackButtonHidden()
         .navigationBarItems(leading: CustomBackButtonView())
-
+        .contentMargins(.top, 16)
     }
 }
 

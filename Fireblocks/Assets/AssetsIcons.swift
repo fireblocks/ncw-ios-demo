@@ -45,6 +45,7 @@ enum AssetsIcons: String {
     case BitcoinIcon = "bitcoin_icon"
     case EthereumIcon = "ethereum_icon"
     case PlaceholderIcon = "placeholder_icon"
+    case BlockchainPlaceholderIcon = "blockchain_placeholder_icon"
     case SolanaIcon = "solana_icon"
     case AdaIcon = "ada"
     case AvaxIcon = "avax"
@@ -56,12 +57,12 @@ enum AssetsIcons: String {
     case UniIcon = "uni"
     case XrpIcon = "xrp"
     case DotIcon = "dot"
+    case BasechainIcon = "base"
+    case EtherlinkIcon = "etherlink"
+    
     case CeloAlfIcon = "celo"
-
-
-
-
     case errorImage = "error_image"
+    case errorBox = "error_box"
     case generateKeyImage = "generate_key_image"
     case keyImage = "key_image"
     case searchImage = "search_image"
@@ -72,6 +73,8 @@ enum AssetsIcons: String {
     case addAccountImage = "add_account"
     case existingAccountImage = "existing_account"
     case transferImage = "transfer_image"
+    case dappPlaceholder = "dapp_placeholder"
+    case nftPlaceholder = "nft_placeholder"
 }
 
 extension AssetsIcons {

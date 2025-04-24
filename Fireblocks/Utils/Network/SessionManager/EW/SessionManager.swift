@@ -36,6 +36,7 @@ class SessionManager: ObservableObject {
     
     func loadImage(url: URL) async throws -> UIImage {
         if let image = CacheManager.shared.getImage(url: url) {
+//            print("Image loaded from cache, url: \(url)")
             return image
         }
         
@@ -50,7 +51,7 @@ class SessionManager: ObservableObject {
                 }
                 throw SessionManager.error
             } else {
-                print("SessionManager Error statusCode: \(statusCode)")
+                print("SessionManager loadImage Error statusCode: \(statusCode)")
                 throw SessionManager.error
             }
         } else {
@@ -59,6 +60,14 @@ class SessionManager: ObservableObject {
         }
 
     }
+    
+//    func constructImageURL(iconUrl: String?, symbol: String) -> String? {
+//        if iconUrl?.isEmpty ?? true, !symbol.isEmpty {
+//            let formattedSymbol = symbol.replacingOccurrences(of: "_TEST\\d*$", with: "", options: .regularExpression).lowercased()
+//            return "https://assets.coincap.io/assets/icons/\(formattedSymbol)@2x.png"
+//        }
+//        return iconUrl
+//    }
     
     func sendRequest(url: URL, httpMethod: String = "POST", timeout: TimeInterval? = nil, numberOfRetries: Int = 2, message: String? = nil, body: Any? = nil, skipLogs: Bool = false) async throws -> (Data) {
         guard let currentAccessToken = await AuthRepository.getUserIdToken() else {
@@ -157,5 +166,7 @@ extension SessionManager {
     
     func createPassphraseInfo(passphraseInfo: PassphraseInfoBody) async throws {
     }
+    
+    
 
 }

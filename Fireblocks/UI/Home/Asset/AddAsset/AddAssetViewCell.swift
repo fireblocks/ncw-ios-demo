@@ -7,6 +7,7 @@
 
 import UIKit
 import SDWebImage
+import SwiftUI
 
 #if EW
     #if DEV
@@ -24,8 +25,6 @@ class AddAssetViewCell: UITableViewCell {
     @IBOutlet weak var assetImage: UIImageView!
     @IBOutlet weak var assetName: UILabel!
     @IBOutlet weak var assetAbbreviation: UILabel!
-    @IBOutlet weak var assetBlockchainBadgeBackground: UIView!
-    @IBOutlet weak var assetBlockchainBadge: UILabel!
     
     
 //MARK: - LIFECYCLE Functions
@@ -43,40 +42,36 @@ class AddAssetViewCell: UITableViewCell {
         assetImage.image = nil
         assetName.text = ""
         assetAbbreviation.text = ""
-        assetBlockchainBadge.text = ""
-        assetBlockchainBadgeBackground.isHidden = true
     }
     
 //MARK: - FUNCTIONS
     func configCellView(){
         cellBackground.layer.cornerRadius = 16
         imageBackground.layer.cornerRadius = 9
-        assetBlockchainBadgeBackground.layer.cornerRadius = assetBlockchainBadgeBackground.frame.height / 2
     }
     
-    func configCellWith(assetToAdd: AssetToAdd, isBlockchainHidden: Bool = false) {
+    func configCellWith(assetToAdd: AssetToAdd) {
         let asset = assetToAdd.asset
-        configAssetView(asset: asset, isBlockchainHidden: isBlockchainHidden)
+        configAssetView(asset: asset)
         cellBackground.backgroundColor = assetToAdd.isSelected ? AssetsColors.gray2.getColor() : .clear
 
     }
     
-    func configAssetView(asset: AssetSummary, isBlockchainHidden: Bool = false) {
-        if let iconURL = asset.iconUrl {
-            assetImage.sd_setImage(with: URL(string: iconURL), placeholderImage: asset.image)
-        } else {
-            assetImage.image = asset.image
-        }
+    func configAssetView(asset: AssetSummary) {
+        let assetSymbol = asset.asset?.symbol ?? ""
+        
+        AssetImageLoader.shared.loadAssetIcon(
+            into: assetImage,
+            iconUrl: asset.iconUrl,
+            symbol: assetSymbol
+        )
         
         imageBackground.backgroundColor = isBackgroundTransparent(asset: asset.asset) ? .white : .clear
 
         guard let asset = asset.asset else { return }
-        
-        assetName.text = asset.name
-        assetAbbreviation.text = asset.symbol
-        assetBlockchainBadge.text = asset.blockchain
-        assetBlockchainBadge.isHidden = isBlockchainHidden
-        assetBlockchainBadgeBackground.isHidden = isBlockchainHidden
+        let title = AssetsUtils.getAssetTitleText(asset: asset)
+        assetName.text = title
+        assetAbbreviation.text = asset.name
     }
 
     private func isBackgroundTransparent(asset: Asset?) -> Bool {

@@ -16,7 +16,7 @@ import SwiftUI
 
 struct AddAssetView: View {
     @Environment(\.dismiss) var dismiss
-    @EnvironmentObject var loadingManager: LoadingManager
+    @Environment(LoadingManager.self) var loadingManager
     @EnvironmentObject var fireblocksManager: FireblocksManager
 
     #if EW

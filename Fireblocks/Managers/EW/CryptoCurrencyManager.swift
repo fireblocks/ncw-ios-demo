@@ -12,7 +12,8 @@ class CryptoCurrencyManager {
     func getTotalPrice(assetId: String, networkProtocol: String?, amount: Double) -> String {
         if let data = CryptoCurrencyData.cryptoCurrency.data(using: .utf8) {
             if let cryptoCurrecnyData: CryptoCurrency = try? GenericDecoder.decode(data: data) {
-                if let rate = cryptoCurrecnyData.data.first(where: {$0.symbol == assetId})?.quote.USD.price {
+                let formattedSymbol = AssetImageLoader.shared.getFormattedSymbol(assetId: assetId)
+                if let rate = cryptoCurrecnyData.data.first(where: {$0.symbol == formattedSymbol})?.quote.USD.price {
                     let totalPrice = amount * rate
                     
                     return "$\(totalPrice.formatFractions(fractionDigits: 2))"
@@ -30,7 +31,8 @@ class CryptoCurrencyManager {
     func getPrice(assetId: String, networkProtocol: String?, amount: Double) -> Double {
         if let data = CryptoCurrencyData.cryptoCurrency.data(using: .utf8) {
             if let cryptoCurrecnyData: CryptoCurrency = try? GenericDecoder.decode(data: data) {
-                if let rate = cryptoCurrecnyData.data.first(where: {$0.symbol == assetId})?.quote.USD.price {
+                let formattedSymbol = AssetImageLoader.shared.getFormattedSymbol(assetId: assetId)
+                if let rate = cryptoCurrecnyData.data.first(where: {$0.symbol == formattedSymbol})?.quote.USD.price {
                     let totalPrice = amount * rate
                     
                     return totalPrice
@@ -44,5 +46,4 @@ class CryptoCurrencyManager {
         return amount
 
     }
-
 }
