@@ -66,7 +66,7 @@ struct AssetListView: View {
         .contentMargins(.top, 16)
         .sheet(isPresented: $viewModel.addAssetPresented) {
             NavigationContainerView {
-                SpinnerViewContainer(isBasic: true) {
+                SpinnerViewContainer() {
                     AddAssetView(selectedAsset: $selectedAsset)
                 }
             }

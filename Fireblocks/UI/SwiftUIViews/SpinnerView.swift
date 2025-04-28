@@ -106,7 +106,9 @@ struct CircularProgressView: View {
                 .animation(.linear(duration: 0.8).repeatForever(autoreverses: false), value: isAnimating)
         }
         .onAppear {
-            isAnimating = true
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                self.isAnimating = true
+            }
         }
     }
 }
