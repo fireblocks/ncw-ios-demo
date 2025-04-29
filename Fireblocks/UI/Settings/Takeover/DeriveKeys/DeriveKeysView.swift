@@ -179,11 +179,13 @@ struct MultilineSecureField: View {
 }
 
 #Preview("DeriveKeysView") {
+    #if EW
     NavigationContainerView(mockManager: EWManagerMock()) {
         SpinnerViewContainer {
             DeriveKeysView(viewModel: PreviewViewModel())
         }
     }
+    #endif
 }
 
 // Preview view model

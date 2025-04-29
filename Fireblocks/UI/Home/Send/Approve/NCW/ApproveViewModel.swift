@@ -52,6 +52,9 @@ class ApproveViewModel: ApproveViewModelBase {
                 if let self {
                     if let transactionInfo = transfers.first(where: {$0.transactionID == self.transaction.txId}) {
                         self.transferInfo = transactionInfo
+                        if isTransferring, let transferInfo, transferInfo.isEndedTransaction() {
+                            self.isTransferring = false
+                        }
                     }
                 }
             }.store(in: &cancellable)

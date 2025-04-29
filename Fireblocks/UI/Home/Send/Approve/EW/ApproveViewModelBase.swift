@@ -24,7 +24,8 @@ class ApproveViewModelBase {
     
     var transferInfo: TransferInfo?
     var cancellable = Set<AnyCancellable>()
-
+    var isTransferring = false
+    
     var didLoad = false
     var isDiscardAlertPresented = false
     let fromCreate: Bool
@@ -127,12 +128,20 @@ class ApproveViewModelBase {
 
                 if isApproved {
                     await MainActor.run {
-                        self.coordinator?.path = NavigationPath()
+                        withAnimation {
+                            isTransferring = true
+                        }
                     }
                 } else {
+                    await MainActor.run {
+                        self.isTransferring = false
+                    }
                     await self.loadingManager?.setAlertMessage(error: CustomError.genericError("Failed to approve transaction"))
                 }
             } catch {
+                await MainActor.run {
+                    self.isTransferring = false
+                }
                 await self.loadingManager?.setAlertMessage(error: error)
             }
         }
