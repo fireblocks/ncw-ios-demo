@@ -145,4 +145,6 @@ struct LocalizableStrings{
     static let keyId = "Key ID".localize()
     static let algorithm = "Algorithm".localize()
     static let walletAddress = "Wallet address".localize()
+    static let transferring = "Transferring".localize()
+    static let transferringDuration = "This usually takes under 10 minutes.".localize()
 }

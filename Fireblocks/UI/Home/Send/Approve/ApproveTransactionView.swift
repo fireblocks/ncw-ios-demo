@@ -33,6 +33,30 @@ struct ApproveTransactionView: View {
             VStack(spacing: 0) {
                 if viewModel.transaction.txId != nil {
                     List {
+                        if viewModel.isTransferring {
+                            Section {
+                                VStack(alignment: .center, spacing: 0) {
+                                    Image(.transferring)
+                                        .resizable()
+                                        .frame(width: 75, height: 75)
+                                        .padding(.bottom)
+                                    Text(LocalizableStrings.transferring)
+                                        .font(.h3)
+                                        .frame(maxWidth: .infinity, alignment: .center)
+                                        .multilineTextAlignment(.center)
+                                    
+                                    Text(LocalizableStrings.transferringDuration)
+                                        .font(.b2)
+                                        .foregroundStyle(.secondary)
+                                        .frame(maxWidth: .infinity, alignment: .center)
+                                        .multilineTextAlignment(.center)
+                                }
+                                .clipped()
+                                .compositingGroup()
+                                
+                            }
+                            .listRowBackground(Color.clear)
+                        }
                         VStack(spacing: 0) {
                             TransactionHeaderView(transaction: viewModel.transaction, transferInfo: viewModel.transferInfo)
                             Divider()
@@ -114,6 +138,7 @@ struct ApproveTransactionView: View {
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden()
         .contentMargins(.top, 16)
+        .animation(.default, value: viewModel.isTransferring)
     }
 
     @ViewBuilder
@@ -193,39 +218,58 @@ struct ApproveTransactionView: View {
     @ViewBuilder
     private var buttons: some View {
         if let transactionInfo = viewModel.transferInfo {
-            HStack(spacing: 16) {
-                Button {
-                    viewModel.isDiscardAlertPresented = true
-                } label: {
-                    Text("Deny")
-                        .frame(maxWidth: .infinity, alignment: .center)
-                        .padding(8)
+            ZStack {
+                HStack(spacing: 16) {
+                    Button {
+                        viewModel.isDiscardAlertPresented = true
+                    } label: {
+                        Text("Deny")
+                            .frame(maxWidth: .infinity, alignment: .center)
+                            .padding(8)
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .tint(AssetsColors.gray2.color())
+                    .background(AssetsColors.gray2.color(), in: .capsule)
+                    .clipShape(.capsule)
+                    .contentShape(.rect)
+                    
+                    Button {
+                        viewModel.approveTransaction()
+                    } label: {
+                        Text("Approve")
+                            .frame(maxWidth: .infinity, alignment: .center)
+                            .padding(8)
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .tint(AssetsColors.gray2.color())
+                    .background(AssetsColors.gray2.color(), in: .capsule)
+                    .clipShape(.capsule)
+                    .contentShape(.rect)
+                    
                 }
-                .buttonStyle(.borderedProminent)
-                .tint(AssetsColors.gray2.color())
-                .background(AssetsColors.gray2.color(), in: .capsule)
-                .clipShape(.capsule)
-                .contentShape(.rect)
-                
-                Button {
-                    viewModel.approveTransaction()
-                } label: {
-                    Text("Approve")
-                        .frame(maxWidth: .infinity, alignment: .center)
-                        .padding(8)
+                .padding()
+                .opacity(transactionInfo.status == .pendingSignature && !viewModel.isTransferring ? 1 : 0)
+                .disabled(transactionInfo.status != .pendingSignature)
+                .animation(.default, value: viewModel.transferInfo?.status)
+                .background(transactionInfo.status == .pendingSignature ? nil : Color.clear)
+
+                HStack {
+                    Button {
+                        viewModel.coordinator?.path = NavigationPath()
+                    } label: {
+                        Text("Go to wallet")
+                            .frame(maxWidth: .infinity, alignment: .center)
+                            .padding(8)
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .tint(AssetsColors.gray2.color())
+                    .background(AssetsColors.gray2.color(), in: .capsule)
+                    .clipShape(.capsule)
+                    .contentShape(.rect)
+                    .opacity(viewModel.isTransferring ? 1 : 0)
                 }
-                .buttonStyle(.borderedProminent)
-                .tint(AssetsColors.gray2.color())
-                .background(AssetsColors.gray2.color(), in: .capsule)
-                .clipShape(.capsule)
-                .contentShape(.rect)
-                
+                .padding()
             }
-            .padding()
-            .opacity(transactionInfo.status == .pendingSignature ? 1 : 0)
-            .disabled(transactionInfo.status != .pendingSignature)
-            .animation(.default, value: viewModel.transferInfo?.status)
-            .background(transactionInfo.status == .pendingSignature ? nil : Color.clear)
         }
     }
     
@@ -245,7 +289,7 @@ struct ApproveTransactionView: View {
     #if EW
     NavigationContainerView(mockManager: EWManagerMock()) {
         SpinnerViewContainer {
-            ApproveTransactionView(transaction: TransferInfo.toTransferInfo(response: Mocks.Transaction.getResponse_ETH_TEST5()).toTransaction(assetListViewModel: AssetListViewModelMock())!, fromCreate: false)
+            ApproveTransactionView(transaction: TransferInfo.toTransferInfo(response: Mocks.Transaction.getResponse_ETH_TEST5()).toTransaction(assetListViewModel: AssetListViewModelMock())!, fromCreate: true)
         }
     }
     #else

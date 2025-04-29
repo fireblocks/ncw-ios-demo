@@ -15,7 +15,8 @@ struct DetailsListItemView: View {
     var showCopyButton: Bool = false
     var contentColor: Color = .white
     var overflow: Text.TruncationMode = .middle
-
+    @State var copyButtonColor: Color = .white
+    
     var body: some View {
         HStack(spacing: 0) {
             if let attributedTitle = attributedTitle {
@@ -54,27 +55,32 @@ struct DetailsListItemView: View {
             Spacer()
             
             if showCopyButton {
-                Button(action: {
-                    UIPasteboard.general.string = contentText
-                    loadingManager.toastMessage = "Copied!"
-
-                }) {
-                    Image(uiImage: AssetsIcons.copy.getIcon())
-                        .foregroundColor(.white)
-                }
-                .padding(.leading, 8)
+                Image(uiImage: AssetsIcons.copy.getIcon())
+                    .foregroundColor(copyButtonColor)
+                    .padding(8)
+                    .onTapGesture {
+                        UIPasteboard.general.string = contentText
+                        loadingManager.toastMessage = "Copied!"
+                        copyButtonColor = .secondary
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                            self.copyButtonColor = .white
+                        }
+                    }
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .frame(height: Dimens.detailsListItemHeight)
         .padding(.horizontal, Dimens.paddingLarge)
+        .animation(.default, value: copyButtonColor)
     }
 }
 
 #Preview {
-    DetailsListItemView(
-        title: "Recipient",
-        contentText: "0x324387ynckc83y48fhlc883mf",
-        showCopyButton: true
-    )
+    SpinnerViewContainer {
+        DetailsListItemView(
+            title: "Recipient",
+            contentText: "0x324387ynckc83y48fhlc883mf",
+            showCopyButton: true
+        )
+    }
 }

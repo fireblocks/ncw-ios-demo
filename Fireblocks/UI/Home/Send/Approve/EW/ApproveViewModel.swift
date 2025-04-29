@@ -58,6 +58,10 @@ class ApproveViewModel: ApproveViewModelBase {
                         }
                         if let transferInfo, transferInfo.isEndedTransaction() {
                             self.pollingManagerTxId?.stopPolling()
+                            if isTransferring {
+                                self.isTransferring = false
+                            }
+
                         }
                     }
                 }

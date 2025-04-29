@@ -73,7 +73,6 @@ struct TransactionHeaderView: View {
                         Text(title)
                             .font(.b1)
                         Spacer()
-                        Text(asset.balance?.total?.toDouble?.formatFractions().formatted() ?? "")
                     }
                     Text(asset.asset?.name ?? "")
                         .font(.b2)
@@ -92,10 +91,13 @@ struct TransactionHeaderView: View {
 #if EW
     let transferInfo: TransferInfo = TransferInfo.toTransferInfo(response: Mocks.Transaction.getResponse_ETH_TEST5())
     let transaction: FBTransaction = transferInfo.toTransaction(assetListViewModel: AssetListViewModelMock())!
-    TransactionHeaderView(
-        transaction: transaction,
-        transferInfo: transferInfo
-    )
+    SpinnerViewContainer {
+        VStack {
+            TransactionHeaderView(
+                transaction: transaction,
+                transferInfo: transferInfo
+            )}
+    }
     .environmentObject(FireblocksManager.shared)
 #endif
 }
