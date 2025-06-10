@@ -27,6 +27,16 @@ class SignInViewModel: SignInView.ViewModel {
             
             let state = await fireblocksManager.getLatestBackupState()
             UsersLocalStorageManager.shared.setLastLoggedInEmail(email: email)
+                        
+            await fireblocksManager.registerPushNotificationToken()
+            
+            NotificationCenter.default.addObserver(
+                forName: UIApplication.willEnterForegroundNotification,
+                object: nil,
+                queue: .main
+            ) { _ in
+                FireblocksManager.shared.appWillEnterForeground()
+            }
             
             switch state {
             case .generate:

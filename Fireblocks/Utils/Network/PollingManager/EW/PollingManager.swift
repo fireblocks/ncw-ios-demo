@@ -40,6 +40,8 @@ class PollingManager: ObservableObject {
     }
     
     func fetchTransactions(accountId: Int, order: Order) async {
+        guard !isActive else { return }
+        isActive = true
         await pollTransactions(accountId: accountId, poll: false, order: order)
     }
 
@@ -102,5 +104,25 @@ class PollingManager: ObservableObject {
             }
         }
     }
-
+    
+    func getTransactionById(txId: String) {
+        Task {
+            do {
+                let transactionResponse: TransactionResponse? = try await ewManager.getTransactionById(txId: txId)
+                
+                if let transaction = transactionResponse {
+                    // Remove existing transaction with the same ID if present
+                    self.transactions.removeAll(where: { $0.id == transaction.id })
+                    
+                    // Add the updated transaction
+                    self.transactions.append(transaction)
+                    
+                    // Sort transactions by lastUpdated (descending)
+                    self.transactions.sort(by: { ($0.lastUpdated ?? 0) > ($1.lastUpdated ?? 0) })
+                }
+            } catch {
+                print("Failed to get transaction by ID: \(error.localizedDescription)")
+            }
+        }
+    }
 }
