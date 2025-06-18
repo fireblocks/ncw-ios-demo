@@ -10,7 +10,7 @@ import FireblocksSDK
 import EmbeddedWalletSDK
 
 struct EnvironmentConstants {
-    static let baseURL = "https://sb-ncw.fireblocks.io"
+    static let baseURL = "https://api-prod.ew-demo.net"
     static let env: FireblocksEnvironment = .production
     static let ewEnv: EmbeddedWalletEnvironment = .PRODUCTION
     static let authClientId = "80d145cf-7b5f-42d5-9923-5364bc6c5140"
