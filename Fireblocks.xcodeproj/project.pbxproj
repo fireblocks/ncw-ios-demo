@@ -16,7 +16,7 @@
 		2B0FEDAE2D37982D00F637E6 /* AssetSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0FEDAA2D37980200F637E6 /* AssetSummary.swift */; };
 		2B0FEDB12D37D7A000F637E6 /* ReceiveViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0FEDB02D37D79E00F637E6 /* ReceiveViewModel.swift */; };
 		2B19090D2D9299AC00C2A64C /* EmbeddedWalletSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 2B19090C2D9299AC00C2A64C /* EmbeddedWalletSDK */; };
-		2B21D7E42BC563F7003ADD29 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86859F522A384D8A0056E3C6 /* AppDelegate.swift */; };
+		2B21D7E42BC563F7003ADD29 /* FireblocksApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86859F522A384D8A0056E3C6 /* FireblocksApp.swift */; };
 		2B21D7F72BC56B5C003ADD29 /* Asset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DA06542A645E1300160ADC /* Asset.swift */; };
 		2B21D7FC2BC56B5C003ADD29 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608293932A56BEF200B11839 /* Status.swift */; };
 		2B21D7FF2BC56B5C003ADD29 /* SendToViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DA06B12A65204600160ADC /* SendToViewModel.swift */; };
@@ -79,7 +79,7 @@
 		2B21D84D2BC56B5C003ADD29 /* KeyStorageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B287E12A8903CF00DEA50C /* KeyStorageProvider.swift */; };
 		2B21D84E2BC56B5C003ADD29 /* ValidateRequestIdViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558E9A2B484A87006212B2 /* ValidateRequestIdViewModel.swift */; };
 		2B21D84F2BC56B5C003ADD29 /* FireblocksManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EBAAB92A5C3D560085E76B /* FireblocksManager.swift */; };
-		2B21D8502BC56B5C003ADD29 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86859F522A384D8A0056E3C6 /* AppDelegate.swift */; };
+		2B21D8502BC56B5C003ADD29 /* FireblocksApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86859F522A384D8A0056E3C6 /* FireblocksApp.swift */; };
 		2B21D8512BC56B5C003ADD29 /* ValidateRequestIdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B558E9D2B484AC4006212B2 /* ValidateRequestIdView.swift */; };
 		2B21D8522BC56B5C003ADD29 /* ExtraParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B94CFC42A9CDF62003E7508 /* ExtraParameters.swift */; };
 		2B21D8532BC56B5C003ADD29 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867828CF2A696D170035787D /* UIButton+Extension.swift */; };
@@ -258,7 +258,7 @@
 		2B22D91E2D82EBF500F1C1A2 /* FeeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DA06552A645E1300160ADC /* FeeManager.swift */; };
 		2B22D91F2D82EBF500F1C1A2 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867828D62A696D170035787D /* ActivityIndicator.swift */; };
 		2B22D9202D82EBF500F1C1A2 /* AddDeviceQRViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A721A2B45A2250011C398 /* AddDeviceQRViewModel.swift */; };
-		2B22D9212D82EBF500F1C1A2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86859F522A384D8A0056E3C6 /* AppDelegate.swift */; };
+		2B22D9212D82EBF500F1C1A2 /* FireblocksApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86859F522A384D8A0056E3C6 /* FireblocksApp.swift */; };
 		2B22D9222D82EBF500F1C1A2 /* AuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862E2A9F2A543B6D002FF774 /* AuthRepository.swift */; };
 		2B22D9232D82EBF500F1C1A2 /* FeeRateRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B87CB042D47CA4600448A2A /* FeeRateRepository.swift */; };
 		2B22D9242D82EBF500F1C1A2 /* LatestBackupState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B1AAE2D2D306E00A2B39D /* LatestBackupState.swift */; };
@@ -475,7 +475,7 @@
 		2B2B1A252D2D120E00A2B39D /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B187E2D2A76A700A2B39D /* LaunchView.swift */; };
 		2B2B1A262D2D120E00A2B39D /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867828D62A696D170035787D /* ActivityIndicator.swift */; };
 		2B2B1A282D2D120E00A2B39D /* AddDeviceQRViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A721A2B45A2250011C398 /* AddDeviceQRViewModel.swift */; };
-		2B2B1A292D2D120E00A2B39D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86859F522A384D8A0056E3C6 /* AppDelegate.swift */; };
+		2B2B1A292D2D120E00A2B39D /* FireblocksApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86859F522A384D8A0056E3C6 /* FireblocksApp.swift */; };
 		2B2B1A2A2D2D120E00A2B39D /* AuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862E2A9F2A543B6D002FF774 /* AuthRepository.swift */; };
 		2B2B1A2E2D2D120E00A2B39D /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867828CF2A696D170035787D /* UIButton+Extension.swift */; };
 		2B2B1A302D2D120E00A2B39D /* FBFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A72212B45AB2D0011C398 /* FBFont.swift */; };
@@ -688,7 +688,7 @@
 		2B78DEA62D92B7D8003B7D82 /* FeeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DA06552A645E1300160ADC /* FeeManager.swift */; };
 		2B78DEA72D92B7D8003B7D82 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867828D62A696D170035787D /* ActivityIndicator.swift */; };
 		2B78DEA82D92B7D8003B7D82 /* AddDeviceQRViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A721A2B45A2250011C398 /* AddDeviceQRViewModel.swift */; };
-		2B78DEA92D92B7D8003B7D82 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86859F522A384D8A0056E3C6 /* AppDelegate.swift */; };
+		2B78DEA92D92B7D8003B7D82 /* FireblocksApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86859F522A384D8A0056E3C6 /* FireblocksApp.swift */; };
 		2B78DEAA2D92B7D8003B7D82 /* AuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862E2A9F2A543B6D002FF774 /* AuthRepository.swift */; };
 		2B78DEAB2D92B7D8003B7D82 /* FeeRateRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B87CB042D47CA4600448A2A /* FeeRateRepository.swift */; };
 		2B78DEAC2D92B7D8003B7D82 /* LatestBackupState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B1AAE2D2D306E00A2B39D /* LatestBackupState.swift */; };
@@ -835,7 +835,7 @@
 		2B7C46FF2B32D8D1001C804B /* AssetsColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602573272A39D6F000A3C5D5 /* AssetsColors.swift */; };
 		2B7C47002B32D8D7001C804B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86859F5B2A384D8B0056E3C6 /* Assets.xcassets */; };
 		2B7C47012B32D8EE001C804B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86859F542A384D8A0056E3C6 /* SceneDelegate.swift */; };
-		2B7C47022B32D8EE001C804B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86859F522A384D8A0056E3C6 /* AppDelegate.swift */; };
+		2B7C47022B32D8EE001C804B /* FireblocksApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86859F522A384D8A0056E3C6 /* FireblocksApp.swift */; };
 		2B7C47032B32D8F3001C804B /* FireblocksManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EBAAB92A5C3D560085E76B /* FireblocksManager.swift */; };
 		2B7C47042B32D8F3001C804B /* GoogleDriveManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866A73D82A696AA200E8E545 /* GoogleDriveManager.swift */; };
 		2B7C47052B32D8F3001C804B /* AppleSignInManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862E2AA22A543B86002FF774 /* AppleSignInManager.swift */; };
@@ -1296,6 +1296,18 @@
 		86ED2BAC2A64430F00377F6C /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86ED2BA72A64430F00377F6C /* SettingsViewModel.swift */; };
 		86ED2BB32A64434500377F6C /* AreYouSureBottomSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86ED2BB12A64434500377F6C /* AreYouSureBottomSheet.xib */; };
 		86ED2BB42A64434500377F6C /* AreYouSureBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86ED2BB22A64434500377F6C /* AreYouSureBottomSheet.swift */; };
+		FF2DD5C82DF071940031F1E7 /* RegisterTokenBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2DD5C72DF071930031F1E7 /* RegisterTokenBody.swift */; };
+		FF2DD5C92DF071940031F1E7 /* RegisterTokenBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2DD5C72DF071930031F1E7 /* RegisterTokenBody.swift */; };
+		FF2DD5CA2DF071940031F1E7 /* RegisterTokenBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2DD5C72DF071930031F1E7 /* RegisterTokenBody.swift */; };
+		FF2DD5CB2DF071940031F1E7 /* RegisterTokenBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2DD5C72DF071930031F1E7 /* RegisterTokenBody.swift */; };
+		FF2DD5CC2DF071940031F1E7 /* RegisterTokenBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2DD5C72DF071930031F1E7 /* RegisterTokenBody.swift */; };
+		FF2DD5CD2DF071940031F1E7 /* RegisterTokenBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2DD5C72DF071930031F1E7 /* RegisterTokenBody.swift */; };
+		FF2DD5CF2DF072CC0031F1E7 /* RegisterTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2DD5CE2DF072C90031F1E7 /* RegisterTokenResponse.swift */; };
+		FF2DD5D02DF072CC0031F1E7 /* RegisterTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2DD5CE2DF072C90031F1E7 /* RegisterTokenResponse.swift */; };
+		FF2DD5D12DF072CC0031F1E7 /* RegisterTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2DD5CE2DF072C90031F1E7 /* RegisterTokenResponse.swift */; };
+		FF2DD5D22DF072CC0031F1E7 /* RegisterTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2DD5CE2DF072C90031F1E7 /* RegisterTokenResponse.swift */; };
+		FF2DD5D32DF072CC0031F1E7 /* RegisterTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2DD5CE2DF072C90031F1E7 /* RegisterTokenResponse.swift */; };
+		FF2DD5D42DF072CC0031F1E7 /* RegisterTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2DD5CE2DF072C90031F1E7 /* RegisterTokenResponse.swift */; };
 		FF3E749F2DAE8D59009ADB65 /* ReceivingAddressGenericView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3E749E2DAE8D57009ADB65 /* ReceivingAddressGenericView.swift */; };
 		FF3E74A02DAE8D59009ADB65 /* ReceivingAddressGenericView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3E749E2DAE8D57009ADB65 /* ReceivingAddressGenericView.swift */; };
 		FF3E74A12DAE8D59009ADB65 /* ReceivingAddressGenericView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3E749E2DAE8D57009ADB65 /* ReceivingAddressGenericView.swift */; };
@@ -1355,6 +1367,12 @@
 		FF75F4612D9D2CBC00E7695A /* BlockchainProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF75F45D2D9D17B100E7695A /* BlockchainProvider.swift */; };
 		FF75F4622D9D2CBC00E7695A /* BlockchainProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF75F45D2D9D17B100E7695A /* BlockchainProvider.swift */; };
 		FF75F4632D9D2CBC00E7695A /* BlockchainProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF75F45D2D9D17B100E7695A /* BlockchainProvider.swift */; };
+		FF77DA5C2DF1B1390093D3CE /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = FF77DA5B2DF1B1390093D3CE /* FirebaseMessaging */; };
+		FF77DA5E2DF1B3960093D3CE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF77DA5D2DF1B3960093D3CE /* AppDelegate.swift */; };
+		FF77DA5F2DF1B3960093D3CE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF77DA5D2DF1B3960093D3CE /* AppDelegate.swift */; };
+		FF77DA622DF1B3960093D3CE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF77DA5D2DF1B3960093D3CE /* AppDelegate.swift */; };
+		FF77DA652DF1B4000093D3CE /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = FF77DA642DF1B4000093D3CE /* FirebaseMessaging */; };
+		FF77DA672DF1B40D0093D3CE /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = FF77DA662DF1B40D0093D3CE /* FirebaseMessaging */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -1653,7 +1671,7 @@
 		867828D82A696D170035787D /* QRCodeGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeGenerator.swift; sourceTree = "<group>"; };
 		867828EB2A696D7D0035787D /* BackupDetailsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackupDetailsViewModel.swift; sourceTree = "<group>"; };
 		86859F4F2A384D8A0056E3C6 /* NCW-sandbox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NCW-sandbox.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		86859F522A384D8A0056E3C6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		86859F522A384D8A0056E3C6 /* FireblocksApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireblocksApp.swift; sourceTree = "<group>"; };
 		86859F542A384D8A0056E3C6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		86859F592A384D8A0056E3C6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		86859F5B2A384D8B0056E3C6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -1673,6 +1691,8 @@
 		86ED2BA72A64430F00377F6C /* SettingsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		86ED2BB12A64434500377F6C /* AreYouSureBottomSheet.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AreYouSureBottomSheet.xib; sourceTree = "<group>"; };
 		86ED2BB22A64434500377F6C /* AreYouSureBottomSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AreYouSureBottomSheet.swift; sourceTree = "<group>"; };
+		FF2DD5C72DF071930031F1E7 /* RegisterTokenBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterTokenBody.swift; sourceTree = "<group>"; };
+		FF2DD5CE2DF072C90031F1E7 /* RegisterTokenResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterTokenResponse.swift; sourceTree = "<group>"; };
 		FF3E749E2DAE8D57009ADB65 /* ReceivingAddressGenericView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceivingAddressGenericView.swift; sourceTree = "<group>"; };
 		FF3E76322DAFBF8B009ADB65 /* DerivedAssetRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DerivedAssetRowViewModel.swift; sourceTree = "<group>"; };
 		FF3E76392DAFD318009ADB65 /* AssetImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetImageLoader.swift; sourceTree = "<group>"; };
@@ -1683,6 +1703,7 @@
 		FF4D3ABA2DA3CF57003FAE56 /* BulletSentenceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulletSentenceView.swift; sourceTree = "<group>"; };
 		FF75F4482D9D132E00E7695A /* Blockchain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blockchain.swift; sourceTree = "<group>"; };
 		FF75F45D2D9D17B100E7695A /* BlockchainProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockchainProvider.swift; sourceTree = "<group>"; };
+		FF77DA5D2DF1B3960093D3CE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -1719,6 +1740,7 @@
 			files = (
 				2B22D9732D82EBF500F1C1A2 /* NVActivityIndicatorViewExtended in Frameworks */,
 				2B22D9742D82EBF500F1C1A2 /* GoogleSignInSwift in Frameworks */,
+				FF77DA652DF1B4000093D3CE /* FirebaseMessaging in Frameworks */,
 				2B22D9752D82EBF500F1C1A2 /* SDWebImageMapKit in Frameworks */,
 				2B22D9772D82EBF500F1C1A2 /* GoogleSignIn in Frameworks */,
 				2B22D9792D82EBF500F1C1A2 /* GoogleAPIClientForREST_DriveLabels in Frameworks */,
@@ -1749,6 +1771,7 @@
 				2B2B1A772D2D120E00A2B39D /* FirebaseAuth in Frameworks */,
 				2B2B1A782D2D120E00A2B39D /* NVActivityIndicatorView in Frameworks */,
 				2B2B1A792D2D120E00A2B39D /* FirebaseAuthCombine-Community in Frameworks */,
+				FF77DA5C2DF1B1390093D3CE /* FirebaseMessaging in Frameworks */,
 				2B2B1A7A2D2D120E00A2B39D /* GoogleAPIClientForREST_Drive in Frameworks */,
 				2B95391B2D4B69F400816DB7 /* EmbeddedWalletSDKDev.xcframework in Frameworks */,
 			);
@@ -1760,6 +1783,7 @@
 			files = (
 				2B78DEFB2D92B7D8003B7D82 /* NVActivityIndicatorViewExtended in Frameworks */,
 				2B78DEFC2D92B7D8003B7D82 /* GoogleSignInSwift in Frameworks */,
+				FF77DA672DF1B40D0093D3CE /* FirebaseMessaging in Frameworks */,
 				2B78DEFD2D92B7D8003B7D82 /* SDWebImageMapKit in Frameworks */,
 				2B78DEFE2D92B7D8003B7D82 /* GoogleSignIn in Frameworks */,
 				2B78DEFF2D92B7D8003B7D82 /* GoogleAPIClientForREST_DriveLabels in Frameworks */,
@@ -2195,6 +2219,8 @@
 		2B83E24F2D37E94B003B1397 /* EW */ = {
 			isa = PBXGroup;
 			children = (
+				FF2DD5CE2DF072C90031F1E7 /* RegisterTokenResponse.swift */,
+				FF2DD5C72DF071930031F1E7 /* RegisterTokenBody.swift */,
 				2B83E24A2D37E895003B1397 /* SessionManager.swift */,
 				2B5F46B92D70A5C600B23371 /* CacheManager.swift */,
 			);
@@ -2973,12 +2999,13 @@
 		86859F6C2A3855540056E3C6 /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
+				FF77DA682DF1B45A0093D3CE /* EW */,
 				FF4D3AA32D9EA7A4003FAE56 /* Dimens.swift */,
 				2BCFE1292D5B57ED006BE227 /* GenericController.swift */,
 				2BCFE1242D5B3261006BE227 /* ActivityViewRep.swift */,
 				2B2B18C72D2BCD9400A2B39D /* CustomError.swift */,
 				2B2B18822D2A786C00A2B39D /* Constants.swift */,
-				86859F522A384D8A0056E3C6 /* AppDelegate.swift */,
+				86859F522A384D8A0056E3C6 /* FireblocksApp.swift */,
 				86859F542A384D8A0056E3C6 /* SceneDelegate.swift */,
 				2B7C479A2B32EC65001C804B /* VersionBanner.swift */,
 			);
@@ -3073,6 +3100,14 @@
 			path = BottomSheet;
 			sourceTree = "<group>";
 		};
+		FF77DA682DF1B45A0093D3CE /* EW */ = {
+			isa = PBXGroup;
+			children = (
+				FF77DA5D2DF1B3960093D3CE /* AppDelegate.swift */,
+			);
+			path = EW;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -3144,6 +3179,7 @@
 				2B22D8B62D82EBF500F1C1A2 /* SDWebImageMapKit */,
 				2B19090C2D9299AC00C2A64C /* EmbeddedWalletSDK */,
 				FF3E76302DAE9DB6009ADB65 /* FireblocksSDK */,
+				FF77DA642DF1B4000093D3CE /* FirebaseMessaging */,
 			);
 			productName = "NCW-dev";
 			productReference = 2B22D9A42D82EBF500F1C1A2 /* EW-sandbox.app */;
@@ -3180,6 +3216,7 @@
 				2B2B19D02D2D120E00A2B39D /* NVActivityIndicatorViewExtended */,
 				2B2B19D12D2D120E00A2B39D /* SDWebImage */,
 				2B2B19D32D2D120E00A2B39D /* SDWebImageMapKit */,
+				FF77DA5B2DF1B1390093D3CE /* FirebaseMessaging */,
 			);
 			productName = "NCW-dev";
 			productReference = 2B2B1AA92D2D120E00A2B39D /* EW-dev.app */;
@@ -3217,6 +3254,7 @@
 				2B78DE3A2D92B7D8003B7D82 /* SDWebImageMapKit */,
 				2B78DE3B2D92B7D8003B7D82 /* EmbeddedWalletSDK */,
 				2B78DE3D2D92B7D8003B7D82 /* FireblocksSDK */,
+				FF77DA662DF1B40D0093D3CE /* FirebaseMessaging */,
 			);
 			productName = "NCW-dev";
 			productReference = 2B78DF272D92B7D8003B7D82 /* EW-production.app */;
@@ -3559,6 +3597,7 @@
 				2B21D8022BC56B5C003ADD29 /* ApproveRepository.swift in Sources */,
 				2BCFE1152D54F377006BE227 /* BackupWalletViewModel.swift in Sources */,
 				2B87CB012D47CA2000448A2A /* EstimatedFeeRequestBody.swift in Sources */,
+				FF2DD5D02DF072CC0031F1E7 /* RegisterTokenResponse.swift in Sources */,
 				2B87CB1A2D47D2DE00448A2A /* FeeLevel.swift in Sources */,
 				2B2B189F2D2AC3E700A2B39D /* JoinOrRecoverView.swift in Sources */,
 				2B95395A2D54A0A700816DB7 /* GenerateKeysView.swift in Sources */,
@@ -3658,6 +3697,7 @@
 				2B21D8422BC56B5C003ADD29 /* EndFlowFeedbackViewModel.swift in Sources */,
 				2B87CB152D47D2D000448A2A /* Fee.swift in Sources */,
 				2BCFE12D2D5B581F006BE227 /* GenericController.swift in Sources */,
+				FF2DD5CD2DF071940031F1E7 /* RegisterTokenBody.swift in Sources */,
 				2B21D8452BC56B5C003ADD29 /* ViewController+Extensions.swift in Sources */,
 				2B21D8472BC56B5C003ADD29 /* AppleSignInManager.swift in Sources */,
 				2B2B188D2D2A900500A2B39D /* LaunchViewModel.swift in Sources */,
@@ -3675,7 +3715,7 @@
 				2B21D84E2BC56B5C003ADD29 /* ValidateRequestIdViewModel.swift in Sources */,
 				2B21D8BE2BC56BAA003ADD29 /* EnvironmentConstantsProd.swift in Sources */,
 				2B21D84F2BC56B5C003ADD29 /* FireblocksManager.swift in Sources */,
-				2B21D8502BC56B5C003ADD29 /* AppDelegate.swift in Sources */,
+				2B21D8502BC56B5C003ADD29 /* FireblocksApp.swift in Sources */,
 				FF75F44D2D9D133C00E7695A /* Blockchain.swift in Sources */,
 				2BCFE1322D5B7B39006BE227 /* NavigationBarLeftHeader.swift in Sources */,
 				2B21D8512BC56B5C003ADD29 /* ValidateRequestIdView.swift in Sources */,
@@ -3749,6 +3789,7 @@
 				2B22D8C72D82EBF500F1C1A2 /* AssetViewCell.swift in Sources */,
 				2B22D8C82D82EBF500F1C1A2 /* DiscardAlert.swift in Sources */,
 				2B22D8C92D82EBF500F1C1A2 /* ApproveRepository.swift in Sources */,
+				FF77DA622DF1B3960093D3CE /* AppDelegate.swift in Sources */,
 				2B22D8CA2D82EBF500F1C1A2 /* EWTransferNFTViewModel.swift in Sources */,
 				2B22D8CB2D82EBF500F1C1A2 /* AppLogger.swift in Sources */,
 				2B22D8CC2D82EBF500F1C1A2 /* QRCodeScannerViewController.swift in Sources */,
@@ -3820,6 +3861,7 @@
 				2B22D9092D82EBF500F1C1A2 /* EWWeb3ConnectionURI.swift in Sources */,
 				2B22D90A2D82EBF500F1C1A2 /* EWNFTsView.swift in Sources */,
 				2B22D90B2D82EBF500F1C1A2 /* ApproveViewModelBase.swift in Sources */,
+				FF2DD5D12DF072CC0031F1E7 /* RegisterTokenResponse.swift in Sources */,
 				2B22D90C2D82EBF500F1C1A2 /* EWWeb3ConnectionURIModel.swift in Sources */,
 				2B22D90D2D82EBF500F1C1A2 /* AlertBannerView.swift in Sources */,
 				2B22D90E2D82EBF500F1C1A2 /* ICloudManager.swift in Sources */,
@@ -3834,6 +3876,7 @@
 				2B22D9172D82EBF500F1C1A2 /* EWNFTCardViewModel.swift in Sources */,
 				2B22D9182D82EBF500F1C1A2 /* GenerateKeysViewModel.swift in Sources */,
 				2B22D9192D82EBF500F1C1A2 /* CacheManager.swift in Sources */,
+				FF2DD5C92DF071940031F1E7 /* RegisterTokenBody.swift in Sources */,
 				2B22D91A2D82EBF500F1C1A2 /* BackupRepository.swift in Sources */,
 				2B22D91B2D82EBF500F1C1A2 /* NavigationContainerView.swift in Sources */,
 				2B22D91C2D82EBF500F1C1A2 /* LaunchView.swift in Sources */,
@@ -3841,7 +3884,7 @@
 				2B22D91E2D82EBF500F1C1A2 /* FeeManager.swift in Sources */,
 				2B22D91F2D82EBF500F1C1A2 /* ActivityIndicator.swift in Sources */,
 				2B22D9202D82EBF500F1C1A2 /* AddDeviceQRViewModel.swift in Sources */,
-				2B22D9212D82EBF500F1C1A2 /* AppDelegate.swift in Sources */,
+				2B22D9212D82EBF500F1C1A2 /* FireblocksApp.swift in Sources */,
 				2B22D9222D82EBF500F1C1A2 /* AuthRepository.swift in Sources */,
 				FF4D3A9A2D9E6E18003FAE56 /* CryptoIconCardView.swift in Sources */,
 				2B22D9232D82EBF500F1C1A2 /* FeeRateRepository.swift in Sources */,
@@ -3951,6 +3994,7 @@
 				2B2B19E22D2D120E00A2B39D /* SpinnerView.swift in Sources */,
 				2B83E26F2D3804DB003B1397 /* AssetViewCell.swift in Sources */,
 				2BEB9C822D7C1BE100699AC1 /* DiscardAlert.swift in Sources */,
+				FF77DA5E2DF1B3960093D3CE /* AppDelegate.swift in Sources */,
 				2B87CB132D47D12A00448A2A /* ApproveRepository.swift in Sources */,
 				2BD5D0F52D7076EF0025A9A8 /* EWTransferNFTViewModel.swift in Sources */,
 				2B2B19E52D2D120E00A2B39D /* AppLogger.swift in Sources */,
@@ -4022,6 +4066,7 @@
 				2B223FB52D673EAE002285B9 /* EWWeb3ConnectionURI.swift in Sources */,
 				2B223FB62D673EAE002285B9 /* EWNFTsView.swift in Sources */,
 				2BEB9BED2D772F6C00699AC1 /* ApproveViewModelBase.swift in Sources */,
+				FF2DD5D32DF072CC0031F1E7 /* RegisterTokenResponse.swift in Sources */,
 				2B223FB72D673EAE002285B9 /* EWWeb3ConnectionURIModel.swift in Sources */,
 				2B2B1A1A2D2D120E00A2B39D /* AlertBannerView.swift in Sources */,
 				2B2B1A1D2D2D120E00A2B39D /* ICloudManager.swift in Sources */,
@@ -4036,6 +4081,7 @@
 				2BD5D0E92D6F4DFA0025A9A8 /* EWNFTCardViewModel.swift in Sources */,
 				2B95395E2D54B45300816DB7 /* GenerateKeysViewModel.swift in Sources */,
 				2B5F46BA2D70A5CA00B23371 /* CacheManager.swift in Sources */,
+				FF2DD5CC2DF071940031F1E7 /* RegisterTokenBody.swift in Sources */,
 				2B83E2642D37F507003B1397 /* BackupRepository.swift in Sources */,
 				2B2B1A242D2D120E00A2B39D /* NavigationContainerView.swift in Sources */,
 				2B2B1A252D2D120E00A2B39D /* LaunchView.swift in Sources */,
@@ -4043,7 +4089,7 @@
 				2B87CB272D47D32500448A2A /* FeeManager.swift in Sources */,
 				2B2B1A262D2D120E00A2B39D /* ActivityIndicator.swift in Sources */,
 				2B2B1A282D2D120E00A2B39D /* AddDeviceQRViewModel.swift in Sources */,
-				2B2B1A292D2D120E00A2B39D /* AppDelegate.swift in Sources */,
+				2B2B1A292D2D120E00A2B39D /* FireblocksApp.swift in Sources */,
 				2B2B1A2A2D2D120E00A2B39D /* AuthRepository.swift in Sources */,
 				FF4D3A962D9E6E18003FAE56 /* CryptoIconCardView.swift in Sources */,
 				2B87CB052D47CA4800448A2A /* FeeRateRepository.swift in Sources */,
@@ -4153,6 +4199,7 @@
 				2B78DE4E2D92B7D8003B7D82 /* AssetViewCell.swift in Sources */,
 				2B78DE4F2D92B7D8003B7D82 /* DiscardAlert.swift in Sources */,
 				2B78DE502D92B7D8003B7D82 /* ApproveRepository.swift in Sources */,
+				FF77DA5F2DF1B3960093D3CE /* AppDelegate.swift in Sources */,
 				2B78DE512D92B7D8003B7D82 /* EWTransferNFTViewModel.swift in Sources */,
 				2B78DE522D92B7D8003B7D82 /* AppLogger.swift in Sources */,
 				2B78DE532D92B7D8003B7D82 /* QRCodeScannerViewController.swift in Sources */,
@@ -4224,6 +4271,7 @@
 				2B78DE912D92B7D8003B7D82 /* EWWeb3ConnectionURI.swift in Sources */,
 				2B78DE922D92B7D8003B7D82 /* EWNFTsView.swift in Sources */,
 				2B78DE932D92B7D8003B7D82 /* ApproveViewModelBase.swift in Sources */,
+				FF2DD5CF2DF072CC0031F1E7 /* RegisterTokenResponse.swift in Sources */,
 				2B78DE942D92B7D8003B7D82 /* EWWeb3ConnectionURIModel.swift in Sources */,
 				2B78DE952D92B7D8003B7D82 /* AlertBannerView.swift in Sources */,
 				2B78DE962D92B7D8003B7D82 /* ICloudManager.swift in Sources */,
@@ -4238,6 +4286,7 @@
 				2B78DE9F2D92B7D8003B7D82 /* EWNFTCardViewModel.swift in Sources */,
 				2B78DEA02D92B7D8003B7D82 /* GenerateKeysViewModel.swift in Sources */,
 				2B78DEA12D92B7D8003B7D82 /* CacheManager.swift in Sources */,
+				FF2DD5C82DF071940031F1E7 /* RegisterTokenBody.swift in Sources */,
 				2B78DEA22D92B7D8003B7D82 /* BackupRepository.swift in Sources */,
 				2B78DEA32D92B7D8003B7D82 /* NavigationContainerView.swift in Sources */,
 				2B78DEA42D92B7D8003B7D82 /* LaunchView.swift in Sources */,
@@ -4245,7 +4294,7 @@
 				2B78DEA62D92B7D8003B7D82 /* FeeManager.swift in Sources */,
 				2B78DEA72D92B7D8003B7D82 /* ActivityIndicator.swift in Sources */,
 				2B78DEA82D92B7D8003B7D82 /* AddDeviceQRViewModel.swift in Sources */,
-				2B78DEA92D92B7D8003B7D82 /* AppDelegate.swift in Sources */,
+				2B78DEA92D92B7D8003B7D82 /* FireblocksApp.swift in Sources */,
 				2B78DEAA2D92B7D8003B7D82 /* AuthRepository.swift in Sources */,
 				FF4D3A992D9E6E18003FAE56 /* CryptoIconCardView.swift in Sources */,
 				2B78DEAB2D92B7D8003B7D82 /* FeeRateRepository.swift in Sources */,
@@ -4367,6 +4416,7 @@
 				2BEB9C682D79EA9800699AC1 /* TakeoverView.swift in Sources */,
 				2BEB9C782D7B3C0000699AC1 /* FeeRateView.swift in Sources */,
 				FF4D3AA92D9EA7AA003FAE56 /* Dimens.swift in Sources */,
+				FF2DD5CA2DF071940031F1E7 /* RegisterTokenBody.swift in Sources */,
 				2B83E2522D37EA7B003B1397 /* JoinWalletResponse.swift in Sources */,
 				2B7C47382B32D965001C804B /* QRCodeScannerViewController.swift in Sources */,
 				2B7C46FE2B32D8D1001C804B /* AssetsIcons.swift in Sources */,
@@ -4417,6 +4467,7 @@
 				2BAB68202B820E89003592F1 /* Modifiers.swift in Sources */,
 				2B7C479C2B32EC65001C804B /* VersionBanner.swift in Sources */,
 				2B2B18932D2A965500A2B39D /* SignInViewModelBase.swift in Sources */,
+				FF2DD5D42DF072CC0031F1E7 /* RegisterTokenResponse.swift in Sources */,
 				2B7C47152B32D90C001C804B /* SessionManager.swift in Sources */,
 				2B7C476E2B32D9C9001C804B /* AssetViewCell.swift in Sources */,
 				2BEB9C912D7DBEB600699AC1 /* AssetRowViewModel.swift in Sources */,
@@ -4439,7 +4490,7 @@
 				FF3E74A12DAE8D59009ADB65 /* ReceivingAddressGenericView.swift in Sources */,
 				FF4D3A972D9E6E18003FAE56 /* CryptoIconCardView.swift in Sources */,
 				2BAB68192B820E16003592F1 /* AddDeviceQRViewModel.swift in Sources */,
-				2B7C47022B32D8EE001C804B /* AppDelegate.swift in Sources */,
+				2B7C47022B32D8EE001C804B /* FireblocksApp.swift in Sources */,
 				2BEB9BD02D75D2B400699AC1 /* TransactionStatusView.swift in Sources */,
 				2B7C470D2B32D8FC001C804B /* AuthRepository.swift in Sources */,
 				2B83E25D2D37F164003B1397 /* BackupInfo.swift in Sources */,
@@ -4534,6 +4585,7 @@
 				60DA06582A645E1300160ADC /* FeeManager.swift in Sources */,
 				2BCFE1172D54F377006BE227 /* BackupWalletViewModel.swift in Sources */,
 				603903792A6D3F880060E026 /* ApproveRepository.swift in Sources */,
+				FF2DD5D22DF072CC0031F1E7 /* RegisterTokenResponse.swift in Sources */,
 				2B87CB022D47CA2000448A2A /* EstimatedFeeRequestBody.swift in Sources */,
 				2B87CB1B2D47D2DE00448A2A /* FeeLevel.swift in Sources */,
 				2B2B189D2D2AC3E700A2B39D /* JoinOrRecoverView.swift in Sources */,
@@ -4633,6 +4685,7 @@
 				60DA06592A645E1300160ADC /* FBTransaction.swift in Sources */,
 				2B87CB172D47D2D000448A2A /* Fee.swift in Sources */,
 				2BF8EDB92B56676300046F0B /* EndFlowFeedbackViewModel.swift in Sources */,
+				FF2DD5CB2DF071940031F1E7 /* RegisterTokenBody.swift in Sources */,
 				2BCFE12C2D5B581F006BE227 /* GenericController.swift in Sources */,
 				86D77DBB2A6D254200D77B9F /* ViewController+Extensions.swift in Sources */,
 				2B2B188C2D2A900500A2B39D /* LaunchViewModel.swift in Sources */,
@@ -4650,7 +4703,7 @@
 				60B287E32A8903CF00DEA50C /* KeyStorageProvider.swift in Sources */,
 				2B558E9B2B484A87006212B2 /* ValidateRequestIdViewModel.swift in Sources */,
 				86EBAABA2A5C3D560085E76B /* FireblocksManager.swift in Sources */,
-				2B21D7E42BC563F7003ADD29 /* AppDelegate.swift in Sources */,
+				2B21D7E42BC563F7003ADD29 /* FireblocksApp.swift in Sources */,
 				FF75F44E2D9D133C00E7695A /* Blockchain.swift in Sources */,
 				2BCFE1312D5B7B39006BE227 /* NavigationBarLeftHeader.swift in Sources */,
 				2B558E9E2B484AC4006212B2 /* ValidateRequestIdView.swift in Sources */,
@@ -4756,7 +4809,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.9.1;
+				MARKETING_VERSION = 2.9.2;
 				OTHER_SWIFT_FLAGS = "-DEC2 -DPROD";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fireblocks.ncw.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -4803,7 +4856,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.9.1;
+				MARKETING_VERSION = 2.9.2;
 				OTHER_SWIFT_FLAGS = "-DEC2 -DPROD";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fireblocks.ncw.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -4845,7 +4898,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.0.2;
 				OTHER_SWIFT_FLAGS = "-DSANDBOX -DEW";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fireblocks.ew.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -4885,7 +4938,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.0.2;
 				OTHER_SWIFT_FLAGS = "-DSANDBOX -DEW";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fireblocks.ew.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -4925,7 +4978,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.9.0;
+				MARKETING_VERSION = 1.0.2;
 				OTHER_SWIFT_FLAGS = "-DDEV -DEW";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fireblocks.ew.demo.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -4965,7 +5018,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.9.0;
+				MARKETING_VERSION = 1.0.2;
 				OTHER_SWIFT_FLAGS = "-DDEV -DEW";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fireblocks.ew.demo.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -5005,7 +5058,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.0.2;
 				OTHER_SWIFT_FLAGS = "-DPROD -DEW";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fireblocks.ew.demo.production;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -5045,7 +5098,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.0.2;
 				OTHER_SWIFT_FLAGS = "-DPROD -DEW";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fireblocks.ew.demo.production;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -5085,7 +5138,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.9.1;
+				MARKETING_VERSION = 2.9.2;
 				OTHER_SWIFT_FLAGS = "-DDEV";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fireblocks.ncw.demo.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -5125,7 +5178,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.9.1;
+				MARKETING_VERSION = 2.9.2;
 				OTHER_SWIFT_FLAGS = "-DDEV";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fireblocks.ncw.demo.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -5282,7 +5335,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.9.1;
+				MARKETING_VERSION = 2.9.2;
 				OTHER_SWIFT_FLAGS = "-DEC2 -DPROD";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fireblocks.ncw.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -5326,7 +5379,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.9.1;
+				MARKETING_VERSION = 2.9.2;
 				OTHER_SWIFT_FLAGS = "-DEC2 -DPROD";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fireblocks.ncw.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -5998,6 +6051,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = FF3E762D2DAE9D19009ADB65 /* XCRemoteSwiftPackageReference "ncw-ios-sdk" */;
 			productName = FireblocksSDK;
+		};
+		FF77DA5B2DF1B1390093D3CE /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 869A71372A3859C900653C8F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
+		};
+		FF77DA642DF1B4000093D3CE /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 869A71372A3859C900653C8F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
+		};
+		FF77DA662DF1B40D0093D3CE /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 869A71372A3859C900653C8F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

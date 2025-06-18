@@ -11,6 +11,8 @@ import SwiftUI
 //EW
 class SignInViewModel: SignInView.ViewModel {
     static let shared = SignInViewModel()
+    private var foregroundObserver: NSObjectProtocol?
+
     
     override func handleSuccessSignIn(isLaunch: Bool = false) async {
         guard let fireblocksManager else {
@@ -27,6 +29,16 @@ class SignInViewModel: SignInView.ViewModel {
             
             let state = await fireblocksManager.getLatestBackupState()
             UsersLocalStorageManager.shared.setLastLoggedInEmail(email: email)
+                        
+            await fireblocksManager.registerPushNotificationToken()
+            
+            foregroundObserver = NotificationCenter.default.addObserver(
+                forName: UIApplication.willEnterForegroundNotification,
+                object: nil,
+                queue: .main
+            ) { _ in
+                FireblocksManager.shared.appWillEnterForeground()
+            }
             
             switch state {
             case .generate:
@@ -59,6 +71,12 @@ class SignInViewModel: SignInView.ViewModel {
             }
         } catch {
             loadingManager?.setAlertMessage(error: error)
+        }
+    }
+    
+    deinit {
+        if let observer = foregroundObserver {
+            NotificationCenter.default.removeObserver(observer)
         }
     }
 }

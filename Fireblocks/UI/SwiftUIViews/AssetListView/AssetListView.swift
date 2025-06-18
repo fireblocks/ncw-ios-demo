@@ -86,7 +86,7 @@ struct AssetListView: View {
                 Text("Total Balance")
                     .font(.b2)
                     .foregroundStyle(.secondary)
-                Text(viewModel.getBalance())
+                Text("$" + viewModel.getBalance())
                     .font(.h1)
             }
             .frame(maxWidth: .infinity, alignment: .center)

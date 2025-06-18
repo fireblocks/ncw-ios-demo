@@ -30,6 +30,9 @@ class FireblocksManager: FireblocksManagerProtocol, ObservableObject {
     
     var deviceId: String = ""
     var walletId: String = ""
+    // Property to store the push notification device token in memory
+    private var pendingDeviceToken: String?
+    private var useTransactionPolling: Bool = false
     var algoArray: [Algorithm] = [.MPC_ECDSA_SECP256K1, .MPC_EDDSA_ED25519]
     var didClearWallet = false
     
@@ -77,9 +80,66 @@ class FireblocksManager: FireblocksManagerProtocol, ObservableObject {
         let result = try await instance.assignWallet()
         if let walletId = result.walletId {
             self.walletId = walletId
+            await registerPushNotificationToken()
         } else {
             throw(CustomError.assignWallet)
         }
+    }
+    
+    func registerPushNotificationToken() async {
+        if let token = pendingDeviceToken, !walletId.isEmpty, !deviceId.isEmpty {
+            do {
+                try await registerPushNotificationToken(token)
+            } catch {
+                logger.error("Failed to register pending token: \(error)")
+            }
+        }
+    }
+    
+    func registerPushNotificationToken(_ token: String) async throws {
+        guard !walletId.isEmpty else {
+            logger.error("Cannot register push token: Wallet ID is empty")
+            pendingDeviceToken = token // Store token for later
+            throw CustomError.genericError("Wallet ID is empty")
+        }
+        
+        guard !deviceId.isEmpty else {
+            logger.error("Cannot register push token: Device ID is empty")
+            pendingDeviceToken = token // Store token for later
+            throw CustomError.genericError("Device ID is empty")
+        }
+        
+        logger.info("Registering device token for walletId: \(self.walletId)")
+        
+        let result = try await SessionManager.shared.registerToken(
+            body: RegisterTokenBody(token: token, walletId: walletId, deviceId: deviceId)
+        )
+        
+        if result.success == true {
+            logger.info("Successfully registered push notification token")
+            // Clear pending token after successful registration
+            pendingDeviceToken = nil
+        } else {
+            logger.error("Failed to register push notification token")
+            throw CustomError.genericError("Failed to register push notification token")
+        }
+    }
+    
+    func handleNotificationPayload(userInfo: [AnyHashable: Any]) async {
+        // Extract txId from the notification payload
+        guard let txId = userInfo["txId"] as? String, !txId.isEmpty else {
+            logger.error("No valid txId found in notification payload")
+            return
+        }
+
+        logger.info("Handling notification with txId: \(txId)")
+
+        guard !walletId.isEmpty, !deviceId.isEmpty else {
+            logger.error("Cannot handle notification: Wallet ID or Device ID is empty")
+            return
+        }
+    
+        PollingManager.shared.getTransactionById(txId: txId)
     }
     
     func getDevice() async -> Device? {
@@ -142,7 +202,24 @@ class FireblocksManager: FireblocksManagerProtocol, ObservableObject {
         
     func startPolling() {
         Task {
-            await PollingManager.shared.startPolling(accountId: 0, order: .DESC)
+            if (useTransactionPolling) {
+                await PollingManager.shared.startPolling(accountId: 0, order: .DESC)
+            } else {
+                await PollingManager.shared.fetchTransactions(accountId: 0, order: .DESC)
+            }
+        }
+    }
+    
+    func appWillEnterForeground() {
+        logger.info("App entering foreground, fetching latest transactions")
+        
+        // Only fetch transactions if we have wallet and device IDs
+        if !walletId.isEmpty && !deviceId.isEmpty {
+            Task {
+                await PollingManager.shared.fetchTransactions(accountId: 0, order: .DESC)
+            }
+        } else {
+            logger.warning("Cannot fetch transactions: Wallet ID or Device ID is empty")
         }
     }
 

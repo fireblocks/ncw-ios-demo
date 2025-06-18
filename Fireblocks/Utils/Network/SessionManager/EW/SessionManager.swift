@@ -13,18 +13,22 @@ class SessionManager: ObservableObject {
     
     enum FBURL {
         case joinWallet(String)
+        case registerToken
 
         var url: String {
             switch self {
             case .joinWallet(let deviceId):
                 return EnvironmentConstants.baseURL + "/api/devices/\(deviceId)/join"
+            case .registerToken:
+                return EnvironmentConstants.baseURL + "/api/notifications/register-token"
             }
-            
         }
         
         var timeout: TimeInterval? {
             switch self {
             case .joinWallet(_):
+                return 30.0
+            case .registerToken:
                 return 30.0
             }
         }
@@ -167,6 +171,15 @@ extension SessionManager {
     func createPassphraseInfo(passphraseInfo: PassphraseInfoBody) async throws {
     }
     
+    func registerToken(body: RegisterTokenBody) async throws -> RegisterTokenResponse {
+        if let url = URL(string: FBURL.registerToken.url) {
+            let data = try await sendRequest(url: url, httpMethod: "POST", timeout: FBURL.registerToken.timeout, body: body.dictionary())
+            let decoder = JSONDecoder()
+            return try decoder.decode(RegisterTokenResponse.self, from: data)
+        } else {
+            throw SessionManager.error
+        }
+    }
     
 
 }
