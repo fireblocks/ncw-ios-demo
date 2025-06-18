@@ -64,6 +64,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // Silent Push Notification processing
         if let silentNotification = userInfo["aps"] as? [String: AnyObject],
            silentNotification["content-available"] as? Int == 1 {
+            
+            print("Received silent notification: \(userInfo)")            
             // Launch of a some service
             Task {
                 await FireblocksManager.shared.handleNotificationPayload(userInfo: userInfo)
