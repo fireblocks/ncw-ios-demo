@@ -142,7 +142,7 @@ Fireblocks/
 
 For comprehensive documentation, setup guides, and API references:
 
-📖 **[Fireblocks NCW Developer Guide](https://ncw-developers.fireblocks.com/v6.0/docs/getting-started)**
+📖 **[Fireblocks NCW Developer Guide](https://ncw-developers.fireblocks.com/docs/getting-started)**
 
 The developer guide includes:
 - Detailed setup instructions
@@ -235,7 +235,7 @@ The demo supports multiple backup providers:
 ## Support
 
 For technical support and questions:
-- Review the [Developer Documentation](https://ncw-developers.fireblocks.com/v6.0/docs/getting-started)
+- Review the [Developer Documentation](https://ncw-developers.fireblocks.com/docs/getting-started)
 - Check the code examples in this demo app
 - Contact Fireblocks support for additional assistance
 
