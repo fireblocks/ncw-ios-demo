@@ -34,18 +34,18 @@ class FireblocksManager: FireblocksManagerProtocol, ObservableObject {
     private var pendingDeviceToken: String?
     /**
      * Transaction update mechanism configuration:
-     * - true: Uses polling to check for transaction updates (current default for demo)
-     * - false: Uses push notifications for real-time updates (recommended for production)
+     * - true: Uses polling to check for transaction updates (fallback option)
+     * - false: Uses push notifications for real-time updates (default - recommended)
      * 
      * Push notifications require:
-     * 1. Fireblocks minimal backend server setup
+     * 1. Fireblocks minimal backend server setup (see: https://github.com/fireblocks/ew-backend-demo)
      * 2. Webhook configuration in Fireblocks Console
      * 3. Firebase Cloud Messaging (FCM) configuration
      * 4. APNs certificate setup (see AppDelegate.swift for complete implementation)
      * 
-     * Set to false for production apps to get real-time updates with better battery efficiency.
+     * Set to true only if you need to use polling instead of push notifications.
      */
-    private var useTransactionPolling: Bool = true
+    private var useTransactionPolling: Bool = false
     var algoArray: [Algorithm] = [.MPC_ECDSA_SECP256K1, .MPC_EDDSA_ED25519]
     var didClearWallet = false
     
