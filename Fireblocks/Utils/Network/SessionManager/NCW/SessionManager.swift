@@ -350,7 +350,7 @@ class SessionManager: ObservableObject {
             throw SessionManager.error
         } else {
             print("Retry \(url.absoluteString) - \(numberOfRetries) more retries")
-            AppLoggerManager.shared.logger()?.log("Retry \(url.absoluteString) - \(numberOfRetries) more retries. Error: \(error.localizedDescription)")
+            AppLoggerManager.shared.logger()?.error("Retry \(url.absoluteString) - \(numberOfRetries) more retries. Error: \(error.localizedDescription)")
             return try await self.sendRequest(url: url, httpMethod: httpMethod, timeout: timeout, numberOfRetries: numberOfRetries - 1, message: message, body: body, skipLogs: skipLogs)
         }
     }

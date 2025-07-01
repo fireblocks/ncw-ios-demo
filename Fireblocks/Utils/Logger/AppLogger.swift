@@ -19,6 +19,32 @@ class AppLoggerManager {
     }
 }
 
+private enum LogLevel: String {
+   case none
+   case verbose
+   case debug
+   case info
+   case warn
+   case error
+   
+   public var rank: Int {
+       switch self {
+       case .none:
+           return 0
+       case .verbose:
+           return 1
+       case .debug:
+           return 2
+       case .info:
+           return 3
+       case  .warn:
+           return 4
+       case .error:
+           return 5
+       }
+   }
+}
+
 final class AppLogger {
 
     internal let deviceId: String
@@ -113,7 +139,23 @@ final class AppLogger {
     }
     
     func log(_ msg: String) {
-        write("\(logPrefix) - \(Date().milliseconds()) - \(msg)\n")
+        write(generateLog(level: .info, msg))
+    }
+    
+    func debug(_ msg: String) {
+        write(generateLog(level: .debug, msg))
+    }
+    
+    func warning(_ msg: String) {
+        write(generateLog(level: .warn, msg))
+    }
+    
+    func error(_ msg: String) {
+        write(generateLog(level: .error, msg))
+    }
+    
+    private func generateLog(level: LogLevel = .info, _ msg: String) -> String {
+        return "\(Date().milliseconds()) - \(logPrefix) - \(level.rawValue.uppercased()) - \(msg)\n"
     }
     
     private func write(_ string: String) {
@@ -187,7 +229,7 @@ final class AppLogger {
     
     private func debugPrint(_ item: Any) {
         #if DEBUG
-//        print(item)
+        print(item)
         #endif
     }
     
