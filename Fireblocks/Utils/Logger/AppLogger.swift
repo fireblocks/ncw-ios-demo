@@ -117,7 +117,7 @@ final class AppLogger {
         let fm = FileManager.default
         let baseDirectoryURL = fm.urls(for: .documentDirectory, in: .userDomainMask)[0]
         
-        let logsFolderURL = baseDirectoryURL.appendingPathComponent("Fireblocks/DemoApp/\(deviceId)")
+        let logsFolderURL = baseDirectoryURL.appendingPathComponent("Fireblocks/DemoApp/")
         var isDirectory : ObjCBool = true
         let exists = fm.fileExists(atPath: logsFolderURL.absoluteString, isDirectory: &isDirectory)
         
