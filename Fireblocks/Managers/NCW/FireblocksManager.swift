@@ -49,7 +49,7 @@ class FireblocksManager: FireblocksManagerProtocol, ObservableObject {
         do {
             return try Fireblocks.getInstance(deviceId: deviceId)
         } catch {
-            AppLoggerManager.shared.logger()?.log("FireblocksManager, getFireblocksInstance() can't get instance: \(error).")
+            AppLoggerManager.shared.logger()?.error("FireblocksManager, getFireblocksInstance() can't get instance: \(error).")
             errorMessage = error.localizedDescription
             return nil
         }
@@ -166,7 +166,7 @@ extension FireblocksManager: PollingListenerDelegate {
     }
     
     func handleError(error: String?) {
-        AppLoggerManager.shared.logger()?.log("\(error ?? "")")
+        AppLoggerManager.shared.logger()?.error("\(error ?? "")")
     }
     
     func signOut() throws {

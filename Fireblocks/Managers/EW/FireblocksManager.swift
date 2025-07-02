@@ -104,36 +104,37 @@ class FireblocksManager: FireblocksManagerProtocol, ObservableObject {
             do {
                 try await registerPushNotificationToken(token)
             } catch {
-                logger.error("Failed to register pending token: \(error)")
+                AppLoggerManager.shared.logger()?.error("Failed to register pending token: \(error)")
             }
         }
     }
     
     func registerPushNotificationToken(_ token: String) async throws {
         guard !walletId.isEmpty else {
-            logger.error("Cannot register push token: Wallet ID is empty")
+            AppLoggerManager.shared.logger()?.error("Cannot register push token: Wallet ID is empty")
             pendingDeviceToken = token // Store token for later
             throw CustomError.genericError("Wallet ID is empty")
         }
         
         guard !deviceId.isEmpty else {
-            logger.error("Cannot register push token: Device ID is empty")
+            AppLoggerManager.shared.logger()?.error("Cannot register push token: Device ID is empty")
             pendingDeviceToken = token // Store token for later
             throw CustomError.genericError("Device ID is empty")
         }
         
-        logger.info("Registering device token for walletId: \(self.walletId)")
+        AppLoggerManager.shared.logger()?.log("Registering device token for walletId: \(self.walletId)")
+
         
         let result = try await SessionManager.shared.registerToken(
             body: RegisterTokenBody(token: token, walletId: walletId, deviceId: deviceId)
         )
         
         if result.success == true {
-            logger.info("Successfully registered push notification token")
+            AppLoggerManager.shared.logger()?.log("registerToken finished successfully for walletId: \(self.walletId)")
             // Clear pending token after successful registration
             pendingDeviceToken = nil
         } else {
-            logger.error("Failed to register push notification token")
+            AppLoggerManager.shared.logger()?.error("Failed to register push notification token")
             throw CustomError.genericError("Failed to register push notification token")
         }
     }
@@ -141,14 +142,19 @@ class FireblocksManager: FireblocksManagerProtocol, ObservableObject {
     func handleNotificationPayload(userInfo: [AnyHashable: Any]) async {
         // Extract txId from the notification payload
         guard let txId = userInfo["txId"] as? String, !txId.isEmpty else {
-            logger.error("No valid txId found in notification payload")
+            AppLoggerManager.shared.logger()?.error("No valid txId found in notification payload")
             return
         }
-
-        logger.info("Handling notification with txId: \(txId)")
+        
+        // get status from userInfo if available and log it with the tx id
+        if let status = userInfo["status"] as? String {
+            AppLoggerManager.shared.logger()?.log("Notification data: txId: \(txId), status: \(status)")
+        } else {
+            AppLoggerManager.shared.logger()?.log("Notification data: txId: \(txId), no status provided")
+        }
 
         guard !walletId.isEmpty, !deviceId.isEmpty else {
-            logger.error("Cannot handle notification: Wallet ID or Device ID is empty")
+            AppLoggerManager.shared.logger()?.error("Cannot handle notification: Wallet ID or Device ID is empty")
             return
         }
     

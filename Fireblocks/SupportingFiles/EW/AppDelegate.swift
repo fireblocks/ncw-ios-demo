@@ -65,7 +65,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let silentNotification = userInfo["aps"] as? [String: AnyObject],
            silentNotification["content-available"] as? Int == 1 {
             
-            print("Received silent notification: \(userInfo)")            
+            AppLoggerManager.shared.logger()?.log("Received silent notification: \(userInfo)")
             // Launch of a some service
             Task {
                 await FireblocksManager.shared.handleNotificationPayload(userInfo: userInfo)
@@ -78,7 +78,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         let tokenString = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
-        print("Device token received: \(tokenString)")
+        AppLoggerManager.shared.logger()?.log("Device token received: \(tokenString)")
         
         // Pass to Firebase
         Messaging.messaging().apnsToken = deviceToken
@@ -88,7 +88,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             do {
                 try await FireblocksManager.shared.registerPushNotificationToken(tokenString)
             } catch {
-                print("Failed to register token: \(error)")
+                AppLoggerManager.shared.logger()?.error("Failed to register token: \(error)")
             }
         }
     }
@@ -103,7 +103,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         let userInfo = notification.request.content.userInfo
         
         // Log the full notification data
-        print("Received notification in foreground: \(userInfo)")            
+        AppLoggerManager.shared.logger()?.log("Received notification in foreground: \(userInfo)")
         
         Task {
             await FireblocksManager.shared.handleNotificationPayload(userInfo: userInfo)
@@ -119,14 +119,14 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
                               didReceive response: UNNotificationResponse,
                               withCompletionHandler completionHandler: @escaping () -> Void) {
         let userInfo = response.notification.request.content.userInfo
-        print("Notification tapped with data: \(userInfo)")
+        AppLoggerManager.shared.logger()?.log("Notification tapped with data: \(userInfo)")
         completionHandler()
     }
 }
 
 extension AppDelegate: MessagingDelegate {
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
-        print("Firebase registration token: \(String(describing: fcmToken))")
+        AppLoggerManager.shared.logger()?.log("Firebase registration token: \(String(describing: fcmToken))")
         
        
         
@@ -136,11 +136,11 @@ extension AppDelegate: MessagingDelegate {
                 do {
                     try await FireblocksManager.shared.registerPushNotificationToken(fcmToken)
                 } catch {
-                    print("FCM Token registration deferred: \(error)")
+                    AppLoggerManager.shared.logger()?.error("FCM Token registration deferred: \(error)")
                 }
             }
         } else {
-            print("Firebase registration token is nil.")
+            AppLoggerManager.shared.logger()?.error("Firebase registration token is nil.")
         }
     }
 }

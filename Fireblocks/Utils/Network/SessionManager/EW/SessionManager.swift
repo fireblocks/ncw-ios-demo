@@ -107,7 +107,7 @@ class SessionManager: ObservableObject {
         }
         
         let session = URLSession.shared
-        AppLoggerManager.shared.logger()?.log("\n📣📣📣📣\nSessionManager send request:\n\(request)\n📣📣📣📣")
+        AppLoggerManager.shared.logger()?.log("SessionManager send request:\n\(request)")
         AppLoggerManager.shared.logger()?.log("SessionManager REQUEST: \(String(describing: request)) message: \(message ?? ""), body: \(body ?? "")")
         print("\(Date().milliseconds()) SessionManager REQUEST: \(String(describing: request))")
         let (data, response) = try await session.data(for: request)
@@ -136,7 +136,7 @@ class SessionManager: ObservableObject {
             throw SessionManager.error
         } else {
             print("Retry \(url.absoluteString) - \(numberOfRetries) more retries")
-            AppLoggerManager.shared.logger()?.log("Retry \(url.absoluteString) - \(numberOfRetries) more retries. Error: \(error.localizedDescription)")
+            AppLoggerManager.shared.logger()?.error("Retry \(url.absoluteString) - \(numberOfRetries) more retries. Error: \(error.localizedDescription)")
             return try await self.sendRequest(url: url, httpMethod: httpMethod, timeout: timeout, numberOfRetries: numberOfRetries - 1, message: message, body: body, skipLogs: skipLogs)
         }
     }
