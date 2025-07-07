@@ -63,9 +63,14 @@ class AssetListViewModel: AssetListViewModelBase {
     
     override func getBalance() -> String {
         var balanceSum: Double = 0.0
-        assetsSummary.filter({$0.asset != nil}).map({$0.asset!}).forEach { asset in
+        assetsSummary.filter({$0.asset != nil && $0.balance != nil}).map({($0.asset!, $0.balance!)}).forEach { (asset, balance) in
             if let price = asset.price {
                 balanceSum += price 
+            } else {
+                let rate = asset.rate ?? 1.0
+                if let total = balance.total, let totalBalance = Double(total) {
+                    balanceSum += totalBalance * rate
+                }
             }
         }
         
