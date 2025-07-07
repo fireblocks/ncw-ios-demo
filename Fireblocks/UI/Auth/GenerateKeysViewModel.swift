@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 import FirebaseAuth
 #if DEV
 import FireblocksDev
@@ -24,7 +25,7 @@ extension GenerateKeysView {
         private var loadingManager: LoadingManager?
         private var fireblocksManager: FireblocksManager?
         private var mpcKeyTask: Task<Void, Never>?
-        
+
         var didSucceedGenerateKeys = false
 //        weak var delegate: MpcKeysViewModelDelegate?
            
@@ -88,7 +89,32 @@ extension GenerateKeysView {
                 if isGenerated {
                     self.fireblocksManager?.startPolling()
                     self.createAssets()
-                    self.coordinator?.path.append(NavigationTypes.backup(true))
+                    
+                    let viewModel: EndFlowFeedbackView.ViewModel
+                    viewModel = EndFlowFeedbackView.ViewModel(
+                        icon: nil,
+                        title: LocalizableStrings.generateKeysSuccessDescription,
+                        navigationBarTitle: LocalizableStrings.generateKeysSuccessTopBarTitle,
+                        buttonIcon: nil,
+                        buttonTitle: LocalizableStrings.backupYourKeys,
+                        actionButton: {
+                            self.coordinator?.path.append(NavigationTypes.backup(true))
+                        },
+                        subButtonTitle: LocalizableStrings.illDoThisLater,
+                        subActionButton: {
+                            SignInViewModel.shared.launchView = NavigationContainerView {
+                                TabBarView()
+                            }
+                        },
+                        rightToolbarItemIcon: "settings",
+                        rightToolbarItemAction: {
+                            self.coordinator?.path.append(NavigationTypes.settings)
+                        },
+                        didFail: false,
+                        canGoBack: false)
+                    
+                    self.coordinator?.path.append(NavigationTypes.feedback(viewModel))
+                    
                 } else {
                     self.loadingManager?.setAlertMessage(error: CustomError.genericError("Failed to generate keys"))
                 }

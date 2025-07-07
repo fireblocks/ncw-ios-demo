@@ -147,4 +147,6 @@ struct LocalizableStrings{
     static let walletAddress = "Wallet address".localize()
     static let transferring = "Transferring".localize()
     static let transferringDuration = "This usually takes under 10 minutes.".localize()
+    static let generateKeysSuccessTopBarTitle = "MPC keys created successfully".localize()
+    static let generateKeysSuccessDescription = "You’ve successfully created your keys! Next, create a key backup to make sure you never lose key access.".localize()
 }
