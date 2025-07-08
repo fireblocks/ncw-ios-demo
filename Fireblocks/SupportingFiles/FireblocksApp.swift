@@ -62,7 +62,7 @@ struct FireblocksApp: App {
                         configNavigationBar()
                         if !didLaunch {
                             didLaunch = true
-                            #if NCW
+                            #if !EW
                             FirebaseApp.configure()
                             #endif
                         }

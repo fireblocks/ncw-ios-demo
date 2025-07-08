@@ -30,6 +30,9 @@ extension EndFlowFeedbackView {
         var buttonTitle: String?
         var actionButton: (() -> ())?
         
+        var subButtonTitle: String?
+        var subActionButton: (() -> ())?
+        
         var rightToolbarItemIcon: String?
         var rightToolbarItemAction: (() -> ())?
         var didFail = false
@@ -38,7 +41,7 @@ extension EndFlowFeedbackView {
         
         var content: AnyView?
         
-        init(icon: String? = nil, title: String? = nil, subTitle: String? = nil, navigationBarTitle: String = "", buttonIcon: UIImage? = nil, buttonTitle: String? = nil, actionButton: (() -> Void)? = nil, rightToolbarItemIcon: String? = nil, rightToolbarItemAction: (() -> ())? = nil, didFail: Bool = false, canGoBack: Bool = true, content: AnyView? = nil) {
+        init(icon: String? = nil, title: String? = nil, subTitle: String? = nil, navigationBarTitle: String = "", buttonIcon: UIImage? = nil, buttonTitle: String? = nil, actionButton: (() -> Void)? = nil, subButtonTitle: String? = nil, subActionButton: (() -> Void)? = nil, rightToolbarItemIcon: String? = nil, rightToolbarItemAction: (() -> ())? = nil, didFail: Bool = false, canGoBack: Bool = true, content: AnyView? = nil) {
             self.icon = icon
             self.title = title
             self.subTitle = subTitle
@@ -49,6 +52,9 @@ extension EndFlowFeedbackView {
             self.buttonIcon = buttonIcon
             self.buttonTitle = buttonTitle
             self.actionButton = actionButton
+            
+            self.subButtonTitle = subButtonTitle
+            self.subActionButton = subActionButton
             
             self.rightToolbarItemIcon = rightToolbarItemIcon
             self.rightToolbarItemAction = rightToolbarItemAction

@@ -30,12 +30,16 @@ struct EndFlowFeedbackView: View {
                     Text(title)
                         .font(.h2)
                         .padding(.bottom, 16)
+                        .multilineTextAlignment(.center)
+                        .frame(maxWidth: .infinity)
                 }
                 
                 if let subtitle = viewModel.subTitle {
                     Text(subtitle)
                         .font(.b1)
                         .foregroundStyle(.secondary)
+                        .multilineTextAlignment(.center)
+                        .frame(maxWidth: .infinity)
                 }
 
                 if let content = viewModel.content {
@@ -85,6 +89,21 @@ struct EndFlowFeedbackView: View {
                         .tint(.secondary)
                     }
                 }
+                
+                if let subAction = viewModel.subActionButton, let subTitle = viewModel.subButtonTitle {
+                    Button {
+                        subAction()
+                    } label: {
+                        Text(subTitle)
+                            .font(.b1)
+                            .padding()
+                            .frame(maxWidth: .infinity)
+                            .foregroundStyle(.secondary)
+                            .contentShape(.rect)
+                    }
+                    .buttonStyle(.borderless)
+                    .tint(.secondary)
+                }
 
             }
             .padding(16)
@@ -120,26 +139,73 @@ struct EndFlowFeedbackView: View {
 
 }
 
-struct EndFlowFeedbackView_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationView {
+#Preview() {
+    #if EW
+    NavigationContainerView(mockManager: EWManagerMock()) {
+        SuccessView()
+    }
+    #else
+    NavigationContainerView() {
+        SuccessView()
+    }
+    #endif
+}
+
+#Preview() {
+    #if EW
+    NavigationContainerView(mockManager: EWManagerMock()) {
+        FailureView()
+    }
+    #else
+    NavigationContainerView() {
+        FailureView()
+    }
+    #endif
+}
+
+struct SuccessView: View {
+    var body: some View {
+        SpinnerViewContainer {
             EndFlowFeedbackView(viewModel: EndFlowFeedbackView.ViewModel(
-                icon: AssetsIcons.addDeviceImage.rawValue,
-                title: "Couldn't add device",
-                subTitle: "The process was canceled.",
-                navigationBarTitle: "Add Device",
-                buttonIcon: AssetsIcons.addNewDevice.getIcon(),
-                buttonTitle: LocalizableStrings.goHome,
+                title: LocalizableStrings.generateKeysSuccessDescription,
+                navigationBarTitle: LocalizableStrings.generateKeysSuccessTopBarTitle,
+                buttonTitle: LocalizableStrings.backupYourKeys,
                 actionButton: {
                     print("action")
                 },
-                rightToolbarItemIcon: "close",
-                rightToolbarItemAction: {
-                    print("close")
+                subButtonTitle: LocalizableStrings.illDoThisLater,
+                subActionButton: {
+                    print("sub action clicked")
                 },
-                didFail: true,
-                content: AnyView(ValidateRequestIdTimeOutView())
+                didFail: false,
+                canGoBack: false,
             ))
+        }
+    }
+}
+
+struct FailureView: View {
+    var body: some View {
+        NavigationStack {
+            SpinnerViewContainer {
+                EndFlowFeedbackView(viewModel: EndFlowFeedbackView.ViewModel(
+                    icon: AssetsIcons.addDeviceImage.rawValue,
+                    title: "Couldn't add device",
+                    subTitle: "The process was canceled.",
+                    navigationBarTitle: "Add Device",
+                    buttonIcon: AssetsIcons.addNewDevice.getIcon(),
+                    buttonTitle: "Go Home",
+                    actionButton: {
+                        print("action")
+                    },
+                    rightToolbarItemIcon: "settings",
+                    rightToolbarItemAction: {
+                        print("settings")
+                    },
+                    didFail: true,
+                    content: AnyView(ValidateRequestIdTimeOutView())
+                ))
+            }
         }
     }
 }
