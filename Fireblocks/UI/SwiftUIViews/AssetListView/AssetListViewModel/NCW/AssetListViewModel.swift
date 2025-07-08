@@ -74,7 +74,7 @@ class AssetListViewModel: AssetListViewModelBase {
             }
         }
         
-        return "$\(balanceSum.formatFractions())"
+        return "$\(balanceSum.formatFractionsAsString(fractionDigits: 2))"
     }
     
 }
