@@ -17,9 +17,9 @@ import SwiftUI
 class TransferUtils {
     static func getStatusColor(status: Status) -> UIColor {
         let uiColor = switch status {
-        case .confirming, .broadcasting, .pendingSignature, .pendingAuthorization, .queued:
+        case .confirming, .broadcasting, .pendingSignature, .pendingAuthorization, .queued, .submitted:
              (AssetsColors.inProgress.getColor())
-        case .completed, .submitted:
+        case .completed:
              (AssetsColors.success.getColor())
         case .failed, .blocked, .cancelled, .rejected:
              (AssetsColors.alert.getColor())

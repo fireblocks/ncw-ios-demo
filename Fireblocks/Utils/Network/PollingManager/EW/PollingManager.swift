@@ -40,7 +40,6 @@ class PollingManager: ObservableObject {
     }
     
     func fetchTransactions(accountId: Int, order: Order) async {
-        guard !isActive else { return }
         isActive = true
         await pollTransactions(accountId: accountId, poll: false, order: order)
     }
