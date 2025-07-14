@@ -4898,7 +4898,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.3;
+				MARKETING_VERSION = 1.0.5;
 				OTHER_SWIFT_FLAGS = "-DSANDBOX -DEW";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fireblocks.ew.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -4938,7 +4938,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.3;
+				MARKETING_VERSION = 1.0.5;
 				OTHER_SWIFT_FLAGS = "-DSANDBOX -DEW";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fireblocks.ew.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -5335,7 +5335,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.9.2;
+				MARKETING_VERSION = 2.9.3;
 				OTHER_SWIFT_FLAGS = "-DEC2 -DPROD";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fireblocks.ncw.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -5379,7 +5379,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.9.2;
+				MARKETING_VERSION = 2.9.3;
 				OTHER_SWIFT_FLAGS = "-DEC2 -DPROD";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fireblocks.ncw.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -5467,7 +5467,7 @@
 			repositoryURL = "https://github.com/fireblocks/ew-ios-sdk";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
+				minimumVersion = 1.0.3;
 			};
 		};
 		2B21D7E72BC56B5C003ADD29 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
@@ -5691,7 +5691,7 @@
 			repositoryURL = "https://github.com/fireblocks/ncw-ios-sdk";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 2.9.2;
+				minimumVersion = 2.9.8;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
