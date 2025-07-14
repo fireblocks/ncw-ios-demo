@@ -178,7 +178,7 @@ struct SuccessView: View {
                     print("sub action clicked")
                 },
                 didFail: false,
-                canGoBack: false,
+                canGoBack: false
             ))
         }
     }
