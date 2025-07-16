@@ -60,18 +60,11 @@ extension BackupWalletView {
                                     self.coordinator?.path = NavigationPath()
                                 }
                             }, rightToolbarItemIcon: nil, rightToolbarItemAction: nil, didFail: false, canGoBack: false)
+                            coordinator?.path.append(NavigationTypes.feedback(viewModel))
                         } else {
-                            viewModel = EndFlowFeedbackView.ViewModel(icon: nil, title: "Recovery key backed up", subTitle: "Your recovery key was failed to backup.", navigationBarTitle: LocalizableStrings.backupYourKeys, buttonIcon: nil, buttonTitle: LocalizableStrings.goHome, actionButton: {
-                                if self.redirect {
-                                    SignInViewModel.shared.launchView = NavigationContainerView {
-                                        TabBarView()
-                                    }
-                                } else {
-                                    self.coordinator?.path = NavigationPath()
-                                }
-                            }, rightToolbarItemIcon: nil, rightToolbarItemAction: nil, didFail: true, canGoBack: true)
+                            let error = FireblocksManager.shared.getError(.backup, defaultError: CustomError.backup)
+                            self.loadingManager?.setAlertMessage(error: error)
                         }
-                        coordinator?.path.append(NavigationTypes.feedback(viewModel))
                     } catch {
                         self.loadingManager?.setAlertMessage(error: error)
                     }

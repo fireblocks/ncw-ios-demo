@@ -26,7 +26,8 @@ extension Double {
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .decimal
         numberFormatter.maximumFractionDigits = fractionDigits
-        numberFormatter.minimumFractionDigits = fractionDigits
+        // Don't enforce minimum digits to avoid trailing zeros
+        numberFormatter.minimumFractionDigits = 0
         
         let formattedString = numberFormatter.string(from: NSNumber(value: self))
         return formattedString ?? "\(self)"

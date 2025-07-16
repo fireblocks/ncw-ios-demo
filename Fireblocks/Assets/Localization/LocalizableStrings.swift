@@ -85,7 +85,7 @@ struct LocalizableStrings{
     static let didGenerateMPCKeysSuccessTitle = "didGenerateMPCKeysSuccessTitle".localize()
     static let illDoThisLater = "illDoThisLater".localize()
     
-    static let mpcKeysGenertaeTitle = "mpc_keys_genertae_title".localize()
+    static let mpcKeysGenerateTitle = "mpc_keys_generate_title".localize()
     static let mpcKeysAddDeviceTitle = "mpc_keys_add_device_title".localize()
     static let mpcKeysAddDeviceHeader = "mpc_keys_add_device_header".localize()
     static let shareLogs = "share_logs".localize()
@@ -149,4 +149,7 @@ struct LocalizableStrings{
     static let transferringDuration = "This usually takes under 10 minutes.".localize()
     static let generateKeysSuccessTopBarTitle = "MPC keys created successfully".localize()
     static let generateKeysSuccessDescription = "You’ve successfully created your keys! Next, create a key backup to make sure you never lose key access.".localize()
+    static let invalidPhysicalDeviceId = "Invalid physical deviceId. Wallet was recovered from another device".localize()
+    static let incompleteDeviceSetup = "Incomplete device setup. Make sure the keys are backed-up".localize()
+    static let incompleteBackup = "Incomplete backup. Missing one or more required algorithms for backup".localize()
 }

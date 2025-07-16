@@ -53,7 +53,7 @@ class EWManager: Hashable {
     
     var instance: EmbeddedWallet?
     let authClientId = EnvironmentConstants.authClientId
-    let options = EmbeddedWalletOptions(env: EnvironmentConstants.ewEnv, logLevel: .info, logToConsole: true, logNetwork: true, eventHandlerDelegate: nil, reporting: .init(enabled: true))
+    let options = EmbeddedWalletOptions(env: EnvironmentConstants.ewEnv, logLevel: .info, logToConsole: true, logNetwork: true, reporting: .init(enabled: true))
     var keyStorageDelegate: KeyStorageProvider?
 //    var walletId: String?
 //    var deviceId: String?

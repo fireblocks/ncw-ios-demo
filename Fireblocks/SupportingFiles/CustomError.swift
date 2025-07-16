@@ -18,6 +18,11 @@ enum CustomError: LocalizedError {
     case noAvailableBackup
     case recover
     case takeover
+    case transaction
+    case approveTransaction
+    case cancelTransaction
+    case generateKeys
+    case backup
 }
 
 extension CustomError: CustomStringConvertible {
@@ -47,6 +52,16 @@ extension CustomError: CustomStringConvertible {
             return "Failed to recover wallet"
         case .takeover:
             return "Failed to takeover keys"
+        case .transaction:
+            return "Failed to get transaction"
+        case .approveTransaction:
+            return "Failed to approve transaction"
+        case .cancelTransaction:
+            return "Failed to cancel transaction"
+        case .generateKeys:
+            return "Failed to generate keys"
+        case .backup:
+            return "Failed to backup keys"
         }
     }
 }
