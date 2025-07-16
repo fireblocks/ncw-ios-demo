@@ -136,7 +136,8 @@ class ApproveViewModelBase {
                     await MainActor.run {
                         self.isTransferring = false
                     }
-                    await self.loadingManager?.setAlertMessage(error: CustomError.genericError("Failed to approve transaction"))
+                    let error = FireblocksManager.shared.getError(.transaction, defaultError: CustomError.approveTransaction)
+                    await self.loadingManager?.setAlertMessage(error: error)
                 }
             } catch {
                 await MainActor.run {
@@ -167,7 +168,8 @@ class ApproveViewModelBase {
                         self.coordinator?.path = NavigationPath()
                     }
                 } else {
-                    await self.loadingManager?.setAlertMessage(error: CustomError.genericError("Failed to cancel transaction"))
+                    let error = FireblocksManager.shared.getError(.transaction, defaultError: CustomError.cancelTransaction)
+                    await self.loadingManager?.setAlertMessage(error: error)
                 }
             } catch {
                 await self.loadingManager?.setAlertMessage(error: error)

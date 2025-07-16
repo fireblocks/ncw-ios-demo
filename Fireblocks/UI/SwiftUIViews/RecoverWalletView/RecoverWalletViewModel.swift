@@ -74,8 +74,9 @@ extension RecoverWalletView {
                             } else {
                                 self.coordinator?.path = NavigationPath()
                             }
-                        } else {
-                            self.loadingManager?.setAlertMessage(error: CustomError.recover)
+                        } else {                            
+                            let error = FireblocksManager.shared.getError(.recover, defaultError: CustomError.recover)
+                            self.loadingManager?.setAlertMessage(error: error)
                         }
                     }
                 }

@@ -127,8 +127,9 @@ class ValidateRequestIdViewModel {
                 let keys = try await FireblocksManager.shared.approveJoinWallet(requestId: requestId)
                 await MainActor.run {
                     self.loadingManager?.isLoading = false
-                    if let _ = keys.first(where: {$0.status == .ERROR}) {
-                        self.loadingManager?.setAlertMessage(error: CustomError.genericError(LocalizableStrings.approveJoinWalletFailed))
+                    if let _ = keys.first(where: {$0.status == .ERROR}) {                        
+                        let error = FireblocksManager.shared.getError(.joinWallet, defaultError: CustomError.genericError(LocalizableStrings.approveJoinWalletFailed))
+                        self.loadingManager?.setAlertMessage(error: error)
                         return
                     }
                     self.timer?.invalidate()

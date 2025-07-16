@@ -19,9 +19,10 @@ import FireblocksSDK
 
 private let logger = Logger(subsystem: "Fireblocks", category: "FireblocksManager")
 
-class FireblocksManager: FireblocksManagerProtocol, ObservableObject {
+class FireblocksManager: BaseFireblocksManager, FireblocksManagerProtocol {
     static let shared = FireblocksManager()
     
+    // MARK: - FireblocksManagerProtocol Properties
     var deviceId: String = ""
     var latestBackupDeviceId: String = ""
     var walletId: String = ""
@@ -42,7 +43,8 @@ class FireblocksManager: FireblocksManagerProtocol, ObservableObject {
     private var sendMPC_counter = 0
     private var didTimeout = 0
 
-    private init() {
+    private override init() {
+        super.init()
     }
         
     func getNCWInstance() -> Fireblocks? {
@@ -63,7 +65,7 @@ class FireblocksManager: FireblocksManagerProtocol, ObservableObject {
                 deviceId: deviceId,
                 messageHandlerDelegate: self,
                 keyStorageDelegate: KeyStorageProvider(deviceId: self.deviceId),
-                fireblocksOptions: FireblocksOptions(env: EnvironmentConstants.env, eventHandlerDelegate: self, logLevel: .info, logToConsole: true, reporting: ReportingOptions(enabled: true))
+                fireblocksOptions: FireblocksOptions(env: EnvironmentConstants.env, eventHandlerDelegate: createEventHandlerDelegate(), logLevel: .info, logToConsole: true, reporting: ReportingOptions(enabled: true))
             )
         }
     }
@@ -254,30 +256,3 @@ extension FireblocksManager: MessageHandlerDelegate {
     }
 }
 
-extension FireblocksManager: EventHandlerDelegate {
-    func onEvent(event: FireblocksEvent) {
-        switch event {
-        case let .KeyCreation(status, error):
-            AppLoggerManager.shared.logger()?.log("FireblocksManager, status(.KeyCreation): \(status.description()). Error: \(String(describing: error)).")
-            break
-        case let .Backup(status, error):
-            AppLoggerManager.shared.logger()?.log("FireblocksManager, status(.Backup): \(status.description()). Error: \(String(describing: error)).")
-            break
-        case let .Recover(status, error):
-            AppLoggerManager.shared.logger()?.log("FireblocksManager, status(.Recover): \(String(describing: status?.description())). Error: \(String(describing: error)).")
-            break
-        case let .Transaction(status, error):
-            AppLoggerManager.shared.logger()?.log("FireblocksManager, status(.Transaction): \(status.description()). Error: \(String(describing: error)).")
-            break
-        case let .Takeover(status, error):
-            AppLoggerManager.shared.logger()?.log("FireblocksManager, status(.Takeover): \(status.description()). Error: \(String(describing: error)).")
-            break
-        case let .JoinWallet(status, error):
-            AppLoggerManager.shared.logger()?.log("FireblocksManager, status(.JoinWallet): \(status.description()). Error: \(String(describing: error)).")
-            break
-        @unknown default:
-            AppLoggerManager.shared.logger()?.log("FireblocksManager, @unknown case")
-            break
-        }
-    }
-}

@@ -81,7 +81,8 @@ class TakeoverViewModelMock: TakeoverViewModel {
     override func getTakeoverFullKeys() {
         Task {
             await MainActor.run {
-                self.loadingManager?.setAlertMessage(error: CustomError.genericError("Failed to takeover keys"))
+                let error = FireblocksManager.shared.getError(.takeover, defaultError: CustomError.takeover)
+                self.loadingManager?.setAlertMessage(error: error)
             }
         }
     }

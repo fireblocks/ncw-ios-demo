@@ -1296,6 +1296,12 @@
 		86ED2BAC2A64430F00377F6C /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86ED2BA72A64430F00377F6C /* SettingsViewModel.swift */; };
 		86ED2BB32A64434500377F6C /* AreYouSureBottomSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86ED2BB12A64434500377F6C /* AreYouSureBottomSheet.xib */; };
 		86ED2BB42A64434500377F6C /* AreYouSureBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86ED2BB22A64434500377F6C /* AreYouSureBottomSheet.swift */; };
+		FF16C1422E2633FB00168D5B /* BaseFireblocksManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF16C1412E2633FB00168D5B /* BaseFireblocksManager.swift */; };
+		FF16C1432E2633FB00168D5B /* BaseFireblocksManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF16C1412E2633FB00168D5B /* BaseFireblocksManager.swift */; };
+		FF16C1442E2633FB00168D5B /* BaseFireblocksManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF16C1412E2633FB00168D5B /* BaseFireblocksManager.swift */; };
+		FF16C1452E2633FB00168D5B /* BaseFireblocksManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF16C1412E2633FB00168D5B /* BaseFireblocksManager.swift */; };
+		FF16C1462E2633FB00168D5B /* BaseFireblocksManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF16C1412E2633FB00168D5B /* BaseFireblocksManager.swift */; };
+		FF16C1472E2633FB00168D5B /* BaseFireblocksManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF16C1412E2633FB00168D5B /* BaseFireblocksManager.swift */; };
 		FF2DD5C82DF071940031F1E7 /* RegisterTokenBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2DD5C72DF071930031F1E7 /* RegisterTokenBody.swift */; };
 		FF2DD5C92DF071940031F1E7 /* RegisterTokenBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2DD5C72DF071930031F1E7 /* RegisterTokenBody.swift */; };
 		FF2DD5CA2DF071940031F1E7 /* RegisterTokenBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2DD5C72DF071930031F1E7 /* RegisterTokenBody.swift */; };
@@ -1691,6 +1697,7 @@
 		86ED2BA72A64430F00377F6C /* SettingsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		86ED2BB12A64434500377F6C /* AreYouSureBottomSheet.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AreYouSureBottomSheet.xib; sourceTree = "<group>"; };
 		86ED2BB22A64434500377F6C /* AreYouSureBottomSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AreYouSureBottomSheet.swift; sourceTree = "<group>"; };
+		FF16C1412E2633FB00168D5B /* BaseFireblocksManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseFireblocksManager.swift; sourceTree = "<group>"; };
 		FF2DD5C72DF071930031F1E7 /* RegisterTokenBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterTokenBody.swift; sourceTree = "<group>"; };
 		FF2DD5CE2DF072C90031F1E7 /* RegisterTokenResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterTokenResponse.swift; sourceTree = "<group>"; };
 		FF3E749E2DAE8D57009ADB65 /* ReceivingAddressGenericView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceivingAddressGenericView.swift; sourceTree = "<group>"; };
@@ -2769,6 +2776,7 @@
 		862E2AA12A543B86002FF774 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				FF16C1412E2633FB00168D5B /* BaseFireblocksManager.swift */,
 				FF75F45D2D9D17B100E7695A /* BlockchainProvider.swift */,
 				FF75F4482D9D132E00E7695A /* Blockchain.swift */,
 				2B2B19B52D2C058500A2B39D /* FireblocksManagerProtocol.swift */,
@@ -3605,6 +3613,7 @@
 				2B21D8052BC56B5C003ADD29 /* AssetViewCell.swift in Sources */,
 				2B21D8062BC56B5C003ADD29 /* DerivedAssetRow.swift in Sources */,
 				2B21D8082BC56B5C003ADD29 /* BackupRepository.swift in Sources */,
+				FF16C1422E2633FB00168D5B /* BaseFireblocksManager.swift in Sources */,
 				2B21D8092BC56B5C003ADD29 /* AppActionBotton.swift in Sources */,
 				2B21D80A2BC56B5C003ADD29 /* Int+Extension.swift in Sources */,
 				2B87CB0B2D47CFF700448A2A /* AssetError.swift in Sources */,
@@ -3817,6 +3826,7 @@
 				2B22D8E12D82EBF500F1C1A2 /* BackupWalletView.swift in Sources */,
 				2B22D8E22D82EBF500F1C1A2 /* TitleValueRow.swift in Sources */,
 				2B22D8E32D82EBF500F1C1A2 /* EWNFTPreviewView.swift in Sources */,
+				FF16C1442E2633FB00168D5B /* BaseFireblocksManager.swift in Sources */,
 				2B22D8E42D82EBF500F1C1A2 /* BiometricsAuthentication.swift in Sources */,
 				2B22D8E52D82EBF500F1C1A2 /* AppBackgroundView.swift in Sources */,
 				2B22D8E62D82EBF500F1C1A2 /* SceneDelegate.swift in Sources */,
@@ -4022,6 +4032,7 @@
 				2B83E24E2D37E8EE003B1397 /* SessionManager.swift in Sources */,
 				2BCFE1112D54F29B006BE227 /* BackupWalletView.swift in Sources */,
 				2BD5D0F02D706C490025A9A8 /* TitleValueRow.swift in Sources */,
+				FF16C1452E2633FB00168D5B /* BaseFireblocksManager.swift in Sources */,
 				2B5F46BC2D70AE1F00B23371 /* EWNFTPreviewView.swift in Sources */,
 				2B2B19F72D2D120E00A2B39D /* BiometricsAuthentication.swift in Sources */,
 				2B2B19F92D2D120E00A2B39D /* AppBackgroundView.swift in Sources */,
@@ -4227,6 +4238,7 @@
 				2B78DE682D92B7D8003B7D82 /* BackupWalletView.swift in Sources */,
 				2B78DE692D92B7D8003B7D82 /* TitleValueRow.swift in Sources */,
 				2B78DE6A2D92B7D8003B7D82 /* EWNFTPreviewView.swift in Sources */,
+				FF16C1462E2633FB00168D5B /* BaseFireblocksManager.swift in Sources */,
 				2B78DE6B2D92B7D8003B7D82 /* BiometricsAuthentication.swift in Sources */,
 				2B78DE6C2D92B7D8003B7D82 /* AppBackgroundView.swift in Sources */,
 				2B78DE6D2D92B7D8003B7D82 /* SceneDelegate.swift in Sources */,
@@ -4541,6 +4553,7 @@
 				2B7C47222B32D922001C804B /* QRCodeGenerator.swift in Sources */,
 				2B83E2612D37F4DE003B1397 /* PassphraseInfo.swift in Sources */,
 				2B2B18CA2D2BCD9900A2B39D /* CustomError.swift in Sources */,
+				FF16C1472E2633FB00168D5B /* BaseFireblocksManager.swift in Sources */,
 				2B2B1ABE2D2D4EF000A2B39D /* SignInViewModel.swift in Sources */,
 				2BCFE1202D5A28DD006BE227 /* SettingsData.swift in Sources */,
 				2BAB68162B820E06003592F1 /* ValidateRequestIdTimeOutView.swift in Sources */,
@@ -4593,6 +4606,7 @@
 				2BCFE1212D5A28DD006BE227 /* SettingsData.swift in Sources */,
 				60DA06A42A651D9300160ADC /* AssetViewCell.swift in Sources */,
 				2BD34A7B2B98C129008406D5 /* DerivedAssetRow.swift in Sources */,
+				FF16C1432E2633FB00168D5B /* BaseFireblocksManager.swift in Sources */,
 				866A73CF2A696A5E00E8E545 /* BackupRepository.swift in Sources */,
 				60DA06972A651AA000160ADC /* AppActionBotton.swift in Sources */,
 				2B87CB0E2D47CFF700448A2A /* AssetError.swift in Sources */,
@@ -4898,7 +4912,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.5;
+				MARKETING_VERSION = 1.0.6;
 				OTHER_SWIFT_FLAGS = "-DSANDBOX -DEW";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fireblocks.ew.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -4938,7 +4952,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.5;
+				MARKETING_VERSION = 1.0.6;
 				OTHER_SWIFT_FLAGS = "-DSANDBOX -DEW";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fireblocks.ew.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -5691,7 +5705,7 @@
 			repositoryURL = "https://github.com/fireblocks/ncw-ios-sdk";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 2.9.8;
+				minimumVersion = 2.9.9;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

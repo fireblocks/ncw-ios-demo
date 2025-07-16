@@ -113,10 +113,10 @@ extension GenerateKeysView {
                         didFail: false,
                         canGoBack: false)
                     
-                    self.coordinator?.path.append(NavigationTypes.feedback(viewModel))
-                    
+                    self.coordinator?.path.append(NavigationTypes.feedback(viewModel))                    
                 } else {
-                    self.loadingManager?.setAlertMessage(error: CustomError.genericError("Failed to generate keys"))
+                    let error = FireblocksManager.shared.getError(.generateKeys, defaultError: CustomError.generateKeys)
+                    self.loadingManager?.setAlertMessage(error: error)
                 }
             }
         }

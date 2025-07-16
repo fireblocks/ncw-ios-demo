@@ -54,7 +54,8 @@ extension EWNFTPreviewView {
                     do {
                         let result = try await ewManager.getCore().signTransaction(txId: transactionID)
                         if result.transactionSignatureStatus == .ERROR || result.transactionSignatureStatus == .TIMEOUT {
-                            await self.loadingManager?.setAlertMessage(error: CustomError.genericError("Failed to sign transaction"))
+                            let error = FireblocksManager.shared.getError(.transaction, defaultError: CustomError.approveTransaction)
+                            await self.loadingManager?.setAlertMessage(error: error)
                         } else {
                             await MainActor.run {
                                 self.coordinator?.path = NavigationPath()
@@ -80,7 +81,8 @@ extension EWNFTPreviewView {
                                 self.coordinator?.path = NavigationPath()
                             }
                         } else {
-                            await self.loadingManager?.setAlertMessage(error: CustomError.genericError("Failed to cancel transaction"))
+                            let error = FireblocksManager.shared.getError(.transaction, defaultError: CustomError.cancelTransaction)
+                            await self.loadingManager?.setAlertMessage(error: error)
                         }
                         await self.loadingManager?.setLoading(value: false)
 

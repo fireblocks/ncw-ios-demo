@@ -41,7 +41,8 @@ class TakeoverViewModel  {
                     }
                 } else {
                     await MainActor.run {
-                        self.loadingManager?.setAlertMessage(error: CustomError.takeover)
+                        let error = FireblocksManager.shared.getError(.takeover, defaultError: CustomError.takeover)
+                        self.loadingManager?.setAlertMessage(error: error)
                     }
                 }
             } catch {
