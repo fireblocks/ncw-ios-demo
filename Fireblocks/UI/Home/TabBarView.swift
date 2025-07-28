@@ -35,7 +35,7 @@ enum TabIndex: Int, CaseIterable {
         case .Assets:
             return "Assets"
         case .Transfers:
-            return "Transfers"
+            return "Transfer history"
         #if EW
         case .NFTs:
             return "NFTs"

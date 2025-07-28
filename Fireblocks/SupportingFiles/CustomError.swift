@@ -23,6 +23,7 @@ enum CustomError: LocalizedError {
     case cancelTransaction
     case generateKeys
     case backup
+    case joinWallet
 }
 
 extension CustomError: CustomStringConvertible {
@@ -62,6 +63,8 @@ extension CustomError: CustomStringConvertible {
             return "Failed to generate keys"
         case .backup:
             return "Failed to backup keys"
+        case .joinWallet:
+            return "Failed to join wallet"
         }
     }
 }

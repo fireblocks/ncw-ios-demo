@@ -97,7 +97,6 @@ class FireblocksManager: BaseFireblocksManager, FireblocksManagerProtocol {
             if let deviceId = UsersLocalStorageManager.shared.lastDeviceId(email: email), !deviceId.isTrimmedEmpty {
                 self.deviceId = deviceId
                 self.latestBackupDeviceId = deviceId
-                AppLoggerManager.shared.loggers[deviceId] = AppLogger(deviceId: deviceId)
                 let _ = try initializeCore()
                 return .exist
             }
@@ -118,7 +117,6 @@ class FireblocksManager: BaseFireblocksManager, FireblocksManagerProtocol {
                     return .error(CustomError.noAvailableBackup)
                 } else {
                     self.deviceId = info.deviceId!
-                    AppLoggerManager.shared.loggers[deviceId] = AppLogger(deviceId: deviceId)
                     self.latestBackupDeviceId = info.deviceId!
                     return .joinOrRecover
                 }
@@ -152,6 +150,9 @@ class FireblocksManager: BaseFireblocksManager, FireblocksManagerProtocol {
                     
     func stopPollingMessages() {
         PollingManager.shared.removeListener(deviceId: deviceId)
+    }
+    
+    func fetchTransactions() {
     }
 
 }

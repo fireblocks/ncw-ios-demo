@@ -114,7 +114,7 @@ extension SignInView {
                     if let provider {
                         UsersLocalStorageManager.shared.setAuthProvider(value: provider.rawValue)
                     }
-                    await self.handleSuccessSignIn()
+                    _ = await self.handleSuccessSignIn()
                 }
                 self.loadingManager?.isLoading = false
             }
@@ -127,7 +127,7 @@ extension SignInView {
             return eddsa || ecdsa
         }
         
-        func handleSuccessSignIn(isLaunch: Bool = false) async {
+        func handleSuccessSignIn(isLaunch: Bool = false) async -> Error? {
             fatalError("handleSuccessSignIn should be implemented on child class")
         }
         

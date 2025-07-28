@@ -8,14 +8,14 @@
 import Foundation
 
 class AppLoggerManager {
-    var loggers = [String: AppLogger]()
+    var appLogger = AppLogger()
     
     static let shared = AppLoggerManager()
     
     private init() {}
     
     func logger() -> AppLogger? {
-        return loggers[FireblocksManager.shared.getDeviceId()]
+        return appLogger
     }
 }
 
@@ -47,7 +47,6 @@ private enum LogLevel: String {
 
 final class AppLogger {
 
-    internal let deviceId: String
     internal let logPrefix: String
     
     private let MAX_FILE_SIZE = 950000
@@ -55,9 +54,8 @@ final class AppLogger {
     private let logFile2: String
     private var currentLogFile: String
 
-    init(deviceId: String) {
-        self.deviceId = deviceId
-        self.logPrefix = "#@! - \(deviceId)"
+    init() {
+        self.logPrefix = "#@!"
         self.logFile1 = "demo_log1"
         self.logFile2 = "demo_log2"
         self.currentLogFile = logFile1

@@ -47,7 +47,7 @@ protocol FireblocksManagerProtocol {
     func signTransaction(transactionId: String) async throws -> Bool
     func stopTransaction() throws
     
-    func addDevice(joinWalletHandler: FireblocksJoinWalletHandler) async throws -> Bool
+    func requestJoinExistingWallet(joinWalletHandler: FireblocksJoinWalletHandler) async throws -> Bool
     func approveJoinWallet(requestId: String) async throws -> Set<JoinWalletDescriptor>
     func stopJoinWallet() throws
     
@@ -64,7 +64,6 @@ protocol FireblocksManagerProtocol {
 extension FireblocksManagerProtocol {
     func generateDeviceId() -> String {
         let deviceId = Fireblocks.generateDeviceId()
-        AppLoggerManager.shared.loggers[deviceId] = AppLogger(deviceId: deviceId)
         return deviceId
     }
 
@@ -137,10 +136,10 @@ extension FireblocksManagerProtocol {
         return try await initializeCore().approveJoinWalletRequest(requestId: requestId)
     }
 
-    func addDevice(joinWalletHandler: FireblocksJoinWalletHandler) async throws -> Bool {
+    func requestJoinExistingWallet(joinWalletHandler: FireblocksJoinWalletHandler) async throws -> Bool {
         let startDate = Date()
         let result = try await initializeCore().requestJoinExistingWallet(joinWalletHandler: joinWalletHandler)
-        print("Measure - addDevice \(Date().timeIntervalSince(startDate))")
+        print("Measure - requestJoinExistingWallet \(Date().timeIntervalSince(startDate))")
 
         let didFail = result.filter({$0.keyStatus != .READY}).count > 0 || result.filter({$0.keyStatus == .READY}).count == 0
         if !didFail {

@@ -65,6 +65,9 @@ struct TransferListView: View {
         }
         .listStyle(.plain)
         .contentMargins(.top, 16)
+        .refreshable {
+            fireblocksManager.fetchTransactions()
+        }
     }
 
 }

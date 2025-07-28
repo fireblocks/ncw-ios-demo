@@ -11,18 +11,20 @@ import SwiftUI
 class SignInViewModel: SignInView.ViewModel {
     static let shared = SignInViewModel()
 
-    override func handleSuccessSignIn(isLaunch: Bool = false)  async {
+    override func handleSuccessSignIn(isLaunch: Bool = false) async -> Error? {
         do {
             let _ = try await SessionManager.shared.login()
             
             guard let fireblocksManager else {
-                loadingManager?.setAlertMessage(error: CustomError.genericError("Failed to load Fireblocks Manager"))
-                return
+                let error: CustomError = CustomError.genericError("Failed to load Fireblocks Manager")
+                loadingManager?.setAlertMessage(error: error)
+                return error
             }
             
             guard let email = fireblocksManager.getUserEmail() else {
-                loadingManager?.setAlertMessage(error: CustomError.genericError("Failed to getUserEmail"))
-                return
+                let error: CustomError = CustomError.genericError("Failed to getUserEmail")
+                loadingManager?.setAlertMessage(error: error)
+                return error
             }
             
             let state = await fireblocksManager.getLatestBackupState()
@@ -61,10 +63,14 @@ class SignInViewModel: SignInView.ViewModel {
                     coordinator?.path.append(NavigationTypes.joinOrRecover)
                 }
             case .error:
-                loadingManager?.setAlertMessage(error: CustomError.assignWallet)
+                let error: CustomError = CustomError.assignWallet
+                loadingManager?.setAlertMessage(error: error)
+                return error
             }
+            return nil
         } catch {
             loadingManager?.setAlertMessage(error: error)
+            return error
         }
     }
     

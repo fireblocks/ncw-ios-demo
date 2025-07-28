@@ -20,6 +20,18 @@ class BaseFireblocksManager: ObservableObject {
     @Published var eventsList: [FireblocksEvent] = []
     private let eventsQueue = DispatchQueue(label: "fireblocks.events", qos: .utility)
     
+    // MARK: - Biometric Error Management
+    private var latestBiometricError: String?
+    
+    // MARK: - Initialization
+    init() {
+        setupBiometricErrorObserver()
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     // MARK: - Event Handler
     func createEventHandlerDelegate() -> EventHandlerDelegate {
         return BaseEventHandler(manager: self)
@@ -49,11 +61,29 @@ class BaseFireblocksManager: ObservableObject {
     
     func getError(_ eventType: FireblocksEventType, defaultError: Error)-> Error {
         let specificErrorMessage = getLatestEventErrorByType(eventType)
-        let error = if (specificErrorMessage != nil) {
-            CustomError.genericError(specificErrorMessage!)
+        let biometricErrorMessage = getBiometricErrorMessage()
+        
+        // Aggregate error messages nicely
+        let combinedMessage: String?
+        if let specificError = specificErrorMessage, let biometricError = biometricErrorMessage {
+            combinedMessage = "\(specificError)\n\n\(biometricError)"
+        } else if let specificError = specificErrorMessage {
+            combinedMessage = specificError
+        } else if let biometricError = biometricErrorMessage {
+            combinedMessage = biometricError
+        } else {
+            combinedMessage = nil
+        }
+        
+        let error = if let message = combinedMessage {
+            CustomError.genericError(message)
         } else {
             defaultError
         }
+        
+        // Clear the biometric error after using it
+        clearBiometricError()
+        
         return error
     }
     
@@ -64,7 +94,7 @@ class BaseFireblocksManager: ObservableObject {
             switch eventType {
             case .transaction:
                 if case .Transaction = event { return true }
-            case .generateKeys:
+            case .keyCreation:
                 if case .KeyCreation = event { return true }
             case .backup:
                 if case .Backup = event { return true }
@@ -94,11 +124,36 @@ class BaseFireblocksManager: ObservableObject {
     
     enum FireblocksEventType {
         case transaction
-        case generateKeys
+        case keyCreation
         case backup
         case recover
         case takeover
         case joinWallet
+    }
+    
+    // MARK: - Biometric Error Management Methods
+    private func setupBiometricErrorObserver() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(handleBiometricError(_:)),
+            name: Notification.Name("BiometricError"),
+            object: nil
+        )
+    }
+    
+    @objc private func handleBiometricError(_ notification: Notification) {
+        if let userInfo = notification.userInfo,
+           let errorMessage = userInfo["errorMessage"] as? String {
+            latestBiometricError = errorMessage
+        }
+    }
+    
+    private func getBiometricErrorMessage() -> String? {
+        return latestBiometricError
+    }
+    
+    private func clearBiometricError() {
+        latestBiometricError = nil
     }
     
     // MARK: - Private Methods

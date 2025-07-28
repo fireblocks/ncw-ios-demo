@@ -41,7 +41,7 @@ extension AddDeviceView {
                     let _ = try await SessionManager.shared.joinWallet(deviceId: fireblocksManager.deviceId, walletId: fireblocksManager.walletId)
                     let _ = try fireblocksManager.initializeCore()
                     
-                    let addDeviceResult = try await fireblocksManager.addDevice(joinWalletHandler: self)
+                    let addDeviceResult = try await fireblocksManager.requestJoinExistingWallet(joinWalletHandler: self)
                     await MainActor.run {
                         self.isKeysGenerated(isGenerated: addDeviceResult)
                         self.loadingManager?.setLoading(value: false)
@@ -99,10 +99,14 @@ extension AddDeviceView {
                 self.coordinator?.path.append(NavigationTypes.feedback(vm))
                 
             } else {
-                let vm = EndFlowFeedbackView.ViewModel(icon: AssetsIcons.addDeviceFailed.rawValue, title: LocalizableStrings.addDeviceFailedTitle, subTitle: LocalizableStrings.addDeviceFailedSubtitle, buttonTitle: LocalizableStrings.goHome, actionButton:  {
-                    self.coordinator?.path = NavigationPath()
-                }, didFail: true)
-                self.coordinator?.path.append(NavigationTypes.feedback(vm))
+//                let vm = EndFlowFeedbackView.ViewModel(icon: AssetsIcons.addDeviceFailed.rawValue, title: LocalizableStrings.addDeviceFailedTitle, subTitle: LocalizableStrings.addDeviceFailedSubtitle, buttonTitle: LocalizableStrings.goHome, actionButton:  {
+//                    self.coordinator?.path = NavigationPath()
+//                }, didFail: true)
+//                self.coordinator?.path.append(NavigationTypes.feedback(vm))
+                
+//                try? self.fireblocksManager?.stopJoinWallet()
+                let error = FireblocksManager.shared.getError(.keyCreation, defaultError: CustomError.joinWallet)
+                self.loadingManager?.setAlertMessage(error: error)
             }
         }
     }

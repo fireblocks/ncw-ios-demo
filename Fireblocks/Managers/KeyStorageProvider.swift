@@ -16,10 +16,14 @@ import FireblocksSDK
 class KeyStorageProvider: KeyStorageDelegate {
     private let deviceId: String
     let context = LAContext()
+    /// Stores the biometry type from when the class was initialized to detect changes
+    private var storedBiometryType: LABiometryType?
     
     init(deviceId: String) {
         self.deviceId = deviceId
         context.touchIDAuthenticationAllowableReuseDuration = 15
+        // Store initial biometry type to detect changes later
+        self.storedBiometryType = getCurrentBiometryType()
     }
     
     enum Result {
@@ -120,13 +124,15 @@ class KeyStorageProvider: KeyStorageDelegate {
     }
 
     func store(keys: [String : Data], callback: @escaping ([String : Bool]) -> ()) {
-        AppLoggerManager.shared.logger()?.log("generateMpcKeys started store - keys: \(keys.keys)")
+        AppLoggerManager.shared.logger()?.log("store started - keys: \(keys.keys)")
         biometricStatus { status in
-            if status == .ready {
+            switch status {
+            case .ready:
+                // Biometric authentication is available and ready - proceed with storage
                 self.saveToKeychain(keys: keys, callback: callback)
-            } else {
+            case .notEnrolled, .noPasscode, .notSupported, .locked, .changed, .notApproved, .canApprove:
+                // Biometric authentication not available - error notification posted by biometricStatus method
                 DispatchQueue.main.async {
-                    AppLoggerManager.shared.logger()?.log("generateMpcKeys started store - biometric not ready")
                     callback([:])
                 }
             }
@@ -182,16 +188,18 @@ class KeyStorageProvider: KeyStorageDelegate {
 //        return;
         
         biometricStatus { status in
-            if status == .ready {
+            switch status {
+            case .ready:
+                // Biometric authentication is available and ready - proceed with loading
                 Task {
                     let keys = await self.getKeys(keyIds: keyIds)
                     DispatchQueue.main.async {
                         callback(keys)
                     }
                 }
-            } else {
+            case .notEnrolled, .noPasscode, .notSupported, .locked, .changed, .notApproved, .canApprove:
+                // Biometric authentication not available - error notification posted by biometricStatus method
                 DispatchQueue.main.async {
-                    AppLoggerManager.shared.logger()?.log("generateMpcKeys started load - biometric not ready")
                     callback([:])
                 }
             }
@@ -212,7 +220,7 @@ class KeyStorageProvider: KeyStorageDelegate {
                     AppLoggerManager.shared.logger()?.log("generateMpcKeys started load - succeeded to load key: \(keyId)")
                     dict[keyId] = data
                 case .failure(let failure):
-                    AppLoggerManager.shared.logger()?.log("generateMpcKeys started load - failed to load key: \(keyId)")
+                    AppLoggerManager.shared.logger()?.error("generateMpcKeys started load - failed to load key: \(keyId)")
                 }
             
         }
@@ -264,13 +272,78 @@ class KeyStorageProvider: KeyStorageDelegate {
     }
 
     enum BiometricStatus {
-        case notSupported //No hardware on device
-        case noPasscode //User need to setup passcode/enroll to touchId/FaceId
-        case notEnrolled //User is not enrolled
-        case canApprove //We need to ask for permission
-        case notApproved //User canceled permission
-        case locked
-        case ready //User approved
+        case notSupported    // No biometric hardware available on device
+        case noPasscode      // User needs to setup device passcode first
+        case notEnrolled     // User has not enrolled in Face ID/Touch ID
+        case canApprove      // Biometrics available, need to ask for permission
+        case notApproved     // User canceled permission or biometric not available
+        case locked          // Biometric authentication locked due to failed attempts
+        case ready           // Biometric authentication ready and approved
+        case changed         // Biometric authentication has been modified/changed
+    }
+    
+    /// Gets the current biometry type available on the device (Face ID, Touch ID, or none)
+    /// - Returns: LABiometryType indicating the type of biometric authentication available
+    private func getCurrentBiometryType() -> LABiometryType {
+        let context = LAContext()
+        var error: NSError?
+        guard context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) else {
+            return .none
+        }
+        return context.biometryType
+    }
+    
+    /// Checks if biometric authentication is currently enrolled and available
+    /// - Returns: Boolean indicating whether biometric authentication can be used
+    private func checkBiometricEnrollment() -> Bool {
+        let context = LAContext()
+        var error: NSError?
+        return context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error)
+    }
+    
+    /// Detects if the biometric authentication setup has changed in a concerning way since initialization
+    /// This only flags changes that represent potential security issues, not initial enrollment
+    /// - Returns: Boolean indicating whether biometric setup has changed in a concerning way
+    private func hasBiometricChanged() -> Bool {
+        let currentBiometryType = getCurrentBiometryType()
+        
+        // Check if there's a concerning change
+        let hasConcerningChange: Bool
+        
+        if let storedType = storedBiometryType {
+            // If we previously had biometrics enrolled and now it's different
+            if storedType != .none && currentBiometryType != storedType {
+                hasConcerningChange = true
+            } else {
+                // Going from .none to enrolled biometrics is good (first time setup)
+                // Staying the same is also fine
+                hasConcerningChange = false
+            }
+        } else {
+            // No previous state recorded - not concerning
+            hasConcerningChange = false
+        }
+        
+        // Update stored type for future comparisons regardless of whether it's concerning
+        storedBiometryType = currentBiometryType
+        
+        return hasConcerningChange
+    }
+    
+    /// Posts a biometric error message via NotificationCenter for BaseFireblocksManager to handle
+    /// - Parameters:
+    ///   - title: Alert title text
+    ///   - message: Alert message/description text
+    private func postBiometricError(title: String, message: String) {
+        let errorMessage = "\(title)\n\(message)"
+        AppLoggerManager.shared.logger()?.error("KeyStorageProvider biometric error: \(title) - \(message)")
+        DispatchQueue.main.async {
+            NotificationCenter.default.post(
+                name: Notification.Name("BiometricError"), 
+                object: nil, 
+                userInfo: ["errorMessage": errorMessage]
+            )
+        }
     }
 
     private func setupBiometric(succeeded: @escaping (Bool) -> ()) {
@@ -300,27 +373,57 @@ class KeyStorageProvider: KeyStorageDelegate {
         }
     }
     
+    /// Evaluates the current biometric authentication status and posts error notifications
+    /// This method performs comprehensive biometric status checking including change detection
+    /// - Parameter status: Completion handler that receives the BiometricStatus result
     private func biometricStatus(status: @escaping (BiometricStatus) -> ()) {
+        // First check if biometrics have changed since last check
+        if hasBiometricChanged() {
+            postBiometricError(title: "Biometric Authentication Changed", 
+                             message: "Your biometric authentication has been modified. Please re-enroll your wallet for security.")
+            status(.changed)
+            return
+        }
+        
         var error: NSError?
         if context.canEvaluatePolicy(
                 LAPolicy.deviceOwnerAuthenticationWithBiometrics,
                 error: &error) {
+            // Biometric authentication is available and ready
             status(.ready)
         } else {
-            // Device cannot use biometric authentication
+            // Device cannot use biometric authentication - determine the specific reason
             if let err = error {
                 switch err.code {
                 case LAError.Code.biometryNotEnrolled.rawValue:
+                    // User has not enrolled in Face ID/Touch ID
+                    postBiometricError(title: "Biometric Not Enrolled", 
+                                     message: "Please set up Face ID or Touch ID in your device settings to secure your wallet.")
                     status(.notEnrolled)
                 case LAError.Code.passcodeNotSet.rawValue:
+                    // Device passcode must be set before biometric authentication
+                    postBiometricError(title: "Passcode Required", 
+                                     message: "Please set up a device passcode first, then enable biometric authentication.")
                     status(.noPasscode)
                 case LAError.Code.biometryNotAvailable.rawValue:
+                    // Biometric hardware not available or disabled
+                    postBiometricError(title: "Biometric Authentication Unavailable", 
+                                     message: "Biometric authentication is not available on this device.")
                     status(.notApproved)
                 case LAError.Code.biometryLockout.rawValue:
+                    // Too many failed biometric attempts - temporarily locked
+                    postBiometricError(title: "Biometric Authentication Locked", 
+                                     message: "Too many failed attempts. Please use your passcode to unlock.")
                     status(.locked)
                 default:
+                    // Other authentication errors
                     status(.notApproved)
                 }
+            } else {
+                // No specific error but biometric not available
+                postBiometricError(title: "Biometric Not Supported", 
+                                 message: "This device does not support biometric authentication.")
+                status(.notSupported)
             }
         }
     }

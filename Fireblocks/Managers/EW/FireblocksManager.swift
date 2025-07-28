@@ -52,7 +52,6 @@ class FireblocksManager: BaseFireblocksManager, FireblocksManagerProtocol {
      */
     private var useTransactionPolling: Bool = false
     
-    var options: EmbeddedWalletOptions?
     var keyStorageDelegate: KeyStorageProvider?
     var ewManager = EWManager.shared
 
@@ -92,7 +91,6 @@ class FireblocksManager: BaseFireblocksManager, FireblocksManagerProtocol {
     }
 
     func assignWallet() async throws {
-        self.options = EmbeddedWalletOptions(env: EnvironmentConstants.ewEnv, logLevel: .info, logToConsole: true, logNetwork: true, reporting: .init(enabled: true))
         let instance = try getInstance()
         let result = try await instance.assignWallet()
         if let walletId = result.walletId {
@@ -186,7 +184,6 @@ class FireblocksManager: BaseFireblocksManager, FireblocksManagerProtocol {
             
             if let deviceId = UsersLocalStorageManager.shared.lastDeviceId(email: email), !deviceId.isTrimmedEmpty {
                 self.deviceId = deviceId
-                AppLoggerManager.shared.loggers[deviceId] = AppLogger(deviceId: deviceId)
                 self.latestBackupDeviceId = deviceId
                 let _ = try initializeCore()
                 return .exist
@@ -234,6 +231,10 @@ class FireblocksManager: BaseFireblocksManager, FireblocksManagerProtocol {
     }
     
     func appWillEnterForeground() {
+        fetchTransactions()
+    }
+    
+    func fetchTransactions() {
         logger.info("App entering foreground, fetching latest transactions")
         
         // Only fetch transactions if we have wallet and device IDs
