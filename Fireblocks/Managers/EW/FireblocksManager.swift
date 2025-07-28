@@ -18,18 +18,23 @@ import EmbeddedWalletSDK
 
 private let logger = Logger(subsystem: "Fireblocks", category: "FireblocksManager")
 
-class FireblocksManager: FireblocksManagerProtocol, ObservableObject {
-    var latestBackupDeviceId: String = ""
+class FireblocksManager: BaseFireblocksManager, FireblocksManagerProtocol {
     
     func stopPollingMessages() {
         PollingManager.shared.stopPolling()
     }
     
     static let shared = FireblocksManager()
-    private init(){}
+    private override init(){
+        super.init()
+    }
     
+    // MARK: - FireblocksManagerProtocol Properties
     var deviceId: String = ""
     var walletId: String = ""
+    var latestBackupDeviceId: String = ""
+    var algoArray: [Algorithm] = [.MPC_ECDSA_SECP256K1, .MPC_EDDSA_ED25519]
+    var didClearWallet = false
     // Property to store the push notification device token in memory
     private var pendingDeviceToken: String?
     /**
@@ -46,10 +51,7 @@ class FireblocksManager: FireblocksManagerProtocol, ObservableObject {
      * Set to true only if you need to use polling instead of push notifications.
      */
     private var useTransactionPolling: Bool = false
-    var algoArray: [Algorithm] = [.MPC_ECDSA_SECP256K1, .MPC_EDDSA_ED25519]
-    var didClearWallet = false
     
-    var options: EmbeddedWalletOptions?
     var keyStorageDelegate: KeyStorageProvider?
     var ewManager = EWManager.shared
 
@@ -83,12 +85,12 @@ class FireblocksManager: FireblocksManagerProtocol, ObservableObject {
             return try Fireblocks.getInstance(deviceId: deviceId)
         } catch {
             self.keyStorageDelegate = KeyStorageProvider(deviceId: deviceId)
-            return try ewInstance.initializeCore(deviceId: deviceId, keyStorage: keyStorageDelegate!)
+            let coreOptions = CoreOptions(eventHandlerDelegate: createEventHandlerDelegate())
+            return try ewInstance.initializeCore(deviceId: deviceId, keyStorage: keyStorageDelegate!, coreOptions: coreOptions)
         }
     }
 
     func assignWallet() async throws {
-        self.options = EmbeddedWalletOptions(env: EnvironmentConstants.ewEnv, logLevel: .info, logToConsole: true, logNetwork: true, eventHandlerDelegate: nil, reporting: .init(enabled: true))
         let instance = try getInstance()
         let result = try await instance.assignWallet()
         if let walletId = result.walletId {
@@ -182,7 +184,6 @@ class FireblocksManager: FireblocksManagerProtocol, ObservableObject {
             
             if let deviceId = UsersLocalStorageManager.shared.lastDeviceId(email: email), !deviceId.isTrimmedEmpty {
                 self.deviceId = deviceId
-                AppLoggerManager.shared.loggers[deviceId] = AppLogger(deviceId: deviceId)
                 self.latestBackupDeviceId = deviceId
                 let _ = try initializeCore()
                 return .exist
@@ -230,6 +231,10 @@ class FireblocksManager: FireblocksManagerProtocol, ObservableObject {
     }
     
     func appWillEnterForeground() {
+        fetchTransactions()
+    }
+    
+    func fetchTransactions() {
         logger.info("App entering foreground, fetching latest transactions")
         
         // Only fetch transactions if we have wallet and device IDs

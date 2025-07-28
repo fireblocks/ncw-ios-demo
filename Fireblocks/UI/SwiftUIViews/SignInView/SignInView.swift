@@ -18,7 +18,8 @@ struct SignInView: View {
     @EnvironmentObject var appleSignInManager: AppleSignInManager
 
     @State var showMenu = false
-
+    @State var error: Error?
+    
     var body: some View {
         ZStack {
             AppBackgroundView()
@@ -67,7 +68,7 @@ struct SignInView: View {
                 }
                 .padding(.horizontal)
                 Spacer()
-                Text(Bundle.main.versionLabel)
+                Text(Bundle.main.versionAndEnvironmentLabel)
                     .font(.b4)
                     .foregroundStyle(.secondary)
                     .frame(alignment: .center)
@@ -122,6 +123,9 @@ struct SignInView: View {
         }
         .onAppear() {
             viewModel.setup(authRepository: AuthRepository(), loadingManager: loadingManager, coordinator: coordinator, fireblocksManager: fireblocksManager, googleSignInManager: googleSignInManager, appleSignInManager: appleSignInManager)
+            if let error {
+                loadingManager.setAlertMessage(error: error)
+            }
         }
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {

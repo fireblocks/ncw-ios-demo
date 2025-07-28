@@ -31,7 +31,6 @@ class AssetRowViewModel {
     }
     
     private func loadAsset() {
-        print("DID CALL loadAsset \(asset.id)")
         Task {
             let assetSymbol = asset.asset?.symbol ?? ""
             let blockchainSymbol = asset.asset?.blockchain ?? ""

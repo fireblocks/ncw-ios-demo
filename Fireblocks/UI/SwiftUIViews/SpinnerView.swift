@@ -20,7 +20,7 @@ class LoadingManager {
     var alertMessage: String? {
         didSet {
             if alertMessage != nil {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 8.0) {
                     self.alertMessage = nil
                 }
             }

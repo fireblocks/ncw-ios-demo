@@ -36,7 +36,7 @@ struct LaunchView: View {
                     .aspectRatio(contentMode: .fit)
                     .opacity(0.7)
                 Spacer()
-                Text(Bundle.main.versionLabel)
+                Text(Bundle.main.versionAndEnvironmentLabel)
                     .font(.b4)
                     .foregroundStyle(.secondary)
                     .frame(alignment: .center)

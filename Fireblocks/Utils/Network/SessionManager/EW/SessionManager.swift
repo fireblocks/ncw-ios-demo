@@ -111,6 +111,14 @@ class SessionManager: ObservableObject {
         AppLoggerManager.shared.logger()?.log("SessionManager REQUEST: \(String(describing: request)) message: \(message ?? ""), body: \(body ?? "")")
         print("\(Date().milliseconds()) SessionManager REQUEST: \(String(describing: request))")
         let (data, response) = try await session.data(for: request)
+        
+        // Log x-request-id response header if present
+        if let httpResponse = response as? HTTPURLResponse,
+           let requestId = httpResponse.value(forHTTPHeaderField: "x-request-id") {
+            print("x-request-id: \(requestId)")
+            AppLoggerManager.shared.logger()?.log("x-request-id: \(requestId)")
+        }
+        
         if let statusCode = (response as? HTTPURLResponse)?.statusCode {
             if statusCode >= 200, statusCode <= 299 {
                 print("\(Date().milliseconds()) SessionManager RESPONSE: \(url)\n\(String(describing: String(data: data, encoding: .utf8)))")
@@ -121,11 +129,11 @@ class SessionManager: ObservableObject {
                 }
                 return data
             } else {
-                print("SessionManager Error statusCode: \(statusCode)")
+                AppLoggerManager.shared.logger()?.error("SessionManager Error statusCode: \(statusCode)")
                 throw SessionManager.error
             }
         } else {
-            print("SessionManager Error")
+            AppLoggerManager.shared.logger()?.error("SessionManager Error")
             throw SessionManager.error
         }
         

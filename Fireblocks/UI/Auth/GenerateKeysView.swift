@@ -67,7 +67,7 @@ struct GenerateKeysView: View {
                         Button {
                             viewModel.generateMpcKeys()
                         } label: {
-                            Text("Genertae keys")
+                            Text("Generate keys")
                                 .frame(maxWidth: .infinity)
                         }
                         .padding()

@@ -33,8 +33,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/fireblocks/ew-ios-sdk",
       "state" : {
-        "revision" : "0ebcd59b766f75b88ad9f68c1f91d1975fc124a1",
-        "version" : "1.0.3"
+        "revision" : "a835b7d7dc8449345a78a525ca5d6bbe37dc3d19",
+        "version" : "1.0.8"
       }
     },
     {
@@ -150,8 +150,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/fireblocks/ncw-ios-sdk",
       "state" : {
-        "revision" : "ac914aefa6c764503938f6fd29051e4794b3bbfa",
-        "version" : "2.9.8"
+        "revision" : "8ad97036f77175ded0d0daac426cbb47ef216b9e",
+        "version" : "2.9.14"
       }
     },
     {

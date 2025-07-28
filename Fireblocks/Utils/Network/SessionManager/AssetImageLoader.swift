@@ -91,7 +91,6 @@ class AssetImageLoader {
         }
         let rawSymbol = symbol.replacingOccurrences(of: "(?:_?TEST\\d*$)|(?:TEST\\d*$)", with: "", options: .regularExpression).lowercased()
         let baseNetwork = rawSymbol.contains("_") ? rawSymbol.split(separator: "_").first.map(String.init) ?? rawSymbol : rawSymbol
-        print("rawSymbol: \(rawSymbol), baseNetwork: \(baseNetwork)")
 
         let normalizedSymbol = normalizeSymbol(symbol: rawSymbol)
         let normalizedBaseNetwork = normalizeSymbol(symbol: baseNetwork)

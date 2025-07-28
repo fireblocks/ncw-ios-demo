@@ -24,7 +24,15 @@ struct FireblocksApp: App {
         if let _ = UsersLocalStorageManager.shared.getAuthProvider() {
             if await AuthRepository.getUserIdToken() != nil {
                 viewModel.fireblocksManager = FireblocksManager.shared
-                await viewModel.handleSuccessSignIn(isLaunch: true)
+                let error = await viewModel.handleSuccessSignIn(isLaunch: true)
+                if (error != nil) {
+                    viewModel.launchView = NavigationContainerView {
+                        SpinnerViewContainer {
+                            SignInView(error: error)
+                                .environmentObject(viewModel)
+                        }
+                    }
+                }
             } else {
                 viewModel.launchView = NavigationContainerView {
                     SpinnerViewContainer {

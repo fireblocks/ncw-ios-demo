@@ -14,17 +14,19 @@ class SignInViewModel: SignInView.ViewModel {
     private var foregroundObserver: NSObjectProtocol?
 
     
-    override func handleSuccessSignIn(isLaunch: Bool = false) async {
+    override func handleSuccessSignIn(isLaunch: Bool = false) async -> Error? {
         guard let fireblocksManager else {
-            loadingManager?.setAlertMessage(error: CustomError.genericError("Failed to load Fireblocks Manager"))
-            return
+            let error: CustomError = CustomError.genericError("Failed to load Fireblocks Manager")
+            loadingManager?.setAlertMessage(error: error)
+            return error
         }
         
         do {
             try await fireblocksManager.assignWallet()
             guard let email = fireblocksManager.getUserEmail() else {
-                loadingManager?.setAlertMessage(error: CustomError.login)
-                return
+                let error: CustomError = CustomError.login
+                loadingManager?.setAlertMessage(error: error)
+                return error
             }
             
             let state = await fireblocksManager.getLatestBackupState()
@@ -68,9 +70,12 @@ class SignInViewModel: SignInView.ViewModel {
                 }
             case .error(let error):
                 loadingManager?.setAlertMessage(error: error)
+                return error
             }
+            return nil
         } catch {
             loadingManager?.setAlertMessage(error: error)
+            return error
         }
     }
     
