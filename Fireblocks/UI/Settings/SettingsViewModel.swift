@@ -34,9 +34,6 @@ class SettingsViewModel {
         if let fireblocksLogsURL = FireblocksManager.shared.getURLForLogFiles() {
             items.append(fireblocksLogsURL)
         }
-        if let appLogoURL = AppLoggerManager.shared.logger()?.getURLForLogFiles() {
-            items.append(appLogoURL)
-        }
         let walletActions = [
             SettingsData(icon: "settingsBackup", title: "Create a backup", subtitle: nil, action: {
                 self.coordinator?.path.append(NavigationTypes.backup(false))
