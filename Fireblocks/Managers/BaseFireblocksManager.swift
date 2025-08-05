@@ -160,17 +160,23 @@ class BaseFireblocksManager: ObservableObject {
     private func logEvent(_ event: FireblocksEvent) {
         switch event {
         case let .KeyCreation(status, error):
-            AppLoggerManager.shared.logger()?.log("BaseFireblocksManager, status(.KeyCreation): \(status.description()). Error: \(String(describing: error)).")
+            let errorMessage = error != nil ? " Error: \(String(describing: error))." : ""
+            AppLoggerManager.shared.logger()?.log("BaseFireblocksManager, status(.KeyCreation): \(status.description()).\(errorMessage)")
         case let .Backup(status, error):
-            AppLoggerManager.shared.logger()?.log("BaseFireblocksManager, status(.Backup): \(status.description()). Error: \(String(describing: error)).")
+            let errorMessage = error != nil ? " Error: \(String(describing: error))." : ""
+            AppLoggerManager.shared.logger()?.log("BaseFireblocksManager, status(.Backup): \(status.description()).\(errorMessage)")
         case let .Recover(status, error):
-            AppLoggerManager.shared.logger()?.log("BaseFireblocksManager, status(.Recover): \(String(describing: status?.description())). Error: \(String(describing: error)).")
+            let errorMessage = error != nil ? " Error: \(String(describing: error))." : ""
+            AppLoggerManager.shared.logger()?.log("BaseFireblocksManager, status(.Recover): \(String(describing: status?.description())).\(errorMessage)")
         case let .Transaction(status, error):
-            AppLoggerManager.shared.logger()?.log("BaseFireblocksManager, status(.Transaction): \(status.description()). Error: \(String(describing: error)).")
+            let errorMessage = error != nil ? " Error: \(String(describing: error))." : ""
+            AppLoggerManager.shared.logger()?.log("BaseFireblocksManager, status(.Transaction): \(status.description()).\(errorMessage)")
         case let .Takeover(status, error):
-            AppLoggerManager.shared.logger()?.log("BaseFireblocksManager, status(.Takeover): \(status.description()). Error: \(String(describing: error)).")
+            let errorMessage = error != nil ? " Error: \(String(describing: error))." : ""
+            AppLoggerManager.shared.logger()?.log("BaseFireblocksManager, status(.Takeover): \(status.description()).\(errorMessage)")
         case let .JoinWallet(status, error):
-            AppLoggerManager.shared.logger()?.log("BaseFireblocksManager, status(.JoinWallet): \(status.description()). Error: \(String(describing: error)).")
+            let errorMessage = error != nil ? " Error: \(String(describing: error))." : ""
+            AppLoggerManager.shared.logger()?.log("BaseFireblocksManager, status(.JoinWallet): \(status.description()).\(errorMessage)")
         @unknown default:
             AppLoggerManager.shared.logger()?.log("BaseFireblocksManager, @unknown case")
         }
