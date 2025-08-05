@@ -41,13 +41,13 @@ class FireblocksManager: BaseFireblocksManager, FireblocksManagerProtocol {
      * Transaction update mechanism configuration:
      * - true: Uses polling to check for transaction updates (fallback option)
      * - false: Uses push notifications for real-time updates (default - recommended)
-     * 
+     *
      * Push notifications require:
      * 1. Fireblocks minimal backend server setup (see: https://github.com/fireblocks/ew-backend-demo)
      * 2. Webhook configuration in Fireblocks Console
      * 3. Firebase Cloud Messaging (FCM) configuration
      * 4. APNs certificate setup (see AppDelegate.swift for complete implementation)
-     * 
+     *
      * Set to true only if you need to use polling instead of push notifications.
      */
     private var useTransactionPolling: Bool = false
@@ -113,13 +113,13 @@ class FireblocksManager: BaseFireblocksManager, FireblocksManagerProtocol {
     
     func registerPushNotificationToken(_ token: String) async throws {
         guard !walletId.isEmpty else {
-            AppLoggerManager.shared.logger()?.error("Cannot register push token: Wallet ID is empty")
+            AppLoggerManager.shared.logger()?.warning("Cannot register push token: Wallet ID is empty")
             pendingDeviceToken = token // Store token for later
             throw CustomError.genericError("Wallet ID is empty")
         }
         
         guard !deviceId.isEmpty else {
-            AppLoggerManager.shared.logger()?.error("Cannot register push token: Device ID is empty")
+            AppLoggerManager.shared.logger()?.warning("Cannot register push token: Device ID is empty")
             pendingDeviceToken = token // Store token for later
             throw CustomError.genericError("Device ID is empty")
         }
@@ -232,6 +232,12 @@ class FireblocksManager: BaseFireblocksManager, FireblocksManagerProtocol {
     
     func appWillEnterForeground() {
         fetchTransactions()
+        
+        // Pre-warm token refresh for EW when app enters foreground
+        Task {
+            AppLoggerManager.shared.logger()?.log("FireblocksManager - App entering foreground, pre-warming EW token refresh")
+            let _ = await AuthRepository.getUserIdToken()
+        }
     }
     
     func fetchTransactions() {
@@ -256,9 +262,12 @@ class FireblocksManager: BaseFireblocksManager, FireblocksManagerProtocol {
 //MARK - AuthTokenRetriever -
 extension FireblocksManager: AuthTokenRetriever {
     func getAuthToken() async -> Result<String, any Error> {
+        AppLoggerManager.shared.logger()?.log("FireblocksManager - Fetching user token from AuthRepository")
         if let token = await AuthRepository.getUserIdToken() {
+            AppLoggerManager.shared.logger()?.log("FireblocksManager - Successfully fetched user token")
             return .success(token)
         } else {
+            AppLoggerManager.shared.logger()?.log("FireblocksManager - Failed to fetch user token")
             return .failure(CustomError.genericError("Failed to get user token"))
         }
     }

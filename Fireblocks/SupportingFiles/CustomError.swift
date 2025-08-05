@@ -27,7 +27,7 @@ enum CustomError: LocalizedError {
 }
 
 extension CustomError: CustomStringConvertible {
-    var localizedDescription: String {
+    var errorDescription: String? {
         return self.description
     }
     

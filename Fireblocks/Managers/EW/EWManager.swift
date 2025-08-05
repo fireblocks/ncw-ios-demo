@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import UIKit
+import SwiftUI
 
 #if EW
     #if DEV
@@ -55,6 +57,12 @@ class EWManager: Hashable {
     let authClientId = EnvironmentConstants.authClientId
     let options = EmbeddedWalletOptions(env: EnvironmentConstants.ewEnv, logLevel: .info, logToConsole: true, logNetwork: true, reporting: .init(enabled: true))
     var keyStorageDelegate: KeyStorageProvider?
+    
+    // Flag to prevent multiple authentication alerts
+    private var isShowingAuthAlert = false
+    
+    // Store last authentication error for detailed reporting
+    private var lastAuthError: Error?
 //    var walletId: String?
 //    var deviceId: String?
 
@@ -97,6 +105,111 @@ class EWManager: Hashable {
         }
 
         return nil
+    }
+    
+    // MARK: - Token Recovery
+    
+    /// Call this method when you detect authentication issues to attempt recovery
+    func handleAuthenticationFailure() async -> Bool {
+        AppLoggerManager.shared.logger()?.log("EWManager - Handling authentication failure")
+        
+        // Try to get a fresh token using our enhanced method
+        if let _ = await AuthRepository.getUserIdToken() {
+            AppLoggerManager.shared.logger()?.log("EWManager - Authentication recovered via token retrieval")
+            return true
+        }
+        
+        // If token retrieval fails, check if user is still authenticated
+        if !AuthRepository.isUserAuthenticated() {
+            AppLoggerManager.shared.logger()?.log("EWManager - User is no longer authenticated, showing re-login alert")
+            await showAuthenticationExpiredAlert()
+            return false
+        }
+        
+        AppLoggerManager.shared.logger()?.log("EWManager - Authentication recovery failed")
+        return false
+    }
+    
+    // MARK: - Authentication Alert
+    
+    @MainActor
+    private func showAuthenticationExpiredAlert() {
+        // Prevent multiple alerts from being shown simultaneously
+        guard !isShowingAuthAlert else {
+            AppLoggerManager.shared.logger()?.log("EWManager - Authentication alert already showing, skipping")
+            return
+        }
+        
+        isShowingAuthAlert = true
+        AppLoggerManager.shared.logger()?.log("EWManager - Showing authentication expired alert")
+        
+        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+              let window = windowScene.windows.first,
+              let rootViewController = window.rootViewController else {
+            AppLoggerManager.shared.logger()?.log("EWManager - Could not find root view controller for alert")
+            isShowingAuthAlert = false
+            return
+        }
+        
+        let alert = UIAlertController(
+            title: "Authentication Error",
+            message: "Unable to authenticate. Please sign out manually and sign in again.",
+            preferredStyle: .alert
+        )
+        
+        alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in
+            AppLoggerManager.shared.logger()?.log("EWManager - User acknowledged authentication error")
+            self.isShowingAuthAlert = false
+        })
+        
+        // Find the topmost view controller to present the alert
+        var topViewController = rootViewController
+        while let presentedViewController = topViewController.presentedViewController {
+            topViewController = presentedViewController
+        }
+        
+        topViewController.present(alert, animated: true)
+    }
+    
+    @MainActor
+    private func showUserDeletedAlert() {
+        // Prevent multiple alerts from being shown simultaneously
+        guard !isShowingAuthAlert else {
+            AppLoggerManager.shared.logger()?.log("EWManager - User deleted alert skipped, another alert is showing")
+            return
+        }
+        
+        isShowingAuthAlert = true
+        AppLoggerManager.shared.logger()?.log("EWManager - Showing user deleted alert")
+        
+        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+              let window = windowScene.windows.first,
+              let rootViewController = window.rootViewController else {
+            AppLoggerManager.shared.logger()?.log("EWManager - Could not find root view controller for user deleted alert")
+            isShowingAuthAlert = false
+            return
+        }
+        
+        let alert = UIAlertController(
+            title: "User Account Deleted",
+            message: "Your user account has been deleted from Firebase (Error Code: 17011). To create a new wallet, please reinstall the application.",
+            preferredStyle: .alert
+        )
+        
+        alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in
+            AppLoggerManager.shared.logger()?.log("EWManager - User acknowledged user deleted error, clearing wallet data")
+            // Clear wallet data to simulate fresh install
+            SignInView.ViewModel.clearWalletData()
+            self.isShowingAuthAlert = false
+        })
+        
+        // Find the topmost view controller to present the alert
+        var topViewController = rootViewController
+        while let presentedViewController = topViewController.presentedViewController {
+            topViewController = presentedViewController
+        }
+        
+        topViewController.present(alert, animated: true)
     }
     
     //MARK: - EmbeddedWalletAccountsProtocol -
@@ -423,11 +536,34 @@ class EWManager: Hashable {
 
 //MARK - AuthTokenRetriever -
 extension EWManager: AuthTokenRetriever {
+    
     func getAuthToken() async -> Result<String, any Error> {
-        if let token = await AuthRepository.getUserIdToken() {
-            return .success(token)
-        } else {
-            return .failure(CustomError.genericError("Failed to get user token"))
+        do {
+            if let token = await AuthRepository.getUserIdToken() {
+                return .success(token)
+            } else {
+                AppLoggerManager.shared.logger()?.log("EWManager - getAuthToken: Failed to get user Id token")
+                
+                // Check if user has been deleted from Firebase
+                if await AuthRepository.isUserDeleted() {
+                    AppLoggerManager.shared.logger()?.log("EWManager - User has been deleted from Firebase, showing user deleted alert")
+                    Task { @MainActor in
+                        showUserDeletedAlert()
+                    }
+                    return .failure(CustomError.login)
+                } else if !AuthRepository.isUserAuthenticated() {
+                    AppLoggerManager.shared.logger()?.log("EWManager - User is no longer authenticated, showing re-login alert")
+                    Task { @MainActor in
+                        showAuthenticationExpiredAlert()
+                    }
+                    return .failure(CustomError.login)
+                } else {
+                    return .failure(CustomError.genericError("EWManager - getAuthToken: Failed to get user Id token"))
+                }
+            }
+        } catch {
+            AppLoggerManager.shared.logger()?.log("EWManager - getAuthToken: Error \(error)")
+            return .failure(error)
         }
     }
 }

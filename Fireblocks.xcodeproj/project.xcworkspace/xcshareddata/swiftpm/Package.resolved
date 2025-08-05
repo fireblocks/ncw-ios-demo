@@ -33,8 +33,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/fireblocks/ew-ios-sdk",
       "state" : {
-        "revision" : "a835b7d7dc8449345a78a525ca5d6bbe37dc3d19",
-        "version" : "1.0.8"
+        "revision" : "c3a0d4c1099632ed700b8f2dfdc84dcd2d119df1",
+        "version" : "1.0.10"
       }
     },
     {
