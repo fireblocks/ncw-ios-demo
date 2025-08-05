@@ -75,6 +75,7 @@ class SessionManager: ObservableObject {
     
     func sendRequest(url: URL, httpMethod: String = "POST", timeout: TimeInterval? = nil, numberOfRetries: Int = 2, message: String? = nil, body: Any? = nil, skipLogs: Bool = false) async throws -> (Data) {
         guard let currentAccessToken = await AuthRepository.getUserIdToken() else {
+            AppLoggerManager.shared.logger()?.log("SessionManager sendRequest Error: No access token")
             throw SessionManager.error
         }
         

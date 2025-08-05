@@ -88,7 +88,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             do {
                 try await FireblocksManager.shared.registerPushNotificationToken(tokenString)
             } catch {
-                AppLoggerManager.shared.logger()?.error("Failed to register token: \(error)")
+                AppLoggerManager.shared.logger()?.warning("Failed to register token: \(error)")
             }
         }
     }
@@ -127,16 +127,14 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
 extension AppDelegate: MessagingDelegate {
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
         AppLoggerManager.shared.logger()?.log("Firebase registration token: \(String(describing: fcmToken))")
-        
-       
-        
+                    
         // This is the correct token to register with your server
         if let fcmToken = fcmToken {
             Task {
                 do {
                     try await FireblocksManager.shared.registerPushNotificationToken(fcmToken)
                 } catch {
-                    AppLoggerManager.shared.logger()?.error("FCM Token registration deferred: \(error)")
+                    AppLoggerManager.shared.logger()?.warning("FCM Token registration deferred: \(error)")
                 }
             }
         } else {
