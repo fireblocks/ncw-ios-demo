@@ -154,6 +154,16 @@ extension SignInView {
                 }
             }
         }
+        
+        /// Static helper to clear wallet without UI dependencies - for use from other parts of the app
+        static func clearWalletData() {
+            do {
+                try FireblocksManager.shared.signOut()
+                FireblocksManager.shared.didClearWallet = true
+            } catch {
+                AppLoggerManager.shared.logger()?.log("SignInViewModel - clearWalletData failed: \(error)")
+            }
+        }
 
 
     }

@@ -163,4 +163,21 @@ class AuthRepository  {
             AppLoggerManager.shared.logger()?.log("AuthRepository: Sign out failed: \(error)")
         }
     }
+    
+    /// Checks if the current user has been deleted from Firebase
+    static func isUserDeleted() async -> Bool {
+        guard let currentUser = Auth.auth().currentUser else {
+            return false
+        }
+        
+        do {
+            // Try to get ID token to check user status
+            let _ = try await currentUser.getIDToken()
+            return false
+        } catch {
+            // Check if the error is specifically the user not found error
+            let nsError = error as NSError
+            return nsError.domain == "FIRAuthErrorDomain" && nsError.code == 17011
+        }
+    }
 }
