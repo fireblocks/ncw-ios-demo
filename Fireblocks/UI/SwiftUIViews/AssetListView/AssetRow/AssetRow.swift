@@ -72,9 +72,9 @@ struct AssetRow: View {
                         Text(subTitleAmount)
                             .font(.b2)
                     } else {
-                        if let assetId = asset.asset?.id, let total = asset.balance?.total, let price = Double(total) {
+                        if let symbol = asset.asset?.symbol, let total = asset.balance?.total, let price = Double(total) {
 #if EW
-                            Text(CryptoCurrencyManager.shared.getTotalPrice(assetId: assetId, networkProtocol: asset.asset?.networkProtocol, amount: price))
+                            Text(CryptoCurrencyManager.shared.getTotalPrice(symbol: symbol, networkProtocol: asset.asset?.networkProtocol, amount: price))
                                 .font(.b2)
 #else
                             if let rate = asset.asset?.rate, let total = asset.balance?.total, let price = Double(total), price != 0 {

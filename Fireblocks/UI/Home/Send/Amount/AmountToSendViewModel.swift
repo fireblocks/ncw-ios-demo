@@ -97,8 +97,8 @@ class AmountToSendViewModel {
     
     private func calculatePrice(){
         #if EW
-        if let assetId = asset.asset?.id {
-            calculatedPrice = CryptoCurrencyManager.shared.getPrice(assetId: assetId, networkProtocol: asset.asset?.networkProtocol, amount: assetAmount).formatFractions(fractionDigits: 5)
+        if let symbol = asset.asset?.symbol {
+            calculatedPrice = CryptoCurrencyManager.shared.getPrice(symbol: symbol, networkProtocol: asset.asset?.networkProtocol, amount: assetAmount).formatFractions(fractionDigits: 5)
         }
         #else
         if let rate = asset.asset?.rate {

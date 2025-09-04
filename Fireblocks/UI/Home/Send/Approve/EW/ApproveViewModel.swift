@@ -76,7 +76,7 @@ class ApproveViewModel: ApproveViewModelBase {
         }
         
         if let assetId = transaction.asset.asset?.id {
-            return CryptoCurrencyManager.shared.getTotalPrice(assetId: assetId, networkProtocol: transaction.asset.asset?.networkProtocol, amount: totalAmount)
+            return CryptoCurrencyManager.shared.getTotalPrice(symbol: assetId, networkProtocol: transaction.asset.asset?.networkProtocol, amount: totalAmount)
         }
         
         return "$\(totalAmount.formatFractions(fractionDigits: 2))"
