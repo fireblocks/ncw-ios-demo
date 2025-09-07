@@ -284,12 +284,12 @@ class EWManager: Hashable {
 
     func fetchAllSupportedAssets() async throws -> [Asset] {
         let instance = try initialize()
-        return try await instance.getSupportedAssets(onlyBaseAssets: true).data ?? []
+        return try await instance.getSupportedAssets(onlyBaseAssets: false).data ?? []
     }
     
     func fetchSupportedAssetsWithPagination(pageCursor: String?, pageSize: Int?, order: Order) async throws -> PaginatedResponse<Asset> {
         let instance = try initialize()
-        return try await instance.getSupportedAssets(allPages: true, pageCursor: pageCursor, pageSize: pageSize, onlyBaseAssets: true)
+        return try await instance.getSupportedAssets(allPages: true, pageCursor: pageCursor, pageSize: pageSize, onlyBaseAssets: false)
     }
     
     func getTransactions(after: String? = nil, pageCursor: String?, order: Order, incoming: Bool? = nil, sourceId: String? = nil, outgoing: Bool? = nil, destId: String? = nil) async throws -> PaginatedResponse<TransactionResponse> {

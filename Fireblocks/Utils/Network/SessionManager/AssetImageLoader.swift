@@ -79,8 +79,8 @@ class AssetImageLoader {
         attemptLoad(from: remainingURLs.first!)
     }
     
-    func getFormattedSymbol(assetId: String) -> String {
-        let formattedSymbol = assetId.replacingOccurrences(of: "(?:_?TEST\\d*$)|(?:TEST\\d*$)", with: "", options: .regularExpression)
+    func getFormattedSymbol(symbol: String) -> String {
+        let formattedSymbol = symbol.replacingOccurrences(of: "(?:_?TEST\\d*$)|(?:TEST\\d*$)", with: "", options: .regularExpression)
         return formattedSymbol
     }
 

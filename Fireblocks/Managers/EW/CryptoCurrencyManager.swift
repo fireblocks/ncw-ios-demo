@@ -9,10 +9,10 @@ class CryptoCurrencyManager {
     static let shared = CryptoCurrencyManager()
     private init() {}
     
-    func getTotalPrice(assetId: String, networkProtocol: String?, amount: Double) -> String {
+    func getTotalPrice(symbol: String, networkProtocol: String?, amount: Double) -> String {
         if let data = CryptoCurrencyData.cryptoCurrency.data(using: .utf8) {
             if let cryptoCurrecnyData: CryptoCurrency = try? GenericDecoder.decode(data: data) {
-                let formattedSymbol = AssetImageLoader.shared.getFormattedSymbol(assetId: assetId)
+                let formattedSymbol = AssetImageLoader.shared.getFormattedSymbol(symbol: symbol)
                 if let rate = cryptoCurrecnyData.data.first(where: {$0.symbol == formattedSymbol})?.quote.USD.price {
                     let totalPrice = amount * rate
                     
@@ -28,10 +28,10 @@ class CryptoCurrencyManager {
 
     }
     
-    func getPrice(assetId: String, networkProtocol: String?, amount: Double) -> Double {
+    func getPrice(symbol: String, networkProtocol: String?, amount: Double) -> Double {
         if let data = CryptoCurrencyData.cryptoCurrency.data(using: .utf8) {
             if let cryptoCurrecnyData: CryptoCurrency = try? GenericDecoder.decode(data: data) {
-                let formattedSymbol = AssetImageLoader.shared.getFormattedSymbol(assetId: assetId)
+                let formattedSymbol = AssetImageLoader.shared.getFormattedSymbol(symbol: symbol)
                 if let rate = cryptoCurrecnyData.data.first(where: {$0.symbol == formattedSymbol})?.quote.USD.price {
                     let totalPrice = amount * rate
                     
